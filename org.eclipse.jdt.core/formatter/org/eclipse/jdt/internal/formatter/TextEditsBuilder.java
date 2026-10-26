@@ -430,8 +430,8 @@ public class TextEditsBuilder extends TokenTraverser {
 		// FOr the closing quote buffer, we want to ensure that there is only a single newline.
 		// But this can't be the case if the line before the last contains an extra newline (one or more).
 		// So we need to strip any extra newline.
-		StringBuilder newBuffer = new StringBuilder (this.options.line_separator + curBuffer.replace(this.options.line_separator, "")); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-		return newBuffer.toString();
+		return (this.options.line_separator + curBuffer.replace(this.options.line_separator, "")); //$NON-NLS-1$
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 
 	private ReplaceEdit getReplaceEdit(int editStart, int editEnd, String text, IRegion region) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD

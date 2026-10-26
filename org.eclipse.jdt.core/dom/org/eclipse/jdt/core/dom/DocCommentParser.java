@@ -90,10 +90,9 @@ class DocCommentParser extends AbstractCommentParser {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-		buffer.append("javadoc: ").append(this.docComment).append("\n");	//$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(super.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		return buffer.toString();
+		return "javadoc: " + this.docComment + "\n" + super.toString(); //$NON-NLS-1$ //$NON-NLS-2$
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 
 	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD

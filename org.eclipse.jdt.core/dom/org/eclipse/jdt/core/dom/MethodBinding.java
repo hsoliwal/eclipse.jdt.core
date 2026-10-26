@@ -207,9 +207,9 @@ class MethodBinding implements IMethodBinding {
 					paramTypes[i] = typeBinding;
 				} else {
 					// log error
-					StringBuilder message = new StringBuilder("Report method binding where a parameter is null:\n");  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-					message.append(toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-					Util.log(new IllegalArgumentException(), message.toString());
+					Util.log(new IllegalArgumentException(), "Report method binding where a parameter is null:\n" + toString()); //$NON-NLS-1$
+					// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 					// report no binding since one or more parameter has no binding
 					return this.parameterTypes = NO_TYPE_BINDINGS;
 				}

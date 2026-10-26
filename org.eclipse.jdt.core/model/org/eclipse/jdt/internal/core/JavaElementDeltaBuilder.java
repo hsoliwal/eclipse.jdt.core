@@ -485,10 +485,9 @@ private void removeElementInfo(IJavaElement element) {
 }
 @Override
 public String toString() {
-	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	buffer.append("Built delta:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(this.delta == null ? "<null>" : this.delta.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	return buffer.toString();
+	return "Built delta:\n" + (this.delta == null ? "<null>" : this.delta.toString()); //$NON-NLS-1$ //$NON-NLS-2$
+	// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 }
 /**
  * Trims deletion deltas to only report the highest level of deletion

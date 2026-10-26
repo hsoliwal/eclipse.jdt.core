@@ -112,11 +112,9 @@ public final class RewriteEventStore {
 
 		@Override
 		public String toString() {
-			StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-			buf.append(this.parent).append(" - "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buf.append(this.childProperty.getId()).append(": "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			buf.append(this.event).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			return buf.toString();
+			return "" + this.parent + " - " + this.childProperty.getId() + ": " + this.event + '\n'; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 	}
 

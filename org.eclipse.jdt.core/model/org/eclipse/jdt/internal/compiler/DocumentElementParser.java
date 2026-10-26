@@ -1603,9 +1603,8 @@ private char[] returnTypeName(TypeReference type) {
 }
 @Override
 public String toString() {
-	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	buffer.append("intArrayPtr = " + this.intArrayPtr + "\n"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	buffer.append(super.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-	return buffer.toString();
+	return ("intArrayPtr = " + this.intArrayPtr + "\n") + super.toString(); //$NON-NLS-1$ //$NON-NLS-2$
+	// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 }
 }

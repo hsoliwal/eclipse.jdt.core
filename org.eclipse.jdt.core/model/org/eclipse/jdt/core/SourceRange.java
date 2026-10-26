@@ -80,12 +80,8 @@ public final class SourceRange implements ISourceRange {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-		buffer.append("[offset="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(this.offset); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(", length="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(this.length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append("]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		return buffer.toString();
+		return "[offset=" + this.offset + ", length=" + this.length + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 }

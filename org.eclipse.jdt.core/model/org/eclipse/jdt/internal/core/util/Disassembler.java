@@ -1901,10 +1901,9 @@ public class Disassembler extends ClassFileBytesDisassembler {
 		if (constantPoolEntry2.getReferenceKind() != 6)
 			return null;
 		ConstantPoolEntry constantPoolEntry = (ConstantPoolEntry) constantPool.decodeEntry(constantPoolEntry2.getReferenceIndex());
-		StringBuilder builder = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-		//String[] methodMsg = methodDescription(constantPoolEntry);
-		builder.append(Messages.bind("invokestatic {0}.{1}:{2}", methodDescription(constantPoolEntry))); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		return builder.toString();
+		return Messages.bind("invokestatic {0}.{1}:{2}", methodDescription(constantPoolEntry)); //$NON-NLS-1$
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 
 	private String[] bootstrapArgumentsDescription(IBootstrapMethodsEntry entry, IConstantPool constantPool) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD

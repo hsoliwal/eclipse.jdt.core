@@ -329,14 +329,9 @@ public class CompilationUnitProblemFinder extends Compiler {
 		} catch(RuntimeException e) {
 			// avoid breaking other tools due to internal compiler failure (40334)
 			String lineDelimiter = unitElement.findRecommendedLineSeparator();
-			StringBuilder message = new StringBuilder("Exception occurred during problem detection:");  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-			message.append(lineDelimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			message.append("----------------------------------- SOURCE BEGIN -------------------------------------"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			message.append(lineDelimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			message.append(unitElement.getSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			message.append(lineDelimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			message.append("----------------------------------- SOURCE END -------------------------------------"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			Util.log(e, message.toString());
+			Util.log(e, "Exception occurred during problem detection:" + lineDelimiter + "----------------------------------- SOURCE BEGIN -------------------------------------" + lineDelimiter + unitElement.getSource() + lineDelimiter + "----------------------------------- SOURCE END -------------------------------------"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			throw new JavaModelException(e, IJavaModelStatusConstants.COMPILER_FAILURE);
 		} finally {
 			if (environment != null)

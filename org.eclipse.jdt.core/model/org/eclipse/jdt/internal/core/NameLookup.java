@@ -111,10 +111,9 @@ public class NameLookup implements SuffixConstants {
 		}
 		@Override
 		public String toString() {
-			StringBuilder builder = new StringBuilder(this.type.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-			builder.append("from ") //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			.append(this.module);
-			return builder.toString();
+			return this.type.toString() + "from " + this.module;
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 	}
 

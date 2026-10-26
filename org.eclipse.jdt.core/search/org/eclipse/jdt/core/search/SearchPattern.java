@@ -364,19 +364,13 @@ public void acceptMatch(String relativePath, String containerPath, char separato
 		// Note that requestor has to verify if needed whether the document violates the access restriction or not
 		AccessRuleSet access = javaSearchScope.getAccessRuleSet(relativePath, containerPath);
 		if (access != JavaSearchScope.NOT_ENCLOSED) { // scope encloses the document path
-			StringBuilder documentPath = new StringBuilder(containerPath.length() + 1 + relativePath.length()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-			documentPath.append(containerPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			documentPath.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			documentPath.append(relativePath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-			if (!requestor.acceptIndexMatch(documentPath.toString(), pattern, participant, access))
+			if (!requestor.acceptIndexMatch(containerPath + separator + relativePath, pattern, participant, access))
 				throw new OperationCanceledException();
 		}
 	} else {
-		StringBuilder buffer = new StringBuilder(containerPath.length() + 1 + relativePath.length()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-		buffer.append(containerPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(separator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(relativePath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		String documentPath = buffer.toString();
+		String documentPath = containerPath + separator + relativePath;
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		boolean encloses = (scope instanceof HierarchyScope) ? ((HierarchyScope)scope).encloses(documentPath, monitor)
 							: scope.encloses(documentPath);
 		if (encloses)

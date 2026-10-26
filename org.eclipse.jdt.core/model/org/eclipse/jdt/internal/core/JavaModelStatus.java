@@ -527,11 +527,8 @@ public class JavaModelStatus extends Status implements IJavaModelStatus, IJavaMo
 		if (this == VERIFIED_OK){
 			return "JavaModelStatus[OK]"; //$NON-NLS-1$
 		}
-		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-		buffer.append("Error in Java Model (code "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(this.getCode()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append("): "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		buffer.append(getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		return buffer.toString();
+		return "Error in Java Model (code " + this.getCode() + "): " + getMessage(); //$NON-NLS-1$ //$NON-NLS-2$
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		// preserved predecessor annotation: //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 }
