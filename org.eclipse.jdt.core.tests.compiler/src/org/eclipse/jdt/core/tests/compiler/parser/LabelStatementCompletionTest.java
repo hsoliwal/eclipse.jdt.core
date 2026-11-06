@@ -28,7 +28,7 @@ public static Test suite() {
 /*
  * Completion inside an inner class defined inside a labeled statement.
  */
-public void test1FTEO9L() {
+public void test1FTEO9L() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String cu =
 		"package p; 					\n" +
 		"								\n" +
@@ -206,7 +206,7 @@ public void test1FTEO9L() {
 /*
  * Completion inside a case that has an identifier as its constant expression.
  */
-public void testInCaseWithIdentifier() {
+public void testInCaseWithIdentifier() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {										\n" +
@@ -247,7 +247,7 @@ public void testInCaseWithIdentifier() {
 /*
  * Completion inside a case that has a number as its constant expression.
  */
-public void testInCaseWithNumberConstant() {
+public void testInCaseWithNumberConstant() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {										\n" +
@@ -288,7 +288,7 @@ public void testInCaseWithNumberConstant() {
 /*
  * Completion inside an inner class defined inside a labeled statement.
  */
-public void testInLabeledInnerClass() {
+public void testInLabeledInnerClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -338,7 +338,7 @@ public void testInLabeledInnerClass() {
  * Completion inside an inner class defined inside a labeled statement with a syntax error
  * just before the labeled statement.
  */
-public void testInLabeledInnerClassWithErrorBefore() {
+public void testInLabeledInnerClassWithErrorBefore() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -390,7 +390,7 @@ public void testInLabeledInnerClassWithErrorBefore() {
 /*
  * Completion inside a labeled statement one level deep.
  */
-public void testOneLevelDeep() {
+public void testOneLevelDeep() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -423,7 +423,7 @@ public void testOneLevelDeep() {
 /*
  * Completion inside a labeled statement which is the second one in the method.
  */
-public void testSecondLabel() {
+public void testSecondLabel() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -457,7 +457,7 @@ public void testSecondLabel() {
 /*
  * Completion inside a labeled statement two level deep.
  */
-public void testTwoLevelDeep() {
+public void testTwoLevelDeep() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +

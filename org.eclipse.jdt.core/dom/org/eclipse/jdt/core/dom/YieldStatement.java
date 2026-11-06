@@ -49,7 +49,7 @@ public class YieldStatement extends Statement {
 	private boolean isImplicit = false;
 
 	static {
-		List properyList = new ArrayList(2);
+		List properyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(YieldStatement.class, properyList);
 		addProperty(EXPRESSION_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(properyList);

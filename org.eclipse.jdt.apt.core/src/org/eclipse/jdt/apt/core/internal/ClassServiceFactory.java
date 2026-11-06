@@ -30,7 +30,7 @@ class ClassServiceFactory implements IServiceFactory {
 			return _clazz.getDeclaredConstructor().newInstance();
 		} catch (Exception e) {
 			throw new CoreException(AptPlugin.createWarningStatus(e,
-					"Unable to create instance of annotation processor " + _clazz.getName())); //$NON-NLS-1$
+					"Unable to create instance of annotation processor " + _clazz.getName())); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} 
 	}
 

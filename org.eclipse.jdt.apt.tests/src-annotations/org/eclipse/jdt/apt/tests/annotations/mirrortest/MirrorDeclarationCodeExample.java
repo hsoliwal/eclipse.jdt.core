@@ -19,7 +19,7 @@ public class MirrorDeclarationCodeExample
 {
 	public static final String CODE_PACKAGE = "mirrortestpackage";
 	public static final String CODE_CLASS_NAME = "DeclarationTestClass";
-	public static final String CODE_FULL_NAME = CODE_PACKAGE + "." + CODE_CLASS_NAME;
+	public static final String CODE_FULL_NAME = CODE_PACKAGE + "." + CODE_CLASS_NAME; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	public static final String CODE =
 		"package mirrortestpackage;\n" +

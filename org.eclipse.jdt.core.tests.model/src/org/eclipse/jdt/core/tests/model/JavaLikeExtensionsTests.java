@@ -62,7 +62,7 @@ public class JavaLikeExtensionsTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that the known Java-like extensions are correct after a Java-like file extension is added.
 	 */
-	public void testGetJavaLikeExtensions02() throws CoreException {
+	public void testGetJavaLikeExtensions02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IContentType javaContentType = Platform.getContentTypeManager().getContentType(JavaCore.JAVA_SOURCE_CONTENT_TYPE);
 		try {
 			if (javaContentType != null)

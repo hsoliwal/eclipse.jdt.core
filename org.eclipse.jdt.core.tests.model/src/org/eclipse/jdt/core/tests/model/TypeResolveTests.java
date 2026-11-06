@@ -43,7 +43,7 @@ public TypeResolveTests(String name) {
 	super(name);
 }
 private IType getType(IType[] types, String sourceTypeName) throws JavaModelException {
-	for (int i = 0; i < types.length; i++) {
+	for (int i = 0; i < types.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IType sourceType = types[i];
 		if (sourceType.getTypeQualifiedName().equals(sourceTypeName)) {
 			return sourceType;
@@ -58,26 +58,26 @@ private IType getType(String sourceTypeName) throws JavaModelException {
 }
 private String[][] resolveType(String typeName, String sourceTypeName) throws JavaModelException {
 	IType sourceType = this.getType(sourceTypeName);
-	assertTrue("Type " + sourceTypeName + " was not found", sourceType != null);
+	assertTrue("Type " + sourceTypeName + " was not found", sourceType != null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return sourceType.resolveType(typeName);
 }
-protected void assertTypesEqual(String expected, String[][] types) {
-	StringBuilder buffer = new StringBuilder();
+protected void assertTypesEqual(String expected, String[][] types) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if(types != null) {
-		for (int i = 0, length = types.length; i < length; i++) {
+		for (int i = 0, length = types.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String[] qualifiedName = types[i];
 			String packageName = qualifiedName[0];
 			if (packageName.length() > 0) {
-				buffer.append(packageName);
-				buffer.append(".");
+				buffer.append(packageName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append("."); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append(qualifiedName[1]);
+			buffer.append(qualifiedName[1]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (i < length-1) {
-				buffer.append("\n");
+				buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	} else {
-		buffer.append("<null>");
+		buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	String actual = buffer.toString();
 	if (!expected.equals(actual)) {
@@ -92,7 +92,7 @@ protected void assertTypesEqual(String expected, String[][] types) {
 /* (non-Javadoc)
  * @see org.eclipse.jdt.core.tests.model.AbstractJavaModelTests#setUpSuite()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 	super.setUpSuite();
 	setUpJavaProject("TypeResolve");
@@ -154,7 +154,7 @@ public void testResolveMemberTypeInInner() throws JavaModelException {
  * Resolve a parameterized type
  * (regression test for bug 94903 Error setting method breakpoint in 1.5 project)
  */
-public void testResolveParameterizedType() throws CoreException {
+public void testResolveParameterizedType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		createFile(
@@ -215,7 +215,7 @@ public void testResolveTypeInBinary3() throws JavaModelException {
  * Resolve the type "int" within a member binary type with a constructor.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=212224 )
  */
-public void testResolveTypeInBinary4() throws Exception {
+public void testResolveTypeInBinary4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		addLibrary("lib212224.jar", "lib212224src.zip", new String[] {
 			"X212224.java",
@@ -325,7 +325,7 @@ public void testResolveInnerType2() throws JavaModelException {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=334783"
  */
-public void testParamAnnotations() throws CoreException {
+public void testParamAnnotations() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String source = "package p;\n" +
@@ -362,7 +362,7 @@ public void testParamAnnotations() throws CoreException {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=334783"
  */
-public void testParamAnnotations2() throws CoreException, IOException {
+public void testParamAnnotations2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String[] pathAndContents = new String[]{"p/X.java",
@@ -392,7 +392,7 @@ public void testParamAnnotations2() throws CoreException, IOException {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=334783"
  */
-public void testParamAnnotations3() throws CoreException {
+public void testParamAnnotations3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String source = "package p;\n" +
@@ -432,10 +432,10 @@ public void testParamAnnotations3() throws CoreException {
 		assertEquals(annotationString2, iAnnotation.toString());
 		IMemberValuePair[] memberValuePairs = iAnnotation.getMemberValuePairs();
 		assertEquals("Wrong number of pairs", 1, memberValuePairs.length);
-		StringBuilder output = new StringBuilder();
-		output.append(memberValuePairs[0].getMemberName());
-		output.append(' ');
-		output.append(memberValuePairs[0].getValue());
+		StringBuilder output = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		output.append(memberValuePairs[0].getMemberName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(memberValuePairs[0].getValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEquals("Wrong value", "id 1", String.valueOf(output));
 		assertEquals("Wrong length", 0, method.getParameters()[0].getAnnotations().length);
 		assertEquals("Wrong length", 0, method.getParameters()[2].getAnnotations().length);
@@ -446,7 +446,7 @@ public void testParamAnnotations3() throws CoreException {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=334783"
  */
-public void testParamAnnotations4() throws CoreException, IOException {
+public void testParamAnnotations4() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String sourceX =
@@ -486,10 +486,10 @@ public void testParamAnnotations4() throws CoreException, IOException {
 		assertEquals("@p.Marker [in Test(int, java.lang.String, int) [in X [in X.class [in p [in lib334783_2.jar [in P]]]]]]", annotation.toString());
 		IMemberValuePair[] memberValuePairs = annotation.getMemberValuePairs();
 		assertEquals("Wrong number of pairs", 1, memberValuePairs.length);
-		StringBuilder output = new StringBuilder();
-		output.append(memberValuePairs[0].getMemberName());
-		output.append(' ');
-		output.append(memberValuePairs[0].getValue());
+		StringBuilder output = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		output.append(memberValuePairs[0].getMemberName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(memberValuePairs[0].getValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEquals("Wrong value", "id 3", String.valueOf(output));
 		ILocalVariable localVariable = method.getParameters()[1];
 		ISourceRange sourceRange = localVariable.getSourceRange();
@@ -505,10 +505,10 @@ public void testParamAnnotations4() throws CoreException, IOException {
 		assertEquals(annotationString2, annotation.toString());
 		memberValuePairs = annotation.getMemberValuePairs();
 		assertEquals("Wrong number of pairs", 1, memberValuePairs.length);
-		output = new StringBuilder();
-		output.append(memberValuePairs[0].getMemberName());
-		output.append(' ');
-		output.append(memberValuePairs[0].getValue());
+		output = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		output.append(memberValuePairs[0].getMemberName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(memberValuePairs[0].getValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEquals("Wrong value", "id 1", String.valueOf(output));
 		localVariable = method.getParameters()[0];
 		assertEquals("Wrong length", 0, localVariable.getAnnotations().length);
@@ -521,7 +521,7 @@ public void testParamAnnotations4() throws CoreException, IOException {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=334783"
  */
-public void testParamAnnotations5() throws CoreException, IOException {
+public void testParamAnnotations5() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String[] pathAndContents = new String[]{"p/X.java",
@@ -544,7 +544,7 @@ public void testParamAnnotations5() throws CoreException, IOException {
 				"package p;\n" +
 				"public @interface Default{\n" +
 				"}"};
-		Map options = new HashMap();
+		Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		options.put(JavaCore.COMPILER_LOCAL_VARIABLE_ATTR, JavaCore.DO_NOT_GENERATE);
 		addLibrary(project, "lib334783_3.jar", "lib334783_3src.zip", pathAndContents, CompilerOptions.getFirstSupportedJavaVersion(), options);
 
@@ -561,10 +561,10 @@ public void testParamAnnotations5() throws CoreException, IOException {
 		assertEquals("@p.Marker [in Test(int, java.lang.String, int) [in X [in X.class [in p [in lib334783_3.jar [in P]]]]]]", annotation.toString());
 		IMemberValuePair[] memberValuePairs = annotation.getMemberValuePairs();
 		assertEquals("Wrong number of pairs", 1, memberValuePairs.length);
-		StringBuilder output = new StringBuilder();
-		output.append(memberValuePairs[0].getMemberName());
-		output.append(' ');
-		output.append(memberValuePairs[0].getValue());
+		StringBuilder output = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		output.append(memberValuePairs[0].getMemberName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(memberValuePairs[0].getValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEquals("Wrong value", "id 3", String.valueOf(output));
 		IAnnotation[] parameterAnnotations = method.getParameters()[1].getAnnotations();
 		assertEquals("Wrong length", 2, parameterAnnotations.length);
@@ -573,10 +573,10 @@ public void testParamAnnotations5() throws CoreException, IOException {
 		assertEquals(annotationString2, annotation.toString());
 		memberValuePairs = annotation.getMemberValuePairs();
 		assertEquals("Wrong number of pairs", 1, memberValuePairs.length);
-		output = new StringBuilder();
-		output.append(memberValuePairs[0].getMemberName());
-		output.append(' ');
-		output.append(memberValuePairs[0].getValue());
+		output = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		output.append(memberValuePairs[0].getMemberName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(memberValuePairs[0].getValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEquals("Wrong value", "id 1", String.valueOf(output));
 		assertEquals("Wrong length", 0, method.getParameters()[0].getAnnotations().length);
 		assertEquals("Wrong length", 0, method.getParameters()[2].getAnnotations().length);
@@ -587,7 +587,7 @@ public void testParamAnnotations5() throws CoreException, IOException {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=334783"
  */
-public void testParamAnnotations6() throws CoreException {
+public void testParamAnnotations6() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String source = "package p;\n" +
@@ -615,7 +615,7 @@ public void testParamAnnotations6() throws CoreException {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=334783"
  */
-public void testParamAnnotations7() throws CoreException, IOException {
+public void testParamAnnotations7() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String[] pathAndContents = new String[]{"p/X.java",
@@ -642,7 +642,7 @@ public void testParamAnnotations7() throws CoreException, IOException {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=334783"
  */
-public void testParamAnnotations8() throws CoreException, IOException {
+public void testParamAnnotations8() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String[] pathAndContents = new String[]{"p/X.java",
@@ -665,7 +665,7 @@ public void testParamAnnotations8() throws CoreException, IOException {
 				"package p;\n" +
 				"public @interface Default{\n" +
 				"}"};
-		Map options = new HashMap();
+		Map options = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		options.put(JavaCore.COMPILER_LOCAL_VARIABLE_ATTR, JavaCore.DO_NOT_GENERATE);
 		addLibrary(project, "lib334783_3.jar", "lib334783_3src.zip", pathAndContents, CompilerOptions.getFirstSupportedJavaVersion(), options);
 
@@ -682,10 +682,10 @@ public void testParamAnnotations8() throws CoreException, IOException {
 		assertEquals("@p.Marker [in X(int, java.lang.String, int) [in X [in X.class [in p [in lib334783_3.jar [in P]]]]]]", annotation.toString());
 		IMemberValuePair[] memberValuePairs = annotation.getMemberValuePairs();
 		assertEquals("Wrong number of pairs", 1, memberValuePairs.length);
-		StringBuilder output = new StringBuilder();
-		output.append(memberValuePairs[0].getMemberName());
-		output.append(' ');
-		output.append(memberValuePairs[0].getValue());
+		StringBuilder output = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		output.append(memberValuePairs[0].getMemberName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(memberValuePairs[0].getValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEquals("Wrong value", "id 3", String.valueOf(output));
 		IAnnotation[] parameterAnnotations = method.getParameters()[1].getAnnotations();
 		assertEquals("Wrong length", 2, parameterAnnotations.length);
@@ -694,10 +694,10 @@ public void testParamAnnotations8() throws CoreException, IOException {
 		assertEquals(annotationString2, annotation.toString());
 		memberValuePairs = annotation.getMemberValuePairs();
 		assertEquals("Wrong number of pairs", 1, memberValuePairs.length);
-		output = new StringBuilder();
-		output.append(memberValuePairs[0].getMemberName());
-		output.append(' ');
-		output.append(memberValuePairs[0].getValue());
+		output = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		output.append(memberValuePairs[0].getMemberName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(memberValuePairs[0].getValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEquals("Wrong value", "id 1", String.valueOf(output));
 		assertEquals("Wrong length", 0, method.getParameters()[0].getAnnotations().length);
 		assertEquals("Wrong length", 0, method.getParameters()[2].getAnnotations().length);
@@ -708,7 +708,7 @@ public void testParamAnnotations8() throws CoreException, IOException {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=375568"
  */
-public void testParamAnnotations9() throws CoreException, IOException {
+public void testParamAnnotations9() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String[] pathAndContents = new String[]{"p/X.java",
@@ -739,7 +739,7 @@ public void testParamAnnotations9() throws CoreException, IOException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=342393"
  */
-public void testBug342393() throws Exception {
+public void testBug342393() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("Test342393", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		project.open(null);
@@ -854,7 +854,7 @@ public void test377710() throws CoreException, IOException {
 
 //405026 - IJavaProject#findType(String) finds secondary type if editor is open
 //Partial Match is not set for the API Calls.
-public void test405026a() throws CoreException, IOException {
+public void test405026a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		JavaProject project = (JavaProject) createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String source = "package p;\n"  +
@@ -959,7 +959,7 @@ public void test405026a() throws CoreException, IOException {
 
 //405026 - IJavaProject#findType(String) finds secondary type if editor is open
 //Partial Match is set for the API's.
-public void test405026b() throws CoreException, IOException {
+public void test405026b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		JavaProject project = (JavaProject) createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String source = "package p;\n"  +
@@ -1010,7 +1010,7 @@ public void test405026b() throws CoreException, IOException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=433404
-public void test433404() throws CoreException, IOException {
+public void test433404() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String source = "package p;\n"  +
@@ -1041,7 +1041,7 @@ public void test433404() throws CoreException, IOException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=458613
-public void testBug458613() throws CoreException, IOException {
+public void testBug458613() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject prj = null;
 	try {
 		prj = createJavaProject("Bug458613", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -1080,7 +1080,7 @@ public void testBug458613() throws CoreException, IOException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=458613
-public void testBug458613b() throws CoreException, IOException {
+public void testBug458613b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject prj = null;
 	try {
 		prj = createJavaProject("Bug458613", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -1121,7 +1121,7 @@ public void testBug458613b() throws CoreException, IOException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=479963
-public void test479963() throws CoreException, IOException {
+public void test479963() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String source = "package p;\n" +
@@ -1155,7 +1155,7 @@ public void test479963() throws CoreException, IOException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=479963
-public void test479963a() throws CoreException, IOException {
+public void test479963a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		String source = "package p;\n" +
@@ -1211,7 +1211,7 @@ public void test528818a() throws CoreException, IOException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=479963
-public void test531046a() throws CoreException, IOException {
+public void test531046a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		createJava10Project("P", new String[] {"src"});
@@ -1237,7 +1237,7 @@ public void test531046a() throws CoreException, IOException {
 		deleteProject("P");
 	}
 }
-public void test531046b() throws CoreException, IOException {
+public void test531046b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		createJava10Project("P", new String[] {"src"});
@@ -1263,7 +1263,7 @@ public void test531046b() throws CoreException, IOException {
 		deleteProject("P");
 	}
 }
-public void test531046c() throws CoreException, IOException {
+public void test531046c() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		createJava10Project("P", new String[] {"src"});
@@ -1289,7 +1289,7 @@ public void test531046c() throws CoreException, IOException {
 		deleteProject("P");
 	}
 }
-public void test531046d() throws CoreException, IOException {
+public void test531046d() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		createJava10Project("P", new String[] {"src"});
@@ -1314,7 +1314,7 @@ public void test531046d() throws CoreException, IOException {
 		deleteProject("P");
 	}
 }
-public void test531046e() throws CoreException, IOException {
+public void test531046e() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		createJava10Project("P", new String[] {"src"});
@@ -1338,7 +1338,7 @@ public void test531046e() throws CoreException, IOException {
 		deleteProject("P");
 	}
 }
-public void test531046f() throws CoreException, IOException {
+public void test531046f() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		createJava10Project("P", new String[] {"src"});
@@ -1364,7 +1364,7 @@ public void test531046f() throws CoreException, IOException {
 		deleteProject("P");
 	}
 }
-public void test531046g() throws CoreException, IOException {
+public void test531046g() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		createJava10Project("P", new String[] {"src"});
@@ -1388,7 +1388,7 @@ public void test531046g() throws CoreException, IOException {
 		deleteProject("P");
 	}
 }
-public void test531046h() throws CoreException, IOException {
+public void test531046h() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		createJava10Project("P", new String[] {"src"});
@@ -1414,7 +1414,7 @@ public void test531046h() throws CoreException, IOException {
 	}
 }
 // derived from test531046a, verifying we get same value from codeSelect or bindings
-public void testJavaElementViaBindings() throws CoreException, IOException {
+public void testJavaElementViaBindings() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	org.eclipse.jdt.internal.core.CompilationUnit unit = null;
 	try {
@@ -1453,7 +1453,7 @@ public void testJavaElementViaBindings() throws CoreException, IOException {
 		deleteProject("P");
 	}
 }
-public void testBug533884a() throws Exception {
+public void testBug533884a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		createJava10Project("P", new String[] {"src"});
@@ -1481,7 +1481,7 @@ public void testBug533884a() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug533884b() throws Exception {
+public void testBug533884b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		createJava10Project("P", new String[] {"src"});
@@ -1509,7 +1509,7 @@ public void testBug533884b() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug533884b_blockless() throws Exception {
+public void testBug533884b_blockless() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		createJava10Project("P", new String[] {"src"});
@@ -1536,7 +1536,7 @@ public void testBug533884b_blockless() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug533884c() throws Exception {
+public void testBug533884c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJava10Project("P", new String[] {"src"});
 		String source =   "package p;\n" +
@@ -1566,7 +1566,7 @@ public void testBug533884c() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug533884c_blockless() throws Exception {
+public void testBug533884c_blockless() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJava10Project("P", new String[] {"src"});
 		String source =   "package p;\n" +
@@ -1595,7 +1595,7 @@ public void testBug533884c_blockless() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug536387() throws Exception {
+public void testBug536387() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJava11Project("P", new String[] {"src"});
 		String source =   "package p;\n\n" +
@@ -1628,7 +1628,7 @@ public void testBug536387() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug570314() throws Exception{
+public void testBug570314() throws Exception{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJava16Project("P", new String[] {"src"});
 		String source =   "package p;\n\n" +
@@ -1670,7 +1670,7 @@ public void testBug570314() throws Exception{
 		deleteProject("P");
 	}
 }
-public void testBug575503() throws Exception{
+public void testBug575503() throws Exception{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJava16Project("P", new String[] {"src"});
 		String source =   "package p;\n\n" +
@@ -1700,7 +1700,7 @@ public void testBug575503() throws Exception{
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=576778
-public void testBug576778() throws Exception {
+public void testBug576778() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJava11Project("P", new String[] {"src"});
 		String source =    "package p;\n\n"

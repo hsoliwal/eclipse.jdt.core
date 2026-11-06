@@ -37,7 +37,7 @@ public static Test suite() {
 	return buildMinimalComplianceTestSuite(testClass(), FIRST_SUPPORTED_JAVA_VERSION);
 }
 // Test resource type related errors
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -57,7 +57,7 @@ public void test001() {
 		"----------\n");
 }
 // Test resource type related errors
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -77,7 +77,7 @@ public void test002() {
 		"----------\n");
 }
 // Test that resource type could be interface type.
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -102,7 +102,7 @@ public void test003() {
 		"----------\n");
 }
 // Type resource type related errors
-public void test003a() {
+public void test003a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -130,7 +130,7 @@ public void test003a() {
 		"----------\n");
 }
 // Scope, visibility related tests.
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -158,7 +158,7 @@ public void test004() {
 		"----------\n");
 }
 //Scope, visibility related tests.
-public void test004a() {
+public void test004a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -190,7 +190,7 @@ public void test004a() {
 		"----------\n");
 }
 // check that resources are implicitly final
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -211,7 +211,7 @@ public void test005() {
 		"----------\n");
 }
 //check that try statement can be empty
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest( // cannot be a conform test as this triggers an AIOOB.
 		new String[] {
 			"X.java",
@@ -232,7 +232,7 @@ public void test006() {
 		"----------\n");
 }
 //check that resources are implicitly final but they can be explicitly final
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -253,7 +253,7 @@ public void test007() {
 		"----------\n");
 }
 // resource type tests
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -276,7 +276,7 @@ public void test008() {
 		"----------\n");
 }
 // Resource Type tests
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -299,7 +299,7 @@ public void test009() {
 		"----------\n");
 }
 // Scope, visibility tests
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -333,7 +333,7 @@ public void test010() {
 		"----------\n");
 }
 // Scope, visibility tests
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -368,7 +368,7 @@ public void test011() {
 		"-------\n");
 }
 // Scope, visibility related tests.
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -410,7 +410,7 @@ public void test012() {
 		"----------\n");
 }
 // Shadowing behavior tests
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -455,7 +455,7 @@ public void test013() {
 		"----------\n");
 }
 // Test for unhandled exceptions
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -513,7 +513,7 @@ public void test014() {
 		null, true, options);
 }
 // Resource nullness tests
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -543,7 +543,7 @@ public void test015() {
 	runner.runWarningTest();
 }
 // Dead code tests, resource nullness, unhandled exception tests
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -601,7 +601,7 @@ public void test016() {
 		options);
 }
 // Dead code tests
-public void test017() {
+public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -632,7 +632,7 @@ public void test017() {
 	runner.runWarningTest();
 }
 // Syntax error tests
-public void test018() {
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -652,7 +652,7 @@ public void test018() {
 		"----------\n");
 }
 // Unhandled exception tests
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -749,7 +749,7 @@ public void test020() {
 		"----------\n");
 }
 // Resource type test
-public void test021() {
+public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -772,7 +772,7 @@ public void test021() {
 		"----------\n");
 }
 // Interface method return type compatibility test
-public void test022() {
+public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -795,7 +795,7 @@ public void test022() {
 		"----------\n");
 }
 // Exception handling, compatibility tests
-public void test023() {
+public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -829,7 +829,7 @@ public void test023() {
 		"----------\n");
 }
 // Exception handling tests
-public void test024() {
+public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -909,7 +909,7 @@ public void test024() {
 		"----------\n");
 }
 // Unhandled exception tests
-public void test025() {
+public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1005,7 +1005,7 @@ public void test025() {
 		"The serializable class ZZException does not declare a static final serialVersionUID field of type long\n" +
 		"----------\n");
 }
-public void test026() {
+public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1083,7 +1083,7 @@ public void test026() {
 		"The serializable class ZZException does not declare a static final serialVersionUID field of type long\n" +
 		"----------\n");
 }
-public void test027() {
+public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1131,7 +1131,7 @@ public void test027() {
 		"Suppressed:java.lang.Exception: X Close\n" +
 		"10");
 }
-public void test028() {
+public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1166,7 +1166,7 @@ public void test028() {
 		"X DTOR");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=338881
-public void test029() {
+public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1191,7 +1191,7 @@ public void test029() {
 		},
 		"Got IO exception");
 }
-public void test030() {  // test return + resources
+public void test030() {  // test return + resources //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1257,7 +1257,7 @@ public void test030() {  // test return + resources
 		"X::~X\n" +
 		"X::~X");
 }
-public void test030a() {  // test return + resources + with exceptions being thrown by close()
+public void test030a() {  // test return + resources + with exceptions being thrown by close() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1338,7 +1338,7 @@ public void test030a() {  // test return + resources + with exceptions being thr
 		"Suppressed: java.lang.Exception: X::~X\n" +
 		"Suppressed: java.lang.Exception: X::~X");
 }
-public void test031() { // test break + resources
+public void test031() { // test break + resources //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1405,7 +1405,7 @@ public void test031() { // test break + resources
 		"X::~X\n" +
 		"X::~X");
 }
-public void test032() { // test continue + resources
+public void test032() { // test continue + resources //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1480,7 +1480,7 @@ public void test032() { // test continue + resources
 		"X::~X\n" +
 		"Outer Finally");
 }
-public void test033() { // test null resources
+public void test033() { // test null resources //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1524,7 +1524,7 @@ public void test033() { // test null resources
 		"Y::~Y\n" +
 		"Outer Finally");
 }
-public void test034() {
+public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1627,7 +1627,7 @@ public void test034() {
 		"java.lang.Exception: A::A\n" +
 		"All done");
 }
-public void test035() {
+public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1732,7 +1732,7 @@ public void test035() {
 		"Suppressed: java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test036() {
+public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1840,7 +1840,7 @@ public void test036() {
 		"Suppressed: java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test037() {
+public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1950,7 +1950,7 @@ public void test037() {
 		"Suppressed: java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test038() {
+public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2063,7 +2063,7 @@ public void test038() {
 		"Suppressed: java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test039() {
+public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2178,7 +2178,7 @@ public void test039() {
 		"Suppressed: java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test040() {
+public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2295,7 +2295,7 @@ public void test040() {
 		"Suppressed: java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test041() {
+public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2410,7 +2410,7 @@ public void test041() {
 		"Suppressed: java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test042() {
+public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2523,7 +2523,7 @@ public void test042() {
 		"Suppressed: java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test043() {
+public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2634,7 +2634,7 @@ public void test043() {
 		"Suppressed: java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test044() {
+public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2743,7 +2743,7 @@ public void test044() {
 		"Suppressed: java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test045() {
+public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2850,7 +2850,7 @@ public void test045() {
 		"Suppressed: java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test046() {
+public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2955,7 +2955,7 @@ public void test046() {
 		"java.lang.Exception: A::~A\n" +
 		"All done");
 }
-public void test047() {
+public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3058,7 +3058,7 @@ public void test047() {
 		"A::~A\n" +
 		"All done");
 }
-public void test048() {
+public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3148,7 +3148,7 @@ public void test048() {
 		"All done");
 }
 
-public void test050() {
+public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3187,7 +3187,7 @@ public void test050() {
 		"java.lang.Exception: E::~E\n" +
 		"All done");
 }
-public void test051() {
+public void test051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3219,7 +3219,7 @@ public void test051() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348705
 // Unhandled exception due to autoclose should be reported separately
-public void test053() {
+public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3268,7 +3268,7 @@ public void test053() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348705
 // Variant of the above, witness for https://bugs.eclipse.org/358827#c6
-public void test053a() {
+public void test053a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3318,7 +3318,7 @@ public void test053a() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349862 (NPE when union type is used in the resource section.)
-public void test054() {
+public void test054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3338,7 +3338,7 @@ public void test054() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=349862 (NPE when union type is used in the resource section.)
-public void test054a() {
+public void test054a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3358,7 +3358,7 @@ public void test054a() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353535 (verify error with try with resources)
-public void test055() {
+public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3377,7 +3377,7 @@ public void test055() {
 		"Done");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353535 (verify error with try with resources)
-public void test055a() {
+public void test055a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3404,7 +3404,7 @@ public void test055a() {
 // Note: test056* have been moved to ResourceLeakTests.java
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=361053
-public void test057() {
+public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3425,7 +3425,7 @@ public void test057() {
 		},  "");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=364008
-public void test058() {
+public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3446,7 +3446,7 @@ public void test058() {
 		},  "");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=367566 - In try-with-resources statement close() method of resource is not called
-public void test059() {
+public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3473,7 +3473,7 @@ public void test059() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=367566 - In try-with-resources statement close() method of resource is not called
-public void test060() {
+public void test060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3574,7 +3574,7 @@ public void test060() {
 		"true");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375248 (AIOOB with try with resources)
-public void test375248() {
+public void test375248() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3604,7 +3604,7 @@ public void test375248() {
 		"Done");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375248 (AIOOB with try with resources)
-public void test375248a() {
+public void test375248a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3645,7 +3645,7 @@ public void test375248a() {
 		"Done");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375248 (AIOOB with try with resources)
-public void test375248b() {
+public void test375248b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3686,7 +3686,7 @@ public void test375248b() {
 		"Done");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375248 (AIOOB with try with resources)
-public void test375248c() {
+public void test375248c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3724,7 +3724,7 @@ public void test375248c() {
 		"Finally");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375248 (AIOOB with try with resources)
-public void test375248d() {
+public void test375248d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3761,7 +3761,7 @@ public void test375248d() {
 		"Finally");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375326
-public void test375326() {
+public void test375326() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3789,7 +3789,7 @@ public void test375326() {
 		"SUCCESS");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375326
-public void test375326a() {
+public void test375326a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3821,7 +3821,7 @@ public void test375326a() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375326
-public void test375326b() {
+public void test375326b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3853,7 +3853,7 @@ public void test375326b() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375326
-public void test375326c() {
+public void test375326c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3884,7 +3884,7 @@ public void test375326c() {
 		"SUCCESS");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375326
-public void test375326d() {
+public void test375326d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3918,7 +3918,7 @@ public void test375326d() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375326
-public void test375326e() {
+public void test375326e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3952,7 +3952,7 @@ public void test375326e() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375326
-public void test375326f() {
+public void test375326f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3982,7 +3982,7 @@ public void test375326f() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=375326
-public void test375326g() {
+public void test375326g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4026,7 +4026,7 @@ public void test375326g() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=380112
-public void test380112a() {
+public void test380112a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4047,7 +4047,7 @@ public void test380112a() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=380112
 //variant with finally
-public void test380112b() {
+public void test380112b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4070,7 +4070,7 @@ public void test380112b() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=380112
 //variant with two methods throwing different Exceptions (one subtype of other)
 //subtype should be the one to be caught
-public void test380112c() {
+public void test380112c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4092,7 +4092,7 @@ public void test380112c() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=380112
 //test380112c's variant with finally
-public void test380112d() {
+public void test380112d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4115,8 +4115,8 @@ public void test380112d() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=380112
 //test380112a variant moving the Interface into a binary
-public void test380112e() {
-	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test380112.jar";
+public void test380112e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test380112.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String[] defaultLibs = getDefaultClassPaths();
 	String[] libs = new String[defaultLibs.length + 1];
 	System.arraycopy(defaultLibs, 0, libs, 0, defaultLibs.length);
@@ -4136,10 +4136,10 @@ public void test380112e() {
 				"    public static I getX() { return null;}\n"+
 				"    public X(){}\n" +
 				"}\n"
-			}, "Done", libs, true, new String[] {"-cp", "."+File.pathSeparator+path});
+			}, "Done", libs, true, new String[] {"-cp", "."+File.pathSeparator+path}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=394780
-public void test394780() {
+public void test394780() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4175,7 +4175,7 @@ public void test394780() {
 			"computeclose");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=533187
-public void testBug533187() {
+public void testBug533187() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			true,
 			new String[] {
@@ -4213,7 +4213,7 @@ public void testBug533187() {
 			null);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=467230
-public void testBug467230() {
+public void testBug467230() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			true,
 			new String[] {
@@ -4251,7 +4251,7 @@ public void testBug467230() {
 			null);
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/934
-public void _testGHIssue934() {
+public void _testGHIssue934() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			true,
 			new String[] {
@@ -4293,7 +4293,7 @@ public void _testGHIssue934() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1063
 // Regression in code generation for try with resources with the fix for Issue # 934
-public void testGHIssue1063() {
+public void testGHIssue1063() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			true,
 			new String[] {
@@ -4328,7 +4328,7 @@ public void testGHIssue1063() {
 }
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/pull/1495
-public void testGHissue1495() {
+public void testGHissue1495() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     this.runConformTest(
         new String[] {
                 "X.java",

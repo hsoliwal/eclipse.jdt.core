@@ -40,14 +40,14 @@ final class PackageImportComparator implements Comparator<ImportName> {
 		return determinePackageName(o1).compareTo(determinePackageName(o2));
 	}
 
-	private String determinePackageName(ImportName importName) {
+	private String determinePackageName(ImportName importName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String containerName = importName.containerName;
 
 		try {
 			// Loop from longest to shortest prefix (of dot-separated name segments) of the
 			// container name until a package name is found.
 			String containerNamePrefix = containerName;
-			while (true) {
+			while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// Try to find a package named with this prefix.
 				if (this.javaProject.findPackageFragment(containerNamePrefix) != null) {
 					return containerNamePrefix;

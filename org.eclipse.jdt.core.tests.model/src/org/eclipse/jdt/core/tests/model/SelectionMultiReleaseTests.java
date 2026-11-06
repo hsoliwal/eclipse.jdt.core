@@ -44,13 +44,13 @@ public class SelectionMultiReleaseTests extends AbstractJavaModelTests {
 		return buildModelTestSuite(SelectionMultiReleaseTests.class);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setUpSuite() throws Exception {
 		super.setUpSuite();
 		IJavaProject project = createJava9ProjectWithJREAttributes("SelectionMR",
 				new String[] { "src", "src17", "src21" }, null, "21");
 		IClasspathEntry[] classpath = project.getRawClasspath();
-		for (int i = 0; i < classpath.length; i++) {
+		for (int i = 0; i < classpath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = classpath[i];
 			if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 				if (entry.getPath().toString().endsWith("src17")) {
@@ -124,15 +124,15 @@ public class SelectionMultiReleaseTests extends AbstractJavaModelTests {
 		ICompilationUnit unit = getCompilationUnit(unitPath);
 		String source = unit.getSource();
 		int referenceStart = source.indexOf(reference);
-		assertTrue("reference '" + reference + "' not found in " + unitPath, referenceStart >= 0);
+		assertTrue("reference '" + reference + "' not found in " + unitPath, referenceStart >= 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		int start = source.indexOf(selection, referenceStart);
 		IJavaElement[] elements = unit.codeSelect(start, selection.length());
-		StringBuilder details = new StringBuilder();
-		for (IJavaElement element : elements) {
-			details.append('\n').append(element);
+		StringBuilder details = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (IJavaElement element : elements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			details.append('\n').append(element); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		assertEquals("Expected exactly one selection result but got: " + details, 1, elements.length);
-		assertTrue("Selection result is not a type: " + elements[0], elements[0] instanceof IType);
+		assertEquals("Expected exactly one selection result but got: " + details, 1, elements.length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertTrue("Selection result is not a type: " + elements[0], elements[0] instanceof IType); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IType type = (IType) elements[0];
 		assertEquals("Unexpected resolved type", expectedFqn, type.getFullyQualifiedName());
 		return type;

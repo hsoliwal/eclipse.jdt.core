@@ -154,7 +154,7 @@ public boolean hasErrors() {
 	if (this.problems == null) {
 		return false;
 	} else {
-		for (CategorizedProblem problem : this.problems) {
+		for (CategorizedProblem problem : this.problems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problem.isError()) {
 				return true;
 			}
@@ -181,7 +181,7 @@ public boolean hasWarnings() {
 	if (this.problems == null) {
 		return false;
 	} else {
-		for (CategorizedProblem problem : this.problems) {
+		for (CategorizedProblem problem : this.problems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problem.isWarning()) {
 				return true;
 			}
@@ -193,42 +193,42 @@ public boolean hasWarnings() {
  * Returns a readable representation of this result.
  * This is for debugging purpose only.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	switch (this.evaluationType) {
 		case T_CODE_SNIPPET:
-			buffer.append("Code snippet"); //$NON-NLS-1$
+			buffer.append("Code snippet"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case T_IMPORT:
-			buffer.append("Import"); //$NON-NLS-1$
+			buffer.append("Import"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case T_INTERNAL:
-			buffer.append("Internal problem"); //$NON-NLS-1$
+			buffer.append("Internal problem"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case T_PACKAGE:
-			buffer.append("Package"); //$NON-NLS-1$
+			buffer.append("Package"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case T_VARIABLE:
-			buffer.append("Global variable"); //$NON-NLS-1$
+			buffer.append("Global variable"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 	}
-	buffer.append(": "); //$NON-NLS-1$
-	buffer.append(this.evaluationID == null ? "<unknown>".toCharArray() : this.evaluationID);  //$NON-NLS-1$
-	buffer.append("\n"); //$NON-NLS-1$
+	buffer.append(": "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append(this.evaluationID == null ? "<unknown>".toCharArray() : this.evaluationID);  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (hasProblems()) {
-		buffer.append("Problems:\n"); //$NON-NLS-1$
-		for (CategorizedProblem problem : this.problems) {
-			buffer.append(problem.toString());
+		buffer.append("Problems:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (CategorizedProblem problem : this.problems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(problem.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	} else {
 		if (hasValue()) {
-			buffer.append("("); //$NON-NLS-1$
-			buffer.append(this.typeName);
-			buffer.append(") "); //$NON-NLS-1$
-			buffer.append(this.displayString);
+			buffer.append("("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.typeName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(") "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.displayString); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append("(No explicit return value)"); //$NON-NLS-1$
+			buffer.append("(No explicit return value)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	return buffer.toString();

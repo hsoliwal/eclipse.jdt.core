@@ -47,65 +47,65 @@ public class JavaDocTestCase extends MultiLineTestCase {
 
 	@Override
 	public void testSingleLineComment1() {
-		assertEquals(PREFIX + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX, testFormat(PREFIX + "\t\t" + DELIMITER + "*\t test*/")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(PREFIX + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX, testFormat(PREFIX + "\t\t" + DELIMITER + "*\t test*/")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
 	public void testSingleLineComment2() {
-		assertEquals(PREFIX + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX, testFormat(PREFIX + "test" + DELIMITER + "\t" + POSTFIX)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(PREFIX + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX, testFormat(PREFIX + "test" + DELIMITER + "\t" + POSTFIX)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
 	public void testSingleLineComment3() {
-		assertEquals(PREFIX + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX, testFormat(PREFIX + DELIMITER + "* test\t*/")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(PREFIX + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX, testFormat(PREFIX + DELIMITER + "* test\t*/")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
 	public void testSingleLineComment4() {
-		assertEquals(PREFIX + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX, testFormat(PREFIX + "test" + DELIMITER + POSTFIX)); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(PREFIX + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX, testFormat(PREFIX + "test" + DELIMITER + POSTFIX)); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
 	public void testSingleLineCommentSpace1() {
-		assertEquals(PREFIX + " test" + POSTFIX, testFormat(PREFIX + "test*/")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(PREFIX + " test" + POSTFIX, testFormat(PREFIX + "test*/")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
 	public void testSingleLineCommentSpace2() {
-		assertEquals(PREFIX + " test" + POSTFIX, testFormat(PREFIX + "test" + POSTFIX)); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(PREFIX + " test" + POSTFIX, testFormat(PREFIX + "test" + POSTFIX)); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
 	public void testSingleLineCommentSpace3() {
-		assertEquals(PREFIX + " test" + POSTFIX, testFormat(PREFIX + "test*/")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(PREFIX + " test" + POSTFIX, testFormat(PREFIX + "test*/")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
 	public void testSingleLineCommentSpace4() {
-		assertEquals(PREFIX + " test test" + POSTFIX, testFormat(PREFIX + " test   test*/")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(PREFIX + " test test" + POSTFIX, testFormat(PREFIX + " test   test*/")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
 	public void testSingleLineCommentTabs1() {
-		assertEquals(PREFIX + " test test" + POSTFIX, testFormat(PREFIX + "\ttest\ttest" + POSTFIX)); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(PREFIX + " test test" + POSTFIX, testFormat(PREFIX + "\ttest\ttest" + POSTFIX)); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
 	public void testSingleLineCommentTabs2() {
-		assertEquals(PREFIX + " test test" + POSTFIX, testFormat(PREFIX + "\ttest\ttest*/")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(PREFIX + " test test" + POSTFIX, testFormat(PREFIX + "\ttest\ttest*/")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testMultiLineCommentBreak1() {
-		String input= PREFIX + " test<br>test" + POSTFIX; //$NON-NLS-1$
-		String expected= PREFIX + DELIMITER + INFIX + "test<br>" + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$
+		String input= PREFIX + " test<br>test" + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + INFIX + "test<br>" + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals(expected, testFormat(input));
 	}
 
 	public void testMultiLineCommentCodeSnippet1() {
-		String prefix= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX; //$NON-NLS-1$
-		String postfix= DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$
-		String input= prefix + "while (i != 0) i--;" + postfix; //$NON-NLS-1$
-		String expected= prefix + "while (i != 0)" + DELIMITER + INFIX + "\ti--;" + postfix;    //$NON-NLS-1$//$NON-NLS-2$
+		String prefix= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String input= prefix + "while (i != 0) i--;" + postfix; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= prefix + "while (i != 0)" + DELIMITER + INFIX + "\ti--;" + postfix;    //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 
@@ -122,10 +122,10 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=44035
 	 */
 	public void testMultiLineCommentCodeSnippet2() {
-		String prefix= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX; //$NON-NLS-1$
-		String postfix= DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$
-		String input= prefix + "while (i != 0) { i--; }" + postfix; //$NON-NLS-1$
-		String expected= prefix + "while (i != 0) {" + DELIMITER + INFIX + "\ti--;" + DELIMITER + INFIX + "}" + postfix; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		String prefix= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String input= prefix + "while (i != 0) { i--; }" + postfix; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= prefix + "while (i != 0) {" + DELIMITER + INFIX + "\ti--;" + DELIMITER + INFIX + "}" + postfix; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 
@@ -138,8 +138,8 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	}
 
 	public void testMultiLineCommentCodeSnippet3() {
-		String input= PREFIX + DELIMITER + "<pre>" + DELIMITER + "while (i != 0)" + DELIMITER + "i--;" + DELIMITER + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-		String expected= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX + "while (i != 0)" + DELIMITER + INFIX + "\ti--;" + DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		String input= PREFIX + DELIMITER + "<pre>" + DELIMITER + "while (i != 0)" + DELIMITER + "i--;" + DELIMITER + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX + "while (i != 0)" + DELIMITER + INFIX + "\ti--;" + DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 
@@ -151,7 +151,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 		assertEquals(expected, result);
 	}
 
-	public void testMultiLineCommentCodeSnippet4() {
+	public void testMultiLineCommentCodeSnippet4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String input= "/**\n" +
 				" * <pre>\n" +
 				" * public Object[] getChildren(Object parentElement) {\n" +
@@ -181,7 +181,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 		assertEquals(expected, result);
 	}
 
-	public void testMultiLineCommentCodeSnippet5() {
+	public void testMultiLineCommentCodeSnippet5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String input= "/**\n" +
 				" * <Pre>\n" +
 				" * public Object[] getChildren(Object parentElement) {\n" +
@@ -211,7 +211,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 		assertEquals(expected, result);
 	}
 
-	public void testMultiLineCommentCodeSnippet6() {
+	public void testMultiLineCommentCodeSnippet6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String input= "/**\n" +
 				" * <PRE>\n" +
 				" * public Object[] getChildren(Object parentElement) {\n" +
@@ -242,10 +242,10 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	}
 
 	public void testMultiLineCommentCodeSnippetHtmlEntities1() {
-		String prefix= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX; //$NON-NLS-1$
-		String postfix= DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$
-		String input= prefix + "System.out.  println(\"test\");" + postfix; //$NON-NLS-1$
-		String expected= prefix + "System.out.println(\"test\");" + postfix; //$NON-NLS-1$
+		String prefix= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String input= prefix + "System.out.  println(\"test\");" + postfix; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= prefix + "System.out.println(\"test\");" + postfix; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 
@@ -258,12 +258,12 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	}
 
 	public void testMultiLineCommentIndentTabs1() {
-		String prefix= "public class Test {" + DELIMITER + "\t\t"; //$NON-NLS-1$ //$NON-NLS-2$
-		String content= PREFIX + DELIMITER + "\t\t\t" + INFIX + "test test" + DELIMITER + "\t\t\t\t" + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-		String postfix= DELIMITER + "}"; //$NON-NLS-1$
-		String expected= PREFIX + DELIMITER + "\t\t" + INFIX + "test test" + DELIMITER + "\t\t" + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		String prefix= "public class Test {" + DELIMITER + "\t\t"; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String content= PREFIX + DELIMITER + "\t\t\t" + INFIX + "test test" + DELIMITER + "\t\t\t\t" + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + "}"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + "\t\t" + INFIX + "test test" + DELIMITER + "\t\t" + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.TAB);
-		assertEquals(prefix + expected + postfix, testFormat(prefix + content + postfix, prefix.length(), content.length()));
+		assertEquals(prefix + expected + postfix, testFormat(prefix + content + postfix, prefix.length(), content.length())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -271,43 +271,43 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=47491
 	 */
 	public void testMultiLineCommentIndentSpaces1() {
-		String prefix= "public class Test {" + DELIMITER + "\t"; //$NON-NLS-1$ //$NON-NLS-2$
-		String content= PREFIX + DELIMITER + "\t\t" + INFIX + "test test" + DELIMITER + "        " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-		String postfix= DELIMITER + "}"; //$NON-NLS-1$
-		String expected= PREFIX + DELIMITER + "   " + INFIX + "test test" + DELIMITER + "   " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		String prefix= "public class Test {" + DELIMITER + "\t"; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String content= PREFIX + DELIMITER + "\t\t" + INFIX + "test test" + DELIMITER + "        " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + "}"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + "   " + INFIX + "test test" + DELIMITER + "   " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
 		// note: FORMATTER_INDENTATION_SIZE translates to tab_size
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_INDENTATION_SIZE, "3"); //$NON-NLS-1$
-		assertEquals(prefix + expected + postfix, testFormat(prefix + content + postfix, prefix.length(), content.length()));
+		assertEquals(prefix + expected + postfix, testFormat(prefix + content + postfix, prefix.length(), content.length())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testMultiLineCommentIndentSpaces2() {
-		String prefix= "public class Test {" + DELIMITER + "    "; //$NON-NLS-1$ //$NON-NLS-2$
-		String content= PREFIX + DELIMITER + "\t\t" + INFIX + "test test" + DELIMITER + "        " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-		String postfix= DELIMITER + "}"; //$NON-NLS-1$
-		String expected= PREFIX + DELIMITER + "    " + INFIX + "test test" + DELIMITER + "    " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		String prefix= "public class Test {" + DELIMITER + "    "; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String content= PREFIX + DELIMITER + "\t\t" + INFIX + "test test" + DELIMITER + "        " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + "}"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + "    " + INFIX + "test test" + DELIMITER + "    " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
-		assertEquals(prefix + expected + postfix, testFormat(prefix + content + postfix, prefix.length(), content.length()));
+		assertEquals(prefix + expected + postfix, testFormat(prefix + content + postfix, prefix.length(), content.length())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testMultiLineCommentIndentSpaces3() {
-		String prefix= "public class Test {" + DELIMITER + "  \t  "; //$NON-NLS-1$ //$NON-NLS-2$
-		String content= PREFIX + DELIMITER + "\t\t" + INFIX + "test test" + DELIMITER + "        " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-		String postfix= DELIMITER + "}"; //$NON-NLS-1$
-		String expected= PREFIX + DELIMITER + "      " + INFIX + "test test" + DELIMITER + "      " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		String prefix= "public class Test {" + DELIMITER + "  \t  "; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String content= PREFIX + DELIMITER + "\t\t" + INFIX + "test test" + DELIMITER + "        " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + "}"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + "      " + INFIX + "test test" + DELIMITER + "      " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
-		assertEquals(prefix + expected + postfix, testFormat(prefix + content + postfix, prefix.length(), content.length()));
+		assertEquals(prefix + expected + postfix, testFormat(prefix + content + postfix, prefix.length(), content.length())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testMultiLineCommentIndentSpaces4() {
-		String prefix= "public class Test {" + DELIMITER + "   \t   "; //$NON-NLS-1$ //$NON-NLS-2$
-		String content= PREFIX + DELIMITER + "\t\t" + INFIX + "test test" + DELIMITER + "        " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-		String postfix= DELIMITER + "}"; //$NON-NLS-1$
-		String expected= PREFIX + DELIMITER + "         " + INFIX + "test test" + DELIMITER + "         " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		String prefix= "public class Test {" + DELIMITER + "   \t   "; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String content= PREFIX + DELIMITER + "\t\t" + INFIX + "test test" + DELIMITER + "        " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + "}"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + "         " + INFIX + "test test" + DELIMITER + "         " + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
 		// note: FORMATTER_INDENTATION_SIZE translates to tab_size
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_INDENTATION_SIZE, "3"); //$NON-NLS-1$
-		assertEquals(prefix + expected + postfix, testFormat(prefix + content + postfix, prefix.length(), content.length()));
+		assertEquals(prefix + expected + postfix, testFormat(prefix + content + postfix, prefix.length(), content.length())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -315,8 +315,8 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=50212
 	 */
 	public void testMultiLineCommentBlankLineAfterPre1() {
-		String input= PREFIX + DELIMITER + INFIX + "<pre></pre>" + DELIMITER  + INFIX + "test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$
-		String expected= PREFIX + DELIMITER + INFIX + "<pre></pre>" + DELIMITER + INFIX + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$
+		String input= PREFIX + DELIMITER + INFIX + "<pre></pre>" + DELIMITER  + INFIX + "test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + INFIX + "<pre></pre>" + DELIMITER + INFIX + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 		result= testFormat(result);
@@ -330,7 +330,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 */
 	public void testMultiLineCommentLineBreakBeforeImmutableRegions1() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_LINE_LENGTH, "22"); //$NON-NLS-1$
-		String input= PREFIX + DELIMITER + INFIX + "a <code>test</code>" + DELIMITER + POSTFIX; //$NON-NLS-1$
+		String input= PREFIX + DELIMITER + INFIX + "a <code>test</code>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -343,8 +343,8 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 */
 	public void testMultiLineCommentLineBreakBeforeImmutableRegions2() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_LINE_LENGTH, "21"); //$NON-NLS-1$
-		String input= PREFIX + DELIMITER + INFIX + "a <code>test</code>" + DELIMITER + POSTFIX; //$NON-NLS-1$
-		String expected= PREFIX + DELIMITER + INFIX + "a" + DELIMITER + INFIX + "<code>test</code>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$
+		String input= PREFIX + DELIMITER + INFIX + "a <code>test</code>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + INFIX + "a" + DELIMITER + INFIX + "<code>test</code>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 	}
@@ -356,7 +356,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 */
 	public void testMultiLineCommentLineBreakBeforeImmutableRegions3() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_LINE_LENGTH, "20"); //$NON-NLS-1$
-		String input= PREFIX + DELIMITER + INFIX + "a <code>" + DELIMITER + INFIX + "testestestestestestestestestest" + DELIMITER + INFIX + "</code>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		String input= PREFIX + DELIMITER + INFIX + "a <code>" + DELIMITER + INFIX + "testestestestestestestestestest" + DELIMITER + INFIX + "</code>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -370,7 +370,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	public void testMultiLineCommentBlankLineBeforeJavadoctags1() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_INSERT_EMPTY_LINE_BEFORE_ROOT_TAGS, JavaCore.DO_NOT_INSERT); //$NON-NLS-1$
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES_IN_JAVADOC_COMMENT, DefaultCodeFormatterConstants.FALSE); //$NON-NLS-1$
-		String input= PREFIX + DELIMITER + INFIX + "Description" + DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		String input= PREFIX + DELIMITER + INFIX + "Description" + DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -384,10 +384,10 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	public void testMultiLineCommentBlankLineBeforeJavadoctags2() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_INSERT_EMPTY_LINE_BEFORE_ROOT_TAGS, JavaCore.INSERT); //$NON-NLS-1$
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES_IN_JAVADOC_COMMENT, DefaultCodeFormatterConstants.TRUE); //$NON-NLS-1$
-		String prefix= PREFIX + DELIMITER + INFIX + "Description"; //$NON-NLS-1$
-		String postfix= DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$
-		String input= prefix + postfix;
-		String expected= prefix + DELIMITER + INFIX + postfix;
+		String prefix= PREFIX + DELIMITER + INFIX + "Description"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String input= prefix + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= prefix + DELIMITER + INFIX + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 	}
@@ -400,7 +400,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	public void testMultiLineCommentBlankLineBeforeJavadoctags3() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_INSERT_EMPTY_LINE_BEFORE_ROOT_TAGS, JavaCore.INSERT); //$NON-NLS-1$
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES_IN_JAVADOC_COMMENT, DefaultCodeFormatterConstants.TRUE); //$NON-NLS-1$
-		String input= PREFIX + DELIMITER + INFIX + "Description" + DELIMITER + INFIX + DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		String input= PREFIX + DELIMITER + INFIX + "Description" + DELIMITER + INFIX + DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -414,10 +414,10 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	public void testMultiLineCommentBlankLineBeforeJavadoctags4() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_INSERT_EMPTY_LINE_BEFORE_ROOT_TAGS, JavaCore.DO_NOT_INSERT); //$NON-NLS-1$
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES_IN_JAVADOC_COMMENT,DefaultCodeFormatterConstants.TRUE); //$NON-NLS-1$
-		String prefix= PREFIX + DELIMITER + INFIX + "Description"; //$NON-NLS-1$
-		String postfix= DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$
-		String input= prefix + DELIMITER + INFIX + postfix;
-		String expected= prefix + postfix;
+		String prefix= PREFIX + DELIMITER + INFIX + "Description"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String input= prefix + DELIMITER + INFIX + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= prefix + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 	}
@@ -431,7 +431,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	public void testMultiLineCommentBlankLineBeforeJavadoctags5() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_INSERT_EMPTY_LINE_BEFORE_ROOT_TAGS, JavaCore.DO_NOT_INSERT); //$NON-NLS-1$
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES, DefaultCodeFormatterConstants.FALSE); //$NON-NLS-1$
-		String input= PREFIX + DELIMITER + INFIX + "Description" + DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		String input= PREFIX + DELIMITER + INFIX + "Description" + DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -446,10 +446,10 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	public void testMultiLineCommentBlankLineBeforeJavadoctags6() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_INSERT_EMPTY_LINE_BEFORE_ROOT_TAGS, JavaCore.INSERT); //$NON-NLS-1$
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES, DefaultCodeFormatterConstants.TRUE); //$NON-NLS-1$
-		String prefix= PREFIX + DELIMITER + INFIX + "Description"; //$NON-NLS-1$
-		String postfix= DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$
-		String input= prefix + postfix;
-		String expected= prefix + DELIMITER + INFIX + postfix;
+		String prefix= PREFIX + DELIMITER + INFIX + "Description"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String input= prefix + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= prefix + DELIMITER + INFIX + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 	}
@@ -463,7 +463,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	public void testMultiLineCommentBlankLineBeforeJavadoctags7() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_INSERT_EMPTY_LINE_BEFORE_ROOT_TAGS, JavaCore.INSERT); //$NON-NLS-1$
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES, DefaultCodeFormatterConstants.TRUE); //$NON-NLS-1$
-		String input= PREFIX + DELIMITER + INFIX + "Description" + DELIMITER + INFIX + DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		String input= PREFIX + DELIMITER + INFIX + "Description" + DELIMITER + INFIX + DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -478,10 +478,10 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	public void testMultiLineCommentBlankLineBeforeJavadoctags8() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_INSERT_EMPTY_LINE_BEFORE_ROOT_TAGS, JavaCore.DO_NOT_INSERT); //$NON-NLS-1$
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES,DefaultCodeFormatterConstants.TRUE); //$NON-NLS-1$
-		String prefix= PREFIX + DELIMITER + INFIX + "Description"; //$NON-NLS-1$
-		String postfix= DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$
-		String input= prefix + DELIMITER + INFIX + postfix;
-		String expected= prefix + postfix;
+		String prefix= PREFIX + DELIMITER + INFIX + "Description"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix= DELIMITER + INFIX + "@param test" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String input= prefix + DELIMITER + INFIX + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= prefix + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 	}
@@ -492,7 +492,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 */
 	public void testLineBreaksBetweenEmptyJavaDocTags1() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES_IN_JAVADOC_COMMENT, DefaultCodeFormatterConstants.FALSE); //$NON-NLS-1$
-		String input= PREFIX + DELIMITER + INFIX + "@custom1" + DELIMITER + INFIX + DELIMITER + INFIX + "@custom2" + DELIMITER + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$
+		String input= PREFIX + DELIMITER + INFIX + "@custom1" + DELIMITER + INFIX + DELIMITER + INFIX + "@custom2" + DELIMITER + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -504,7 +504,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 */
 	public void testLineBreaksBetweenEmptyJavaDocTags2() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES_IN_JAVADOC_COMMENT, DefaultCodeFormatterConstants.FALSE); //$NON-NLS-1$
-		String input= PREFIX + DELIMITER + INFIX + "@custom1" + DELIMITER + INFIX + "@custom2" + DELIMITER + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$
+		String input= PREFIX + DELIMITER + INFIX + "@custom1" + DELIMITER + INFIX + "@custom2" + DELIMITER + POSTFIX;  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -512,14 +512,14 @@ public class JavaDocTestCase extends MultiLineTestCase {
 
 	@Override
 	public void testNoChange1() {
-		String content= PREFIX + DELIMITER + POSTFIX;
+		String content= PREFIX + DELIMITER + POSTFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals(content, testFormat(content));
 	}
 
 	@Override
 	public void testNoFormat1() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_FORMAT_JAVADOC_COMMENT, DefaultCodeFormatterConstants.FALSE);
-		String content= PREFIX + DELIMITER + INFIX + "test" + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX;
+		String content= PREFIX + DELIMITER + INFIX + "test" + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals(content, testFormat(content));
 	}
 
@@ -528,7 +528,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 */
 	public void testNoFormat2() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_FORMAT, DefaultCodeFormatterConstants.FALSE);
-		String content= PREFIX + DELIMITER + INFIX + "test" + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX;
+		String content= PREFIX + DELIMITER + INFIX + "test" + DELIMITER + INFIX + "test" + DELIMITER + POSTFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals(content, testFormat(content));
 	}
 
@@ -538,7 +538,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=49686
 	 */
 	public void testInlineTag1() {
-		String input= PREFIX + DELIMITER + INFIX + "{@link Object} has many methods." + DELIMITER + POSTFIX;  //$NON-NLS-1$
+		String input= PREFIX + DELIMITER + INFIX + "{@link Object} has many methods." + DELIMITER + POSTFIX;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -549,7 +549,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=49686
 	 */
 	public void testInlineTag2() {
-		String input= PREFIX + DELIMITER + INFIX + "{@link Object}s are cool." + DELIMITER + POSTFIX;  //$NON-NLS-1$
+		String input= PREFIX + DELIMITER + INFIX + "{@link Object}s are cool." + DELIMITER + POSTFIX;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -561,10 +561,10 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 */
 	public void testMultilineInlineTag1() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_LINE_LENGTH, "20"); //$NON-NLS-1$
-		final String prefix= PREFIX + DELIMITER + INFIX + "{@link Object}";
-		final String postfix= "has many methods." + DELIMITER + POSTFIX;
-		String input= prefix + " " + postfix;  //$NON-NLS-1$
-		String expected= prefix + DELIMITER + INFIX + postfix;
+		final String prefix= PREFIX + DELIMITER + INFIX + "{@link Object}"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		final String postfix= "has many methods." + DELIMITER + POSTFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String input= prefix + " " + postfix;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= prefix + DELIMITER + INFIX + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 	}
@@ -575,10 +575,10 @@ public class JavaDocTestCase extends MultiLineTestCase {
      */
     public void testMultilineInlineTag2() {
     	setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_LINE_LENGTH, "20"); //$NON-NLS-1$
-    	final String prefix= PREFIX + DELIMITER + INFIX + "{@link Objecterr}s";
-    	final String postfix= "are cool." + DELIMITER + POSTFIX;
-    	String input= prefix + " " + postfix;  //$NON-NLS-1$
-    	String expected= prefix + DELIMITER + INFIX + postfix;
+    	final String prefix= PREFIX + DELIMITER + INFIX + "{@link Objecterr}s"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+    	final String postfix= "are cool." + DELIMITER + POSTFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+    	String input= prefix + " " + postfix;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+    	String expected= prefix + DELIMITER + INFIX + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	String result= testFormat(input);
     	assertEquals(expected, result);
     }
@@ -588,7 +588,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=49686
 	 */
 	public void testTagWordbreaks1() {
-		String input= PREFIX + DELIMITER + INFIX + "<code>Object</code> rocks." + DELIMITER + POSTFIX;  //$NON-NLS-1$
+		String input= PREFIX + DELIMITER + INFIX + "<code>Object</code> rocks." + DELIMITER + POSTFIX;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -599,7 +599,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=49686
 	 */
 	public void testTagWordbreaks2() {
-		String input= PREFIX + DELIMITER + INFIX + "<code>Object</code>s are cool." + DELIMITER + POSTFIX;  //$NON-NLS-1$
+		String input= PREFIX + DELIMITER + INFIX + "<code>Object</code>s are cool." + DELIMITER + POSTFIX;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String expected= input;
 		String result= testFormat(input);
 		assertEquals(expected, result);
@@ -611,10 +611,10 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 */
 	public void testMultilineTagWordbreaks1() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_LINE_LENGTH, "20"); //$NON-NLS-1$
-		String prefix= PREFIX + DELIMITER + INFIX + "<code>Object</code>";
-		String postfix=  "rocks." + DELIMITER + POSTFIX;  //$NON-NLS-1$
-		String input= prefix + " " + postfix;
-		String expected= prefix + DELIMITER + INFIX + postfix;
+		String prefix= PREFIX + DELIMITER + INFIX + "<code>Object</code>"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String postfix=  "rocks." + DELIMITER + POSTFIX;  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String input= prefix + " " + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= prefix + DELIMITER + INFIX + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 	}
@@ -625,24 +625,24 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 */
 	public void testMultilineTagWordbreaks2() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_LINE_LENGTH, "20"); //$NON-NLS-1$
-		final String prefix= PREFIX + DELIMITER + INFIX + "Foo";
-		final String postfix= "<code>Obj</code>s" + DELIMITER + POSTFIX;
-		String input= prefix + " " + postfix;
-		String expected= prefix + DELIMITER + INFIX + postfix;
+		final String prefix= PREFIX + DELIMITER + INFIX + "Foo"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		final String postfix= "<code>Obj</code>s" + DELIMITER + POSTFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String input= prefix + " " + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= prefix + DELIMITER + INFIX + postfix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 	}
 
 	public void testMultiLineComment() {
-		String input= PREFIX + DELIMITER + " TOTO " + POSTFIX; //$NON-NLS-1$
-		String expected= PREFIX + DELIMITER + INFIX + "TOTO" + DELIMITER + POSTFIX; //$NON-NLS-1$
+		String input= PREFIX + DELIMITER + " TOTO " + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + INFIX + "TOTO" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		final String result = testFormat(input);
 		assertEquals(expected, result);
 	}
 
 	public void testMultiLineComment2() {
-		String input= PREFIX + DELIMITER + "TOTO" + POSTFIX; //$NON-NLS-1$
-		String expected= PREFIX + DELIMITER + INFIX + "TOTO" + DELIMITER + POSTFIX; //$NON-NLS-1$
+		String input= PREFIX + DELIMITER + "TOTO" + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + INFIX + "TOTO" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		final String result = testFormat(input);
 		assertEquals(expected, result);
 	}
@@ -656,8 +656,8 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 */
 	public void testNoExtraNewlineWithPre1() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_FORMAT_SOURCE, DefaultCodeFormatterConstants.TRUE);
-		String input= PREFIX + DELIMITER + INFIX + "<pre>wrap here</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$
-		String expected= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX + "wrap here" + DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$; //$NON-NLS-2$; //$NON-NLS-3$;
+		String input= PREFIX + DELIMITER + INFIX + "<pre>wrap here</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX + "wrap here" + DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$; //$NON-NLS-2$; //$NON-NLS-3$; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 
@@ -667,7 +667,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 		result= testFormat(result);
 		result= testFormat(result);
 
-		expected= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX + "wrap here" + DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$; //$NON-NLS-2$; //$NON-NLS-3$;
+		expected= PREFIX + DELIMITER + INFIX + "<pre>" + DELIMITER + INFIX + "wrap here" + DELIMITER + INFIX + "</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$; //$NON-NLS-2$; //$NON-NLS-3$; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals(expected, result);
 	}
 
@@ -680,8 +680,8 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 */
 	public void testNoExtraNewlineWithPre2() {
 		setUserOption(DefaultCodeFormatterConstants.FORMATTER_COMMENT_FORMAT_SOURCE, DefaultCodeFormatterConstants.FALSE);
-		String input= PREFIX + DELIMITER + INFIX + "<pre>wrap here</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$
-		String expected= PREFIX + DELIMITER + INFIX + "<pre>wrap here</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$
+		String input= PREFIX + DELIMITER + INFIX + "<pre>wrap here</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected= PREFIX + DELIMITER + INFIX + "<pre>wrap here</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String result= testFormat(input);
 		assertEquals(expected, result);
 
@@ -691,13 +691,13 @@ public class JavaDocTestCase extends MultiLineTestCase {
 		result= testFormat(result);
 		result= testFormat(result);
 
-		expected= PREFIX + DELIMITER + INFIX + "<pre>wrap here</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$
+		expected= PREFIX + DELIMITER + INFIX + "<pre>wrap here</pre>" + DELIMITER + POSTFIX; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals(expected, result);
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=109605
-	public void test109605() {
-		String input = "/**" + DELIMITER +
+	public void test109605() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String input = "/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"			 * <pre>" + DELIMITER +
 				"			 * " + DELIMITER +
 				"			 * </pre>" + DELIMITER +
@@ -708,7 +708,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 				"			 * " + DELIMITER +
 				"			 */";
 
-		String expected = "/**" + DELIMITER +
+		String expected = "/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * <pre>" + DELIMITER +
 				" * " +  DELIMITER +
 				" * </pre>" + DELIMITER +
@@ -723,16 +723,16 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=60453
-	public void test60453() {
+	public void test60453() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_LINE_LENGTH, "80");
 		options.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES_IN_JAVADOC_COMMENT, DefaultCodeFormatterConstants.FALSE);
 
-		String input = "/** Creates a new instance of DynamicEventChannel  sdf sdfs dsdf dsfsd fd fsd fsdf sdf dsfsd (on the same line)" + DELIMITER +
+		String input = "/** Creates a new instance of DynamicEventChannel  sdf sdfs dsdf dsfsd fd fsd fsdf sdf dsfsd (on the same line)" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"* @pre obj != null" + DELIMITER +
 				"*/";
 
-		String expected = "/**" + DELIMITER +
+		String expected = "/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * Creates a new instance of DynamicEventChannel sdf sdfs dsdf dsfsd fd fsd fsdf" + DELIMITER +
 				" * sdf dsfsd (on the same line)" + DELIMITER +
 				" * " + DELIMITER +
@@ -746,16 +746,16 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=60453
 	 * @deprecated
 	 */
-	public void test60453_2() {
+	public void test60453_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_LINE_LENGTH, "80");
 		options.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES, DefaultCodeFormatterConstants.FALSE);
 
-		String input = "/** Creates a new instance of DynamicEventChannel  sdf sdfs dsdf dsfsd fd fsd fsdf sdf dsfsd (on the same line)" + DELIMITER +
+		String input = "/** Creates a new instance of DynamicEventChannel  sdf sdfs dsdf dsfsd fd fsd fsdf sdf dsfsd (on the same line)" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"* @pre obj != null" + DELIMITER +
 				"*/";
 
-		String expected = "/**" + DELIMITER +
+		String expected = "/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * Creates a new instance of DynamicEventChannel sdf sdfs dsdf dsfsd fd fsd fsdf" + DELIMITER +
 				" * sdf dsfsd (on the same line)" + DELIMITER +
 				" * " + DELIMITER +
@@ -766,14 +766,14 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=75460
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void test75460() {
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_LINE_LENGTH, "200");
 		options.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_FORMAT_SOURCE, DefaultCodeFormatterConstants.TRUE);
 		options.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_CLEAR_BLANK_LINES_IN_JAVADOC_COMMENT, DefaultCodeFormatterConstants.FALSE);
 
-		String input = "/**" + DELIMITER +
+		String input = "/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"<pre>"+ DELIMITER +
 				"            Object[] objects = new Object[3];" + DELIMITER +
 				"            objects[0] = new String(\"Hallo Welt !!!\");" + DELIMITER +
@@ -788,7 +788,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 				"</pre>"+ DELIMITER +
 				"*/";
 
-		String expected = "/**" + DELIMITER +
+		String expected = "/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * <pre>" + DELIMITER +
 				" * Object[] objects = new Object[3];" + DELIMITER +
 				" * objects[0] = new String(\"Hallo Welt !!!\");" + DELIMITER +
@@ -819,16 +819,16 @@ public class JavaDocTestCase extends MultiLineTestCase {
 		assertEquals("No edit", 0, edit.getChildrenSize());
 	}
 
-	public void test198153() {
+	public void test198153() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 
-		String input = "/**" + DELIMITER +
+		String input = "/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * <pre>" + DELIMITER +
 				" * System.out.println(&#34;hello world&#34;);" + DELIMITER +
 				" * </pre>" + DELIMITER +
 				" */";
 
-		String expected = "/**" + DELIMITER +
+		String expected = "/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * <pre>" + DELIMITER +
 				// No space after "world".
 				" * System.out.println(&#34;hello world&#34;);" + DELIMITER +
@@ -838,11 +838,11 @@ public class JavaDocTestCase extends MultiLineTestCase {
 		assertEquals(expected, result);
 	}
 
-	public void test197169() {
+	public void test197169() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_1_5);
 
-		String input = "/**" + DELIMITER +
+		String input = "/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * <pre>" + DELIMITER +
 				" * &#064;Anno1 class Foo {" + DELIMITER +
 				" * &#064;Anno1 class Bar {}" + DELIMITER +
@@ -851,7 +851,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 				" * </pre>" + DELIMITER +
 				" */";
 
-		String expected = "/**" + DELIMITER +
+		String expected = "/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * <pre>" + DELIMITER +
 				// Initial &#064 left alone.
 				" * &#064;Anno1" + DELIMITER +
@@ -872,11 +872,11 @@ public class JavaDocTestCase extends MultiLineTestCase {
 		assertEquals(expected, result);
 	}
 
-	public void test109636() {
+	public void test109636() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 
 		String input =
-				"/**" + DELIMITER +
+				"/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * <code>" + DELIMITER +
 				" * <pre>" + DELIMITER +
 				" * setLeadingComment(\"/&#42; traditional comment &#42;/\");  // correct" + DELIMITER +
@@ -894,11 +894,11 @@ public class JavaDocTestCase extends MultiLineTestCase {
 		assertEquals(input, result);
 	}
 
-	public void test109636_2() {
+	public void test109636_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 
 		String input =
-				"/**" + DELIMITER +
+				"/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * <pre>" + DELIMITER +
 				" * /* Comment ending in multiple stars *&#42;/" + DELIMITER +
 				" * /* Entity-needing character after a star *&lt; &#42;/" + DELIMITER +
@@ -906,7 +906,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 				" */";
 
 		String expected =
-			"/**" + DELIMITER +
+			"/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" * <pre>" + DELIMITER +
 			" * /* Comment ending in multiple stars *&#42;/" + DELIMITER +
 			" * /* Entity-needing character after a star *&lt; &#42;/" + DELIMITER +
@@ -916,11 +916,11 @@ public class JavaDocTestCase extends MultiLineTestCase {
 		assertEquals(expected, result);
 	}
 
-	public void test109636_3() {
+	public void test109636_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 
 		String input =
-				"/**" + DELIMITER +
+				"/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * <pre>" + DELIMITER +
 				" * /* Comment ending in multiple stars ***&#42;/" + DELIMITER +
 				" * /* Entity-needing character after a star *&lt; &#42;/" + DELIMITER +
@@ -928,7 +928,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 				" */";
 
 		String expected =
-			"/**" + DELIMITER +
+			"/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" * <pre>" + DELIMITER +
 			" * /* Comment ending in multiple stars ***&#42;/" + DELIMITER +
 			" * /* Entity-needing character after a star *&lt; &#42;/" + DELIMITER +
@@ -938,11 +938,11 @@ public class JavaDocTestCase extends MultiLineTestCase {
 		assertEquals(expected, result);
 	}
 
-	public void test109636_4() {
+	public void test109636_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 
 		String input =
-				"/**" + DELIMITER +
+				"/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * <pre>" + DELIMITER +
 				" * setLeadingComment(\"/&#42; traditional comment &#42;/\");  // correct" + DELIMITER +
 				" * setLeadingComment(\"missing comment delimiters\");  // wrong" + DELIMITER +
@@ -955,7 +955,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 				" */";
 
 		String expected =
-				"/**" + DELIMITER +
+				"/**" + DELIMITER + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" * <pre>" + DELIMITER +
 				" * setLeadingComment(\"/&#42; traditional comment &#42;/\"); // correct" + DELIMITER +
 				" * setLeadingComment(\"missing comment delimiters\"); // wrong" + DELIMITER +
@@ -975,7 +975,7 @@ public class JavaDocTestCase extends MultiLineTestCase {
 	 * test Insure that no new line is inserted before the formatted region
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=228652"
 	 */
-	public void testBug228652() {
+	public void testBug228652() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = DefaultCodeFormatterConstants.getEclipseDefaultSettings();
 
 		String input =

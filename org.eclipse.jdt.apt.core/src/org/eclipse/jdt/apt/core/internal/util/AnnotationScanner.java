@@ -41,7 +41,7 @@ public abstract class AnnotationScanner {
 
 	public AnnotationScanner() {}
 
-	public boolean containsAnnotations() throws IOException {
+	public boolean containsAnnotations() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		State state = NORMAL;
 
 		// for escaping quotes -- need to ignore the next single character
@@ -49,7 +49,7 @@ public abstract class AnnotationScanner {
 		boolean seenBackslash = false;
 
 		int c = getNext();
-		while (c != -1) {
+		while (c != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			if (seenBackslash) {
 				// Skip one character
@@ -123,7 +123,7 @@ public abstract class AnnotationScanner {
 					break;
 
 				default :
-					throw new IllegalStateException("Unhandled state: " + state);  //$NON-NLS-1$
+					throw new IllegalStateException("Unhandled state: " + state);  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			c = getNext();

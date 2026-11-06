@@ -97,7 +97,7 @@ public void testClassFileInLibrary() throws CoreException {
 		this.deleteProject("P");
 	}
 }
-public void testClassFileInLibraryInOtherProject() throws CoreException {
+public void testClassFileInLibraryInOtherProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P2", new String[] {}, "bin");
 		this.createFolder("P2/lib");
@@ -105,11 +105,11 @@ public void testClassFileInLibraryInOtherProject() throws CoreException {
 		IFile file = this.createFile(path, "");
 		IJavaProject p1 = createJavaProject("P1", new String[] {}, new String[] {"/P2/lib"}, "bin");
 		IClassFile nonExistingFile = getClassFile(path);
-		assertFalse("File '"+path+"' should not exist in P2!", nonExistingFile.exists());
+		assertFalse("File '"+path+"' should not exist in P2!", nonExistingFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IJavaElement element = JavaCore.create(getFolder("/P2/lib"));
 		assertTrue("folder '/P2/lib' should be found in P1!", element.exists());
 		IClassFile existingFile = (IClassFile)JavaCore.create(file, p1);
-		assertTrue("File '"+path+"' should exist in P1!", existingFile.exists());
+		assertTrue("File '"+path+"' should exist in P1!", existingFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		this.deleteProject("P1");
 		this.deleteProject("P2");
@@ -147,7 +147,7 @@ public void testInvalidPackageName2() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testJarFile() throws Exception {
+public void testJarFile() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p2 = createJavaProject("P2");
 		String[] pathsAndContents = new String[] {
@@ -359,7 +359,7 @@ public void testNonExistingPackageFragment2() throws CoreException {
  * Ensure that an excluded package fragment doesn't exist.
  * (regression test for bug 138577 Package content disapear in package explorer)
  */
-public void testNonExistingPackageFragment3() throws CoreException {
+public void testNonExistingPackageFragment3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P");
 		createFolder("/P/pack");

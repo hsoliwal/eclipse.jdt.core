@@ -79,7 +79,7 @@ public class EnumTest extends AbstractComparableTest {
 	}
 
 // test simple valid enum and its usage
-public void test000() {
+public void test000() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"e/X.java",
@@ -157,7 +157,7 @@ public void test000() {
 	);
 }
 // check assignment to enum constant is disallowed
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -178,7 +178,7 @@ public void test001() {
 		"----------\n");
 }
 // check diagnosis for duplicate enum constants
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -203,7 +203,7 @@ public void test002() {
 		"----------\n");
 }
 // check properly rejecting enum constant modifiers
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -235,7 +235,7 @@ public void test003() {
 		"----------\n");
 }
 // check using an enum constant
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -254,7 +254,7 @@ public void test004() {
 		"BLEU");
 }
 // check method override diagnosis (with no enum constants)
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -276,7 +276,7 @@ public void test005() {
 		"----------\n");
 }
 // check generated #values() method
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -297,7 +297,7 @@ public void test006() {
 		"BLEUBLANCROUGE");
 }
 // tolerate user definition for $VALUES
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -319,7 +319,7 @@ public void test007() {
 		"BLEUBLANCROUGE");
 }
 // reject user definition for #values()
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -375,7 +375,7 @@ public void test008() {
 		"----------\n");
 }
 // switch on enum
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -406,7 +406,7 @@ public void test009() {
 		"SUCCESS");
 }
 // duplicate switch case
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -442,7 +442,7 @@ public void test010() {
 		"----------\n");
 }
 // reject user definition for #values()
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -475,7 +475,7 @@ public void test011() {
 		"----------\n");
 }
 // check abstract method diagnosis
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -494,7 +494,7 @@ public void test012() {
 		"----------\n");
 }
 // check enum constants with wrong arguments
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -523,7 +523,7 @@ public void test013() {
 		"----------\n");
 }
 // check enum constants with extra arguments
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -548,7 +548,7 @@ public void test014() {
 		"102030");
 }
 // check enum constants with wrong arguments
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -578,7 +578,7 @@ public void test015() {
 		"----------\n");
 }
 // check enum constants with wrong arguments
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -621,7 +621,7 @@ public void test017() {
 		"");
 }
 // cannot extend enums
-public void test018() {
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -645,7 +645,7 @@ public void test018() {
 		"----------\n");
 }
 // 74851
-public void test019() {
+public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"MonthEnum.java",
@@ -698,7 +698,7 @@ public void test020() {
 		"");
 }
 // 74226 variation - check nested enum is implicitly static
-public void test021() {
+public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"Foo.java",
@@ -718,7 +718,7 @@ public void test021() {
 		"----------\n");
 }
 // 77151 - cannot use qualified name to denote enum constants in switch case label
-public void test022() {
+public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel >= ClassFileConstants.JDK21)
 		return;
 	this.runNegativeTest(
@@ -806,7 +806,7 @@ public void test025() {
 }
 
 // check enum name visibility
-public void test026() {
+public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -850,7 +850,7 @@ public void test026() {
 		"----------\n");
 }
 // check enum name visibility
-public void test027() {
+public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -874,7 +874,7 @@ public void test027() {
 		"");
 }
 // check enum name visibility
-public void test028() {
+public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -914,7 +914,7 @@ public void test028() {
 		"----------\n");
 }
 // check enum name visibility
-public void test029() {
+public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -942,7 +942,7 @@ public void test029() {
 		"");
 }
 // check enum name visibility
-public void test030() {
+public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -973,7 +973,7 @@ public void test030() {
 		"");
 }
 // check enum name visibility
-public void test031() {
+public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1009,7 +1009,7 @@ public void test031() {
 }
 
 // check Enum cannot be used as supertype (explicitly)
-public void test032() {
+public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1030,7 +1030,7 @@ public void test032() {
 }
 
 // Javadoc in enum (see bug 78018)
-public void test033() {
+public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"E.java",
@@ -1049,7 +1049,7 @@ public void test033() {
 		}
 	);
 }
-public void test034() {
+public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"E.java",
@@ -1102,7 +1102,7 @@ public void test035() {
 		}
 	);
 }
-public void test036() {
+public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"E.java",
@@ -1150,7 +1150,7 @@ public void test037() {
 		}
 	);
 }
-public void test038() {
+public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.reportMissingJavadocComments = CompilerOptions.ERROR;
 	this.runNegativeTest(
 		new String[] {
@@ -1183,7 +1183,7 @@ public void test038() {
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError
 	);
 }
-public void test039() {
+public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"E.java",
@@ -1222,7 +1222,7 @@ public void test039() {
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError
 	);
 }
-public void test040() {
+public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"E.java",
@@ -1247,7 +1247,7 @@ public void test040() {
 		}
 	);
 }
-public void test041() {
+public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"E.java",
@@ -1314,7 +1314,7 @@ public void test041() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError
 	);
 }
-public void test042() {
+public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"E.java",
@@ -1376,7 +1376,7 @@ public void test044() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78321
  */
-public void test045() {
+public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1422,7 +1422,7 @@ public void test046() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78914
  */
-public void test047() {
+public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1445,7 +1445,7 @@ public void test047() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=77211
  */
-public void test048() {
+public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"StopLight.java",
@@ -1497,7 +1497,7 @@ public void test050() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78914 - variation
  */
-public void test051() {
+public void test051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1519,7 +1519,7 @@ public void test051() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78916
  */
-public void test052() {
+public void test052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1560,7 +1560,7 @@ public void test053() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78916 - variation
  */
-public void test054() {
+public void test054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1583,7 +1583,7 @@ public void test054() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78916 - variation
  */
-public void test055() {
+public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1609,7 +1609,7 @@ public void test055() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=78914 - variation
  */
-public void test056() throws Exception {
+public void test056() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1629,7 +1629,7 @@ public void test056() throws Exception {
 		"public abstract enum X {\n";
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -1647,7 +1647,7 @@ public void test056() throws Exception {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=77430
  */
-public void test057() {
+public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Enum2.java",
@@ -1674,7 +1674,7 @@ public void test057() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=77430 - variation
  */
-public void test058() {
+public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1722,7 +1722,7 @@ public void test058() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=81262
  */
-public void test059() {
+public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1744,7 +1744,7 @@ public void test059() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=81589
  */
-public void test060() {
+public void test060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"com/flarion/test/a/MyEnum.java",
@@ -1795,7 +1795,7 @@ public void test060() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82217
  */
-public void test061() {
+public void test061() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1838,7 +1838,7 @@ public void test061() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82217 - variation with qualified name
  */
-public void test062() {
+public void test062() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SWITCH_MISSING_DEFAULT_CASE, JavaCore.WARNING);
 	this.runNegativeTest(
@@ -1912,7 +1912,7 @@ public void test063() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=82590
  */
-public void test064() {
+public void test064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1937,7 +1937,7 @@ public void test064() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=83847
  */
-public void test065() {
+public void test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1980,7 +1980,7 @@ public void test066() {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=83219
  */
-public void test067() {
+public void test067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     this.runNegativeTest(
         new String[] {
             "X.java",
@@ -2060,7 +2060,7 @@ public void test069() {
 		"----------\n");
 }
 
-public void test070() throws Exception {
+public void test070() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2086,7 +2086,7 @@ public void test070() throws Exception {
 		"    6  return\n";
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -2102,7 +2102,7 @@ public void test070() throws Exception {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=83901
-public void test071() {
+public void test071() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest( // no methods to implement
 		new String[] {
 			"X1.java",
@@ -2136,7 +2136,7 @@ public void test071() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=83901
-public void test072() {
+public void test072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest( // implement inherited method
 		new String[] {
 			"X2.java",
@@ -2184,7 +2184,7 @@ public void test072() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=83901
-public void test073() {
+public void test073() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest( // implement inherited method but as abstract
 		new String[] {
 			"X3.java",
@@ -2250,7 +2250,7 @@ public void test073() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=83901
-public void test074() {
+public void test074() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest( // define abstract method
 		new String[] {
 			"X4.java",
@@ -2312,7 +2312,7 @@ public void test074() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=83901
-public void test075() {
+public void test075() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest( // do not implement inherited method
 		new String[] {
 			"X5.java",
@@ -2377,7 +2377,7 @@ public void test075() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=83902
-public void test076() { // bridge method needed
+public void test076() { // bridge method needed //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2397,7 +2397,7 @@ public void test076() { // bridge method needed
 	);
 }
 
-public void test077() {
+public void test077() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2426,7 +2426,7 @@ public void test077() {
 	);
 }
 
-public void test078() {
+public void test078() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2460,7 +2460,7 @@ public void test078() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=85397
-public void test079() throws Exception {
+public void test079() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String op =
 			this.complianceLevel < ClassFileConstants.JDK17 ?
 					"----------\n" +
@@ -2515,14 +2515,14 @@ public void test079() throws Exception {
 	};
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
 			"\n",
 			ClassFileBytesDisassembler.DETAILED);
 
-	for (int i = 0, max = expectedOutputs.length; i < max; i++) {
+	for (int i = 0, max = expectedOutputs.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String expectedOutput = expectedOutputs[i];
 		int index = actualOutput.indexOf(expectedOutput);
 		if (index == -1 || expectedOutput.length() == 0) {
@@ -2534,7 +2534,7 @@ public void test079() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=87064
-public void test080() {
+public void test080() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2560,7 +2560,7 @@ public void test080() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=87818
-public void test081() {
+public void test081() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expectedErrorMessage = this.complianceLevel < ClassFileConstants.JDK16 ?
 			"----------\n" +
 			"1. ERROR in X.java (at line 3)\n" +
@@ -2594,7 +2594,7 @@ public void test081() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88223
-public void test082() {
+public void test082() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if ( this.complianceLevel < ClassFileConstants.JDK16) {
 	this.runNegativeTest(
 		new String[] {
@@ -2669,7 +2669,7 @@ public void test082() {
 
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=87998 - check no emulation warning
-public void test083() {
+public void test083() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2705,7 +2705,7 @@ public void test083() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=87998 - check private constructor generation
-public void test084() throws Exception {
+public void test084() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2735,7 +2735,7 @@ public void test084() throws Exception {
 		"");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -2756,7 +2756,7 @@ public void test084() throws Exception {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88625
-public void test085() {
+public void test085() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2825,7 +2825,7 @@ public void test087() {
 		},
 		"");
 }
-public void test088() {
+public void test088() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2848,7 +2848,7 @@ public void test088() {
 		},
 		"");
 }
-public void test089() {
+public void test089() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2872,7 +2872,7 @@ public void test089() {
 		"The method clone() of type X.Test1 should be tagged with @Override since it actually overrides a superclass method\n" +
 		"----------\n");
 }
-public void test090() {
+public void test090() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2902,7 +2902,7 @@ public void test090() {
 		"Zork cannot be resolved to a type\n" +
 		"----------\n");
 }
-public void test091() {
+public void test091() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2921,7 +2921,7 @@ public void test091() {
 		},
 		"");
 }
-public void test092() {
+public void test092() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2951,7 +2951,7 @@ public void test092() {
 		"----------\n");
 }
 // check wildcard can extend Enum superclass
-public void test093() {
+public void test093() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2971,7 +2971,7 @@ public void test093() {
 		"");
 }
 // check super bit is set
-public void test094() throws Exception {
+public void test094() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2981,7 +2981,7 @@ public void test094() throws Exception {
 		"");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -3059,7 +3059,7 @@ public void test094() throws Exception {
 		assertEquals("unexpected bytecode sequence", expectedOutput, actualOutput);
 	}
 }
-public void test095() { // check missing abstract cases from multiple interfaces
+public void test095() { // check missing abstract cases from multiple interfaces //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3092,7 +3092,7 @@ public void test095() { // check missing abstract cases from multiple interfaces
 		"The type X must implement the inherited abstract method I.foo(int)\n" +
 		"----------\n");
 }
-public void test096() { // check for raw vs. parameterized parameter types
+public void test096() { // check for raw vs. parameterized parameter types //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3144,7 +3144,7 @@ public void test096() { // check for raw vs. parameterized parameter types
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=89982
-public void test097() {
+public void test097() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"E.java",
@@ -3177,7 +3177,7 @@ public void test097() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=89982 - variation
-public void test098() {
+public void test098() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"E.java",
@@ -3222,7 +3222,7 @@ public void test098() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=89274
-public void test099() {
+public void test099() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3258,7 +3258,7 @@ blocks, or instance variable initializer expressions of an enum constant e1
 to refer to itself or an enum constant of the same type that is declared to
 the right of e1."
 	*/
-public void test100() {
+public void test100() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3290,7 +3290,7 @@ public void test100() {
 		JavacTestOptions.JavacHasABug.JavacBugFixed_6_10);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=91761
-public void test101() {
+public void test101() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3316,7 +3316,7 @@ public void test101() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=90775
-public void test102() {
+public void test102() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     this.runNegativeTest(
         new String[] {
             "X.java",
@@ -3354,7 +3354,7 @@ public void test102() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=93396
-public void test103() {
+public void test103() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     this.runNegativeTest(
         new String[] {
             "BadEnum.java",
@@ -3377,7 +3377,7 @@ public void test103() {
         "----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=90215
-public void test104() {
+public void test104() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     this.runConformTest(
         new String[] {
             "p/Placeholder.java",
@@ -3425,7 +3425,7 @@ public void test104() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88395
-public void test105() {
+public void test105() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"pack/X.java",
@@ -3475,7 +3475,7 @@ public void test105() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88395
-public void test106() {
+public void test106() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_INCOMPLETE_ENUM_SWITCH, JavaCore.IGNORE);
 	this.runConformTest(
@@ -3525,7 +3525,7 @@ public void test106() {
 		null);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88395
-public void test107() {
+public void test107() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_INCOMPLETE_ENUM_SWITCH, JavaCore.IGNORE);
 	this.runConformTest(
@@ -3589,7 +3589,7 @@ public void test107() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88395
-public void test108() {
+public void test108() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_INCOMPLETE_ENUM_SWITCH, JavaCore.IGNORE);
 	this.runConformTest(
@@ -3648,7 +3648,7 @@ public void test108() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88395
-public void test109() {
+public void test109() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_INCOMPLETE_ENUM_SWITCH, JavaCore.IGNORE);
 	this.runConformTest(
@@ -3710,7 +3710,7 @@ public void test109() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88395
-public void test110() {
+public void test110() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_INCOMPLETE_ENUM_SWITCH, JavaCore.IGNORE);
 	this.runConformTest(
@@ -3768,7 +3768,7 @@ public void test110() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88395
-public void test111() {
+public void test111() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"pack/X.java",
@@ -3832,7 +3832,7 @@ public void test111() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97247
-public void test112() {
+public void test112() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_INCOMPLETE_ENUM_SWITCH, JavaCore.IGNORE);
 	this.runConformTest(
@@ -3885,7 +3885,7 @@ public void test112() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=93789
-public void test113() {
+public void test113() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 	    this.runNegativeTest(
 	        new String[] {
@@ -3922,7 +3922,7 @@ public void test113() {
 
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=99428 and https://bugs.eclipse.org/bugs/show_bug.cgi?id=99655
-public void test114() {
+public void test114() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     this.runConformTest(
         new String[] {
             "EnumTest.java",
@@ -4020,7 +4020,7 @@ public void test114() {
 		"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=101713
-public void test115() {
+public void test115() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     this.runNegativeTest(
         new String[] {
             "X.java",
@@ -4063,7 +4063,7 @@ public void test115() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=101713 - variation
-public void test116() {
+public void test116() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4084,7 +4084,7 @@ public void test116() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=101713 - variation
-public void test117() {
+public void test117() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4161,7 +4161,7 @@ public void test117() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=102265
-public void test118() {
+public void test118() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4219,7 +4219,7 @@ public void test119() {
 		"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=102213
-public void test120() {
+public void test120() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4267,7 +4267,7 @@ public void test120() {
 		JavacTestOptions.JavacHasABug.JavacBugFixed_6_10);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=92165
-public void test121() {
+public void test121() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4292,7 +4292,7 @@ public void test121() {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=105592
-public void test122() {
+public void test122() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4319,7 +4319,7 @@ public void test122() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=110403
-public void test123() {
+public void test123() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"Foo.java",
@@ -4339,7 +4339,7 @@ public void test123() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=1101417
-public void test124() {
+public void test124() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4374,7 +4374,7 @@ public void test124() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=112231
-public void test125() {
+public void test125() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4410,7 +4410,7 @@ public void test126() {
 		"[0]");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=126087
-public void test127() throws Exception {
+public void test127() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4428,7 +4428,7 @@ public void test127() throws Exception {
 		"[1]");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -4447,7 +4447,7 @@ public void test127() throws Exception {
 	}
 
 	disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X$1.class"));
+	classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X$1.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -4466,7 +4466,7 @@ public void test127() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=127766
-public void test128() {
+public void test128() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.IGNORE);
 	options.put(CompilerOptions.OPTION_ReportMissingSerialVersion, CompilerOptions.IGNORE);
@@ -4496,7 +4496,7 @@ public void test128() {
          options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=141155
-public void test129() throws Exception {
+public void test129() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4507,7 +4507,7 @@ public void test129() throws Exception {
 		"");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -4628,7 +4628,7 @@ public void test129() throws Exception {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=141810
-public void test130() {
+public void test130() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4675,7 +4675,7 @@ public void test130() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=145732
-public void test131() {
+public void test131() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
          new String[] {
         		 "X.java",
@@ -4696,7 +4696,7 @@ public void test131() {
          "NullPointerException");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=145732 - variation
-public void test132() {
+public void test132() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
          new String[] {
         		 "X.java",
@@ -4717,7 +4717,7 @@ public void test132() {
          "NullPointerException");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=147747
-public void test133() throws Exception {
+public void test133() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
          new String[] {
         		"X.java",
@@ -4728,7 +4728,7 @@ public void test133() throws Exception {
          },
          "");
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -4786,7 +4786,7 @@ public void test133() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=149042
-public void test134() {
+public void test134() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     this.runNegativeTest(
         new String[] {
             "X.java",
@@ -4810,7 +4810,7 @@ public void test134() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=149562
 // a default case is required to consider that b is initialized (in case E
 // takes new values in the future)
-public void test135() {
+public void test135() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     this.runNegativeTest(
         new String[] {
             "E.java",
@@ -4842,7 +4842,7 @@ public void test135() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=151368
-public void test136() {
+public void test136() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  this.runConformTest(
      new String[] {
         "X.java",
@@ -4979,7 +4979,7 @@ public void test136() {
 	"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=156540
-public void test137() {
+public void test137() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  this.runConformTest(
      new String[] {
         "X.java",
@@ -5006,7 +5006,7 @@ public void test137() {
 	"0");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=156591
-public void test138() {
+public void test138() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5043,7 +5043,7 @@ public void test138() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=156591 - variation
-public void test139() {
+public void test139() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5085,7 +5085,7 @@ public void test139() {
 	);
 }
 //check final modifier
-public void test140() {
+public void test140() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK17) {
 		this.runConformTest(
 			     new String[] {
@@ -5119,7 +5119,7 @@ public void test140() {
 	}
 }
 //check final modifier
-public void test141() {
+public void test141() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  this.runNegativeTest(
      new String[] {
     	        "X.java",
@@ -5137,7 +5137,7 @@ public void test141() {
 		"Cannot cast from X to Runnable\n" +
 		"----------\n");
 }
-public void test142() {
+public void test142() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  this.runConformTest(
      new String[] {
     	        "X.java",
@@ -5163,7 +5163,7 @@ public void test142() {
      "Monday Tuesday Wednesday Thursday Friday Saturday Sunday Monday Tuesday Wednesday Thursday Friday");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=166866
-public void test143() {
+public void test143() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -5204,7 +5204,7 @@ public void test144() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=186822
-public void test145() {
+public void test145() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportNonStaticAccessToStatic, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -5244,7 +5244,7 @@ public void test145() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=207915
-public void test146() {
+public void test146() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"X.java",
@@ -5274,7 +5274,7 @@ public void test146() {
 		"----------\n");
 }
 // normal error when other warning is enabled
-public void test146b() {
+public void test146b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SWITCH_MISSING_DEFAULT_CASE, JavaCore.WARNING);
 	this.runNegativeTest(
@@ -5314,7 +5314,7 @@ public void test146b() {
 		options);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=227502
-public void test147() {
+public void test147() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/X.java",
@@ -5358,7 +5358,7 @@ public void test147() {
 		JavacTestOptions.Excuse.JavacHasErrorsEclipseHasNone /* javac test options */); // note that Eclipse has errors for X while javac alsore reports for X - no conflict
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=227502 - variation
-public void test148() {
+public void test148() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 					"p/X.java",
@@ -5407,7 +5407,7 @@ public void test148() {
 		JavacTestOptions.Excuse.JavacHasErrorsEclipseHasNone /* javac test options */);// see prev note
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=227502 - variation
-public void test149() throws Exception {
+public void test149() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/X.java",
@@ -5430,7 +5430,7 @@ public void test149() throws Exception {
 		"public static final enum p.X$E implements java.lang.Runnable {\n";
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"p" + File.separator + "X$E.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"p" + File.separator + "X$E.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -5445,7 +5445,7 @@ public void test149() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=227502 - variation
-public void test150() throws Exception {
+public void test150() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/X.java",
@@ -5480,7 +5480,7 @@ public void test150() throws Exception {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=227502 - variation
-public void test151() throws Exception {
+public void test151() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/X.java",
@@ -5503,7 +5503,7 @@ public void test151() throws Exception {
 		"public abstract static enum p.X$E implements java.lang.Runnable {\n";
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"p" + File.separator + "X$E.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"p" + File.separator + "X$E.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -5518,7 +5518,7 @@ public void test151() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=227502 - variation
-public void test152() {
+public void test152() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/X.java",
@@ -5547,7 +5547,7 @@ public void test152() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=228109
-public void test153() {
+public void test153() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"TestEnum.java",
@@ -5569,7 +5569,7 @@ public void test153() {
 		JavacTestOptions.JavacHasABug.JavacBugFixed_6_10);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=228109 - variation
-public void test154() {
+public void test154() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"TestEnum2.java",
@@ -5596,7 +5596,7 @@ public void test154() {
 		JavacTestOptions.JavacHasABug.JavacBugFixed_6_10);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=228109 - variation
-public void test155() {
+public void test155() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"TestEnum.java",
@@ -5633,7 +5633,7 @@ public void test156() {
 		"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=228109 - variation
-public void test157() {
+public void test157() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"Foo.java",
@@ -5675,7 +5675,7 @@ public void test157() {
 		JavacTestOptions.JavacHasABug.JavacBugFixed_6_10);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=228109 - variation
-public void test158() {
+public void test158() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"Foo.java",
@@ -5716,7 +5716,7 @@ public void test158() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=228109 - variation
-public void test159() {
+public void test159() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"Foo.java",
@@ -5783,7 +5783,7 @@ public void test159() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=228109 - variation
-public void test160() {
+public void test160() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 				"Foo.java",
@@ -5866,7 +5866,7 @@ public void test161() {
 		"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=239225
-public void test162() {
+public void test162() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"Status.java", // =================
@@ -5906,7 +5906,7 @@ public void test162() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=239225 - variation
-public void test163() {
+public void test163() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"Status.java", // =================
@@ -5949,7 +5949,7 @@ public void test164() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=251523 - variation
-public void test165() throws Exception {
+public void test165() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java", // =================
@@ -6045,7 +6045,7 @@ public void test165() throws Exception {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=251814
-public void test166() throws Exception {
+public void test166() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java", // =================
@@ -6105,10 +6105,10 @@ public void test166() throws Exception {
 		"        [pc: 0, pc: 10] local: this index: 0 type: X\n" +
 		"}";
 
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=251814 - variation
-public void test167() throws Exception {
+public void test167() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java", // =================
@@ -6173,7 +6173,7 @@ public void test167() throws Exception {
 		false);
 	}
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=255452
-public void test168() {
+public void test168() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java", // =================
@@ -6237,7 +6237,7 @@ public void test168() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=255452 - variation
-public void test169() {
+public void test169() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java", // =================
@@ -6314,7 +6314,7 @@ public void test169() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=263877
-public void test170() {
+public void test170() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java", // =================
@@ -6353,7 +6353,7 @@ public void test170() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267670. Make sure we don't emit any unused
 // warnings about enumerators. Since these could be used in indirect ways not obvious.
-public void test171() {
+public void test171() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedPrivateMember, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -6383,7 +6383,7 @@ public void test171() {
 // warnings about enumerators. Since these could be used in indirect ways not obvious. This
 // test also verifies that while we don't complain about individual enumerators not being used
 // we DO complain if the enumeration type itself is not used.
-public void test172() {
+public void test172() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedPrivateMember, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -6419,7 +6419,7 @@ public void test172() {
 		JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=273990
-public void test173() {
+public void test173() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"E.java",
@@ -6450,7 +6450,7 @@ public void test173() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=278562
-public void test174() {
+public void test174() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -6477,7 +6477,7 @@ public void test174() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=278562
-public void test175() {
+public void test175() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -6504,7 +6504,7 @@ public void test175() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=285701
-public void test176() {
+public void test176() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -6544,7 +6544,7 @@ public void test176() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=285701
-public void test177() {
+public void test177() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -6588,7 +6588,7 @@ public void test177() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=285701
-public void test178() {
+public void test178() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -6633,7 +6633,7 @@ public void test178() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=285701
-public void test179() {
+public void test179() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -6678,7 +6678,7 @@ public void test179() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=289892
-public void test180() {
+public void test180() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/package-info.java",
@@ -6735,7 +6735,7 @@ public void test180() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=289892
 // in interaction with null annotations
 // see https://bugs.eclipse.org/bugs/show_bug.cgi?id=365519#c4 item (6)
-public void test180a() {
+public void test180a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_ANNOTATION_NULL_ANALYSIS, JavaCore.ENABLED);
 	this.runConformTest(
@@ -6797,7 +6797,7 @@ public void test180a() {
 		excuse);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=300133
-public void test181() {
+public void test181() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -6822,7 +6822,7 @@ public void test181() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=328519
-public void test182() throws Exception {
+public void test182() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -6863,7 +6863,7 @@ public void test182() throws Exception {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=328519
-public void test183() throws Exception {
+public void test183() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -6903,7 +6903,7 @@ public void test183() throws Exception {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=328519
-public void test184() throws Exception {
+public void test184() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -6944,7 +6944,7 @@ public void test184() throws Exception {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=
-public void test185() {
+public void test185() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6967,7 +6967,7 @@ public void test185() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=374605
-public void test186() {
+public void test186() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_MISSING_ENUM_CASE_DESPITE_DEFAULT, JavaCore.ENABLED);
 	this.runNegativeTest(
@@ -7003,7 +7003,7 @@ public void test186() {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=374605
-public void test187() {
+public void test187() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_MISSING_ENUM_CASE_DESPITE_DEFAULT, JavaCore.ENABLED);
 	options.put(JavaCore.COMPILER_PB_INCOMPLETE_ENUM_SWITCH, JavaCore.ERROR);
@@ -7032,7 +7032,7 @@ public void test187() {
 		null /*requestor*/);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=374605
-public void test187a() {
+public void test187a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_MISSING_ENUM_CASE_DESPITE_DEFAULT, JavaCore.ENABLED);
 	this.runNegativeTest(
@@ -7068,7 +7068,7 @@ public void test187a() {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=374605
-public void test187b() {
+public void test187b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SWITCH_MISSING_DEFAULT_CASE, JavaCore.ERROR);
 	options.put(JavaCore.COMPILER_PB_SUPPRESS_OPTIONAL_ERRORS, JavaCore.ENABLED);
@@ -7095,7 +7095,7 @@ public void test187b() {
 		null /*requestor*/);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=374605
-public void test188() {
+public void test188() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SWITCH_MISSING_DEFAULT_CASE, JavaCore.WARNING);
 	this.runNegativeTest(
@@ -7131,7 +7131,7 @@ public void test188() {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=374605
-public void test189() {
+public void test189() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	//options.put(JavaCore.COMPILER_PB_MISSING_DEFAULT_CASE, JavaCore.WARNING);
 	this.runNegativeTest(
@@ -7161,7 +7161,7 @@ public void test189() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=433060 [1.8][compiler] enum E<T>{I;} causes NPE in AllocationExpression.checkTypeArgumentRedundancy
-public void test433060() {
+public void test433060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_TYPE_ARGUMENTS, JavaCore.ERROR);
 	this.runNegativeTest(
@@ -7181,7 +7181,7 @@ public void test433060() {
 		true,
 		options);
 }
-public void test434442() {
+public void test434442() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 			"X.java",
 			"interface I {\n" +
@@ -7214,7 +7214,7 @@ public void test434442() {
 			"\n"
 	});
 }
-public void test476281() {
+public void test476281() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 			"LambdaEnumLocalClassBug.java",
 			"public enum LambdaEnumLocalClassBug {\n" +
@@ -7235,7 +7235,7 @@ public void test476281() {
 			"}"},
 			"Success");
 }
-public void test476281a() {
+public void test476281a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 			"Test.java",
 			"public enum Test {\n" +
@@ -7259,7 +7259,7 @@ public void test476281a() {
 			"}"},
 			"Success");
 }
-public void testBug388314() throws Exception {
+public void testBug388314() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"p/Nullable.java",
@@ -7297,7 +7297,7 @@ public void testBug388314() throws Exception {
 		"  private EnumWithNullable(java.lang.String arg0,  int arg1, @p.Nullable java.lang.Object b);\n";
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"p" + File.separator + "EnumWithNullable.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"p" + File.separator + "EnumWithNullable.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -7311,7 +7311,7 @@ public void testBug388314() throws Exception {
 		assertEquals("Wrong contents", expectedOutput, actualOutput);
 	}
 }
-public void testGHIssue2398() {
+public void testGHIssue2398() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"com/test/X.java",
 			"""
@@ -7341,7 +7341,7 @@ public void testGHIssue2398() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1368
 // JDT unable to detect variable reference errors in nested enum with an AnonymousClassDeclaration
-public void testGHIssue1368() {
+public void testGHIssue1368() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	this.runNegativeTest(new String[] {
@@ -7412,7 +7412,7 @@ public void testGHIssue1368() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3356
 // Test failures in I-Builds due to less diagnostics being emitted
-public void testIssue3356() {
+public void testIssue3356() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"X.java",
 			"""

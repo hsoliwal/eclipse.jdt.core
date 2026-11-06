@@ -30,8 +30,8 @@ public void setDeclarationSourceEnd(int declarationSourceEnd) {
 @Override
 public String toString(int tab) {
 	if (this.modifiers == ClassFileConstants.AccStatic) {
-		return tabString(tab) + "static {}";
+		return tabString(tab) + "static {}"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	return tabString(tab) + "{}";
+	return tabString(tab) + "{}"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

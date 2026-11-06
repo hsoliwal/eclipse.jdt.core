@@ -49,7 +49,7 @@ protected Map getCompilerOptions() {
 }
 
 // Lambda with elided args inherits null contract from the super method
-public void testLambda_01() {
+public void testLambda_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runNegativeTestWithLibs(
 		new String[] {
@@ -80,7 +80,7 @@ public void testLambda_01() {
 }
 
 // Lambda with declared args violates null contract of super
-public void testLambda_02() {
+public void testLambda_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runNegativeTestWithLibs(
 		new String[] {
@@ -113,7 +113,7 @@ public void testLambda_02() {
 }
 
 // Lambda with declared args inherits / modifies contract of super
-public void testLambda_03() {
+public void testLambda_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runNegativeTestWithLibs(
 		new String[] {
@@ -160,7 +160,7 @@ public void testLambda_03() {
 }
 
 // Lambda with declared args has illegal @NonNull an primitive argument
-public void testLambda_04() {
+public void testLambda_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runNegativeTestWithLibs(
 		new String[] {
@@ -187,7 +187,7 @@ public void testLambda_04() {
 }
 
 // Lambda inherits null contract and has block with return statement
-public void testLambda_05() {
+public void testLambda_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runNegativeTestWithLibs(
 		new String[] {
@@ -215,7 +215,7 @@ public void testLambda_05() {
 		"----------\n");
 }
 // Lambda has no descriptor (overriding method from Object), don't bail out with NPE during analysis
-public void testLambda_05a() {
+public void testLambda_05a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runNegativeTest(
 		new String[] {
@@ -247,7 +247,7 @@ public void testLambda_05a() {
 // Test flows with ReferenceExpression regarding:
 // - definite assignment
 // - unused local
-public void testReferenceExpression1() {
+public void testReferenceExpression1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.ERROR);
 	runNegativeTest(
@@ -295,7 +295,7 @@ public void testReferenceExpression1() {
 		"----------\n",
 		null/*libs*/, true/*flush*/, options);
 }
-public void testReferenceExpression_null_1() {
+public void testReferenceExpression_null_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_NULL_REFERENCE, JavaCore.ERROR);
 	runNegativeTest(
@@ -324,7 +324,7 @@ public void testReferenceExpression_null_1() {
 		"----------\n",
 		null/*libs*/, true/*flush*/, options);
 }
-public void testReferenceExpression_nullAnnotation_1() {
+public void testReferenceExpression_nullAnnotation_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			 "I.java",
@@ -354,7 +354,7 @@ public void testReferenceExpression_nullAnnotation_1() {
 		"Null type mismatch at method return type: Method descriptor I.foo(Object) promises '@NonNull String' but referenced method provides '@Nullable String'\n" +
 		"----------\n");
 }
-public void testReferenceExpression_nullAnnotation_2() {
+public void testReferenceExpression_nullAnnotation_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true, /* skipJavac */
 		new String[] {
@@ -380,7 +380,7 @@ public void testReferenceExpression_nullAnnotation_2() {
 		"Null type safety at method return type: Method descriptor I.foo(Object) promises \'@NonNull String\' but referenced method provides \'String\'\n" +
 		"----------\n");
 }
-public void testReferenceExpression_nullAnnotation_3() {
+public void testReferenceExpression_nullAnnotation_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			 "I.java",
@@ -414,7 +414,7 @@ public void testReferenceExpression_nullAnnotation_3() {
 		true /*flush*/,
 		getCompilerOptions());
 }
-public void testBug535308a() {
+public void testBug535308a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.ERROR);
@@ -447,7 +447,7 @@ public void testBug535308a() {
 	runner.javacTestOptions = JavacTestOptions.Excuse.EclipseWarningConfiguredAsError;
 	runner.runNegativeTest();
 }
-public void testBug535308b() {
+public void testBug535308b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.ERROR);
@@ -481,7 +481,7 @@ public void testBug535308b() {
 	runner.javacTestOptions = JavacTestOptions.Excuse.EclipseWarningConfiguredAsError;
 	runner.runNegativeTest();
 }
-public void testBug535308c() {
+public void testBug535308c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.ERROR);
@@ -515,7 +515,7 @@ public void testBug535308c() {
 	runner.javacTestOptions = JavacTestOptions.Excuse.EclipseWarningConfiguredAsError;
 	runner.runNegativeTest();
 }
-public void testBug535308d() {
+public void testBug535308d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.ERROR);
@@ -549,7 +549,7 @@ public void testBug535308d() {
 	runner.javacTestOptions = JavacTestOptions.Excuse.EclipseWarningConfiguredAsError;
 	runner.runNegativeTest();
 }
-public void testBug535308e() {
+public void testBug535308e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.ERROR);
@@ -583,7 +583,7 @@ public void testBug535308e() {
 	runner.javacTestOptions = JavacTestOptions.Excuse.EclipseWarningConfiguredAsError;
 	runner.runNegativeTest();
 }
-public void testBug474080() {
+public void testBug474080() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"Test.java",

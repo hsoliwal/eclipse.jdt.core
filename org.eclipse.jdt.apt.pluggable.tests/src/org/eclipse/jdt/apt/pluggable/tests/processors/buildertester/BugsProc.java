@@ -36,9 +36,9 @@ public class BugsProc extends AbstractProcessor {
 	public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 		_numRounds++;
 		this.roundEnv = roundEnv;
-		for (TypeElement element : annotations) {
+		for (TypeElement element : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Set<? extends Element> elements = roundEnv.getElementsAnnotatedWith(element);
-			for (Element e : elements) {
+			for (Element e : elements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				expectedElements.remove(e.asType().toString());
 			}
 		}

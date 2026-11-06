@@ -23,26 +23,26 @@ final class ImportDeclarationWriter {
 	/**
 	 * Writes the Java source for an import declaration of the given name.
 	 */
-	String writeImportDeclaration(ImportName importName) {
-		StringBuilder sb = new StringBuilder();
+	String writeImportDeclaration(ImportName importName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		sb.append("import "); //$NON-NLS-1$
+		sb.append("import "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		if (importName.isStatic) {
-			sb.append("static "); //$NON-NLS-1$
+			sb.append("static "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		if (importName.isModule) {
-			sb.append("module "); //$NON-NLS-1$
+			sb.append("module "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
-		sb.append(importName.qualifiedName);
+		sb.append(importName.qualifiedName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		if (this.insertSpaceBeforeSemicolon) {
-			sb.append(' ');
+			sb.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
-		sb.append(';');
+		sb.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		return sb.toString();
 	}

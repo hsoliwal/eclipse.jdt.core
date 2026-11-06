@@ -186,7 +186,7 @@ public class MissingTypesGuesser extends ASTVisitor {
 		this.nameEnvironment = completionEngine.nameEnvironment;
 	}
 
-	private boolean computeMissingElements(
+	private boolean computeMissingElements( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			QualifiedTypeReference[] substituedTypeNodes,
 			char[][][] originalTypeNames,
 			Binding[] missingElements,
@@ -194,7 +194,7 @@ public class MissingTypesGuesser extends ASTVisitor {
 			int[] missingElementsEnds) {
 		int length = substituedTypeNodes.length;
 
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference substituedType = substituedTypeNodes[i];
 			if (substituedType.resolvedType == null) return false;
 			ReferenceBinding erasure = (ReferenceBinding)substituedType.resolvedType.leafComponentType().erasure();
@@ -231,7 +231,7 @@ public class MissingTypesGuesser extends ASTVisitor {
 		return true;
 	}
 
-	private TypeReference convert(ArrayQualifiedTypeReference typeRef) {
+	private TypeReference convert(ArrayQualifiedTypeReference typeRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (typeRef.resolvedType != null) {
 			if (typeRef.resolvedType.isValidBinding()) {
 				ArrayQualifiedTypeReference convertedType =
@@ -265,7 +265,7 @@ public class MissingTypesGuesser extends ASTVisitor {
 		return null;
 	}
 
-	private TypeReference convert(ArrayTypeReference typeRef) {
+	private TypeReference convert(ArrayTypeReference typeRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (typeRef.resolvedType != null) {
 			if (typeRef.resolvedType.isValidBinding()) {
 				ArrayTypeReference convertedType =
@@ -296,16 +296,16 @@ public class MissingTypesGuesser extends ASTVisitor {
 		return null;
 	}
 
-	private TypeReference convert(ParameterizedQualifiedTypeReference typeRef) {
+	private TypeReference convert(ParameterizedQualifiedTypeReference typeRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (typeRef.resolvedType != null) {
 			TypeReference[][] typeArguments = typeRef.typeArguments;
 			int length = typeArguments.length;
 			TypeReference[][] convertedTypeArguments = new TypeReference[length][];
-			next : for (int i = 0; i < length; i++) {
+			next : for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (typeArguments[i] == null) continue next;
 				int length2 = typeArguments[i].length;
 				convertedTypeArguments[i] = new TypeReference[length2];
-				for (int j = 0; j < length2; j++) {
+				for (int j = 0; j < length2; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					convertedTypeArguments[i][j] = convert(typeArguments[i][j]);
 					if (convertedTypeArguments[i][j] == null) return null;
 				}
@@ -330,7 +330,7 @@ public class MissingTypesGuesser extends ASTVisitor {
 				if(typeNames == null || typeNames.length == 0) return null;
 
 				TypeReference[][] newConvertedTypeArguments = new TypeReference[typeNames[0].length][];
-				for (int k = newConvertedTypeArguments.length - 1, l = convertedTypeArguments.length -1; k > -1 && l > -1;) {
+				for (int k = newConvertedTypeArguments.length - 1, l = convertedTypeArguments.length -1; k > -1 && l > -1;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					newConvertedTypeArguments[k] = convertedTypeArguments[l];
 					k--;
 					l--;
@@ -356,12 +356,12 @@ public class MissingTypesGuesser extends ASTVisitor {
 		return null;
 	}
 
-	private TypeReference convert(ParameterizedSingleTypeReference typeRef) {
+	private TypeReference convert(ParameterizedSingleTypeReference typeRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (typeRef.resolvedType != null) {
 			TypeReference[] typeArguments = typeRef.typeArguments;
 			int length = typeArguments.length;
 			TypeReference[] convertedTypeArguments = new TypeReference[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				convertedTypeArguments[i] = convert(typeArguments[i]);
 				if(convertedTypeArguments[i] == null) return null;
 			}
@@ -404,7 +404,7 @@ public class MissingTypesGuesser extends ASTVisitor {
 		return null;
 	}
 
-	private TypeReference convert(QualifiedTypeReference typeRef) {
+	private TypeReference convert(QualifiedTypeReference typeRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (typeRef.resolvedType != null) {
 			if (typeRef.resolvedType.isValidBinding()) {
 				QualifiedTypeReference convertedType = new QualifiedTypeReference(typeRef.tokens, typeRef.sourcePositions);
@@ -430,7 +430,7 @@ public class MissingTypesGuesser extends ASTVisitor {
 		return null;
 	}
 
-	private TypeReference convert(SingleTypeReference typeRef) {
+	private TypeReference convert(SingleTypeReference typeRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (typeRef.resolvedType != null) {
 			if (typeRef.resolvedType.isValidBinding()) {
 				SingleTypeReference convertedType = new SingleTypeReference(typeRef.token, 0);
@@ -453,7 +453,7 @@ public class MissingTypesGuesser extends ASTVisitor {
 		return null;
 	}
 
-	private TypeReference convert(TypeReference typeRef) {
+	private TypeReference convert(TypeReference typeRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (typeRef instanceof ParameterizedSingleTypeReference) {
 			return convert((ParameterizedSingleTypeReference)typeRef);
 		} else if(typeRef instanceof ParameterizedQualifiedTypeReference) {
@@ -486,12 +486,12 @@ public class MissingTypesGuesser extends ASTVisitor {
 		return convertedType;
 	}
 
-	private char[][][] findTypeNames(char[][] missingTypeName) {
+	private char[][][] findTypeNames(char[][] missingTypeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] missingSimpleName = missingTypeName[missingTypeName.length - 1];
 		final boolean isQualified = missingTypeName.length > 1;
 		final char[] missingFullyQualifiedName =
 			isQualified ? CharOperation.concatWith(missingTypeName, '.') : null;
-		final ArrayList results = new ArrayList();
+		final ArrayList results = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		ISearchRequestor storage = new ISearchRequestor() {
 			@Override
 			public void acceptConstructor(
@@ -548,9 +548,9 @@ public class MissingTypesGuesser extends ASTVisitor {
 		return (char[][][])this.substituedTypes.get(typeRef);
 	}
 
-	public void guess(TypeReference typeRef, Scope scope, GuessedTypeRequestor requestor) {
-		this.substituedTypes = new HashMap();
-		this.originalTypes = new HashMap();
+	public void guess(TypeReference typeRef, Scope scope, GuessedTypeRequestor requestor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		this.substituedTypes = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		this.originalTypes = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		this.combinationsCount = 1;
 
 		TypeReference convertedType = convert(typeRef);
@@ -563,13 +563,13 @@ public class MissingTypesGuesser extends ASTVisitor {
 		int[] substitutionsIndexes = new int[substituedTypeNodes.length];
 		char[][][][] subtitutions = new char[substituedTypeNodes.length][][][];
 		char[][][] originalTypeNames = new char[substituedTypeNodes.length][][];
-		for (int i = 0; i < substituedTypeNodes.length; i++) {
+		for (int i = 0; i < substituedTypeNodes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			subtitutions[i] = getSubstitution(substituedTypeNodes[i]);
 			originalTypeNames[i] = getOriginal(substituedTypeNodes[i]);
 		}
 
 		ResolutionCleaner resolutionCleaner = new ResolutionCleaner();
-		for (int i = 0; i < this.combinationsCount; i++) {
+		for (int i = 0; i < this.combinationsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 			nextSubstitution(substituedTypeNodes, subtitutions, substitutionsIndexes);
 
@@ -611,13 +611,13 @@ public class MissingTypesGuesser extends ASTVisitor {
 			}
 		}
 	}
-	private void nextSubstitution(
+	private void nextSubstitution( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			QualifiedTypeReference[] substituedTypeNodes,
 			char[][][][] subtitutions,
 			int[] substitutionsIndexes) {
 		int length = substituedTypeNodes.length;
 
-		done : for (int i = 0; i < length; i++) {
+		done : for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(substitutionsIndexes[i] < subtitutions[i].length - 1) {
 				substitutionsIndexes[i]++;
 				break done;
@@ -626,7 +626,7 @@ public class MissingTypesGuesser extends ASTVisitor {
 			}
 		}
 
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			QualifiedTypeReference qualifiedTypeReference = substituedTypeNodes[i];
 			qualifiedTypeReference.tokens = subtitutions[i][substitutionsIndexes[i]];
 			qualifiedTypeReference.sourcePositions = new long[qualifiedTypeReference.tokens.length];
@@ -635,7 +635,7 @@ public class MissingTypesGuesser extends ASTVisitor {
 					(ParameterizedQualifiedTypeReference)qualifiedTypeReference;
 				TypeReference[][] typeArguments = parameterizedQualifiedTypeReference.typeArguments;
 				TypeReference[][] newTypeArguments = new TypeReference[qualifiedTypeReference.tokens.length][];
-				for (int j = newTypeArguments.length - 1, k = typeArguments.length -1; j > -1 && k > -1;) {
+				for (int j = newTypeArguments.length - 1, k = typeArguments.length -1; j > -1 && k > -1;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					newTypeArguments[j] = typeArguments[k];
 					j--;
 					k--;

@@ -32,7 +32,7 @@ import org.eclipse.jdt.internal.compiler.classfmt.ClassFileConstants;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class TestAll extends junit.framework.TestCase {
 
-	public final static List TEST_CLASSES_1_5 = new ArrayList();
+	public final static List TEST_CLASSES_1_5 = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	static {
 		/* completion tests */
 		TEST_CLASSES_1_5.addAll(RunCompletionParserTests.TEST_CLASSES_1_5);
@@ -51,8 +51,8 @@ public TestAll(String testName) {
 	super(testName);
 }
 
-public static TestSuite getTestSuite(boolean addComplianceDiagnoseTest) {
-	ArrayList testClasses = new ArrayList();
+public static TestSuite getTestSuite(boolean addComplianceDiagnoseTest) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	ArrayList testClasses = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	testClasses.add(StringLiteralTest.class);
 	/* completion tests */
 	testClasses.addAll(RunCompletionParserTests.TEST_CLASSES);
@@ -84,7 +84,7 @@ public static TestSuite getTestSuite(boolean addComplianceDiagnoseTest) {
 	int possibleComplianceLevels = AbstractCompilerTest.getPossibleComplianceLevels();
 
 	record TestsAddition(long complianceTestLevel, long jdkVersion, Consumer<ArrayList> action) {}
-	List<TestsAddition> testAdditionsList = new ArrayList<>();
+	List<TestsAddition> testAdditionsList = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	testAdditionsList.add(new TestsAddition(AbstractCompilerTest.F_1_8, ClassFileConstants.JDK1_8, (list) -> {addJava1_8Tests(list);}));
 	testAdditionsList.add(new TestsAddition(AbstractCompilerTest.F_9, ClassFileConstants.JDK9, (list) -> {addJava9Tests(list);}));
@@ -106,7 +106,7 @@ public static TestSuite getTestSuite(boolean addComplianceDiagnoseTest) {
 	testAdditionsList.add(new TestsAddition(AbstractCompilerTest.F_26, ClassFileConstants.JDK26, (list) -> {addJava23Tests(list);}));
 	testAdditionsList.add(new TestsAddition(AbstractCompilerTest.F_27, ClassFileConstants.JDK27, (list) -> {addJava23Tests(list);}));
 
-	for (TestsAddition testVersionMap : testAdditionsList) {
+	for (TestsAddition testVersionMap : testAdditionsList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if ((possibleComplianceLevels & testVersionMap.complianceTestLevel) != 0) {
 			ArrayList tests_1_8 = (ArrayList)testClasses.clone();
 			tests_1_8.addAll(TEST_CLASSES_1_5);

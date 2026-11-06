@@ -61,7 +61,7 @@ public class ReconcileEnv extends AbstractCompilationEnv{
 		_context = context;
 		_workingCopy = workingCopy;
 		if (AptPlugin.DEBUG_COMPILATION_ENV) AptPlugin.trace(
-				"constructed " + this + " for " + _workingCopy.getElementName()); //$NON-NLS-1$ //$NON-NLS-2$
+				"constructed " + this + " for " + _workingCopy.getElementName()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override

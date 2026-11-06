@@ -79,7 +79,7 @@ public abstract class ASTBasedMemberDeclarationImpl
     protected AbstractTypeDeclaration getContainingTypeAstNode()
     {
     	ASTNode cur = _astNode;
-    	while(cur != null){
+    	while(cur != null){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     		switch(cur.getNodeType()){
     		case ASTNode.ANNOTATION_TYPE_DECLARATION:
     		case ASTNode.ENUM_DECLARATION:

@@ -55,7 +55,7 @@ public void test001() throws JavaModelException {
 		"public class BasicTestTextIns {}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "@");
 	assertResults(
-		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"linkplain[JAVADOC_INLINE_TAG]{{@linkplain}, null, null, linkplain, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"value[JAVADOC_INLINE_TAG]{{@value}, null, null, value, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
@@ -75,7 +75,7 @@ public void test002() throws JavaModelException {
 	assertResults("");
 }
 
-public void test003() throws JavaModelException {
+public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUpProjectOptions(CompilerOptions.getFirstSupportedJavaVersion());
 	String source =
 		"package javadoc.text;\n" +
@@ -87,7 +87,7 @@ public void test003() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "@");
 	assertResults(
-		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"linkplain[JAVADOC_INLINE_TAG]{{@linkplain}, null, null, linkplain, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"value[JAVADOC_INLINE_TAG]{{@value}, null, null, value, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
@@ -108,11 +108,11 @@ public void test004() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "@d");
 	assertResults(
-		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}"
+		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
-public void test005() throws JavaModelException {
+public void test005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -123,7 +123,7 @@ public void test005() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "@");
 	assertResults(
-		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"inheritDoc[JAVADOC_INLINE_TAG]{{@inheritDoc}, null, null, inheritDoc, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"linkplain[JAVADOC_INLINE_TAG]{{@linkplain}, null, null, linkplain, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
@@ -157,7 +157,7 @@ public void test007() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "@l");
 	assertResults(
-		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"linkplain[JAVADOC_INLINE_TAG]{{@linkplain}, null, null, linkplain, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"literal[JAVADOC_INLINE_TAG]{{@literal}, null, null, literal, null, "+this.positions+JAVADOC_RELEVANCE+"}"
 	);
@@ -174,7 +174,7 @@ public void test008() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "{@li");
 	assertResults(
-		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
+		"link[JAVADOC_INLINE_TAG]{{@link}, null, null, link, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"linkplain[JAVADOC_INLINE_TAG]{{@linkplain}, null, null, linkplain, null, "+this.positions+JAVADOC_RELEVANCE+"}\n" +
 		"literal[JAVADOC_INLINE_TAG]{{@literal}, null, null, literal, null, "+this.positions+JAVADOC_RELEVANCE+"}"
 	);
@@ -192,7 +192,7 @@ public void test009() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "@inh");
 	assertResults(
-		"inheritDoc[JAVADOC_INLINE_TAG]{{@inheritDoc}, null, null, inheritDoc, null, "+this.positions+JAVADOC_RELEVANCE+"}"
+		"inheritDoc[JAVADOC_INLINE_TAG]{{@inheritDoc}, null, null, inheritDoc, null, "+this.positions+JAVADOC_RELEVANCE+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -208,7 +208,7 @@ public void test010() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "{@inh");
 	assertResults(
-		"inheritDoc[JAVADOC_INLINE_TAG]{{@inheritDoc}, null, null, inheritDoc, null, "+this.positions+JAVADOC_RELEVANCE+"}"
+		"inheritDoc[JAVADOC_INLINE_TAG]{{@inheritDoc}, null, null, inheritDoc, null, "+this.positions+JAVADOC_RELEVANCE+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -223,7 +223,7 @@ public void test011() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "{@docRoot");
 	assertResults(
-		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}"
+		"docRoot[JAVADOC_INLINE_TAG]{{@docRoot}, null, null, docRoot, null, "+this.positions+JAVADOC_RELEVANCE+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -240,7 +240,7 @@ public void test020() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTestTextIns");
 	assertSortedResults(
-		"BasicTestTextIns[JAVADOC_TYPE_REF]{{@link BasicTestTextIns}, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNRIT+"}\n" +
+		"BasicTestTextIns[JAVADOC_TYPE_REF]{{@link BasicTestTextIns}, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNRIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"BasicTestTextIns[TYPE_REF]{BasicTestTextIns, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNR+"}"
 	);
 }
@@ -257,12 +257,12 @@ public void test021() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTestTextIns");
 	assertSortedResults(
-		"BasicTestTextIns[TYPE_REF]{BasicTestTextIns, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNR+"}\n" +
+		"BasicTestTextIns[TYPE_REF]{BasicTestTextIns, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNR+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"BasicTestTextInsException[TYPE_REF]{BasicTestTextInsException, javadoc.text, Ljavadoc.text.BasicTestTextInsException;, null, null, "+this.positions+R_DRICUNR+"}"
 	);
 }
 
-public void test022() throws JavaModelException {
+public void test022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"/**\n" +
@@ -275,14 +275,14 @@ public void test022() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTestTextIns");
 	assertSortedResults(
-		"BasicTestTextIns[JAVADOC_TYPE_REF]{{@link BasicTestTextIns}, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+(R_DRICENUNR+R_INLINE_TAG)+"}\n" +
+		"BasicTestTextIns[JAVADOC_TYPE_REF]{{@link BasicTestTextIns}, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+(R_DRICENUNR+R_INLINE_TAG)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"BasicTestTextInsException[JAVADOC_TYPE_REF]{{@link BasicTestTextInsException}, javadoc.text, Ljavadoc.text.BasicTestTextInsException;, null, null, "+this.positions+R_DRICUNRIT+"}\n" +
 		"BasicTestTextIns[TYPE_REF]{BasicTestTextIns, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNR+"}\n" +
 		"BasicTestTextInsException[TYPE_REF]{BasicTestTextInsException, javadoc.text, Ljavadoc.text.BasicTestTextInsException;, null, null, "+this.positions+R_DRICUNR+"}"
 	);
 }
 
-public void test023() throws JavaModelException {
+public void test023() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -295,7 +295,7 @@ public void test023() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTestTextIns", 2); // 2nd occurrence
 	assertSortedResults(
-		"BasicTestTextInsException[JAVADOC_TYPE_REF]{{@link BasicTestTextInsException}, javadoc.text, Ljavadoc.text.BasicTestTextInsException;, null, null, "+this.positions+R_DRICUNREETIT+"}\n" +
+		"BasicTestTextInsException[JAVADOC_TYPE_REF]{{@link BasicTestTextInsException}, javadoc.text, Ljavadoc.text.BasicTestTextInsException;, null, null, "+this.positions+R_DRICUNREETIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"BasicTestTextIns[JAVADOC_TYPE_REF]{{@link BasicTestTextIns}, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNRIT+"}\n" +
 		"BasicTestTextInsException[TYPE_REF]{BasicTestTextInsException, javadoc.text, Ljavadoc.text.BasicTestTextInsException;, null, null, "+this.positions+R_DRICUNREET+"}\n" +
 		"BasicTestTextIns[TYPE_REF]{BasicTestTextIns, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNR+"}"
@@ -313,7 +313,7 @@ public void test024() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTestTextIns");
 	assertSortedResults(
-		"BasicTestTextIns[JAVADOC_TYPE_REF]{{@link BasicTestTextIns}, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNRIT+"}\n" +
+		"BasicTestTextIns[JAVADOC_TYPE_REF]{{@link BasicTestTextIns}, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNRIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"BasicTestTextIns[TYPE_REF]{BasicTestTextIns, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNR+"}"
 	);
 }
@@ -329,7 +329,7 @@ public void test025() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTestTextIns", 2); // 2nd occurrence
 	assertSortedResults(
-		"BasicTestTextIns[JAVADOC_TYPE_REF]{{@link BasicTestTextIns}, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNRIT+"}\n" +
+		"BasicTestTextIns[JAVADOC_TYPE_REF]{{@link BasicTestTextIns}, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNRIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"BasicTestTextIns[TYPE_REF]{BasicTestTextIns, javadoc.text, Ljavadoc.text.BasicTestTextIns;, null, null, "+this.positions+R_DRICENUNR+"}"
 	);
 }
@@ -346,13 +346,13 @@ public void test026() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "java.la");
 	assertSortedResults(
-		"java.lang[PACKAGE_REF]{java.lang, java.lang, null, null, null, "+this.positions+R_DRICQNR+"}\n"+
+		"java.lang[PACKAGE_REF]{java.lang, java.lang, null, null, null, "+this.positions+R_DRICQNR+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"java.lang.annotation[PACKAGE_REF]{java.lang.annotation, java.lang.annotation, null, null, null, "+this.positions+R_DRICQNR+"}\n"+
 		"java.lang.invoke[PACKAGE_REF]{java.lang.invoke, java.lang.invoke, null, null, null, "+this.positions+R_DRICQNR+"}"
 	);
 }
 
-public void test027() throws JavaModelException {
+public void test027() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"/**\n" +
@@ -364,7 +364,7 @@ public void test027() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "java.lang.I");
 	assertSortedResults(
-		"IllegalMonitorStateException[JAVADOC_TYPE_REF]{{@link IllegalMonitorStateException}, java.lang, Ljava.lang.IllegalMonitorStateException;, null, null, "+this.positions+R_DRICNRITJ+"}\n" +
+		"IllegalMonitorStateException[JAVADOC_TYPE_REF]{{@link IllegalMonitorStateException}, java.lang, Ljava.lang.IllegalMonitorStateException;, null, null, "+this.positions+R_DRICNRITJ+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"InterruptedException[JAVADOC_TYPE_REF]{{@link InterruptedException}, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICNRITJ+"}\n" +
 		"IllegalMonitorStateException[TYPE_REF]{IllegalMonitorStateException, java.lang, Ljava.lang.IllegalMonitorStateException;, null, null, "+this.positions+R_DRICNRJ+"}\n" +
 		"InterruptedException[TYPE_REF]{InterruptedException, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICNRJ+"}\n" +
@@ -372,7 +372,7 @@ public void test027() throws JavaModelException {
 	);
 }
 
-public void test028() throws JavaModelException {
+public void test028() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -384,7 +384,7 @@ public void test028() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "java.lang.I");
 	assertSortedResults(
-		"InterruptedException[JAVADOC_TYPE_REF]{{@link InterruptedException}, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICNREETITJ+"}\n" +
+		"InterruptedException[JAVADOC_TYPE_REF]{{@link InterruptedException}, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICNREETITJ+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"IllegalMonitorStateException[JAVADOC_TYPE_REF]{{@link IllegalMonitorStateException}, java.lang, Ljava.lang.IllegalMonitorStateException;, null, null, "+this.positions+R_DRICNRITJ+"}\n" +
 		"InterruptedException[TYPE_REF]{InterruptedException, java.lang, Ljava.lang.InterruptedException;, null, null, "+this.positions+R_DRICNREETJ+"}\n" +
 		"IllegalMonitorStateException[TYPE_REF]{IllegalMonitorStateException, java.lang, Ljava.lang.IllegalMonitorStateException;, null, null, "+this.positions+R_DRICNRJ+"}\n" +
@@ -406,7 +406,7 @@ public void test030() throws JavaModelException {
 		"}";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#fo");
 	assertSortedResults(
-		"foo[JAVADOC_FIELD_REF]{{@link #foo}, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRNSIT+"}"
+		"foo[JAVADOC_FIELD_REF]{{@link #foo}, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRNSIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -421,7 +421,7 @@ public void test031() throws JavaModelException {
 		"}";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTestTextIns#fo");
 	assertSortedResults(
-		"foo[JAVADOC_FIELD_REF]{{@link BasicTestTextIns#foo}, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRIT+"}\n" +
+		"foo[JAVADOC_FIELD_REF]{{@link BasicTestTextIns#foo}, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"foo[JAVADOC_VALUE_REF]{{@value BasicTestTextIns#foo}, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRIT+"}"
 	);
 }
@@ -437,11 +437,11 @@ public void test032() throws JavaModelException {
 		"}";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "javadoc.text.BasicTestTextIns#fo");
 	assertSortedResults(
-		"foo[JAVADOC_FIELD_REF]{{@link javadoc.text.BasicTestTextIns#foo}, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRNSIT+"}"
+		"foo[JAVADOC_FIELD_REF]{{@link javadoc.text.BasicTestTextIns#foo}, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRNSIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
-public void test033() throws JavaModelException {
+public void test033() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/text/BasicTestTextIns.java",
 			"package javadoc.text;\n" +
@@ -459,7 +459,7 @@ public void test033() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "OtherFields#fo");
 	assertSortedResults(
-		"foo[JAVADOC_FIELD_REF]{{@link OtherFields#foo}, Ljavadoc.text.OtherFields;, I, foo, null, "+this.positions+R_DRICNRIT+"}\n" +
+		"foo[JAVADOC_FIELD_REF]{{@link OtherFields#foo}, Ljavadoc.text.OtherFields;, I, foo, null, "+this.positions+R_DRICNRIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"foo[JAVADOC_VALUE_REF]{{@value OtherFields#foo}, Ljavadoc.text.OtherFields;, I, foo, null, "+this.positions+R_DRICNRIT+"}"
 	);
 }
@@ -476,7 +476,7 @@ public void test034() throws JavaModelException {
 		"}";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "fo");
 	assertSortedResults(
-		"foo[FIELD_REF]{foo, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRNS+"}"
+		"foo[FIELD_REF]{foo, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -493,7 +493,7 @@ public void test035() throws JavaModelException {
 		"}";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "fo");
 	assertSortedResults(
-		"foo[FIELD_REF]{foo, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRNS+"}"
+		"foo[FIELD_REF]{foo, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -508,7 +508,7 @@ public void test036() throws JavaModelException {
 		"}";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "fo");
 	assertSortedResults(
-		"foo[FIELD_REF]{foo, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNR+"}"
+		"foo[FIELD_REF]{foo, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -523,11 +523,11 @@ public void test037() throws JavaModelException {
 		"}";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "fo");
 	assertSortedResults(
-		"foo[FIELD_REF]{foo, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRNS+"}"
+		"foo[FIELD_REF]{foo, Ljavadoc.text.BasicTestTextIns;, I, foo, null, "+this.positions+R_DRICNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
-public void test038() throws JavaModelException {
+public void test038() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUpProjectOptions(CompilerOptions.getFirstSupportedJavaVersion());
 	String[] sources = {
 		"/Completion/src/javadoc/text/BasicTestTextIns.java",
@@ -547,14 +547,14 @@ public void test038() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "fo");
 	assertSortedResults(
-		"foo[FIELD_REF]{foo, Ljavadoc.text.OtherFields;, I, foo, null, "+this.positions+R_DRICNR+"}"
+		"foo[FIELD_REF]{foo, Ljavadoc.text.OtherFields;, I, foo, null, "+this.positions+R_DRICNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
 /**
  * tests  Tests for methods completion
  */
-public void test040() throws JavaModelException {
+public void test040() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -586,7 +586,7 @@ public void test041() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#meth");
 	assertSortedResults(
-		"method[JAVADOC_METHOD_REF]{{@link #method()}, Ljavadoc.text.BasicTestTextIns;, ()V, method, null, "+this.positions+R_DRICNRNSIT+"}"
+		"method[JAVADOC_METHOD_REF]{{@link #method()}, Ljavadoc.text.BasicTestTextIns;, ()V, method, null, "+this.positions+R_DRICNRNSIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -602,7 +602,7 @@ public void test042() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#meth");
 	assertSortedResults(
-		"method[JAVADOC_METHOD_REF]{{@link #method()}, Ljavadoc.text.BasicTestTextIns;, ()V, method, null, "+this.positions+R_DRICNRNSIT+"}"
+		"method[JAVADOC_METHOD_REF]{{@link #method()}, Ljavadoc.text.BasicTestTextIns;, ()V, method, null, "+this.positions+R_DRICNRNSIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -618,7 +618,7 @@ public void test043() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#meth");
 	assertSortedResults(
-		"method[JAVADOC_METHOD_REF]{{@link #method()}, Ljavadoc.text.BasicTestTextIns;, ()V, method, null, "+this.positions+R_DRICNRNSIT+"}"
+		"method[JAVADOC_METHOD_REF]{{@link #method()}, Ljavadoc.text.BasicTestTextIns;, ()V, method, null, "+this.positions+R_DRICNRNSIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -634,7 +634,7 @@ public void test044() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTestTextIns#param");
 	assertSortedResults(
-		"paramMethod[JAVADOC_METHOD_REF]{{@link BasicTestTextIns#paramMethod(String, boolean, Object)}, Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICNRNSIT+"}"
+		"paramMethod[JAVADOC_METHOD_REF]{{@link BasicTestTextIns#paramMethod(String, boolean, Object)}, Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICNRNSIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -650,7 +650,7 @@ public void test045() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "javadoc.text.BasicTestTextIns#meth");
 	assertSortedResults(
-		"method[JAVADOC_METHOD_REF]{{@link javadoc.text.BasicTestTextIns#method()}, Ljavadoc.text.BasicTestTextIns;, ()V, method, null, "+this.positions+R_DRICNRNSIT+"}"
+		"method[JAVADOC_METHOD_REF]{{@link javadoc.text.BasicTestTextIns#method()}, Ljavadoc.text.BasicTestTextIns;, ()V, method, null, "+this.positions+R_DRICNRNSIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -666,7 +666,7 @@ public void test046() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "param");
 	assertSortedResults(
-		"paramMethod[METHOD_REF]{paramMethod(String, boolean, Object), Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICNRNS+"}"
+		"paramMethod[METHOD_REF]{paramMethod(String, boolean, Object), Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -682,7 +682,7 @@ public void test047() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "meth");
 	assertSortedResults(
-		"method[METHOD_REF]{method(), Ljavadoc.text.BasicTestTextIns;, ()V, method, null, "+this.positions+R_DRICNRNS+"}"
+		"method[METHOD_REF]{method(), Ljavadoc.text.BasicTestTextIns;, ()V, method, null, "+this.positions+R_DRICNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -698,11 +698,11 @@ public void test048() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "param");
 	assertSortedResults(
-		"paramMethod[METHOD_REF]{paramMethod(String, boolean, Object), Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICNRNS+"}"
+		"paramMethod[METHOD_REF]{paramMethod(String, boolean, Object), Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
-public void test049() throws JavaModelException {
+public void test049() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/text/BasicTestTextIns.java",
 			"package javadoc.text;\n" +
@@ -720,11 +720,11 @@ public void test049() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "OtherTypes#meth");
 	assertSortedResults(
-		"method[JAVADOC_METHOD_REF]{{@link OtherTypes#method()}, Ljavadoc.text.OtherTypes;, ()V, method, null, "+this.positions+R_DRICNRNSIT+"}"
+		"method[JAVADOC_METHOD_REF]{{@link OtherTypes#method()}, Ljavadoc.text.OtherTypes;, ()V, method, null, "+this.positions+R_DRICNRNSIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
-public void test050() throws JavaModelException {
+public void test050() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/text/BasicTestTextIns.java",
 			"package javadoc.text;\n" +
@@ -742,11 +742,11 @@ public void test050() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "meth");
 	assertSortedResults(
-		"method[METHOD_REF]{method(), Ljavadoc.text.OtherTypes;, ()V, method, null, "+this.positions+R_DRICNRNS+"}"
+		"method[METHOD_REF]{method(), Ljavadoc.text.OtherTypes;, ()V, method, null, "+this.positions+R_DRICNRNS+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
-public void test051() throws JavaModelException {
+public void test051() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -758,7 +758,7 @@ public void test051() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#");
 	assertSortedResults(
-		"clone[JAVADOC_METHOD_REF]{{@link #clone()}, Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNSIT+"}\n" +
+		"clone[JAVADOC_METHOD_REF]{{@link #clone()}, Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNSIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"equals[JAVADOC_METHOD_REF]{{@link #equals(Object)}, Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, null, "+this.positions+R_DRICNRNSIT+"}\n" +
 		"finalize[JAVADOC_METHOD_REF]{{@link #finalize()}, Ljava.lang.Object;, ()V, finalize, null, "+this.positions+R_DRICNRNSIT+"}\n" +
 		"getClass[JAVADOC_METHOD_REF]{{@link #getClass()}, Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, "+this.positions+R_DRICNRNSIT+"}\n" +
@@ -775,7 +775,7 @@ public void test051() throws JavaModelException {
 	);
 }
 
-public void test052() throws JavaModelException {
+public void test052() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -787,7 +787,7 @@ public void test052() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#");
 	assertSortedResults(
-		"clone[JAVADOC_METHOD_REF]{{@link #clone()}, Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNSIT+"}\n" +
+		"clone[JAVADOC_METHOD_REF]{{@link #clone()}, Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNSIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"equals[JAVADOC_METHOD_REF]{{@link #equals(Object)}, Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, null, "+this.positions+R_DRICNRNSIT+"}\n" +
 		"finalize[JAVADOC_METHOD_REF]{{@link #finalize()}, Ljava.lang.Object;, ()V, finalize, null, "+this.positions+R_DRICNRNSIT+"}\n" +
 		"getClass[JAVADOC_METHOD_REF]{{@link #getClass()}, Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, "+this.positions+R_DRICNRNSIT+"}\n" +
@@ -804,7 +804,7 @@ public void test052() throws JavaModelException {
 	);
 }
 
-public void test053() throws JavaModelException {
+public void test053() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -816,7 +816,7 @@ public void test053() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#", 0); //empty token
 	assertSortedResults(
-		"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNS+"}\n" +
+		"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNS+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"equals[METHOD_REF]{equals(Object), Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, (obj), "+this.positions+R_DRICNRNS+"}\n" +
 		"finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, finalize, null, "+this.positions+R_DRICNRNS+"}\n" +
 		"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, "+this.positions+R_DRICNRNS+"}\n" +
@@ -833,7 +833,7 @@ public void test053() throws JavaModelException {
 	);
 }
 
-public void test054() throws JavaModelException {
+public void test054() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -845,7 +845,7 @@ public void test054() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#", 0); //empty token
 	assertSortedResults(
-		"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNS+"}\n" +
+		"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNS+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"equals[METHOD_REF]{equals(Object), Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, (obj), "+this.positions+R_DRICNRNS+"}\n" +
 		"finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, finalize, null, "+this.positions+R_DRICNRNS+"}\n" +
 		"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, "+this.positions+R_DRICNRNS+"}\n" +
@@ -874,7 +874,7 @@ public void test055() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#paramMethod(");
 	assertSortedResults(
-		"paramMethod[JAVADOC_METHOD_REF]{{@link #paramMethod(String, boolean, Object)}, Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICENUNRIT+"}"
+		"paramMethod[JAVADOC_METHOD_REF]{{@link #paramMethod(String, boolean, Object)}, Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICENUNRIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -890,7 +890,7 @@ public void test056() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "Str");
 	assertSortedResults(
-		"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+this.positions+R_DRICUNRJ+"}"
+		"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+this.positions+R_DRICUNRJ+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -906,7 +906,7 @@ public void test057() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "paramMethod(String s");
 	assertSortedResults(
-		"paramMethod[METHOD_REF]{paramMethod(String, boolean, Object), Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICENUNR+"}"
+		"paramMethod[METHOD_REF]{paramMethod(String, boolean, Object), Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICENUNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -922,7 +922,7 @@ public void test058() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#paramMethod(String str,");
 	assertSortedResults(
-		"paramMethod[JAVADOC_METHOD_REF]{{@link #paramMethod(String, boolean, Object)}, Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICENUNRIT+"}"
+		"paramMethod[JAVADOC_METHOD_REF]{{@link #paramMethod(String, boolean, Object)}, Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICENUNRIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -938,7 +938,7 @@ public void test059() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "paramMethod(String,");
 	assertSortedResults(
-		"paramMethod[METHOD_REF]{paramMethod(String, boolean, Object), Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICENUNR+"}"
+		"paramMethod[METHOD_REF]{paramMethod(String, boolean, Object), Ljavadoc.text.BasicTestTextIns;, (Ljava.lang.String;ZLjava.lang.Object;)V, paramMethod, (str, flag, obj), "+this.positions+R_DRICENUNR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -957,7 +957,7 @@ public void test070() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#BasicTest");
 	assertSortedResults(
-		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link #BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}\n" +
+		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link #BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link #BasicTestTextIns()}, Ljavadoc.text.BasicTestTextIns;, ()V, BasicTestTextIns, null, "+this.positions+R_DRINRIT+"}"
 	);
 }
@@ -974,7 +974,7 @@ public void test071() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTest", 3); // 3rd occurence
 	assertSortedResults(
-		"BasicTestTextIns[METHOD_REF<CONSTRUCTOR>]{BasicTestTextIns(int, float, Class), Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINR+"}\n" +
+		"BasicTestTextIns[METHOD_REF<CONSTRUCTOR>]{BasicTestTextIns(int, float, Class), Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINR+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"BasicTestTextIns[METHOD_REF<CONSTRUCTOR>]{BasicTestTextIns(), Ljavadoc.text.BasicTestTextIns;, ()V, BasicTestTextIns, null, "+this.positions+R_DRINR+"}"
 	);
 }
@@ -991,12 +991,12 @@ public void test072() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTest", 3); // 3rd occurence
 	assertSortedResults(
-		"BasicTestTextIns[METHOD_REF<CONSTRUCTOR>]{BasicTestTextIns(int, float, Class), Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINR+"}\n" +
+		"BasicTestTextIns[METHOD_REF<CONSTRUCTOR>]{BasicTestTextIns(int, float, Class), Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINR+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"BasicTestTextIns[METHOD_REF<CONSTRUCTOR>]{BasicTestTextIns(), Ljavadoc.text.BasicTestTextIns;, ()V, BasicTestTextIns, null, "+this.positions+R_DRINR+"}"
 	);
 }
 
-public void test073() throws JavaModelException {
+public void test073() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/text/BasicTestTextIns.java",
 			"package javadoc.text;\n" +
@@ -1014,11 +1014,11 @@ public void test073() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "OtherTypes#O");
 	assertSortedResults(
-		"OtherTypes[JAVADOC_METHOD_REF]{{@link OtherTypes#OtherTypes()}, Ljavadoc.text.OtherTypes;, ()V, OtherTypes, null, "+this.positions+R_DRINRIT+"}"
+		"OtherTypes[JAVADOC_METHOD_REF]{{@link OtherTypes#OtherTypes()}, Ljavadoc.text.OtherTypes;, ()V, OtherTypes, null, "+this.positions+R_DRINRIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
-public void test074() throws JavaModelException {
+public void test074() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 		"/Completion/src/javadoc/text/BasicTestTextIns.java",
 			"package javadoc.text;\n" +
@@ -1035,11 +1035,11 @@ public void test074() throws JavaModelException {
 	};
 	completeInJavadoc(sources, true, "O", 2); // 2nd occurence
 	assertSortedResults(
-		"OtherTypes[METHOD_REF<CONSTRUCTOR>]{OtherTypes(), Ljavadoc.text.OtherTypes;, ()V, OtherTypes, null, "+this.positions+R_DRINR+"}"
+		"OtherTypes[METHOD_REF<CONSTRUCTOR>]{OtherTypes(), Ljavadoc.text.OtherTypes;, ()V, OtherTypes, null, "+this.positions+R_DRINR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
-public void test075() throws JavaModelException {
+public void test075() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -1051,7 +1051,7 @@ public void test075() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#");
 	assertSortedResults(
-		"clone[JAVADOC_METHOD_REF]{{@link #clone()}, Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNSIT+"}\n" +
+		"clone[JAVADOC_METHOD_REF]{{@link #clone()}, Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNSIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"equals[JAVADOC_METHOD_REF]{{@link #equals(Object)}, Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, null, "+this.positions+R_DRICNRNSIT+"}\n" +
 		"finalize[JAVADOC_METHOD_REF]{{@link #finalize()}, Ljava.lang.Object;, ()V, finalize, null, "+this.positions+R_DRICNRNSIT+"}\n" +
 		"getClass[JAVADOC_METHOD_REF]{{@link #getClass()}, Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, "+this.positions+R_DRICNRNSIT+"}\n" +
@@ -1067,7 +1067,7 @@ public void test075() throws JavaModelException {
 	);
 }
 
-public void test076() throws JavaModelException {
+public void test076() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -1079,7 +1079,7 @@ public void test076() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#");
 	assertSortedResults(
-		"clone[JAVADOC_METHOD_REF]{{@link #clone()}, Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNSIT+"}\n" +
+		"clone[JAVADOC_METHOD_REF]{{@link #clone()}, Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNSIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"equals[JAVADOC_METHOD_REF]{{@link #equals(Object)}, Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, null, "+this.positions+R_DRICNRNSIT+"}\n" +
 		"finalize[JAVADOC_METHOD_REF]{{@link #finalize()}, Ljava.lang.Object;, ()V, finalize, null, "+this.positions+R_DRICNRNSIT+"}\n" +
 		"getClass[JAVADOC_METHOD_REF]{{@link #getClass()}, Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, "+this.positions+R_DRICNRNSIT+"}\n" +
@@ -1095,7 +1095,7 @@ public void test076() throws JavaModelException {
 	);
 }
 
-public void test077() throws JavaModelException {
+public void test077() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -1107,7 +1107,7 @@ public void test077() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#", 0); // empty token
 	assertSortedResults(
-		"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNS+"}\n" +
+		"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+this.positions+R_DRICNRNS+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"equals[METHOD_REF]{equals(Object), Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, (obj), "+this.positions+R_DRICNRNS+"}\n" +
 		"finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, finalize, null, "+this.positions+R_DRICNRNS+"}\n" +
 		"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, "+this.positions+R_DRICNRNS+"}\n" +
@@ -1135,7 +1135,7 @@ public void test078() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTestTextIns(");
 	assertSortedResults(
-		"BasicTestTextIns[METHOD_REF<CONSTRUCTOR>]{BasicTestTextIns(int, float, Class), Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINR+"}"
+		"BasicTestTextIns[METHOD_REF<CONSTRUCTOR>]{BasicTestTextIns(int, float, Class), Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINR+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -1152,11 +1152,11 @@ public void test079() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTestTextIns#BasicTestTextIns(int,");
 	assertSortedResults(
-		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link BasicTestTextIns#BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}"
+		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link BasicTestTextIns#BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
-public void test080() throws JavaModelException {
+public void test080() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public class BasicTestTextIns {\n" +
@@ -1170,7 +1170,7 @@ public void test080() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "BasicTestTextIns#BasicTestTextIns(");
 	assertSortedResults(
-			"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link BasicTestTextIns#BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}\n" +
+			"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link BasicTestTextIns#BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link BasicTestTextIns#BasicTestTextIns()}, Ljavadoc.text.BasicTestTextIns;, ()V, BasicTestTextIns, null, "+this.positions+R_DRINRIT+"}"
 	);
 }
@@ -1187,7 +1187,7 @@ public void test081() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "javadoc.text.BasicTestTextIns#BasicTestTextIns(");
 	assertSortedResults(
-		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link javadoc.text.BasicTestTextIns#BasicTestTextIns()}, Ljavadoc.text.BasicTestTextIns;, ()V, BasicTestTextIns, null, "+this.positions+R_DRINRIT+"}"
+		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link javadoc.text.BasicTestTextIns#BasicTestTextIns()}, Ljavadoc.text.BasicTestTextIns;, ()V, BasicTestTextIns, null, "+this.positions+R_DRINRIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -1204,7 +1204,7 @@ public void test082() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#BasicTestTextIns(int, float, java.lang.");
 	assertSortedResults(
-		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link #BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}"
+		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link #BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -1221,7 +1221,7 @@ public void test083() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#BasicTestTextIns(int, float, java.lang.Cla");
 	assertSortedResults(
-		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link #BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}"
+		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link #BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -1239,7 +1239,7 @@ public void test084() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#BasicTestTextIns(int, float, Class");
 	assertSortedResults(
-		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link #BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}"
+		"BasicTestTextIns[JAVADOC_METHOD_REF]{{@link #BasicTestTextIns(int, float, Class)}, Ljavadoc.text.BasicTestTextIns;, (IFLjava.lang.Class;)V, BasicTestTextIns, (xxx, real, clazz), "+this.positions+R_DRINRIT+"}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 
@@ -1259,7 +1259,7 @@ public void test085() throws JavaModelException {
 	assertSortedResults("");
 }
 
-public void test086() throws JavaModelException {
+public void test086() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package javadoc.text;\n" +
 		"public abstract class BasicTest extends BasicTestSecondaryClass implements BasicTestSecondaryInterface{\n" +
@@ -1277,7 +1277,7 @@ public void test086() throws JavaModelException {
 		"}\n";
 	completeInJavadoc("/Completion/src/javadoc/text/BasicTestTextIns.java", source, true, "#meth");
 	assertSortedResults(
-			"method1[JAVADOC_METHOD_REF]{{@link #method1()}, Ljavadoc.text.BasicTestSecondaryClass;, ()V, method1, null, "+this.positions+R_DRICNRNSIT+"}\n" +
+			"method1[JAVADOC_METHOD_REF]{{@link #method1()}, Ljavadoc.text.BasicTestSecondaryClass;, ()V, method1, null, "+this.positions+R_DRICNRNSIT+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"method2[JAVADOC_METHOD_REF]{{@link #method2()}, Ljavadoc.text.BasicTestSecondaryInterface;, ()V, method2, null, "+this.positions+R_DRICNRNSIT+"}"
 	);
 }

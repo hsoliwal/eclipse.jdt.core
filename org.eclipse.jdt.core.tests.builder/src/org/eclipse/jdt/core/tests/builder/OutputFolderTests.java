@@ -33,7 +33,7 @@ public class OutputFolderTests extends BuilderTests {
 		return buildTestSuite(OutputFolderTests.class);
 	}
 
-	public void testChangeOutputFolder() throws JavaModelException {
+	public void testChangeOutputFolder() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -58,7 +58,7 @@ public class OutputFolderTests extends BuilderTests {
 		expectingPresenceOf(bin2.append("p/Test.class")); //$NON-NLS-1$
 	}
 
-	public void testDeleteOutputFolder() throws JavaModelException {
+	public void testDeleteOutputFolder() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -90,7 +90,7 @@ public class OutputFolderTests extends BuilderTests {
 	 * doesn't scrub the project on exit/restart.
 	 * (regression test for bug 32588 Error saving changed source files; all files in project deleted)
 	 */
-	public void testInvalidOutput() throws JavaModelException {
+	public void testInvalidOutput() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// setup project with 1 src folder and 1 output folder
 		IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -108,7 +108,7 @@ public class OutputFolderTests extends BuilderTests {
 		env.addFile(
 			projectPath,
 			".classpath",  //$NON-NLS-1$
-			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //$NON-NLS-1$
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"<classpath>\n" + //$NON-NLS-1$
 			"    <classpathentry kind=\"src\" path=\"src\"/>\n" + //$NON-NLS-1$
 			"    <classpathentry kind=\"var\" path=\"" + Util.getJavaClassLibs() + "\"/>\n" + //$NON-NLS-1$ //$NON-NLS-2$
@@ -130,7 +130,7 @@ public class OutputFolderTests extends BuilderTests {
 		expectingPresenceOf(new IPath[] {cuPath});
 	}
 
-	public void testSimpleProject() throws JavaModelException {
+	public void testSimpleProject() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P1"); //$NON-NLS-1$
 		IPath bin = env.setOutputFolder(projectPath, ""); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -151,7 +151,7 @@ public class OutputFolderTests extends BuilderTests {
 		});
 	}
 
-	public void testProjectWithBin() throws JavaModelException {
+	public void testProjectWithBin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P2"); //$NON-NLS-1$
 		IPath src = env.getPackageFragmentRootPath(projectPath, ""); //$NON-NLS-1$
 		IPath bin = env.setOutputFolder(projectPath, "bin"); //$NON-NLS-1$
@@ -173,7 +173,7 @@ public class OutputFolderTests extends BuilderTests {
 		});
 	}
 
-	public void testProjectWithSrcBin() throws JavaModelException {
+	public void testProjectWithSrcBin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P3"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src = env.addPackageFragmentRoot(projectPath, "src"); //$NON-NLS-1$
@@ -196,7 +196,7 @@ public class OutputFolderTests extends BuilderTests {
 		});
 	}
 
-	public void testProjectWith2SrcBin() throws JavaModelException {
+	public void testProjectWith2SrcBin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P4"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src1 = env.addPackageFragmentRoot(projectPath, "src1"); //$NON-NLS-1$
@@ -220,7 +220,7 @@ public class OutputFolderTests extends BuilderTests {
 		});
 	}
 
-	public void testProjectWith2SrcAsBin() throws JavaModelException {
+	public void testProjectWith2SrcAsBin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P5"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src1 = env.addPackageFragmentRoot(projectPath, "src1", null, "src1"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -244,7 +244,7 @@ public class OutputFolderTests extends BuilderTests {
 		});
 	}
 
-	public void testProjectWith2Src2Bin() throws JavaModelException {
+	public void testProjectWith2Src2Bin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P6"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src1 = env.addPackageFragmentRoot(projectPath, "src1", null, "bin1"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -268,7 +268,7 @@ public class OutputFolderTests extends BuilderTests {
 		});
 	}
 
-	public void testProjectWith3Src2Bin() throws JavaModelException {
+	public void testProjectWith3Src2Bin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P6"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src1 = env.addPackageFragmentRoot(projectPath, "src1", null, "bin1"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -297,7 +297,7 @@ public class OutputFolderTests extends BuilderTests {
 		});
 	}
 
-	public void test2ProjectWith1Bin() throws JavaModelException {
+	public void test2ProjectWith1Bin() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P7"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		env.addPackageFragmentRoot(projectPath, "src"); //$NON-NLS-1$

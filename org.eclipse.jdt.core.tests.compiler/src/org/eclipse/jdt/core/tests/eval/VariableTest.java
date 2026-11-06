@@ -34,7 +34,7 @@ public static Test suite() {
 /**
  * Tests the individual evaluation of variables with expected values of all kind of types.
  */
-public void testAllKindOfValues() {
+public void testAllKindOfValues() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Creates the variables
 		GlobalVariable var1 = this.context.newVariable("int".toCharArray(), "var1".toCharArray(), "1".toCharArray());
@@ -70,7 +70,7 @@ public void testAllKindOfValues() {
 	} finally {
 		// Clean up
 		GlobalVariable[] vars = this.context.allVariables();
-		for (int i = 0; i < vars.length; i++) {
+		for (int i = 0; i < vars.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.context.deleteVariable(vars[i]);
 		}
 	}
@@ -81,7 +81,7 @@ public static Class testClass() {
 /**
  * Tests the assignment of a global variable in a code snippet.
  */
-public void testCodeSnippetVarAssign() {
+public void testCodeSnippetVarAssign() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Creates the variables
 		GlobalVariable var1 = this.context.newVariable("int".toCharArray(), "var1".toCharArray(), null);
@@ -136,7 +136,7 @@ public void testCodeSnippetVarAssign() {
 	} finally {
 		// Clean up
 		GlobalVariable[] vars = this.context.allVariables();
-		for (int i = 0; i < vars.length; i++) {
+		for (int i = 0; i < vars.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.context.deleteVariable(vars[i]);
 		}
 	}
@@ -144,7 +144,7 @@ public void testCodeSnippetVarAssign() {
 /**
  * Tests the retrieval of a global variable from a code snippet.
  */
-public void testCodeSnippetVarRetrieval() {
+public void testCodeSnippetVarRetrieval() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Creates the variables
 		GlobalVariable var1 = this.context.newVariable("int".toCharArray(), "var1".toCharArray(), "1".toCharArray());
@@ -180,7 +180,7 @@ public void testCodeSnippetVarRetrieval() {
 	} finally {
 		// Clean up
 		GlobalVariable[] vars = this.context.allVariables();
-		for (int i = 0; i < vars.length; i++) {
+		for (int i = 0; i < vars.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.context.deleteVariable(vars[i]);
 		}
 	}
@@ -188,7 +188,7 @@ public void testCodeSnippetVarRetrieval() {
 /**
  * Tests variables that include one or more imports.
  */
-public void testImports() {
+public void testImports() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// import a package
 		this.context.setImports(new char[][] {"java.io.*".toCharArray()});
@@ -218,7 +218,7 @@ public void testImports() {
 /**
  * Tests the additions and deletion of variables, installing them each time.
  */
-public void testSeveralVariableInstallations() {
+public void testSeveralVariableInstallations() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Creates 6 variables
 		GlobalVariable var1 = this.context.newVariable("int".toCharArray(), "var1".toCharArray(), "1".toCharArray());
@@ -290,7 +290,7 @@ public void testSeveralVariableInstallations() {
 	} finally {
 		// Clean up
 		GlobalVariable[] vars = this.context.allVariables();
-		for (int i = 0; i < vars.length; i++) {
+		for (int i = 0; i < vars.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.context.deleteVariable(vars[i]);
 		}
 	}

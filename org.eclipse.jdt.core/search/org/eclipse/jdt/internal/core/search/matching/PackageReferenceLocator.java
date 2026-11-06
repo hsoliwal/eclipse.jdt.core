@@ -38,7 +38,7 @@ public class PackageReferenceLocator extends PatternLocator {
 protected PackageReferencePattern pattern;
 
 // check that referenced type is actually defined in this package fragment
-public static boolean isDeclaringPackageFragment(IPackageFragment packageFragment, ReferenceBinding typeBinding) {
+public static boolean isDeclaringPackageFragment(IPackageFragment packageFragment, ReferenceBinding typeBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] fileName = typeBinding.getFileName();
 	if (fileName != null) {
 		// retrieve the actual file name from the full path (sources are generally only containing it already)
@@ -111,7 +111,7 @@ public int match(TypeReference node, MatchingNodeSet nodeSet) { // interested in
 protected int matchLevel(ImportReference importRef) {
 	return matchLevelForTokens(importRef.tokens);
 }
-protected int matchLevelForTokens(char[][] tokens) {
+protected int matchLevelForTokens(char[][] tokens) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.pattern.pkgName == null) return ACCURATE_MATCH;
 
 	switch (this.matchMode) {
@@ -155,7 +155,7 @@ protected int matchLevelForTokens(char[][] tokens) {
 	return IMPOSSIBLE_MATCH;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void matchLevelAndReportImportRef(ImportReference importRef, Binding binding, MatchLocator locator) throws CoreException {
 	Binding refBinding = binding;
 	if (importRef.isStatic()) {
@@ -176,7 +176,7 @@ protected void matchLevelAndReportImportRef(ImportReference importRef, Binding b
 	}
 	super.matchLevelAndReportImportRef(importRef, refBinding, locator);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void matchReportImportRef(ImportReference importRef, Binding binding, IJavaElement element, int accuracy, MatchLocator locator) throws CoreException {
 	if (binding == null) {
 		this.matchReportReference(importRef, element, null/*no binding*/, accuracy, locator);
@@ -204,7 +204,7 @@ protected void matchReportImportRef(ImportReference importRef, Binding binding, 
 protected void matchReportReference(ASTNode reference, IJavaElement element, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
 	matchReportReference(reference, element, null, null, elementBinding, accuracy, locator);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void matchReportReference(ASTNode reference, IJavaElement element, IJavaElement localElement, IJavaElement[] otherElements, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
 	long[] positions = null;
 	int last = -1;
@@ -265,7 +265,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, IJa
 		ReferenceBinding enclosingType = typeBinding == null ? null: typeBinding.enclosingType();
 		if (enclosingType != null) {
 			int length = positions.length;
-			while (enclosingType != null && length > 0) {
+			while (enclosingType != null && length > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				length--;
 				enclosingType = enclosingType.enclosingType();
 			}
@@ -288,7 +288,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, IJa
 protected int referenceType() {
 	return IJavaElement.PACKAGE_FRAGMENT;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int resolveLevel(ASTNode node) {
 	if (node instanceof JavadocQualifiedTypeReference) {
 		JavadocQualifiedTypeReference qualifRef = (JavadocQualifiedTypeReference) node;
@@ -309,7 +309,7 @@ public int resolveLevel(ASTNode node) {
 //	if (node instanceof ImportReference) - Not called when resolve is true, see MatchingNodeSet.reportMatching(unit)
 	return IMPOSSIBLE_MATCH;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int resolveLevel(Binding binding) {
 	if (binding == null) return INACCURATE_MATCH;
 
@@ -341,7 +341,7 @@ public int resolveLevel(Binding binding) {
 	}
 	return IMPOSSIBLE_MATCH;
 }
-protected int resolveLevel(QualifiedNameReference qNameRef) {
+protected int resolveLevel(QualifiedNameReference qNameRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TypeBinding typeBinding = null;
 	switch (qNameRef.bits & ASTNode.RestrictiveFlagMASK) {
 		case Binding.FIELD : // reading a field
@@ -380,6 +380,6 @@ protected int resolveLevel(QualifiedNameReference qNameRef) {
 }
 @Override
 public String toString() {
-	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$
+	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

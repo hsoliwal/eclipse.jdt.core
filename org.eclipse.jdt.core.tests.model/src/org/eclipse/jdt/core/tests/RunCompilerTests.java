@@ -37,11 +37,11 @@ public static Class[] getAllTestClasses() {
 		org.eclipse.jdt.core.tests.eval.TestAll.class,
 	};
 }
-public static Test suite() {
+public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TestSuite ts = new TestSuite(RunCompilerTests.class.getName());
 
 	Class[] testClasses = getAllTestClasses();
-	for (int i = 0; i < testClasses.length; i++) {
+	for (int i = 0; i < testClasses.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Class testClass = testClasses[i];
 
 		// call the suite() method and add the resulting suite to the suite

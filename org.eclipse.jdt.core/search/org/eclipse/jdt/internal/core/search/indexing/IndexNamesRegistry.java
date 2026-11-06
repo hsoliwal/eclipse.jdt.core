@@ -42,7 +42,7 @@ public class IndexNamesRegistry {
 	public IndexNamesRegistry(File savedIndexNamesFile, IPath javaPluginWorkingLocation) {
 		super();
 		this.savedIndexNamesFile = savedIndexNamesFile;
-		this.writeJob = Job.create("Updating index names", this::save); //$NON-NLS-1$
+		this.writeJob = Job.create("Updating index names", this::save); //$NON-NLS-1$ //FLLDCIM: MARK — T09 BACKGROUND_MODEL_THREAD CALL
 		this.writeJob.setSystem(true);
 		this.javaPluginWorkingLocation = javaPluginWorkingLocation;
 	}
@@ -57,7 +57,7 @@ public class IndexNamesRegistry {
 	/**
 	 * Returns the contents of the index names registry.
 	 */
-	public char[][] read(IProgressMonitor monitor) {
+	public char[][] read(IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// If there is currently a write in progress, return the contents that are about to be written to disk.
 		char[][] newContents;
 		synchronized (this.queueMutex) {
@@ -76,7 +76,7 @@ public class IndexNamesRegistry {
 				char[][] names = CharOperation.splitOn('\n', savedIndexNames);
 				if (names.length > 1) {
 					// First line is DiskIndex signature + saved plugin working location (see writeSavedIndexNamesFile())
-					String savedSignature = DiskIndex.SIGNATURE + "+" + this.javaPluginWorkingLocation.toOSString(); //$NON-NLS-1$
+					String savedSignature = DiskIndex.SIGNATURE + "+" + this.javaPluginWorkingLocation.toOSString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					if (savedSignature.equals(new String(names[0])))
 						return names;
 				}
@@ -88,7 +88,7 @@ public class IndexNamesRegistry {
 		return null;
 	}
 
-	private void save(IProgressMonitor monitor) {
+	private void save(IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SubMonitor subMonitor = SubMonitor.convert(monitor);
 		char[][] newContents;
 		synchronized (this.queueMutex) {
@@ -101,12 +101,12 @@ public class IndexNamesRegistry {
 
 		subMonitor.setWorkRemaining(newContents.length);
 
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.savedIndexNamesFile))) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.savedIndexNamesFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(DiskIndex.SIGNATURE);
 			writer.write('+');
 			writer.write(this.javaPluginWorkingLocation.toOSString());
 			writer.write('\n');
-			for (char[] next : newContents) {
+			for (char[] next : newContents) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				subMonitor.split(1);
 				writer.write(next);
 				writer.write('\n');
@@ -136,6 +136,6 @@ public class IndexNamesRegistry {
 		synchronized (this.queueMutex) {
 			this.pendingWrite = null;
 		}
-		this.savedIndexNamesFile.delete();
+		this.savedIndexNamesFile.delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 }

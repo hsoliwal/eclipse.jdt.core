@@ -91,9 +91,9 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 	private boolean[] removedTokensFlagged;
 	private boolean[] replacedTokensFlagged;
 
-	private ArrayList<ASTNode> stack = new ArrayList<>();
+	private ArrayList<ASTNode> stack = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-	ASTRecoveryPropagator(CategorizedProblem[] problems, RecoveryScannerData data) {
+	ASTRecoveryPropagator(CategorizedProblem[] problems, RecoveryScannerData data) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// visit Javadoc.tags() as well
 		this.problems = problems;
 		this.usedOrIrrelevantProblems = new boolean[problems.length];
@@ -103,15 +103,15 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 		if(this.data != null) {
 
 			int length = 0;
-			for (int i = 0; i < data.insertedTokensPtr + 1; i++) {
+			for (int i = 0; i < data.insertedTokensPtr + 1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				length += data.insertedTokens[i].length;
 			}
 			this.insertedTokensKind = new TerminalToken[length];
 			this.insertedTokensPosition = new int[length];
 			this.insertedTokensFlagged = new boolean[length];
 			int tokenCount = 0;
-			for (int i = 0; i < data.insertedTokensPtr + 1; i++) {
-				for (int j = 0; j < data.insertedTokens[i].length; j++) {
+			for (int i = 0; i < data.insertedTokensPtr + 1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (int j = 0; j < data.insertedTokens[i].length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					this.insertedTokensKind[tokenCount] = data.insertedTokens[i][j];
 					this.insertedTokensPosition[tokenCount] = data.insertedTokensPosition[i];
 					tokenCount++;
@@ -145,7 +145,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 		return visitChildren;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean visitNode(ASTNode node) {
 		if(this.blockDepth > 0) {
 			int start = node.getStartPosition();
@@ -154,7 +154,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 			// continue to visit the node only if it contains tokens modifications
 
 			if(this.insertedTokensFlagged != null) {
-				for (int i = 0; i < this.insertedTokensFlagged.length; i++) {
+				for (int i = 0; i < this.insertedTokensFlagged.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(this.insertedTokensPosition[i] >= start &&
 							this.insertedTokensPosition[i] <= end) {
 						return true;
@@ -163,7 +163,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 			}
 
 			if(this.removedTokensFlagged != null) {
-				for (int i = 0; i <= this.data.removedTokensPtr; i++) {
+				for (int i = 0; i <= this.data.removedTokensPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(this.data.removedTokensStart[i] >= start &&
 							this.data.removedTokensEnd[i] <= end) {
 						return true;
@@ -172,7 +172,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 			}
 
 			if(this.replacedTokensFlagged != null) {
-				for (int i = 0; i <= this.data.replacedTokensPtr; i++) {
+				for (int i = 0; i <= this.data.replacedTokensPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(this.data.replacedTokensStart[i] >= start &&
 							this.data.replacedTokensEnd[i] <= end) {
 						return true;
@@ -185,7 +185,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void endVisitNode(ASTNode node) {
 		int start = node.getStartPosition();
 		int end = start + node.getLength() - 1;
@@ -223,7 +223,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 			}
 
 			if(this.removedTokensFlagged != null) {
-				for (int i = 0; i <= this.data.removedTokensPtr; i++) {
+				for (int i = 0; i <= this.data.removedTokensPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(!this.removedTokensFlagged[i] &&
 							this.data.removedTokensStart[i] >= start &&
 							this.data.removedTokensEnd[i] <= end) {
@@ -234,7 +234,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 			}
 
 			if(this.replacedTokensFlagged != null) {
-				for (int i = 0; i <= this.data.replacedTokensPtr; i++) {
+				for (int i = 0; i <= this.data.replacedTokensPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(!this.replacedTokensFlagged[i] &&
 							this.data.replacedTokensStart[i] >= start &&
 							this.data.replacedTokensEnd[i] <= end) {
@@ -250,28 +250,28 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 	private void flagNodeWithInsertedTokens() {
 		if(this.insertedTokensKind != null && this.insertedTokensKind.length > 0) {
 			int s = this.stack.size();
-			for (int i = s - 1; i > -1; i--) {
+			for (int i = s - 1; i > -1; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				flagNodesWithInsertedTokensAtEnd(this.stack.get(i));
 			}
-			for (int i = 0; i < s; i++) {
+			for (int i = 0; i < s; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				flagNodesWithInsertedTokensInside(this.stack.get(i));
 			}
-			this.stack = new ArrayList<>();
+			this.stack = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		}
 	}
 
-	private boolean flagNodesWithInsertedTokensAtEnd(ASTNode node) {
+	private boolean flagNodesWithInsertedTokensAtEnd(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TerminalToken[] expectedEndingToken = this.endingTokens.get(node.getClass());
 		if (expectedEndingToken != null) {
 			int start = node.getStartPosition();
 			int end = start + node.getLength() - 1;
 
 			boolean flagParent = false;
-			done : for (int i = this.insertedTokensKind.length - 1; i > -1 ; i--) {
+			done : for (int i = this.insertedTokensKind.length - 1; i > -1 ; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(!this.insertedTokensFlagged[i] &&
 						this.insertedTokensPosition[i] == end){
 					this.insertedTokensFlagged[i] = true;
-					for (int j = 0; j < expectedEndingToken.length; j++) {
+					for (int j = 0; j < expectedEndingToken.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if(expectedEndingToken[j] == this.insertedTokensKind[i]) {
 							node.setFlags(node.getFlags() | ASTNode.RECOVERED);
 							break done;
@@ -283,7 +283,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 
 			if(flagParent) {
 				ASTNode parent = node.getParent();
-				while (parent != null) {
+				while (parent != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					parent.setFlags(node.getFlags() | ASTNode.RECOVERED);
 					if((parent.getStartPosition() + parent.getLength() - 1) != end) {
 						parent = null;
@@ -299,7 +299,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 	private boolean flagNodesWithInsertedTokensInside(ASTNode node) {
 		int start = node.getStartPosition();
 		int end = start + node.getLength() - 1;
-		for (int i = 0; i < this.insertedTokensKind.length; i++) {
+		for (int i = 0; i < this.insertedTokensKind.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(!this.insertedTokensFlagged[i] &&
 					start <= this.insertedTokensPosition[i] &&
 					this.insertedTokensPosition[i] < end){
@@ -310,9 +310,9 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 		return true;
 	}
 
-	private boolean markIncludedProblems(int start, int end) {
+	private boolean markIncludedProblems(int start, int end) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean foundProblems = false;
-		next: for (int i = 0, max = this.problems.length; i < max; i++) {
+		next: for (int i = 0, max = this.problems.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			CategorizedProblem problem = this.problems[i];
 
 			if(this.usedOrIrrelevantProblems[i]) continue next;
@@ -365,7 +365,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 		return foundProblems;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void endVisit(ExpressionStatement node) {
 		endVisitNode(node);
 		if ((node.getFlags() & ASTNode.RECOVERED) == 0) return;
@@ -386,7 +386,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void endVisit(ForStatement node) {
 		endVisitNode(node);
 		List initializers = node.initializers();
@@ -395,7 +395,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 			if (expression.getNodeType() == ASTNode.VARIABLE_DECLARATION_EXPRESSION) {
 				VariableDeclarationExpression variableDeclarationExpression = (VariableDeclarationExpression) expression;
 				List fragments = variableDeclarationExpression.fragments();
-				for (int i = 0, max = fragments.size(); i <max; i++) {
+				for (int i = 0, max = fragments.size(); i <max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					VariableDeclarationFragment fragment = (VariableDeclarationFragment) fragments.get(i);
 					SimpleName simpleName = fragment.getName();
 					if (CharOperation.equals(RecoveryScanner.FAKE_IDENTIFIER, simpleName.getIdentifier().toCharArray())) {
@@ -411,7 +411,7 @@ class ASTRecoveryPropagator extends DefaultASTVisitor {
 	public void endVisit(VariableDeclarationStatement node) {
 		endVisitNode(node);
 		List fragments = node.fragments();
-		for (Object f : fragments) {
+		for (Object f : fragments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			VariableDeclarationFragment fragment = (VariableDeclarationFragment) f;
 			Expression expression = fragment.getInitializer();
 			if (expression == null) continue;

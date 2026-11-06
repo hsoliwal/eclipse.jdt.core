@@ -59,7 +59,7 @@ public class ImportRewrite_RecordTest extends AbstractJavaModelTests {
 		return allTests();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void setUp() throws Exception {
 		super.setUp();
 
@@ -93,25 +93,25 @@ public class ImportRewrite_RecordTest extends AbstractJavaModelTests {
 	/*
 	 * typeBinding shows "int value" rather than "@MyAnnotation int value"
 	 */
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents = "package pack1;\n" +
 				"import pack2.MyAnnotation;\n" +
 				"public record X(@MyAnnotation int value){\n" +
 				"}\n";
-		createFolder("/" + PROJECT + "/src/pack1");
-		createFile("/" + PROJECT + "/src/pack1/X.java", contents);
+		createFolder("/" + PROJECT + "/src/pack1"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		createFile("/" + PROJECT + "/src/pack1/X.java", contents); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		contents = "package pack2;\n" +
 				"public @interface MyAnnotation{}\n";
-		createFolder("/" + PROJECT + "/src/pack2");
-		createFile("/" + PROJECT + "/src/pack2/MyAnnotation.java", contents);
+		createFolder("/" + PROJECT + "/src/pack2"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		createFile("/" + PROJECT + "/src/pack2/MyAnnotation.java", contents); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		ASTParser parser = ASTParser.newParser(getJLS16());
-		parser.setSource(getCompilationUnit("/" + PROJECT + "/src/pack2/MyAnnotation.java"));
+		parser.setSource(getCompilationUnit("/" + PROJECT + "/src/pack2/MyAnnotation.java")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		parser.setResolveBindings(true);
 		parser.setStatementsRecovery(true);
 		CompilationUnit astRoot = (CompilationUnit) parser.createAST(null);
 
-		ICompilationUnit cu = getCompilationUnit("/" + PROJECT + "/src/pack1/X.java");
+		ICompilationUnit cu = getCompilationUnit("/" + PROJECT + "/src/pack1/X.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		parser.setSource(cu);
 		parser.setResolveBindings(true);
 		parser.setStatementsRecovery(true);
@@ -124,7 +124,7 @@ public class ImportRewrite_RecordTest extends AbstractJavaModelTests {
 
 		ITypeBinding typeBinding = binding.getType();
 		ImportRewrite rewrite = newImportsRewrite(cu, new String[0], 99, 99, true);
-		cu = getCompilationUnit("/" + PROJECT + "/src/pack1/X.java");
+		cu = getCompilationUnit("/" + PROJECT + "/src/pack1/X.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		rewrite = newImportsRewrite(cu, new String[0], 99, 99, true);
 		Type actualType = rewrite.addImport(typeBinding, astRoot.getAST());
 		assertEquals("int", actualType.toString());
@@ -140,7 +140,7 @@ public class ImportRewrite_RecordTest extends AbstractJavaModelTests {
 	/*
 	 * Import should not be added in the default package
 	 */
-	public void testBug563375_2() throws Exception {
+	public void testBug563375_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents = ""+
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -154,9 +154,9 @@ public class ImportRewrite_RecordTest extends AbstractJavaModelTests {
 			"		return new I_S(1, \"abc\");\n" +
 			"	}\n" +
 			"}";
-		createFile("/" + PROJECT + "/src/X.java", contents);
+		createFile("/" + PROJECT + "/src/X.java", contents); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-		ICompilationUnit cu= getCompilationUnit("/" + PROJECT + "/src/X.java");
+		ICompilationUnit cu= getCompilationUnit("/" + PROJECT + "/src/X.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ASTParser parser = ASTParser.newParser(getJLS16());
 		parser.setSource(cu);
 		parser.setResolveBindings(true);
@@ -169,7 +169,7 @@ public class ImportRewrite_RecordTest extends AbstractJavaModelTests {
 		ITypeBinding recBinding= binding.getDeclaredTypes()[0];
 		assertNotNull(recBinding);
 		ImportRewrite rewrite = newImportsRewrite(cu, new String[0], 99, 99, true);
-		cu = getCompilationUnit("/" + PROJECT + "/src/X.java");
+		cu = getCompilationUnit("/" + PROJECT + "/src/X.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		rewrite = newImportsRewrite(cu, new String[0], 99, 99, true);
 		String actualType = rewrite.addImport(recBinding);
 		assertEquals("X.I_S", actualType);

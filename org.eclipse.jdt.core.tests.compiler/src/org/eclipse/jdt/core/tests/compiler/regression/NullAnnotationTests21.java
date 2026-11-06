@@ -50,7 +50,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 			int len = defaultLibs.length;
 			this.LIBS = new String[len+1];
 			System.arraycopy(defaultLibs, 0, this.LIBS, 0, len);
-			this.LIBS[len] = NullAnnotationTests9.createAnnotation_2_4_jar(Util.getOutputDirectory() + File.separator, null);
+			this.LIBS[len] = NullAnnotationTests9.createAnnotation_2_4_jar(Util.getOutputDirectory() + File.separator, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -69,7 +69,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 
 	// --------- tests start -----------
 
-	public void test_typePatternIsNN() {
+	public void test_typePatternIsNN() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -94,7 +94,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void test_totalTypePatternDoesNotAdmitNull() {
+	public void test_totalTypePatternDoesNotAdmitNull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -128,7 +128,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void test_totalTypePatternNonNullExpression() {
+	public void test_totalTypePatternNonNullExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -154,7 +154,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void test_totalTypePatternNonNullExpression_swExpr() {
+	public void test_totalTypePatternNonNullExpression_swExpr() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -180,7 +180,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void test_totalTypePatternPlusNullPattern() {
+	public void test_totalTypePatternPlusNullPattern() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -206,7 +206,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void test_totalTypePatternNullableExpression() {
+	public void test_totalTypePatternNullableExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -236,7 +236,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runNegativeTest();
 	}
 
-	public void test_switchOverNNValueWithNullCase() {
+	public void test_switchOverNNValueWithNullCase() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.WARNING);
 		runner.testFiles = new String[] {
@@ -270,7 +270,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 	}
 
 	// null cannot be in the same case with pattern as per the 432+433 jep
-	public void _test_switchNullInSameCase() {
+	public void _test_switchNullInSameCase() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.WARNING);
 		runner.testFiles = new String[] {
@@ -301,7 +301,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runNegativeTest();
 	}
 
-	public void test_switchOverNNValueWithNullCase_swExpr() {
+	public void test_switchOverNNValueWithNullCase_swExpr() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.WARNING);
 		runner.testFiles = new String[] {
@@ -334,7 +334,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void test_nullHostileSwitch() {
+	public void test_nullHostileSwitch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.WARNING);
 		runner.testFiles = new String[] {
@@ -364,7 +364,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runNegativeTest();
 	}
 
-	public void test_defaultDoesNotApplyToNull() {
+	public void test_defaultDoesNotApplyToNull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.WARNING);
 		runner.testFiles = new String[] {
@@ -390,7 +390,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void test_defaultDoesNotApplyToNull_field() {
+	public void test_defaultDoesNotApplyToNull_field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.customOptions.put(CompilerOptions.OPTION_SyntacticNullAnalysisForFields, CompilerOptions.ENABLED);
 		runner.testFiles = new String[] {
@@ -417,7 +417,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void test_defaultDoesNotApplyToNull_field2() {
+	public void test_defaultDoesNotApplyToNull_field2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.customOptions.put(CompilerOptions.OPTION_SyntacticNullAnalysisForFields, CompilerOptions.ENABLED);
 		runner.testFiles = new String[] {
@@ -444,7 +444,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void testBug576329() {
+	public void testBug576329() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.customOptions.put(CompilerOptions.OPTION_SyntacticNullAnalysisForFields, CompilerOptions.ENABLED);
 		runner.testFiles = new String[] {
@@ -467,7 +467,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void testInstanceOfPatternIsNonNull() {
+	public void testInstanceOfPatternIsNonNull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -489,7 +489,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void testInstanceOfPatternIsLaterAssignedNull() {
+	public void testInstanceOfPatternIsLaterAssignedNull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -519,7 +519,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 	}
 
 	// since 11: uses 'var'
-	public void testNullableVar() {
+	public void testNullableVar() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 				"Test.java",
@@ -553,7 +553,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 				"----------\n";
 		runner.runNegativeTest();
 	}
-	public void _testGH629_01() {
+	public void _testGH629_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_18);
 		options.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "test.NonNull");
@@ -582,7 +582,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 				options,
 				"");
 	}
-	public void _testGH629_02() {
+	public void _testGH629_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_18);
 		options.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "test.NonNull");
@@ -623,7 +623,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 			"");
 	}
 
-	public void testIssue233_ok() throws Exception {
+	public void testIssue233_ok() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_ANNOTATION, JavaCore.IGNORE);
@@ -673,7 +673,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.expectedOutputString = "hello A12 default B12 hello A22 default B22";
 		runner.runConformTest();
 	}
-	public void testIssue233_nok() throws Exception {
+	public void testIssue233_nok() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// like testIssue233_ok - but annotations on record components ca1 / cb1 swapped (twice)
 		Runner runner = getDefaultRunner();
 		runner.customOptions = getCompilerOptions();
@@ -776,7 +776,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.expectedOutputString = "hellodefault";
 		runner.runNegativeTest();
 	}
-	public void testIssue233_npeWitness() throws Exception {
+	public void testIssue233_npeWitness() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -827,7 +827,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 				"""};
 		runner.runConformTest();
 	}
-	public void testGH1302() {
+	public void testGH1302() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"p/package-info.java",
@@ -856,7 +856,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void testGH1691_a() {
+	public void testGH1691_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"bug/package-info.java",
@@ -891,7 +891,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 	}
 
 
-	public void testGH1691_b() {
+	public void testGH1691_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// @NonNull on secondary bound is sufficient
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
@@ -933,7 +933,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.classLibraries = this.LIBS;
 		runner.runConformTest();
 	}
-	public void testGH1009() {
+	public void testGH1009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_ReportAnnotatedTypeArgumentToUnannotated, CompilerOptions.ERROR);
@@ -965,7 +965,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runConformTest();
 	}
 
-	public void testGH1760() {
+	public void testGH1760() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"X.java",
@@ -987,7 +987,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 	}
 
 	// disabling the tests since String Template is no longer there - not removing the test in case it comes back later.
-	public void _testGH1964_since_22() {
+	public void _testGH1964_since_22() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK23)
 			return;
 		Runner runner = new Runner();
@@ -1029,7 +1029,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.classLibraries = this.LIBS;
 		runner.runConformTest();
 	}
-	public void testGH1771() {
+	public void testGH1771() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportNullSpecViolation, CompilerOptions.ERROR);
@@ -1063,7 +1063,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 			""";
 		runner.runNegativeTest();
 	}
-	public void testGH1771_corrected() {
+	public void testGH1771_corrected() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportNullSpecViolation, CompilerOptions.ERROR);
@@ -1089,7 +1089,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.classLibraries = this.LIBS;
 		runner.runConformTest();
 	}
-	public void testGH1771_otherConflict1() {
+	public void testGH1771_otherConflict1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportNullSpecViolation, CompilerOptions.ERROR);
@@ -1145,7 +1145,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 				""";
 		runner.runNegativeTest();
 	}
-	public void testGH1771_otherConflict2() {
+	public void testGH1771_otherConflict2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions = getCompilerOptions();
 		runner.customOptions.put(CompilerOptions.OPTION_ReportNullSpecViolation, CompilerOptions.ERROR);
@@ -1191,7 +1191,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2521
 	// NPE on exhaustive pattern matching switch expressions with sealed interface
-	public void testIssue2521() {
+	public void testIssue2521() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"X.java",
@@ -1223,7 +1223,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2522
 	// Pattern matching on sealed classes cannot infer NonNull (JDK 21)
-	public void testIssue2522() {
+	public void testIssue2522() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 			"PatternMatching.java",
@@ -1289,7 +1289,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2522
 	// Pattern matching on sealed classes cannot infer NonNull (JDK 21)
-	public void testIssue2522_2() {
+	public void testIssue2522_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 			"PatternMatching.java",
@@ -1335,7 +1335,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3381
 	// [Enhanced Switch][Null] Missing Null pointer access warning with total/unconditional patterns
-	public void testIssue3381() {
+	public void testIssue3381() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 			"X.java",
@@ -1377,7 +1377,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3319
 	// [Enhanced Switch][Null] Inconsistent nullness propagation
-	public void testIssue3319() {
+	public void testIssue3319() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 			"X.java",
@@ -1458,7 +1458,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 		runner.runNegativeTest();
 	}
 
-	public void testGH701() {
+	public void testGH701() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -1489,7 +1489,7 @@ public class NullAnnotationTests21 extends AbstractNullAnnotationTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5369
 	// [Null][Records] Nullness tracking broken inside compact constructors
-	public void testIssue5369() {
+	public void testIssue5369() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.ERROR);
 		options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.WARNING);

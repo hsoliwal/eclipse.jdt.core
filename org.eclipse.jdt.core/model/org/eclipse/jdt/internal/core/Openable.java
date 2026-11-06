@@ -105,7 +105,7 @@ protected void closeBuffer() {
 protected void closing(Object info) {
 	closeBuffer();
 }
-protected void codeComplete(
+protected void codeComplete( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		org.eclipse.jdt.internal.compiler.env.ICompilationUnit cu,
 		org.eclipse.jdt.internal.compiler.env.ICompilationUnit unitToSkip,
 		int position, CompletionRequestor requestor,
@@ -119,7 +119,7 @@ protected void codeComplete(
 		? PerformanceStats.getStats(JavaModelManager.COMPLETION_PERF, this)
 		: null;
 	if(performanceStats != null) {
-		performanceStats.startRun(new String(cu.getFileName()) + " at " + position); //$NON-NLS-1$
+		performanceStats.startRun(new String(cu.getFileName()) + " at " + position); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	IBuffer buffer = getBuffer();
 	if (buffer == null) {
@@ -147,12 +147,12 @@ protected void codeComplete(
 		environment.printTimeSpent();
 	}
 }
-protected IJavaElement[] codeSelect(org.eclipse.jdt.internal.compiler.env.ICompilationUnit cu, int offset, int length, WorkingCopyOwner owner) throws JavaModelException {
+protected IJavaElement[] codeSelect(org.eclipse.jdt.internal.compiler.env.ICompilationUnit cu, int offset, int length, WorkingCopyOwner owner) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	PerformanceStats performanceStats = SelectionEngine.PERF
 		? PerformanceStats.getStats(JavaModelManager.SELECTION_PERF, this)
 		: null;
 	if(performanceStats != null) {
-		performanceStats.startRun(new String(cu.getFileName()) + " at [" + offset + "," + length + "]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		performanceStats.startRun(new String(cu.getFileName()) + " at [" + offset + "," + length + "]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	JavaProject project = getJavaProject();
@@ -192,7 +192,7 @@ protected OpenableElementInfo createElementInfo() {
 /**
  * @see IJavaElement
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean exists() {
 	if (JavaModelManager.getJavaModelManager().getInfo(this) != null)
 		return true;
@@ -225,11 +225,11 @@ public String findRecommendedLineSeparator() throws JavaModelException {
 	String source = buffer == null ? null : buffer.getContents();
 	return Util.getLineSeparator(source, getJavaProject());
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void generateInfos(IElementInfo info, Map<IJavaElement, IElementInfo> newElements, IProgressMonitor monitor) throws JavaModelException {
 
 	if (JavaModelCache.VERBOSE){
-		JavaModelManager.trace(Thread.currentThread() +" OPENING " + JavaModelCache.getCacheType(this) + " " + this.toStringWithAncestors()); //$NON-NLS-1$//$NON-NLS-2$
+		JavaModelManager.trace(Thread.currentThread() +" OPENING " + JavaModelCache.getCacheType(this) + " " + this.toStringWithAncestors()); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// open its ancestors if needed
@@ -332,7 +332,7 @@ public IOpenable getOpenable() {
 /**
  * @see IJavaElement
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IResource getUnderlyingResource() throws JavaModelException {
 	IResource parentResource = this.getParent().getUnderlyingResource();
 	if (parentResource == null) {
@@ -362,7 +362,7 @@ protected boolean hasBuffer() {
 /**
  * @see IOpenable
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean hasUnsavedChanges() throws JavaModelException{
 
 	if (isReadOnly() || !isOpen()) {
@@ -380,7 +380,7 @@ public boolean hasUnsavedChanges() throws JavaModelException{
 		elementType == JAVA_PROJECT ||
 		elementType == JAVA_MODEL) { // fix for 1FWNMHH
 		Enumeration<IBuffer> openBuffers= getBufferManager().getOpenBuffers();
-		while (openBuffers.hasMoreElements()) {
+		while (openBuffers.hasMoreElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IBuffer buffer= openBuffers.nextElement();
 			if (buffer.hasUnsavedChanges()) {
 				IJavaElement owner= (IJavaElement)buffer.getOwner();

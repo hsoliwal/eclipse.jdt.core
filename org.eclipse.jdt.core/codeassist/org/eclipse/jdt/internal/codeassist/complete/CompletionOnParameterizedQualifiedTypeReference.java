@@ -82,51 +82,51 @@ public class CompletionOnParameterizedQualifiedTypeReference extends Parameteriz
 		throw new CompletionNodeFound(this, this.resolvedType, scope);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public StringBuilder printExpression(int indent, StringBuilder output) {
 		switch (this.kind) {
 			case K_CLASS :
-				output.append("<CompleteOnClass:");//$NON-NLS-1$
+				output.append("<CompleteOnClass:");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case K_INTERFACE :
-				output.append("<CompleteOnInterface:");//$NON-NLS-1$
+				output.append("<CompleteOnInterface:");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case K_EXCEPTION :
-				output.append("<CompleteOnException:");//$NON-NLS-1$
+				output.append("<CompleteOnException:");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			default :
-				output.append("<CompleteOnType:");//$NON-NLS-1$
+				output.append("<CompleteOnType:");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 		}
 		int length = this.tokens.length;
-		for (int i = 0; i < length - 1; i++) {
-			output.append(this.tokens[i]);
+		for (int i = 0; i < length - 1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			output.append(this.tokens[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			TypeReference[] typeArgument = this.typeArguments[i];
 			if (typeArgument != null) {
-				output.append('<');
+				output.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				int max = typeArgument.length - 1;
-				for (int j = 0; j < max; j++) {
+				for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					typeArgument[j].print(0, output);
-					output.append(", ");//$NON-NLS-1$
+					output.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				typeArgument[max].print(0, output);
-				output.append('>');
+				output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			output.append('.');
+			output.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		output.append(this.tokens[length - 1]);
+		output.append(this.tokens[length - 1]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		TypeReference[] typeArgument = this.typeArguments[length - 1];
 		if (typeArgument != null) {
-			output.append('<');
+			output.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			int max = typeArgument.length - 1;
-			for (int j = 0; j < max; j++) {
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				typeArgument[j].print(0, output);
-				output.append(", ");//$NON-NLS-1$
+				output.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			typeArgument[max].print(0, output);
-			output.append('>');
+			output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		output.append('.').append(this.completionIdentifier).append('>');
+		output.append('.').append(this.completionIdentifier).append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return output;
 	}
 }

@@ -44,7 +44,7 @@ public void setUpSuite() throws Exception {
  * it removes the spaces for s.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=426520"
  */
-public void testBug426520a() throws JavaModelException {
+public void testBug426520a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"import java.lang.annotation.*;" +
 		"@Target(ElementType.TYPE_USE)\n" +
@@ -64,7 +64,7 @@ public void testBug426520a() throws JavaModelException {
 			"	java.util.@T Set<java.lang.@T String> s;\n" +
 			"}\n");
 }
-public void testBug426520b() throws JavaModelException {
+public void testBug426520b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"import java.lang.annotation.*;" +
 		"@Target(ElementType.TYPE_USE)\n" +
@@ -84,7 +84,7 @@ public void testBug426520b() throws JavaModelException {
 			"	java.util.@T() Set<java.lang.@T() String> s;\n" +
 			"}\n");
 }
-public void testBug425040() throws JavaModelException {
+public void testBug425040() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"import java.lang.annotation.*;\n" +
 			"\n" +
@@ -150,7 +150,7 @@ public void testBug425040() throws JavaModelException {
 			"}\n"
 			);
 }
-public void testBug433177() throws Exception {
+public void testBug433177() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"interface Function<T, R> {\n" +
 		"	R apply(T t);\n" +
@@ -209,7 +209,7 @@ public void testBug433177() throws Exception {
 
 	formatSource(source,expected);
 }
-public void testBug434821() throws Exception {
+public void testBug434821() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source ="public class FormatterTest {\n"+
 			"	public void doNothing() {\n"+
 			"		new Thread(() -> {\n"+

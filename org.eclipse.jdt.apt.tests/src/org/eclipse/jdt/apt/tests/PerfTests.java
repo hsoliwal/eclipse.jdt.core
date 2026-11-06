@@ -56,7 +56,7 @@ public class PerfTests extends BuilderTests
 		return new TestSuite( PerfTests.class );
 	}
 
-	public void setUp() throws Exception
+	public void setUp() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		super.setUp();
 
@@ -67,7 +67,7 @@ public class PerfTests extends BuilderTests
 
 		File tempPath = fetchFromBinariesProject("perf-test-project.zip", 3_307_492);
 		
-		InputStream in = new FileInputStream(tempPath);
+		InputStream in = new FileInputStream(tempPath); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		
 		try (ZipInputStream zipIn = new ZipInputStream(in)) {
 			TestUtil.unzip(zipIn, destRoot);
@@ -87,10 +87,10 @@ public class PerfTests extends BuilderTests
 	private static File fetchFromBinariesProject(String nameInProject, long size) throws IOException, MalformedURLException {
 		String tmpRoot = System.getProperty("java.io.tmpdir");
 		File tempFile = new File(tmpRoot, nameInProject);
-		if (!tempFile.isFile() || tempFile.length() != size) {			
-			String githubUrl = GITHUB_TESTS_BINARIES + nameInProject;
+		if (!tempFile.isFile() || tempFile.length() != size) {			 //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			String githubUrl = GITHUB_TESTS_BINARIES + nameInProject; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			try(BufferedInputStream bin = new BufferedInputStream(URI.create(githubUrl).toURL().openStream())){
-				Files.copy(bin, tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+				Files.copy(bin, tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 		}
 		return tempFile;
@@ -102,7 +102,7 @@ public class PerfTests extends BuilderTests
 	 */
 	private void assertNoUnexpectedProblems() {
 		Problem[] problems = env.getProblems();
-		for (Problem problem : problems) {
+		for (Problem problem : problems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problem.getMessage().startsWith("TODO") ||
 				problem.getMessage().startsWith("XXX") ||
 				problem.getMessage().startsWith("FIXME")) {
@@ -112,13 +112,13 @@ public class PerfTests extends BuilderTests
 				if (problem.getMessage().equals("The type IWorkingCopy is deprecated"))
 					continue;
 			}
-			fail("Found unexpected problem: " + problem);
+			fail("Found unexpected problem: " + problem); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	public static String getProjectName()
 	{
-		return PerfTests.class.getName() + "Project"; //$NON-NLS-1$
+		return PerfTests.class.getName() + "Project"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public IPath getSourcePath()
@@ -129,7 +129,7 @@ public class PerfTests extends BuilderTests
 		return srcRoot;
 	}
 
-	public void testBuilding() throws Throwable {
+	public void testBuilding() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject proj = env.getProject(projectPath);
 		IJavaProject jproj = JavaCore.create(proj); // doesn't actually create anything
 
@@ -145,7 +145,7 @@ public class PerfTests extends BuilderTests
 		long startNanos = System.nanoTime();
 		proj.build(IncrementalProjectBuilder.FULL_BUILD, null);
 		long totalWithoutAPT = (System.nanoTime() - startNanos) / 1_000_000L;
-		System.out.println("Completed full build without APT in " + totalWithoutAPT + "ms.");
+		System.out.println("Completed full build without APT in " + totalWithoutAPT + "ms."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		assertNoUnexpectedProblems();
 
@@ -159,7 +159,7 @@ public class PerfTests extends BuilderTests
 		startNanos = System.nanoTime();
 		proj.build(IncrementalProjectBuilder.FULL_BUILD, null);
 		long totalWithAPT = (System.nanoTime() - startNanos) / 1_000_000L;
-		System.out.println("Completed full build with APT in " + totalWithAPT + "ms.");
+		System.out.println("Completed full build with APT in " + totalWithAPT + "ms."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		assertNoUnexpectedProblems();
 

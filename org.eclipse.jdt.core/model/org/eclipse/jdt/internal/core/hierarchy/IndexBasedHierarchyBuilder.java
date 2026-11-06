@@ -103,9 +103,9 @@ public class IndexBasedHierarchyBuilder extends HierarchyBuilder implements Suff
 		}
 		@Override
 		public String toString(){
-			StringBuilder buffer = new StringBuilder("Queue:\n"); //$NON-NLS-1$
-			for (int i = this.start; i <= this.end; i++){
-				buffer.append(this.entries[i]).append('\n');
+			StringBuilder buffer = new StringBuilder("Queue:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = this.start; i <= this.end; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(this.entries[i]).append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return buffer.toString();
 		}
@@ -123,10 +123,10 @@ public class IndexBasedHierarchyBuilder extends HierarchyBuilder implements Suff
 
 public IndexBasedHierarchyBuilder(TypeHierarchy hierarchy, IJavaSearchScope scope) throws JavaModelException {
 	super(hierarchy);
-	this.binariesFromIndexMatches = new HashMap(10);
+	this.binariesFromIndexMatches = new HashMap(10); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	this.scope = scope;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void build(boolean computeSubtypes) {
 	JavaModelManager manager = JavaModelManager.getJavaModelManager();
 	try {
@@ -137,7 +137,7 @@ public void build(boolean computeSubtypes) {
 			// Note by construction there always is a focus type here
 			IType focusType = getType();
 			SubMonitor possibleSubtypesMonitor = this.hierarchy.progressMonitor.split(1);
-			HashSet localTypes = new HashSet(10); // contains the paths that have potential subtypes that are local/anonymous types
+			HashSet localTypes = new HashSet(10); // contains the paths that have potential subtypes that are local/anonymous types //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			String[] allPossibleSubtypes;
 			if (((Member)focusType).getOuterMostLocalContext() == null) {
 				// top level or member type
@@ -159,7 +159,7 @@ public void build(boolean computeSubtypes) {
 		manager.flushZipFiles(this);
 	}
 }
-private void buildForProject(JavaProject project, ArrayList potentialSubtypes, org.eclipse.jdt.core.ICompilationUnit[] workingCopies, HashSet localTypes, IProgressMonitor monitor) throws JavaModelException {
+private void buildForProject(JavaProject project, ArrayList potentialSubtypes, org.eclipse.jdt.core.ICompilationUnit[] workingCopies, HashSet localTypes, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SubMonitor subMonitor = SubMonitor.convert(monitor, 10);
 	// resolve
 	int openablesLength = potentialSubtypes.size();
@@ -174,10 +174,10 @@ private void buildForProject(JavaProject project, ArrayList potentialSubtypes, o
 		IPackageFragmentRoot[] roots = project.getPackageFragmentRoots();
 		int rootsLength = roots.length;
 		final HashtableOfObjectToInt indexes = new HashtableOfObjectToInt(openablesLength);
-		for (int i = 0; i < openablesLength; i++) {
+		for (int i = 0; i < openablesLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaElement root = openables[i].getAncestor(IJavaElement.PACKAGE_FRAGMENT_ROOT);
 			int index;
-			for (index = 0; index < rootsLength; index++) {
+			for (index = 0; index < rootsLength; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (roots[index].equals(root))
 					break;
 			}
@@ -243,7 +243,7 @@ private void buildForProject(JavaProject project, ArrayList potentialSubtypes, o
 				} else {
 					openable = (Openable)declaringMember.getCompilationUnit();
 				}
-				localTypes = new HashSet();
+				localTypes = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				localTypes.add(openable.getPath().toString());
 				this.hierarchyResolver.resolve(new Openable[] {openable}, localTypes, subMonitor.split(9));
 				return;
@@ -255,17 +255,17 @@ private void buildForProject(JavaProject project, ArrayList potentialSubtypes, o
 /**
  * Configure this type hierarchy based on the given potential subtypes.
  */
-private void buildFromPotentialSubtypes(String[] allPotentialSubTypes, HashSet localTypes, IProgressMonitor monitor) {
+private void buildFromPotentialSubtypes(String[] allPotentialSubTypes, HashSet localTypes, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
 	IType focusType = getType();
 
 	// substitute compilation units with working copies
-	HashMap wcPaths = new HashMap(); // a map from path to working copies
+	HashMap wcPaths = new HashMap(); // a map from path to working copies //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	int wcLength;
 	org.eclipse.jdt.core.ICompilationUnit[] workingCopies = this.hierarchy.workingCopies;
 	if (workingCopies != null && (wcLength = workingCopies.length) > 0) {
 		String[] newPaths = new String[wcLength];
-		for (int i = 0; i < wcLength; i++) {
+		for (int i = 0; i < wcLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			org.eclipse.jdt.core.ICompilationUnit workingCopy = workingCopies[i];
 			String path = workingCopy.getPath().toString();
 			wcPaths.put(path, workingCopy);
@@ -300,13 +300,13 @@ private void buildFromPotentialSubtypes(String[] allPotentialSubTypes, HashSet l
 	 */
 	Arrays.sort(allPotentialSubTypes);
 
-	ArrayList potentialSubtypes = new ArrayList();
+	ArrayList potentialSubtypes = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	try {
 		SubMonitor loopMonitor = SubMonitor.convert(subMonitor.split(95), length);
 		// create element infos for subtypes
 		HandleFactory factory = new HandleFactory();
 		IJavaProject currentProject = null;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaProject nextProject = null;
 			try {
 				String resourcePath = allPotentialSubTypes[i];
@@ -330,12 +330,12 @@ private void buildFromPotentialSubtypes(String[] allPotentialSubTypes, HashSet l
 				SubMonitor split = loopMonitor.split(1);
 				if (currentProject == null) {
 					currentProject = project;
-					potentialSubtypes = new ArrayList(5);
+					potentialSubtypes = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				} else if (!currentProject.equals(project)) {
 					nextProject = project;
 					// build current project
 					buildForProject((JavaProject)currentProject, potentialSubtypes, workingCopies, localTypes, split);
-					potentialSubtypes = new ArrayList(5);
+					potentialSubtypes = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				}
 
 				potentialSubtypes.add(handle);
@@ -368,7 +368,7 @@ private void buildFromPotentialSubtypes(String[] allPotentialSubTypes, HashSet l
 		if (!this.hierarchy.contains(focusType)) {
 			try {
 				currentProject = focusType.getJavaProject();
-				potentialSubtypes = new ArrayList();
+				potentialSubtypes = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				if (focusType.isBinary()) {
 					potentialSubtypes.add(focusType.getClassFile());
 				} else {
@@ -400,9 +400,9 @@ protected IBinaryType createInfoFromClassFile(Openable classFile, IResource file
 		return super.createInfoFromClassFile(classFile, file);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected IBinaryType createInfoFromClassFileInJar(Openable classFile) {
-	String filePath = (((ClassFile)classFile).getType().getFullyQualifiedName('$')).replace('.', '/') + SuffixConstants.SUFFIX_STRING_class;
+	String filePath = (((ClassFile)classFile).getType().getFullyQualifiedName('$')).replace('.', '/') + SuffixConstants.SUFFIX_STRING_class; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IPackageFragmentRoot root = classFile.getPackageFragmentRoot();
 	IPath path = root.getPath();
 	// take the OS path for external jars, and the forward slash path for internal jars
@@ -411,10 +411,10 @@ protected IBinaryType createInfoFromClassFileInJar(Openable classFile) {
 	String documentPath;
 	if(md != null) {
 		String module = md.getElementName();
-		documentPath = rootPath + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR
+		documentPath = rootPath + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ module + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR + filePath;
 	} else {
-		documentPath = rootPath + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR + filePath;
+		documentPath = rootPath + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR + filePath; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	IBinaryType binaryType = (IBinaryType)this.binariesFromIndexMatches.get(documentPath);
 	if (binaryType != null) {
@@ -428,9 +428,9 @@ protected IBinaryType createInfoFromClassFileInJar(Openable classFile) {
  * Returns all of the possible subtypes of this type hierarchy.
  * Returns null if they could not be determine.
  */
-private String[] determinePossibleSubTypes(final HashSet localTypes, IProgressMonitor monitor) {
+private String[] determinePossibleSubTypes(final HashSet localTypes, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	class PathCollector implements IPathRequestor {
-		HashSet paths = new HashSet(10);
+		HashSet paths = new HashSet(10); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		@Override
 		public void acceptPath(String path, boolean containsLocalTypes) {
 			this.paths.add(path);
@@ -453,7 +453,7 @@ private String[] determinePossibleSubTypes(final HashSet localTypes, IProgressMo
 	int length = paths.size();
 	String[] result = new String[length];
 	int count = 0;
-	for (Object path : paths) {
+	for (Object path : paths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result[count++] = (String) path;
 	}
 	return result;
@@ -480,7 +480,7 @@ public static void searchAllPossibleSubTypes(
 			monitor);
 }
 
-private static void legacySearchAllPossibleSubTypes(
+private static void legacySearchAllPossibleSubTypes( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type,
 	IJavaSearchScope scope,
 	final Map binariesFromIndexMatches,
@@ -498,7 +498,7 @@ private static void legacySearchAllPossibleSubTypes(
 
 	/* use a special collector to collect paths and queue new subtype names */
 	IndexQueryRequestor searchRequestor = new IndexQueryRequestor() {
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public boolean acceptIndexMatch(String documentPath, SearchPattern indexRecord, SearchParticipant participant, AccessRuleSet access) {
 			SuperTypeReferencePattern record = (SuperTypeReferencePattern)indexRecord;
 			boolean isLocalOrAnonymous = record.enclosingTypeName == IIndexConstants.ONE_ZERO;
@@ -557,7 +557,7 @@ private static void legacySearchAllPossibleSubTypes(
 	queue.add(new SubtypeQuery(type.getFullyQualifiedName().toCharArray(), type.getElementName().toCharArray()));
 	long startTime = System.currentTimeMillis();
 	try {
-		while (queue.start <= queue.end) {
+		while (queue.start <= queue.end) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			subMonitor.setWorkRemaining(Math.max(queue.end - queue.start + 1, 100));
 
 			// all subclasses of OBJECT are actually all types
@@ -584,7 +584,7 @@ private static void legacySearchAllPossibleSubTypes(
 		job.finished();
 		if (JobManager.VERBOSE) {
 			long wallClockTime = System.currentTimeMillis() - startTime;
-			JavaModelManager.trace("-> execution time: " + wallClockTime + "ms - " + IndexBasedHierarchyBuilder.class.getSimpleName());//$NON-NLS-1$//$NON-NLS-2$
+			JavaModelManager.trace("-> execution time: " + wallClockTime + "ms - " + IndexBasedHierarchyBuilder.class.getSimpleName());//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 }

@@ -59,12 +59,12 @@ public class InternalScannerTest extends AbstractRegressionTest {
 		scanner.recordLineSeparator = true;
 		scanner.setSource("a\nb\nc\n".toCharArray());
 		TerminalToken token = TokenNameNotAToken;
-		while (token !=  TerminalToken.TokenNameEOF) {
+		while (token !=  TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			token = scanner.getNextToken();
 		}
 		scanner.setSource("a\nb\n".toCharArray());
 		token = TokenNameNotAToken;
-		while (token !=  TerminalToken.TokenNameEOF) {
+		while (token !=  TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			token = scanner.getNextToken();
 		}
 		assertEquals("Wrong number of line ends", 2, scanner.getLineEnds().length);

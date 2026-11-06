@@ -43,7 +43,7 @@ public class SourceModifier implements ISourceModifier {
 
 	@Override
 	public ReplaceEdit[] getModifications(String source) {
-		List result= new ArrayList();
+		List result= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		int destIndentLevel= IndentManipulation.measureIndentUnits(this.destinationIndent, this.tabWidth, this.indentWidth);
 		if (destIndentLevel == this.sourceIndentLevel) {
 			return (ReplaceEdit[])result.toArray(new ReplaceEdit[result.size()]);

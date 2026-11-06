@@ -43,7 +43,7 @@ public static Test suite() {
 	return buildMinimalComplianceTestSuite(testClass(), FIRST_SUPPORTED_JAVA_VERSION);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=277450
-public void test1() {
+public void test1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -63,7 +63,7 @@ public void test1() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=277450
-public void test2() {
+public void test2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -115,7 +115,7 @@ public void test4() {
 		"4808");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=277450
-public void test5() {
+public void test5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -136,7 +136,7 @@ public void test5() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=277450
-public void test6() {
+public void test6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -187,7 +187,7 @@ public void test8() {
 		},
 		"SUCCESS");
 }
-public void test9() {
+public void test9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -226,7 +226,7 @@ public void test10() {
 		"12"
 	);
 }
-public void test11() {
+public void test11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -268,7 +268,7 @@ public void test12() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=277450
-public void test13() {
+public void test13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -288,7 +288,7 @@ public void test13() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=277450
-public void test14() {
+public void test14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",

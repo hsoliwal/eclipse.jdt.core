@@ -39,10 +39,10 @@ public static Test suite() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=368435
-public void test368435() {
+public void test368435() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
-	StringBuilder sourceCode = new StringBuilder(
+	StringBuilder sourceCode = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"public class X {\n" +
 			"    public static void main(String[] args) {\n" +
 			"        System.out.println(\"SUCCESS\");\n" +
@@ -52,10 +52,10 @@ public void test368435() {
 			"        if (System.currentTimeMillis() > 17000L) {\n" +
 			"            System.out.println(i++);\n");
 
-	for (int i = 0; i < 5000; i++) {
-		sourceCode.append("\t\t		System.out.println(\"xyz\");\n");
+	for (int i = 0; i < 5000; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		sourceCode.append("\t\t		System.out.println(\"xyz\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	sourceCode.append("}\n}\n}\n");
+	sourceCode.append("}\n}\n}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	this.runConformTest(
 			new String[] {
@@ -70,10 +70,10 @@ public void test368435() {
 			null);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=368435
-public void test368435b() {
+public void test368435b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
-	StringBuilder sourceCode = new StringBuilder(
+	StringBuilder sourceCode = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"public class X {\n" +
 			"    public static void main(String[] args) {\n" +
 			"        System.out.println(\"SUCCESS\");\n" +
@@ -83,10 +83,10 @@ public void test368435b() {
 			"        if (System.currentTimeMillis() > 17000L) {\n" +
 			"            System.out.println(i++);\n");
 
-	for (int i = 0; i < 5000; i++) {
-		sourceCode.append("\t\t		System.out.println(\"xyz\");\n");
+	for (int i = 0; i < 5000; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		sourceCode.append("\t\t		System.out.println(\"xyz\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	sourceCode.append("}\n}\n}\n");
+	sourceCode.append("}\n}\n}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	this.runConformTest(
 			new String[] {
@@ -101,10 +101,10 @@ public void test368435b() {
 			null);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=368435
-public void test368435c() {
+public void test368435c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
-	StringBuilder sourceCode = new StringBuilder(
+	StringBuilder sourceCode = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"public class X {\n" +
 			"    public static void main(String[] args) {\n" +
 			"        System.out.println(\"SUCCESS\");\n" +
@@ -114,10 +114,10 @@ public void test368435c() {
 			"        if (System.currentTimeMillis() > 17000L) {\n" +
 			"            System.out.println(i++);\n");
 
-	for (int i = 0; i < 5000; i++) {
-		sourceCode.append("\t\t		System.out.println(\"xyz\");\n");
+	for (int i = 0; i < 5000; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		sourceCode.append("\t\t		System.out.println(\"xyz\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	sourceCode.append("}\n}\n}\n");
+	sourceCode.append("}\n}\n}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	this.runConformTest(
 			new String[] {
@@ -132,9 +132,9 @@ public void test368435c() {
 			null);
 }
 
-public void test001() {
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("""
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	public class X {
 	    public static int i,j;
@@ -149,10 +149,10 @@ public void test001() {
 		while ( b < 4 ) {
 	""");
 
-	for (int i = 0; i < 160; i++) {
-		fileContents.append("\t    i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n");
+	for (int i = 0; i < 160; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("\t    i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			b++;
 		}
 		if (b == 4 && i == 0) System.out.println(\"SUCCESS\");
@@ -169,9 +169,9 @@ public void test001() {
 		"SUCCESS");
 }
 
-public void test002() {
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("""
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	public class X2 {
 		public static boolean b = false;
 		public static int i, l, j;
@@ -182,10 +182,10 @@ public void test002() {
 		static {
 		while (b) {
 	""");
-	for (int i = 0; i < 160; i++) {
-		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n");
+	for (int i = 0; i < 160; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			b = false;
 		}
 		if (i == 0) {
@@ -204,9 +204,9 @@ public void test002() {
 		"SUCCESS");
 }
 
-public void test003() {
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("""
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	public class X3 {
 		public int i,j;
 		public long l;
@@ -221,10 +221,10 @@ public void test003() {
 		l = 0L;
 		while ( b < 4 ) {
 	""");
-	for (int i = 0 ; i < 160; i++) {
-		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n");
+	for (int i = 0 ; i < 160; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			b++;
 		}
 		if (b == 4 && i == 0) {
@@ -243,9 +243,9 @@ public void test003() {
 		"SUCCESS");
 }
 
-public void test004() {
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("""
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	public class X {
 		public static int i,j;
 		public static long l;
@@ -259,10 +259,10 @@ public void test004() {
 		for (int i = 0; i < 1; i++) {
 		while ( b < 4 ) {
 	""");
-	for (int i = 0; i < 160; i ++) {
-		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n");
+	for (int i = 0; i < 160; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				b++;
 		}
 		}
@@ -279,18 +279,18 @@ public void test004() {
 		"SUCCESS");
 }
 
-public void test005() {
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("""
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	package p;
 	public class X {
 	  public static void main(String args[]) {
 	    System.out.println(\"\" + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\'
 	""");
-	for (int i = 0; i < 496; i++) {
-		fileContents.append("      + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' \n");
+	for (int i = 0; i < 496; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("      + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	      + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\');
 	  }
 	}
@@ -310,10 +310,10 @@ public void test005() {
 /*
  * http://dev.eclipse.org/bugs/show_bug.cgi?id=26129
  */
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("""
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	public class A {
 	    public static void main(String[] args) {
 	        int i = 1;
@@ -325,11 +325,11 @@ public void test006() {
 	        	i = 366 * i % 534;
 	"""); // $NON-NLS-1$
 
-	for (int i = 0 ; i < 350; i++) {
-		fileContents.append("        	i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;"); // $NON-NLS-1$
+	for (int i = 0 ; i < 350; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("        	i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;"); // $NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} finally {
 	            if (i == 1)
 	                System.out.print(\"OK\");
@@ -351,9 +351,9 @@ public void test006() {
 /*
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=31811
  */
-public void test007() {
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("""
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	public class X {
 		public static int i,j;
 		public static long l;
@@ -367,10 +367,10 @@ public void test007() {
 		byte b = 0;
 		 for(;;) {
 	""");
-	for (int i = 0; i < 160; i++) {
-		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n");
+	for (int i = 0; i < 160; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			b++;
 			if (b > 1) {
 				break;
@@ -388,7 +388,7 @@ public void test007() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=115408
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_LineNumberAttribute, CompilerOptions.DO_NOT_GENERATE);
 	options.put(CompilerOptions.OPTION_LocalVariableAttribute, CompilerOptions.DO_NOT_GENERATE);
@@ -1070,18 +1070,18 @@ public void test008() {
 	null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=126744
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("""
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	public class X {
 	    public static String CONSTANT =\s
 	""");
 
-	for (int i = 0 ; i < 1029; i++) {
-		fileContents.append("        \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz\" +\n");
+	for (int i = 0 ; i < 1029; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("        \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz\" +\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	    	\"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxy12\";
 
 	    public static void main(String[] args) {
@@ -1105,18 +1105,18 @@ public void test009() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // Failed before using a non recursive implementation of deep binary
 // expressions.
-public void test010() {
-	StringBuilder sourceCode = new StringBuilder(
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder sourceCode = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"public class X {\n" +
 			"  void foo(String a, String b, String c, String d, String e) {\n" +
 			"    String s = \n");
-	for (int i = 0; i < 350; i++) {
-		sourceCode.append(
+	for (int i = 0; i < 350; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		sourceCode.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			"    	\"abcdef\" + a + b + c + d + e + " +
 			"\" ghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmno" +
 			"pqrstuvwxyzabcdefghijklmnopqrstuvwxyz\" +\n");
 	}
-	sourceCode.append(
+	sourceCode.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			"    	\"abcdef\" + a + b + c + d + e + \" ghijklmnopqrstuvwxyz" +
 			"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz" +
 			"abcdefghijklmnopqrstuvwxy12\";\n" +
@@ -1139,23 +1139,23 @@ public void test010() {
 // filling the stack
 // need to use a computed string (else this source file will get blown away
 // as well)
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel >= ClassFileConstants.JDK9)
 		return;
 	int length = 3 * 54 * 1000;
 		// the longer the slower, but still needs to reach the limit...
-	StringBuilder veryLongString = new StringBuilder(length + 20);
-	veryLongString.append('"');
+	StringBuilder veryLongString = new StringBuilder(length + 20); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	veryLongString.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	Random random = new Random();
-	while (veryLongString.length() < length) {
-		veryLongString.append("\"+a+\"");
-		veryLongString.append(random.nextLong());
+	while (veryLongString.length() < length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		veryLongString.append("\"+a+\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		veryLongString.append(random.nextLong()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	veryLongString.append('"');
+	veryLongString.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
-			"public class X {\n" +
+			"public class X {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  void foo(String a, String b, String c, String d, String e) {\n" +
 			"    String s = \n" +
 			veryLongString.toString() +
@@ -1174,18 +1174,18 @@ public void test011() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 // variant: right member of the topmost expression is left-deep
-public void test012() {
-	StringBuilder sourceCode = new StringBuilder(
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder sourceCode = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"public class X {\n" +
 			"  void foo(String a, String b, String c, String d, String e) {\n" +
 			"    String s = a + (\n");
-	for (int i = 0; i < 1000; i++) {
-		sourceCode.append(
+	for (int i = 0; i < 1000; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		sourceCode.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			"    	\"abcdef\" + a + b + c + d + e + " +
 			"\" ghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmno" +
 			"pqrstuvwxyzabcdefghijklmnopqrstuvwxyz\" +\n");
 	}
-	sourceCode.append(
+	sourceCode.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			"    	\"abcdef\" + a + b + c + d + e + \" ghijklmnopqrstuvwxyz" +
 			"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz" +
 			"abcdefghijklmnopqrstuvwxy12\");\n" +
@@ -1204,7 +1204,7 @@ public void test012() {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=102728
 //variant: right member of the topmost expression is left-deep
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1265,7 +1265,7 @@ public void test013() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=124099
 // Undue partial reset of receiver in
 // UnconditionalFlowInfo#addInitializationsFrom.
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"X.java",
 			"class X {\n" +
@@ -1321,22 +1321,22 @@ public void test014() {
 	},
 	"");
 }
-public void _test015() {
+public void _test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map settings = getCompilerOptions();
 	settings.put(CompilerOptions.OPTION_ShareCommonFinallyBlocks, CompilerOptions.ENABLED);
 
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("""
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	public class X {
 		public static int foo(int i) {
 			try {
 				switch(i) {
 	""");
-	for (int i = 0; i < 4000; i ++) {
-		fileContents.append("				case " + i + " :\n");
-		fileContents.append("					return 3;\n");
+	for (int i = 0; i < 4000; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("				case " + i + " :\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		fileContents.append("					return 3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					default:
 						return -1;
 				}
@@ -1371,10 +1371,10 @@ public void _test015() {
 		JavacTestOptions.EclipseJustification.EclipseBug169017);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=350095
-public void test0016() {
+public void test0016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// only run in 1.5 or above
-	StringBuilder buffer = new StringBuilder();
-	buffer
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append("0123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119")
 		.append("1201211221231241251261271281291301311321331341351361371381391401411421431441451461471481491501511521531541551561571581591601611621631641651661671681691701711721731741751761771781791801811821831841851861871881891901911921931941951961971981992002012022")
 		.append("0320420520620720820921021121221321421521621721821922022122222322422522622722822923023123223323423523623723823924024124224324424524624724824925025125225325425525625725825926026126226326426526626726826927027127227327427527627727827928028128228328428528")
@@ -1412,12 +1412,12 @@ public void test0016() {
 		.append("0224032404240524062407240824092410241124122413241424152416241724182419242024212422242324242425242624272428242924302431243224332434243524362437243824392440244124422443244424452446244724482449245024512452245324542455245624572458245924602461246224632464")
 		.append("246524662467246824692470247124722473247424752476247724782479248024812482248324842485248624872488248924902491249224932494249524962497249824992500");
 
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("public enum X {\n");
-	for (int i = 0; i < 2500; i++) {
-		fileContents.append("\tX" + i + "(" + i + "),\n");
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append("public enum X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (int i = 0; i < 2500; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("\tX" + i + "(" + i + "),\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		;
 
 		private int value;
@@ -1453,10 +1453,10 @@ public void test0016() {
 			"----------\n");
 	}
 }
-public void test0017() {
+public void test0017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// only run in 1.5 or above
-	StringBuilder buffer = new StringBuilder();
-	buffer
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append("123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119")
 		.append("1201211221231241251261271281291301311321331341351361371381391401411421431441451461471481491501511521531541551561571581591601611621631641651661671681691701711721731741751761771781791801811821831841851861871881891901911921931941951961971981992002012022")
 		.append("0320420520620720820921021121221321421521621721821922022122222322422522622722822923023123223323423523623723823924024124224324424524624724824925025125225325425525625725825926026126226326426526626726826927027127227327427527627727827928028128228328428528")
@@ -1486,12 +1486,12 @@ public void test0017() {
 		.append("0219031904190519061907190819091910191119121913191419151916191719181919192019211922192319241925192619271928192919301931193219331934193519361937193819391940194119421943194419451946194719481949195019511952195319541955195619571958195919601961196219631964")
 		.append("19651966196719681969197019711972197319741975197619771978197919801981198219831984198519861987198819891990199119921993199419951996199719981999200020012001");
 
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("public enum X {\n");
-	for (int i = 1; i < 2002; i++) {
-		fileContents.append("\tX" + i + "(" + i + "),\n");
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append("public enum X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (int i = 1; i < 2002; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("\tX" + i + "(" + i + "),\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		;
 
 		private int value;
@@ -1522,10 +1522,10 @@ public void test0017() {
 		},
 		buffer.toString());
 }
-public void test0018() {
+public void test0018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// only run in 1.5 or above
-	StringBuilder buffer = new StringBuilder();
-	buffer
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append("123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119")
 		.append("1201211221231241251261271281291301311321331341351361371381391401411421431441451461471481491501511521531541551561571581591601611621631641651661671681691701711721731741751761771781791801811821831841851861871881891901911921931941951961971981992002012022")
 		.append("0320420520620720820921021121221321421521621721821922022122222322422522622722822923023123223323423523623723823924024124224324424524624724824925025125225325425525625725825926026126226326426526626726826927027127227327427527627727827928028128228328428528")
@@ -1554,12 +1554,12 @@ public void test0018() {
 		.append("1840184118421843184418451846184718481849185018511852185318541855185618571858185918601861186218631864186518661867186818691870187118721873187418751876187718781879188018811882188318841885188618871888188918901891189218931894189518961897189818991900190119")
 		.append("0219031904190519061907190819091910191119121913191419151916191719181919192019211922192319241925192619271928192919301931193219331934193519361937193819391940194119421943194419451946194719481949195019511952195319541955195619571958195919601961196219631964")
 		.append("196519661967196819691970197119721973197419751976197719781979198019811982198319841985198619871988198919901991199219931994199519961997199819992000200120022002");
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("public enum X {\n");
-	for (int i = 1; i < 2003; i++) {
-		fileContents.append("\tX" + i + "(" + i + "),\n");
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append("public enum X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (int i = 1; i < 2003; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("\tX" + i + "(" + i + "),\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		;
 
 		private int value;
@@ -1589,20 +1589,20 @@ public void test0018() {
 		buffer.toString());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=393749
-public void test0019() {
+public void test0019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// only run in 1.5 or above
 
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("""
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	import java.util.HashMap;
 	import java.util.Map;
 
 	public enum X {
 	""");
-	for (int i = 0; i < 2005; i++) {
-		fileContents.append("\tC" + i + ",\n");
+	for (int i = 0; i < 2005; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		fileContents.append("\tC" + i + ",\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		;
 
 	    private static Map<String, X> nameToInstanceMap = new HashMap<String, X>();
@@ -1631,20 +1631,20 @@ public void test0019() {
 		},
 		"C0");
 }
-public void testBug519070() {
+public void testBug519070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int N = 1000;
-	StringBuilder sourceCode = new StringBuilder(
+	StringBuilder sourceCode = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"public class X {\n" +
 			"    public static void main(String[] args) {\n" +
 			"        System.out.println(\"SUCCESS\");\n" +
 			"    }\n");
-	for (int m = 0; m < N; m++) {
-		sourceCode.append("\tvoid test"+m+"() {\n");
-		for (int i = 0; i < N; i++)
-			sourceCode.append("\t\tSystem.out.println(\"xyz\");\n");
-		sourceCode.append("\t}\n");
+	for (int m = 0; m < N; m++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		sourceCode.append("\tvoid test"+m+"() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i < N; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			sourceCode.append("\t\tSystem.out.println(\"xyz\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		sourceCode.append("\t}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	sourceCode.append("}\n");
+	sourceCode.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	this.runConformTest(
 			new String[] {
@@ -1653,20 +1653,20 @@ public void testBug519070() {
 			},
 			"SUCCESS");
 }
-public void testIssue1164a() throws ClassFormatException, IOException {
+public void testIssue1164a() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9)
 		return;
-	StringBuilder sourceCode = new StringBuilder(
+	StringBuilder sourceCode = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"public class X {\n" +
 			"  void foo(String a, String b, String c, String d, String e, String f) {\n" +
 			"    String s = a + (\n");
-	for (int i = 0; i < 1000; i++) {
-		sourceCode.append(
+	for (int i = 0; i < 1000; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		sourceCode.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			"    	\"abcdef\" + a + b + c + d + e + f + " +
 			"\" ghijk" +
 			"pqrstu\" +\n");
 	}
-	sourceCode.append(
+	sourceCode.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			"    	\"abcdef\" + a + b + c + d + e + \" ghijk" +
 			"abcdefgh" +
 			"abcdefgh\");\n" +
@@ -1883,23 +1883,23 @@ public void testIssue1164a() throws ClassFormatException, IOException {
 			"}";
 	checkClassFile("X", sourceCode.toString(), expectedOutput, ClassFileBytesDisassembler.DETAILED | ClassFileBytesDisassembler.COMPACT);
 }
-public void testIssue1164b() {
+public void testIssue1164b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9)
 		return;
-	StringBuilder sourceCode = new StringBuilder(
+	StringBuilder sourceCode = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"public class X {\n" +
 			"  public static void main(String[] args) {\n" +
 			"    (new X()).foo(\"a\", \"b\", \"c\", \"d\", \"e\", \"fa\");\n" +
 			"  }\n" +
 			"  void foo(String a, String b, String c, String d, String e, String f) {\n" +
 			"    String s = a + (\n");
-	for (int i = 0; i < 200; i++) {
-		sourceCode.append(
+	for (int i = 0; i < 200; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		sourceCode.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			"    	\"abcdef\" + a + b + c + d + e + f + " +
 			"\" ghijk" +
 			"pqrstu\" +\n");
 	}
-	sourceCode.append(
+	sourceCode.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			"    \"abcdef\" + a + b + c + d + e + \" ghijk" +
 			"abcdefgh" +
 			"abcdefgh\");\n" +
@@ -1958,12 +1958,12 @@ public void testIssue1164b() {
 		null,
 		JavacTestOptions.JavacHasABug.JavacThrowsAnException /* stack overflow */); // transient, platform-dependent
 }
-public void testIssue1359() {
+public void testIssue1359() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9)
 		return;
 
-	StringBuilder fileContents = new StringBuilder();
-	fileContents.append("""
+	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	public class X
 	{
 		public static void main(String[] args)
@@ -1984,17 +1984,17 @@ public void testIssue1359() {
 			//@formatter:off
 					        methodWithManyArguments(l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,
 	""");
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			for (int k = 0; k < 16; k++) {
-				fileContents.append("(int)(l+methodWithManyArguments(l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,\n");
+	for (int i = 0; i < 4; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (int j = 0; j < 4; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int k = 0; k < 16; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				fileContents.append("(int)(l+methodWithManyArguments(l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,l,\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			fileContents.append("\n");
+			fileContents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		fileContents.append("// --- SUPERBLOCK ---\n");
-		fileContents.append("\n");
+		fileContents.append("// --- SUPERBLOCK ---\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		fileContents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append("""
+	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					0
 
 					)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
@@ -2043,8 +2043,8 @@ public void testIssue1359() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5020
 // VerifyError: Instruction type does not match stack map - Regression in String-switch dispatch for methods exceeding 32 KB
-public void testIssue5020() {
-	StringBuilder sourceCode = new StringBuilder(
+public void testIssue5020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder sourceCode = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"""
 			public class X {
 			    public int run(String label) {
@@ -2056,11 +2056,11 @@ public void testIssue5020() {
 
 			""");
 
-	for (int i = 0; i < 49; i++) {
-		for (int j = 0; j < 100; j++)
-			sourceCode.append("\t\t		x += " + j + "; y = x ^ y;\n");
+	for (int i = 0; i < 49; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (int j = 0; j < 100; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			sourceCode.append("\t\t		x += " + j + "; y = x ^ y;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	sourceCode.append(
+	sourceCode.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			"""
 			    				label = "B";
 			                    continue loop;

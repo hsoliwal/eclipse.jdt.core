@@ -73,11 +73,11 @@ public JavaElement getPrimaryElement(boolean checkOwner) {
  */
 @Override
 protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-	buffer.append(tabString(tab));
-	buffer.append("package "); //$NON-NLS-1$
+	buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("package "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	toStringName(buffer);
 	if (info == null) {
-		buffer.append(" (not open)"); //$NON-NLS-1$
+		buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 }

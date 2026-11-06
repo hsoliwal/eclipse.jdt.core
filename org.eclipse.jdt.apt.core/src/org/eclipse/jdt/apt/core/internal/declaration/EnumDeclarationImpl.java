@@ -48,8 +48,8 @@ public class EnumDeclarationImpl extends ClassDeclarationImpl implements EnumDec
     {
         final ITypeBinding enumBinding = getDeclarationBinding();
         final IVariableBinding[] fields = enumBinding.getDeclaredFields();
-        final List<EnumConstantDeclaration> results = new ArrayList<>(4);
-        for( IVariableBinding field : fields ){
+        final List<EnumConstantDeclaration> results = new ArrayList<>(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+        for( IVariableBinding field : fields ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             if( field.isEnumConstant() ){
                 final Declaration mirrorDecl = Factory.createDeclaration(field, _env);
                 if( mirrorDecl  != null )

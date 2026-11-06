@@ -129,7 +129,7 @@ public class SingleVariableDeclaration extends VariableDeclaration {
 	private static final List PROPERTY_DESCRIPTORS_8_0;
 
 	static {
-		List propertyList = new ArrayList(6);
+		List propertyList = new ArrayList(6); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SingleVariableDeclaration.class, propertyList);
 		addProperty(MODIFIERS_PROPERTY, propertyList);
 		addProperty(TYPE_PROPERTY, propertyList);
@@ -138,7 +138,7 @@ public class SingleVariableDeclaration extends VariableDeclaration {
 		addProperty(INITIALIZER_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS_2_0 = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(7);
+		propertyList = new ArrayList(7); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SingleVariableDeclaration.class, propertyList);
 		addProperty(MODIFIERS2_PROPERTY, propertyList);
 		addProperty(TYPE_PROPERTY, propertyList);
@@ -148,7 +148,7 @@ public class SingleVariableDeclaration extends VariableDeclaration {
 		addProperty(INITIALIZER_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS_3_0 = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(8);
+		propertyList = new ArrayList(8); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SingleVariableDeclaration.class, propertyList);
 		addProperty(MODIFIERS2_PROPERTY, propertyList);
 		addProperty(TYPE_PROPERTY, propertyList);
@@ -264,7 +264,7 @@ public class SingleVariableDeclaration extends VariableDeclaration {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final int internalGetSetIntProperty(SimplePropertyDescriptor property, boolean get, int value) {
 		if (property == MODIFIERS_PROPERTY) {
 			if (get) {
@@ -300,7 +300,7 @@ public class SingleVariableDeclaration extends VariableDeclaration {
 		return super.internalGetSetBooleanProperty(property, get, value);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == TYPE_PROPERTY) {
 			if (get) {
@@ -350,7 +350,7 @@ public class SingleVariableDeclaration extends VariableDeclaration {
 		return SINGLE_VARIABLE_DECLARATION;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTNode clone0(AST target) {
 		SingleVariableDeclaration result = new SingleVariableDeclaration(target);
 		result.setSourceRange(getStartPosition(), getLength());
@@ -383,7 +383,7 @@ public class SingleVariableDeclaration extends VariableDeclaration {
 		return matcher.match(this, other);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	void accept0(ASTVisitor visitor) {
 		boolean visitChildren = visitor.visit(this);
 		if (visitChildren) {
@@ -436,7 +436,7 @@ public class SingleVariableDeclaration extends VariableDeclaration {
 	 * @return the bit-wise or of <code>Modifier</code> constants
 	 * @see Modifier
 	 */
-	public int getModifiers() {
+	public int getModifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// more efficient than checking getAST().API_LEVEL
 		if (this.modifiers == null) {
 			// JLS2 behavior - bona fide property
@@ -446,7 +446,7 @@ public class SingleVariableDeclaration extends VariableDeclaration {
 			// performance could be improved by caching computed flags
 			// but this would require tracking changes to this.modifiers
 			int computedModifierFlags = Modifier.NONE;
-			for (Object x : modifiers()) {
+			for (Object x : modifiers()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (x instanceof Modifier) {
 					computedModifierFlags |= ((Modifier) x).getKeyword().toFlagValue();
 				}

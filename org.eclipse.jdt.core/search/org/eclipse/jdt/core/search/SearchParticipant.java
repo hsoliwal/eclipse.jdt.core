@@ -248,7 +248,7 @@ public abstract class SearchParticipant {
 	 * @param document the document to index
 	 * @param indexPath the location on the file system of the index
 	 */
-	public final void scheduleDocumentIndexing(SearchDocument document, IPath indexPath) {
+	public final void scheduleDocumentIndexing(SearchDocument document, IPath indexPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath documentPath = new Path(document.getPath());
 		Object file = JavaModel.getTarget(documentPath, true);
 		IPath containerPath = documentPath;

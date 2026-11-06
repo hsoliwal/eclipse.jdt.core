@@ -50,7 +50,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	private String withMissingPatterns(String message, String missingPatterns) {
 		if (this.complianceLevel < ClassFileConstants.JDK27)
 			return message;
-		return message + ", or add the missing case patterns: " + missingPatterns;
+		return message + ", or add the missing case patterns: " + missingPatterns; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// Enables the tests to run individually
 	protected Map<String, String> getCompilerOptions(boolean preview) {
@@ -83,7 +83,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 		runner.expectedJavacOutputString = javacLog;
 		runner.runNegativeTest();
 	}
-	public void test000a() {
+	public void test000a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_15);
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_15);
@@ -111,7 +111,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_16);
 		options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_16);
 	}
-	public void test000b() {
+	public void test000b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.getLatestJDKLevel())
 			return;
 		Map<String, String> options = getCompilerOptions(true);
@@ -128,7 +128,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 						"	}\n" +
 						"}\n",
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in X1.java (at line 0)\n" +
 				"	public class X1 {\n" +
 				"	^\n" +
@@ -159,7 +159,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"",
 				options);
 	}
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -183,7 +183,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -208,7 +208,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test003a() {
+	public void test003a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		String[] testFiles =
 				new String[] {
@@ -238,7 +238,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -264,7 +264,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -287,7 +287,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"100",
 				options);
 	}
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -309,7 +309,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"abcd",
 				options);
 	}
-	public void test006a() {
+	public void test006a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -347,7 +347,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test006b() {
+	public void test006b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -385,7 +385,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test006c() {
+	public void test006c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -415,7 +415,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test006d() {
+	public void test006d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -445,7 +445,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -487,7 +487,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test008() {
+	public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -513,7 +513,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"s:abcd",
 				options);
 	}
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -539,7 +539,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"s:abcd",
 				options);
 	}
-	public void test010() {
+	public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -565,7 +565,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"s:abcd",
 				options);
 	}
-	public void test011() {
+	public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -596,7 +596,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test012() {
+	public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -631,7 +631,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test013() {
+	public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -665,7 +665,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test014() {
+	public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -695,7 +695,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test014a() {
+	public void test014a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -725,7 +725,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test014b() {
+	public void test014b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -755,7 +755,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test014c() {
+	public void test014c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -785,7 +785,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test014d() {
+	public void test014d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -807,7 +807,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"else:abcd",
 				options);
 	}
-	public void test014e() {
+	public void test014e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -832,7 +832,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	 * Test that when pattern tests for false and if doesn't complete
 	 * normally, then the variable is available beyond the if statement
 	 */
-	public void test015() {
+	public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -859,7 +859,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	 * Test that when pattern tests for false and if doesn't complete
 	 * normally, then the variable is available beyond the if statement
 	 */
-	public void test015a() {
+	public void test015a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -884,7 +884,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	 * Test that when pattern tests for false and if completes
 	 * normally, then the variable is not available beyond the if statement
 	 */
-	public void test015b() {
+	public void test015b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -915,7 +915,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test016() {
+	public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -934,7 +934,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"true",
 				options);
 	}
-	public void test017() {
+	public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -964,7 +964,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	/* Test that the scopes of pattern variable in a block doesn't affect
 	 * another outside but declared after the block
 	 */
-	public void test018() {
+	public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -991,7 +991,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	/* Test that the scopes of pattern variable in a block doesn't affect
 	 * another outside but declared before the block
 	 */
-	public void test019() {
+	public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -1017,7 +1017,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	/* Test that we still detect duplicate pattern variable declarations
 	 */
-	public void test019b() {
+	public void test019b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1050,7 +1050,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	/* Test that we report subtypes of pattern variables used in the same stmt
 	 * As of Java 21, we no longer report error for the above
 	 */
-	public void test020() {
+	public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1090,7 +1090,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	/* Test that we allow consequent pattern expressions in the same statement
 	 */
-	public void test020a() {
+	public void test020a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -1111,7 +1111,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	/* Test that we allow consequent pattern expressions in the same statement
 	 */
-	public void test021() {
+	public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1146,7 +1146,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	/* Test that we allow pattern expressions in a while statement
 	 */
-	public void test022() {
+	public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -1167,7 +1167,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"one\non\no",
 				options);
 	}
-	public void test022a() {
+	public void test022a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1205,7 +1205,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test022b() {
+	public void test022b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1233,7 +1233,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test022c() {
+	public void test022c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -1256,7 +1256,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	/* Test pattern expressions in a while statement with break
 	 */
-	public void test023() {
+	public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1290,7 +1290,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test023a() {
+	public void test023a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1326,7 +1326,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	/* Test pattern expressions in a while statement with no break
 	 */
-	public void test023b() {
+	public void test023b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1361,7 +1361,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				options);
 	}
 	// Same as above but with do while
-	public void test023c() {
+	public void test023c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1395,7 +1395,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test024a() {
+	public void test024a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -1416,7 +1416,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"one",
 				options);
 	}
-	public void test024b() {
+	public void test024b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -1441,7 +1441,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	 * It's not a problem to define the same var in two operands of a binary expression,
 	 * but then it is not in scope below.
 	 */
-	public void test025() {
+	public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1469,7 +1469,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test025a() {
+	public void test025a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1497,7 +1497,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test025b() {
+	public void test025b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -1519,7 +1519,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"none",
 				options);
 	}
-	public void test025c() {
+	public void test025c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -1545,7 +1545,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	 * It's not allowed to have two pattern variables with same name in the
 	 * same scope
 	 */
-	public void test026() {
+	public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1577,7 +1577,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	 * It's not allowed to have two pattern variables with same name in the
 	 * same scope
 	 */
-	public void test026a() {
+	public void test026a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1609,7 +1609,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	 * It's not a problem to define the same var in two operands of a binary expression,
 	 * but then it is not in scope below.
 	 */
-	public void test026b() {
+	public void test026b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -1637,7 +1637,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				options);
 	}
-	public void test027() {
+	public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X27.java",
@@ -1656,7 +1656,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"",
 				getCompilerOptions(true));
 	}
-	public void test028() {
+	public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X28.java",
@@ -1675,7 +1675,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"one\ntwo",
 				getCompilerOptions(true));
 	}
-	public void test029() {
+	public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X29.java",
@@ -1698,7 +1698,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	 * Test that pattern variables are accepted in initialization of a for statement,
 	 * but unavailable in the body if uncertain which if instanceof check was true
 	 */
-	public void test030() {
+	public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X30.java",
@@ -1725,7 +1725,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				getCompilerOptions(true));
 	}
-	public void test031() {
+	public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X31.java",
@@ -1762,7 +1762,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				getCompilerOptions(true));
 	}
-	public void test032() {
+	public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X32.java",
@@ -1787,7 +1787,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"null",
 				getCompilerOptions(false));
 	}
-	public void test032a() {
+	public void test032a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X32.java",
@@ -1812,7 +1812,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"one",
 				getCompilerOptions(false));
 	}
-	public void test033() {
+	public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X33.java",
@@ -1846,7 +1846,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				getCompilerOptions(true));
 	}
-	public void test034() {
+	public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X34.java",
@@ -1881,7 +1881,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				getCompilerOptions(true));
 	}
-	public void test035() {
+	public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X35.java",
@@ -1921,7 +1921,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				getCompilerOptions(false));
 	}
-	public void test036() {
+	public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X36.java",
@@ -1945,7 +1945,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"one",
 				getCompilerOptions(false));
 	}
-	public void test037() {
+	public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X37.java",
@@ -1972,7 +1972,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				getCompilerOptions(true));
 	}
-	public void test038() {
+	public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X38.java",
@@ -2000,7 +2000,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				getCompilerOptions(true));
 	}
-	public void test039() {
+	public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X39.java",
@@ -2019,7 +2019,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"one",
 				getCompilerOptions(true));
 	}
-	public void test040() {
+	public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X40.java",
@@ -2045,7 +2045,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"then_x",
 				getCompilerOptions(true));
 	}
-	public void test041() {
+	public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X41.java",
@@ -2071,7 +2071,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"else_x",
 				getCompilerOptions(true));
 	}
-	public void test042() {
+	public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X42.java",
@@ -2097,7 +2097,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"else_x",
 				getCompilerOptions(true));
 	}
-	public void test043() {
+	public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X43.java",
@@ -2125,7 +2125,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"true",
 				getCompilerOptions(true));
 	}
-	public void test044() {
+	public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		String old = compilerOptions.get(CompilerOptions.OPTION_PreserveUnusedLocal);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2152,7 +2152,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, old);
 	}
-	public void test045() {
+	public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		String old = compilerOptions.get(CompilerOptions.OPTION_PreserveUnusedLocal);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2172,7 +2172,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, old);
 	}
-	public void test046() {
+	public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		String old = compilerOptions.get(CompilerOptions.OPTION_PreserveUnusedLocal);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2192,7 +2192,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, old);
 	}
-	public void test047() {
+	public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		String old = compilerOptions.get(CompilerOptions.OPTION_PreserveUnusedLocal);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2214,7 +2214,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, old);
 	}
-	public void test048() {
+	public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		String old = compilerOptions.get(CompilerOptions.OPTION_PreserveUnusedLocal);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2236,7 +2236,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, old);
 	}
-	public void test049() {
+	public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		String old = compilerOptions.get(CompilerOptions.OPTION_PreserveUnusedLocal);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2258,7 +2258,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, old);
 	}
-	public void test050() {
+	public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		String old = compilerOptions.get(CompilerOptions.OPTION_PreserveUnusedLocal);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2289,7 +2289,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, old);
 	}
-	public void test051() {
+	public void test051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		String old = compilerOptions.get(CompilerOptions.OPTION_PreserveUnusedLocal);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2313,7 +2313,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, old);
 	}
-	public void test052() {
+	public void test052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(false);
 		String old = compilerOptions.get(CompilerOptions.OPTION_PreserveUnusedLocal);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2347,7 +2347,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 		compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, old);
 	}
-	public void testBug562392a() {
+	public void testBug562392a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2369,7 +2369,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"true",
 				compilerOptions);
 		}
-	public void testBug562392b() {
+	public void testBug562392b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -2402,7 +2402,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 		}
-	public void testBug562392c() {
+	public void testBug562392c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -2435,7 +2435,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 		}
-	public void testBug562392d() {
+	public void testBug562392d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -2476,7 +2476,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-	public void testBug562392e() {
+	public void testBug562392e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -2502,7 +2502,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-	public void testBug562392f() {
+	public void testBug562392f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -2532,7 +2532,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-	public void testBug562392g() {
+	public void testBug562392g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2558,7 +2558,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"true",
 				compilerOptions);
 	}
-	public void testBug562392h() {
+	public void testBug562392h() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -2590,7 +2590,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-	public void testBug562392i() {
+	public void testBug562392i() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_15);
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_15);
@@ -2626,7 +2626,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_16);
 		options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_16);
 	}
-	public void testBug562392j() {
+	public void testBug562392j() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2651,7 +2651,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"",
 				compilerOptions);
 	}
-	public void test053() {
+	public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2672,7 +2672,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"y",
 				compilerOptions);
 	}
-	public void test054() {
+	public void test054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2692,7 +2692,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"x",
 				compilerOptions);
 	}
-	public void test055() {
+	public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2718,7 +2718,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 	// Positive - Test conflicting pattern variable and lambda argument in for loop
-	public void test056() {
+	public void test056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2748,7 +2748,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 	// Positive - Test conflicting pattern variable and lambda argument in for loop (block)
-	public void test056a() {
+	public void test056a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2781,7 +2781,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 	// Positive - Test conflicting pattern variable and lambda argument in if
-	public void test056b() {
+	public void test056b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2811,7 +2811,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 	// Positive - Test conflicting pattern variable and lambda argument in if
-	public void test056d() {
+	public void test056d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -2852,7 +2852,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	 * Test we report only one duplicate variable, i.e., in THEN stmt
 	 * where pattern variable is in scope.
 	 */
-	public void test057() {
+	public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -2881,7 +2881,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 		}
-	public void test058() {
+	public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -2907,7 +2907,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-	public void test059() {
+	public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2930,7 +2930,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"count:1 i:10",
 				compilerOptions);
 	}
-	public void test060() {
+	public void test060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2953,7 +2953,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"count:1 i:11",
 				compilerOptions);
 	}
-	public void test061() {
+	public void test061() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -2974,7 +2974,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"PASS",
 				compilerOptions);
 	}
-	public void test062() {
+	public void test062() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3004,7 +3004,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 	// Same as above, but pattern variable in scope in false of conditional expression
-	public void test063() {
+	public void test063() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3034,7 +3034,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 	// Test that pattern variables are seen by body of lamda expressions
-	public void test063a() {
+	public void test063a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3064,7 +3064,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 	// Test that pattern variables are seen by body of anonymous class creation
-	public void test063b() {
+	public void test063b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3105,7 +3105,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// Test that pattern variables are shadowed by parameters in an anonymous class
 	// creation
-	public void test063c() {
+	public void test063c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -3141,7 +3141,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 					"2",
 					compilerOptions);
 	}
-	public void test064() {
+	public void test064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -3171,7 +3171,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"false",
 				compilerOptions);
 	}
-	public void test065() {
+	public void test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -3195,7 +3195,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"after:foo",
 				compilerOptions);
 	}
-	public void test066() {
+	public void test066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -3216,7 +3216,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"field x",
 				compilerOptions);
 	}
-	public void test067() {
+	public void test067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -3237,7 +3237,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"field x",
 				compilerOptions);
 	}
-	public void test068() {
+	public void test068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -3257,7 +3257,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"X",
 				compilerOptions);
 	}
-	public void test069() {
+	public void test069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3286,7 +3286,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 
-	public void test070() {
+	public void test070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -3310,7 +3310,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"----------\n");
 	}
 
-	public void test071() {
+	public void test071() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3343,7 +3343,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 
-	public void test072() {
+	public void test072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3376,7 +3376,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-	public void test073() {
+	public void test073() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -3403,7 +3403,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"	at X.main(X.java:14)",
 				compilerOptions);
 	}
-	public void test074() {
+	public void test074() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3430,7 +3430,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-	public void test075() {
+	public void test075() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -3449,7 +3449,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"hello",
 				compilerOptions);
 	}
-	public void test076() {
+	public void test076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3477,7 +3477,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 	// Test that a non final pattern variable can be assigned again
-	public void test077() {
+	public void test077() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -3498,7 +3498,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 	// Test that a final pattern variable cannot be assigned again
-	public void test078() {
+	public void test078() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3524,7 +3524,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-	public void test079() {
+	public void test079() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3551,7 +3551,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				compilerOptions);
 	}
 	// test that we allow final for a pattern instanceof variable
-	public void test080() {
+	public void test080() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
 				new String[] {
@@ -3570,7 +3570,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"X",
 				compilerOptions);
 	}
-	public void test081() {
+	public void test081() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3653,7 +3653,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-	public void testBug570831a() {
+	public void testBug570831a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3684,7 +3684,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-	public void testBug570831b() {
+	public void testBug570831b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -3716,7 +3716,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-	public void testBug572380_1() {
+	public void testBug572380_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		runConformTest(
 				new String[] {
@@ -3744,7 +3744,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"true",
 				options);
 	}
-	public void testBug572380_2() {
+	public void testBug572380_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		runConformTest(
 				new String[] {
@@ -3767,7 +3767,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"true",
 				options);
 	}
-    public void testBug574892() {
+    public void testBug574892() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         Map<String, String> options = getCompilerOptions(false);
         runConformTest(
                 new String[] {
@@ -3787,7 +3787,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
                 "true",
                 options);
     }
-	public void testBug572431_1() {
+	public void testBug572431_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		runConformTest(
 				new String[] {
@@ -3808,7 +3808,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				options);
 
 	}
-	public void testBug572431_2() {
+	public void testBug572431_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		runConformTest(
 				new String[] {
@@ -3831,7 +3831,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				options);
 
 	}
-	public void testBug572431_3() {
+	public void testBug572431_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		runConformTest(
 				new String[] {
@@ -3851,7 +3851,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				options);
 
 	}
-	public void testBug572431_4() {
+	public void testBug572431_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		runConformTest(
 				new String[] {
@@ -3871,7 +3871,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				options);
 
 	}
-	public void testBug572431_5() {
+	public void testBug572431_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		runConformTest(
 				new String[] {
@@ -3892,7 +3892,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				options);
 
 	}
-	public void testBug572431_6() {
+	public void testBug572431_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(false);
 		runConformTest(
 				new String[] {
@@ -3918,7 +3918,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				options);
 
 	}
-	public void testBug573880() {
+	public void testBug573880() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK17)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
@@ -3943,7 +3943,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 	}
-    public void testBug574906() {
+    public void testBug574906() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         Map<String, String> options = getCompilerOptions(false);
         runConformTest(
                 new String[] {
@@ -3961,7 +3961,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
                 "true",
                 options);
     }
-    public void testBug575035() throws ClassFormatException, IOException {
+    public void testBug575035() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         Map<String, String> options = getCompilerOptions(false);
     	String source =
     			"import java.lang.annotation.ElementType;\n" +
@@ -4046,7 +4046,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
                 options);
 
     }
-	public void testBug578628_1() {
+	public void testBug578628_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK18)
 			return;
 		runNegativeTest(
@@ -4079,7 +4079,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"----------\n",
 				false);
 	}
-	public void testBug578628_1a() {
+	public void testBug578628_1a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK18)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
@@ -4103,7 +4103,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"false",
 				compilerOptions);
 	}
-	public void testBug578628_2() {
+	public void testBug578628_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK18)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
@@ -4127,7 +4127,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"true",
 				compilerOptions);
 	}
-	public void testBug578628_3() {
+	public void testBug578628_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK18)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
@@ -4150,7 +4150,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"false",
 				compilerOptions);
 	}
-	public void testBug578628_4() {
+	public void testBug578628_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
@@ -4176,7 +4176,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"true",
 				compilerOptions);
 	}
-	public void testGH1726() {
+	public void testGH1726() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
@@ -4203,7 +4203,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1725
 	// [21] Wrongly needing a default case for a switch expression
-	public void testGH1725() {
+	public void testGH1725() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
@@ -4241,7 +4241,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1725
 	// [21] Wrongly needing a default case for a switch expression
-	public void testGH1725_2() {
+	public void testGH1725_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 
@@ -4275,7 +4275,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 						}
 						""",
 				},
-				"""
+				""" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				----------
 				1. ERROR in X.java (at line 15)
 					return switch (a) {
@@ -4289,7 +4289,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1759
 	// Pattern variable is not recognized in AND_AND_Expression
-	public void testGHI1759() {
+	public void testGHI1759() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		runConformTest(
 				new String[] {
@@ -4313,7 +4313,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1759
 	// Pattern variable is not recognized in AND_AND_Expression
-	public void testGHI1759_2() {
+	public void testGHI1759_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		runConformTest(
 				new String[] {
@@ -4337,7 +4337,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1759
 	// Pattern variable is not recognized in AND_AND_Expression
-	public void testGHI1759_3() {
+	public void testGHI1759_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		runConformTest(
 				new String[] {
@@ -4362,7 +4362,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1485
 	// ECJ hangs when pattern matching code is used in a nested conditional expression.
-	public void testGHI1485() {
+	public void testGHI1485() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		runConformTest(
@@ -4403,7 +4403,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1887
 	// [Patterns] ECJ tolerates erroneous redeclaration of pattern bindings in some cases
-	public void testGHI1887() {
+	public void testGHI1887() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		runNegativeTest(
 				new String[] {
@@ -4519,7 +4519,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1406
 	// [Patterns] Bizarre code generation for type test patterns
-    public void testGH1406() throws ClassFormatException, IOException {
+    public void testGH1406() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         Map<String, String> options = getCompilerOptions(false);
     	String source =
     			"""
@@ -4554,7 +4554,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
     }
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1406
 	// [Patterns] Bizarre code generation for type test patterns
-    public void testGH1406_2() throws ClassFormatException, IOException {
+    public void testGH1406_2() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         Map<String, String> options = getCompilerOptions(false);
     	String source =
     			"""
@@ -4594,7 +4594,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 
     }
 	// Test for regression caused by fix for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1889
-	public void testIssue1889() {
+	public void testIssue1889() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4623,7 +4623,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"OK!");
 	}
 	// Test for regression caused by fix for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1889
-	public void testIssue1889_2() {
+	public void testIssue1889_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4644,7 +4644,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				+ "true");
 	}
 	// Test for regression caused by fix for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1889
-	public void testIssue1889_3() {
+	public void testIssue1889_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4665,7 +4665,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				+ "false");
 	}
 	// Test for regression caused by fix for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1889
-	public void testIssue1889_4() {
+	public void testIssue1889_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4686,7 +4686,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				+ "false");
 	}
 	// Test for regression caused by fix for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1889
-	public void testIssue1889_5() {
+	public void testIssue1889_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4707,7 +4707,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				+ "false");
 	}
 	// Test for regression caused by fix for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1889
-	public void testIssue1889_6() {
+	public void testIssue1889_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4728,7 +4728,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				+ "false");
 	}
 	// Test for regression caused by fix for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1889
-	public void testIssue1889_7() {
+	public void testIssue1889_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4749,7 +4749,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				+ "false");
 	}
 	// Test for regression caused by fix for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1889
-	public void testIssue1889_8() {
+	public void testIssue1889_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4770,7 +4770,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				+ "false");
 	}
 	// Test for regression caused by fix for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1889
-	public void testIssue1889_9() {
+	public void testIssue1889_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4791,7 +4791,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				+ "false");
 	}
 	// Test for regression caused by fix for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1889
-	public void testIssue1889_10() {
+	public void testIssue1889_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4811,7 +4811,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"true\n"
 				+ "true");
 	}
-	public void testWhileLoop() {
+	public void testWhileLoop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4834,7 +4834,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"while\n"
 				+ "!while");
 	}
-	public void testForLoop() {
+	public void testForLoop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4859,7 +4859,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2104
 	// [Patterns] Missing boxing conversion after instanceof leads to verify error
-	public void testBoxing() {
+	public void testBoxing() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK21)
 			return;
 		runConformTest(
@@ -4891,7 +4891,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	// loop when the only exit from the loop body is a 'break' to an *enclosing* label
 	// (here 'break X' leaves the block X, not the while), so normal loop completion is
 	// the only way to reach 'a2 = s;' and 's' is definitely matched there.
-	public void testLabeledBreakOutOfEnclosingBlock() {
+	public void testLabeledBreakOutOfEnclosingBlock() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4919,7 +4919,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	// A pattern variable from a labeled while-condition must be in scope after the loop
 	// when the body cannot break out at all (it always throws), so the loop can only be
 	// left by normal completion where the pattern is matched.
-	public void testLabeledWhileNoBreak() {
+	public void testLabeledWhileNoBreak() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4945,7 +4945,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	// When 'break X' targets the while loop's own label, the loop may be left with the
 	// pattern *unmatched*, so the pattern variable must NOT be in scope afterwards and a
 	// subsequent 'String s' is a legal fresh declaration (must not clash).
-	public void testLabeledWhileBreakThenRedeclare() {
+	public void testLabeledWhileBreakThenRedeclare() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -4969,7 +4969,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// When 'break X' targets the while loop's own label, the loop can complete with the
 	// pattern unmatched, so the pattern variable must not be resolvable after the loop.
-	public void testLabeledWhileBreakExitsLoop() {
+	public void testLabeledWhileBreakExitsLoop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {
@@ -5005,7 +5005,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	// An inner 'break' that targets the while loop (not the enclosing label X) can leave
 	// the loop with the pattern unmatched, so the pattern variable must not be resolvable
 	// after the loop even though control also reaches there via 'break X'.
-	public void testInnerBreakExitsWhile() {
+	public void testInnerBreakExitsWhile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
 				new String[] {

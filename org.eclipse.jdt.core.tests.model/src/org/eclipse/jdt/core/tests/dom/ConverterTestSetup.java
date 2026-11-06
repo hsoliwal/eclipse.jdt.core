@@ -56,7 +56,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 
 	protected IPath getConverterJCLPath(String compliance) {
 		String jarName = jclMinName(compliance);
-		return new Path(getExternalPath() + jarName + compliance + ".jar"); //$NON-NLS-1$
+		return new Path(getExternalPath() + jarName + compliance + ".jar"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	protected IPath getConverterJCLSourcePath() {
@@ -65,7 +65,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 
 	protected IPath getConverterJCLSourcePath(String compliance) {
 		String jarName = jclMinName(compliance);
-		return new Path(getExternalPath() + jarName + compliance + "src.zip"); //$NON-NLS-1$
+		return new Path(getExternalPath() + jarName + compliance + "src.zip"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	protected IPath getConverterJCLRootSourcePath() {
@@ -75,7 +75,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 	/**
 	 * Reset the jar placeholder and delete project.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void tearDownSuite() throws Exception {
 		this.ast = null;
 		if (TEST_SUITES == null) {
@@ -135,7 +135,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 	protected String getExternalJCLPathString(String compliance) {
 		return null;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setUpJCLClasspathVariables(String compliance, boolean useFullJCL) throws JavaModelException, IOException {
 		if (useFullJCL) {
 			 super.setUpJCLClasspathVariables(compliance, useFullJCL);
@@ -267,7 +267,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 	/**
 	 * Create project and set the jar placeholder.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setUpSuite() throws Exception {
 		super.setUpSuite();
 
@@ -307,27 +307,27 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 	}
 
 	protected void assertExtraDimensionsEqual(String message, List dimensions, String expected) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		Iterator iter = dimensions.iterator();
-		while(iter.hasNext()) {
+		while(iter.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Dimension dim = (Dimension) iter.next();
-			buffer.append(convertAnnotationsList(dim.annotations()));
+			buffer.append(convertAnnotationsList(dim.annotations())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (iter.hasNext()) {
-				buffer.append("[] ");
+				buffer.append("[] "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append("[]");
+				buffer.append("[]"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		assertEquals(message, expected, buffer.toString());
 	}
 
 	protected String convertAnnotationsList(List annotations) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		Iterator iter = annotations.iterator();
-		while (iter.hasNext()) {
-			buffer.append('@');
-			buffer.append(((Annotation) iter.next()).getTypeName().getFullyQualifiedName());
-			buffer.append(' ');
+		while (iter.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(((Annotation) iter.next()).getTypeName().getFullyQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buffer.toString();
 	}
@@ -395,251 +395,251 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 	class NullBindingVerifier extends ASTVisitor {
 
 		public void endVisit(ArrayAccess node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(ArrayCreation node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(ArrayInitializer node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(Assignment node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(BooleanLiteral node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(CastExpression node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(CharacterLiteral node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(ClassInstanceCreation node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(ConditionalExpression node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(FieldAccess node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(InfixExpression node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(InstanceofExpression node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(MarkerAnnotation node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(MethodInvocation node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(NormalAnnotation node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(NullLiteral node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(NumberLiteral node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(ParenthesizedExpression node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(PostfixExpression node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(PrefixExpression node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(SingleMemberAnnotation node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(StringLiteral node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(SuperFieldAccess node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(SuperMethodInvocation node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(ThisExpression node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(TypeLiteral node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(VariableDeclarationExpression node) {
-			assertNotNull(node+" should have a binding", node.resolveTypeBinding());
+			assertNotNull(node+" should have a binding", node.resolveTypeBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(AnnotationTypeDeclaration node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(AnnotationTypeMemberDeclaration node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(AnonymousClassDeclaration node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(ArrayType node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(EnumDeclaration node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(ImportDeclaration node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(MemberRef node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(MethodDeclaration node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(ModuleDeclaration node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 		public void endVisit(MethodRef node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(PackageDeclaration node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(ParameterizedType node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(PrimitiveType node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(QualifiedName node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(QualifiedType node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(SimpleName node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(SimpleType node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(SingleVariableDeclaration node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(TypeDeclaration node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(TypeDeclarationStatement node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(TypeParameter node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(VariableDeclarationFragment node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
 		public void endVisit(WildcardType node) {
-			assertNotNull(node+" should have a binding", node.resolveBinding());
+			assertNotNull(node+" should have a binding", node.resolveBinding()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			super.endVisit(node);
 		}
 
@@ -648,7 +648,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 		return runJLS3Conversion(unit, resolveBindings, false);
 	}
 
-	public ASTNode runJLS3Conversion(ICompilationUnit unit, boolean resolveBindings, boolean bindingRecovery) {
+	public ASTNode runJLS3Conversion(ICompilationUnit unit, boolean resolveBindings, boolean bindingRecovery) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Create parser
 		ASTParser parser = ASTParser.newParser(getJLSFirst());
@@ -672,7 +672,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 		return runJLS4Conversion(unit, resolveBindings, false);
 	}
 
-	public ASTNode runJLS4Conversion(ICompilationUnit unit, boolean resolveBindings, boolean bindingRecovery) {
+	public ASTNode runJLS4Conversion(ICompilationUnit unit, boolean resolveBindings, boolean bindingRecovery) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Create parser
 		ASTParser parser = ASTParser.newParser(getJLSFirst());
@@ -696,7 +696,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 		return runJLS8Conversion(unit, resolveBindings, false);
 	}
 
-	public ASTNode runJLS8Conversion(ICompilationUnit unit, boolean resolveBindings, boolean bindingRecovery) {
+	public ASTNode runJLS8Conversion(ICompilationUnit unit, boolean resolveBindings, boolean bindingRecovery) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Create parser
         ASTParser parser = ASTParser.newParser(getJLSFirst());
 		parser.setSource(unit);
@@ -714,7 +714,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 		}
 		return result;
 	}
-	public ASTNode runConversion(int astLevel, ICompilationUnit unit, int position, boolean resolveBindings) {
+	public ASTNode runConversion(int astLevel, ICompilationUnit unit, int position, boolean resolveBindings) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Create parser
 		ASTParser parser = ASTParser.newParser(astLevel);
@@ -734,7 +734,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 		return result;
 	}
 
-	public ASTNode runConversion(int astLevel, IClassFile classFile, int position, boolean resolveBindings) {
+	public ASTNode runConversion(int astLevel, IClassFile classFile, int position, boolean resolveBindings) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Create parser
 		ASTParser parser = ASTParser.newParser(astLevel);
@@ -790,7 +790,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 		return (ASTNode) ((MethodInvocation) statement.getExpression()).arguments().get(0);
 	}
 
-	protected ASTNode getASTNode(org.eclipse.jdt.core.dom.CompilationUnit unit, int typeIndex, int bodyIndex, int statementIndex) {
+	protected ASTNode getASTNode(org.eclipse.jdt.core.dom.CompilationUnit unit, int typeIndex, int bodyIndex, int statementIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		BodyDeclaration bodyDeclaration = (BodyDeclaration) getASTNode(unit, typeIndex, bodyIndex);
 		if (bodyDeclaration instanceof MethodDeclaration) {
 			MethodDeclaration methodDeclaration = (MethodDeclaration) bodyDeclaration;
@@ -826,7 +826,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 
 	protected void checkSourceRange(ASTNode node, String expectedContents, String source) {
 		assertNotNull("The node is null", node); //$NON-NLS-1$
-		assertTrue("The node(" + node.getClass() + ").getLength() == 0", node.getLength() != 0); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue("The node(" + node.getClass() + ").getLength() == 0", node.getLength() != 0); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertTrue("The node.getStartPosition() == -1", node.getStartPosition() != -1); //$NON-NLS-1$
 		int length = node.getLength();
 		int start = node.getStartPosition();
@@ -839,7 +839,7 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 	}
 	protected void checkSourceRange(ASTNode node, String expectedContents, char[] source, boolean expectMalformed) {
 		assertNotNull("The node is null", node); //$NON-NLS-1$
-		assertTrue("The node(" + node.getClass() + ").getLength() == 0", node.getLength() != 0); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue("The node(" + node.getClass() + ").getLength() == 0", node.getLength() != 0); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertTrue("The node.getStartPosition() == -1", node.getStartPosition() != -1); //$NON-NLS-1$
 		int length = node.getLength();
 		int start = node.getStartPosition();
@@ -879,14 +879,14 @@ public abstract class ConverterTestSetup extends AbstractASTTests {
 		checkProblemMessages(expectedOutput, problems, length);
 	}
 
-	private void checkProblemMessages(String expectedOutput, final IProblem[] problems, final int length) {
+	private void checkProblemMessages(String expectedOutput, final IProblem[] problems, final int length) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (length != 0) {
 			if (expectedOutput != null) {
-				StringBuilder buffer = new StringBuilder();
-				for (int i = 0; i < length; i++) {
-					buffer.append(problems[i].getMessage());
+				StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append(problems[i].getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (i < length - 1) {
-						buffer.append('\n');
+						buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 				String actualOutput = String.valueOf(buffer);

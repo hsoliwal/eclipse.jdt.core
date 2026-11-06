@@ -184,7 +184,7 @@ public class IndexManagerTests extends ModifyingResourceTests {
 		assertEquals("No results found", 1, indexNames.get().size());
 	}
 
-	public void testDisableIndexingForRestrictedFile() throws Exception {
+	public void testDisableIndexingForRestrictedFile() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (SKIP_TESTS) return;
 		this.indexDisabledForTest = true;
 		IEclipsePreferences node = InstanceScope.INSTANCE.getNode(JavaCore.PLUGIN_ID);
@@ -226,17 +226,17 @@ public class IndexManagerTests extends ModifyingResourceTests {
 	private void changeFile(String path, String content) {
 		IFile file = getFile(path);
 		if (!file.exists()) {
-			throw new AssertionError("File expected at path " + path);
+			throw new AssertionError("File expected at path " + path); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		try {
 			file.setContents(content.getBytes(), IResource.FORCE, new NullProgressMonitor());
 		} catch (CoreException e) {
-			throw new AssertionError("Failed to update file " + e.getMessage(), e);
+			throw new AssertionError("Failed to update file " + e.getMessage(), e); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	private Optional<Set<String>> searchInMetaIndex(String indexQualifier) {
+	private Optional<Set<String>> searchInMetaIndex(String indexQualifier) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		waitUntilIndexesReady();
 		Optional<MetaIndex> index = null;
 		try {
@@ -252,7 +252,7 @@ public class IndexManagerTests extends ModifyingResourceTests {
 			try {
 				monitor.enterRead();
 				index.get().startQuery();
-				List<EntryResult> results = new ArrayList<>(2);
+				List<EntryResult> results = new ArrayList<>(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				results.addAll(safeList(index.get()
 						.query(new char[][] { IIndexConstants.META_INDEX_QUALIFIED_TYPE_QUALIFIER_REF,
 								IIndexConstants.META_INDEX_QUALIFIED_SUPER_TYPE_QUALIFIER_REF }, indexQualifier.toCharArray(),

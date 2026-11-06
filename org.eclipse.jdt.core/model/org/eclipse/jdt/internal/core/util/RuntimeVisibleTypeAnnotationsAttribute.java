@@ -44,7 +44,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute
 		if (length != 0) {
 			int readOffset = 8;
 			this.extendedAnnotations = new IExtendedAnnotation[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ExtendedAnnotation extendedAnnotation = new ExtendedAnnotation(classFileBytes, constantPool, offset + readOffset);
 				this.extendedAnnotations[i] = extendedAnnotation;
 				readOffset += extendedAnnotation.sizeInBytes();

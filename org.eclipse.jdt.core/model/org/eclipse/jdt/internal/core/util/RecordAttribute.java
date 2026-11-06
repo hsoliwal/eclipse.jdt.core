@@ -37,7 +37,7 @@ public class RecordAttribute extends ClassFileAttribute implements IRecordAttrib
 		if (length != 0) {
 			int readOffset = 8;
 			this.entries = new IComponentInfo[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.entries[i] = new ComponentInfo(classFileBytes, constantPool, offset + readOffset);
 				readOffset += this.entries[i].sizeInBytes();
 			}

@@ -29,7 +29,7 @@ public class ColorAnnotationProcessor implements AnnotationProcessor {
 		_env = env;
 	}
 
-	public void process() {
+	public void process() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		System.setProperty(PROP_KEY, "Beginning processing");
 		try {
 			TypeDeclaration typeDecl = _env.getTypeDeclaration("colortestpackage.ColorTest");
@@ -39,16 +39,16 @@ public class ColorAnnotationProcessor implements AnnotationProcessor {
 			Color color = colorAnno.color();
 
 			if (color != Color.RED)
-				throw new IllegalStateException("Expecting red, but got: " + color);
+				throw new IllegalStateException("Expecting red, but got: " + color); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			ColorWrapper colorWrapper = typeDecl.getAnnotation(ColorWrapper.class);
 			ColorAnnotation[] colorAnnoArray = colorWrapper.colors();
 
 			if (colorAnnoArray[0].color() != Color.GREEN)
-				throw new IllegalStateException("Expecting green, but got: " + color);
+				throw new IllegalStateException("Expecting green, but got: " + color); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			if (colorAnnoArray[1].color() != Color.BLUE)
-				throw new IllegalStateException("Expecting blue, but got: " + color);
+				throw new IllegalStateException("Expecting blue, but got: " + color); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		catch (Throwable t) {
 			t.printStackTrace();

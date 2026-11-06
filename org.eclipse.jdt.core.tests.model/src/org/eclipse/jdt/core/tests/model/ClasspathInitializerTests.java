@@ -58,8 +58,8 @@ public static class DefaultVariableInitializer implements VariablesInitializer.I
 	 * values is [<var name>, <var value>]*
 	 */
 	public DefaultVariableInitializer(String[] values) {
-		this.variableValues = new HashMap();
-		for (int i = 0; i < values.length; i+=2) {
+		this.variableValues = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (int i = 0; i < values.length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.variableValues.put(values[i], new Path(values[i+1]));
 		}
 	}
@@ -115,7 +115,7 @@ protected void tearDown() throws Exception {
 	super.tearDown();
 }
 
-public void testContainerInitializer01() throws CoreException {
+public void testContainerInitializer01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -133,7 +133,7 @@ public void testContainerInitializer01() throws CoreException {
 		deleteProject("P2");
 	}
 }
-public void testContainerInitializer02() throws CoreException {
+public void testContainerInitializer02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -160,7 +160,7 @@ public void testContainerInitializer02() throws CoreException {
 		deleteProject("P2");
 	}
 }
-public void testContainerInitializer03() throws CoreException {
+public void testContainerInitializer03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -196,7 +196,7 @@ public void testContainerInitializer03() throws CoreException {
 /* Ensure that initializer is not callled when resource tree is locked.
  * (regression test for bug 29585 Core Exception as resource tree is locked initializing classpath container)
  */
-public void testContainerInitializer04() throws CoreException {
+public void testContainerInitializer04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -232,7 +232,7 @@ public void testContainerInitializer04() throws CoreException {
 /*
  * 30920 - Stack overflow when container resolved to null
  */
-public void testContainerInitializer05() throws CoreException {
+public void testContainerInitializer05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		NullContainerInitializer nullInitializer = new NullContainerInitializer();
 		ContainerInitializer.setInitializer(nullInitializer);
@@ -289,7 +289,7 @@ public void testContainerInitializer05() throws CoreException {
  * doesn't throw a NPE
  * (regression test for bug 48818 NPE in delta processor)
   */
-public void testContainerInitializer06() throws CoreException {
+public void testContainerInitializer06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     ICompilationUnit workingCopy = null;
 	try {
 		createProject("P1");
@@ -333,7 +333,7 @@ public void testContainerInitializer06() throws CoreException {
  * Ensure that an OperationCanceledException goes through
  * (regression test for bug 59363 Should surface cancellation exceptions)
  */
-public void testContainerInitializer07() throws CoreException {
+public void testContainerInitializer07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		boolean gotException = false;
 		try {
@@ -361,17 +361,17 @@ public void testContainerInitializer07() throws CoreException {
  * Ensure that the stack doesn't blow up if initializer is missbehaving
  * (regression test for bug 61052 Flatten cp container initialization)
  */
-public void testContainerInitializer08() throws CoreException {
+public void testContainerInitializer08() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final int projectLength = 10;
 	final String[] projects = new String[projectLength];
-	for (int i = 0; i < projectLength; i++) {
-		projects[i] = "P" + i;
+	for (int i = 0; i < projectLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		projects[i] = "P" + i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	try {
 		String[] projectRefs = new String[(projectLength-1) * 2];
-		for (int i = 0; i < projectLength-1; i++) {
-			projectRefs[i*2] = "P" + i;
-			projectRefs[(i*2)+1] = "/P" + i + "/test.jar";
+		for (int i = 0; i < projectLength-1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			projectRefs[i*2] = "P" + i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			projectRefs[(i*2)+1] = "/P" + i + "/test.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		ContainerInitializer.setInitializer(new DefaultContainerInitializer(projectRefs) {
 			void foo(int n) {
@@ -380,7 +380,7 @@ public void testContainerInitializer08() throws CoreException {
 					return;
 				}
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				for (int i = 0; i < projectLength-1; i++) {
+				for (int i = 0; i < projectLength-1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					try {
 						JavaCore.create(root.getProject(projects[i])).getResolvedClasspath(true);
 					} catch (JavaModelException e) {
@@ -394,18 +394,18 @@ public void testContainerInitializer08() throws CoreException {
 				super.initialize(containerPath, project);
 			}
 		});
-		JavaCore.run(new IWorkspaceRunnable() {
-			public void run(IProgressMonitor monitor) throws CoreException {
-				for (int i = 0; i < projectLength; i++) {
+		JavaCore.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
+			public void run(IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+				for (int i = 0; i < projectLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					createProjectInWorkspaceRunnnable(projects[i]);
 					editFile(
-						"/" + projects[i] + "/.project",
-						"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+						"/" + projects[i] + "/.project", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"<projectDescription>\n" +
 						"	<name>" + projects[i] + "</name>\n" +
 						"	<comment></comment>\n" +
 						"	<projects>\n" +
-						(i == 0 ? "" : "<project>" + projects[i-1] + "</project>\n") +
+						(i == 0 ? "" : "<project>" + projects[i-1] + "</project>\n") + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"	</projects>\n" +
 						"	<buildSpec>\n" +
 						"		<buildCommand>\n" +
@@ -420,10 +420,10 @@ public void testContainerInitializer08() throws CoreException {
 						"</projectDescription>"
 					);
 					createFile(
-						"/" + projects[i] + "/.classpath",
-						"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+						"/" + projects[i] + "/.classpath", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"<classpath>\n" +
-						(i == 0 ? "" : "<classpathentry kind=\"src\" path=\"/" + projects[i-1] + "\"/>\n") +
+						(i == 0 ? "" : "<classpathentry kind=\"src\" path=\"/" + projects[i-1] + "\"/>\n") + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						"	<classpathentry kind=\"con\" path=\"org.eclipse.jdt.core.tests.model.TEST_CONTAINER\"/>\n" +
 						"	<classpathentry kind=\"output\" path=\"\"/>\n" +
 						"</classpath>"
@@ -442,7 +442,7 @@ public void testContainerInitializer08() throws CoreException {
  * that is being resolved.
  * (regression test for bug 61040 Should add protect for reentrance to #getResolvedClasspath)
  */
-public void testContainerInitializer09() throws CoreException {
+public void testContainerInitializer09() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		DefaultContainerInitializer initializer = new DefaultContainerInitializer(new String[] {"P1", "/P1/lib.jar"}) {
 			@Override
@@ -461,8 +461,8 @@ public void testContainerInitializer09() throws CoreException {
 			}
 		};
 		ContainerInitializer.setInitializer(initializer);
-		JavaCore.run(new IWorkspaceRunnable() {
-			public void run(IProgressMonitor monitor) throws CoreException {
+		JavaCore.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
+			public void run(IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				createProjectInWorkspaceRunnnable("P1");
 				editFile(
 					"/P1/.project",
@@ -506,7 +506,7 @@ public void testContainerInitializer09() throws CoreException {
  * without throwing a ConcurrentModificationException
  * (regression test for bug 63534 ConcurrentModificationException after "catching up")
  */
-public void testContainerInitializer10() throws CoreException {
+public void testContainerInitializer10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	class LogListener implements ILogListener {
     	IStatus loggedStatus;
         public void logging(IStatus status, String plugin) {
@@ -525,8 +525,8 @@ public void testContainerInitializer10() throws CoreException {
 	            getJavaModel().refreshExternalArchives(new IJavaElement[] {p1}, null);
 	        }
 		});
-		getWorkspace().run(new IWorkspaceRunnable() {
-            public void run(IProgressMonitor monitor) throws CoreException {
+		getWorkspace().run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
+            public void run(IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
                 p2.setRawClasspath(new IClasspathEntry[] {JavaCore.newSourceEntry(new Path("/P2/src"))}, new Path("/P2/bin"), null);
                 createProjectInWorkspaceRunnnable("P3");
                 editFile(
@@ -574,7 +574,7 @@ public void testContainerInitializer10() throws CoreException {
  * Ensure that a classpath initializer is not run on shutdown
  * (regression test for bug 93941 Classpath initialization on shutdown)
  */
-public void testContainerInitializer11() throws CoreException {
+public void testContainerInitializer11() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean hasExited = false;
 	try {
 		ContainerInitializer.setInitializer(null);
@@ -605,7 +605,7 @@ public void testContainerInitializer11() throws CoreException {
  * Ensure that the initializer is removed from the cache when the project is deleted
  * (regression test for bug 116072 cached classpath containers not removed when project deleted)
  */
-public void testContainerInitializer12() throws CoreException {
+public void testContainerInitializer12() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		ContainerInitializer.setInitializer(new DefaultContainerInitializer(new String[] {"P1", "/P1/lib.jar"}));
 		IJavaProject project =  createJavaProject(
@@ -649,11 +649,11 @@ public void testContainerInitializer12() throws CoreException {
  * Ensures that no resource deta is reported if a container that was not initialized is initialized with null
  * (regression test for bug 149043 Unresolvable classpath container leads to lots of scheduled jobs)
  */
-public void testContainerInitializer13() throws CoreException {
-	IResourceChangeListener listener = new IResourceChangeListener() {
-		StringBuilder buffer = new StringBuilder();
+public void testContainerInitializer13() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	IResourceChangeListener listener = new IResourceChangeListener() { //FLLDCIM: MARK — T07  ANONYMOUS
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		public void resourceChanged(IResourceChangeEvent event) {
-			this.buffer.append(event.getDelta().findMember(new Path("/P1")));
+			this.buffer.append(event.getDelta().findMember(new Path("/P1"))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public String toString() {
 			return this.buffer.toString();
@@ -692,7 +692,7 @@ public void testContainerInitializer13() throws CoreException {
  * the container to be initialized again
  * (regression test for bug 160005 Add protection about misbehaving container initializer)
  */
-public void testContainerInitializer14() throws CoreException {
+public void testContainerInitializer14() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -728,7 +728,7 @@ public void testContainerInitializer14() throws CoreException {
  * then the resulting container's classpath is not null
  * (regression test for bug 161846 Expanding a java project with invalid classpath container entries in Project Explorer causes CPU to stay at 100%)
  */
-public void testContainerInitializer15() throws CoreException {
+public void testContainerInitializer15() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		class Container extends DefaultContainerInitializer {
 			Container(String[] values) {
@@ -755,7 +755,7 @@ public void testContainerInitializer15() throws CoreException {
 /*
  * Ensure that an initializer cannot return a project entry that points to the project of the container (cycle).
  */
-public void testContainerInitializer16() throws CoreException {
+public void testContainerInitializer16() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		ContainerInitializer.setInitializer(new DefaultContainerInitializer(new String[] {"P1", "/P1"}));
 		JavaModelException exception = null;
@@ -783,11 +783,11 @@ public void testContainerInitializer16() throws CoreException {
  * Ensures that no resource deta is reported if a container is initialized right after startup  to the same value it had before shutdown.
  * (regression test for bug 175849 Project is touched on restart)
  */
-public void testContainerInitializer17() throws CoreException {
-	IResourceChangeListener listener = new IResourceChangeListener() {
-		StringBuilder buffer = new StringBuilder();
+public void testContainerInitializer17() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	IResourceChangeListener listener = new IResourceChangeListener() { //FLLDCIM: MARK — T07  ANONYMOUS
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		public void resourceChanged(IResourceChangeEvent event) {
-			this.buffer.append(event.getDelta().findMember(new Path("/P2")));
+			this.buffer.append(event.getDelta().findMember(new Path("/P2"))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public String toString() {
 			return this.buffer.toString();
@@ -840,7 +840,7 @@ public void testContainerInitializer17() throws CoreException {
  * Ensures that an unbound container marker is created if container is reset to null
  * (regression test for 182204 Deleting a JRE referenced by container does not result in unbound container problem)
  */
-public void testContainerInitializer18() throws CoreException {
+public void testContainerInitializer18() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		ContainerInitializer.setInitializer(new DefaultContainerInitializer(new String[] {"P1", "/P1/lib.jar"}));
 		IJavaProject p1 = createJavaProject(
@@ -867,7 +867,7 @@ public void testContainerInitializer18() throws CoreException {
  * Ensures that a container is not kept in the cache if no longer referenced on the classpath
  * (regression test for 139446 [build path] bug in the Edit Library dialog box, when changing the default JRE, and switching from alternate JRE to workspace default)
  */
-public void testContainerInitializer19() throws CoreException {
+public void testContainerInitializer19() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// setup
 		ContainerInitializer.setInitializer(new DefaultContainerInitializer(new String[] {"P1", "/P1/lib1.jar"}));
@@ -899,15 +899,15 @@ public void testContainerInitializer19() throws CoreException {
  * Ensures that container a container is not kept in the cache if no longer referenced on the classpath
  * (regression test for 136382 [classpath] Discard container if not referenced on classpath)
  */
-public void testContainerInitializer20() throws CoreException {
+public void testContainerInitializer20() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
-		final StringBuilder paths = new StringBuilder();
+		final StringBuilder paths = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		DefaultContainerInitializer initializer = new DefaultContainerInitializer(new String[] {"P", "/P/lib.jar"}) {
 			@Override
 			public void initialize(IPath containerPath, IJavaProject project) throws CoreException {
-				paths.append(containerPath);
-				paths.append('\n');
+				paths.append(containerPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				paths.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				super.initialize(containerPath, project);
 			}
 		};
@@ -928,7 +928,7 @@ public void testContainerInitializer20() throws CoreException {
 	}
 }
 
-public void testContainerInitializer21() throws CoreException {
+public void testContainerInitializer21() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createExternalFolder("externalLib");
@@ -939,7 +939,7 @@ public void testContainerInitializer21() throws CoreException {
 				new String[] {"org.eclipse.jdt.core.tests.model.TEST_CONTAINER"},
 				"");
 		IPackageFragmentRoot root = p2.getPackageFragmentRoot(getExternalResourcePath("externalLib"));
-		assertTrue(getExternalResourcePath("externalLib") + " should exist", root.exists());
+		assertTrue(getExternalResourcePath("externalLib") + " should exist", root.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		stopDeltas();
 		deleteExternalResource("externalLib");
@@ -948,7 +948,7 @@ public void testContainerInitializer21() throws CoreException {
 	}
 }
 
-public void testContainerInitializer22() throws CoreException {
+public void testContainerInitializer22() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createExternalFile("externalLib.abc", "");
@@ -959,7 +959,7 @@ public void testContainerInitializer22() throws CoreException {
 				new String[] {"org.eclipse.jdt.core.tests.model.TEST_CONTAINER"},
 				"");
 		IPackageFragmentRoot root = p2.getPackageFragmentRoot(getExternalResourcePath("externalLib.abc"));
-		assertTrue(getExternalResourcePath("externalLib.abc") + " should exist", root.exists());
+		assertTrue(getExternalResourcePath("externalLib.abc") + " should exist", root.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		stopDeltas();
 		deleteExternalResource("externalLib.abc");
@@ -968,7 +968,7 @@ public void testContainerInitializer22() throws CoreException {
 	}
 }
 
-public void testContainerInitializer23() throws CoreException {
+public void testContainerInitializer23() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		IFile lib = createFile("/P1/internalLib.abc", "");
@@ -992,7 +992,7 @@ public void testContainerInitializer23() throws CoreException {
  * Ensures that the value of a resolved classpath is correct if another thread is resolving the classpath concurrently
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=232478 )
  */
-public void testContainerInitializer24() throws Exception {
+public void testContainerInitializer24() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	BPThread.TIMEOUT = 30000; // wait 30s max
 	BPThread thread = new BPThread("getResolvedClasspath()");
 	ClasspathResolutionBreakpointListener listener = new ClasspathResolutionBreakpointListener(new BPThread[] {thread});
@@ -1043,7 +1043,7 @@ public void testContainerInitializer24() throws Exception {
 /*
  * Ensures that the project references are updated on startup if the initializer gives a different value.
  */
-public void testContainerInitializer25() throws CoreException {
+public void testContainerInitializer25() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -1076,7 +1076,7 @@ public void testContainerInitializer25() throws CoreException {
  * This test ensures that there is no exception on a restart of eclipse after
  * the project is closed after the workspace save
  */
-public void testContainerInitializer26() throws CoreException {
+public void testContainerInitializer26() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -1117,7 +1117,7 @@ public void testVariableInitializer01() throws CoreException {
 		VariablesInitializer.reset();
 	}
 }
-public void testVariableInitializer02() throws CoreException {
+public void testVariableInitializer02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -1137,7 +1137,7 @@ public void testVariableInitializer02() throws CoreException {
 		VariablesInitializer.reset();
 	}
 }
-public void testVariableInitializer03() throws CoreException {
+public void testVariableInitializer03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -1169,15 +1169,15 @@ public void testVariableInitializer03() throws CoreException {
 		VariablesInitializer.reset();
 	}
 }
-public void testVariableInitializer04() throws CoreException {
+public void testVariableInitializer04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
-		final StringBuilder buffer = new StringBuilder();
+		final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		VariablesInitializer.setInitializer(new VariablesInitializer.ITestInitializer() {
 			@Override
 			public void initialize(String variable) throws JavaModelException {
-				buffer.append("Initializing " + variable + "\n");
+				buffer.append("Initializing " + variable + "\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				IPath path = new Path(variable.toLowerCase());
-				buffer.append("Setting variable " + variable + " to " + path + "\n");
+				buffer.append("Setting variable " + variable + " to " + path + "\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				JavaCore.setClasspathVariable(variable, path, null);
 			}
 		});
@@ -1191,16 +1191,16 @@ public void testVariableInitializer04() throws CoreException {
 		VariablesInitializer.reset();
 	}
 }
-public void testVariableInitializer05() throws CoreException {
+public void testVariableInitializer05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
-		final StringBuilder buffer = new StringBuilder();
+		final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		VariablesInitializer.setInitializer(new VariablesInitializer.ITestInitializer() {
 			@Override
 			public void initialize(String variable) throws JavaModelException {
-				buffer.append("Initializing " + variable + "\n");
+				buffer.append("Initializing " + variable + "\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				IPath path = new Path(variable.toLowerCase());
 				JavaCore.getClasspathVariable("TEST_SRC");
-				buffer.append("Setting variable " + variable + " to " + path + "\n");
+				buffer.append("Setting variable " + variable + " to " + path + "\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				JavaCore.setClasspathVariable(variable, path, null);
 			}
 		});
@@ -1220,14 +1220,14 @@ public void testVariableInitializer05() throws CoreException {
  * Ensures that if the initializer doesn't initialize a variable, it can be
  * initialized later on.
  */
-public void testVariableInitializer06() throws CoreException {
+public void testVariableInitializer06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
-		final StringBuilder buffer = new StringBuilder();
+		final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		VariablesInitializer.setInitializer(new VariablesInitializer.ITestInitializer() {
 			@Override
 			public void initialize(String variable) {
 				// do nothing
-				buffer.append("Ignoring request to initialize");
+				buffer.append("Ignoring request to initialize"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		});
 		IPath path = JavaCore.getClasspathVariable("TEST_SRC");
@@ -1246,7 +1246,7 @@ public void testVariableInitializer06() throws CoreException {
 		VariablesInitializer.reset();
 	}
 }
-public void testVariableInitializer07() throws CoreException {
+public void testVariableInitializer07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -1293,7 +1293,7 @@ public void testVariableInitializer07() throws CoreException {
  * (regression test for bug 59363 Should surface cancellation exceptions)
  */
 
-public void testVariableInitializer08() throws CoreException {
+public void testVariableInitializer08() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		boolean gotException = false;
 		try {
@@ -1319,7 +1319,7 @@ public void testVariableInitializer08() throws CoreException {
  * Ensure that removing a classpath variable while initializing it doesn't throw a StackOverFlowError
  * (regression test for bug 112609 StackOverflow when initializing Java Core)
  */
-public void testVariableInitializer09() throws CoreException {
+public void testVariableInitializer09() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		VariablesInitializer.setInitializer(new DefaultVariableInitializer(new String[] {"TEST_LIB", "/P1/lib.jar"}) {
 			@Override
@@ -1363,7 +1363,7 @@ public void testVariableInitializer10() throws CoreException {
  * Bug 125965: [prefs] "Export/Import preferences" should let user to choose wich preference to export/import
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=125965"
  */
-public void testVariableInitializer11() throws CoreException {
+public void testVariableInitializer11() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create initializer
 		String varName = "TEST_LIB";
@@ -1375,7 +1375,7 @@ public void testVariableInitializer11() throws CoreException {
 		// Modify preference
 		JavaModelManager manager = JavaModelManager.getJavaModelManager();
 		IEclipsePreferences preferences = manager.getInstancePreferences();
-		preferences.put(JavaModelManager.CP_VARIABLE_PREFERENCES_PREFIX+varName, newValue);
+		preferences.put(JavaModelManager.CP_VARIABLE_PREFERENCES_PREFIX+varName, newValue); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// verify that JavaCore preferences have been reset
 		assertEquals("JavaCore classpath value should be unchanged", JavaCore.getClasspathVariable(varName).toString(), initialValue);
@@ -1389,7 +1389,7 @@ public void testVariableInitializer11() throws CoreException {
  * bug 138599: [model][classpath] Need a way to mark a classpath variable as deprecated
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=138599"
  */
-public void testVariableInitializerDeprecated() throws CoreException, IOException {
+public void testVariableInitializerDeprecated() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create initializer
 		String varName = "TEST_DEPRECATED";
@@ -1417,7 +1417,7 @@ public void testVariableInitializerDeprecated() throws CoreException, IOExceptio
 		deleteProject("P1");
 	}
 }
-public void testVariableInitializerUnboundAndDeprecated() throws CoreException {
+public void testVariableInitializerUnboundAndDeprecated() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create initializer
 		String varName = "TEST_DEPRECATED";
@@ -1446,7 +1446,7 @@ public void testVariableInitializerUnboundAndDeprecated() throws CoreException {
  * bug 156226: [model][classpath] Allow classpath variable to be marked as non modifiable
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=156226"
  */
-public void testVariableInitializerReadOnly() throws CoreException, IOException {
+public void testVariableInitializerReadOnly() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create initializer
 		String varName = "TEST_READ_ONLY";
@@ -1473,7 +1473,7 @@ public void testVariableInitializerReadOnly() throws CoreException, IOException 
 		deleteProject("P1");
 	}
 }
-public void testVariableInitializerDeprecatedAndReadOnly() throws CoreException, IOException {
+public void testVariableInitializerDeprecatedAndReadOnly() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create initializer
 		String varName = "TEST_DEPRECATED_READ_ONLY";
@@ -1507,7 +1507,7 @@ public void testVariableInitializerDeprecatedAndReadOnly() throws CoreException,
  * bug 172207: [model] Marker for deprecated classpath variable should always have WARNING severity
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=172207"
  */
-public void testVariableInitializerBug172207() throws CoreException, IOException {
+public void testVariableInitializerBug172207() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create initializer
 		String varName = "TEST_DEPRECATED_READ_ONLY";
@@ -1593,7 +1593,7 @@ public void testVariableInitializerBug200449b() throws CoreException {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=61872"
  */
-public void testUserLibraryInitializer1() throws Exception {
+public void testUserLibraryInitializer1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create new user library "SWT"
 		ClasspathContainerInitializer initializer= JavaCore.getClasspathContainerInitializer(JavaCore.USER_LIBRARY_CONTAINER_ID);
@@ -1609,11 +1609,11 @@ public void testUserLibraryInitializer1() throws Exception {
 
 		// Modify user library
 		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(JavaCore.PLUGIN_ID);
-		String propertyName = JavaModelManager.CP_USERLIBRARY_PREFERENCES_PREFIX+"SWT";
-		StringBuilder propertyValue = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<userlibrary systemlibrary=\"false\" version=\"1\">\r\n<archive");
+		String propertyName = JavaModelManager.CP_USERLIBRARY_PREFERENCES_PREFIX+"SWT"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		StringBuilder propertyValue = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<userlibrary systemlibrary=\"false\" version=\"1\">\r\n<archive"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String jarFullPath = getWorkspaceRoot().getLocation().append(jarFile.getFullPath()).toString();
-		propertyValue.append(" path=\""+jarFullPath);
-		propertyValue.append("\"/>\r\n</userlibrary>\r\n");
+		propertyValue.append(" path=\""+jarFullPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		propertyValue.append("\"/>\r\n</userlibrary>\r\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		preferences.put(propertyName, propertyValue.toString());
 		preferences.flush();
 
@@ -1634,11 +1634,11 @@ public void testUserLibraryInitializer1() throws Exception {
 		assertNull("Project 61872 classpath entry should not have any source attached!", entries[0].getSourceAttachmentPath());
 
 		// Modify user library
-		propertyValue = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<userlibrary systemlibrary=\"false\" version=\"1\">\r\n<archive");
+		propertyValue = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<userlibrary systemlibrary=\"false\" version=\"1\">\r\n<archive"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String srcFullPath = getWorkspaceRoot().getLocation().append(srcFile.getFullPath()).toString();
-		propertyValue.append(" sourceattachment=\""+srcFullPath);
-		propertyValue.append("\" path=\""+jarFullPath);
-		propertyValue.append("\"/>\r\n</userlibrary>\r\n");
+		propertyValue.append(" sourceattachment=\""+srcFullPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		propertyValue.append("\" path=\""+jarFullPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		propertyValue.append("\"/>\r\n</userlibrary>\r\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		preferences.put(propertyName, propertyValue.toString());
 		preferences.flush();
 
@@ -1654,7 +1654,7 @@ public void testUserLibraryInitializer1() throws Exception {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=346002"
  */
-public void testBug346002() throws Exception {
+public void testBug346002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ClasspathContainerInitializer initializer = JavaCore.getClasspathContainerInitializer(JavaCore.USER_LIBRARY_CONTAINER_ID);
 	String libraryName = "TEST";
 	IPath containerPath = new Path(JavaCore.USER_LIBRARY_CONTAINER_ID);
@@ -1664,19 +1664,19 @@ public void testBug346002() throws Exception {
 	String libPath = "C:/test/test.jar";
 
 	IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(JavaCore.PLUGIN_ID);
-	String propertyName = JavaModelManager.CP_USERLIBRARY_PREFERENCES_PREFIX+ "TEST";
+	String propertyName = JavaModelManager.CP_USERLIBRARY_PREFERENCES_PREFIX+ "TEST"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-	StringBuilder propertyValue = new StringBuilder(
+	StringBuilder propertyValue = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<userlibrary systemlibrary=\"false\" version=\"2\">\r\n<archive");
-	propertyValue.append(" path=\"" + libPath + "\"/>\r\n");
-	propertyValue.append("</userlibrary>\r\n");
+	propertyValue.append(" path=\"" + libPath + "\"/>\r\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	propertyValue.append("</userlibrary>\r\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	preferences.put(propertyName, propertyValue.toString());
 
-	propertyName = JavaModelManager.CP_USERLIBRARY_PREFERENCES_PREFIX + "INVALID";
-	propertyValue = new StringBuilder(
+	propertyName = JavaModelManager.CP_USERLIBRARY_PREFERENCES_PREFIX + "INVALID"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	propertyValue = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<userlibrary systemlibrary=\"false\" version=\"2\">\r\n<archive");
-	propertyValue.append(" path=\"\"/>");
-	propertyValue.append("</userlibrary>\r\n");
+	propertyValue.append(" path=\"\"/>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	propertyValue.append("</userlibrary>\r\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	preferences.put(propertyName, propertyValue.toString());
 	preferences.flush();
 
@@ -1700,7 +1700,7 @@ public void testBug346002() throws Exception {
  * Ensures that when multiple threads enter the batch container initialization,
  * a second thread does not initialize a container if the first thread has already completed it
  */
-public void testBug525597() throws CoreException {
+public void testBug525597() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -1744,7 +1744,7 @@ public void testBug525597() throws CoreException {
 		Semaphore s2=new Semaphore(0);
 
 		ContainerInitializer.setInitializer(new DefaultContainerInitializer(new String[] {"P2", "/P1/lib.jar", "P3", "/P1/lib.jar"}) {
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public void initialize(IPath containerPath, IJavaProject project) throws CoreException {
 				if (Thread.currentThread() == helperThread) {
 					if (project.getElementName().equals("P2")) {
@@ -1794,7 +1794,7 @@ public void testBug525597() throws CoreException {
  * Ensures that when multiple threads enter the batch container initialization,
  * and two threads both initialize a container, only one result is used.
  */
-public void testBug525597B() throws CoreException {
+public void testBug525597B() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P1");
 		createFile("/P1/lib.jar", "");
@@ -1838,7 +1838,7 @@ public void testBug525597B() throws CoreException {
 		AtomicReference<IJavaProject> p2Project=new AtomicReference<>();
 
 		ContainerInitializer.setInitializer(new DefaultContainerInitializer(new String[] {"P2", "/P1/lib.jar", "P3", "/P1/lib.jar"}) {
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public void initialize(IPath containerPath, IJavaProject project) throws CoreException {
 				if (Thread.currentThread() == helperThread) {
 					if (project.getElementName().equals("P2")) {

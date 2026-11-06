@@ -70,7 +70,7 @@ public void tearDown() throws Exception {
 	super.tearDown();
 }
 
-public void testCommitWorkingCopy1() throws CoreException {
+public void testCommitWorkingCopy1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit primary = this.workingCopy.getPrimary();
 	assertTrue("Primary element should not be null", primary != null);
 
@@ -119,7 +119,7 @@ public void testCommitWorkingCopy2() throws CoreException {
 public void testExistence()  {
 	assertTrue("Working copy should exist", this.workingCopy.exists());
 }
-public void testGetSource() throws CoreException {
+public void testGetSource() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		this.createJavaProject("P1", new String[] {}, "bin");
@@ -164,7 +164,7 @@ public void testReconcileNonExistingProject() throws CoreException {
  * Ensures that a working copy created in a simple project can be reconciled.
  * (regression test for bug 55421 Cannot save a .java file in a non-java project anymore)
  */
-public void testReconcileSimpleProject() throws CoreException {
+public void testReconcileSimpleProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit wc = null;
 	try {
 	    IProject project = createProject("SimpleProject");
@@ -207,7 +207,7 @@ public void testReconcileSimpleProject2() throws CoreException {
  * Ensure that a working copy created on a .java file in a simple project can be opened.
  * (regression test for bug 33748 Cannot open working copy on .java file in simple project)
  */
-public void testSimpleProject() throws CoreException {
+public void testSimpleProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IParent copy = null;
 	try {
 		createProject("SimpleProject");
@@ -258,7 +258,7 @@ public void testPrimaryIsOpen() {
 		!original.isOpen());
 }
 // 31799 - asking project options on non-Java project populates the perProjectInfo cache incorrectly
-public void testIsOnClasspath() throws CoreException {
+public void testIsOnClasspath() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		createProject("SimpleProject");
@@ -281,7 +281,7 @@ public void testIsOnClasspath() throws CoreException {
 }
 
 // 42281
-public void testReconcileAndCommit1() throws CoreException {
+public void testReconcileAndCommit1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		this.createJavaProject("JavaProject", new String[] {"src"}, "bin");
@@ -311,7 +311,7 @@ public void testReconcileAndCommit1() throws CoreException {
 			new String(Util.getResourceContentsAsCharArray(originalFile)));
 	} catch(JavaModelException e) {
 		e.printStackTrace();
-		assertTrue("No exception should have occurred: "+ e.getMessage(), false);
+		assertTrue("No exception should have occurred: "+ e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		if (copy != null) copy.discardWorkingCopy();
 		this.deleteProject("JavaProject");
@@ -319,7 +319,7 @@ public void testReconcileAndCommit1() throws CoreException {
 }
 
 // 41583
-public void testReconcileAndCommit2() throws CoreException {
+public void testReconcileAndCommit2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		createProject("SimpleProject");
@@ -350,14 +350,14 @@ public void testReconcileAndCommit2() throws CoreException {
 		assertTrue("buffer should not have been saved successfully", workingCopyBuffer.hasUnsavedChanges());
 	} catch(JavaModelException e) {
 		e.printStackTrace();
-		assertTrue("No exception should have occurred: "+ e.getMessage(), false);
+		assertTrue("No exception should have occurred: "+ e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		if (copy != null) copy.discardWorkingCopy();
 		this.deleteProject("SimpleProject");
 	}
 }
 // 43879 - variation on 41583 (using primary working copy)
-public void testReconcileAndCommit3() throws CoreException {
+public void testReconcileAndCommit3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit primary = null;
 	try {
 		createProject("SimpleProject");
@@ -388,14 +388,14 @@ public void testReconcileAndCommit3() throws CoreException {
 		assertTrue("buffer should have been saved successfully", !workingCopyBuffer.hasUnsavedChanges());
 	} catch(JavaModelException e) {
 		e.printStackTrace();
-		assertTrue("No exception should have occurred: "+ e.getMessage(), false);
+		assertTrue("No exception should have occurred: "+ e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		if (primary != null) primary.discardWorkingCopy();
 		this.deleteProject("SimpleProject");
 	}
 }
 // 44580 - invalid unit name
-public void testReconcileAndCommit4() throws CoreException {
+public void testReconcileAndCommit4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit primary = null;
 	try {
 		createProject("SimpleProject");
@@ -426,7 +426,7 @@ public void testReconcileAndCommit4() throws CoreException {
 		assertTrue("buffer should have been saved successfully", !workingCopyBuffer.hasUnsavedChanges());
 	} catch(JavaModelException e) {
 		e.printStackTrace();
-		assertTrue("No exception should have occurred: "+ e.getMessage(), false);
+		assertTrue("No exception should have occurred: "+ e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		if (primary != null) primary.discardWorkingCopy();
 		this.deleteProject("SimpleProject");
@@ -434,7 +434,7 @@ public void testReconcileAndCommit4() throws CoreException {
 }
 
 // 44580 - invalid unit name
-public void testReconcileAndCommit5() throws CoreException {
+public void testReconcileAndCommit5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		this.createJavaProject("JavaProject", new String[] {"src"}, "bin");
@@ -465,7 +465,7 @@ public void testReconcileAndCommit5() throws CoreException {
 			new String(Util.getResourceContentsAsCharArray(originalFile)));
 	} catch(JavaModelException e) {
 		e.printStackTrace();
-		assertTrue("No exception should have occurred: "+ e.getMessage(), false);
+		assertTrue("No exception should have occurred: "+ e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		if (copy != null) copy.discardWorkingCopy();
 		this.deleteProject("JavaProject");

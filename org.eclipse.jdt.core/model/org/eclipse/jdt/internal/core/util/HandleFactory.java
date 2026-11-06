@@ -83,7 +83,7 @@ public class HandleFactory {
 	 *            and it uses '/' for entries in a zip file.
 	 * If not null, uses the given scope as a hint for getting Java project handles.
 	 */
-	public Openable createOpenable(String resourcePath, IJavaSearchScope scope) {
+	public Openable createOpenable(String resourcePath, IJavaSearchScope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int separatorIndex;
 		if ((separatorIndex= resourcePath.indexOf(IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR)) > -1) {
 			// path to a class file inside a jar
@@ -196,7 +196,7 @@ public class HandleFactory {
 	/**
 	 * Create handle by adding child to parent obtained by recursing into parent scopes.
 	 */
-	public IJavaElement createElement(Scope scope, int elementPosition, ICompilationUnit unit, HashSet existingElements, HashMap knownScopes) {
+	public IJavaElement createElement(Scope scope, int elementPosition, ICompilationUnit unit, HashSet existingElements, HashMap knownScopes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaElement newElement = (IJavaElement)knownScopes.get(scope);
 		if (newElement != null) return newElement;
 
@@ -222,7 +222,7 @@ public class HandleFactory {
 					    } else {
 							String name = DeduplicationUtil.toString(scope.enclosingSourceType().sourceName);
 							int occurrenceCount = 0;
-							do {
+							do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								newElement = member.getType(name, ++occurrenceCount);
 							} while (!existingElements.add(newElement));
 					    }
@@ -252,7 +252,7 @@ public class HandleFactory {
 					TypeDeclaration type = methodScope.referenceType();
 					int occurenceCount = 1;
 					int length = type.fields == null ? 0 : type.fields.length;
-					for (int i = 0; i < length; i++) {
+					for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						FieldDeclaration field = type.fields[i];
 						if (field.declarationSourceStart <= elementPosition && elementPosition <= field.declarationSourceEnd) {
 							switch (field.getKind()) {
@@ -291,7 +291,7 @@ public class HandleFactory {
 	 * See createOpenable(...) for the format of the jar path string.
 	 * If not null, uses the given scope as a hint for getting Java project handles.
 	 */
-	private PackageFragmentRoot getJarPkgFragmentRoot(String resourcePathString, int jarSeparatorIndex, String jarPathString, IJavaSearchScope scope) {
+	private PackageFragmentRoot getJarPkgFragmentRoot(String resourcePathString, int jarSeparatorIndex, String jarPathString, IJavaSearchScope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath jarPath= new Path(jarPathString);
 
@@ -324,7 +324,7 @@ public class HandleFactory {
 				int length = enclosingProjectsAndJars.length;
 				projects = new IJavaProject[length];
 				int index = 0;
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IPath path = enclosingProjectsAndJars[i];
 					if (path.segmentCount() == 1) {
 						projects[index++] = this.javaModel.getJavaProject(path.segment(0));
@@ -350,11 +350,11 @@ public class HandleFactory {
 		return getJarPkgFragmentRoot(jarPath, target, projects);
 	}
 
-	private PackageFragmentRoot getJarPkgFragmentRoot(
+	private PackageFragmentRoot getJarPkgFragmentRoot( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath jarPath,
 		Object target,
 		IJavaProject[] projects) {
-		for (IJavaProject project : projects) {
+		for (IJavaProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				JavaProject javaProject= (JavaProject)project;
 				IClasspathEntry classpathEnty = javaProject.getClasspathEntryFor(jarPath);
@@ -377,17 +377,17 @@ public class HandleFactory {
 	/**
 	 * Returns the package fragment root that contains the given resource path.
 	 */
-	private PackageFragmentRoot getPkgFragmentRoot(String pathString) {
+	private PackageFragmentRoot getPkgFragmentRoot(String pathString) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath path= new Path(pathString);
 		IProject[] projects= ResourcesPlugin.getWorkspace().getRoot().getProjects();
-		for (IProject project : projects) {
+		for (IProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				if (!project.isAccessible()
 					|| !project.hasNature(JavaCore.NATURE_ID)) continue;
 				IJavaProject javaProject= this.javaModel.getJavaProject(project);
 				IPackageFragmentRoot[] roots= javaProject.getPackageFragmentRoots();
-				for (IPackageFragmentRoot r : roots) {
+				for (IPackageFragmentRoot r : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					PackageFragmentRoot root= (PackageFragmentRoot)r;
 					if (root.internalPath().isPrefixOf(path) && !Util.isExcluded(path, root.fullInclusionPatternChars(), root.fullExclusionPatternChars(), false)) {
 						return root;

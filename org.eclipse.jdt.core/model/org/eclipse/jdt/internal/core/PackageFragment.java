@@ -66,10 +66,10 @@ protected PackageFragment(PackageFragmentRoot root, String[] names) {
 /**
  * @see Openable
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected boolean buildStructure(OpenableElementInfo info, IProgressMonitor pm, Map newElements, IResource underlyingResource) throws JavaModelException {
 	// add compilation units/class files from resources
-	HashSet vChildren = new HashSet();
+	HashSet vChildren = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	int kind = getKind();
 	try {
 	    PackageFragmentRoot root = getPackageFragmentRoot();
@@ -81,7 +81,7 @@ protected boolean buildStructure(OpenableElementInfo info, IProgressMonitor pm, 
 			IJavaProject project = getJavaProject();
 			String sourceLevel = project.getOption(JavaCore.COMPILER_SOURCE, true);
 			String complianceLevel = project.getOption(JavaCore.COMPILER_COMPLIANCE, true);
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IResource child = members[i];
 				if (child.getType() != IResource.FOLDER
 						&& !Util.isExcluded(child, inclusionPatterns, exclusionPatterns)) {
@@ -103,7 +103,7 @@ protected boolean buildStructure(OpenableElementInfo info, IProgressMonitor pm, 
 	if (kind == IPackageFragmentRoot.K_SOURCE) {
 		// add primary compilation units
 		ICompilationUnit[] primaryCompilationUnits = getCompilationUnits(DefaultWorkingCopyOwner.PRIMARY);
-		for (ICompilationUnit primary : primaryCompilationUnits) {
+		for (ICompilationUnit primary : primaryCompilationUnits) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			vChildren.add(primary);
 		}
 	}
@@ -240,7 +240,7 @@ public IOrdinaryClassFile[] getOrdinaryClassFiles() throws JavaModelException {
 	}
 
 	ArrayList list = getChildrenOfType(CLASS_FILE);
-	for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+	for (Iterator iterator = list.iterator(); iterator.hasNext();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (iterator.next() instanceof ModularClassFile)
 			iterator.remove();
 	}
@@ -309,7 +309,7 @@ public ICompilationUnit[] getCompilationUnits(WorkingCopyOwner owner) {
 	int length = workingCopies.length;
 	ICompilationUnit[] result = new ICompilationUnit[length];
 	int index = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ICompilationUnit wc = workingCopies[i];
 		if (equals(wc.getParent()) && !Util.isExcluded(wc)) { // 59933 - excluded wc shouldn't be answered back
 			result[index++] = wc;
@@ -341,7 +341,7 @@ public int getElementType() {
 /*
  * @see JavaElement
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IJavaElement getHandleFromMemento(String token, MementoTokenizer memento, WorkingCopyOwner owner) {
 	switch (token.charAt(0)) {
 		case JEM_CLASSFILE:
@@ -396,7 +396,7 @@ public IPath getPath() {
 		return root.getPath();
 	} else {
 		IPath path = root.getPath();
-		for (String name : this.names) {
+		for (String name : this.names) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			path = path.append(name);
 		}
 		return path;
@@ -412,7 +412,7 @@ public IResource resource(PackageFragmentRoot root) {
 		return root.resource(root);
 	} else {
 		IPath path = new Path(this.names[0]);
-		for (int i = 1; i < length; i++)
+		for (int i = 1; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			path = path.append(this.names[i]);
 		return ((IContainer)root.resource(root)).getFolder(path);
 	}
@@ -420,7 +420,7 @@ public IResource resource(PackageFragmentRoot root) {
 /**
  * @see IJavaElement#getUnderlyingResource()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IResource getUnderlyingResource() throws JavaModelException {
 	IResource rootResource = this.getParent().getUnderlyingResource();
 	if (rootResource == null) {
@@ -432,7 +432,7 @@ public IResource getUnderlyingResource() throws JavaModelException {
 	if (rootResource.getType() == IResource.FOLDER || rootResource.getType() == IResource.PROJECT) {
 		IContainer folder = (IContainer) rootResource;
 		String[] segs = this.names;
-		for (String seg : segs) {
+		for (String seg : segs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IResource child = folder.findMember(seg);
 			if (child == null || child.getType() != IResource.FOLDER) {
 				throw newNotPresentException();
@@ -458,10 +458,10 @@ public boolean hasChildren() throws JavaModelException {
 public boolean hasSubpackages() throws JavaModelException {
 	IJavaElement[] packages= ((IPackageFragmentRoot)getParent()).getChildren();
 	int namesLength = this.names.length;
-	nextPackage: for (IJavaElement package1 : packages) {
+	nextPackage: for (IJavaElement package1 : packages) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String[] otherNames = ((PackageFragment) package1).names;
 		if (otherNames.length <= namesLength) continue nextPackage;
-		for (int j = 0; j < namesLength; j++)
+		for (int j = 0; j < namesLength; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!this.names[j].equals(otherNames[j]))
 				continue nextPackage;
 		return true;
@@ -475,7 +475,7 @@ protected boolean internalIsValidPackageName() {
 	IJavaProject javaProject = JavaCore.create(resource().getProject());
 	String sourceLevel = javaProject.getOption(JavaCore.COMPILER_SOURCE, true);
 	String complianceLevel = javaProject.getOption(JavaCore.COMPILER_COMPLIANCE, true);
-	for (String name : this.names) {
+	for (String name : this.names) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (!Util.isValidFolderNameForPackage(name, sourceLevel, complianceLevel))
 			return false;
 	}
@@ -538,22 +538,22 @@ protected void toStringChildren(int tab, StringBuilder buffer, Object info) {
  */
 @Override
 protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-	buffer.append(tabString(tab));
+	buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.names.length == 0) {
-		buffer.append("<default>"); //$NON-NLS-1$
+		buffer.append("<default>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
 		toStringName(buffer);
 	}
 	if (info == null) {
-		buffer.append(" (not open)"); //$NON-NLS-1$
+		buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
 		if (tab > 0) {
-			buffer.append(" (...)"); //$NON-NLS-1$
+			buffer.append(" (...)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String getAttachedJavadoc(IProgressMonitor monitor) throws JavaModelException {
 	PerProjectInfo projectInfo = JavaModelManager.getJavaModelManager().getPerProjectInfoCheckExistence(getJavaProject().getProject());
 	String cachedJavadoc = null;
@@ -567,13 +567,13 @@ public String getAttachedJavadoc(IProgressMonitor monitor) throws JavaModelExcep
 	if (baseLocation == null) {
 		return null;
 	}
-	StringBuilder pathBuffer = new StringBuilder(baseLocation.toExternalForm());
+	StringBuilder pathBuffer = new StringBuilder(baseLocation.toExternalForm()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 	if (!(pathBuffer.charAt(pathBuffer.length() - 1) == '/')) {
-		pathBuffer.append('/');
+		pathBuffer.append('/'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	String packPath= getElementName().replace('.', '/');
-	pathBuffer.append(packPath).append('/').append(ExternalJavadocSupport.PACKAGE_FILE_NAME);
+	pathBuffer.append(packPath).append('/').append(ExternalJavadocSupport.PACKAGE_FILE_NAME); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	if (monitor != null && monitor.isCanceled()) throw new OperationCanceledException();
 	String contents = getURLContents(baseLocation, String.valueOf(pathBuffer));
@@ -588,7 +588,7 @@ public String getAttachedJavadoc(IProgressMonitor monitor) throws JavaModelExcep
 	return contents;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected IStatus validateExistence(IResource underlyingResource) {
 	// check that the name of the package is valid (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=108456)
 	if (!isValidPackageName())

@@ -80,7 +80,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 		this(type, owner);
 		this.javaProject = project;
 		if (onlySubtypes) {
-			this.subTypes = new HashSet<>();
+			this.subTypes = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		}
 		this.includeFocusType = includeFocusType;
 		this.allowMemberAndEnclosingTypes = !noMembersOrEnclosingTypes;
@@ -89,7 +89,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 	/* (non-Javadoc)
 	 * Creates a new hiearchy scope for the given type.
 	 */
-	public HierarchyScope(IType type, WorkingCopyOwner owner) throws JavaModelException {
+	public HierarchyScope(IType type, WorkingCopyOwner owner) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.focusType = type;
 		this.owner = owner;
 
@@ -113,7 +113,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 			if(md != null) {
 				String module = md.getElementName();
 				this.focusPath =
-						zipFileName
+						zipFileName //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ JAR_FILE_ENTRY_SEPARATOR
 						+ module
 						+ JAR_FILE_ENTRY_SEPARATOR
@@ -121,7 +121,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 						+ SUFFIX_STRING_class;
 			} else {
 				this.focusPath =
-					zipFileName
+					zipFileName //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ JAR_FILE_ENTRY_SEPARATOR
 						+ type.getFullyQualifiedName().replace('.', '/')
 						+ SUFFIX_STRING_class;
@@ -135,8 +135,8 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 		//disabled for now as this could be expensive
 		//JavaModelManager.getJavaModelManager().rememberScope(this);
 	}
-	private void buildResourceVector() {
-		Map<IPath, IType> paths = new HashMap<>();
+	private void buildResourceVector() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<IPath, IType> paths = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		IType[] types = null;
 		if (this.subTypes != null) {
 			types = this.hierarchy.getAllSubtypes(this.focusType);
@@ -148,7 +148,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 		} else {
 			types = this.hierarchy.getAllTypes();
 		}
-		for (IType type : types) {
+		for (IType type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.subTypes != null) {
 				// remember subtypes for later use in encloses()
 				this.subTypes.add(type);
@@ -179,7 +179,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 				if(md != null) {
 					String module = md.getElementName();
 					resourcePath =
-							zipFileName
+							zipFileName //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							+ JAR_FILE_ENTRY_SEPARATOR
 							+ module
 							+ JAR_FILE_ENTRY_SEPARATOR
@@ -187,7 +187,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 							+ SUFFIX_STRING_class;
 				} else {
 					resourcePath =
-						zipFileName
+						zipFileName //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ JAR_FILE_ENTRY_SEPARATOR
 						+ type.getFullyQualifiedName().replace('.', '/')
 						+ SUFFIX_STRING_class;
@@ -201,7 +201,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 		}
 		this.enclosingProjectsAndJars = new IPath[paths.size()];
 		int i = 0;
-		for (IPath iPath : paths.keySet()) {
+		for (IPath iPath : paths.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.enclosingProjectsAndJars[i++] = iPath;
 		}
 	}
@@ -209,8 +209,8 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 	 * Computes the paths of projects and jars that the hierarchy on the given type could contain.
 	 * This is a super set of the project and jar paths once the hierarchy is computed.
 	 */
-	private IPath[] computeProjectsAndJars(IType type) throws JavaModelException {
-		Set<IPath> set = new HashSet<>();
+	private IPath[] computeProjectsAndJars(IType type) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Set<IPath> set = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		IPackageFragmentRoot root = (IPackageFragmentRoot)type.getPackageFragment().getParent();
 		if (root.isArchive()) {
 			// add the root
@@ -219,15 +219,15 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 			IPath rootPath = root.getPath();
 			IJavaModel model = JavaModelManager.getJavaModelManager().getJavaModel();
 			IJavaProject[] projects = model.getJavaProjects();
-			Set<IJavaProject> visited = new HashSet<>();
-			for (IJavaProject p : projects) {
+			Set<IJavaProject> visited = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+			for (IJavaProject p : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JavaProject project = (JavaProject) p;
 				IClasspathEntry entry = project.getClasspathEntryFor(rootPath);
 				if (entry != null) {
 					// add the project and its binary pkg fragment roots
 					IPackageFragmentRoot[] roots = project.getAllPackageFragmentRoots();
 					set.add(project.getPath());
-					for (IPackageFragmentRoot pkgFragmentRoot : roots) {
+					for (IPackageFragmentRoot pkgFragmentRoot : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (pkgFragmentRoot.getKind() == IPackageFragmentRoot.K_BINARY) {
 							set.add(pkgFragmentRoot.getPath());
 						}
@@ -240,7 +240,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 			// add all the project's pkg fragment roots
 			IJavaProject project = (IJavaProject)root.getParent();
 			IPackageFragmentRoot[] roots = project.getAllPackageFragmentRoots();
-			for (IPackageFragmentRoot pkgFragmentRoot : roots) {
+			for (IPackageFragmentRoot pkgFragmentRoot : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (pkgFragmentRoot.getKind() == IPackageFragmentRoot.K_BINARY) {
 					set.add(pkgFragmentRoot.getPath());
 				} else {
@@ -248,22 +248,22 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 				}
 			}
 			// add the dependent projects
-			computeDependents(project, set, new HashSet<>());
+			computeDependents(project, set, new HashSet<>()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		}
 		IPath[] result = new IPath[set.size()];
 		set.toArray(result);
 		return result;
 	}
-	private void computeDependents(IJavaProject project, Set<IPath> set, Set<IJavaProject> visited) {
+	private void computeDependents(IJavaProject project, Set<IPath> set, Set<IJavaProject> visited) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (visited.contains(project)) return;
 		visited.add(project);
 		IProject[] dependents = project.getProject().getReferencingProjects();
-		for (IProject p : dependents) {
+		for (IProject p : dependents) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				IJavaProject dependent = JavaCore.create(p);
 				IPackageFragmentRoot[] roots = dependent.getPackageFragmentRoots();
 				set.add(dependent.getPath());
-				for (IPackageFragmentRoot pkgFragmentRoot : roots) {
+				for (IPackageFragmentRoot pkgFragmentRoot : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (pkgFragmentRoot.isArchive()) {
 						set.add(pkgFragmentRoot.getPath());
 					}
@@ -279,7 +279,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 	public boolean encloses(String resourcePath) {
 		return encloses(resourcePath, null);
 	}
-	public boolean encloses(String resourcePath, IProgressMonitor progressMonitor) {
+	public boolean encloses(String resourcePath, IProgressMonitor progressMonitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.hierarchy == null) {
 			if (resourcePath.equals(this.focusPath)) {
 				return true;
@@ -328,7 +328,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 	public boolean encloses(IJavaElement element) {
 		return encloses(element, null);
 	}
-	public boolean encloses(IJavaElement element, IProgressMonitor progressMonitor) {
+	public boolean encloses(IJavaElement element, IProgressMonitor progressMonitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.hierarchy == null) {
 			if (this.includeFocusType && this.focusType.equals(element.getAncestor(IJavaElement.TYPE))) {
 				return true;
@@ -369,7 +369,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 			if (this.allowMemberAndEnclosingTypes) {
 				// travel out: queried type is enclosed in this scope if its (indirect) declaring type is:
 				IType enclosing = type.getDeclaringType();
-				while (enclosing != null) {
+				while (enclosing != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					// don't allow travelling in again:
 					if (enclosesType(enclosing, false)) {
 						return true;
@@ -380,7 +380,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 		}
 		return false;
 	}
-	private boolean enclosesType(IType type, boolean recurse) {
+	private boolean enclosesType(IType type, boolean recurse) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.subTypes != null) {
 			// searching subtypes
 			if (this.subTypes.contains(type)) {
@@ -409,7 +409,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 			// queried type is enclosed in this scope if one of its members is:
 			try {
 				IType[] memberTypes = type.getTypes();
-				for (IType memberType : memberTypes) {
+				for (IType memberType : memberTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (enclosesType(memberType, recurse)) {
 						return true;
 					}
@@ -439,8 +439,8 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 		initialize(null);
 	}
 	protected void initialize(IProgressMonitor progressMonitor) throws JavaModelException {
-		this.resourcePaths = new HashSet<>();
-		this.elements = new HashSet<>();
+		this.resourcePaths = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		this.elements = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		this.elementCount = 0;
 		this.needsRefresh = false;
 		if (this.hierarchy == null) {
@@ -470,7 +470,7 @@ public class HierarchyScope extends AbstractSearchScope implements SuffixConstan
 	}
 	@Override
 	public String toString() {
-		return "HierarchyScope on " + ((JavaElement)this.focusType).toStringWithAncestors(); //$NON-NLS-1$
+		return "HierarchyScope on " + ((JavaElement)this.focusType).toStringWithAncestors(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override

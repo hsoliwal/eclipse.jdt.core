@@ -180,10 +180,10 @@ public class Visitors {
         {
             final List<IExtendedModifier> extMods = node.modifiers();
 			List<Annotation> annos = null;
-            for( IExtendedModifier extMod : extMods ){
+            for( IExtendedModifier extMod : extMods ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                 if( extMod.isAnnotation() ){
 					if( annos == null ){
-                        annos = new ArrayList<>(2);
+                        annos = new ArrayList<>(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
                         _result.put(node, annos);
 					}
                     annos.add((Annotation)extMod);
@@ -199,10 +199,10 @@ public class Visitors {
 		{
 			final List<IExtendedModifier> extMods = node.modifiers();
 			List<Annotation> annos = null;
-            for( IExtendedModifier extMod : extMods ){
+            for( IExtendedModifier extMod : extMods ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                 if( extMod.isAnnotation() ){
 					if( annos == null ){
-                        annos = new ArrayList<>(2);
+                        annos = new ArrayList<>(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
                         _result.put(node, annos);
 					}
                     annos.add((Annotation)extMod);
@@ -292,7 +292,7 @@ public class Visitors {
     		return internalVisit(node);
     	}
 
-    	private boolean internalVisit(ASTNode node) {
+    	private boolean internalVisit(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     		// terminate the search.
     		if( _result != null ) return false;
     		int nodeStart = node.getStartPosition();
@@ -315,7 +315,7 @@ public class Visitors {
     				BodyDeclaration declaration = (BodyDeclaration)node;
     				extendedModifiers = declaration.modifiers();
     			}
-    			for (IExtendedModifier modifier : extendedModifiers) {
+    			for (IExtendedModifier modifier : extendedModifiers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     				// found what we came to look for.
     				if( modifier == _anno ){
     					_result = node;
@@ -362,7 +362,7 @@ public class Visitors {
     	 * @param offsets the array of offsets which will be sorted.
     	 * @throws IllegalArgumentException if <code>offsets</code> is <code>null</code>.
     	 */
-    	public EndingOffsetFinder(int[] offsets)
+    	public EndingOffsetFinder(int[] offsets) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	{
     		if(offsets == null)
     			throw new IllegalArgumentException("argument cannot be null."); //$NON-NLS-1$
@@ -371,7 +371,7 @@ public class Visitors {
 
     		// look for duplicates.
     		int count = 0;
-    		for( int i=1, len=offsets.length; i<len; i++){
+    		for( int i=1, len=offsets.length; i<len; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			if( offsets[i-1] == offsets[i] )
     				continue;
     			count ++;
@@ -381,7 +381,7 @@ public class Visitors {
     			_sortedStartingOffset = new int[count];
 
     			int index = 0;
-    			for( int i=0, len=offsets.length; i<len; i++){
+    			for( int i=0, len=offsets.length; i<len; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     				if( i != 0 && offsets[i-1] == offsets[i] )
     					continue;
     				_sortedStartingOffset[index++] = offsets[i];
@@ -392,11 +392,11 @@ public class Visitors {
     		}
 
     		_endingOffsets = new int[count];
-    		for( int i=0; i<count; i++ )
+    		for( int i=0; i<count; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			_endingOffsets[i] = 0;
     	}
 
-    	@Override
+    	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void preVisit(ASTNode node)
     	{
     		final int startingOffset = node.getStartPosition();
@@ -416,7 +416,7 @@ public class Visitors {
     		if( startIndex >= _sortedStartingOffset.length )
     			return;
 
-    		for( int i=startIndex; i<endIndex; i++ ){
+    		for( int i=startIndex; i<endIndex; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			if( _endingOffsets[i] == 0 )
     				_endingOffsets[i] = endingOffset;
     			else if( endingOffset < _endingOffsets[i] )

@@ -41,7 +41,7 @@ public class ModulePathEntry implements IModulePathEntry {
 		this.isAutomaticModule = module.isAutomatic();
 		initializeModule();
 	}
-	public ModulePathEntry(IPath path, ClasspathLocation location) {
+	public ModulePathEntry(IPath path, ClasspathLocation location) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.path = path;
 		IModule mod = null;
 		if (location instanceof ClasspathJar) {
@@ -89,7 +89,7 @@ public class ModulePathEntry implements IModulePathEntry {
 	// Once we have a mechanism to map a folder to a module path entry, this should no longer be
 	// needed
 	private void initializeModule() {
-		for (ClasspathLocation location : this.locations) {
+		for (ClasspathLocation location : this.locations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			location.setModule(this.module);
 		}
 	}
@@ -99,7 +99,7 @@ public class ModulePathEntry implements IModulePathEntry {
 			return null;
 		// search all locations
 		char[][] names = CharOperation.NO_CHAR_CHAR;
-		for (ClasspathLocation cp : this.locations) {
+		for (ClasspathLocation cp : this.locations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[][] declaringModules = cp.getModulesDeclaringPackage(qualifiedPackageName, moduleName);
 			if (declaringModules != null)
 				names = CharOperation.arrayConcat(names, declaringModules);
@@ -108,7 +108,7 @@ public class ModulePathEntry implements IModulePathEntry {
 	}
 	@Override
 	public boolean hasCompilationUnit(String qualifiedPackageName, String moduleName) {
-		for (ClasspathLocation cp : this.locations) {
+		for (ClasspathLocation cp : this.locations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (cp.hasCompilationUnit(qualifiedPackageName, moduleName))
 				return true;
 		}
@@ -119,7 +119,7 @@ public class ModulePathEntry implements IModulePathEntry {
 	public char[][] listPackages() {
 		char[][] packages = CharOperation.NO_CHAR_CHAR;
 		if (this.isAutomaticModule) {
-			for (ClasspathLocation cp : this.locations) {
+			for (ClasspathLocation cp : this.locations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				packages = CharOperation.arrayConcat(packages, cp.listPackages());
 			}
 			return packages;
@@ -145,7 +145,7 @@ public class ModulePathEntry implements IModulePathEntry {
 
 		@Override
 		public IModule getModule(char[] name) {
-			for (ClasspathLocation loc : this.locations) {
+			for (ClasspathLocation loc : this.locations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (loc instanceof IMultiModuleEntry) {
 					IModule mod = ((IMultiModuleEntry) loc).getModule(name);
 					if (mod != null)
@@ -161,8 +161,8 @@ public class ModulePathEntry implements IModulePathEntry {
 
 		@Override
 		public Collection<String> getModuleNames(Collection<String> limitModules) {
-			Set<String> result = new HashSet<>();
-			for (ClasspathLocation loc : this.locations) {
+			Set<String> result = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+			for (ClasspathLocation loc : this.locations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (loc instanceof IMultiModuleEntry)
 					result.addAll(((IMultiModuleEntry) loc).getModuleNames(limitModules));
 				else

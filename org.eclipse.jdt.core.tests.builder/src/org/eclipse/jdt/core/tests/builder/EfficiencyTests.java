@@ -30,7 +30,7 @@ public class EfficiencyTests extends BuilderTests {
 		return buildTestSuite(EfficiencyTests.class);
 	}
 
-	public void testProjectAsClassFolder() throws JavaModelException {
+	public void testProjectAsClassFolder() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath1 = env.addProject("Project1"); //$NON-NLS-1$
 		env.addExternalJars(projectPath1, Util.getJavaClassLibs());
 
@@ -61,7 +61,7 @@ public class EfficiencyTests extends BuilderTests {
 		expectingCompiledClasses(new String[]{"p1.X"}); //$NON-NLS-1$
 	}
 
-	public void testEfficiency() throws JavaModelException {
+	public void testEfficiency() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -100,7 +100,7 @@ public class EfficiencyTests extends BuilderTests {
 		expectingCompilingOrder(new String[] { "/Project/src/p1/Indicted.java", "/Project/src/p2/Collaborator.java" });
 	}
 
-	public void testMethodAddition() throws JavaModelException {
+	public void testMethodAddition() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -152,7 +152,7 @@ public class EfficiencyTests extends BuilderTests {
 		expectingCompilingOrder(new String[] { "/Project/src/p1/X.java", "/Project/src/p2/Y.java" });
 	}
 
-	public void testLocalTypeAddition() throws JavaModelException {
+	public void testLocalTypeAddition() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -204,7 +204,7 @@ public class EfficiencyTests extends BuilderTests {
 		expectingCompilingOrder(new String[] { "/Project/src/p1/X.java" });
 	}
 
-	public void testLocalTypeAddition2() throws JavaModelException {
+	public void testLocalTypeAddition2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -262,7 +262,7 @@ public class EfficiencyTests extends BuilderTests {
 		expectingCompilingOrder(new String[] { "/Project/src/p1/X.java" });
 	}
 
-	public void testLocalTypeRemoval() throws JavaModelException {
+	public void testLocalTypeRemoval() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -314,7 +314,7 @@ public class EfficiencyTests extends BuilderTests {
 		expectingCompilingOrder(new String[] { "/Project/src/p1/X.java" });
 	}
 
-	public void testLocalTypeRemoval2() throws JavaModelException {
+	public void testLocalTypeRemoval2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -372,7 +372,7 @@ public class EfficiencyTests extends BuilderTests {
 		expectingCompilingOrder(new String[] { "/Project/src/p1/X.java" });
 	}
 	// http://dev.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-	public void testMissingType001() throws JavaModelException {
+	public void testMissingType001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());

@@ -41,19 +41,19 @@ public class SelectionOnMessageSend extends MessageSend {
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
 
-		output.append("<SelectOnMessageSend:"); //$NON-NLS-1$
+		output.append("<SelectOnMessageSend:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (!this.receiver.isImplicitThis()) this.receiver.printExpression(0, output).append('.');
-		output.append(this.selector).append('(');
+		output.append(this.selector).append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.arguments != null) {
-			for (int i = 0; i < this.arguments.length; i++) {
-				if (i > 0) output.append(", "); //$NON-NLS-1$
+			for (int i = 0; i < this.arguments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				if (i > 0) output.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				this.arguments[i].printExpression(0, output);
 			}
 		}
-		return output.append(")>"); //$NON-NLS-1$
+		return output.append(")>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeBinding resolveType(BlockScope scope) {
 
 		TypeBinding type = super.resolveType(scope);

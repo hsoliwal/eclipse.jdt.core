@@ -22,7 +22,7 @@ public class MessagerCodeExample {
 
 	public static final String CODE_PACKAGE = "messagertestpackage";
 	public static final String CODE_CLASS_NAME = "MessagerTestClass";
-	public static final String CODE_FULL_NAME = CODE_PACKAGE + "." + CODE_CLASS_NAME;
+	public static final String CODE_FULL_NAME = CODE_PACKAGE + "." + CODE_CLASS_NAME; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// These offsets work for each code example, as long as the examples are cumulative
 	public static final int INFO_START = 219;
@@ -59,7 +59,7 @@ public class MessagerCodeExample {
 
 	/** Code example with INFO, WARNING, and ERROR severities */
 	public static final String CODE1 =
-		HEADER_CHUNK +
+		HEADER_CHUNK + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		INFO_CHUNK +
 		WARNING_CHUNK +
 		ERROR_CHUNK +
@@ -67,20 +67,20 @@ public class MessagerCodeExample {
 
 	/** Code example with INFO and WARNING severities */
 	public static final String CODE2 =
-		HEADER_CHUNK +
+		HEADER_CHUNK + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		INFO_CHUNK +
 		WARNING_CHUNK +
 		"}";
 
 	/** Code example with INFO severity only */
 	public static final String CODE3 =
-		HEADER_CHUNK +
+		HEADER_CHUNK + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		INFO_CHUNK +
 		"}";
 
 	/** Code example with INFO severity only */
 	public static final String CODE4 =
-		HEADER_CHUNK +
+		HEADER_CHUNK + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		OK_CHUNK +
 		"}";
 }

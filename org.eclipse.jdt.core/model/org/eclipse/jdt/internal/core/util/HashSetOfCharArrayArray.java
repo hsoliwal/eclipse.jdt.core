@@ -58,7 +58,7 @@ public final class HashSetOfCharArrayArray implements Cloneable {
 		int index = hashCode(array) % length;
 		int arrayLength = array.length;
 		char[][] currentArray;
-		while ((currentArray = this.set[index]) != null) {
+		while ((currentArray = this.set[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentArray.length == arrayLength && CharOperation.equals(currentArray, array))
 				return true;
 			if (++index == length) {
@@ -74,17 +74,17 @@ public final class HashSetOfCharArrayArray implements Cloneable {
 
 	private int hashCode(char[][] element, int length) {
 		int hash = 0;
-		for (int i = length-1; i >= 0; i--)
+		for (int i = length-1; i >= 0; i--) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			hash = Util.combineHashCodes(hash, CharOperation.hashCode(element[i]));
 		return hash & 0x7FFFFFFF;
 	}
 
-	public char[][] add(char[][] array) {
+	public char[][] add(char[][] array) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = this.set.length;
 		int index = hashCode(array) % length;
 		int arrayLength = array.length;
 		char[][] currentArray;
-		while ((currentArray = this.set[index]) != null) {
+		while ((currentArray = this.set[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentArray.length == arrayLength && CharOperation.equals(currentArray, array))
 				return this.set[index] = array;
 			if (++index == length) {
@@ -99,12 +99,12 @@ public final class HashSetOfCharArrayArray implements Cloneable {
 		return array;
 	}
 
-	public char[][] remove(char[][] array) {
+	public char[][] remove(char[][] array) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = this.set.length;
 		int index = hashCode(array) % length;
 		int arrayLength = array.length;
 		char[][] currentArray;
-		while ((currentArray = this.set[index]) != null) {
+		while ((currentArray = this.set[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentArray.length == arrayLength && CharOperation.equals(currentArray, array)) {
 				char[][] existing = this.set[index];
 				this.elementSize--;
@@ -122,7 +122,7 @@ public final class HashSetOfCharArrayArray implements Cloneable {
 	private void rehash() {
 		HashSetOfCharArrayArray newHashSet = new HashSetOfCharArrayArray(this.elementSize * 2);		// double the number of expected elements
 		char[][] currentArray;
-		for (int i = this.set.length; --i >= 0;)
+		for (int i = this.set.length; --i >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((currentArray = this.set[i]) != null)
 				newHashSet.add(currentArray);
 
@@ -134,30 +134,30 @@ public final class HashSetOfCharArrayArray implements Cloneable {
 		return this.elementSize;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0, length = this.set.length; i < length; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, length = this.set.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[][] arrayArray = this.set[i];
 			if (arrayArray != null) {
-				buffer.append("{"); //$NON-NLS-1$
-				for (int j = 0, length2 = arrayArray.length; j < length2; j++) {
+				buffer.append("{"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int j = 0, length2 = arrayArray.length; j < length2; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char[] array = arrayArray[j];
-					buffer.append('{');
-					for (int k = 0, length3 = array.length; k < length3; k++) {
-						buffer.append('\'');
-						buffer.append(array[k]);
-						buffer.append('\'');
+					buffer.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					for (int k = 0, length3 = array.length; k < length3; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						buffer.append('\''); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buffer.append(array[k]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buffer.append('\''); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						if (k != length3-1)
-							buffer.append(", "); //$NON-NLS-1$
+							buffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					buffer.append('}');
+					buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (j != length2-1)
-						buffer.append(", "); //$NON-NLS-1$
+						buffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append("}");  //$NON-NLS-1$
+				buffer.append("}");  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1)
-					buffer.append('\n');
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return buffer.toString();

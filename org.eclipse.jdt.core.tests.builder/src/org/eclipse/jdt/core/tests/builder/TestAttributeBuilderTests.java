@@ -34,7 +34,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 		return buildTestSuite(TestAttributeBuilderTests.class);
 	}
 
-	public void testWithProjectAsMainDependency() throws JavaModelException {
+	public void testWithProjectAsMainDependency() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath project1Path = env.addProject("Project1");
 		env.removePackageFragmentRoot(project1Path, "");
 		IPath src1 = env.addPackageFragmentRoot(project1Path, "src", null, "bin");
@@ -133,7 +133,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 				"Problem : T2Class cannot be resolved to a type [ resource : </Project2/src/p2/Production2.java> range : <174,181> category : <40> severity : <2>]\n" +
 				"Problem : The import p1.T1Class cannot be resolved [ resource : </Project2/src/p2/Production2.java> range : <39,49> category : <30> severity : <2>]");
 	}
-	public void testWithProjectAsTestDependency() throws JavaModelException {
+	public void testWithProjectAsTestDependency() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath project1Path = env.addProject("Project1");
 		env.removePackageFragmentRoot(project1Path, "");
 		IPath src1 = env.addPackageFragmentRoot(project1Path, "src", null, "bin");
@@ -234,7 +234,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 				"Problem : The import p1 cannot be resolved [ resource : </Project2/src/p2/Production2.java> range : <20,22> category : <30> severity : <2>]\n" +
 				"Problem : The import p1 cannot be resolved [ resource : </Project2/src/p2/Production2.java> range : <39,41> category : <30> severity : <2>]");
 	}
-	public void testWithProjectAsMainDependencyWithoutTestCode() throws JavaModelException {
+	public void testWithProjectAsMainDependencyWithoutTestCode() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath project1Path = env.addProject("Project1");
 		env.removePackageFragmentRoot(project1Path, "");
 		IPath src1 = env.addPackageFragmentRoot(project1Path, "src", null, "bin");
@@ -335,7 +335,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 				"Problem : The import p1.T1Class cannot be resolved [ resource : </Project2/src/p2/Production2.java> range : <39,49> category : <30> severity : <2>]\n" +
 				"Problem : The import p1.T1Class cannot be resolved [ resource : </Project2/tests/p2/Test2.java> range : <39,49> category : <30> severity : <2>]");
 	}
-	public void testWithProjectAsTestDependencyWithoutTestCode() throws JavaModelException {
+	public void testWithProjectAsTestDependencyWithoutTestCode() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath project1Path = env.addProject("Project1");
 		env.removePackageFragmentRoot(project1Path, "");
 		IPath src1 = env.addPackageFragmentRoot(project1Path, "src", null, "bin");
@@ -439,7 +439,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 				"Problem : The import p1.T1Class cannot be resolved [ resource : </Project2/tests/p2/Test2.java> range : <39,49> category : <30> severity : <2>]");
 	}
 
-	public void testIncrementalBuildMainChange() throws JavaModelException {
+	public void testIncrementalBuildMainChange() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath project1Path = env.addProject("Project1");
 		env.removePackageFragmentRoot(project1Path, "");
 		IPath src1 = env.addPackageFragmentRoot(project1Path, "src", null, "bin");
@@ -503,7 +503,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 		expectingCompilingOrder(new String[] { "/Project1/src/p1/P1Class.java", "/Project1/tests/p1/T1Class.java",
 				"/Project2/src/p2/P2Class.java", "/Project2/tests/p2/Test2.java" });
 	}
-	public void testIncrementalBuildTestChange() throws JavaModelException {
+	public void testIncrementalBuildTestChange() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath project1Path = env.addProject("Project1");
 		env.removePackageFragmentRoot(project1Path, "");
 		IPath src1 = env.addPackageFragmentRoot(project1Path, "src", null, "bin");
@@ -578,7 +578,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 				"/Project2/tests/p2/T2Class.java", "/Project2/tests/p2/Test2.java" });
 	}
 
-	public void testIncrementalBuildTestOnlyProject() throws JavaModelException {
+	public void testIncrementalBuildTestOnlyProject() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath project1Path = env.addProject("Project1");
 		env.removePackageFragmentRoot(project1Path, "");
 		IPath tests1 = env.addTestPackageFragmentRoot(project1Path, "tests");
@@ -623,7 +623,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 		expectingCompilingOrder(new String[] { "/Project1/tests/p1/Test1.java"});
 	}
 
-	public void testClasspathEntryTestAttributeChanges() throws JavaModelException {
+	public void testClasspathEntryTestAttributeChanges() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath project1Path = env.addProject("Project1");
 		env.removePackageFragmentRoot(project1Path, "");
 		IPath src1 = env.addPackageFragmentRoot(project1Path, "src", null, "bin");
@@ -768,7 +768,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 		expectingCompiledClasses(new String[]{"p1.P1Class", "p1.P1Unrelated","p1.Production1","p1.T1Class","p1.Test1","p2.P2Class","p2.P2Unrelated","p2.Production2","p2.T2Class","p2.Test2"});
 	}
 
-	public void testExternalTestJarChanged() throws CoreException, java.io.IOException {
+	public void testExternalTestJarChanged() throws CoreException, java.io.IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project");
 		env.removePackageFragmentRoot(projectPath, "");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -782,7 +782,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 			"  }\n" +
 			"}"
 		);
-		String externalJar = Util.getOutputDirectory() + java.io.File.separator + "test.jar";
+		String externalJar = Util.getOutputDirectory() + java.io.File.separator + "test.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(
 			new String[] {
 				"q/Y.java",
@@ -790,7 +790,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 				"public class Y {\n" +
 				"}"
 			},
-			new HashMap<>(),
+			new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			externalJar
 		);
 		fullBuild();
@@ -815,7 +815,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 				"  }\n" +
 				"}"
 			},
-			new HashMap<>(),
+			new HashMap<>(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			externalJar
 		);
 
@@ -825,7 +825,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testBug536868() throws JavaModelException {
+	public void testBug536868() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath project1Path = env.addProject("Project1");
 		env.removePackageFragmentRoot(project1Path, "");
 		IPath tests1 = env.addTestPackageFragmentRoot(project1Path, "tests");
@@ -866,7 +866,7 @@ public class TestAttributeBuilderTests extends BuilderTests {
 		fullBuild();
 		expectingNoProblems();
 	}
-	public void testBug559965() throws JavaModelException {
+	public void testBug559965() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Bug 559965 - No recompilation when deleting java file from test-source-folder
 		IPath project1Path = env.addProject("Project1");
 		env.removePackageFragmentRoot(project1Path, "");

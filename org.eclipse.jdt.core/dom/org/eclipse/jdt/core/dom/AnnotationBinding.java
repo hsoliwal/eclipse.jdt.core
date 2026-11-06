@@ -55,7 +55,7 @@ class AnnotationBinding implements IAnnotationBinding {
 		return typeBinding;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IMemberValuePairBinding[] getDeclaredMemberValuePairs() {
 		ReferenceBinding typeBinding = this.binding.getAnnotationType();
 		if (typeBinding == null || ((typeBinding.tagBits & TagBits.HasMissingType) != 0)) {
@@ -65,7 +65,7 @@ class AnnotationBinding implements IAnnotationBinding {
 		int length = internalPairs.length;
 		IMemberValuePairBinding[] pairs = length == 0 ? MemberValuePairBinding.NoPair : new MemberValuePairBinding[length];
 		int counter = 0;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ElementValuePair valuePair = internalPairs[i];
 			if (valuePair.binding == null) continue;
 			pairs[counter++] = this.bindingResolver.getMemberValuePairBinding(valuePair);
@@ -78,7 +78,7 @@ class AnnotationBinding implements IAnnotationBinding {
 		return pairs;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IMemberValuePairBinding[] getAllMemberValuePairs() {
 		IMemberValuePairBinding[] pairs = getDeclaredMemberValuePairs();
 		ReferenceBinding typeBinding = this.binding.getAnnotationType();
@@ -92,7 +92,7 @@ class AnnotationBinding implements IAnnotationBinding {
 			return pairs;
 
 		HashtableOfObject table = new HashtableOfObject(declaredLength);
-		for (int i = 0; i < declaredLength; i++) {
+		for (int i = 0; i < declaredLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] internalName = ((MemberValuePairBinding) pairs[i]).internalName();
 			if (internalName == null) continue;
 			table.put(internalName, pairs[i]);
@@ -100,14 +100,14 @@ class AnnotationBinding implements IAnnotationBinding {
 
 		// handle case of more methods than declared members
 		IMemberValuePairBinding[] allPairs = new  IMemberValuePairBinding[methodLength];
-		for (int i = 0; i < methodLength; i++) {
+		for (int i = 0; i < methodLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object pair = table.get(methods[i].selector);
 			allPairs[i] = pair == null ? new DefaultValuePairBinding(methods[i], this.bindingResolver) : (IMemberValuePairBinding) pair;
 		}
 		return allPairs;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IJavaElement getJavaElement() {
 		if (!(this.bindingResolver instanceof DefaultBindingResolver)) return null;
 		ASTNode node = (ASTNode) ((DefaultBindingResolver) this.bindingResolver).bindingsToAstNodes.get(this);
@@ -172,7 +172,7 @@ class AnnotationBinding implements IAnnotationBinding {
 		return this.key;
 	}
 
-	private String getRecipientKey() {
+	private String getRecipientKey() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!(this.bindingResolver instanceof DefaultBindingResolver)) return ""; //$NON-NLS-1$
 		DefaultBindingResolver resolver = (DefaultBindingResolver) this.bindingResolver;
 		ASTNode node = (ASTNode) resolver.bindingsToAstNodes.get(this);
@@ -229,7 +229,7 @@ class AnnotationBinding implements IAnnotationBinding {
 		return typeBinding.isDeprecated();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean isEqualTo(IBinding otherBinding) {
 		if (this == otherBinding)
 			return true;
@@ -242,7 +242,7 @@ class AnnotationBinding implements IAnnotationBinding {
 		IMemberValuePairBinding[] otherMemberValuePairs = other.getDeclaredMemberValuePairs();
 		if (memberValuePairs.length != otherMemberValuePairs.length)
 			return false;
-		for (int i = 0, length = memberValuePairs.length; i < length; i++) {
+		for (int i = 0, length = memberValuePairs.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!memberValuePairs[i].isEqualTo(otherMemberValuePairs[i]))
 				return false;
 		}
@@ -262,18 +262,18 @@ class AnnotationBinding implements IAnnotationBinding {
 	@Override
 	public String toString() {
 		ITypeBinding type = getAnnotationType();
-		final StringBuilder buffer = new StringBuilder();
-		buffer.append('@');
+		final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (type != null)
-			buffer.append(type.getName());
-		buffer.append('(');
+			buffer.append(type.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IMemberValuePairBinding[] pairs = getDeclaredMemberValuePairs();
-		for (int i = 0, len = pairs.length; i < len; i++) {
+		for (int i = 0, len = pairs.length; i < len; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i != 0)
-				buffer.append(", "); //$NON-NLS-1$
-			buffer.append(pairs[i].toString());
+				buffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(pairs[i].toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append(')');
+		buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 

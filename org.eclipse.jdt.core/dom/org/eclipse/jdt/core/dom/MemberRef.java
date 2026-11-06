@@ -56,7 +56,7 @@ public class MemberRef extends ASTNode implements IDocElement {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(3);
+		List propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(MemberRef.class, propertyList);
 		addProperty(QUALIFIER_PROPERTY, propertyList);
 		addProperty(NAME_PROPERTY, propertyList);
@@ -108,7 +108,7 @@ public class MemberRef extends ASTNode implements IDocElement {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == QUALIFIER_PROPERTY) {
 			if (get) {

@@ -63,7 +63,7 @@ public class ClassFileReader extends ClassFileStruct implements IClassFileReader
 	 * @see IClassFileReader#CONSTANT_POOL
 	 * @see IClassFileReader#FIELD_INFOS
 	 */
-	public ClassFileReader(byte[] classFileBytes, int decodingFlags) throws ClassFormatException {
+	public ClassFileReader(byte[] classFileBytes, int decodingFlags) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// This method looks ugly but is actually quite simple, the constantPool is constructed
 		// in 3 passes.  All non-primitive constant pool members that usually refer to other members
@@ -89,7 +89,7 @@ public class ClassFileReader extends ClassFileStruct implements IClassFileReader
 			constantPoolCount = u2At(classFileBytes, 8, 0);
 			// Pass #1 - Fill in all primitive constants
 			constantPoolOffsets = new int[constantPoolCount];
-			for (int i = 1; i < constantPoolCount; i++) {
+			for (int i = 1; i < constantPoolCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int tag = u1At(classFileBytes, readOffset, 0);
 				switch (tag) {
 					case IConstantPoolConstant.CONSTANT_Utf8 :
@@ -196,7 +196,7 @@ public class ClassFileReader extends ClassFileStruct implements IClassFileReader
 				if ((decodingFlags & IClassFileReader.SUPER_INTERFACES) != IClassFileReader.CONSTANT_POOL) {
 					this.interfaceNames = new char[this.interfacesCount][];
 					this.interfaceIndexes = new int[this.interfacesCount];
-					for (int i = 0; i < this.interfacesCount; i++) {
+					for (int i = 0; i < this.interfacesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						this.interfaceIndexes[i] = u2At(classFileBytes, readOffset, 0);
 						this.interfaceNames[i] = getConstantClassNameAt(classFileBytes, constantPoolOffsets, this.interfaceIndexes[i]);
 						readOffset += 2;
@@ -213,17 +213,17 @@ public class ClassFileReader extends ClassFileStruct implements IClassFileReader
 				if ((decodingFlags & IClassFileReader.FIELD_INFOS) != IClassFileReader.CONSTANT_POOL) {
 					FieldInfo field;
 					this.fields = new FieldInfo[this.fieldsCount];
-					for (int i = 0; i < this.fieldsCount; i++) {
+					for (int i = 0; i < this.fieldsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						field = new FieldInfo(classFileBytes, this.constantPool, readOffset);
 						this.fields[i] = field;
 						readOffset += field.sizeInBytes();
 					}
 				} else {
-					for (int i = 0; i < this.fieldsCount; i++) {
+					for (int i = 0; i < this.fieldsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int attributeCountForField = u2At(classFileBytes, 6, readOffset);
 						readOffset += 8;
 						if (attributeCountForField != 0) {
-							for (int j = 0; j < attributeCountForField; j++) {
+							for (int j = 0; j < attributeCountForField; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								int attributeLength = u4At(classFileBytes, 2, readOffset);
 								readOffset += (6 + attributeLength);
 							}
@@ -239,17 +239,17 @@ public class ClassFileReader extends ClassFileStruct implements IClassFileReader
 				if ((decodingFlags & IClassFileReader.METHOD_INFOS) != IClassFileReader.CONSTANT_POOL) {
 					this.methods = new MethodInfo[this.methodsCount];
 					MethodInfo method;
-					for (int i = 0; i < this.methodsCount; i++) {
+					for (int i = 0; i < this.methodsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						method = new MethodInfo(classFileBytes, this.constantPool, readOffset, decodingFlags);
 						this.methods[i] = method;
 						readOffset += method.sizeInBytes();
 					}
 				} else {
-					for (int i = 0; i < this.methodsCount; i++) {
+					for (int i = 0; i < this.methodsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int attributeCountForMethod = u2At(classFileBytes, 6, readOffset);
 						readOffset += 8;
 						if (attributeCountForMethod != 0) {
-							for (int j = 0; j < attributeCountForMethod; j++) {
+							for (int j = 0; j < attributeCountForMethod; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								int attributeLength = u4At(classFileBytes, 2, readOffset);
 								readOffset += (6 + attributeLength);
 							}
@@ -267,7 +267,7 @@ public class ClassFileReader extends ClassFileStruct implements IClassFileReader
 			if (this.attributesCount != 0) {
 				if ((decodingFlags & IClassFileReader.CLASSFILE_ATTRIBUTES) != IClassFileReader.CONSTANT_POOL) {
 					this.attributes = new IClassFileAttribute[this.attributesCount];
-					for (int i = 0; i < this.attributesCount; i++) {
+					for (int i = 0; i < this.attributesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int utf8Offset = constantPoolOffsets[u2At(classFileBytes, readOffset, 0)];
 						char[] attributeName = utf8At(classFileBytes, utf8Offset + 3, 0, u2At(classFileBytes, utf8Offset + 1, 0));
 						if (equals(attributeName, IAttributeNamesConstants.INNER_CLASSES)) {
@@ -314,7 +314,7 @@ public class ClassFileReader extends ClassFileStruct implements IClassFileReader
 						readOffset += (6 + tmp);
 					}
 				} else {
-					for (int i = 0; i < this.attributesCount; i++) {
+					for (int i = 0; i < this.attributesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						readOffset += (6 + u4At(classFileBytes, readOffset + 2, 0));
 					}
 				}

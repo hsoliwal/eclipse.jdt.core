@@ -81,7 +81,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 			this(null, source, markerBeginning, markerEnding, markerStart, markerEnd);
 		}
 
-		public MarkerInfo(
+		public MarkerInfo( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				String path,
 				String source,
 				String markerBeginning,
@@ -91,20 +91,20 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 			this.path = path;
 			this.source = source;
 
-			this.markerStartStart = markerBeginning + markerStart;
+			this.markerStartStart = markerBeginning + markerStart; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.markerStartEnd = markerEnding;
-			this.markerEndStart = markerBeginning + markerEnd;
+			this.markerEndStart = markerBeginning + markerEnd; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.markerEndEnd = markerEnding;
 
 			int markerIndex = 1;
-			while (source.indexOf(this.markerStartStart + markerIndex + this.markerStartEnd) != -1) {
+			while (source.indexOf(this.markerStartStart + markerIndex + this.markerStartEnd) != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				markerIndex++;
 			}
-			int astNumber = source.indexOf(this.markerStartStart + this.markerStartEnd) != -1 ? markerIndex : markerIndex-1;
+			int astNumber = source.indexOf(this.markerStartStart + this.markerStartEnd) != -1 ? markerIndex : markerIndex-1; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.astStarts = new int[astNumber];
 			this.astEnds = new int[astNumber];
 
-			for (int i = 1; i < markerIndex; i++)
+			for (int i = 1; i < markerIndex; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				setStartAndEnd(i);
 			if (astNumber == markerIndex)
 				setStartAndEnd(-1);
@@ -115,7 +115,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 		}
 
 		public int indexOfASTStart(int astStart, int fromIndex) {
-			for (int i = fromIndex, length = this.astStarts.length; i < length; i++)
+			for (int i = fromIndex, length = this.astStarts.length; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.astStarts[i] == astStart)
 					return i;
 			return -1;
@@ -125,7 +125,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 			int markerLength = marker.length();
 			this.source = this.source.substring(0, sourceIndex).concat(this.source.substring(sourceIndex + markerLength));
 			// shift previously recorded positions
-			for (int i = 0; i < astNumber; i++) {
+			for (int i = 0; i < astNumber; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.astStarts[i] > sourceIndex)
 					this.astStarts[i] -= markerLength;
 				if (this.astEnds[i] > sourceIndex)
@@ -141,8 +141,8 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 			} else
 				markerNumber = Integer.toString(markerIndex);
 
-			String markerStart = this.markerStartStart + markerNumber + this.markerStartEnd;
-			String markerEnd = this.markerEndStart + markerNumber + this.markerEndEnd;
+			String markerStart = this.markerStartStart + markerNumber + this.markerStartEnd; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			String markerEnd = this.markerEndStart + markerNumber + this.markerEndEnd; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			int astStart = this.source.indexOf(markerStart); // start of AST inclusive
 			this.astStarts[markerIndex-1] = astStart;
 			removeMarkerFromSource(markerStart, astStart, markerIndex-1);
@@ -154,14 +154,14 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 	}
 
 	public static class BindingRequestor extends ASTRequestor {
-		HashMap bindings = new HashMap();
+		HashMap bindings = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		public void acceptBinding(String bindingKey, IBinding binding) {
 			this.bindings.put(bindingKey, binding);
 		}
 		public IBinding[] getBindings(String[] bindingKeys) {
 			int length = this.bindings.size();
 			IBinding[] result = new IBinding[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				result[i] = (IBinding) this.bindings.get(bindingKeys[i]);
 			}
 			return result;
@@ -180,32 +180,32 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 	protected void assertASTNodeEquals(String expected, ASTNode node) {
 		String actual = node.toString();
 		if (!expected.equals(actual)) {
-			System.out.println(displayString(actual, 3) + ",");
+			System.out.println(displayString(actual, 3) + ","); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals("Unexpected ast node", expected, actual);
 	}
 
-	protected void assertASTNodesEqual(String expected, List nodes) {
-		StringBuilder buffer = new StringBuilder();
+	protected void assertASTNodesEqual(String expected, List nodes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		Iterator iterator = nodes.iterator();
-		while (iterator.hasNext()) {
+		while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode node = (ASTNode) iterator.next();
-			buffer.append(node);
+			buffer.append(node); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (node instanceof CompilationUnit) {
 				IProblem[] problems = ((CompilationUnit) node).getProblems();
 				if (problems != null) {
-					for (int i = 0, length = problems.length; i < length; i++) {
+					for (int i = 0, length = problems.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IProblem problem = problems[i];
-						buffer.append('\n');
-						buffer.append(problem);
+						buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buffer.append(problem); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 			}
-			buffer.append('\n');
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String actual = buffer.toString();
 		if (!expected.equals(actual)) {
-			System.out.println(displayString(actual, 4) + ",");
+			System.out.println(displayString(actual, 4) + ","); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals("Unexpected ast nodes", expected, actual);
 	}
@@ -215,10 +215,10 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 	}
 
 	protected void assertBindingKeysEqual(String expected, String[] actualKeys) {
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0, length = actualKeys.length; i < length; i++) {
-			if (i > 0) buffer.append('\n');
-			buffer.append(actualKeys[i]);
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, length = actualKeys.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			if (i > 0) buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(actualKeys[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String actual = buffer.toString();
 		if (!expected.equals(actual)) {
@@ -240,13 +240,13 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 	}
 
 	protected void assertBindingsEqual(String message, String expected, IBinding[] actualBindings) {
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0, length = actualBindings.length; i < length; i++) {
-			if (i > 0) buffer.append('\n');
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, length = actualBindings.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			if (i > 0) buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (actualBindings[i] == null)
-				buffer.append("<null>");
+				buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			else
-				buffer.append(actualBindings[i].getKey());
+				buffer.append(actualBindings[i].getKey()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		String actual = buffer.toString();
 		if (!expected.equals(actual)) {
@@ -285,9 +285,9 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 		CompilationUnit unit = (CompilationUnit) parser.createAST(null);
 
 		if (reportErrors) {
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			IProblem[] problems = unit.getProblems();
-			for (int i = 0, length = problems.length; i < length; i++)
+			for (int i = 0, length = problems.length; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Util.appendProblem(buffer, problems[i], markerInfo.source.toCharArray(), i+1);
 			if (buffer.length() > 0)
 				assertEquals("Unexpected errors", "", buffer.toString());
@@ -340,7 +340,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 		return nodes[0];
 	}
 
-	private ASTNode[] buildASTs(String newContents, ICompilationUnit cu, int flags) throws JavaModelException {
+	private ASTNode[] buildASTs(String newContents, ICompilationUnit cu, int flags) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		MarkerInfo markerInfo;
 		if (newContents == null) {
 			markerInfo = new MarkerInfo(cu.getSource());
@@ -366,9 +366,9 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 		}
 
 		if ((flags & ICompilationUnit.FORCE_PROBLEM_DETECTION) != 0) {
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			IProblem[] problems = unit.getProblems();
-			for (int i = 0, length = problems.length; i < length; i++)
+			for (int i = 0, length = problems.length; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Util.appendProblem(buffer, problems[i], newContents.toCharArray(), i+1);
 			if (buffer.length() > 0)
 				assertEquals("Unexpected errors", "", buffer.toString());
@@ -393,7 +393,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 	protected ASTNode[] buildASTs(String newContents, ICompilationUnit cu, boolean reportErrors) throws JavaModelException {
 		return buildASTs(newContents, cu, reportErrors, false, false);
 	}
-	protected ASTNode[] buildASTs(int JLSLevel, String newContents, ICompilationUnit cu, boolean reportErrors, boolean enableStatementRecovery, boolean bindingRecovery) throws JavaModelException {
+	protected ASTNode[] buildASTs(int JLSLevel, String newContents, ICompilationUnit cu, boolean reportErrors, boolean enableStatementRecovery, boolean bindingRecovery) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		MarkerInfo markerInfo;
 		if (newContents == null) {
 			markerInfo = new MarkerInfo(cu.getSource());
@@ -424,9 +424,9 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 		}
 
 		if (reportErrors) {
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			IProblem[] problems = unit.getProblems();
-			for (int i = 0, length = problems.length; i < length; i++)
+			for (int i = 0, length = problems.length; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Util.appendProblem(buffer, problems[i], newContents.toCharArray(), i+1);
 			if (buffer.length() > 0)
 				assertEquals("Unexpected errors", "", buffer.toString());
@@ -437,7 +437,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 			return new ASTNode[] {unit};
 		return nodes;
 	}
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected ASTNode[] buildASTs(String newContents, ICompilationUnit cu, boolean reportErrors, boolean enableStatementRecovery, boolean bindingRecovery) throws JavaModelException {
 		String option = cu.getJavaProject().getOption(JavaCore.COMPILER_COMPLIANCE, true);
 		long jdkLevel = CompilerOptions.versionToJdkLevel(option);
@@ -519,7 +519,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 	 * (where ? is either empty or a number), or use the current contents if the given new contents is null.
 	 * Builds an AST from the resulting source and information about marked nodes.
 	 */
-	protected ASTResult buildMarkedAST(
+	protected ASTResult buildMarkedAST( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String path,
 			String content,
 			boolean enableStatementRecovery,
@@ -557,7 +557,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 	protected MarkerInfo[] createMarkerInfos(String[] pathAndSources) {
 		MarkerInfo[] markerInfos = new MarkerInfo[pathAndSources.length / 2];
 		int index = 0;
-		for (int i = 0, length = pathAndSources.length; i < length; i++) {
+		for (int i = 0, length = pathAndSources.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String path = pathAndSources[i];
 			String source = pathAndSources[++i];
 			markerInfos[index++] = new MarkerInfo(path, source);
@@ -611,7 +611,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 	protected ICompilationUnit[] createWorkingCopies(MarkerInfo[] markerInfos, WorkingCopyOwner owner) throws JavaModelException {
 		int length = markerInfos.length;
 		ICompilationUnit[] copies = new ICompilationUnit[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			MarkerInfo markerInfo = markerInfos[i];
 			ICompilationUnit workingCopy = getCompilationUnit(markerInfo.path).getWorkingCopy(owner, null);
 			workingCopy.getBuffer().setContents(markerInfo.source);
@@ -628,9 +628,9 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 		return nodes[0];
 	}
 
-	protected ASTNode[] findNodes(CompilationUnit unit, final MarkerInfo markerInfo) {
+	protected ASTNode[] findNodes(CompilationUnit unit, final MarkerInfo markerInfo) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		class Visitor extends ASTVisitor {
-			ArrayList found = new ArrayList();
+			ArrayList found = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			public void preVisit(ASTNode node) {
 				if (node instanceof CompilationUnit) return;
 				int index = markerInfo.indexOfASTStart(node.getStartPosition());
@@ -672,7 +672,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 		parser.createASTs(cus, bindingKeys,  requestor, null);
 	}
 
-	protected IBinding resolveBinding(ASTNode node) {
+	protected IBinding resolveBinding(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (node.getNodeType()) {
 			case ASTNode.PACKAGE_DECLARATION:
 				return ((PackageDeclaration) node).resolveBinding();
@@ -711,7 +711,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 			case ASTNode.VARIABLE_DECLARATION_FRAGMENT:
 				return ((VariableDeclarationFragment) node).resolveBinding();
 			default:
-				throw new Error("Not yet implemented for this type of node: " + node);
+				throw new Error("Not yet implemented for this type of node: " + node); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -736,7 +736,7 @@ public class AbstractASTTests extends ModifyingResourceTests implements DefaultM
 		if (nodes == null) return null;
 		int length = nodes.length;
 		IBinding[] result = new IBinding[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i] = resolveBinding(nodes[i]);
 		}
 		return result;

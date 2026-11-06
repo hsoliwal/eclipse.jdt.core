@@ -116,7 +116,7 @@ public CharArrayBuffer append(char[] src) {
  *
  * @throws ArrayIndexOutOfBoundsException - if arguments specify an array index out of bounds.
  */
-public CharArrayBuffer append(char[] src, int start, int length) {
+public CharArrayBuffer append(char[] src, int start, int length) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (start < 0) throw new ArrayIndexOutOfBoundsException();
 	if (length < 0) throw new ArrayIndexOutOfBoundsException();
 	if (src != null) {
@@ -162,20 +162,20 @@ public CharArrayBuffer append(String src) {
  * Returns the entire contents of the buffer as one
  * char[] or null if nothing has been put in the buffer.
  */
-public char[] getContents() {
+public char[] getContents() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.end == 0)
 		return null;
 
 	// determine the length of the array
 	int length = 0;
-	for (int i = 0; i < this.end; i++)
+	for (int i = 0; i < this.end; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		length += this.ranges[i][1];
 
 	if (length > 0) {
 		char[] result = new char[length];
 		int current = 0;
 		// copy the results
-		for(int i = 0; i < this.end; i++) {
+		for(int i = 0; i < this.end; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int[] range = this.ranges[i];
 			int length2 = range[1];
 			System.arraycopy(this.buffer[i], range[0], result, current, length2);

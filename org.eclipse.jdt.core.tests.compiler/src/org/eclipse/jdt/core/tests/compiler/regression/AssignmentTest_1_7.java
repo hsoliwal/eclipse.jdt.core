@@ -46,7 +46,7 @@ public static Test suite() {
  * no effect assignment bug
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=27235
  */
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",

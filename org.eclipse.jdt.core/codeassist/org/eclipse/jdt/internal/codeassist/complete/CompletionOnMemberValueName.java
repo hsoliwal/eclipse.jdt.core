@@ -35,9 +35,9 @@ public class CompletionOnMemberValueName extends MemberValuePair implements Comp
 
 	@Override
 	public StringBuilder print(int indent, StringBuilder output) {
-		output.append("<CompleteOnAttributeName:"); //$NON-NLS-1$
-		output.append(this.name);
-		output.append('>');
+		output.append("<CompleteOnAttributeName:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return output;
 	}
 }

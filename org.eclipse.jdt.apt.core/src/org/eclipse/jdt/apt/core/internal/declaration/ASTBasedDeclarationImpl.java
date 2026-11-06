@@ -81,9 +81,9 @@ public abstract class ASTBasedDeclarationImpl extends EclipseDeclarationImpl {
 		return getModifiers(modBits);
 	}
 
-	private Collection<Modifier> getModifiers(int modBits)
+	private Collection<Modifier> getModifiers(int modBits) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
-		final List<Modifier> mods = new ArrayList<>(4);
+		final List<Modifier> mods = new ArrayList<>(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
         if( org.eclipse.jdt.core.dom.Modifier.isAbstract(modBits) )
         	mods.add(Modifier.ABSTRACT);
         if( org.eclipse.jdt.core.dom.Modifier.isFinal(modBits) )
@@ -124,7 +124,7 @@ public abstract class ASTBasedDeclarationImpl extends EclipseDeclarationImpl {
 		return _getAnnotationMirrors(instances);
     }
 
-	@SuppressWarnings("rawtypes") // DOM AST API returns raw collections
+	@SuppressWarnings("rawtypes") // DOM AST API returns raw collections //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	private IAnnotationBinding[] getAnnotationInstancesFromAST()
 	{
 		IAnnotationBinding[] instances = null;
@@ -155,14 +155,14 @@ public abstract class ASTBasedDeclarationImpl extends EclipseDeclarationImpl {
 		}
 		if( extendsMods != null ){
 			int count = 0;
-			for( Object obj : extendsMods ){
+			for( Object obj : extendsMods ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final IExtendedModifier extMod = (IExtendedModifier)obj;
 				if( extMod.isAnnotation() )
 					count ++;
 			}
 			instances = new IAnnotationBinding[count];
 			int index = 0;
-			for( Object obj : extendsMods ){
+			for( Object obj : extendsMods ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final IExtendedModifier extMod = (IExtendedModifier)obj;
 				if( extMod.isAnnotation() )
 					instances[index ++] =

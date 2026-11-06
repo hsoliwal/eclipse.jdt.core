@@ -108,8 +108,8 @@ public class JavaSearchBugs25Tests extends AbstractJavaSearchTests {
 	}
 
 	private static IPackageFragmentRoot[] getAllScopeElements(IJavaProject project, boolean onlySourceRoots) throws JavaModelException {
-		List<IPackageFragmentRoot> result= new ArrayList<>();
-		for (IPackageFragmentRoot root : project.getPackageFragmentRoots()) {
+		List<IPackageFragmentRoot> result= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IPackageFragmentRoot root : project.getPackageFragmentRoots()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!onlySourceRoots || root.getKind() == IPackageFragmentRoot.K_SOURCE)
 				result.add(root);
 		}

@@ -60,7 +60,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 		runner.runConformTest();
 	}
 
-	public void testListOfPatterns_000() {
+	public void testListOfPatterns_000() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -86,7 +86,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 				"success");
 	}
 
-	public void testListOfPatterns_001() {
+	public void testListOfPatterns_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -112,7 +112,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 				"success");
 	}
 
-	public void testListOfPatterns_002() {
+	public void testListOfPatterns_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -138,7 +138,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 				"failure");
 	}
 
-	public void testListOfPatterns_003() {
+	public void testListOfPatterns_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -164,7 +164,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 				"success");
 	}
 
-	public void testListOfPatterns_004() {
+	public void testListOfPatterns_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -190,7 +190,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 				"success");
 	}
 
-	public void testListOfPatterns_005() {
+	public void testListOfPatterns_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -218,7 +218,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 
 	// next three tests: beat the static analysis so that the `when` clause comparison isn't optimized away
 
-	public void testListOfPatterns_006() {
+	public void testListOfPatterns_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -245,7 +245,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 				"success");
 	}
 
-	public void testListOfPatterns_007() {
+	public void testListOfPatterns_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -272,7 +272,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 				"success");
 	}
 
-	public void testListOfPatterns_008() {
+	public void testListOfPatterns_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -299,7 +299,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 				"failure");
 	}
 
-	public void testTwoCasesWithRecordPatternsShouldNotDominateRegression() {
+	public void testTwoCasesWithRecordPatternsShouldNotDominateRegression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -326,7 +326,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 				"success 12");
 	}
 
-	public void testWhenAtWrongPlace() throws Exception {
+	public void testWhenAtWrongPlace() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -373,7 +373,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 			"x cannot be resolved to a variable\n" +
 			"----------\n");
 	}
-	public void testIllegalFallThrough() throws Exception {
+	public void testIllegalFallThrough() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -405,7 +405,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 			"Named pattern variables are not allowed here\n" +
 			"----------\n");
 	}
-	public void testInternalDomination_this() throws Exception {
+	public void testInternalDomination_this() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -436,7 +436,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 			"This case label is dominated by one of the preceding case labels\n" +
 			"----------\n");
 	}
-	public void testInternalDomination_2() throws Exception {
+	public void testInternalDomination_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -469,7 +469,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 			"Switch case cannot have both unconditional pattern and default label\n" +
 			"----------\n");
 	}
-	public void testInternalDomination_3() throws Exception {
+	public void testInternalDomination_3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -505,7 +505,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 			"Switch case cannot have both unconditional pattern and default label\n" +
 			"----------\n");
 	}
-	public void testExternalDomination() throws Exception {
+	public void testExternalDomination() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -531,7 +531,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 			"This case label is dominated by one of the preceding case labels\n" +
 			"----------\n");
 	}
-	public void testExternalDomination_2() throws Exception {
+	public void testExternalDomination_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -557,7 +557,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 			"This case label is dominated by one of the preceding case labels\n" +
 			"----------\n");
 	}
-	public void testExternalDomination_3() throws Exception {
+	public void testExternalDomination_3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -583,7 +583,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 			"This case label is dominated by one of the preceding case labels\n" +
 			"----------\n");
 	}
-	public void testExternalDomination_3_1() throws Exception {
+	public void testExternalDomination_3_1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -605,7 +605,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 			"Multi\n"
 			+ "Object");
 	}
-	public void testExternalDomination_4() throws Exception {
+	public void testExternalDomination_4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -631,7 +631,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 			"This case label is dominated by one of the preceding case labels\n" +
 			"----------\n");
 	}
-	public void testExternalDomination_4_1() throws Exception {
+	public void testExternalDomination_4_1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -655,7 +655,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 			+ "Object");
 	}
 	// javac jdk21 allows components to be named, but they can't be referenced.
-	public void testNaming() throws Exception {
+	public void testNaming() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles =
 			new String[] {
@@ -685,7 +685,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 		runner.javacTestOptions = JavacHasABug.JavacBug8348928;
 		runner.runNegativeTest();
 	}
-	public void testGuard_0() {
+	public void testGuard_0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -710,7 +710,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 						""", },
 				"default");
 	}
-	public void testGuard_2() {
+	public void testGuard_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -735,7 +735,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 						""", },
 				"default");
 	}
-	public void testGuard_3() {
+	public void testGuard_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -760,7 +760,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 						""", },
 				"success");
 	}
-	public void testGuard_4() {
+	public void testGuard_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -785,7 +785,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 						""", },
 				"success");
 	}
-	public void testFallThrough() {
+	public void testFallThrough() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] { "X.java",
 						"""
@@ -851,7 +851,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2070
 	// [Switch] Compiler is unable to parse a particular multicase construct
-	public void testIssue2070() {
+	public void testIssue2070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -874,7 +874,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2956
 	// Unnamed patterns inside of multi case patterns fail to parse
-	public void testIssue2956() {
+	public void testIssue2956() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Main.java",
@@ -907,7 +907,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2956
 	// Unnamed patterns inside of multi case patterns fail to parse
-	public void testIssue2956_2() {
+	public void testIssue2956_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Main.java",
@@ -941,7 +941,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2956
 	// Unnamed patterns inside of multi case patterns fail to parse
-	public void testIssue2956_3() {
+	public void testIssue2956_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Main.java",
@@ -973,7 +973,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3109
 	// [Patterns] Mixed multiple pattern and when is not fully supported in switch expression
-	public void testIssue3109() {
+	public void testIssue3109() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"Maybe.java",
@@ -1013,7 +1013,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3318
 	// [Enhanced Switch] ECJ tolerates fall through to default from a case with pattern label while javac rejects it.
-	public void testIssue3318() {
+	public void testIssue3318() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1076,7 +1076,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3320
 	// [Enhanced Switch][Patterns] ECJ generated code hangs
-	public void testIssue3320() {
+	public void testIssue3320() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 				new String[] {
 						"X.java",
@@ -1102,7 +1102,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4038
 	// [Record patterns] Verify error with record patterns
-	public void testIssue4038() {
+	public void testIssue4038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"Problem.java",
 				"""
@@ -1135,7 +1135,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4038
 	// [Record patterns] Verify error with record patterns
-	public void testIssue4038_2() {
+	public void testIssue4038_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"Problem.java",
 				"""
@@ -1168,7 +1168,7 @@ public class SwitchPatternTest22 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4038
 	// [Record patterns] Verify error with record patterns
-	public void testIssue4038_3() {
+	public void testIssue4038_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"Problem.java",
 				"""

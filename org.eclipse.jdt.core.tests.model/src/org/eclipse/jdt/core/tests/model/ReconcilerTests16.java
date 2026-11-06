@@ -111,7 +111,7 @@ public void tearDownSuite() throws Exception {
 	deleteProject("Reconciler16");
 	super.tearDownSuite();
 }
-public void testBug570399_001() throws Exception {
+public void testBug570399_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava16Project("p");
@@ -150,7 +150,7 @@ public void testBug570399_001() throws Exception {
 		deleteProject(p);
 	}
 }
-public void _testBug570399_002() throws Exception {
+public void _testBug570399_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava16Project("p");
@@ -191,7 +191,7 @@ public void _testBug570399_002() throws Exception {
 		deleteProject(p);
 	}
 }
-public void testBug576448_001() throws Exception {
+public void testBug576448_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava16Project("p");
@@ -250,7 +250,7 @@ public void testBug576448_001() throws Exception {
 	}
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/342
-public void testissue342_001() throws Exception {
+public void testissue342_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava16Project("p");
@@ -296,7 +296,7 @@ public void testissue342_001() throws Exception {
 		deleteProject(p);
 	}
 }
-public void testGH612_001() throws Exception {
+public void testGH612_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava16Project("p");
@@ -336,7 +336,7 @@ public void testGH612_001() throws Exception {
 		deleteProject(p);
 	}
 }
-public void testGH612_002() throws Exception {
+public void testGH612_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava16Project("p");
@@ -378,7 +378,7 @@ public void testGH612_002() throws Exception {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1085
 // Canonical constructor of generic record not found if other constructor is present
-public void testGHIssue1085() throws Exception {
+public void testGHIssue1085() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava16Project("p");
@@ -418,7 +418,7 @@ public void testGHIssue1085() throws Exception {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1085
 // Canonical constructor of generic record not found if other constructor is present
-public void testGHIssue1085_2() throws Exception {
+public void testGHIssue1085_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava16Project("p");
@@ -460,7 +460,7 @@ public void testGHIssue1085_2() throws Exception {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1085
 // Canonical constructor of generic record not found if other constructor is present
-public void testGHIssue1085_3() throws Exception {
+public void testGHIssue1085_3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava16Project("p");
@@ -501,7 +501,7 @@ public void testGHIssue1085_3() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=578080
 // incorrect compiler error: Type inference not working on records with constructor
-public void test578080() throws Exception {
+public void test578080() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava16Project("p");
@@ -547,7 +547,7 @@ public void test578080() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=577351
 // inference with diamond error in records in two files
-public void test577351() throws Exception {
+public void test577351() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava16Project("p");
@@ -603,7 +603,7 @@ public void test577351() throws Exception {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4767
 // Unnecessary error marker for **nested** record's constructor that uses varargs
-public void testIssue624767_nonest() throws Exception {
+public void testIssue624767_nonest() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava21Project("p");
@@ -645,7 +645,7 @@ public void testIssue624767_nonest() throws Exception {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4767
 // Unnecessary error marker for **nested** record's constructor that uses varargs
-public void testIssue624767() throws Exception {
+public void testIssue624767() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16)
 		return;
 	IJavaProject p = createJava21Project("p");

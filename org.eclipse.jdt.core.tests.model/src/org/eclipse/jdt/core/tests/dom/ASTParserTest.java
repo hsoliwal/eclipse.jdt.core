@@ -32,7 +32,7 @@ public class ASTParserTest extends org.eclipse.jdt.core.tests.junit.extension.Te
 
 		Class c = ASTParserTest.class;
 		Method[] methods = c.getMethods();
-		for (int i = 0, max = methods.length; i < max; i++) {
+		for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methods[i].getName().startsWith("test")) { //$NON-NLS-1$
 				suite.addTest(new ASTParserTest(methods[i].getName(), AST.JLS8));
 				suite.addTest(new ASTParserTest(methods[i].getName(), AST.JLS11));
@@ -67,7 +67,7 @@ public class ASTParserTest extends org.eclipse.jdt.core.tests.junit.extension.Te
 	public String getName() {
 		String name = super.getName();
 
-		name = "JLS"+this.API_LEVEL+" - " + name;
+		name = "JLS"+this.API_LEVEL+" - " + name; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return name;
 	}
 
@@ -78,7 +78,7 @@ public class ASTParserTest extends org.eclipse.jdt.core.tests.junit.extension.Te
 		assertSame(ASTParser.K_COMPILATION_UNIT, 8);
 	}
 
-	public void testSetting() {
+	public void testSetting() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// for now, just slam some values in
 	    this.parser.setKind(ASTParser.K_COMPILATION_UNIT);
 	    this.parser.setKind(ASTParser.K_CLASS_BODY_DECLARATIONS);
@@ -109,6 +109,6 @@ public class ASTParserTest extends org.eclipse.jdt.core.tests.junit.extension.Te
 	    this.parser.setFocalPosition(0);
 
 	    this.parser.setCompilerOptions(null);
-	    this.parser.setCompilerOptions(new HashMap<>());
+	    this.parser.setCompilerOptions(new HashMap<>()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	}
 }

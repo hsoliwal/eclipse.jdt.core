@@ -53,7 +53,7 @@ public static Test suite() {
 
 // === positive tests for module imports have moved to CompletionTests25 ===
 
-public void testKeyword_neg() throws JavaModelException {
+public void testKeyword_neg() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// keyword not enabled, other proposals don't match
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion23/src/p/X.java", """
@@ -72,7 +72,7 @@ public void testKeyword_neg() throws JavaModelException {
 			requestor.getResults());
 }
 
-public void test001_neg() throws JavaModelException {
+public void test001_neg() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// prefixed
 	// only java.base available (from JCL_23_LIB)
 	// module imports not enabled
@@ -98,7 +98,7 @@ public void test001_neg() throws JavaModelException {
 }
 
 
-public void testMarkdownTypeLink1() throws CoreException {
+public void testMarkdownTypeLink1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/Completion23/src/javadoc");
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("Completion23/src/javadoc/Test.java", """
@@ -115,12 +115,12 @@ public void testMarkdownTypeLink1() throws CoreException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"TemplateRuntime[TYPE_REF]{java.lang.runtime.TemplateRuntime, java.lang.runtime, Ljava.lang.runtime.TemplateRuntime;, null, null, "+(DEFAULT_RELEVANCE + R_JAVA_LIBRARY)+"}\n" +
+			"TemplateRuntime[TYPE_REF]{java.lang.runtime.TemplateRuntime, java.lang.runtime, Ljava.lang.runtime.TemplateRuntime;, null, null, "+(DEFAULT_RELEVANCE + R_JAVA_LIBRARY)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Test[TYPE_REF]{Test, javadoc, Ljavadoc.Test;, null, null, "+(DEFAULT_RELEVANCE + R_UNQUALIFIED)+"}",
 			requestor.getResults());
 }
 
-public void testMarkdownMethodLink1() throws CoreException {
+public void testMarkdownMethodLink1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/Completion23/src/javadoc");
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("Completion23/src/javadoc/Test.java", """
@@ -138,11 +138,11 @@ public void testMarkdownMethodLink1() throws CoreException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"method[METHOD_REF]{method(), Ljavadoc.Test;, ()V, method, null, "+(DEFAULT_RELEVANCE + R_NON_STATIC)+"}",
+			"method[METHOD_REF]{method(), Ljavadoc.Test;, ()V, method, null, "+(DEFAULT_RELEVANCE + R_NON_STATIC)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 
-public void testMarkdownMethodLink2_qualified() throws CoreException {
+public void testMarkdownMethodLink2_qualified() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// type-prefixed
 	// missing ']' at end of line
 	createFolder("/Completion23/src/javadoc");
@@ -163,11 +163,11 @@ public void testMarkdownMethodLink2_qualified() throws CoreException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"length[METHOD_REF]{length(), Ljava.lang.String;, ()I, length, null, "+(DEFAULT_RELEVANCE + R_NON_STATIC)+"}",
+			"length[METHOD_REF]{length(), Ljava.lang.String;, ()I, length, null, "+(DEFAULT_RELEVANCE + R_NON_STATIC)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 
-public void testMarkdownMethodLink2_qualified2() throws CoreException {
+public void testMarkdownMethodLink2_qualified2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// type-prefixed
 	// missing ']' at end of line
 	// link is on the last comment line
@@ -188,11 +188,11 @@ public void testMarkdownMethodLink2_qualified2() throws CoreException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"length[METHOD_REF]{length(), Ljava.lang.String;, ()I, length, null, "+(DEFAULT_RELEVANCE + R_NON_STATIC)+"}",
+			"length[METHOD_REF]{length(), Ljava.lang.String;, ()I, length, null, "+(DEFAULT_RELEVANCE + R_NON_STATIC)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 
-public void test011() throws JavaModelException {
+public void test011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion23/src/X.java",
@@ -214,7 +214,7 @@ public void test011() throws JavaModelException {
 	String completeBehind = "case ";
 	int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("default[KEYWORD]{default, null, null, default, null, "+keyword_Rel+"}\n"
+	assertResults("default[KEYWORD]{default, null, null, default, null, "+keyword_Rel+"}\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "null[KEYWORD]{null, null, null, null, null, "+keyword_Rel+"}\n" +
 			"X[TYPE_REF]{X, , LX;, null, null, 72}\n" +
 			"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, 84}",
@@ -223,7 +223,7 @@ public void test011() throws JavaModelException {
 
 
 }
-public void test012() throws JavaModelException {
+public void test012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion23/src/X.java",
@@ -245,13 +245,13 @@ public void test012() throws JavaModelException {
 	String completeBehind = "case nu";
 	int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("null[KEYWORD]{null, null, null, null, null, "+keyword_Rel+"}\n" +
+	assertResults("null[KEYWORD]{null, null, null, null, null, "+keyword_Rel+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"NullPointerException[TYPE_REF]{NullPointerException, java.lang, Ljava.lang.NullPointerException;, null, null, 64}\n" +
 			"Number[TYPE_REF]{Number, java.lang, Ljava.lang.Number;, null, null, 64}",
 			requestor.getResults());
 
 }
-public void test013() throws JavaModelException {
+public void test013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion23/src/X.java",
@@ -273,12 +273,12 @@ public void test013() throws JavaModelException {
 	String completeBehind = "case de";
 	int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("default[KEYWORD]{default, null, null, default, null, "+keyword_Rel+"}\n" +
+	assertResults("default[KEYWORD]{default, null, null, default, null, "+keyword_Rel+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Deprecated[TYPE_REF]{Deprecated, java.lang, Ljava.lang.Deprecated;, null, null, 64}",
 			requestor.getResults());
 
 }
-public void test014() throws JavaModelException {
+public void test014() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion23/src/X.java",
@@ -306,7 +306,7 @@ public void test014() throws JavaModelException {
 			requestor.getResults());
 
 }
-public void test015() throws JavaModelException {
+public void test015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion23/src/X.java",
@@ -333,7 +333,7 @@ public void test015() throws JavaModelException {
 			requestor.getResults());
 
 }
-public void test016() throws JavaModelException {
+public void test016() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion23/src/X.java",
@@ -355,13 +355,13 @@ public void test016() throws JavaModelException {
 	String completeBehind = "case nu";
 	int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("null[KEYWORD]{null, null, null, null, null, "+keyword_Rel+"}\n" +
+	assertResults("null[KEYWORD]{null, null, null, null, null, "+keyword_Rel+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"NullPointerException[TYPE_REF]{NullPointerException, java.lang, Ljava.lang.NullPointerException;, null, null, 64}\n" +
 			"Number[TYPE_REF]{Number, java.lang, Ljava.lang.Number;, null, null, 64}",
 			requestor.getResults());
 
 }
-public void test017() throws JavaModelException {
+public void test017() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion23/src/X.java",
@@ -383,12 +383,12 @@ public void test017() throws JavaModelException {
 	String completeBehind = "case de";
 	int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("default[KEYWORD]{default, null, null, default, null, "+keyword_Rel+"}\n" +
+	assertResults("default[KEYWORD]{default, null, null, default, null, "+keyword_Rel+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Deprecated[TYPE_REF]{Deprecated, java.lang, Ljava.lang.Deprecated;, null, null, 64}",
 			requestor.getResults());
 
 }
-public void test018() throws JavaModelException {
+public void test018() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion23/src/X.java",
@@ -411,12 +411,12 @@ public void test018() throws JavaModelException {
 	String completeBehind = "case de";
 	int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("default[KEYWORD]{default, null, null, default, null, "+keyword_Rel+"}\n" +
+	assertResults("default[KEYWORD]{default, null, null, default, null, "+keyword_Rel+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				  "Deprecated[TYPE_REF]{Deprecated, java.lang, Ljava.lang.Deprecated;, null, null, 64}",
 			requestor.getResults());
 
 }
-public void test019() throws JavaModelException {
+public void test019() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion23/src/X.java",
@@ -439,7 +439,7 @@ public void test019() throws JavaModelException {
 	String completeBehind = "case n";
 	int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("null[KEYWORD]{null, null, null, null, null, "+keyword_Rel+"}\n" +
+	assertResults("null[KEYWORD]{null, null, null, null, null, "+keyword_Rel+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"NoClassDefFoundError[TYPE_REF]{NoClassDefFoundError, java.lang, Ljava.lang.NoClassDefFoundError;, null, null, 64}\n" +
 			"NoSuchFieldError[TYPE_REF]{NoSuchFieldError, java.lang, Ljava.lang.NoSuchFieldError;, null, null, 64}\n" +
 			"NoSuchMethodException[TYPE_REF]{NoSuchMethodException, java.lang, Ljava.lang.NoSuchMethodException;, null, null, 64}\n" +
@@ -450,7 +450,7 @@ public void test019() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3300
 // Suboptimal/No code completion suggestions for switching on sealed interfaces
-public void testIssue3300() throws JavaModelException {
+public void testIssue3300() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion23/src/Foo.java",
 			"""
@@ -483,7 +483,7 @@ public void testIssue3300() throws JavaModelException {
 	              "Foo.FooImpl_b[TYPE_REF]{FooImpl_b, , LFoo$FooImpl_b;, null, null, null, null, [300, 303], 72}\n" +
 			      "Foo[TYPE_REF]{Foo, , LFoo;, null, null, null, null, [300, 303], 86}", requestor.getResults());
 }
-public void testIssue3862_1() throws JavaModelException {
+public void testIssue3862_1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion23/src/X.java",
 			"""
@@ -507,66 +507,66 @@ public void testIssue3862_1() throws JavaModelException {
 	String completeBehind = "/*1*/).toS";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	String range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	String range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*2*/).toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*3*/).toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 8);
-	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 8); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*4*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*5*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*6*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*7*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*8*/).toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation);
-	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void testIssue3862_2() throws JavaModelException {
+public void testIssue3862_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion23/src/X.java",
 			"""
@@ -590,66 +590,66 @@ public void testIssue3862_2() throws JavaModelException {
 	String completeBehind = "/*1*/).toS";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	String range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	String range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*2*/).toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*3*/).toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 8);
-	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 8); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*4*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*5*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*6*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*7*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*8*/).toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation);
-	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void testIssue3862_3() throws JavaModelException {
+public void testIssue3862_3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion23/src/X.java",
 			"""
@@ -674,74 +674,74 @@ public void testIssue3862_3() throws JavaModelException {
 	String completeBehind = "/*1*/).toS";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	String range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	String range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*2*/).toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*3*/).toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 8);
-	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 8); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*4*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*5*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*6*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*7*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*8*/.toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation + 5);
-	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation + 5); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString, Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	str = this.workingCopies[0].getSource();
 	completeBehind = "/*9*/).toS";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	range = (cursorLocation - 3) + ", " + (cursorLocation);
-	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults());
+	range = (cursorLocation - 3) + ", " + (cursorLocation); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertResults("toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, null, null, toString, null, [" + range +"], 60}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void testIssue4649_5() throws JavaModelException {
+public void testIssue4649_5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Predicate<CompletionProposal> javaTypeRef = (p) -> {
 		char[] sig = p.getCompletion();
 		if (sig == null) {

@@ -60,7 +60,7 @@ public IDOMCompilationUnit createCompilationUnit(String sourceCode, String name)
 
 @Override
 public IDOMField createField() {
-	return createField("Object aField;"+ this.lineSeparator); //$NON-NLS-1$
+	return createField("Object aField;"+ this.lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override
@@ -86,7 +86,7 @@ public IDOMImport createImport(String sourceCode) {
 
 @Override
 public IDOMInitializer createInitializer() {
-	return createInitializer("static {}"+ this.lineSeparator); //$NON-NLS-1$
+	return createInitializer("static {}"+ this.lineSeparator); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override
@@ -99,7 +99,7 @@ public IDOMInitializer createInitializer(String sourceCode) {
 
 @Override
 public IDOMMethod createMethod() {
-	return createMethod("public void newMethod() {"+ this.lineSeparator+"}"+ this.lineSeparator); //$NON-NLS-2$ //$NON-NLS-1$
+	return createMethod("public void newMethod() {"+ this.lineSeparator+"}"+ this.lineSeparator); //$NON-NLS-2$ //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override
@@ -125,17 +125,17 @@ public IDOMPackage createPackage(String sourceCode) {
 
 @Override
 public IDOMType createType() {
-	return createType("public class AClass {"+ this.lineSeparator +"}"+ this.lineSeparator); //$NON-NLS-2$ //$NON-NLS-1$
+	return createType("public class AClass {"+ this.lineSeparator +"}"+ this.lineSeparator); //$NON-NLS-2$ //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override
 public IDOMType createClass() {
-	return createType("public class AClass {"+ this.lineSeparator +"}"+ this.lineSeparator); //$NON-NLS-2$ //$NON-NLS-1$
+	return createType("public class AClass {"+ this.lineSeparator +"}"+ this.lineSeparator); //$NON-NLS-2$ //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override
 public IDOMType createInterface() {
-	return createType("public interface AnInterface {"+ this.lineSeparator +"}"+ this.lineSeparator); //$NON-NLS-2$ //$NON-NLS-1$
+	return createType("public interface AnInterface {"+ this.lineSeparator +"}"+ this.lineSeparator); //$NON-NLS-2$ //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override

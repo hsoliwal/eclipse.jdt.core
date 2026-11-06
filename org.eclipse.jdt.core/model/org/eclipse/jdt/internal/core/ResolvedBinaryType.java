@@ -62,9 +62,9 @@ public class ResolvedBinaryType extends BinaryType {
 	protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
 		super.toStringInfo(tab, buffer, info, showResolvedInfo);
 		if (showResolvedInfo) {
-			buffer.append(" {key="); //$NON-NLS-1$
-			buffer.append(this.uniqueKey);
-			buffer.append("}"); //$NON-NLS-1$
+			buffer.append(" {key="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.uniqueKey); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 

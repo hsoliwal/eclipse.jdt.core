@@ -39,7 +39,7 @@ public static Test suite() {
 /**
  * Test a scenario where the change of the package declaration causes a problem in a code snippet.
  */
-public void _testChangePackage() {
+public void _testChangePackage() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (isJRockitVM()) return;
 	try {
 		// define the package
@@ -136,7 +136,7 @@ public void testInvalidField() {
 /**
  * Test a code snippet which is valid but the evaluation context imports have problems.
  */
-public void testInvalidImport() {
+public void testInvalidImport() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// problem on the first import
 		this.context.setImports(new char[][] {"bar.Y".toCharArray()});
@@ -221,7 +221,7 @@ public void testProblemInExpression2() {
 /**
  * Test a code snippet which declares a class that has a problem.
  */
-public void testProblemInInnerClass() {
+public void testProblemInInnerClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// class declared before the last expression
 	evaluateWithExpectedProblem(buildCharArray(new String[] {
 		"class X {",
@@ -264,7 +264,7 @@ public void testProblemInReturnStatement() {
 /**
  * Test a scenario where the removal of an import causes a problem in a code snippet.
  */
-public void testRemoveImport() {
+public void testRemoveImport() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// define the import
 		this.context.setImports(new char[][] {"java.io.*".toCharArray()});
@@ -290,7 +290,7 @@ public void testRemoveImport() {
 /**
  * Test a scenario where the removal of a variable causes a problem in a code snippet.
  */
-public void testRemoveVariable() {
+public void testRemoveVariable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	GlobalVariable var = null;
 	try {
 		// define the variable
@@ -331,7 +331,7 @@ public void testUnreachableExpression() {
  * Test a code snippet which is valid but never uses the evaluation context imports.
  * (regression test for bug 18922 Scrapbook does not come back when errors in snippet)
  */
-public void testUnusedImport() {
+public void testUnusedImport() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.context.setImports(new char[][] {"java.util.*".toCharArray()});
 

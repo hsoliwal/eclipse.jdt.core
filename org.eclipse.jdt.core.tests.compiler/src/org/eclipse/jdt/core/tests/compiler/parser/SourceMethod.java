@@ -55,34 +55,34 @@ public SourceMethod(
 	this.exceptionTypeNames = exceptionTypeNames;
 	this.source = source;
 }
-public String displayModifiers() {
-	StringBuilder buffer = new StringBuilder();
+public String displayModifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 	if (this.modifiers == 0)
 		return null;
 	if ((this.modifiers & ClassFileConstants.AccPublic) != 0)
-		buffer.append("public ");
+		buffer.append("public "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if ((this.modifiers & ClassFileConstants.AccProtected) != 0)
-		buffer.append("protected ");
+		buffer.append("protected "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if ((this.modifiers & ClassFileConstants.AccPrivate) != 0)
-		buffer.append("private ");
+		buffer.append("private "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if ((this.modifiers & ClassFileConstants.AccFinal) != 0)
-		buffer.append("final ");
+		buffer.append("final "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if ((this.modifiers & ClassFileConstants.AccStatic) != 0)
-		buffer.append("static ");
+		buffer.append("static "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if ((this.modifiers & ClassFileConstants.AccAbstract) != 0)
-		buffer.append("abstract ");
+		buffer.append("abstract "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if ((this.modifiers & ClassFileConstants.AccNative) != 0)
-		buffer.append("native ");
+		buffer.append("native "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if ((this.modifiers & ClassFileConstants.AccSynchronized) != 0)
-		buffer.append("synchronized ");
+		buffer.append("synchronized "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (buffer.toString().trim().equals(""))
 		return null;
 	return buffer.toString().trim();
 }
 public String getActualName() {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append(this.source, this.nameSourceStart, this.nameSourceEnd - this.nameSourceStart + 1);
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append(this.source, this.nameSourceStart, this.nameSourceEnd - this.nameSourceStart + 1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return buffer.toString();
 }
 public char[][] getArgumentNames() {
@@ -134,43 +134,43 @@ public String tabString(int tab) {
 	/*slow code*/
 
 	String s = "";
-	for (int i = tab; i > 0; i--)
-		s = s + "\t";
+	for (int i = tab; i > 0; i--) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		s = s + "\t"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return s;
 }
 @Override
 public String toString() {
 	return toString(0);
 }
-public String toString(int tab) {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append(tabString(tab));
+public String toString(int tab) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	String displayModifiers = displayModifiers();
 	if (displayModifiers != null) {
-		buffer.append(displayModifiers).append(" ");
+		buffer.append(displayModifiers).append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	if (this.returnTypeName != null) {
-		buffer.append(this.returnTypeName).append(" ");
+		buffer.append(this.returnTypeName).append(" "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	buffer.append(this.selector).append("(");
+	buffer.append(this.selector).append("("); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.argumentTypeNames != null) {
-		for (int i = 0, max = this.argumentTypeNames.length; i < max; i++) {
-			buffer.append(this.argumentTypeNames[i]).append(" ").append(
+		for (int i = 0, max = this.argumentTypeNames.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(this.argumentTypeNames[i]).append(" ").append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				this.argumentNames[i]).append(
 				", ");
 		}
 	}
-	buffer.append(") ");
+	buffer.append(") "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.exceptionTypeNames != null) {
-		buffer.append("throws ");
-		for (int i = 0, max = this.exceptionTypeNames.length; i < max; i++) {
-			buffer.append(this.exceptionTypeNames[i]).append(", ");
+		buffer.append("throws "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0, max = this.exceptionTypeNames.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(this.exceptionTypeNames[i]).append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	if (this.explicitConstructorCall != null) {
-		buffer.append("{\n").append(tabString(tab+1)).append(this.explicitConstructorCall).append(tabString(tab)).append("}");
+		buffer.append("{\n").append(tabString(tab+1)).append(this.explicitConstructorCall).append(tabString(tab)).append("}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
-		buffer.append("{}");
+		buffer.append("{}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return buffer.toString();
 }

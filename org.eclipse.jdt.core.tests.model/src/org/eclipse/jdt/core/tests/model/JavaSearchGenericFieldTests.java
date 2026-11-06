@@ -94,7 +94,7 @@ public void testElementPatternSingleTypeArgument02() throws CoreException {
 		this.resultCollector);
 }
 // Search reference to a field of field of generic member type declared in a generic type
-public void testElementPatternSingleTypeArgument03() throws CoreException {
+public void testElementPatternSingleTypeArgument03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IField field = getCompilationUnit("JavaSearch15/src/g1/t/s/def/Generic.java").getType("Generic").getType("MemberGeneric").getField("v");
 	IJavaSearchScope scope = getJavaSearchScope15("g2.f", true /* add all subpackages */);
 	search(field, REFERENCES, scope, this.resultCollector);
@@ -162,7 +162,7 @@ public void testElementPatternMultipleTypeArgument02() throws CoreException {
 		this.resultCollector);
 }
 // Search reference to a field of generic member type declared in a generic type
-public void testElementPatternMultipleTypeArgument03() throws CoreException {
+public void testElementPatternMultipleTypeArgument03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IField field = getCompilationUnit("JavaSearch15/src/g1/t/m/def/Generic.java").getType("Generic").getType("MemberGeneric").getField("u2");
 	IJavaSearchScope scope = getJavaSearchScope15("g2.f", true /* add all subpackages */);
 	search(field, REFERENCES, scope, this.resultCollector);
@@ -198,7 +198,7 @@ public void testElementPatternMultipleTypeArgument04() throws CoreException {
 		this.resultCollector);
 }
 // Search reference to a single parameterized field
-public void testElementPatternSingleParameterizedType01() throws CoreException {
+public void testElementPatternSingleParameterizedType01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g2.f", true /* add all subpackages */);
 	IField field = getCompilationUnit("JavaSearch15/src/g1/t/s/ref/R1.java").getType("R1").getField("gen");
 	search(field, REFERENCES, scope, this.resultCollector);
@@ -240,7 +240,7 @@ public void testElementPatternSingleParameterizedType01() throws CoreException {
 		this.resultCollector);
 }
 // Search reference to a member type field of single parameterized type
-public void testElementPatternSingleParameterizedType02() throws CoreException {
+public void testElementPatternSingleParameterizedType02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g2.f", true /* add all subpackages */);
 	IField field = getCompilationUnit("JavaSearch15/src/g1/t/s/ref/R2.java").getType("R2").getField("gen");
 	search(field, REFERENCES, scope, this.resultCollector);
@@ -282,7 +282,7 @@ public void testElementPatternSingleParameterizedType02() throws CoreException {
 		this.resultCollector);
 }
 // Search reference to a single parameterized member type field of a single parameterized type
-public void testElementPatternSingleParameterizedType03() throws CoreException {
+public void testElementPatternSingleParameterizedType03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g2.f", true /* add all subpackages */);
 	IField field = getCompilationUnit("JavaSearch15/src/g1/t/s/ref/R3.java").getType("R3").getField("gen");
 	search(field, REFERENCES, scope, this.resultCollector);
@@ -324,7 +324,7 @@ public void testElementPatternSingleParameterizedType03() throws CoreException {
 		this.resultCollector);
 }
 // Search reference to a single parameterized member type field
-public void testElementPatternSingleParameterizedType04() throws CoreException {
+public void testElementPatternSingleParameterizedType04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g2.f", true /* add all subpackages */);
 	IField field = getCompilationUnit("JavaSearch15/src/g1/t/s/ref/R4.java").getType("R4").getField("gen");
 	search(field, REFERENCES, scope, this.resultCollector);
@@ -366,7 +366,7 @@ public void testElementPatternSingleParameterizedType04() throws CoreException {
 		this.resultCollector);
 }
 // Search reference to a multiple parameterized field
-public void testElementPatternMultipleParameterizedType01() throws CoreException {
+public void testElementPatternMultipleParameterizedType01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g2.f", true /* add all subpackages */);
 	IField field = getCompilationUnit("JavaSearch15/src/g1/t/m/ref/R1.java").getType("R1").getField("gen");
 	search(field, REFERENCES, scope, this.resultCollector);
@@ -408,7 +408,7 @@ public void testElementPatternMultipleParameterizedType01() throws CoreException
 		this.resultCollector);
 }
 // Search reference to a member type field of multiple parameterized type
-public void testElementPatternMultipleParameterizedType02() throws CoreException {
+public void testElementPatternMultipleParameterizedType02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g2.f", true /* add all subpackages */);
 	IField field = getCompilationUnit("JavaSearch15/src/g1/t/m/ref/R2.java").getType("R2").getField("gen");
 	search(field, REFERENCES, scope, this.resultCollector);
@@ -450,7 +450,7 @@ public void testElementPatternMultipleParameterizedType02() throws CoreException
 		this.resultCollector);
 }
 // Search reference to a multiple parameterized member type field of a multiple parameterized type
-public void testElementPatternMultipleParameterizedType03() throws CoreException {
+public void testElementPatternMultipleParameterizedType03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g2.f", true /* add all subpackages */);
 	IField field = getCompilationUnit("JavaSearch15/src/g1/t/m/ref/R3.java").getType("R3").getField("gen");
 	search(field, REFERENCES, scope, this.resultCollector);
@@ -492,7 +492,7 @@ public void testElementPatternMultipleParameterizedType03() throws CoreException
 		this.resultCollector);
 }
 // Search reference to a multiple parameterized member type field
-public void testElementPatternMultipleParameterizedType04() throws CoreException {
+public void testElementPatternMultipleParameterizedType04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g2.f", true /* add all subpackages */);
 	IField field = getCompilationUnit("JavaSearch15/src/g1/t/m/ref/R4.java").getType("R4").getField("gen");
 	search(field, REFERENCES, scope, this.resultCollector);
@@ -535,7 +535,7 @@ public void testElementPatternMultipleParameterizedType04() throws CoreException
 }
 
 // Search reference to a string pattern
-public void testStringPattern01() throws CoreException {
+public void testStringPattern01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15();
 	search("gen", FIELD, ALL_OCCURRENCES, scope, this.resultCollector);
 	assertSearchResults(
@@ -557,7 +557,7 @@ public void testStringPattern01() throws CoreException {
 		"src/g2/f/s/ref/RR4.java g2.f.s.ref.RR4.{} [gen] EXACT_MATCH",
 		this.resultCollector);
 }
-public void testStringPattern02() throws CoreException {
+public void testStringPattern02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15();
 	search("gen_???", FIELD, DECLARATIONS, scope, this.resultCollector);
 	assertSearchResults(
@@ -603,7 +603,7 @@ public void testStringPattern02() throws CoreException {
 		"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.gen_run [gen_run] EXACT_MATCH",
 		this.resultCollector);
 }
-public void testStringPattern03() throws CoreException {
+public void testStringPattern03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15();
 	search("gen_*", FIELD, REFERENCES, scope, this.resultCollector);
 	assertSearchResults(
@@ -649,7 +649,7 @@ public void testStringPattern03() throws CoreException {
 		"src/g2/f/s/ref/RR4.java g2.f.s.ref.RR4.{} [gen_run] EXACT_MATCH",
 		this.resultCollector);
 }
-public void testStringPattern04() throws CoreException {
+public void testStringPattern04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15();
 	search("?gen_*", FIELD, DECLARATIONS, scope, this.resultCollector);
 	assertSearchResults(
@@ -695,7 +695,7 @@ public void testStringPattern04() throws CoreException {
 		"src/g1/t/s/ref/R4.java g1.t.s.ref.R4.qgen_run [qgen_run] EXACT_MATCH",
 		this.resultCollector);
 }
-public void testStringPattern05() throws CoreException {
+public void testStringPattern05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15();
 	search("qgen_*", FIELD, REFERENCES, scope, this.resultCollector);
 	assertSearchResults(
@@ -743,7 +743,7 @@ public void testStringPattern05() throws CoreException {
 }
 
 // Search reference to a local variable
-public void testElementPatternLocalVariables01() throws CoreException {
+public void testElementPatternLocalVariables01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g4.v.ref", false);
 	ILocalVariable localVar = getLocalVariable("/JavaSearch15/src/g4/v/ref/R1.java", "gen_obj,", "gen_obj");
 	search(localVar, ALL_OCCURRENCES, scope, this.resultCollector);
@@ -764,7 +764,7 @@ public void testElementPatternLocalVariables01() throws CoreException {
 		"src/g4/v/ref/R1.java void g4.v.ref.R1.simple_name(Generic<Object>, Generic<Exception>, Generic<? extends Throwable>, Generic<? super RuntimeException>) [gen_run] EXACT_MATCH",
 		this.resultCollector);
 }
-public void testElementPatternLocalVariables02() throws CoreException {
+public void testElementPatternLocalVariables02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g4.v.ref", false);
 	ILocalVariable localVar = getLocalVariable("/JavaSearch15/src/g4/v/ref/R1.java", "gen_obj =", "gen_obj");
 	search(localVar, ALL_OCCURRENCES, scope, this.resultCollector);
@@ -785,7 +785,7 @@ public void testElementPatternLocalVariables02() throws CoreException {
 		"src/g4/v/ref/R1.java void g4.v.ref.R1.qualified_name() [gen_run] EXACT_MATCH",
 		this.resultCollector);
 }
-public void testElementPatternLocalVariables03() throws CoreException {
+public void testElementPatternLocalVariables03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g4.v.ref", false);
 	ILocalVariable localVar = getLocalVariable("/JavaSearch15/src/g4/v/ref/R2.java", "gen_obj,", "gen_obj");
 	search(localVar, ALL_OCCURRENCES, scope, this.resultCollector);
@@ -806,7 +806,7 @@ public void testElementPatternLocalVariables03() throws CoreException {
 		"src/g4/v/ref/R2.java void g4.v.ref.R2.qualified_name(g1.t.s.def.NonGeneric.GenericMember<Object>, g1.t.s.def.NonGeneric.GenericMember<Exception>, g1.t.s.def.NonGeneric.GenericMember<? extends Throwable>, g1.t.s.def.NonGeneric.GenericMember<? super RuntimeException>) [gen_run] EXACT_MATCH",
 		this.resultCollector);
 }
-public void testElementPatternLocalVariables04() throws CoreException {
+public void testElementPatternLocalVariables04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g4.v.ref", false);
 	ILocalVariable localVar = getLocalVariable("/JavaSearch15/src/g4/v/ref/R2.java", "gen_obj =", "gen_obj");
 	search(localVar, ALL_OCCURRENCES, scope, this.resultCollector);
@@ -827,7 +827,7 @@ public void testElementPatternLocalVariables04() throws CoreException {
 		"src/g4/v/ref/R2.java void g4.v.ref.R2.simple_name() [gen_run] EXACT_MATCH",
 		this.resultCollector);
 }
-public void testElementPatternLocalVariables05() throws CoreException {
+public void testElementPatternLocalVariables05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g4.v.ref", false);
 	ILocalVariable localVar = getLocalVariable("/JavaSearch15/src/g4/v/ref/R3.java", "gen_obj,", "gen_obj");
 	search(localVar, ALL_OCCURRENCES, scope, this.resultCollector);
@@ -848,7 +848,7 @@ public void testElementPatternLocalVariables05() throws CoreException {
 		"src/g4/v/ref/R3.java void g4.v.ref.R3.simple_name(Generic<Object>.MemberGeneric<Object>, Generic<Exception>.MemberGeneric<Exception>, Generic<? extends Throwable>.MemberGeneric<? extends Throwable>, Generic<? super RuntimeException>.MemberGeneric<? super RuntimeException>) [gen_run] EXACT_MATCH",
 		this.resultCollector);
 }
-public void testElementPatternLocalVariables06() throws CoreException {
+public void testElementPatternLocalVariables06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g4.v.ref", false);
 	ILocalVariable localVar = getLocalVariable("/JavaSearch15/src/g4/v/ref/R3.java", "gen_obj =", "gen_obj");
 	search(localVar, ALL_OCCURRENCES, scope, this.resultCollector);
@@ -869,7 +869,7 @@ public void testElementPatternLocalVariables06() throws CoreException {
 		"src/g4/v/ref/R3.java void g4.v.ref.R3.qualified_name() [gen_run] EXACT_MATCH",
 		this.resultCollector);
 }
-public void testElementPatternLocalVariables07() throws CoreException {
+public void testElementPatternLocalVariables07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g4.v.ref", false);
 	ILocalVariable localVar = getLocalVariable("/JavaSearch15/src/g4/v/ref/R4.java", "gen_obj,", "gen_obj");
 	search(localVar, ALL_OCCURRENCES, scope, this.resultCollector);
@@ -890,7 +890,7 @@ public void testElementPatternLocalVariables07() throws CoreException {
 		"src/g4/v/ref/R4.java void g4.v.ref.R4.qualified_name(g1.t.s.def.Generic<Object>.Member, g1.t.s.def.Generic<Exception>.Member, g1.t.s.def.Generic<? extends Throwable>.Member, g1.t.s.def.Generic<? super RuntimeException>.Member) [gen_run] EXACT_MATCH",
 		this.resultCollector);
 }
-public void testElementPatternLocalVariables08() throws CoreException {
+public void testElementPatternLocalVariables08() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaSearchScope scope = getJavaSearchScope15("g4.v.ref", false);
 	ILocalVariable localVar = getLocalVariable("/JavaSearch15/src/g4/v/ref/R4.java", "gen_obj =", "gen_obj");
 	search(localVar, ALL_OCCURRENCES, scope, this.resultCollector);

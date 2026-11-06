@@ -87,8 +87,8 @@ public final class ImportRewriteAnalyzer {
 		}
 
 		private String[] extractQualifiedNames(boolean b, boolean m, Collection<ImportName> imports) {
-			List<String> names = new ArrayList<>(imports.size());
-			for (ImportName importName : imports) {
+			List<String> names = new ArrayList<>(imports.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (ImportName importName : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (importName.isStatic == b && importName.isModule == m) {
 					names.add(importName.qualifiedName);
 				}
@@ -110,7 +110,7 @@ public final class ImportRewriteAnalyzer {
 		try {
 			num = Integer.parseInt(blankLinesOptionValue);
 		} catch (NumberFormatException e) {
-			String message = String.format(
+			String message = String.format( //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 					"Could not parse the value of %s as an integer: %s", //$NON-NLS-1$
 					DefaultCodeFormatterConstants.FORMATTER_BLANK_LINES_BETWEEN_IMPORT_GROUPS,
 					blankLinesOptionValue);
@@ -134,7 +134,7 @@ public final class ImportRewriteAnalyzer {
 	 * and returns these in a list whose iteration order reflects the existing order of the imports
 	 * in the compilation unit.
 	 */
-	private static List<OriginalImportEntry> readOriginalImports(CompilationUnit compilationUnit) {
+	private static List<OriginalImportEntry> readOriginalImports(CompilationUnit compilationUnit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List<ImportDeclaration> importDeclarations = compilationUnit.imports();
 
 		if (importDeclarations.isEmpty()) {
@@ -152,19 +152,19 @@ public final class ImportRewriteAnalyzer {
 				? firstImport.getStartPosition()
 				: compilationUnit.getExtendedStartPosition(packageDeclaration)
 						+ compilationUnit.getExtendedLength(packageDeclaration);
-		while (currentCommentIndex < comments.size()
+		while (currentCommentIndex < comments.size() //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				&& comments.get(currentCommentIndex).getStartPosition() < firstImportStartPosition) {
 			currentCommentIndex++;
 		}
 
-		List<OriginalImportEntry> imports = new ArrayList<>(importDeclarations.size());
+		List<OriginalImportEntry> imports = new ArrayList<>(importDeclarations.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		int previousExtendedEndPosition = -1;
-		for (ImportDeclaration currentImport : importDeclarations) {
+		for (ImportDeclaration currentImport : importDeclarations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int extendedEndPosition = compilationUnit.getExtendedStartPosition(currentImport)
 					+ compilationUnit.getExtendedLength(currentImport);
 
 			int commentAfterImportIndex = currentCommentIndex;
-			while (commentAfterImportIndex < comments.size()
+			while (commentAfterImportIndex < comments.size() //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					&& comments.get(commentAfterImportIndex).getStartPosition() < extendedEndPosition) {
 				commentAfterImportIndex++;
 			}
@@ -214,17 +214,17 @@ public final class ImportRewriteAnalyzer {
 		return imports;
 	}
 
-	private static List<ImportComment> selectImportComments(
+	private static List<ImportComment> selectImportComments( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			CompilationUnit compilationUnit,
 			List<Comment> comments,
 			int importDeclarationStartPosition,
 			int commentStartIndex,
 			int commentEndIndex) {
-		List<ImportComment> importComments = new ArrayList<>(comments.size());
+		List<ImportComment> importComments = new ArrayList<>(comments.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		Iterator<Comment> commentIterator = comments.subList(commentStartIndex, commentEndIndex).iterator();
 		Comment currentComment = commentIterator.hasNext() ? commentIterator.next() : null;
-		while (currentComment != null) {
+		while (currentComment != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int currentCommentStartPosition = currentComment.getStartPosition();
 			int currentCommentLength = currentComment.getLength();
 
@@ -295,8 +295,8 @@ public final class ImportRewriteAnalyzer {
 	 * Determines the region to be occupied by imports, their associated comments, and surrounding
 	 * whitespace.
 	 */
-	private static IRegion determineSurroundingRegion(CompilationUnit compilationUnit, IRegion importsRegion) throws JavaModelException {
-		NavigableMap<Integer, ASTNode> nodesTreeMap = mapTopLevelNodes(compilationUnit);
+	private static IRegion determineSurroundingRegion(CompilationUnit compilationUnit, IRegion importsRegion) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		NavigableMap<Integer, ASTNode> nodesTreeMap = mapTopLevelNodes(compilationUnit); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 
 		int surroundingStart;
 		int positionAfterImports;
@@ -311,7 +311,7 @@ public final class ImportRewriteAnalyzer {
 				if (!nodesTreeMap.isEmpty()) {
 					ASTNode topNode = nodesTreeMap.firstEntry().getValue();
 					if (topNode instanceof Comment) {
-						for (ASTNode node : nodesTreeMap.values()) {
+						for (ASTNode node : nodesTreeMap.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (!(node instanceof Comment)) {
 								break;
 							} else {
@@ -338,7 +338,7 @@ public final class ImportRewriteAnalyzer {
 		int surroundingEnd = positionAfterImports;
 		IBuffer buffer = compilationUnit.getTypeRoot().getBuffer();
 		int length = buffer.getLength();
-		while (surroundingEnd < length && Character.isWhitespace(buffer.getChar(surroundingEnd))) {
+		while (surroundingEnd < length && Character.isWhitespace(buffer.getChar(surroundingEnd))) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			surroundingEnd++;
 		}
 
@@ -350,16 +350,16 @@ public final class ImportRewriteAnalyzer {
 	 * (package declaration, import declarations, type declarations, and non-doc comments),
 	 * keyed by start position.
 	 */
-	private static NavigableMap<Integer, ASTNode> mapTopLevelNodes(CompilationUnit compilationUnit) {
-		NavigableMap<Integer, ASTNode> map = new TreeMap<>();
+	private static NavigableMap<Integer, ASTNode> mapTopLevelNodes(CompilationUnit compilationUnit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		NavigableMap<Integer, ASTNode> map = new TreeMap<>(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 
-		Collection<ASTNode> nodes = new ArrayList<>();
+		Collection<ASTNode> nodes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (compilationUnit.getPackage() != null) {
 			nodes.add(compilationUnit.getPackage());
 		}
 		nodes.addAll(compilationUnit.imports());
 		nodes.addAll(compilationUnit.types());
-		for (Comment comment : ((List<Comment>) compilationUnit.getCommentList())) {
+		for (Comment comment : ((List<Comment>) compilationUnit.getCommentList())) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// Include only top-level (non-doc) comments;
 			// doc comments are contained within their parent nodes' ranges.
 			if (comment.getParent() == null) {
@@ -367,7 +367,7 @@ public final class ImportRewriteAnalyzer {
 			}
 		}
 
-		for (ASTNode node : nodes) {
+		for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			map.put(node.getStartPosition(), node);
 		}
 
@@ -382,9 +382,9 @@ public final class ImportRewriteAnalyzer {
 	 * identical, {@code ImportName}s).
 	 */
 	private static Map<ImportName, OriginalImportEntry> mapImportsByNameIdentity(List<OriginalImportEntry> imports) {
-		Map<ImportName, OriginalImportEntry> importsByName = new IdentityHashMap<>();
+		Map<ImportName, OriginalImportEntry> importsByName = new IdentityHashMap<>(); //FLLDCIM: MARK — M06 M3_IDENTITY_WEAK_LANES NEW
 
-		for (OriginalImportEntry currentImport : imports) {
+		for (OriginalImportEntry currentImport : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			importsByName.put(currentImport.importName, currentImport);
 		}
 
@@ -397,8 +397,8 @@ public final class ImportRewriteAnalyzer {
 	 */
 	private static List<ImportName> subtractImports(
 			Collection<ImportName> existingImports, Set<ImportName> importsToSubtract) {
-		List<ImportName> remainingImports = new ArrayList<>(existingImports.size());
-		for (ImportName existingImport : existingImports) {
+		List<ImportName> remainingImports = new ArrayList<>(existingImports.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (ImportName existingImport : existingImports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!importsToSubtract.contains(existingImport)) {
 				remainingImports.add(existingImport);
 			}
@@ -434,15 +434,15 @@ public final class ImportRewriteAnalyzer {
 
 	private final ImportEditor importEditor;
 
-	public ImportRewriteAnalyzer(
+	public ImportRewriteAnalyzer( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ICompilationUnit cu,
 			CompilationUnit astRoot,
 			ImportRewriteConfiguration configuration) throws JavaModelException {
 		this.originalImportEntries = Collections.unmodifiableList(readOriginalImports(astRoot));
 
-		List<ImportName> importsList = new ArrayList<>(this.originalImportEntries.size());
-		Set<ImportName> importsSet = new HashSet<>();
-		for (ImportEntry originalImportEntry : this.originalImportEntries) {
+		List<ImportName> importsList = new ArrayList<>(this.originalImportEntries.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		Set<ImportName> importsSet = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		for (ImportEntry originalImportEntry : this.originalImportEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportName importName = originalImportEntry.importName;
 			importsList.add(importName);
 			importsSet.add(importName);
@@ -460,8 +460,8 @@ public final class ImportRewriteAnalyzer {
 			this.reportAllResultantImportsAsCreated = false;
 		}
 
-		this.typeExplicitSimpleNames = new HashSet<>();
-		this.staticExplicitSimpleNames = new HashSet<>();
+		this.typeExplicitSimpleNames = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		this.staticExplicitSimpleNames = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 		ImportGroupComparator importGroupComparator = new ImportGroupComparator(configuration.importOrder);
 
@@ -556,7 +556,7 @@ public final class ImportRewriteAnalyzer {
 
 		TextEdit edit = this.importEditor.createTextEdit(resultingImportEntries);
 
-		Set<ImportName> createdImports = new HashSet<>(computedImportOrder);
+		Set<ImportName> createdImports = new HashSet<>(computedImportOrder); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		if (!this.reportAllResultantImportsAsCreated) {
 			createdImports.removeAll(this.originalImportsSet);
 		}
@@ -564,8 +564,8 @@ public final class ImportRewriteAnalyzer {
 		return new RewriteResult(edit, createdImports);
 	}
 
-	private List<ImportName> computeImportOrder(IProgressMonitor progressMonitor) throws JavaModelException {
-		Set<ImportName> importsWithAdditionsAndRemovals = new HashSet<>(this.originalImportsSet);
+	private List<ImportName> computeImportOrder(IProgressMonitor progressMonitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Set<ImportName> importsWithAdditionsAndRemovals = new HashSet<>(this.originalImportsSet); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		importsWithAdditionsAndRemovals.addAll(this.importsToAdd);
 		importsWithAdditionsAndRemovals.removeAll(this.importsToRemove);
 
@@ -578,10 +578,10 @@ public final class ImportRewriteAnalyzer {
 				this.staticExplicitSimpleNames,
 				progressMonitor);
 
-		Set<String> allTypeExplicitSimpleNames = new HashSet<>(this.typeExplicitSimpleNames);
+		Set<String> allTypeExplicitSimpleNames = new HashSet<>(this.typeExplicitSimpleNames); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		allTypeExplicitSimpleNames.addAll(conflicts.typeConflicts);
 
-		Set<String> allStaticExplicitSimpleNames = new HashSet<>(this.staticExplicitSimpleNames);
+		Set<String> allStaticExplicitSimpleNames = new HashSet<>(this.staticExplicitSimpleNames); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		allStaticExplicitSimpleNames.addAll(conflicts.staticConflicts);
 
 		Set<ImportName> implicitImports = identifyImplicitImports(this.importsToAdd, allTypeExplicitSimpleNames);
@@ -589,7 +589,7 @@ public final class ImportRewriteAnalyzer {
 				subtractImports(importsWithAdditionsAndRemovals, implicitImports);
 
 		Collection<OnDemandReduction> onDemandReductions = this.onDemandComputer.identifyPossibleReductions(
-				new HashSet<>(importsWithoutImplicits),
+				new HashSet<>(importsWithoutImplicits), //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				touchedContainers,
 				allTypeExplicitSimpleNames,
 				allStaticExplicitSimpleNames);
@@ -604,31 +604,31 @@ public final class ImportRewriteAnalyzer {
 	}
 
 	private Set<ImportName> determineTouchedContainers() {
-		Collection<ImportName> touchedContainers = new ArrayList<>(
+		Collection<ImportName> touchedContainers = new ArrayList<>( //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				this.importsToAdd.size() + this.importsToRemove.size());
 
-		for (ImportName addedImport : this.importsToAdd) {
+		for (ImportName addedImport : this.importsToAdd) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!addedImport.isModule) {
 				touchedContainers.add(addedImport.getContainerOnDemand());
 			}
 		}
-		for (ImportName removedImport : this.importsToRemove) {
+		for (ImportName removedImport : this.importsToRemove) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!removedImport.isModule) {
 				touchedContainers.add(removedImport.getContainerOnDemand());
 			}
 		}
 
-		return Collections.unmodifiableSet(new HashSet<>(touchedContainers));
+		return Collections.unmodifiableSet(new HashSet<>(touchedContainers)); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	}
 
-	private Set<ImportName> identifyImplicitImports(
+	private Set<ImportName> identifyImplicitImports( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Collection<ImportName> addedImports, Set<String> allTypeExplicitSimpleNames) {
 		if (this.implicitImportContainerNames.isEmpty()) {
 			return Collections.emptySet();
 		}
 
-		Collection<ImportName> implicits = new ArrayList<>(addedImports.size());
-		for (ImportName addedImport : addedImports) {
+		Collection<ImportName> implicits = new ArrayList<>(addedImports.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (ImportName addedImport : addedImports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			boolean isImplicit = this.implicitImportContainerNames.contains(addedImport.containerName)
 					&& !allTypeExplicitSimpleNames.contains(addedImport.simpleName);
 			if (isImplicit) {
@@ -640,12 +640,12 @@ public final class ImportRewriteAnalyzer {
 			return Collections.emptySet();
 		}
 
-		return new HashSet<>(implicits);
+		return new HashSet<>(implicits); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	}
 
 	private List<ImportEntry> matchExistingOrCreateNew(Collection<ImportName> importNames) {
-		List<ImportEntry> importEntries = new ArrayList<>(importNames.size());
-		for (ImportName importName : importNames) {
+		List<ImportEntry> importEntries = new ArrayList<>(importNames.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (ImportName importName : importNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportEntry importEntry = this.importsByNameIdentity.get(importName);
 
 			if (importEntry == null) {
@@ -657,18 +657,18 @@ public final class ImportRewriteAnalyzer {
 		return importEntries;
 	}
 
-	private ImportsDelta computeDelta(
+	private ImportsDelta computeDelta( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Collection<ImportName> implicitImports, Collection<OnDemandReduction> onDemandReductions) {
-		Collection<ImportName> additions = new ArrayList<>(this.originalImportsList.size());
+		Collection<ImportName> additions = new ArrayList<>(this.originalImportsList.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		additions.addAll(this.importsToAdd);
 
-		Collection<ImportName> removals = new ArrayList<>(this.originalImportsList.size());
+		Collection<ImportName> removals = new ArrayList<>(this.originalImportsList.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		removals.addAll(this.importsToRemove);
 		removals.addAll(implicitImports);
 
 		additions.removeAll(removals);
 
-		for (OnDemandReduction onDemandReduction : onDemandReductions) {
+		for (OnDemandReduction onDemandReduction : onDemandReductions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			additions.removeAll(onDemandReduction.reducibleImports);
 			removals.addAll(onDemandReduction.reducibleImports);
 

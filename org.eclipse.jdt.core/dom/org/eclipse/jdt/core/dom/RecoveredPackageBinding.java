@@ -75,9 +75,9 @@ class RecoveredPackageBinding implements IPackageBinding {
 
 	@Override
 	public String getKey() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("Recovered#"); //$NON-NLS-1$
-		buffer.append(this.binding.computeUniqueKey());
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("Recovered#"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.binding.computeUniqueKey()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 
@@ -112,7 +112,7 @@ class RecoveredPackageBinding implements IPackageBinding {
 		ModuleBinding moduleBinding = this.binding.enclosingModule;
 		return moduleBinding != null ? this.resolver.getModuleBinding(moduleBinding) : null;
 	}
-	private void computeNameAndComponents() {
+	private void computeNameAndComponents() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] compoundName = this.binding.compoundName;
 		if (compoundName == CharOperation.NO_CHAR_CHAR || compoundName == null) {
 			this.name = UNNAMED;
@@ -120,13 +120,13 @@ class RecoveredPackageBinding implements IPackageBinding {
 		} else {
 			int length = compoundName.length;
 			this.components = new String[length];
-			StringBuilder buffer = new StringBuilder();
-			for (int i = 0; i < length - 1; i++) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0; i < length - 1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.components[i] = new String(compoundName[i]);
-				buffer.append(compoundName[i]).append(PACKAGE_NAME_SEPARATOR);
+				buffer.append(compoundName[i]).append(PACKAGE_NAME_SEPARATOR); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			this.components[length - 1] = new String(compoundName[length - 1]);
-			buffer.append(compoundName[length - 1]);
+			buffer.append(compoundName[length - 1]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			this.name = buffer.toString();
 		}
 	}

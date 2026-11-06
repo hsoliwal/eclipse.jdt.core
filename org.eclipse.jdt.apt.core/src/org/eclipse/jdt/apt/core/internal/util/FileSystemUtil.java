@@ -45,7 +45,7 @@ public final class FileSystemUtil
 	 * The resource is left untouched if it is no a folder or a file.
 	 * @return <code>true</code> iff the resource has been deleted.
 	 */
-	public static boolean deleteDerivedResources(final IResource resource)
+	public static boolean deleteDerivedResources(final IResource resource) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws CoreException
 	{
 		if (null == resource) {
@@ -54,7 +54,7 @@ public final class FileSystemUtil
 		if( resource.getType() == IResource.FOLDER ){
 			boolean deleteFolder = resource.isDerived();
 			IResource[] members = ((IFolder)resource).members();
-			for( int i=0, len=members.length; i<len; i++ ){
+			for( int i=0, len=members.length; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				deleteFolder &= deleteDerivedResources(members[i]);
 			}
 			if( deleteFolder ){
@@ -84,7 +84,7 @@ public final class FileSystemUtil
 		} catch (CoreException e) {
 			// might have been concurrently deleted
 			if (resource.exists()) {
-				AptPlugin.log(e, "Unable to delete derived resource " + resource); //$NON-NLS-1$
+				AptPlugin.log(e, "Unable to delete derived resource " + resource); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -97,10 +97,10 @@ public final class FileSystemUtil
         // It is necessary to synchronize to prevent timing issues while creating the parent directories
         // We can be codegening multiple files that go into the same directory at the same time.
         synchronized (FileSystemUtil.class) {
-            if (!parent.exists()) {
+            if (!parent.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
                 boolean succeed = false;
-                for (int i = 0 ; !succeed && i < 5 ; i++)
-                    succeed = parent.mkdirs();
+                for (int i = 0 ; !succeed && i < 5 ; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+                    succeed = parent.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
             }
         }
     }
@@ -149,7 +149,7 @@ public final class FileSystemUtil
      * Returns the contents of a file as a string in UTF8 format
      */
 	public static String getContentsOfFile(File file) throws IOException {
-		return new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+		return new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
     /**
@@ -179,9 +179,9 @@ public final class FileSystemUtil
      */
     public static void writeStringToFile(File file, String contents) throws IOException {
     	byte[] data = contents.getBytes(StandardCharsets.UTF_8);
-    	OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
+    	OutputStream out = new BufferedOutputStream(new FileOutputStream(file)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
     	try {
-    		for (byte b : data) {
+    		for (byte b : data) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			out.write(b);
     		}
     	}
@@ -194,10 +194,10 @@ public final class FileSystemUtil
 	 * Return true if the content of the streams is identical,
 	 * false if not.
 	 */
-	public static boolean compareStreams(InputStream is1, InputStream is2) {
+	public static boolean compareStreams(InputStream is1, InputStream is2) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			int b1 = is1.read();
-	        while(b1 != -1) {
+	        while(b1 != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            int b2 = is2.read();
 	            if(b1 != b2) {
 	                return false;

@@ -66,7 +66,7 @@ protected void tearDown() throws Exception {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2572
 // [code select] ClassCastException when hovering in switch case yield
-public void testIssue2572() throws JavaModelException {
+public void testIssue2572() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/Test.java",
 			"""
 			public class Test {
@@ -111,14 +111,14 @@ public void testIssue2572() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"toString() [in Object [in Object.class [in java.lang [in " + getExternalPath() + "jclMin21.jar]]]]",
+		"toString() [in Object [in Object.class [in java.lang [in " + getExternalPath() + "jclMin21.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3050
 // [code select] Unexpected runtime error while computing a text hover: java.lang.NegativeArraySizeException
-public void testIssue3050() throws JavaModelException {
+public void testIssue3050() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/Hover.java",
 			"""
 			interface Function<T, R> {
@@ -149,7 +149,7 @@ public void testIssue3050() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3050
 // [code select] Unexpected runtime error while computing a text hover: java.lang.NegativeArraySizeException
-public void testIssue3050_2() throws JavaModelException {
+public void testIssue3050_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/Hover.java",
 			"""
 			interface Function<T, R> {
@@ -180,7 +180,7 @@ public void testIssue3050_2() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4217
 // NPE: Cannot invoke org.eclipse.jdt.internal.compiler.lookup.BlockScope.getBinding(char[], int, org.eclipse.jdt.internal.compiler.lookup.InvocationSite, boolean) because scope is null" on hyperlink request
-public void testIssue4217() throws JavaModelException {
+public void testIssue4217() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/Test.java",
 	"""
 	@FunctionalInterface

@@ -55,14 +55,14 @@ public SelectionOnQualifiedNameReference(char[][] previousIdentifiers, char[] se
 @Override
 public StringBuilder printExpression(int indent, StringBuilder output) {
 
-	output.append("<SelectOnName:"); //$NON-NLS-1$
-	for (int i = 0, length = this.tokens.length; i < length; i++) {
-		if (i > 0) output.append('.');
-		output.append(this.tokens[i]);
+	output.append("<SelectOnName:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (int i = 0, length = this.tokens.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		if (i > 0) output.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(this.tokens[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	return output.append('>');
+	return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public TypeBinding resolveType(BlockScope scope) {
 	// it can be a package, type, member type, local variable or field
 	this.binding = scope.getBinding(this.tokens, this);

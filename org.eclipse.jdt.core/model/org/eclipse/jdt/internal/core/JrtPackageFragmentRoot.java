@@ -78,8 +78,8 @@ public class JrtPackageFragmentRoot extends JarPackageFragmentRoot implements IM
 	}
 
 	/** static implementation to make sure the result can be shared across instances*/
-	private static Map<List<String>, PackageContent> computeChildren(JrtModuleKey key) {
-		Map<List<String>, PackageContent> rawPackageInfo= new HashMap<>();
+	private static Map<List<String>, PackageContent> computeChildren(JrtModuleKey key) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<List<String>, PackageContent> rawPackageInfo= new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		File image= key.image();
 		String moduleName= key.moduleName();
 		String classNameSubFolder= key.classNameSubFolder();
@@ -112,7 +112,7 @@ public class JrtPackageFragmentRoot extends JarPackageFragmentRoot implements IM
 						}
 					}, JRTUtil.NOTIFY_ALL);
 		} catch (IOException e) {
-			Util.log(e, "Error reading modules" + image); //$NON-NLS-1$
+			Util.log(e, "Error reading modules" + image); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return unmodifiableCopy(rawPackageInfo);
 	}
@@ -159,10 +159,10 @@ public class JrtPackageFragmentRoot extends JarPackageFragmentRoot implements IM
 	}
 	@Override
 	protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-		buffer.append(tabString(tab));
-		buffer.append("<module:").append(this.moduleName).append(">"); //$NON-NLS-1$ //$NON-NLS-2$
+		buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("<module:").append(this.moduleName).append(">"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (info == null) {
-			buffer.append(" (not open)"); //$NON-NLS-1$
+			buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 

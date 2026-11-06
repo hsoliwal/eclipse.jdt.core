@@ -26,13 +26,13 @@ public class AssistNodeParentAnnotationArrayInitializer extends ASTNode {
 
 	@Override
 	public StringBuilder print(int indent, StringBuilder output) {
-		output.append("<AssistNodeParentAnnotationArrayInitializer:"); //$NON-NLS-1$
-		output.append('@');
+		output.append("<AssistNodeParentAnnotationArrayInitializer:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append('@'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		this.type.printExpression(0, output);
-		output.append('(');
-		output.append(this.name);
-		output.append(')');
-		output.append('>');
+		output.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		return output;
 	}

@@ -36,7 +36,7 @@ public class ListRewriteEvent extends RewriteEvent {
 	 * @param originalNodes The original nodes (type ASTNode)
 	 */
 	public ListRewriteEvent(List originalNodes) {
-		this.originalNodes= new ArrayList(originalNodes);
+		this.originalNodes= new ArrayList(originalNodes); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 
 	/**
@@ -44,9 +44,9 @@ public class ListRewriteEvent extends RewriteEvent {
 	 * @param children The rewrite events for this list.
 	 */
 	public ListRewriteEvent(RewriteEvent[] children) {
-		this.listEntries= new ArrayList(children.length * 2);
-		this.originalNodes= new ArrayList(children.length * 2);
-		for (RewriteEvent curr : children) {
+		this.listEntries= new ArrayList(children.length * 2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		this.originalNodes= new ArrayList(children.length * 2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (RewriteEvent curr : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.listEntries.add(curr);
 			if (curr.getOriginalValue() != null) {
 				this.originalNodes.add(curr.getOriginalValue());
@@ -58,8 +58,8 @@ public class ListRewriteEvent extends RewriteEvent {
 		if (this.listEntries == null) {
 			// create if not yet existing
 			int nNodes= this.originalNodes.size();
-			this.listEntries= new ArrayList(nNodes * 2);
-			for (int i= 0; i < nNodes; i++) {
+			this.listEntries= new ArrayList(nNodes * 2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i= 0; i < nNodes; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ASTNode node= (ASTNode) this.originalNodes.get(i);
 				// all nodes unchanged
 				this.listEntries.add(new NodeRewriteEvent(node, node));
@@ -71,7 +71,7 @@ public class ListRewriteEvent extends RewriteEvent {
 	@Override
 	public int getChangeKind() {
 		if (this.listEntries != null) {
-			for (Object event : this.listEntries) {
+			for (Object event : this.listEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				RewriteEvent curr= (RewriteEvent) event;
 				if (curr.getChangeKind() != UNCHANGED) {
 					return CHILDREN_CHANGED;
@@ -100,8 +100,8 @@ public class ListRewriteEvent extends RewriteEvent {
 	@Override
 	public Object getNewValue() {
 		List entries= getEntries();
-		ArrayList res= new ArrayList(entries.size());
-		for (Object entry : entries) {
+		ArrayList res= new ArrayList(entries.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (Object entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			RewriteEvent curr= (RewriteEvent) entry;
 			Object newVal= curr.getNewValue();
 			if (newVal != null) {
@@ -117,14 +117,14 @@ public class ListRewriteEvent extends RewriteEvent {
 		return replaceEntry(originalEntry, null);
 	}
 
-	public RewriteEvent replaceEntry(ASTNode entry, ASTNode newEntry) {
+	public RewriteEvent replaceEntry(ASTNode entry, ASTNode newEntry) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (entry == null) {
 			throw new IllegalArgumentException();
 		}
 
 		List entries= getEntries();
 		int nEntries= entries.size();
-		for (int i= 0; i < nEntries; i++) {
+		for (int i= 0; i < nEntries; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			NodeRewriteEvent curr= (NodeRewriteEvent) entries.get(i);
 			if (curr.getOriginalValue() == entry || curr.getNewValue() == entry) {
 				curr.setNewValue(newEntry);
@@ -150,7 +150,7 @@ public class ListRewriteEvent extends RewriteEvent {
 
 	public int getIndex(ASTNode node, int kind) {
 		List entries= getEntries();
-		for (int i= entries.size() - 1; i >= 0; i--) {
+		for (int i= entries.size() - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			RewriteEvent curr= (RewriteEvent) entries.get(i);
 			if (((kind & OLD) != 0) && (curr.getOriginalValue() == node)) {
 				return i;
@@ -183,17 +183,17 @@ public class ListRewriteEvent extends RewriteEvent {
 
 	@Override
 	public String toString() {
-		StringBuilder buf= new StringBuilder();
-		buf.append(" [list change\n\t"); //$NON-NLS-1$
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append(" [list change\n\t"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		RewriteEvent[] events= getChildren();
-		for (int i= 0; i < events.length; i++) {
+		for (int i= 0; i < events.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i != 0) {
-				buf.append("\n\t"); //$NON-NLS-1$
+				buf.append("\n\t"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buf.append(events[i]);
+			buf.append(events[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buf.append("\n]"); //$NON-NLS-1$
+		buf.append("\n]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buf.toString();
 	}
 

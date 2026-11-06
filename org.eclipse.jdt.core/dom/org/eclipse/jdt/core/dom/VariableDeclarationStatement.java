@@ -88,14 +88,14 @@ public class VariableDeclarationStatement extends Statement {
 	private static final List PROPERTY_DESCRIPTORS_3_0;
 
 	static {
-		List propertyList = new ArrayList(4);
+		List propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(VariableDeclarationStatement.class, propertyList);
 		addProperty(MODIFIERS_PROPERTY, propertyList);
 		addProperty(TYPE_PROPERTY, propertyList);
 		addProperty(FRAGMENTS_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS_2_0 = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(4);
+		propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(VariableDeclarationStatement.class, propertyList);
 		addProperty(MODIFIERS2_PROPERTY, propertyList);
 		addProperty(TYPE_PROPERTY, propertyList);
@@ -287,7 +287,7 @@ public class VariableDeclarationStatement extends Statement {
 	 * @return the bit-wise or of <code>Modifier</code> constants
 	 * @see Modifier
 	 */
-	public int getModifiers() {
+	public int getModifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// more efficient than checking getAST().API_LEVEL
 		if (this.modifiers == null) {
 			// JLS2 behavior - bona fide property
@@ -297,7 +297,7 @@ public class VariableDeclarationStatement extends Statement {
 			// performance could be improved by caching computed flags
 			// but this would require tracking changes to this.modifiers
 			int computedModifierFlags = Modifier.NONE;
-			for (Object x : modifiers()) {
+			for (Object x : modifiers()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (x instanceof Modifier) {
 					computedModifierFlags |= ((Modifier) x).getKeyword().toFlagValue();
 				}

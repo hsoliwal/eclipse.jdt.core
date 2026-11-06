@@ -51,7 +51,7 @@ public static Test suite() {
 	return buildMinimalComplianceTestSuite(javadocTestClass(), F_16);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected Map getCompilerOptions() {
 	Map options = super.getCompilerOptions();
 	options.put(CompilerOptions.OPTION_DocCommentSupport, this.docCommentSupport);
@@ -106,7 +106,7 @@ protected void setUp() throws Exception {
 }
 
 
-public void testInlineReturn1() {
+public void testInlineReturn1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.complianceLevel < ClassFileConstants.JDK16) {
 		return;
 	}
@@ -124,7 +124,7 @@ public void testInlineReturn1() {
 		}
 	);
 }
-public void testInlineReturn2() {
+public void testInlineReturn2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.complianceLevel < ClassFileConstants.JDK16) {
 		return;
 	}
@@ -142,7 +142,7 @@ public void testInlineReturn2() {
 		}
 	);
 }
-public void testInlineReturn3() {
+public void testInlineReturn3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.complianceLevel < ClassFileConstants.JDK16) {
 		return;
 	}
@@ -162,7 +162,7 @@ public void testInlineReturn3() {
 		}
 	);
 }
-public void testInlineReturn4() {
+public void testInlineReturn4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.complianceLevel < ClassFileConstants.JDK16) {
 		return;
 	}
@@ -182,7 +182,7 @@ public void testInlineReturn4() {
 		}
 	);
 }
-public void testInlineReturn_broken1() {
+public void testInlineReturn_broken1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.complianceLevel < ClassFileConstants.JDK16) {
 		return;
 	}
@@ -211,7 +211,7 @@ public void testInlineReturn_broken1() {
 	);
 }
 
-public void testInlineReturn_broken2() {
+public void testInlineReturn_broken2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.complianceLevel < ClassFileConstants.JDK16) {
 		return;
 	}

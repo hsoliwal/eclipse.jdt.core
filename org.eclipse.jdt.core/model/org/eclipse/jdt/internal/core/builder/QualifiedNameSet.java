@@ -38,7 +38,7 @@ public char[][] add(char[][] qualifiedName) {
 	int length = this.qualifiedNames.length;
 	int index = CharOperation.hashCode(qualifiedName[qLength - 1]) % length;
 	char[][] current;
-	while ((current = this.qualifiedNames[index]) != null) {
+	while ((current = this.qualifiedNames[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (CharOperation.equals(current, qualifiedName)) return current;
 		if (++index == length) index = 0;
 	}
@@ -52,7 +52,7 @@ public char[][] add(char[][] qualifiedName) {
 private void rehash() {
 	QualifiedNameSet newSet = new QualifiedNameSet(this.elementSize * 2); // double the number of expected elements
 	char[][] current;
-	for (int i = this.qualifiedNames.length; --i >= 0;)
+	for (int i = this.qualifiedNames.length; --i >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if ((current = this.qualifiedNames[i]) != null)
 			newSet.add(current);
 
@@ -64,9 +64,9 @@ private void rehash() {
 @Override
 public String toString() {
 	String s = ""; //$NON-NLS-1$
-	for (char[][] qualifiedName : this.qualifiedNames)
+	for (char[][] qualifiedName : this.qualifiedNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (qualifiedName != null)
-			s += CharOperation.toString(qualifiedName) + "\n"; //$NON-NLS-1$
+			s += CharOperation.toString(qualifiedName) + "\n"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return s;
 }
 }

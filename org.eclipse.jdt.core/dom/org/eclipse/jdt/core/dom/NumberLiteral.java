@@ -44,7 +44,7 @@ public class NumberLiteral extends Expression {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(2);
+		List propertyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(NumberLiteral.class, propertyList);
 		addProperty(TOKEN_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
@@ -144,7 +144,7 @@ public class NumberLiteral extends Expression {
 	 * @param token the numeric literal token
 	 * @exception IllegalArgumentException if the argument is incorrect
 	 */
-	public void setToken(String token) {
+	public void setToken(String token) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// update internalSetToken(String) if this is changed
 		if (token == null || token.length() == 0) {
 			throw new IllegalArgumentException();
@@ -172,11 +172,11 @@ public class NumberLiteral extends Expression {
 						case TokenNameLongLiteral:
 							break;
 						default:
-							throw new IllegalArgumentException("Invalid number literal : >" + token + "<"); //$NON-NLS-1$//$NON-NLS-2$
+							throw new IllegalArgumentException("Invalid number literal : >" + token + "<"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					break;
 				default:
-					throw new IllegalArgumentException("Invalid number literal : >" + token + "<");//$NON-NLS-1$//$NON-NLS-2$
+					throw new IllegalArgumentException("Invalid number literal : >" + token + "<");//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} catch(InvalidInputException e) {
 			throw new IllegalArgumentException();

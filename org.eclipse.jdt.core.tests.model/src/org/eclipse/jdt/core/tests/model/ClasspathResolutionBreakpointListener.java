@@ -21,7 +21,7 @@ public class ClasspathResolutionBreakpointListener extends JavaProject.Classpath
 		this.threads = threads;
 	}
 	public void breakpoint(int bp) {
-		for (int i = 0, length = this.threads.length; i < length; i++) {
+		for (int i = 0, length = this.threads.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.threads[i].suspend(bp); // no-op if not current thread
 		}
 	}

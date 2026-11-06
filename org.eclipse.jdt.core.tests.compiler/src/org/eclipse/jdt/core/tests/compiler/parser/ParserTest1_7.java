@@ -46,7 +46,7 @@ public static Test suite() {
 public ParserTest1_7(String testName){
 	super(testName);
 }
-public void checkParse(
+public void checkParse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] source,
 	String expectedDietUnitToString,
 	String expectedDietWithStatementRecoveryUnitToString,
@@ -76,7 +76,7 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit diet structure" + testName,
+			"Invalid unit diet structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietUnitToString,
 			computedUnitToString);
 	}
@@ -99,7 +99,7 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit diet structure with statement recovery enabled" + testName,
+			"Invalid unit diet structure with statement recovery enabled" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietWithStatementRecoveryUnitToString,
 			computedUnitToString);
 	}
@@ -123,11 +123,11 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit diet structure" + testName,
+			"Invalid unit diet structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietUnitToString,
 			computedUnitToString);
 		if (computedUnit.types != null) {
-			for (int i = 0, length = computedUnit.types.length; i < length; i++){
+			for (int i = 0, length = computedUnit.types.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				computedUnit.types[i].parseMethods(parser, computedUnit);
 			}
 		}
@@ -137,7 +137,7 @@ public void checkParse(
 		}
 
 		assertEquals(
-			"Invalid unit diet+body structure" + testName,
+			"Invalid unit diet+body structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietPlusBodyUnitToString,
 			computedUnitToString);
 	}
@@ -160,11 +160,11 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit diet structure" + testName,
+			"Invalid unit diet structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietWithStatementRecoveryUnitToString,
 			computedUnitToString);
 		if (computedUnit.types != null) {
-			for (int i = 0, length = computedUnit.types.length; i < length; i++){
+			for (int i = 0, length = computedUnit.types.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				computedUnit.types[i].parseMethods(parser, computedUnit);
 			}
 		}
@@ -174,7 +174,7 @@ public void checkParse(
 		}
 
 		assertEquals(
-			"Invalid unit diet+body structure with statement recovery enabled" + testName,
+			"Invalid unit diet+body structure with statement recovery enabled" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietPlusBodyWithStatementRecoveryUnitToString,
 			computedUnitToString);
 	}
@@ -199,7 +199,7 @@ public void checkParse(
 				System.out.println(Util.displayString(computedUnitToString));
 			}
 			assertEquals(
-				"Invalid unit full structure" + testName,
+				"Invalid unit full structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				expectedFullUnitToString,
 				computedUnitToString);
 
@@ -224,7 +224,7 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit full structure with statement recovery enabled" + testName,
+			"Invalid unit full structure with statement recovery enabled" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedFullWithStatementRecoveryUnitToString,
 			computedUnitToString);
 
@@ -239,7 +239,7 @@ protected Map getCompilerOptions() {
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.getFirstSupportedJavaVersion());
 	return options;
 }
-public void test0001() {
+public void test0001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +
@@ -342,7 +342,7 @@ public void test0001() {
 		expectedFullWithStatementRecoveryUnitToString,
 		testName);
 }
-public void test0002() {
+public void test0002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +
@@ -445,7 +445,7 @@ public void test0002() {
 		expectedFullWithStatementRecoveryUnitToString,
 		testName);
 }
-public void test0003() {
+public void test0003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +
@@ -520,7 +520,7 @@ public void test0003() {
 		expectedFullWithStatementRecoveryUnitToString,
 		testName);
 }
-public void test0004() {
+public void test0004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +
@@ -609,7 +609,7 @@ public void test0004() {
 		expectedFullWithStatementRecoveryUnitToString,
 		testName);
 }
-public void test0005() {
+public void test0005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +
@@ -698,7 +698,7 @@ public void test0005() {
 		expectedFullWithStatementRecoveryUnitToString,
 		testName);
 }
-public void test0006() {
+public void test0006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +
@@ -801,7 +801,7 @@ public void test0006() {
 		expectedFullWithStatementRecoveryUnitToString,
 		testName);
 }
-public void test0007() {
+public void test0007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +
@@ -869,7 +869,7 @@ public void test0007() {
 		expectedFullWithStatementRecoveryUnitToString,
 		testName);
 }
-public void test0008() {
+public void test0008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +
@@ -937,7 +937,7 @@ public void test0008() {
 		expectedFullWithStatementRecoveryUnitToString,
 		testName);
 }
-public void test0009() {
+public void test0009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +
@@ -1005,7 +1005,7 @@ public void test0009() {
 		expectedFullWithStatementRecoveryUnitToString,
 		testName);
 }
-public void test0010() {
+public void test0010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +
@@ -1073,7 +1073,7 @@ public void test0010() {
 		expectedFullWithStatementRecoveryUnitToString,
 		testName);
 }
-public void test0011() {
+public void test0011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +
@@ -1162,7 +1162,7 @@ public void test0011() {
 		expectedFullWithStatementRecoveryUnitToString,
 		testName);
 }
-public void test0012() {
+public void test0012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"public class A {\n" +

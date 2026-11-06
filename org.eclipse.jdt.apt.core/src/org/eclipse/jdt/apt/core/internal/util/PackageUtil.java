@@ -27,15 +27,15 @@ public class PackageUtil {
 
 	private PackageUtil() {}
 
-	public static IPackageFragment[] getPackageFragments(
+	public static IPackageFragment[] getPackageFragments( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final String packageName,
 			final BaseProcessorEnv env) {
 
-		List<IPackageFragment> packages = new ArrayList<>();
+		List<IPackageFragment> packages = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		try {
 			// The environment caches our package fragment roots
 			IPackageFragmentRoot[] roots = env.getAllPackageFragmentRoots();
-			for (IPackageFragmentRoot root : roots) {
+			for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPackageFragment fragment = root.getPackageFragment(packageName);
 				if (fragment != null && fragment.exists())
 					packages.add(fragment);

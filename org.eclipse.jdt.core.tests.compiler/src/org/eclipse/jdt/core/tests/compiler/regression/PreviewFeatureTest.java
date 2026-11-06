@@ -47,11 +47,11 @@ public class PreviewFeatureTest extends AbstractRegressionTest9 {
 		}
 		return options;
 	}
-	private String[] getClasspathWithPreviewAPI() {
+	private String[] getClasspathWithPreviewAPI() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File libDir = new File(LIB_DIR);
 		Util.delete(libDir); // make sure we recycle the libs
- 		libDir.mkdirs();
-		String jarPath = LIB_DIR + "/lib1.jar";
+ 		libDir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		String jarPath = LIB_DIR + "/lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 			Util.createJar(
 				new String[] {
@@ -104,7 +104,7 @@ public class PreviewFeatureTest extends AbstractRegressionTest9 {
 	/*
 	 * Preview API, --enable-preview=false, SuppressWarning=No
 	 */
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel >= ClassFileConstants.JDK17) {
 			return;
 		}
@@ -180,7 +180,7 @@ public class PreviewFeatureTest extends AbstractRegressionTest9 {
 	/*
 	 * Preview API, --enable-preview=false, SuppressWarning=yes
 	 */
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel >= ClassFileConstants.JDK17) {
 			return;
 		}
@@ -241,7 +241,7 @@ public class PreviewFeatureTest extends AbstractRegressionTest9 {
 	/*
 	 * Preview API, --enable-preview=true, SuppressWarning=No
 	 */
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.getLatestJDKLevel())
 			return;
 		Map<String, String> options = getCompilerOptions();
@@ -292,7 +292,7 @@ public class PreviewFeatureTest extends AbstractRegressionTest9 {
 	/*
 	 * Preview API, --enable-preview=true, SuppressWarning=Yes
 	 */
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.getLatestJDKLevel())
 			return;
 		Map<String, String> options = getCompilerOptions();
@@ -345,7 +345,7 @@ public class PreviewFeatureTest extends AbstractRegressionTest9 {
 	/*
 	 * Preview API, --enable-preview=false, SuppressWarning=No, Parameterized Type
 	 */
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel >= ClassFileConstants.JDK17) {
 			return;
 		}
@@ -395,7 +395,7 @@ public class PreviewFeatureTest extends AbstractRegressionTest9 {
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5156
 	// Preview API usage must honor OPTION_ReportPreviewFeatures instead of always
 	// being reported as a warning.
-	public void testGHIssue5156() {
+	public void testGHIssue5156() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.getLatestJDKLevel()) {
 			return;
 		}

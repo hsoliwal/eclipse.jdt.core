@@ -95,74 +95,74 @@ public class JavaSearchPattern extends SearchPattern implements IIndexConstants,
 		this.matchMode = rule & MATCH_MODE_MASK;
 	}
 
-	public static String getFineGrainFlagString(final int fineGrain) {
+	public static String getFineGrainFlagString(final int fineGrain) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (fineGrain == 0) {
 			return "none"; //$NON-NLS-1$
 		}
-		StringBuilder buffer = new StringBuilder();
-		for (int i=1; i<=32; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i=1; i<=32; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int bit = fineGrain & (1<<(i-1));
-			if (bit != 0 && buffer.length()>0) buffer.append(" | "); //$NON-NLS-1$
+			if (bit != 0 && buffer.length()>0) buffer.append(" | "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			switch (bit) {
 				case IJavaSearchConstants.FIELD_DECLARATION_TYPE_REFERENCE:
-					buffer.append("FIELD_DECLARATION_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("FIELD_DECLARATION_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.LOCAL_VARIABLE_DECLARATION_TYPE_REFERENCE:
-					buffer.append("LOCAL_VARIABLE_DECLARATION_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("LOCAL_VARIABLE_DECLARATION_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.PARAMETER_DECLARATION_TYPE_REFERENCE:
-					buffer.append("PARAMETER_DECLARATION_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("PARAMETER_DECLARATION_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.SUPERTYPE_TYPE_REFERENCE:
-					buffer.append("SUPERTYPE_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("SUPERTYPE_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.THROWS_CLAUSE_TYPE_REFERENCE:
-					buffer.append("THROWS_CLAUSE_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("THROWS_CLAUSE_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.CAST_TYPE_REFERENCE:
-					buffer.append("CAST_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("CAST_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.CATCH_TYPE_REFERENCE:
-					buffer.append("CATCH_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("CATCH_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.CLASS_INSTANCE_CREATION_TYPE_REFERENCE:
-					buffer.append("CLASS_INSTANCE_CREATION_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("CLASS_INSTANCE_CREATION_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.RETURN_TYPE_REFERENCE:
-					buffer.append("RETURN_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("RETURN_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.IMPORT_DECLARATION_TYPE_REFERENCE:
-					buffer.append("IMPORT_DECLARATION_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("IMPORT_DECLARATION_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.ANNOTATION_TYPE_REFERENCE:
-					buffer.append("ANNOTATION_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("ANNOTATION_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.TYPE_ARGUMENT_TYPE_REFERENCE:
-					buffer.append("TYPE_ARGUMENT_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("TYPE_ARGUMENT_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.TYPE_VARIABLE_BOUND_TYPE_REFERENCE:
-					buffer.append("TYPE_VARIABLE_BOUND_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("TYPE_VARIABLE_BOUND_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.WILDCARD_BOUND_TYPE_REFERENCE:
-					buffer.append("WILDCARD_BOUND_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("WILDCARD_BOUND_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.SUPER_REFERENCE:
-					buffer.append("SUPER_REFERENCE"); //$NON-NLS-1$
+					buffer.append("SUPER_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.QUALIFIED_REFERENCE:
-					buffer.append("QUALIFIED_REFERENCE"); //$NON-NLS-1$
+					buffer.append("QUALIFIED_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.THIS_REFERENCE:
-					buffer.append("THIS_REFERENCE"); //$NON-NLS-1$
+					buffer.append("THIS_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.IMPLICIT_THIS_REFERENCE:
-					buffer.append("IMPLICIT_THIS_REFERENCE"); //$NON-NLS-1$
+					buffer.append("IMPLICIT_THIS_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.METHOD_REFERENCE_EXPRESSION:
-					buffer.append("METHOD_REFERENCE_EXPRESSION"); //$NON-NLS-1$
+					buffer.append("METHOD_REFERENCE_EXPRESSION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case IJavaSearchConstants.PERMITTYPE_TYPE_REFERENCE:
-					buffer.append("PERMITTYPE_TYPE_REFERENCE"); //$NON-NLS-1$
+					buffer.append("PERMITTYPE_TYPE_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 			}
 		}
@@ -198,7 +198,7 @@ public class JavaSearchPattern extends SearchPattern implements IIndexConstants,
 	 * Extract method arguments using unique key for parameterized methods
 	 * and type parameters for non-generic ones.
 	 */
-	char[][] extractMethodArguments(IMethod method) {
+	char[][] extractMethodArguments(IMethod method) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Use bind key if the element is resolved
 		if (method.isResolved()) {
@@ -208,7 +208,7 @@ public class JavaSearchPattern extends SearchPattern implements IIndexConstants,
 				int length = argumentsSignatures.length;
 				if (length > 0) {
 					char[][] methodArguments = new char[length][];
-					for (int i=0; i<length; i++) {
+					for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						methodArguments[i] = argumentsSignatures[i].toCharArray();
 						CharOperation.replace(methodArguments[i], new char[] { '$', '/' }, '.');
 					}
@@ -225,7 +225,7 @@ public class JavaSearchPattern extends SearchPattern implements IIndexConstants,
 				int length = parameters.length;
 				if (length > 0) {
 					char[][] arguments = new char[length][];
-					for (int i=0; i<length; i++) {
+					for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						arguments[i] = Signature.createTypeSignature(parameters[i].getElementName(), false).toCharArray();
 					}
 					return arguments;
@@ -280,7 +280,7 @@ public class JavaSearchPattern extends SearchPattern implements IIndexConstants,
 	 *
 	 * @return true if suffixes are compatible, false otherwise
 	 */
-	boolean matchDifferentTypeSuffixes(int typeSuffix, int patternSuffix) {
+	boolean matchDifferentTypeSuffixes(int typeSuffix, int patternSuffix) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(typeSuffix) {
 			case CLASS_SUFFIX :
 				switch (patternSuffix) {
@@ -333,48 +333,48 @@ public class JavaSearchPattern extends SearchPattern implements IIndexConstants,
 		return true;
 	}
 
-	protected StringBuilder print(StringBuilder output) {
-		output.append(", "); //$NON-NLS-1$
+	protected StringBuilder print(StringBuilder output) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		output.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (hasTypeArguments() && hasSignatures()) {
-			output.append("signature:\""); //$NON-NLS-1$
-			output.append(this.typeSignatures[0]);
-			output.append("\", "); //$NON-NLS-1$
+			output.append("signature:\""); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			output.append(this.typeSignatures[0]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			output.append("\", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		switch(getMatchMode()) {
 			case R_EXACT_MATCH :
-				output.append("exact match, "); //$NON-NLS-1$
+				output.append("exact match, "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case R_PREFIX_MATCH :
-				output.append("prefix match, "); //$NON-NLS-1$
+				output.append("prefix match, "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case R_PATTERN_MATCH :
-				output.append("pattern match, "); //$NON-NLS-1$
+				output.append("pattern match, "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case R_REGEXP_MATCH :
-				output.append("regexp match, "); //$NON-NLS-1$
+				output.append("regexp match, "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case R_CAMELCASE_MATCH :
-				output.append("camel case match, "); //$NON-NLS-1$
+				output.append("camel case match, "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case R_CAMELCASE_SAME_PART_COUNT_MATCH:
-				output.append("camel case same part count match, "); //$NON-NLS-1$
+				output.append("camel case same part count match, "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 		}
 		if (isCaseSensitive())
-			output.append("case sensitive, "); //$NON-NLS-1$
+			output.append("case sensitive, "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		else
-			output.append("case insensitive, "); //$NON-NLS-1$
+			output.append("case insensitive, "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if ((this.matchCompatibility & R_FULL_MATCH) != 0) {
-			output.append("generic full match, "); //$NON-NLS-1$
+			output.append("generic full match, "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if ((this.matchCompatibility & R_ERASURE_MATCH) != 0) {
-			output.append("generic erasure match, "); //$NON-NLS-1$
+			output.append("generic erasure match, "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if ((this.matchCompatibility & R_EQUIVALENT_MATCH) != 0) {
-			output.append("generic equivalent match, "); //$NON-NLS-1$
+			output.append("generic equivalent match, "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		output.append("fine grain: "); //$NON-NLS-1$
-		output.append(getFineGrainFlagString(this.fineGrain));
+		output.append("fine grain: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(getFineGrainFlagString(this.fineGrain)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return output;
 	}
 
@@ -386,7 +386,7 @@ public class JavaSearchPattern extends SearchPattern implements IIndexConstants,
 		// update flags
 		if (this.typeArguments != null) {
 			int length = this.typeArguments.length;
-			for (int i=0; i<length; i++) {
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.typeArguments[i] != null && this.typeArguments[i].length > 0) {
 					this.flags |= HAS_TYPE_ARGUMENTS;
 					break;
@@ -399,7 +399,7 @@ public class JavaSearchPattern extends SearchPattern implements IIndexConstants,
 	 * Extract and store type signatures and arguments using unique key for parameterized types
 	 * and type parameters for non-generic ones
 	 */
-	void storeTypeSignaturesAndArguments(IType type) {
+	void storeTypeSignaturesAndArguments(IType type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (type.isResolved()) {
 			BindingKey bindingKey = new BindingKey(type.getKey());
 			if (bindingKey.isParameterizedType() || bindingKey.isRawType()) {
@@ -417,7 +417,7 @@ public class JavaSearchPattern extends SearchPattern implements IIndexConstants,
 		try {
 			IJavaElement parent = type;
 			ITypeParameter[] parameters = null;
-			while (parent != null && parent.getElementType() == IJavaElement.TYPE) {
+			while (parent != null && parent.getElementType() == IJavaElement.TYPE) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (++ptr > typeParameters.length) {
 					System.arraycopy(typeParameters, 0, typeParameters = new char[typeParameters.length+10][][], 0, ptr);
 				}
@@ -428,7 +428,7 @@ public class JavaSearchPattern extends SearchPattern implements IIndexConstants,
 					if (length > 0) {
 						hasParameters = true;
 						typeParameters[ptr] = new char[length][];
-						for (int i=0; i<length; i++)
+						for (int i=0; i<length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							typeParameters[ptr][i] = Signature.createTypeSignature(parameters[i].getElementName(), false).toCharArray();
 					}
 				}
@@ -448,7 +448,7 @@ public class JavaSearchPattern extends SearchPattern implements IIndexConstants,
 	}
 	@Override
 	public final String toString() {
-		return print(new StringBuilder(30)).toString();
+		return print(new StringBuilder(30)).toString(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 
 	@Override

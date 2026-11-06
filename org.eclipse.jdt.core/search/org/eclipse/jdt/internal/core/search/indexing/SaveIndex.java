@@ -27,7 +27,7 @@ public class SaveIndex extends IndexRequest {
 	public SaveIndex(IPath containerPath, IndexManager manager) {
 		super(containerPath, manager);
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean execute(IProgressMonitor progressMonitor) {
 
 		if (this.isCancelled || progressMonitor != null && progressMonitor.isCanceled()) return true;
@@ -42,7 +42,7 @@ public class SaveIndex extends IndexRequest {
 			monitor.enterWrite(); // ask permission to write
 			this.manager.saveIndex(index);
 		} catch (IOException e) {
-			Util.log(Status.warning("Failed to save index " + this.containerPath + ". The index will not be persisted into disk but it is still available in memory and it is usable: " + e.getMessage(), e)); //$NON-NLS-1$ //$NON-NLS-2$
+			Util.log(Status.warning("Failed to save index " + this.containerPath + ". The index will not be persisted into disk but it is still available in memory and it is usable: " + e.getMessage(), e)); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return false;
 		} finally {
 			monitor.exitWrite(); // free write lock
@@ -51,6 +51,6 @@ public class SaveIndex extends IndexRequest {
 	}
 	@Override
 	public String toString() {
-		return "saving index for " + this.containerPath; //$NON-NLS-1$
+		return "saving index for " + this.containerPath; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

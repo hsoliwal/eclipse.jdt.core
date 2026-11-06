@@ -95,7 +95,7 @@ public void test010() {
 		"1SUCCESS");
 }
 // test unreachable code complaints
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p1/X.java",
@@ -147,7 +147,7 @@ public void test011() {
 	);
 }
 // binary compatibility
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/Y.java",
@@ -237,7 +237,7 @@ public void test012() {
 		null); // no special vm args
 }
 // binary compatibility
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/Y.java",
@@ -312,7 +312,7 @@ public void test013() {
 		null); // no special vm args
 }
 
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/X.java",
@@ -355,7 +355,7 @@ public void test014() {
 /*
  * check handling of default abstract methods
  */
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/X.java",
@@ -379,7 +379,7 @@ public void test015() {
 		"SUCCESS");
 }
 
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -405,7 +405,7 @@ public void test016() {
 		"----------\n");
 }
 
-public void test017() {
+public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -429,7 +429,7 @@ public void test017() {
 		"SUCCESS");
 }
 
-public void test018() {
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -452,7 +452,7 @@ public void test018() {
 		},
 		"SUCCESS");
 }
-public void test019() {
+public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -477,7 +477,7 @@ public void test019() {
 		},
 		"SUCCESS");
 }
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -502,7 +502,7 @@ public void test020() {
 		},
 		"SUCCESS");
 }
-public void test020a() {
+public void test020a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -528,7 +528,7 @@ public void test020a() {
 		"SUCCESS");
 }
 // binary check for 11511
-public void test021() {
+public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/Z.java",
@@ -557,7 +557,7 @@ public void test021() {
 		"AbstractB.init()"); // no special vm args
 
 		// check that "new Z().init()" is bound to "Z.init()"
-		String computedReferences = findReferences(OUTPUT_DIR + "/p1/Z.class");
+		String computedReferences = findReferences(OUTPUT_DIR + "/p1/Z.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		boolean check =
 			computedReferences.indexOf("constructorRef/Z/0") >= 0
 			&& computedReferences.indexOf("methodRef/init/0") >= 0;
@@ -570,7 +570,7 @@ public void test021() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=11511
  * variant - applicable error diagnosis
  */
-public void test022() {
+public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -612,7 +612,7 @@ public void test022() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=11511
  * variant - applicable error diagnosis
  */
-public void test023() {
+public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -653,7 +653,7 @@ public void test023() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=11511
  * variant - applicable error diagnosis
  */
-public void test024() {
+public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -709,7 +709,7 @@ public void test024() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=11511
  * variant - applicable error diagnosis (no matter if super is abstract or not)
  */
-public void test025() {
+public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -743,7 +743,7 @@ public void test025() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=11511
  * variant - applicable error diagnosis (no matter if super is abstract or not)
  */
-public void test026() {
+public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -777,7 +777,7 @@ public void test026() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=11922
  * should report unreachable empty statement
  */
-public void test027() {
+public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -809,7 +809,7 @@ public void test027() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=12445
  * should report unreachable empty statement
  */
-public void test028() {
+public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 		new String[] {
@@ -846,7 +846,7 @@ public void test028() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=21580
  * verify error on qualified name ref in 1.4
  */
-public void test029() {
+public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 		new String[] {
@@ -883,7 +883,7 @@ public void test029() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=21580
  * 1.4 signals invocations of non-visible abstract protected method implementations.
  */
-public void test030() {
+public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -939,7 +939,7 @@ public void test030() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=21580
  * 1.4 signals invocations of non-visible abstract protected method implementations.
  */
-public void test031() {
+public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -994,7 +994,7 @@ public void test031() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=21580
  * 1.4 signals invocations of non-visible abstract protected field implementations.
  */
-public void test032() {
+public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -1044,7 +1044,7 @@ public void test032() {
  * Initialization of synthetic fields prior to super constructor call
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=23075
  */
-public void test033() {
+public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 		new String[] {
@@ -1093,7 +1093,7 @@ public void test033() {
  * Initialization of synthetic fields prior to super constructor call - NPE check
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=25174
  */
-public void test034() {
+public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 		new String[] {
@@ -1125,7 +1125,7 @@ public void test034() {
 		"X.this != null-X$1.baz()");
 }
 
-public void test035() {
+public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			/* p1/X.java */
@@ -1149,7 +1149,7 @@ public void test035() {
 	);
 }
 
-public void test036() {
+public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			/* p1/X.java */
@@ -1182,7 +1182,7 @@ public void test036() {
  *
  * NOTE: since JLS got revised to allow unterminated line comments (32476)
  */
-public void test037() {
+public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_TaskTags, "TODO:");
 	this.runNegativeTest(
@@ -1210,7 +1210,7 @@ public void test037() {
  *
  * NOTE: since JLS got revised to allow unterminated line comments (32476)
  */
-public void test038() {
+public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_TaskTags, "TODO:");
 	this.runNegativeTest(
@@ -1233,7 +1233,7 @@ public void test038() {
 /*
  * unreachable empty statement/block are diagnosed in 1.3
  */
-public void test039() {
+public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1286,7 +1286,7 @@ public void test039() {
 }
 // jls6.5.5.1 - simple type names favor member type over toplevel one.
 //http://bugs.eclipse.org/bugs/show_bug.cgi?id=30705
-public void test040() {
+public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1326,7 +1326,7 @@ public void test040() {
 /*
  * 30856 - 1.4 compliant mode should consider abstract method matches
  */
-public void test041() {
+public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/X.java", //================================
@@ -1357,7 +1357,7 @@ public void test041() {
 /*
  * variation - 30856 - 1.4 compliant mode should consider abstract method matches
  */
-public void test042() {
+public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/X.java", //================================
@@ -1390,7 +1390,7 @@ public void test042() {
 }
 
 // binary compatibility
-public void _test043() {
+public void _test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/Y.java",
@@ -1441,7 +1441,7 @@ public void _test043() {
  * array.clone() should use array type in methodRef
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=36307
  */
-public void test044() throws Exception {
+public void test044() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1455,7 +1455,7 @@ public void test044() throws Exception {
 		"SUCCESS");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -1473,7 +1473,7 @@ public void test044() throws Exception {
 	}
 }
 // 39172
-public void test045() {
+public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/X.java",
@@ -1497,7 +1497,7 @@ public void test045() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=39467
  * should diagnose missing abstract method implementation
  */
-public void test046() {
+public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1527,7 +1527,7 @@ public void test046() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=40442
  * Abstract class fails to invoke interface-defined method in 1.4 compliance mode.
  */
-public void test047() {
+public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1562,7 +1562,7 @@ public void test047() {
  * Abstract class fails to invoke interface-defined method in 1.4 compliance mode.
  * variation with 2 found methods
  */
-public void test048() {
+public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1596,7 +1596,7 @@ public void test048() {
 /**
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=41278
  */
-public void test049() {
+public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"pa/Caller.java",
@@ -1630,7 +1630,7 @@ public void test049() {
 		"----------\n");
 }
 
-public void test050() {
+public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -1655,7 +1655,7 @@ public void test050() {
 		"----------\n");
 }
 
-public void test051() {
+public void test051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -1680,7 +1680,7 @@ public void test051() {
 		"----------\n");
 }
 
-public void test052() {
+public void test052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/A.java",
@@ -1732,7 +1732,7 @@ public void test052() {
 		"----------\n");
 }
 
-public void test053() {
+public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/X.java",
@@ -1759,7 +1759,7 @@ public void test053() {
 	);
 }
 
-public void test054() {
+public void test054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/X.java",
@@ -1792,7 +1792,7 @@ public void test054() {
 		}
 	);
 }
-public void test055() {
+public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/X.java",
@@ -1837,7 +1837,7 @@ public void test055() {
 	);
 }
 
-public void test056() {
+public void test056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/MethodQualification.java",
@@ -1858,7 +1858,7 @@ public void test056() {
 	);
 }
 
-public void test057() {
+public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/AG.java",
@@ -1888,7 +1888,7 @@ public void test057() {
 	);
 }
 
-public void test058() {
+public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/AE.java",
@@ -1914,7 +1914,7 @@ public void test058() {
 	);
 }
 
-public void test059() {
+public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/FieldQualification.java",
@@ -1959,7 +1959,7 @@ public void test059() {
 		"----------\n");
 }
 
-public void test060() {
+public void test060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p/AF.java",
@@ -1992,7 +1992,7 @@ public void test060() {
 /*
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=32342
  */
-public void test061() {
+public void test061() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/X.java", //======================
@@ -2022,7 +2022,7 @@ public void test061() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=11435
  * variant - must still complain when targeting super abstract method
  */
-public void test062() {
+public void test062() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -2047,7 +2047,7 @@ public void test062() {
 		"----------\n"); // expected log
 }
 
-public void test063() {
+public void test063() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			/* p1/X.java */
@@ -2072,7 +2072,7 @@ public void test063() {
 /**
  * Refuse selection of own enclosing instance arg for super constructor call in 1.3 compliant mode
  */
-public void test064() {
+public void test064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"Foo.java",
@@ -2093,7 +2093,7 @@ public void test064() {
 		"");
 }
 
-public void test065() {
+public void test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2122,7 +2122,7 @@ public void test065() {
 /*
  * Check that anonymous type allocation is denied access to compatible enclosing instance available as constructor argument
  */
-public void test066() {
+public void test066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2149,7 +2149,7 @@ public void test066() {
 /*
  * Check that indirect member type allocation is denied access to compatible enclosing instance available as constructor argument
  */
-public void test067() {
+public void test067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2182,7 +2182,7 @@ public void test067() {
 /*
  * Check that indirect member type allocation is denied access to compatible enclosing instance available as constructor argument
  */
-public void test068() {
+public void test068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2207,7 +2207,7 @@ public void test068() {
 /*
  * Check that indirect member type allocation is denied access to compatible enclosing instance available as constructor argument
  */
-public void test069() {
+public void test069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2243,7 +2243,7 @@ public void test069() {
 }
 
 // binary compatibility
-public void test070() {
+public void test070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2279,7 +2279,7 @@ public void test070() {
 /*
  * 43429 - AbstractMethodError calling clone() at runtime when using Eclipse compiler
  */
-public void test071() {
+public void test071() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java", //================================
@@ -2315,7 +2315,7 @@ public void test071() {
 		},
 		"SUCCESS");
 }
-public void test072() {
+public void test072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 		new String[] {
@@ -2340,7 +2340,7 @@ public void test072() {
 	"SUCCESS");
 }
 // 52221
-public void test073() {
+public void test073() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -2380,7 +2380,7 @@ public void test073() {
 // checking for captured outer local initialization status
 // NOTE: only complain against non-inlinable outer locals
 // http://bugs.eclipse.org/bugs/show_bug.cgi?id=26134
-public void test074() {
+public void test074() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2421,7 +2421,7 @@ public void test074() {
 		"Local cannot be resolved to a type\n" +
 		"----------\n");
 }
-public void test075() {
+public void test075() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2445,7 +2445,7 @@ public void test075() {
  * Test fix for bug 58069.
  * @see <a href="http://bugs.eclipse.org/bugs/show_bug.cgi?id=58069">58069</a>
  */
-public void test076() {
+public void test076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.docSupport = true;
 	runNegativeTest(
 		new String[] {
@@ -2489,7 +2489,7 @@ public void test076() {
  * Note that problem is not flagged in doc comments as it is only raised while verifying
  * implicit method and javadoc resolution does not use it.
  */
-public void test077() {
+public void test077() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.docSupport = true;
 	this.runConformTest(
 		new String[] {
@@ -2522,7 +2522,7 @@ public void test077() {
  * Note that problem is not flagged in doc comments as it is only raised while verifying
  * Name or Qualified name references and javadoc reference is a field reference.
  */
-public void test078() {
+public void test078() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.docSupport = true;
 	this.runConformTest(
 		new String[] {
@@ -2551,7 +2551,7 @@ public void test078() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=47227
  */
-public void test079() {
+public void test079() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String problemLog = (this.complianceLevel >= ClassFileConstants.JDK25) ?
 			"""
 			----------
@@ -2636,7 +2636,7 @@ public void test079() {
  * Seems to be a bug fixed in JDK 6 hence the test needs to be removed:
  * https://bugs.java.com/bugdatabase/view_bug?bug_id=5080917
  */
-public void test080() {
+public void test080() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2703,7 +2703,7 @@ public void test081() {
 		"");
 }
 // covariance
-public void test082() {
+public void test082() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2749,7 +2749,7 @@ public void test084() {
 /**
  * Test unused import with static
  */
-public void test085() {
+public void test085() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"A.java",
@@ -2783,7 +2783,7 @@ public void test085() {
 /**
  * Test invalid static import syntax
  */
-public void test086() {
+public void test086() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/S.java",
@@ -2814,7 +2814,7 @@ public void test086() {
 			"----------\n"
 		);
 }
-public void test087() {
+public void test087() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/S.java",
@@ -2844,7 +2844,7 @@ public void test087() {
 			"----------\n"
 		);
 }
-public void test088() {
+public void test088() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/X.java",
@@ -2958,7 +2958,7 @@ public void test089() {
 		"");
 }
 //78104
-public void test090() {
+public void test090() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3010,7 +3010,7 @@ public void test092() {
 		""
 	);
 }
-public void test093() {
+public void test093() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/X_1.java",
@@ -3070,7 +3070,7 @@ public void test093() {
  * Test unused import warning in presence of syntax errors
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=21022
  */
-public void test094(){
+public void test094(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -3091,7 +3091,7 @@ public void test094(){
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84743
-public void test095(){
+public void test095(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runNegativeTest(
 		new String[] {
@@ -3122,7 +3122,7 @@ public void test095(){
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=47074
  */
-public void test096() {
+public void test096() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3149,7 +3149,7 @@ public void test096() {
 		"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=79396
-public void test097() {
+public void test097() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3180,7 +3180,7 @@ public void test097() {
 		"[X2]");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=78906
-public void test098() {
+public void test098() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3208,7 +3208,7 @@ public void test098() {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=77349
-public void test099() {
+public void test099() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"I.java",
@@ -3227,7 +3227,7 @@ public void test099() {
 	);
 }
 
-public void test100() {
+public void test100() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3247,7 +3247,7 @@ public void test100() {
 	);
 }
 
-public void test101() {
+public void test101() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3267,7 +3267,7 @@ public void test101() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=108856
-public void test102() {
+public void test102() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3287,7 +3287,7 @@ public void test102() {
 		},
 		"X$1$1");
 }
-public void test103() throws Exception {
+public void test103() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3300,7 +3300,7 @@ public void test103() throws Exception {
 		"class X");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -3346,7 +3346,7 @@ public void test103() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=125570
-public void test104() {
+public void test104() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3376,7 +3376,7 @@ public void test104() {
 }
 
 // enclosing instance - note that the behavior is different in 1.5
-public void test105() {
+public void test105() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3403,7 +3403,7 @@ public void test105() {
 		"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=79798
-public void test106() {
+public void test106() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3427,7 +3427,7 @@ public void test106() {
 		"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=79798
-public void test107() {
+public void test107() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",

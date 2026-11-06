@@ -68,12 +68,12 @@ public class SimpleName extends Name {
 	private static final List PROPERTY_DESCRIPTORS_10_0;
 
 	static {
-		List propertyList = new ArrayList(2);
+		List propertyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SimpleName.class, propertyList);
 		addProperty(IDENTIFIER_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(3);
+		propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SimpleName.class, propertyList);
 		addProperty(IDENTIFIER_PROPERTY, propertyList);
 		addProperty(VAR_PROPERTY, propertyList);
@@ -221,7 +221,7 @@ public class SimpleName extends Name {
 	 * @param identifier the identifier of this node
 	 * @exception IllegalArgumentException if the identifier is invalid
 	 */
-	public void setIdentifier(String identifier) {
+	public void setIdentifier(String identifier) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// update internalSetIdentifier if this is changed
 		if (identifier == null) {
 			throw new IllegalArgumentException();
@@ -240,14 +240,14 @@ public class SimpleName extends Name {
 			try {
 				TerminalToken tokenType = scanner.scanIdentifier();
 				if (tokenType != TerminalToken.TokenNameIdentifier) {
-					throw new IllegalArgumentException("Invalid identifier : >" + identifier + "<");  //$NON-NLS-1$//$NON-NLS-2$
+					throw new IllegalArgumentException("Invalid identifier : >" + identifier + "<");  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (scanner.currentPosition != length) {
 					// this is the case when there is only one identifier see 87849
-					throw new IllegalArgumentException("Invalid identifier : >" + identifier + "<");  //$NON-NLS-1$//$NON-NLS-2$
+					throw new IllegalArgumentException("Invalid identifier : >" + identifier + "<");  //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			} catch (InvalidInputException e) {
-				throw new IllegalArgumentException("Invalid identifier : >" + identifier + "<", e); //$NON-NLS-1$//$NON-NLS-2$
+				throw new IllegalArgumentException("Invalid identifier : >" + identifier + "<", e); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} finally {
 			this.ast.scanner.sourceLevel = sourceLevel;
@@ -317,7 +317,7 @@ public class SimpleName extends Name {
 	 * @return <code>true</code> if this node declares a name, and
 	 *    <code>false</code> otherwise
 	 */
-	public boolean isDeclaration() {
+	public boolean isDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		StructuralPropertyDescriptor d = getLocationInParent();
 		if (d == null) {
 			// unparented node
@@ -358,7 +358,7 @@ public class SimpleName extends Name {
 
 	@Override
 	void appendName(StringBuilder buffer) {
-		buffer.append(getIdentifier());
+		buffer.append(getIdentifier()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	@Override

@@ -100,7 +100,7 @@ public class GeneratedSourceFolderManager {
 	 * Should be constructed only by AptProject.  Other clients should call
 	 * @see AptProject#getGeneratedSourceFolderManager(boolean) to get this object.
 	 */
-	public GeneratedSourceFolderManager(AptProject aptProject, boolean isTestCode)
+	public GeneratedSourceFolderManager(AptProject aptProject, boolean isTestCode) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		_aptProject = aptProject;
 		_isTestCode = isTestCode;
@@ -130,12 +130,12 @@ public class GeneratedSourceFolderManager {
 		try {
 			ClasspathUtil.updateProjectClasspath( _aptProject.getJavaProject(), srcFolder, null, _isTestCode, specificOutputLocation );
 			if(AptPlugin.DEBUG)
-				AptPlugin.trace("Ensured classpath has an entry for " + srcFolder); //$NON-NLS-1$
+				AptPlugin.trace("Ensured classpath has an entry for " + srcFolder); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			onClasspath = true;
 		}
 		catch (CoreException e) {
 			e.printStackTrace();
-			AptPlugin.log(e, "Failed to add classpath entry for generated source folder " + srcFolder.getName()); //$NON-NLS-1$
+			AptPlugin.log(e, "Failed to add classpath entry for generated source folder " + srcFolder.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return onClasspath;
 	}
@@ -157,9 +157,9 @@ public class GeneratedSourceFolderManager {
 		IFolder sourceFolder = _generatedSourceFolder;
 		IFolder srcFolder = getFolderPreference();
 		boolean same = Objects.equals(sourceFolder, srcFolder);
-		assert(sourceFolder == null || same): "Should have already removed old folder by now: " + sourceFolder; //$NON-NLS-1$
+		assert(sourceFolder == null || same): "Should have already removed old folder by now: " + sourceFolder; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (srcFolder == null) {
-			IStatus status = AptPlugin.createStatus(null, "Could not create generated source folder (" + //$NON-NLS-1$
+			IStatus status = AptPlugin.createStatus(null, "Could not create generated source folder (" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					AptConfig.getGenSrcDir(_aptProject.getJavaProject()) + ")"); //$NON-NLS-1$
 			AptPlugin.log(status);
 			return;
@@ -168,7 +168,7 @@ public class GeneratedSourceFolderManager {
 		ensureFolderExists(srcFolder);
 	}
 
-	public void ensureFolderExists(IFolder srcFolder) {
+	public void ensureFolderExists(IFolder srcFolder) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath specificOutputLocation;
 		if (_isTestCode) {
 			IClasspathEntry[] cp;
@@ -205,7 +205,7 @@ public class GeneratedSourceFolderManager {
 	 * Classpath will be updated with an entry for the generated source folder
 	 * if it is not already added to the classpath. See bug 185601.
 	 */
-	public void ensureFolderExists(){
+	public void ensureFolderExists(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// If APT is disabled, do nothing.
 		if (!_aptEnabled) {
 			return;
@@ -217,7 +217,7 @@ public class GeneratedSourceFolderManager {
 		// getting called (e.g., without user having done a refresh).
 		IFolder srcFolder = getFolder();
 		if (srcFolder == null) {
-			IStatus status = AptPlugin.createStatus(null, "Could not create generated source folder (" + //$NON-NLS-1$
+			IStatus status = AptPlugin.createStatus(null, "Could not create generated source folder (" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					AptConfig.getGenSrcDir(_aptProject.getJavaProject()) + ")"); //$NON-NLS-1$
 			AptPlugin.log(status);
 			return;
@@ -233,7 +233,7 @@ public class GeneratedSourceFolderManager {
 	 * @param srcFolder the folder to create.  Must not be null.
 	 * @return true if, at the end of the routine, the folder exists on disk.
 	 */
-	private boolean createOnDisk(IFolder srcFolder) {
+	private boolean createOnDisk(IFolder srcFolder) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean exists = false;
 		try {
 			// don't take any locks while creating the folder, since we are doing file-system operations
@@ -241,13 +241,13 @@ public class GeneratedSourceFolderManager {
 			if (!srcFolder.exists()) {
 				FileSystemUtil.makeDerivedParentFolders(srcFolder);
 				if(AptPlugin.DEBUG)
-					AptPlugin.trace("Created folder " + srcFolder + " on disk"); //$NON-NLS-1$ //$NON-NLS-2$
+					AptPlugin.trace("Created folder " + srcFolder + " on disk"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			exists = true;
 		}
 		catch (CoreException e) {
 			e.printStackTrace();
-			AptPlugin.log(e, "Failed to ensure existence of generated source folder " + srcFolder.getName()); //$NON-NLS-1$
+			AptPlugin.log(e, "Failed to ensure existence of generated source folder " + srcFolder.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return exists;
 	}
@@ -268,7 +268,7 @@ public class GeneratedSourceFolderManager {
 		// Short-circuit if nothing changed.
 		if (enable == _aptEnabled) {
 			if( AptPlugin.DEBUG ) {
-				AptPlugin.trace("enabledChanged() doing nothing; state is already " + enable); //$NON-NLS-1$
+				AptPlugin.trace("enabledChanged() doing nothing; state is already " + enable); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			// no change in state
 			return;
@@ -280,7 +280,7 @@ public class GeneratedSourceFolderManager {
 		_aptEnabled = enable;
 
 		if ( AptPlugin.DEBUG ) {
-			AptPlugin.trace("enabledChanged() changing state to " + enable +  //$NON-NLS-1$
+			AptPlugin.trace("enabledChanged() changing state to " + enable +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" for " + _aptProject.getJavaProject().getElementName()); //$NON-NLS-1$
 		}
 		if( enable ) {
@@ -299,7 +299,7 @@ public class GeneratedSourceFolderManager {
  	 * This should only be called on an event thread, with no locks on the project
 	 * or classpath.
 	 */
-	public void folderNamePreferenceChanged()
+	public void folderNamePreferenceChanged() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		// if APT is disabled, we don't need to do anything
 		if (!_aptEnabled) {
@@ -309,7 +309,7 @@ public class GeneratedSourceFolderManager {
 		// if name didn't change, we don't need to do anything
 		if (_generatedSourceFolder != null && _generatedSourceFolder.equals(getFolderPreference())) {
 			if( AptPlugin.DEBUG ) {
-				AptPlugin.trace("folderNameChanged() doing nothing; name is already " +  //$NON-NLS-1$
+				AptPlugin.trace("folderNameChanged() doing nothing; name is already " +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						_generatedSourceFolder.getProjectRelativePath());
 			}
 			return;
@@ -337,7 +337,7 @@ public class GeneratedSourceFolderManager {
 			_generatedSourceFolder = null;
 		}
 		if(AptPlugin.DEBUG)
-			AptPlugin.trace("set _generatedSourceFolder to null; was " + srcFolder ); //$NON-NLS-1$
+			AptPlugin.trace("set _generatedSourceFolder to null; was " + srcFolder ); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -353,7 +353,7 @@ public class GeneratedSourceFolderManager {
 	 *
 	 * @see #getFolder()
 	 */
-	public IPath getBinaryOutputLocation()
+	public IPath getBinaryOutputLocation() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		 throws JavaModelException
 	{
 		IPath outputRootPath = null;
@@ -443,7 +443,7 @@ public class GeneratedSourceFolderManager {
 	/**
 	 * Remove a folder from disk and from the classpath.
 	 */
-	private void removeFolder(boolean waitForWorkspaceEvents) {
+	private void removeFolder(boolean waitForWorkspaceEvents) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final IFolder srcFolder = _generatedSourceFolder;
 		if (srcFolder == null) {
 			return;
@@ -459,11 +459,11 @@ public class GeneratedSourceFolderManager {
 				ClasspathUtil.removeFromProjectClasspath( _aptProject.getJavaProject(), srcFolder, null );
 			}
 		} catch (JavaModelException e) {
-			AptPlugin.log( e, "Failed to remove classpath entry for old generated src folder " + srcFolder.getName() ); //$NON-NLS-1$
+			AptPlugin.log( e, "Failed to remove classpath entry for old generated src folder " + srcFolder.getName() ); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
-		final IWorkspaceRunnable runnable = new IWorkspaceRunnable(){
-	        @Override
+		final IWorkspaceRunnable runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
+	        @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public void run(IProgressMonitor monitor)
 	        {
             	try {
@@ -472,7 +472,7 @@ public class GeneratedSourceFolderManager {
 
             		// We also want to delete our parent folder(s) if they are derived and empty
             		if (deleted) {
-            			while (parent.isDerived() && parent.getType() == IResource.FOLDER) {
+            			while (parent.isDerived() && parent.getType() == IResource.FOLDER) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             				IFolder parentFolder = (IFolder)parent;
             				if (parentFolder.members().length == 0) {
             					parent = parentFolder.getParent();
@@ -485,7 +485,7 @@ public class GeneratedSourceFolderManager {
             		}
 
             	} catch(CoreException e) {
-            		AptPlugin.log(e, "failed to delete old generated source folder " + srcFolder.getName() ); //$NON-NLS-1$
+            		AptPlugin.log(e, "failed to delete old generated source folder " + srcFolder.getName() ); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             	} catch(OperationCanceledException cancel) {
             		AptPlugin.log(cancel, "deletion of generated source folder got cancelled"); //$NON-NLS-1$
             	}
@@ -495,7 +495,7 @@ public class GeneratedSourceFolderManager {
 	    try{
 	    	ws.run(runnable, ws.getRoot(), IWorkspace.AVOID_UPDATE, null);
 	    }catch(CoreException e){
-			AptPlugin.log(e, "Runnable for deleting old generated source folder " + srcFolder.getName() + " failed."); //$NON-NLS-1$ //$NON-NLS-2$
+			AptPlugin.log(e, "Runnable for deleting old generated source folder " + srcFolder.getName() + " failed."); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	    if(waitForWorkspaceEvents) {
 			try {
@@ -519,7 +519,7 @@ public class GeneratedSourceFolderManager {
 	 * @return true if attempting to set the generated source folder to
 	 * <code>dirString</code> is likely to succeed.
 	 */
-	public static boolean validate(final IJavaProject jproj, final String folderName) {
+	public static boolean validate(final IJavaProject jproj, final String folderName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean succeeded = false;
 		try {
 			if (jproj != null) {

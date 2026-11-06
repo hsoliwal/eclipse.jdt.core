@@ -38,7 +38,7 @@ public void test1() {
 		"",
 		options);
 }
-public void test2() {
+public void test2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_12);
 	this.runNegativeTest(

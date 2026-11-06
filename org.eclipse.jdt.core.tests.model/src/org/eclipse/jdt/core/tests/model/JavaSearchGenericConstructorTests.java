@@ -48,16 +48,16 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 	 * Remove last type arguments from a line of an expected result.
 	 * This line contains one search match print out.
 	 */
-	long removeFirstTypeArgument(char[] line) {
+	long removeFirstTypeArgument(char[] line) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int idx=0;
 		int length = line.length;
-		while (line[idx++] != '[') {
+		while (line[idx++] != '[') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (idx == length) return -1;
 		}
 		if (line[idx++] != '<') return -1;
 		int start = idx;
 		int n = 1;
-		while(idx < length && n!= 0) {
+		while(idx < length && n!= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (line[idx++]) {
 				case '<': n++; break;
 				case '>': n--; break;
@@ -73,14 +73,14 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 	@Override
 	void addResultLine(StringBuilder buffer, char[] line) {
 		long positions = removeFirstTypeArgument(line);
-		if (buffer.length() > 0) buffer.append('\n');
+		if (buffer.length() > 0) buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (positions != -1) {
 			int stop = (int) (positions >>> 32) - 1;
 			int restart = (int) positions;
-			buffer.append(line, 0, stop);
-			buffer.append(line, restart, line.length-restart);
+			buffer.append(line, 0, stop); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(line, restart, line.length-restart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append(line);
+			buffer.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -344,7 +344,7 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 	}
 
 	// Search string pattern references to single parameterized contructors
-	public void testConstructorReferencesStringPatternSingleParamArguments01() throws CoreException {
+	public void testConstructorReferencesStringPatternSingleParamArguments01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g5.c.ref", false);
 		search("<Exception>Single", CONSTRUCTOR, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -366,7 +366,7 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 			"src/g5/c/ref/RefSingle.java void g5.c.ref.RefSingle.testRuntimeException() [new <RuntimeException>Single<RuntimeException>(new RuntimeException(), gs)] ERASURE_MATCH"
 		);
 	}
-	public void testConstructorReferencesStringPatternSingleParamArguments02() throws CoreException {
+	public void testConstructorReferencesStringPatternSingleParamArguments02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g5.c.ref", false);
 		search("<? extends Exception> Single", CONSTRUCTOR, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -388,7 +388,7 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 			"src/g5/c/ref/RefSingle.java void g5.c.ref.RefSingle.testRuntimeException() [new <RuntimeException>Single<RuntimeException>(new RuntimeException(), gs)] EQUIVALENT_MATCH"
 		);
 	}
-	public void testConstructorReferencesStringPatternSingleParamArguments03() throws CoreException {
+	public void testConstructorReferencesStringPatternSingleParamArguments03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g5.c.ref", false);
 		search("<? super Exception>S?ng*", CONSTRUCTOR, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -410,7 +410,7 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 			"src/g5/c/ref/RefSingle.java void g5.c.ref.RefSingle.testRuntimeException() [new <RuntimeException>Single<RuntimeException>(new RuntimeException(), gs)] ERASURE_MATCH"
 		);
 	}
-	public void testConstructorReferencesStringPatternSingleParamArguments04() throws CoreException {
+	public void testConstructorReferencesStringPatternSingleParamArguments04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g5.c.ref", false);
 		search("Single", CONSTRUCTOR, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -448,7 +448,7 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 			"src/g5/c/ref/RefSingle.java void g5.c.ref.RefSingle.testException() [new <Exception>Single<Exception>(new Exception(), gs)] EQUIVALENT_MATCH"
 		);
 	}
-	public void testConstructorReferencesStringPatternSingleParamArguments07() throws CoreException {
+	public void testConstructorReferencesStringPatternSingleParamArguments07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g5.c.ref", false);
 		search("Single<Exception>", CONSTRUCTOR, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -508,7 +508,7 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 	}
 
 	// Search string pattern references to multiple parameterized contructors
-	public void testConstructorReferencesStringPatternMultipleParamArguments01() throws CoreException {
+	public void testConstructorReferencesStringPatternMultipleParamArguments01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g5.c.ref", false);
 		search("<?, ? extends Exception, ? super RuntimeException>Multiple", CONSTRUCTOR, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -530,7 +530,7 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 			"src/g5/c/ref/RefRaw.java void g5.c.ref.RefRaw.testMultiple() [new Multiple(new Object(), new Throwable(), new Exception(), gm)] EQUIVALENT_RAW_MATCH"
 		);
 	}
-	public void testConstructorReferencesStringPatternMultipleParamArguments02() throws CoreException {
+	public void testConstructorReferencesStringPatternMultipleParamArguments02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g5.c.ref", false);
 		search("<Object, Exception, RuntimeException>Multiple", CONSTRUCTOR, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -552,7 +552,7 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 			"src/g5/c/ref/RefRaw.java void g5.c.ref.RefRaw.testMultiple() [new Multiple(new Object(), new Throwable(), new Exception(), gm)] EQUIVALENT_RAW_MATCH"
 		);
 	}
-	public void testConstructorReferencesStringPatternMultipleParamArguments03() throws CoreException {
+	public void testConstructorReferencesStringPatternMultipleParamArguments03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g5.c.ref", false);
 		search("Multiple", CONSTRUCTOR, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -588,7 +588,7 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 			"src/g5/c/ref/RefMultiple.java void g5.c.ref.RefMultiple.testRuntimeException() [new <RuntimeException, RuntimeException, RuntimeException>Multiple<RuntimeException, RuntimeException, RuntimeException>(new RuntimeException(),new RuntimeException(),new RuntimeException(), gm)] EQUIVALENT_MATCH"
 		);
 	}
-	public void testConstructorReferencesStringPatternMultipleParamArguments06() throws CoreException {
+	public void testConstructorReferencesStringPatternMultipleParamArguments06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g5.c.ref", false);
 		search("Multiple<RuntimeException, RuntimeException, RuntimeException>", CONSTRUCTOR, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(
@@ -610,7 +610,7 @@ public class JavaSearchGenericConstructorTests extends AbstractJavaSearchGeneric
 			"src/g5/c/ref/RefRaw.java void g5.c.ref.RefRaw.testMultiple() [new Multiple(new Object(), new Throwable(), new Exception(), gm)] EQUIVALENT_RAW_MATCH"
 		);
 	}
-	public void testConstructorReferencesStringPatternMultipleParamArguments07() throws CoreException {
+	public void testConstructorReferencesStringPatternMultipleParamArguments07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaSearchScope scope = getJavaSearchScope15("g5.c.ref", false);
 		search("Multiple<?,? extends Throwable,? extends Exception>", CONSTRUCTOR, REFERENCES, scope, this.resultCollector);
 		assertSearchResults(

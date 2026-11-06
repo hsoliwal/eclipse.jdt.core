@@ -45,16 +45,16 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 	/**
 	 * @deprecated
 	 */
-	private void checkClassFileUsingInputStream(String directoryName, String className, String source, String expectedOutput, int mode) throws IOException {
+	private void checkClassFileUsingInputStream(String directoryName, String className, String source, String expectedOutput, int mode) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		compileAndDeploy(source, directoryName, className, false);
 		BufferedInputStream inputStream = null;
 		try {
 			File directory = new File(EVAL_DIRECTORY, directoryName);
-			if (!directory.exists()) {
-				assertTrue(".class file not generated properly in " + directory, false);
+			if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				assertTrue(".class file not generated properly in " + directory, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-			File f = new File(directory, className + ".class");
-			inputStream = new BufferedInputStream(new FileInputStream(f));
+			File f = new File(directory, className + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			inputStream = new BufferedInputStream(new FileInputStream(f)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			IClassFileReader classFileReader = ToolFactory.createDefaultClassFileReader(inputStream, IClassFileReader.ALL);
 			assertNotNull(classFileReader);
 			String result = ToolFactory.createDefaultClassFileDisassembler().disassemble(classFileReader, "\n", mode);
@@ -80,7 +80,7 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=76440
 	 */
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	X(String s) {\n" +
@@ -107,7 +107,7 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=76472
 	 */
-	public void test002() throws Exception {
+	public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -136,7 +136,7 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=111420
-	public void test003() throws Exception {
+	public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class Y<W, U extends java.io.Reader & java.io.Serializable> {\n" +
 			"  U field;\n" +
@@ -164,7 +164,7 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=111420
-	public void test004() throws Exception {
+	public void test004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class Y<W, U extends java.io.Reader & java.io.Serializable> {\n" +
 			"  U field;\n" +
@@ -194,7 +194,7 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=76440
 	 */
-	public void test005() throws Exception {
+	public void test005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	X(String s) {\n" +
@@ -219,7 +219,7 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=111494
 	 */
-	public void test006() throws Exception {
+	public void test006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public enum X { \n" +
 			"	\n" +
@@ -247,7 +247,7 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=111494
 	 * TODO corner case that doesn't produce the right source
 	 */
-	public void test007() throws Exception {
+	public void test007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public enum X {\n" +
 			"	BLEU(0) {\n" +
@@ -291,7 +291,7 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=111494
 	 * TODO corner case that doesn't produce the right source
 	 */
-	public void test008() throws Exception {
+	public void test008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"interface I {\n" +
 			"	String colorName();\n" +
@@ -373,7 +373,7 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=203577
 	 */
-	public void test011() throws Exception {
+	public void test011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.Retention;\n" +
 			"import java.lang.annotation.RetentionPolicy;\n" +
@@ -428,7 +428,7 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=217907
 	 */
-	public void test013() throws Exception {
+	public void test013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.Retention;\n" +
 			"import java.lang.annotation.RetentionPolicy;\n" +
@@ -519,7 +519,7 @@ public class ClassFileReaderTest_1_5 extends AbstractRegressionTest {
 		checkClassFile("", "MonAnnotation", source, expectedOutput, ClassFileBytesDisassembler.DETAILED | ClassFileBytesDisassembler.COMPACT);
 	}
 
-	public void testBug504031() throws Exception {
+	public void testBug504031() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"package test;\n" +
 				"@RunWith(JUnitPlatform.class)\n" +

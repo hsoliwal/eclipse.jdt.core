@@ -45,21 +45,21 @@ public class NonJavaResource  extends PlatformObject implements IJarEntryResourc
 		return this.parent.equals(other.parent) && this.resource.equals(other.resource);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IJarEntryResource[] getChildren() {
 		if (this.resource instanceof IContainer) {
 			IResource[] members;
 			try {
 				members = ((IContainer) this.resource).members();
 			} catch (CoreException e) {
-				Util.log(e, "Could not retrieve children of " + this.resource.getFullPath()); //$NON-NLS-1$
+				Util.log(e, "Could not retrieve children of " + this.resource.getFullPath()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return NO_CHILDREN;
 			}
 			int length = members.length;
 			if (length == 0)
 				return NO_CHILDREN;
 			IJarEntryResource[] children = new IJarEntryResource[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				children[i] = new NonJavaResource(this, members[i]);
 			}
 			return children;
@@ -78,13 +78,13 @@ public class NonJavaResource  extends PlatformObject implements IJarEntryResourc
 		String parentEntryName;
 		if (this.parent instanceof IPackageFragment) {
 			String elementName = ((IPackageFragment) this.parent).getElementName();
-			parentEntryName = elementName.length() == 0 ? "" : elementName .replace('.', '/') + '/'; //$NON-NLS-1$
+			parentEntryName = elementName.length() == 0 ? "" : elementName .replace('.', '/') + '/'; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else if (this.parent instanceof IPackageFragmentRoot) {
 			parentEntryName = ""; //$NON-NLS-1$
 		} else {
-			parentEntryName = ((NonJavaResource) this.parent).getEntryName() + '/';
+			parentEntryName = ((NonJavaResource) this.parent).getEntryName() + '/'; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		return parentEntryName + getName();
+		return parentEntryName + getName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
@@ -130,6 +130,6 @@ public class NonJavaResource  extends PlatformObject implements IJarEntryResourc
 
 	@Override
 	public String toString() {
-		return "NonJavaResource["+getEntryName()+"]"; //$NON-NLS-1$ //$NON-NLS-2$
+		return "NonJavaResource["+getEntryName()+"]"; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

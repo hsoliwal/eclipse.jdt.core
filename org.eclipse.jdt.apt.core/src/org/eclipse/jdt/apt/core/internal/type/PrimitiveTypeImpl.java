@@ -35,7 +35,7 @@ public class PrimitiveTypeImpl implements PrimitiveType, EclipseMirrorType
         visitor.visitPrimitiveType(this);
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public PrimitiveType.Kind getKind()
     {
 		final String name = getTypeBinding().getName();
@@ -56,7 +56,7 @@ public class PrimitiveTypeImpl implements PrimitiveType, EclipseMirrorType
 		else if( "boolean".equals(name)) //$NON-NLS-1$
 			return PrimitiveType.Kind.BOOLEAN;
 		else
-			throw new IllegalStateException("unrecognized primitive type " + _binding); //$NON-NLS-1$
+			throw new IllegalStateException("unrecognized primitive type " + _binding); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     }
 
     @Override

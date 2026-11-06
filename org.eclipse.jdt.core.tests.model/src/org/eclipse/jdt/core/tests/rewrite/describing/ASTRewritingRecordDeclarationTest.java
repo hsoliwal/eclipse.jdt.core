@@ -44,26 +44,26 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 	@SuppressWarnings("deprecation")
 	private boolean checkAPILevel() {
 		if (this.apiLevel < 25) {
-			System.err.println("Test "+getName()+" requires a JRE 16");
+			System.err.println("Test "+getName()+" requires a JRE 16"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return true;
 		}
 		return false;
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testRecord_001() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -93,33 +93,33 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(int param1) {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(int param1) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes", "unchecked" }) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void _testRecord_002() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -154,31 +154,31 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n\n");
-		buf.append("        public C(int param1) {\n");
-		buf.append("        }\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        public C(int param1) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_003() throws Exception {
+	public void _testRecord_003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(int age) {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(int age) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -207,29 +207,29 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(int age) {\n\n");
-		buf.append("    public int age() {\n");
-		buf.append("        return age;\n");
-		buf.append("    }\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(int age) {\n\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    public int age() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        return age;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_004() throws Exception {
+	public void _testRecord_004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(){\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(){\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -247,24 +247,24 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() implements A{\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() implements A{\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void _testRecord_005() throws Exception {
+	public void _testRecord_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() implements A{\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() implements A{\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -282,25 +282,25 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() implements A, B{\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() implements A, B{\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void _testRecord_006() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(int param1){\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(int param1){\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -318,25 +318,25 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 		}
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(){\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(){\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void _testRecord_007() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(int param1){\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(int param1){\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -357,25 +357,25 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 		}
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(int param2){\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(int param2){\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void _testRecord_008() throws Exception {
+	public void _testRecord_008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -392,26 +392,26 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record X() {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record X() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_009() throws Exception {
+	public void _testRecord_009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -440,30 +440,30 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("/**\n");
-		buf.append(" * Hello\n");
-		buf.append(" */\n");
-		buf.append("private record C() {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/**\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" * Hello\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("private record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_010() throws Exception {
+	public void _testRecord_010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("/** javadoc comment */\n");
-		buf.append("public record C() {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/** javadoc comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -483,27 +483,27 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("record C() {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_011() throws Exception {
+	public void _testRecord_011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("/** javadoc comment */\n");
-		buf.append("public record C() {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/** javadoc comment */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -531,29 +531,29 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("/**\n");
-		buf.append(" * Hello\n");
-		buf.append(" */\n");
-		buf.append("public final record C() {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("/**\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" * Hello\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" */\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public final record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_012() throws Exception {
+	public void _testRecord_012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class C {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -572,30 +572,30 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class C {\n");
-		buf.append("\n");
-		buf.append("    record X() {\n");
-		buf.append("    }\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    record X() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_013() throws Exception {
+	public void _testRecord_013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
@@ -615,34 +615,34 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("\n");
-		buf.append("    record X() {\n");
-		buf.append("    }\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    record X() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void _testRecord_015() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("\n");
-		buf.append("    record X() {\n");
-		buf.append("    }\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    record X() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
@@ -659,31 +659,31 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void _testRecord_0015() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(int param1) {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(int param1) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -703,32 +703,32 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_016() throws Exception {
+	public void _testRecord_016() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -771,30 +771,30 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("		public C(int param1) {\n");
-		buf.append("            System.out.println(\"Hello world\");\n");
-		buf.append("        }\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C(int param1) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("            System.out.println(\"Hello world\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void _testRecord_0016() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() implements A{\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() implements A{\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -814,25 +814,25 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(){\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(){\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void _testRecord_0017() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() implements A{\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() implements A{\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -853,27 +853,27 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() implements B{\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() implements B{\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void _testRecord_0018() throws Exception {
+	public void _testRecord_0018() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -897,32 +897,32 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(int... param1) {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(int... param1) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_0019() throws Exception {
+	public void _testRecord_0019() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(int... param) {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(int... param) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -939,32 +939,32 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(int param) {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(int param) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_0020() throws Exception {
+	public void _testRecord_0020() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C(int... param) {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C(int... param) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -981,32 +981,32 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_0021() throws Exception {
+	public void _testRecord_0021() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -1028,32 +1028,32 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C<X>() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C<X>() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_0022() throws Exception {
+	public void _testRecord_0022() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C<X>() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C<X>() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -1071,32 +1071,32 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C () {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C () {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_023() throws Exception {
+	public void _testRecord_023() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C<X>() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C<X>() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -1117,29 +1117,29 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C<Y>() {\n");
-		buf.append("		public C {\n");
-		buf.append("			System.out.println(\"error\");\n");
-		buf.append("		}\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C<Y>() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public C {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("			System.out.println(\"error\");\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_024() throws Exception {
+	public void _testRecord_024() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public record C() {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public record C() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -1179,23 +1179,23 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void _testRecord_025() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("import java.lang.annotation.Target;\n");
-		buf.append("record X(@MyAnnot int lo) {\n");
-		buf.append("	public int lo() {\n");
-		buf.append("		return this.lo;\\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("@Target({ElementType.FIELD})\n");
-		buf.append("@interface MyAnnot {}");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.Target;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("record X(@MyAnnot int lo) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public int lo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return this.lo;\\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@Target({ElementType.FIELD})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface MyAnnot {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -1216,41 +1216,41 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("import java.lang.annotation.Target;\n");
-		buf.append("record X(int lo) {\n");
-		buf.append("	public int lo() {\n");
-		buf.append("		return this.lo;\\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("@Target({ElementType.FIELD})\n");
-		buf.append("@interface MyAnnot {}");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.Target;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("record X(int lo) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public int lo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return this.lo;\\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@Target({ElementType.FIELD})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface MyAnnot {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void _testRecord_026() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("import java.lang.annotation.Target;\n");
-		buf.append("record X(@MyAnnot int lo) {\n");
-		buf.append("	public int lo() {\n");
-		buf.append("		return this.lo;\\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("@Target({ElementType.FIELD})\n");
-		buf.append("@interface MyAnnot {}");
-		buf.append("@Target({ElementType.RECORD_COMPONENT})\n");
-		buf.append("@interface MyAnnotNew {}");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.Target;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("record X(@MyAnnot int lo) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public int lo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return this.lo;\\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@Target({ElementType.FIELD})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface MyAnnot {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@Target({ElementType.RECORD_COMPONENT})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface MyAnnotNew {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -1274,41 +1274,41 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("import java.lang.annotation.Target;\n");
-		buf.append("record X(@MyAnnotNew int lo) {\n");
-		buf.append("	public int lo() {\n");
-		buf.append("		return this.lo;\\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("@Target({ElementType.FIELD})\n");
-		buf.append("@interface MyAnnot {}");
-		buf.append("@Target({ElementType.RECORD_COMPONENT})\n");
-		buf.append("@interface MyAnnotNew {}");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.Target;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("record X(@MyAnnotNew int lo) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public int lo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return this.lo;\\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@Target({ElementType.FIELD})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface MyAnnot {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@Target({ElementType.RECORD_COMPONENT})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface MyAnnotNew {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void _testRecord_027() throws Exception {
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("import java.lang.annotation.Target;\n");
-		buf.append("record X(int lo) {\n");
-		buf.append("	public int lo() {\n");
-		buf.append("		return this.lo;\\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("@Target({ElementType.RECORD_COMPONENT})\n");
-		buf.append("@interface MyAnnot {}");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.Target;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("record X(int lo) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public int lo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return this.lo;\\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@Target({ElementType.RECORD_COMPONENT})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface MyAnnot {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -1332,33 +1332,33 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("import java.lang.annotation.Target;\n");
-		buf.append("record X(@MyAnnot int lo) {\n");
-		buf.append("	public int lo() {\n");
-		buf.append("		return this.lo;\\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("@Target({ElementType.RECORD_COMPONENT})\n");
-		buf.append("@interface MyAnnot {}");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.Target;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("record X(@MyAnnot int lo) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public int lo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		return this.lo;\\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@Target({ElementType.RECORD_COMPONENT})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface MyAnnot {}"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
 
-	public void _testRecord_028() throws Exception {
+	public void _testRecord_028() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class Y {\n");
-		buf.append("\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class Y {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("Y.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -1389,21 +1389,21 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf = new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class Y {\n");
-		buf.append("\n");
-		buf.append("    record X() {\n");
-		buf.append("        private static final int staticField;\n");
-		buf.append("    }\n");
-		buf.append("\n");
-		buf.append("}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class Y {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    record X() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("        private static final int staticField;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    }\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		assertEqualString(preview, buf.toString());
 
 	}
 
-	public void _testRecord_029_a() throws Exception {
+	public void _testRecord_029_a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
@@ -1441,7 +1441,7 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 		assertEqualString(preview, reWriteCode);
 	}
 
-	public void _testRecord_029_b() throws Exception {
+	public void _testRecord_029_b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}
@@ -1479,7 +1479,7 @@ public class ASTRewritingRecordDeclarationTest extends ASTRewritingTest {
 		assertEqualString(preview, reWriteCode);
 	}
 
-	public void _testRecord_029_c() throws Exception {
+	public void _testRecord_029_c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (checkAPILevel()) {
 			return;
 		}

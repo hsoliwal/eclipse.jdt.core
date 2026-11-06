@@ -39,7 +39,7 @@ public class FormatterOldBugsGistTests extends FormatterRegressionTests {
 		return buildTestSuite(FormatterOldBugsGistTests.class);
 	}
 
-	public void testComments() {
+	public void testComments() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"/* This is a long comment added just to test whether the formmatting\n" +
 			"* for the long comment is handled properly without change in behaviour\n" +
@@ -49,7 +49,7 @@ public class FormatterOldBugsGistTests extends FormatterRegressionTests {
 			"bar();/*block comment*/\n" +
 			"}";
 		String expectedResult =
-			"/* This is a long comment added just to test whether the formmatting" + lineSeparator +
+			"/* This is a long comment added just to test whether the formmatting" + lineSeparator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"* for the long comment is handled properly without change in behaviour" + lineSeparator +
 			" */" + lineSeparator +
 			"public void foo() {" + lineSeparator +
@@ -62,9 +62,9 @@ public class FormatterOldBugsGistTests extends FormatterRegressionTests {
 	/**
 	 * @deprecated
 	 */
-	public void testCode() {
+	public void testCode() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
-		"public class X {" + lineSeparator +
+		"public class X {" + lineSeparator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"public void foo(String s1, String s2, String s3, String s4) throws Exception {"  + lineSeparator +
 		"}"  + lineSeparator +
 		"static final String[]" + lineSeparator +
@@ -73,7 +73,7 @@ public class FormatterOldBugsGistTests extends FormatterRegressionTests {
 		"s13 = new String[]{\"s3\"} ;" +
 		"}";
 		String expectedResult =
-		"public class X {" + lineSeparator +
+		"public class X {" + lineSeparator + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"\tpublic void foo(String s1, String s2, String s3, String s4)" + lineSeparator +
 		"\t\tthrows Exception {"  + lineSeparator +
 		"\t}"  + lineSeparator +

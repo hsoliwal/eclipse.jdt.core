@@ -77,7 +77,7 @@ public class CommentFormatterUtil {
 	 * @param preferences preferences for the comment formatter
 	 * @return the formatted source string
 	 */
-	public static String format(int kind, String source, int offset, int length, int indentationLevel, Map preferences) {
+	public static String format(int kind, String source, int offset, int length, int indentationLevel, Map preferences) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Assert.isTrue(kind == CodeFormatter.K_JAVA_DOC || kind == CodeFormatter.K_MULTI_LINE_COMMENT || kind == CodeFormatter.K_SINGLE_LINE_COMMENT);
 
 		Assert.isNotNull(source);
@@ -132,16 +132,16 @@ public class CommentFormatterUtil {
 	 * @return the expanded string
 	 * @since 3.1
 	 */
-	private static StringBuilder expandTabs(String string, int tabSize) {
-		StringBuilder expanded= new StringBuilder();
-		for (int i= 0, n= string.length(), chars= 0; i < n; i++) {
+	private static StringBuilder expandTabs(String string, int tabSize) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder expanded= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i= 0, n= string.length(), chars= 0; i < n; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char ch= string.charAt(i);
 			if (ch == '\t') {
-				for (; chars < tabSize; chars++)
-					expanded.append(' ');
+				for (; chars < tabSize; chars++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					expanded.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				chars= 0;
 			} else {
-				expanded.append(ch);
+				expanded.append(ch); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				chars++;
 				if (chars >= tabSize)
 					chars= 0;
@@ -182,7 +182,7 @@ public class CommentFormatterUtil {
 
 		if (user != null) {
 
-			for (final Iterator iterator= user.keySet().iterator(); iterator.hasNext();) {
+			for (final Iterator iterator= user.keySet().iterator(); iterator.hasNext();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				Object key= iterator.next();
 				Object value = user.get(key);

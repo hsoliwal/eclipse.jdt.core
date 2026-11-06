@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 public abstract class LineInformation {
 
-	public static LineInformation create(final IDocument doc) {
+	public static LineInformation create(final IDocument doc) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return new LineInformation() {
 			@Override
 			public int getLineOfOffset(int offset) {

@@ -26,7 +26,7 @@ import org.eclipse.jdt.internal.compiler.env.NameEnvironmentAnswer;
 
 public class InMemoryNameEnvironment9 extends InMemoryNameEnvironment implements IModuleAwareNameEnvironment {
 
-	Map<String, IModule> moduleMap = new HashMap<>();
+	Map<String, IModule> moduleMap = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	public InMemoryNameEnvironment9(String[] compilationUnits, Map<String, IModule> moduleMap, INameEnvironment[] classLibs) {
 		super(compilationUnits, classLibs);
@@ -34,7 +34,7 @@ public class InMemoryNameEnvironment9 extends InMemoryNameEnvironment implements
 	}
 
 	protected <T> T fromFirstClassLib(Function<IModuleAwareNameEnvironment, T> function) {
-		for (int i = 0; i < this.classLibs.length; i++) {
+		for (int i = 0; i < this.classLibs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			INameEnvironment env = this.classLibs[i];
 			if (env instanceof IModuleAwareNameEnvironment) {
 				T answer = function.apply(((IModuleAwareNameEnvironment) env));
@@ -46,8 +46,8 @@ public class InMemoryNameEnvironment9 extends InMemoryNameEnvironment implements
 	}
 
 	protected <T> T[] collect(Function<IModuleAwareNameEnvironment, T[]> function, Function<Integer,T[]> arraySupplier) {
-		Set<T> mods = new HashSet<>();
-		for (int i = 0; i < this.classLibs.length; i++) {
+		Set<T> mods = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		for (int i = 0; i < this.classLibs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			INameEnvironment env = this.classLibs[i];
 			if (env instanceof IModuleAwareNameEnvironment) {
 				T[] someMods = function.apply((IModuleAwareNameEnvironment) env);

@@ -66,7 +66,7 @@ public class BuilderTests11 extends BuilderTests {
 	 * If the workspace-level release option is ignored (the bug), the full JDK 11 JRT
 	 * is visible, {@code List.of()} resolves and no problem is reported.
 	 */
-	public void testReleaseOptionFromWorkspace() throws JavaModelException, Exception {
+	public void testReleaseOptionFromWorkspace() throws JavaModelException, Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable<String, String> defaultOptions = JavaCore.getOptions();
 		try {
 			// Enable the release option only at the workspace level

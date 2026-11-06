@@ -26,7 +26,7 @@ import org.eclipse.jdt.core.IJavaModelStatusConstants;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaModelException;
 
-public class SetContainerOperation extends ChangeClasspathOperation {
+public class SetContainerOperation extends ChangeClasspathOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 
 	IPath containerPath;
 	IJavaProject[] affectedProjects;
@@ -43,7 +43,7 @@ public class SetContainerOperation extends ChangeClasspathOperation {
 		this.respectiveContainers = respectiveContainers;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void executeOperation() throws JavaModelException {
 		checkCanceled();
 		try {
@@ -63,7 +63,7 @@ public class SetContainerOperation extends ChangeClasspathOperation {
 
 			// filter out unmodified project containers
 			int remaining = 0;
-			for (int i = 0; i < projectLength; i++){
+			for (int i = 0; i < projectLength; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (isCanceled())
 					return;
 				JavaProject affectedProject = (JavaProject) this.affectedProjects[i];
@@ -72,7 +72,7 @@ public class SetContainerOperation extends ChangeClasspathOperation {
 				boolean found = false;
 				if (JavaProject.hasJavaNature(affectedProject.getProject())){
 					IClasspathEntry[] rawClasspath = affectedProject.getRawClasspath();
-					for (IClasspathEntry entry : rawClasspath) {
+					for (IClasspathEntry entry : rawClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (entry.getEntryKind() == IClasspathEntry.CPE_CONTAINER && entry.getPath().equals(this.containerPath)){
 							found = true;
 							break;
@@ -101,7 +101,7 @@ public class SetContainerOperation extends ChangeClasspathOperation {
 
 			// trigger model refresh
 			try {
-				for(int i = 0; i < projectLength; i++){
+				for(int i = 0; i < projectLength; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					this.progressMonitor.setWorkRemaining(projectLength - i);
 					if (isCanceled())
 						return;
@@ -139,7 +139,7 @@ public class SetContainerOperation extends ChangeClasspathOperation {
 					throw new JavaModelException(e);
 				}
 			} finally {
-				for (int i = 0; i < projectLength; i++) {
+				for (int i = 0; i < projectLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (this.respectiveContainers[i] == null) {
 						manager.containerPut(this.affectedProjects[i], this.containerPath, null); // reset init in progress marker
 					}
@@ -152,21 +152,21 @@ public class SetContainerOperation extends ChangeClasspathOperation {
 
 	private void verbose_failure(CoreException e) {
 		trace(
-			"CPContainer SET  - FAILED DUE TO EXCEPTION\n" + //$NON-NLS-1$
+			"CPContainer SET  - FAILED DUE TO EXCEPTION\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	container path: " + this.containerPath, //$NON-NLS-1$
 			e);
 	}
 
 	private void verbose_update_project(JavaProject affectedProject) {
 		trace(
-			"CPContainer SET  - updating affected project due to setting container\n" + //$NON-NLS-1$
+			"CPContainer SET  - updating affected project due to setting container\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + affectedProject.getElementName() + '\n' + //$NON-NLS-1$
 			"	container path: " + this.containerPath); //$NON-NLS-1$
 	}
 
-	private void verbose_set_container() {
+	private void verbose_set_container() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		trace(
-			"CPContainer SET  - setting container\n" + //$NON-NLS-1$
+			"CPContainer SET  - setting container\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	container path: " + this.containerPath + '\n' + //$NON-NLS-1$
 			"	projects: {" +//$NON-NLS-1$
 			org.eclipse.jdt.internal.compiler.util.Util.toString(
@@ -179,25 +179,25 @@ public class SetContainerOperation extends ChangeClasspathOperation {
 			org.eclipse.jdt.internal.compiler.util.Util.toString(
 				this.respectiveContainers,
 				new org.eclipse.jdt.internal.compiler.util.Util.Displayable(){
-					@Override
+					@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 					public String displayString(Object o) {
-						StringBuilder buffer = new StringBuilder("		"); //$NON-NLS-1$
+						StringBuilder buffer = new StringBuilder("		"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 						if (o == null) {
-							buffer.append("<null>"); //$NON-NLS-1$
+							buffer.append("<null>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							return buffer.toString();
 						}
 						IClasspathContainer container = (IClasspathContainer) o;
-						buffer.append(container.getDescription());
-						buffer.append(" {\n"); //$NON-NLS-1$
+						buffer.append(container.getDescription()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buffer.append(" {\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						IClasspathEntry[] entries = container.getClasspathEntries();
 						if (entries != null){
-							for (IClasspathEntry entry : entries) {
-								buffer.append(" 			"); //$NON-NLS-1$
-								buffer.append(entry);
-								buffer.append('\n');
+							for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+								buffer.append(" 			"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								buffer.append(entry); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
 						}
-						buffer.append(" 		}"); //$NON-NLS-1$
+						buffer.append(" 		}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						return buffer.toString();
 					}
 				}) +

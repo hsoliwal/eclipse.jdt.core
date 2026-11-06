@@ -65,7 +65,7 @@ public class ClasspathChange {
 	}
 
 	private void addClasspathDeltas(JavaElementDelta delta, IPackageFragmentRoot[] roots, int flag) {
-		for (IPackageFragmentRoot root : roots) {
+		for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			delta.changed(root, flag);
 			if ((flag & IJavaElementDelta.F_REMOVED_FROM_CLASSPATH) != 0
 					|| (flag & IJavaElementDelta.F_SOURCEATTACHED) != 0
@@ -83,11 +83,11 @@ public class ClasspathChange {
 	 * Returns the index of the item in the list if the given list contains the specified entry. If the list does
 	 * not contain the entry, -1 is returned.
 	 */
-	private int classpathContains(IClasspathEntry[] list, IClasspathEntry entry) {
+	private int classpathContains(IClasspathEntry[] list, IClasspathEntry entry) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath[] exclusionPatterns = entry.getExclusionPatterns();
 		IPath[] inclusionPatterns = entry.getInclusionPatterns();
 		int listLen = list == null ? 0 : list.length;
-		nextEntry: for (int i = 0; i < listLen; i++) {
+		nextEntry: for (int i = 0; i < listLen; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry other = list[i];
 			if (other.getContentKind() == entry.getContentKind()
 				&& other.getEntryKind() == entry.getEntryKind()
@@ -111,7 +111,7 @@ public class ClasspathChange {
 						int includeLength = inclusionPatterns.length;
 						if (otherIncludes == null || otherIncludes.length != includeLength)
 							continue;
-						for (int j = 0; j < includeLength; j++) {
+						for (int j = 0; j < includeLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							// compare toStrings instead of IPaths
 							// since IPath.equals is specified to ignore trailing separators
 							if (!inclusionPatterns[j].toString().equals(otherIncludes[j].toString()))
@@ -125,7 +125,7 @@ public class ClasspathChange {
 						int excludeLength = exclusionPatterns.length;
 						if (otherExcludes == null || otherExcludes.length != excludeLength)
 							continue;
-						for (int j = 0; j < excludeLength; j++) {
+						for (int j = 0; j < excludeLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							// compare toStrings instead of IPaths
 							// since IPath.equals is specified to ignore trailing separators
 							if (!exclusionPatterns[j].toString().equals(otherExcludes[j].toString()))
@@ -159,7 +159,7 @@ public class ClasspathChange {
 	private void collectAllSubfolders(IFolder folder, ArrayList collection) throws JavaModelException {
 		try {
 			IResource[] members= folder.members();
-			for (IResource r : members) {
+			for (IResource r : members) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (r.getType() == IResource.FOLDER) {
 					collection.add(r);
 					collectAllSubfolders((IFolder)r, collection);
@@ -176,8 +176,8 @@ public class ClasspathChange {
 	 * location. The collection is empty if no package fragments are
 	 * affected.
 	 */
-	private ArrayList determineAffectedPackageFragments(IPath location) throws JavaModelException {
-		ArrayList fragments = new ArrayList();
+	private ArrayList determineAffectedPackageFragments(IPath location) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		ArrayList fragments = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		// see if this will cause any package fragments to be affected
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
@@ -189,18 +189,18 @@ public class ClasspathChange {
 			IFolder folder = (IFolder) resource;
 			// only changes if it actually existed
 			IClasspathEntry[] classpath = this.project.getExpandedClasspath();
-			for (IClasspathEntry entry : classpath) {
+			for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath path = entry.getPath();
 				if (entry.getEntryKind() != IClasspathEntry.CPE_PROJECT && path.isPrefixOf(location) && !path.equals(location)) {
 					IPackageFragmentRoot[] roots = this.project.computePackageFragmentRoots(entry);
 					PackageFragmentRoot root = (PackageFragmentRoot) roots[0];
 					// now the output location becomes a package fragment - along with any subfolders
-					ArrayList folders = new ArrayList();
+					ArrayList folders = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					folders.add(folder);
 					collectAllSubfolders(folder, folders);
 					Iterator elements = folders.iterator();
 					int segments = path.segmentCount();
-					while (elements.hasNext()) {
+					while (elements.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IFolder f = (IFolder) elements.next();
 						IPath relativePath = f.getFullPath().removeFirstSegments(segments);
 						String[] pkgName = relativePath.segments();
@@ -225,7 +225,7 @@ public class ClasspathChange {
 	 * Generates a classpath change delta for this classpath change.
 	 * Returns whether a delta was generated, and whether project reference have changed.
 	 */
-	public int generateDelta(JavaElementDelta delta, boolean addClasspathChange) {
+	public int generateDelta(JavaElementDelta delta, boolean addClasspathChange) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaModelManager manager = JavaModelManager.getJavaModelManager();
 		DeltaProcessingState state = manager.deltaState;
 		if (state.findJavaProject(this.project.getElementName()) == null)
@@ -268,7 +268,7 @@ public class ClasspathChange {
 
 				// reset containers that are no longer on the classpath
 				// (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=139446)
-				for (IClasspathEntry entry : this.oldRawClasspath) {
+				for (IClasspathEntry entry : this.oldRawClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (entry.getEntryKind() == IClasspathEntry.CPE_CONTAINER) {
 						if (classpathContains(newRawClasspath, entry) == -1)
 							manager.containerPut(this.project, entry.getPath(), null);
@@ -308,15 +308,15 @@ public class ClasspathChange {
 	 		roots = (IPackageFragmentRoot[]) allOldRoots.get(this.project);
 		}
 		if (roots != null) {
-			removedRoots = new HashMap();
-			for (IPackageFragmentRoot root : roots) {
+			removedRoots = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				removedRoots.put(root.getPath(), root);
 			}
 		}
 
 		int newLength = newResolvedClasspath.length;
 		int oldLength = this.oldResolvedClasspath.length;
-		for (int i = 0; i < oldLength; i++) {
+		for (int i = 0; i < oldLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int index = classpathContains(newResolvedClasspath, this.oldResolvedClasspath[i]);
 			if (index == -1) {
 				// remote project changes
@@ -339,7 +339,7 @@ public class ClasspathChange {
 				if (pkgFragmentRoots == null) {
 					try {
 						ObjectVector accumulatedRoots = new ObjectVector();
-						HashSet rootIDs = new HashSet(5);
+						HashSet rootIDs = new HashSet(5); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 						rootIDs.add(this.project.rootID());
 						JrtPackageFragmentRoot.workingOnOldClasspath.set(Boolean.TRUE);
 						this.project.computePackageFragmentRoots(
@@ -359,7 +359,7 @@ public class ClasspathChange {
 						if (rootInfo != null && rootInfo.cache != null) {
 							IPackageFragmentRoot oldRoot = rootInfo.cache;
 							boolean found = false;
-							for (int j = 0; j < accumulatedRoots.size(); j++) {
+							for (int j = 0; j < accumulatedRoots.size(); j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								IPackageFragmentRoot root = (IPackageFragmentRoot) accumulatedRoots.elementAt(j);
 								if (root.getPath().equals(oldRoot.getPath())) {
 									found = true;
@@ -403,7 +403,7 @@ public class ClasspathChange {
 						// if source path is specified and no root path, it needs to be recomputed dynamically
 						// force detach source on jar package fragment roots (source will be lazily computed when needed)
 						IPackageFragmentRoot[] computedRoots = this.project.computePackageFragmentRoots(this.oldResolvedClasspath[i]);
-						for (IPackageFragmentRoot root : computedRoots) {
+						for (IPackageFragmentRoot root : computedRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							// force detach source on jar package fragment roots (source will be lazily computed when needed)
 							try {
 								root.close();
@@ -417,7 +417,7 @@ public class ClasspathChange {
 			}
 		}
 
-		for (int i = 0; i < newLength; i++) {
+		for (int i = 0; i < newLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int index = classpathContains(this.oldResolvedClasspath, newResolvedClasspath[i]);
 			if (index == -1) {
 				// remote project changes
@@ -439,7 +439,7 @@ public class ClasspathChange {
 			try {
 				ArrayList added = determineAffectedPackageFragments(this.oldOutputLocation);
 				Iterator iter = added.iterator();
-				while (iter.hasNext()){
+				while (iter.hasNext()){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IPackageFragment frag= (IPackageFragment)iter.next();
 					((IPackageFragmentRoot)frag.getParent()).close();
 					delta.added(frag);
@@ -448,7 +448,7 @@ public class ClasspathChange {
 				// see if this will cause any package fragments to be removed
 				ArrayList removed = determineAffectedPackageFragments(newOutputLocation);
 				iter = removed.iterator();
-				while (iter.hasNext()) {
+				while (iter.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IPackageFragment frag= (IPackageFragment)iter.next();
 					((IPackageFragmentRoot)frag.getParent()).close();
 					delta.removed(frag);
@@ -492,7 +492,7 @@ public class ClasspathChange {
 	/*
 	 * Request the indexing of entries that have been added, and remove the index for removed entries.
 	 */
-	public void requestIndexing() {
+	public void requestIndexing() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] newResolvedClasspath = null;
 		try {
 			newResolvedClasspath = this.project.getResolvedClasspath();
@@ -509,7 +509,7 @@ public class ClasspathChange {
 
 		int newLength = newResolvedClasspath.length;
 		int oldLength = this.oldResolvedClasspath == null ? 0 : this.oldResolvedClasspath.length;
-		for (int i = 0; i < oldLength; i++) {
+		for (int i = 0; i < oldLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int index = classpathContains(newResolvedClasspath, this.oldResolvedClasspath[i]);
 			if (index == -1) {
 				// remote projects are not indexed in this project
@@ -539,7 +539,7 @@ public class ClasspathChange {
 			}
 		}
 
-		for (int i = 0; i < newLength; i++) {
+		for (int i = 0; i < newLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int index = classpathContains(this.oldResolvedClasspath, newResolvedClasspath[i]);
 			if (index == -1 || newResolvedClasspath[i].getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 				// remote projects are not indexed in this project
@@ -554,7 +554,7 @@ public class ClasspathChange {
 					case IClasspathEntry.CPE_LIBRARY:
 						boolean pathHasChanged = true;
 						IPath newPath = newResolvedClasspath[i].getPath();
-						for (int j = 0; j < oldLength; j++) {
+						for (int j = 0; j < oldLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IClasspathEntry oldEntry = this.oldResolvedClasspath[j];
 							if (oldEntry.getPath().equals(newPath)) {
 								URL oldurl = ((ClasspathEntry)oldEntry).getLibraryIndexLocation();
@@ -590,7 +590,7 @@ public class ClasspathChange {
 
 	@Override
 	public String toString() {
-		return "ClasspathChange: " + this.project.getElementName(); //$NON-NLS-1$
+		return "ClasspathChange: " + this.project.getElementName(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// Include changes to the delta attributes, see: https://github.com/eclipse-jdt/eclipse.jdt.core/issues/486
@@ -598,9 +598,9 @@ public class ClasspathChange {
 		List<IClasspathAttributeDelta> attributeDeltas = ClasspathAttributeDelta.getAttributeDeltas(oldClasspathEntry, newClasspathEntry);
 		if (!attributeDeltas.isEmpty()) {
 			IPackageFragmentRoot[] roots = this.project.computePackageFragmentRoots(oldClasspathEntry);
-			for (IPackageFragmentRoot root : roots) {
+			for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JavaElementDelta childDelta = delta.changed(root, IJavaElementDelta.F_CLASSPATH_ATTRIBUTES);
-				for (IClasspathAttributeDelta attributeDelta : attributeDeltas) {
+				for (IClasspathAttributeDelta attributeDelta : attributeDeltas) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					childDelta.addAttributeDelta(attributeDelta);
 				}
 			}

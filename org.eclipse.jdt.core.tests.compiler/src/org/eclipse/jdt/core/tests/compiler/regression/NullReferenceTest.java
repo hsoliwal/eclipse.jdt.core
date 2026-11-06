@@ -107,7 +107,7 @@ protected void runNegativeNullTest(String[] testFiles, String expectedCompilerLo
 }
 
 // null analysis -- simple case for local
-public void test0001_simple_local() {
+public void test0001_simple_local() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -128,7 +128,7 @@ public void test0001_simple_local() {
 
 // null analysis -- simple case for field
 // the current design leaves fields out of the analysis altogether
-public void test0002_simple_field() {
+public void test0002_simple_field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -150,7 +150,7 @@ public void test0002_simple_field() {
 }
 
 // null analysis -- simple case for parameter
-public void test0003_simple_parameter() {
+public void test0003_simple_parameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -170,7 +170,7 @@ public void test0003_simple_parameter() {
 }
 
 // null analysis -- final local
-public void test0004_final_local() {
+public void test0004_final_local() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -190,7 +190,7 @@ public void test0004_final_local() {
 }
 
 // null analysis -- final local
-public void test0005_final_local() {
+public void test0005_final_local() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -210,7 +210,7 @@ public void test0005_final_local() {
 }
 
 // null analysis -- final local
-public void test0006_final_local() {
+public void test0006_final_local() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -235,7 +235,7 @@ public void test0006_final_local() {
 }
 
 // null analysis -- local with member
-public void test0007_local_with_member() {
+public void test0007_local_with_member() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -256,7 +256,7 @@ public void test0007_local_with_member() {
 }
 
 // null analysis -- local with member
-public void test0008_local_with_member() {
+public void test0008_local_with_member() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -365,7 +365,7 @@ public void test0013_field_with_method_call() {
 }
 
 // null analysis -- field
-public void test0014_field_with_explicit_this_access() {
+public void test0014_field_with_explicit_this_access() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -387,7 +387,7 @@ public void test0014_field_with_explicit_this_access() {
 }
 
 // null analysis -- field
-public void test0015_field_with_explicit_this_access() {
+public void test0015_field_with_explicit_this_access() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -441,7 +441,7 @@ public void test0017_field_of_another_object() {
 }
 
 // null analysis -- field
-public void test0018_field_of_enclosing_object() {
+public void test0018_field_of_enclosing_object() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -467,7 +467,7 @@ public void test0018_field_of_enclosing_object() {
 // null analysis -- fields
 // check that fields that are protected against concurrent access
 // behave as locals when no call to further methods can affect them
-public void test0019_field_synchronized() {
+public void test0019_field_synchronized() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -492,7 +492,7 @@ public void test0019_field_synchronized() {
 // null analysis -- field
 // check that final fields behave as locals despite calls to further
 // methods
-public void test0020_final_field() {
+public void test0020_final_field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -515,7 +515,7 @@ public void test0020_final_field() {
 }
 
 // null analysis -- field
-public void test0021_final_field() {
+public void test0021_final_field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -538,7 +538,7 @@ public void test0021_final_field() {
 }
 
 // null analysis -- field
-public void test0022_final_field() {
+public void test0022_final_field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -621,7 +621,7 @@ public void test0026_suppress_warnings() {
 }
 
 // null analysis -- embedded comparison
-public void test0027_embedded_comparison() {
+public void test0027_embedded_comparison() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -657,7 +657,7 @@ public void test0028_field_as_initializer() {
 }
 
 // null analysis -- field
-public void test0029_field_assignment() {
+public void test0029_field_assignment() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -678,7 +678,7 @@ public void test0029_field_assignment() {
 }
 
 // null analysis -- conditional expression
-public void test0030_conditional_expression() {
+public void test0030_conditional_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -703,7 +703,7 @@ public void test0030_conditional_expression() {
 }
 
 // null analysis -- conditional expression
-public void test0031_conditional_expression() {
+public void test0031_conditional_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -742,7 +742,7 @@ public void test0032_conditional_expression() {
 }
 
 // null analysis -- conditional expression
-public void test0033_conditional_expression() {
+public void test0033_conditional_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -773,7 +773,7 @@ public void test0033_conditional_expression() {
 
 // null analysis -- conditional expression
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=133125
-public void test0034_conditional_expression() {
+public void test0034_conditional_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -811,7 +811,7 @@ public void test0034_conditional_expression_2() {
 
 // null analysis -- conditional expression
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=133125
-public void test0034_conditional_expression_3() {
+public void test0034_conditional_expression_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -886,7 +886,7 @@ public void test0035_conditional_expression() {
 }
 
 // null analysis -- conditional expression
-public void test0036_conditional_expression() {
+public void test0036_conditional_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -925,7 +925,7 @@ public void test0037_conditional_expression_1() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 // https://bugs.eclipse.org/400761: [compiler][null] null may be return as boolean without a diagnostic
-public void test0037_conditional_expression_2() {
+public void test0037_conditional_expression_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SUPPRESS_OPTIONAL_ERRORS, JavaCore.ENABLED);
 	runNegativeTest(
@@ -952,7 +952,7 @@ public void test0037_conditional_expression_2() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 //https://bugs.eclipse.org/400761: [compiler][null] null may be return as boolean without a diagnostic
-public void test0037_conditional_expression_3() {
+public void test0037_conditional_expression_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	runNegativeTest(
@@ -977,7 +977,7 @@ public void test0037_conditional_expression_3() {
 }
 // https://bugs.eclipse.org/400761: [compiler][null] null may be return as boolean without a diagnostic
 // if-then-else instead of conditional expression
-public void test0037_conditional_expression_4() {
+public void test0037_conditional_expression_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	options.put(JavaCore.COMPILER_PB_UNNECESSARY_ELSE, JavaCore.IGNORE);
@@ -1006,7 +1006,7 @@ public void test0037_conditional_expression_4() {
 }
 // https://bugs.eclipse.org/400761: [compiler][null] null may be return as boolean without a diagnostic
 // pot-null cond-expr in receiver position
-public void test0037_conditional_expression_5() {
+public void test0037_conditional_expression_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	runNegativeTest(
@@ -1039,7 +1039,7 @@ public void test0037_conditional_expression_5() {
 }
 // https://bugs.eclipse.org/403147 [compiler][null] FUP of bug 400761: consolidate interaction between unboxing, NPE, and deferred checking
 // finally block injects pot-nn into itself via enclosing loop
-public void test0037_autounboxing_1() {
+public void test0037_autounboxing_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	runNegativeTest(
@@ -1087,7 +1087,7 @@ public void test0037_autounboxing_1() {
 }
 // https://bugs.eclipse.org/403147 [compiler][null] FUP of bug 400761: consolidate interaction between unboxing, NPE, and deferred checking
 // inject pot.nn from try into finally
-public void test0037_autounboxing_2() {
+public void test0037_autounboxing_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	runNegativeTest(
@@ -1135,7 +1135,7 @@ public void test0037_autounboxing_2() {
 }
 // https://bugs.eclipse.org/403147 [compiler][null] FUP of bug 400761: consolidate interaction between unboxing, NPE, and deferred checking
 // null from try, nn from catch, merge both into finally
-public void test0037_autounboxing_3() {
+public void test0037_autounboxing_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	runNegativeTest(
@@ -1190,7 +1190,7 @@ public void test0037_autounboxing_3() {
 }
 // https://bugs.eclipse.org/403147 [compiler][null] FUP of bug 400761: consolidate interaction between unboxing, NPE, and deferred checking
 // effective protection locally within the finally block
-public void test0037_autounboxing_4() {
+public void test0037_autounboxing_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	runConformTest(
@@ -1234,7 +1234,7 @@ public void test0037_autounboxing_4() {
 }
 // https://bugs.eclipse.org/403147 [compiler][null] FUP of bug 400761: consolidate interaction between unboxing, NPE, and deferred checking
 // array reference in nested try
-public void test0037_autounboxing_5() {
+public void test0037_autounboxing_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	runNegativeTest(
@@ -1269,7 +1269,7 @@ public void test0037_autounboxing_5() {
 }
 
 // Bug 406384 - Internal error with I20130413
-public void test0037_autounboxing_6() {
+public void test0037_autounboxing_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -1290,7 +1290,7 @@ public void test0037_autounboxing_6() {
 }
 
 // null analysis -- autoboxing
-public void test0040_autoboxing_compound_assignment() {
+public void test0040_autoboxing_compound_assignment() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1310,7 +1310,7 @@ public void test0040_autoboxing_compound_assignment() {
 }
 
 // null analysis -- autoboxing
-public void test0041_autoboxing_increment_operator() {
+public void test0041_autoboxing_increment_operator() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1331,7 +1331,7 @@ public void test0041_autoboxing_increment_operator() {
 }
 
 // null analysis -- autoboxing
-public void test0042_autoboxing_literal() {
+public void test0042_autoboxing_literal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1356,7 +1356,7 @@ public void test0042_autoboxing_literal() {
 }
 
 // null analysis -- autoboxing
-public void test0043_autoboxing_literal() {
+public void test0043_autoboxing_literal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1393,7 +1393,7 @@ public void test0044_autoboxing() {
 // null analysis -- autoboxing
 // variant of 42 for
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=165346
-public void test0045_autoboxing_operator() {
+public void test0045_autoboxing_operator() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1435,7 +1435,7 @@ public void test0050_array() {
 }
 
 // null analysis -- array
-public void test0051_array() {
+public void test0051_array() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1483,7 +1483,7 @@ public void test0053_array() {
 }
 
 // null analysis -- method call
-public void test0061_method_call_guard() {
+public void test0061_method_call_guard() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1508,7 +1508,7 @@ public void test0061_method_call_guard() {
 }
 
 // null analysis - method call
-public void test0062_method_call_isolation() {
+public void test0062_method_call_isolation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1550,7 +1550,7 @@ public void test0063_method_call_isolation() {
 }
 
 // null analysis - method call
-public void test0064_method_call_isolation() {
+public void test0064_method_call_isolation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1593,7 +1593,7 @@ public void test0065_method_call_invocation_target() {
 }
 
 // null analysis - method call
-public void test0066_method_call_invocation_target() {
+public void test0066_method_call_invocation_target() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1613,7 +1613,7 @@ public void test0066_method_call_invocation_target() {
 }
 
 // null analysis - method call
-public void test0067_method_call_invocation_target() {
+public void test0067_method_call_invocation_target() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1655,7 +1655,7 @@ public void test0068_method_call_assignment() {
 }
 
 // null analysis -- type reference
-public void test0070_type_reference() {
+public void test0070_type_reference() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1716,7 +1716,7 @@ public void test0081_shortcut_boolean_expressions() {
 }
 
 // null analysis - shortcut boolean expression
-public void test0082_shortcut_boolean_expression() {
+public void test0082_shortcut_boolean_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1748,7 +1748,7 @@ public void test0082_shortcut_boolean_expression() {
 }
 
 // null analysis - shortcut boolean expression
-public void test0083_shortcut_boolean_expression() {
+public void test0083_shortcut_boolean_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1781,7 +1781,7 @@ public void test0083_shortcut_boolean_expression() {
 
 // null analysis - shortcut boolean expression
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=130311
-public void test0084_shortcut_boolean_expression() {
+public void test0084_shortcut_boolean_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1802,7 +1802,7 @@ public void test0084_shortcut_boolean_expression() {
 
 // null analysis - shortcut boolean expression
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=130311
-public void test0085_shortcut_boolean_expression() {
+public void test0085_shortcut_boolean_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1828,7 +1828,7 @@ public void test0085_shortcut_boolean_expression() {
 
 // null analysis - shortcut boolean expression and correlation
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=195774
-public void test0086_shortcut_boolean_expression() {
+public void test0086_shortcut_boolean_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1851,7 +1851,7 @@ public void test0086_shortcut_boolean_expression() {
 
 // null analysis - shortcut boolean expression and correlation
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=195774
-public void _test0087_shortcut_boolean_expression() {
+public void _test0087_shortcut_boolean_expression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1910,7 +1910,7 @@ public void test0091_instanceof() {
 
 // null analysis -- instanceof
 // can only be null always yields false
-public void test0092_instanceof() {
+public void test0092_instanceof() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1931,7 +1931,7 @@ public void test0092_instanceof() {
 }
 
 // null analysis -- instanceof
-public void test0093_instanceof() {
+public void test0093_instanceof() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1975,7 +1975,7 @@ public void test0094_instanceof() {
 
 // null analysis -- instanceof combined with conditional or
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=145202
-public void test0095_instanceof_conditional_or() {
+public void test0095_instanceof_conditional_or() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2030,7 +2030,7 @@ public void test0121_strings_concatenation() {
 }
 
 // null analysis -- strings concatenation
-public void test0122_strings_concatenation() {
+public void test0122_strings_concatenation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2053,7 +2053,7 @@ public void test0122_strings_concatenation() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127919
 // it should suffice that the return type is String to avoid
 // errors
-public void test0123_strings_concatenation() {
+public void test0123_strings_concatenation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2142,7 +2142,7 @@ public void test0127_strings_concatenation() {
 // the said code is not marked as unreachable per JLS 14.21 (the rationale
 // being the accommodation for the if (constant_flag_evaluating_to_false)
 // {code...} volontary code exclusion pattern)
-public void test0300_if_else() {
+public void test0300_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2185,7 +2185,7 @@ public void test0300_if_else() {
 }
 
 // null analysis - if/else
-public void test0301_if_else() {
+public void test0301_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2206,7 +2206,7 @@ public void test0301_if_else() {
 }
 
 // null analysis - if/else
-public void test0302_if_else() {
+public void test0302_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2229,7 +2229,7 @@ public void test0302_if_else() {
 }
 
 // null analysis - if/else
-public void test0303_if_else() {
+public void test0303_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2252,7 +2252,7 @@ public void test0303_if_else() {
 }
 
 // null analysis - if/else
-public void test0304_if_else() {
+public void test0304_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2273,7 +2273,7 @@ public void test0304_if_else() {
 }
 
 // null analysis - if/else
-public void test0305_if_else() {
+public void test0305_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2295,7 +2295,7 @@ public void test0305_if_else() {
 }
 
 // null analysis - if/else
-public void test0306_if_else() {
+public void test0306_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2325,7 +2325,7 @@ public void test0306_if_else() {
 }
 
 // null analysis - if/else
-public void test0307_if_else() {
+public void test0307_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2347,7 +2347,7 @@ public void test0307_if_else() {
 }
 
 // null analysis - if/else
-public void test0308_if_else() {
+public void test0308_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2370,7 +2370,7 @@ public void test0308_if_else() {
 }
 
 // null analysis - if/else
-public void test0309_if_else() {
+public void test0309_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2396,7 +2396,7 @@ public void test0309_if_else() {
 }
 
 // null analysis - if/else
-public void test0310_if_else() {
+public void test0310_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2443,7 +2443,7 @@ public void test0311_if_else() {
 }
 
 // null analysis - if/else
-public void test0312_if_else() {
+public void test0312_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2476,7 +2476,7 @@ public void test0312_if_else() {
 }
 
 // null analysis - if/else
-public void test0313_if_else() {
+public void test0313_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2504,7 +2504,7 @@ public void test0313_if_else() {
 }
 
 // null analysis - if/else
-public void test0314_if_else() {
+public void test0314_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2526,7 +2526,7 @@ public void test0314_if_else() {
 }
 
 // null analysis - if/else
-public void test0315_if_else() {
+public void test0315_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2548,7 +2548,7 @@ public void test0315_if_else() {
 }
 
 // null analysis - if/else
-public void test0316_if_else() {
+public void test0316_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2622,7 +2622,7 @@ public void test0319_if_else_dead_branch() {
 }
 
 // null analysis - if/else
-public void test0320_if_else() {
+public void test0320_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2664,7 +2664,7 @@ public void test0321_if_else() {
 }
 
 // null analysis - if/else
-public void test0322_if_else() {
+public void test0322_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2706,7 +2706,7 @@ public void test0323_if_else() {
 }
 
 // null analysis - if/else
-public void test0324_if_else_nested() {
+public void test0324_if_else_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2734,7 +2734,7 @@ public void test0324_if_else_nested() {
 }
 
 // null analysis - if/else
-public void test0325_if_else_nested() {
+public void test0325_if_else_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2772,7 +2772,7 @@ public void test0325_if_else_nested() {
 // null analysis - if/else
 // limit: we cannot sync on external factors, even if this is a pattern
 // that is quite used
-public void test0326_if_else() {
+public void test0326_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2797,7 +2797,7 @@ public void test0326_if_else() {
 // null analysis - if/else
 // limit: we cannot sync on external factors, even if this is a pattern
 // that is quite used
-public void test0327_if_else() {
+public void test0327_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2822,7 +2822,7 @@ public void test0327_if_else() {
 }
 
 // null analysis - if/else
-public void test0328_if_else() {
+public void test0328_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2847,7 +2847,7 @@ public void test0328_if_else() {
 }
 
 // null analysis - if/else
-public void test0329_if_else_nested() {
+public void test0329_if_else_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2905,7 +2905,7 @@ public void test0331_if_else_nested() {
 }
 
 // null analysis - if/else
-public void test0332_if_else() {
+public void test0332_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2930,7 +2930,7 @@ public void test0332_if_else() {
 // null analysis - if/else
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=128014
 // invalid analysis when redundant check is done
-public void test0333_if_else() {
+public void test0333_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2955,7 +2955,7 @@ public void test0333_if_else() {
 // null analysis - if/else
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=128014
 // invalid analysis when redundant check is done - variant
-public void test0334_if_else() {
+public void test0334_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2991,7 +2991,7 @@ public void test0334_if_else() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=129581
 // Test that no false null reference warning is issued for a variable
 // that has been wrongly tainted by a redundant null check upstream.
-public void test0335_if_else() {
+public void test0335_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -3016,7 +3016,7 @@ public void test0335_if_else() {
 // null analysis - if/else
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=128014
 // invalid analysis when redundant check is done - variant
-public void test0336_if_else() {
+public void test0336_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3053,7 +3053,7 @@ public void test0336_if_else() {
 // null analysis - if/else nested with correlation
 // reconsider if we implement correlation
 // TODO (maxime) https://bugs.eclipse.org/bugs/show_bug.cgi?id=128861
-public void _test0337_if_else_nested_correlation() {
+public void _test0337_if_else_nested_correlation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3088,7 +3088,7 @@ public void _test0337_if_else_nested_correlation() {
 // null analysis - if/else nested with correlation
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=128861
 // workaround
-public void test0338_if_else_nested() {
+public void test0338_if_else_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3121,7 +3121,7 @@ public void test0338_if_else_nested() {
 }
 
 // null analysis - if/else nested with unknown protection: unknown cannot protect
-public void test0339_if_else_nested() {
+public void test0339_if_else_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3147,7 +3147,7 @@ public void test0339_if_else_nested() {
 }
 
 // null analysis - if/else nested
-public void test0340_if_else_nested() {
+public void test0340_if_else_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3173,7 +3173,7 @@ public void test0340_if_else_nested() {
 }
 
 // null analysis - if/else nested
-public void test0341_if_else_nested() {
+public void test0341_if_else_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3196,7 +3196,7 @@ public void test0341_if_else_nested() {
 }
 
 // null analysis - if/else nested
-public void test0342_if_else_nested() {
+public void test0342_if_else_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3219,7 +3219,7 @@ public void test0342_if_else_nested() {
 }
 
 // null analysis -- while
-public void test0401_while() {
+public void test0401_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3240,7 +3240,7 @@ public void test0401_while() {
 }
 
 // null analysis -- while
-public void test0402_while() {
+public void test0402_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3279,7 +3279,7 @@ public void test0403_while() {
 }
 
 // null analysis -- while
-public void test0404_while() {
+public void test0404_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3299,7 +3299,7 @@ public void test0404_while() {
 }
 
 // null analysis -- while
-public void test0405_while() {
+public void test0405_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3324,7 +3324,7 @@ public void test0405_while() {
 }
 
 // null analysis -- while
-public void test0406_while() {
+public void test0406_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3345,7 +3345,7 @@ public void test0406_while() {
 }
 
 // null analysis -- while
-public void test0407_while() {
+public void test0407_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3378,7 +3378,7 @@ public void test0407_while() {
 // never affected by the looping code (unassigned variables)
 // complete solution would call for multiple iterations in the
 // null analysis
-public void test0408_while() {
+public void test0408_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3402,7 +3402,7 @@ public void test0408_while() {
 }
 
 // null analysis -- while
-public void test0409_while() {
+public void test0409_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3425,7 +3425,7 @@ public void test0409_while() {
 }
 
 // null analysis -- while
-public void test0410_while_nested() {
+public void test0410_while_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3447,7 +3447,7 @@ public void test0410_while_nested() {
 }
 
 // null analysis -- while
-public void test0411_while_nested() {
+public void test0411_while_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3473,7 +3473,7 @@ public void test0411_while_nested() {
 }
 
 // null analysis -- while
-public void test0412_while_if_nested() {
+public void test0412_while_if_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3516,7 +3516,7 @@ public void test0413_while_unknown_field() {
 }
 
 // null analysis -- while
-public void test0414_while_unknown_parameter() {
+public void test0414_while_unknown_parameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3539,7 +3539,7 @@ public void test0414_while_unknown_parameter() {
 }
 
 // null analysis -- while
-public void test0415_while_unknown_if_else() {
+public void test0415_while_unknown_if_else() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3560,7 +3560,7 @@ public void test0415_while_unknown_if_else() {
 }
 
 // null analysis -- while
-public void test0416_while() {
+public void test0416_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3584,7 +3584,7 @@ public void test0416_while() {
 }
 
 // null analysis -- while
-public void test0417_while() {
+public void test0417_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3607,7 +3607,7 @@ public void test0417_while() {
 
 // null analysis -- while
 // origin AssignmentTest.testO22
-public void test0418_while_try() {
+public void test0418_while_try() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3628,7 +3628,7 @@ public void test0418_while_try() {
 }
 
 // null analysis -- while
-public void test0419_while() {
+public void test0419_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3651,7 +3651,7 @@ public void test0419_while() {
 }
 
 // null analysis -- while
-public void test0420_while() {
+public void test0420_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3695,7 +3695,7 @@ public void test0421_while() {
 }
 
 // null analysis -- while
-public void test0422_while() {
+public void test0422_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3725,7 +3725,7 @@ public void test0422_while() {
 }
 
 // null analysis -- while
-public void test0423_while() {
+public void test0423_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3755,7 +3755,7 @@ public void test0423_while() {
 }
 
 // null analysis -- while
-public void test0424_while_try() {
+public void test0424_while_try() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3778,7 +3778,7 @@ public void test0424_while_try() {
 }
 
 // null analysis -- while
-public void test0425_while() {
+public void test0425_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3802,7 +3802,7 @@ public void test0425_while() {
 }
 
 // null analysis -- while
-public void test0426_while() {
+public void test0426_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3829,7 +3829,7 @@ public void test0426_while() {
 }
 
 // null analysis -- while
-public void test0427_while_return() {
+public void test0427_while_return() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3873,7 +3873,7 @@ public void test0428_while() {
 }
 
 // null analysis - while
-public void test0429_while_nested() {
+public void test0429_while_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3899,7 +3899,7 @@ public void test0429_while_nested() {
 }
 
 // null analysis - while
-public void test0430_while_for_nested() {
+public void test0430_while_for_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3924,7 +3924,7 @@ public void test0430_while_for_nested() {
 }
 
 // null analysis - while
-public void test0431_while() {
+public void test0431_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3945,7 +3945,7 @@ public void test0431_while() {
 }
 
 // null analysis - while
-public void test0432_while() {
+public void test0432_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3965,7 +3965,7 @@ public void test0432_while() {
 }
 
 // null analysis - while
-public void test0433_while() {
+public void test0433_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3990,7 +3990,7 @@ public void test0433_while() {
 
 // null analysis - while
 // this one shows that we cannot project definitely unknown onto potentially unknown too soon
-public void test0434_while_switch_nested() {
+public void test0434_while_switch_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4015,7 +4015,7 @@ public void test0434_while_switch_nested() {
 }
 
 // null analysis - while
-public void test0435_while_init() {
+public void test0435_while_init() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4055,7 +4055,7 @@ public void test0436_while_init() {
 }
 
 // null analysis - while
-public void test0437_while_exit() {
+public void test0437_while_exit() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4077,7 +4077,7 @@ public void test0437_while_exit() {
 
 
 // null analysis - while
-public void test0438_while() {
+public void test0438_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4114,7 +4114,7 @@ public void test0439_while() {
 }
 
 // null analysis - while
-public void test0440_while() {
+public void test0440_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4136,7 +4136,7 @@ public void test0440_while() {
 }
 
 // null analysis - while
-public void test0441_while() {
+public void test0441_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4161,7 +4161,7 @@ public void test0441_while() {
 }
 
 // null analysis - while
-public void test0442_while() {
+public void test0442_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4184,7 +4184,7 @@ public void test0442_while() {
 }
 
 // null analysis - while
-public void test0443_while_nested() {
+public void test0443_while_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4208,7 +4208,7 @@ public void test0443_while_nested() {
 }
 
 // null analysis - while
-public void test0444_while_deeply_nested() {
+public void test0444_while_deeply_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4234,7 +4234,7 @@ public void test0444_while_deeply_nested() {
 }
 
 // null analysis - while
-public void test0445_while_deeply_nested() {
+public void test0445_while_deeply_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4266,7 +4266,7 @@ public void test0445_while_deeply_nested() {
 }
 
 // null analysis - while
-public void test0446_while() {
+public void test0446_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4304,7 +4304,7 @@ public void test0447_while() {
 }
 
 // null analysis - while
-public void test0448_while() {
+public void test0448_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4370,7 +4370,7 @@ public void test0449_while_nested() {
 }
 
 // null analysis - while
-public void test0450_while() {
+public void test0450_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4394,7 +4394,7 @@ public void test0450_while() {
 
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=133131
-public void test0451_while_nested() {
+public void test0451_while_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4420,7 +4420,7 @@ public void test0451_while_nested() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=123399
 // variant - the bug is not specific to the do while loop
-public void _test0452_while() {
+public void _test0452_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -4447,7 +4447,7 @@ public void _test0452_while() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=123399
 // variant - cannot refine the diagnostic without engaging into conditionals
 // dedicated flow context
-public void _test0453_while() {
+public void _test0453_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4470,7 +4470,7 @@ public void _test0453_while() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=129122
-public void test0454_while() {
+public void test0454_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4496,7 +4496,7 @@ public void test0454_while() {
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=133131
 // variant
-public void test0455_while_nested() {
+public void test0455_while_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4521,7 +4521,7 @@ public void test0455_while_nested() {
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=134848
 // false positive after nested loop with break to explicit label
-public void test0456_while_nested_explicit_label() {
+public void test0456_while_nested_explicit_label() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4543,7 +4543,7 @@ public void test0456_while_nested_explicit_label() {
 
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=154995
-public void test0457_while_nested_break() {
+public void test0457_while_nested_break() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4573,7 +4573,7 @@ public void test0457_while_nested_break() {
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=134848
 // variant: no label yields no problem
-public void test0458_while_nested_explicit_label() {
+public void test0458_while_nested_explicit_label() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4594,7 +4594,7 @@ public void test0458_while_nested_explicit_label() {
 }
 
 // null analysis -- while nested hits CAN_ONLY_NON_NULL
-public void test0459_while_nested() {
+public void test0459_while_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4630,7 +4630,7 @@ public void test0459_while_nested() {
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=176472
 // extraneous error in case of a labeled while(true) statement
-public void test0460_while_explicit_label() {
+public void test0460_while_explicit_label() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4656,7 +4656,7 @@ public void test0460_while_explicit_label() {
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=176472
 // extraneous error in case of a labeled while(true) statement
-public void test0461_while_explicit_label() {
+public void test0461_while_explicit_label() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4682,7 +4682,7 @@ public void test0461_while_explicit_label() {
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=176472
 // variant
-public void test0462_while_explicit_label() {
+public void test0462_while_explicit_label() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4716,7 +4716,7 @@ public void test0462_while_explicit_label() {
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=184298
 // variant
-public void test0463_while_infinite() {
+public void test0463_while_infinite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4740,7 +4740,7 @@ public void test0463_while_infinite() {
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=184298
 // variant
-public void test0464_while_infinite() {
+public void test0464_while_infinite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4764,7 +4764,7 @@ public void test0464_while_infinite() {
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=184298
 // variant
-public void test0465_while_infinite() {
+public void test0465_while_infinite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4788,7 +4788,7 @@ public void test0465_while_infinite() {
 // null analysis - while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=198955
 // dupe of bug 184298 in fact
-public void test0466_while_infinite() {
+public void test0466_while_infinite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4813,7 +4813,7 @@ public void test0466_while_infinite() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=212283
 // (which is a dupe of 184298)
-public void test0467_while_break() {
+public void test0467_while_break() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4841,7 +4841,7 @@ public void test0467_while_break() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=212283
 // (which is a dupe of 184298)
-public void test0468_while_break() {
+public void test0468_while_break() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4869,7 +4869,7 @@ public void test0468_while_break() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=212283
 // (which is a dupe of 184298)
-public void test0469_while_break() {
+public void test0469_while_break() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4896,7 +4896,7 @@ public void test0469_while_break() {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=220788
-public void test0470_while() {
+public void test0470_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -4923,7 +4923,7 @@ public void test0470_while() {
 		"----------\n");
 }
 // null analysis -- try/finally
-public void test0500_try_finally() {
+public void test0500_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4943,7 +4943,7 @@ public void test0500_try_finally() {
 }
 
 // null analysis -- try/finally
-public void test0501_try_finally() {
+public void test0501_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -4967,7 +4967,7 @@ public void test0501_try_finally() {
 }
 
 // null analysis -- try/finally
-public void test0502_try_finally() {
+public void test0502_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -4988,7 +4988,7 @@ public void test0502_try_finally() {
 }
 
 // null analysis -- try/finally
-public void test0503_try_finally() {
+public void test0503_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5010,7 +5010,7 @@ public void test0503_try_finally() {
 }
 
 // null analysis -- try/finally
-public void test0504_try_finally() {
+public void test0504_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5038,7 +5038,7 @@ public void test0504_try_finally() {
 // Previously, we followed JLS's conservative approach, which considers
 // that the try block may exit before the assignment is completed.
 // As of Bug 345305 this has been changed to a more accurate analysis.
-public void test0505_try_finally() {
+public void test0505_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -5061,7 +5061,7 @@ public void test0505_try_finally() {
 }
 
 // null analysis -- try finally
-public void test0506_try_finally() {
+public void test0506_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5089,7 +5089,7 @@ public void test0506_try_finally() {
 }
 
 // null analysis -- try finally
-public void test0507_try_finally() {
+public void test0507_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5121,7 +5121,7 @@ public void test0507_try_finally() {
 }
 
 // null analysis -- try finally
-public void test0508_try_finally() {
+public void test0508_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5146,7 +5146,7 @@ public void test0508_try_finally() {
 }
 
 // null analysis -- try finally
-public void test0509_try_finally_embedded() {
+public void test0509_try_finally_embedded() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5174,7 +5174,7 @@ public void test0509_try_finally_embedded() {
 }
 
 // null analysis -- try finally
-public void test0510_try_finally() {
+public void test0510_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5200,7 +5200,7 @@ public void test0510_try_finally() {
 }
 
 // null analysis -- try finally
-public void test0511_try_finally() {
+public void test0511_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5221,7 +5221,7 @@ public void test0511_try_finally() {
 }
 
 // null analysis -- try/finally
-public void test0512_try_finally() {
+public void test0512_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5246,7 +5246,7 @@ public void test0512_try_finally() {
 
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=128547
-public void test0513_try_finally() {
+public void test0513_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5273,7 +5273,7 @@ public void test0513_try_finally() {
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=128547
 // embedded variant 1
-public void test0514_try_finally() {
+public void test0514_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5305,7 +5305,7 @@ public void test0514_try_finally() {
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=128547
 // embedded variant 2
-public void test0515_try_finally() {
+public void test0515_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5340,7 +5340,7 @@ public void test0515_try_finally() {
 // variant
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=184546
 // variant
-public void test0516_try_finally() {
+public void test0516_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5364,7 +5364,7 @@ public void test0516_try_finally() {
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=132072
 // AIOOBE in null check compiling com.sun.org.apache.xalan.internal.res.XSLTErrorResources from JDK 1.5 source
-public void test0517_try_finally() {
+public void test0517_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5405,7 +5405,7 @@ public void test0517_try_finally() {
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=132120
 // [compiler][null] NPE batch compiling JDT/Core from HEAD
-public void test0518_try_finally() {
+public void test0518_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5452,7 +5452,7 @@ public void test0518_try_finally() {
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=128962
 // incorrect analysis within try finally with a constructor throwing an exception
-public void test0519_try_finally_constructor_exc() {
+public void test0519_try_finally_constructor_exc() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5480,7 +5480,7 @@ public void test0519_try_finally_constructor_exc() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=128962
 // incorrect analysis within try finally with a constructor throwing an exception
 // variant
-public void test0520_try_finally_constructor_exc() {
+public void test0520_try_finally_constructor_exc() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5512,7 +5512,7 @@ public void test0520_try_finally_constructor_exc() {
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=149665
 // incorrect analysis within try finally with an embedded && expression
-public void test0521_try_finally() {
+public void test0521_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5540,7 +5540,7 @@ public void test0521_try_finally() {
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=149665
 // variant
-public void test0522_try_finally() {
+public void test0522_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5574,7 +5574,7 @@ public void test0522_try_finally() {
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=149665
 // variant
-public void test0523_try_finally() {
+public void test0523_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5608,7 +5608,7 @@ public void test0523_try_finally() {
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=149665
 // variant
-public void test0524_try_finally() {
+public void test0524_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5641,7 +5641,7 @@ public void test0524_try_finally() {
 
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=150082
-public void _test0525_try_finally_unchecked_exception() {
+public void _test0525_try_finally_unchecked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5678,7 +5678,7 @@ public void _test0525_try_finally_unchecked_exception() {
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=150082
 // variant
-public void test0526_try_finally_unchecked_exception() {
+public void test0526_try_finally_unchecked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5714,7 +5714,7 @@ public void test0526_try_finally_unchecked_exception() {
 //null analysis -- try/finally
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=150082
 //variant
-public void test0527_try_finally_unchecked_exception() {
+public void test0527_try_finally_unchecked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5746,7 +5746,7 @@ public void test0527_try_finally_unchecked_exception() {
 
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=158000
-public void test0528_try_finally() {
+public void test0528_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5777,7 +5777,7 @@ public void test0528_try_finally() {
 
 // null analysis -- try finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=158000
-public void test0529_try_finally() {
+public void test0529_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5808,7 +5808,7 @@ public void test0529_try_finally() {
 
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=158000
-public void test0530_try_finally() {
+public void test0530_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5840,7 +5840,7 @@ public void test0530_try_finally() {
 
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=158000
-public void test0531_try_finally() {
+public void test0531_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -5892,7 +5892,7 @@ public void test0532_try_finally() {
 
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=184546
-public void test0533_try_finally_field() {
+public void test0533_try_finally_field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -5916,7 +5916,7 @@ public void test0533_try_finally_field() {
 
 // null analysis - try finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=198970
-public void _test0534_try_finally() {
+public void _test0534_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -5952,7 +5952,7 @@ public void _test0534_try_finally() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=295260
-public void test0535_try_finally() {
+public void test0535_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -5977,7 +5977,7 @@ public void test0535_try_finally() {
 // null analysis -- try/finally
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=320170 -  [compiler] [null] Whitebox issues in null analysis
 // trigger nullbits 0111 (pot n|nn|un), don't let "definitely unknown" override previous information
-public void test0536_try_finally() {
+public void test0536_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6007,7 +6007,7 @@ public void test0536_try_finally() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=320170 -  [compiler] [null] Whitebox issues in null analysis
 // trigger nullbits 0111 (pot n|nn|un), don't let "definitely unknown" override previous information
 // multiple variables
-public void test0537_try_finally() {
+public void test0537_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6047,7 +6047,7 @@ public void test0537_try_finally() {
 }
 
 // null analysis -- try/catch
-public void test0550_try_catch() {
+public void test0550_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -6068,7 +6068,7 @@ public void test0550_try_catch() {
 }
 
 // null analysis - try/catch
-public void test0551_try_catch() {
+public void test0551_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6098,7 +6098,7 @@ public void test0551_try_catch() {
 }
 
 // null analysis - try/catch
-public void test0552_try_catch() {
+public void test0552_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -6124,7 +6124,7 @@ public void test0552_try_catch() {
 }
 
 // null analysis - try/catch
-public void test0553_try_catch() {
+public void test0553_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6159,7 +6159,7 @@ public void test0553_try_catch() {
 }
 
 // null analysis - try/catch
-public void test0554_try_catch() {
+public void test0554_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -6200,7 +6200,7 @@ public void test0554_try_catch() {
 }
 
 // null analysis - try/catch
-public void test0555_try_catch() {
+public void test0555_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6229,7 +6229,7 @@ public void test0555_try_catch() {
 }
 
 // null analysis - try/catch
-public void test0556_try_catch() {
+public void test0556_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6258,7 +6258,7 @@ public void test0556_try_catch() {
 }
 
 // null analysis - try/catch
-public void test0557_try_catch() {
+public void test0557_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6287,7 +6287,7 @@ public void test0557_try_catch() {
 }
 
 // null analysis - try/catch
-public void test0558_try_catch() {
+public void test0558_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6320,7 +6320,7 @@ public void test0558_try_catch() {
 }
 
 // null analysis - try/catch
-public void test0559_try_catch() {
+public void test0559_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6355,7 +6355,7 @@ public void test0559_try_catch() {
 }
 
 // null analysis - try/catch
-public void test0560_try_catch() {
+public void test0560_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6393,7 +6393,7 @@ public void test0560_try_catch() {
 
 // null analysis - try/catch
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=130359
-public void test0561_try_catch_unchecked_exception() {
+public void test0561_try_catch_unchecked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6422,7 +6422,7 @@ public void test0561_try_catch_unchecked_exception() {
 // null analysis - try/catch
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=150854
 // (slightly different) variant of 561
-public void test0562_try_catch_unchecked_exception() {
+public void test0562_try_catch_unchecked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.WARNING);
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.WARNING);
@@ -6460,7 +6460,7 @@ public void test0562_try_catch_unchecked_exception() {
 
 // null analysis - try/catch
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=155117
-public void test0563_try_catch() {
+public void test0563_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6504,7 +6504,7 @@ public void test0563_try_catch() {
 
 // null analysis - try/catch
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=150854
-public void test0564_try_catch_unchecked_exception() {
+public void test0564_try_catch_unchecked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -6533,7 +6533,7 @@ public void test0564_try_catch_unchecked_exception() {
 // null analysis - try/catch
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=150854
 // variant
-public void test0565_try_catch_unchecked_exception() {
+public void test0565_try_catch_unchecked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -6563,7 +6563,7 @@ public void test0565_try_catch_unchecked_exception() {
 // null analysis - try/catch
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=150854
 // variant
-public void test0566_try_catch_unchecked_exception() {
+public void test0566_try_catch_unchecked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -6601,7 +6601,7 @@ public void test0566_try_catch_unchecked_exception() {
 
 // null analysis - try/catch for checked exceptions
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=295260
-public void test0567_try_catch_checked_exception() {
+public void test0567_try_catch_checked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -6626,7 +6626,7 @@ public void test0567_try_catch_checked_exception() {
 
 // null analysis - try/catch for checked exceptions with finally block
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=295260
-public void test0568_try_catch_checked_exception() {
+public void test0568_try_catch_checked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -6653,7 +6653,7 @@ public void test0568_try_catch_checked_exception() {
 }
 // null analysis -- try/catch
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=302446
-public void test0569_try_catch() {
+public void test0569_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6687,7 +6687,7 @@ public void test0569_try_catch() {
 }
 // null analysis -- try/catch
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=302446
-public void test0570_try_catch() {
+public void test0570_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6729,7 +6729,7 @@ public void test0570_try_catch() {
 }
 //null analysis -- try/catch
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=302446
-public void test0571_try_catch_finally() {
+public void test0571_try_catch_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6776,7 +6776,7 @@ public void test0571_try_catch_finally() {
 }
 //null analysis -- if statement
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=302446
-public void test0572_if_statement() {
+public void test0572_if_statement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6804,7 +6804,7 @@ public void test0572_if_statement() {
 }
 
 // take care for Java7 changes
-public void test0573_try_catch_unchecked_and_checked_exception() {
+public void test0573_try_catch_unchecked_and_checked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6840,7 +6840,7 @@ public void test0573_try_catch_unchecked_and_checked_exception() {
 }
 
 // similar to test0573 using multi catch parameters
-public void test0574_try_multi_catch_unchecked_and_checked_exception() {
+public void test0574_try_multi_catch_unchecked_and_checked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6868,7 +6868,7 @@ public void test0574_try_multi_catch_unchecked_and_checked_exception() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 //multi catch variant of test0561_try_catch_unchecked_exception
-public void test0575_try_multi_catch_finally_unchecked_and_checked_exception() {
+public void test0575_try_multi_catch_finally_unchecked_and_checked_exception() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6896,7 +6896,7 @@ public void test0575_try_multi_catch_finally_unchecked_and_checked_exception() {
 }
 
 // null test for resources inside try with resources statement
-public void test0576_try_with_resources() {
+public void test0576_try_with_resources() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -6959,7 +6959,7 @@ public void test0576_try_with_resources() {
 
 // null analysis - throw
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=201182
-public void test0595_throw() {
+public void test0595_throw() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -6991,7 +6991,7 @@ public void test0595_throw() {
 // null analysis - throw
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=201182
 // variant - potential NPE
-public void test0596_throw() {
+public void test0596_throw() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -7027,7 +7027,7 @@ public void test0596_throw() {
 // null analysis - throw
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=201182
 // variant - unknown
-public void test0597_throw() {
+public void test0597_throw() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -7054,7 +7054,7 @@ public void test0597_throw() {
 }
 
 // null analysis -- do while
-public void test0601_do_while() {
+public void test0601_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7076,7 +7076,7 @@ public void test0601_do_while() {
 }
 
 // null analysis -- do while
-public void test0602_do_while() {
+public void test0602_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7098,7 +7098,7 @@ public void test0602_do_while() {
 }
 
 // null analysis -- do while
-public void test0603_do_while() {
+public void test0603_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7141,7 +7141,7 @@ public void test0604_do_while() {
 }
 
 // null analysis -- do while
-public void test0605_do_while() {
+public void test0605_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7165,7 +7165,7 @@ public void test0605_do_while() {
 }
 
 // null analysis -- do while
-public void test0606_do_while() {
+public void test0606_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7190,7 +7190,7 @@ public void test0606_do_while() {
 }
 
 // null analysis -- do while
-public void test0607_do_while() {
+public void test0607_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7235,7 +7235,7 @@ public void test0608_do_while() {
 }
 
 // null analysis -- do while
-public void test0609_do_while() {
+public void test0609_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7277,7 +7277,7 @@ public void test0610_do_while() {
 }
 
 // null analysis - do while
-public void test0611_do_while() {
+public void test0611_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7306,7 +7306,7 @@ public void test0611_do_while() {
 // info to catch this, but this is inappropriate in many cases (eg
 // test0606)
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=123399
-public void _test0612_do_while() {
+public void _test0612_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -7332,7 +7332,7 @@ public void _test0612_do_while() {
 
 // null analysis - do while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=147118
-public void test0613_do_while() {
+public void test0613_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7354,7 +7354,7 @@ public void test0613_do_while() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=123399
 // variant
-public void _test0614_do_while() {
+public void _test0614_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7380,7 +7380,7 @@ public void _test0614_do_while() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=123399
 // variant
-public void _test0615_do_while() {
+public void _test0615_do_while() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7407,7 +7407,7 @@ public void _test0615_do_while() {
 // null analysis - do while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=176472
 // variant
-public void test0616_do_while_explicit_label() {
+public void test0616_do_while_explicit_label() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7433,7 +7433,7 @@ public void test0616_do_while_explicit_label() {
 // null analysis - do while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=176472
 // variant
-public void test0617_do_while_explicit_label() {
+public void test0617_do_while_explicit_label() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7459,7 +7459,7 @@ public void test0617_do_while_explicit_label() {
 // null analysis - do while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=184298
 // variant
-public void test0618_do_while_infinite() {
+public void test0618_do_while_infinite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7482,7 +7482,7 @@ public void test0618_do_while_infinite() {
 // null analysis - do while
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=184298
 // variant
-public void test0619_do_while_infinite() {
+public void test0619_do_while_infinite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7503,7 +7503,7 @@ public void test0619_do_while_infinite() {
 }
 
 // null analysis -- for
-public void test0701_for() {
+public void test0701_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7524,7 +7524,7 @@ public void test0701_for() {
 }
 
 // null analysis -- for
-public void test0702_for() {
+public void test0702_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7563,7 +7563,7 @@ public void test0703_for() {
 }
 
 // null analysis -- for
-public void test0704_for() {
+public void test0704_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7583,7 +7583,7 @@ public void test0704_for() {
 }
 
 // null analysis -- for
-public void test0705_for() {
+public void test0705_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7623,7 +7623,7 @@ public void test0707_for() {
 }
 
 // null analysis -- for
-public void test0708_for() {
+public void test0708_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7662,7 +7662,7 @@ public void test0709_for() {
 }
 
 // null analysis -- for
-public void test0710_for() {
+public void test0710_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7686,7 +7686,7 @@ public void test0710_for() {
 }
 
 // null analysis -- for
-public void test0711_for() {
+public void test0711_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7707,7 +7707,7 @@ public void test0711_for() {
 }
 
 // null analysis -- for
-public void test0712_for() {
+public void test0712_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7756,7 +7756,7 @@ public void test0714_for() {
 }
 
 // null analysis -- for
-public void test0715_for() {
+public void test0715_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7781,7 +7781,7 @@ public void test0715_for() {
 }
 
 // null analysis -- for
-public void test0716_for() {
+public void test0716_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7803,7 +7803,7 @@ public void test0716_for() {
 }
 
 // null analysis -- for
-public void test0717_for() {
+public void test0717_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7826,7 +7826,7 @@ public void test0717_for() {
 }
 
 // null analysis -- for
-public void test0718_for() {
+public void test0718_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7848,7 +7848,7 @@ public void test0718_for() {
 
 // null analysis -- for
 // origin: AssignmentTest#test019
-public void test0719_for() {
+public void test0719_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			    "X.java",
@@ -7874,7 +7874,7 @@ public void test0719_for() {
 }
 
 // null analysis -- for
-public void test0720_for_continue_break() {
+public void test0720_for_continue_break() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7919,7 +7919,7 @@ public void test0721_for() {
 }
 
 // null analysis -- for
-public void test0722_for_return() {
+public void test0722_for_return() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7964,7 +7964,7 @@ public void test0723_for() {
 }
 
 // null analysis -- for
-public void test0724_for_with_initialization() {
+public void test0724_for_with_initialization() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -7987,7 +7987,7 @@ public void test0724_for_with_initialization() {
 }
 
 // null analysis -- for
-public void test0725_for_with_assignment() {
+public void test0725_for_with_assignment() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8063,7 +8063,7 @@ public void test0728_for() {
 }
 
 // null analysis -- for
-public void test0729_for_try_catch_finally() {
+public void test0729_for_try_catch_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8095,7 +8095,7 @@ public void test0729_for_try_catch_finally() {
 }
 
 // null analysis - for
-public void test0730_for() {
+public void test0730_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8117,7 +8117,7 @@ public void test0730_for() {
 }
 
 // null analysis - for
-public void test0731_for() {
+public void test0731_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8143,7 +8143,7 @@ public void test0731_for() {
 
 // null analysis - for nested with break
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=129371
-public void test0732_for_nested_break() {
+public void test0732_for_nested_break() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8167,7 +8167,7 @@ public void test0732_for_nested_break() {
 // null analysis - for while with break
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=129371
 // variant
-public void test0733_for_while_break() {
+public void test0733_for_while_break() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8191,7 +8191,7 @@ public void test0733_for_while_break() {
 // null analysis - for while with break
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=129371
 // variant
-public void test0734_for_while_break() {
+public void test0734_for_while_break() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8215,7 +8215,7 @@ public void test0734_for_while_break() {
 // null analysis - for nested with break
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=129371
 // variant
-public void test0735_for_nested_break() {
+public void test0735_for_nested_break() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8238,7 +8238,7 @@ public void test0735_for_nested_break() {
 
 // null analysis - for
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127570
-public void test0736_for_embedded_lazy_init() {
+public void test0736_for_embedded_lazy_init() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8261,7 +8261,7 @@ public void test0736_for_embedded_lazy_init() {
 
 // null analysis - for with unknown protection: unknown cannot protect anything
 // suggested by https://bugs.eclipse.org/bugs/show_bug.cgi?id=127570
-public void test0737_for_unknown_protection() {
+public void test0737_for_unknown_protection() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8296,7 +8296,7 @@ public void test0737_for_unknown_protection() {
 // the issue is that we cannot do less than full aliasing analysis to
 // catch this one
 // PREMATURE (maxime) reconsider when/if we bring full aliasing in
-public void _test0738_for_unknown_protection() {
+public void _test0738_for_unknown_protection() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8322,7 +8322,7 @@ public void _test0738_for_unknown_protection() {
 
 // null analysis -- for
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=178895
-public void test0739_for() {
+public void test0739_for() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8346,7 +8346,7 @@ public void test0739_for() {
 // null analysis - for
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=176472
 // variant
-public void test0740_for_explicit_label() {
+public void test0740_for_explicit_label() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8372,7 +8372,7 @@ public void test0740_for_explicit_label() {
 // null analysis - for
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=176472
 // variant
-public void test0741_for_explicit_label() {
+public void test0741_for_explicit_label() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8398,7 +8398,7 @@ public void test0741_for_explicit_label() {
 // null analysis - for
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=176472
 // variant
-public void test0742_for_explicit_label() {
+public void test0742_for_explicit_label() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8424,7 +8424,7 @@ public void test0742_for_explicit_label() {
 
 // null analysis - for
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=184298
-public void test0743_for_infinite() {
+public void test0743_for_infinite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8448,7 +8448,7 @@ public void test0743_for_infinite() {
 // null analysis - for
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=184298
 // variant
-public void test0744_for_infinite() {
+public void test0744_for_infinite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8471,7 +8471,7 @@ public void test0744_for_infinite() {
 
 // null analysis - for
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=195638
-public void test0746_for_try_catch() {
+public void test0746_for_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -8501,7 +8501,7 @@ public void test0746_for_try_catch() {
 // null analysis - for
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=195638
 // variant: do not reset to null
-public void test0747_for_try_catch() {
+public void test0747_for_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8529,7 +8529,7 @@ public void test0747_for_try_catch() {
 }
 
 // null analysis -- switch
-public void test0800_switch() {
+public void test0800_switch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8551,7 +8551,7 @@ public void test0800_switch() {
 }
 
 // null analysis -- switch
-public void test0801_switch() {
+public void test0801_switch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8584,7 +8584,7 @@ public void test0801_switch() {
 }
 
 // null analysis -- switch
-public void test0802_switch() {
+public void test0802_switch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8609,7 +8609,7 @@ public void test0802_switch() {
 }
 
 // null analysis -- switch
-public void test0803_switch() {
+public void test0803_switch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8636,7 +8636,7 @@ public void test0803_switch() {
 }
 
 // null analysis -- switch
-public void test0804_switch() {
+public void test0804_switch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8667,7 +8667,7 @@ public void test0804_switch() {
 }
 
 // null analysis -- switch
-public void test0805_switch() {
+public void test0805_switch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8702,7 +8702,7 @@ public void _test0900_non_null_protection_tag() {
 }
 
 // null analysis -- non null protection tag
-public void _test0901_non_null_protection_tag() {
+public void _test0901_non_null_protection_tag() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8733,7 +8733,7 @@ public void _test0901_non_null_protection_tag() {
 }
 
 // null analysis -- non null protection tag
-public void _test0902_non_null_protection_tag() {
+public void _test0902_non_null_protection_tag() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -8763,7 +8763,7 @@ public void _test0902_non_null_protection_tag() {
 }
 
 // null analysis -- non null protection tag
-public void test0903_non_null_protection_tag() {
+public void test0903_non_null_protection_tag() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8831,7 +8831,7 @@ public void test0903_non_null_protection_tag() {
 
 
 // null analysis -- non null protection tag
-public void test0905_non_null_protection_tag() {
+public void test0905_non_null_protection_tag() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8851,7 +8851,7 @@ public void test0905_non_null_protection_tag() {
 }
 
 // null analysis -- non null protection tag
-public void test0906_non_null_protection_tag() {
+public void test0906_non_null_protection_tag() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8888,7 +8888,7 @@ public void test0950_assert() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127244
 // [compiler] Null reference analysis doesn't understand assertions
-public void test0951_assert() {
+public void test0951_assert() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8909,7 +8909,7 @@ public void test0951_assert() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127244
 // [compiler] Null reference analysis doesn't understand assertions
-public void test0952_assert() {
+public void test0952_assert() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8930,7 +8930,7 @@ public void test0952_assert() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127244
 // [compiler] Null reference analysis doesn't understand assertions
-public void test0953_assert_combined() {
+public void test0953_assert_combined() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -8962,7 +8962,7 @@ public void test0953_assert_combined() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127244
 // [compiler] Null reference analysis doesn't understand assertions
-public void test0954_assert_fake_reachable() {
+public void test0954_assert_fake_reachable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		true/*flush*/,
 		new String[] {
@@ -8987,7 +8987,7 @@ public void test0954_assert_fake_reachable() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127244
 // [compiler] Null reference analysis doesn't understand assertions
-public void test0955_assert_combined() {
+public void test0955_assert_combined() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9013,7 +9013,7 @@ public void test0955_assert_combined() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=127244
 // [compiler] Null reference analysis doesn't understand assertions
-public void test0956_assert_combined() {
+public void test0956_assert_combined() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9046,7 +9046,7 @@ public void test0956_assert_combined() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=250056
 // Test to verify that asserts are exempted from redundant null check warnings,
 // but this doesn't affect the downstream info.
-public void test0957_assert() {
+public void test0957_assert() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9113,7 +9113,7 @@ public void test0957_assert() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=250056
 // Test to verify that asserts are exempted from null comparison warnings,
 // but this doesn't affect the downstream info.
-public void test0958_assert() {
+public void test0958_assert() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9149,7 +9149,7 @@ public void test0958_assert() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=250056
 // Test to verify that asserts are exempted from redundant null check warnings in a looping context,
 // but this doesn't affect the downstream info.
-public void test0959a_assert_loop() {
+public void test0959a_assert_loop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9218,7 +9218,7 @@ public void test0959a_assert_loop() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=250056
 // Test to verify that asserts are exempted from redundant null check warnings in a looping context,
 // but this doesn't affect the downstream info.
-public void test0959b_assert_loop() {
+public void test0959b_assert_loop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9287,7 +9287,7 @@ public void test0959b_assert_loop() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=250056
 // Test to verify that asserts are exempted from redundant null check warnings in a finally context,
 // but this doesn't affect the downstream info.
-public void test0960_assert_finally() {
+public void test0960_assert_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9488,7 +9488,7 @@ public void _test0952_nullable_tag() {
 }
 
 // moved from AssignmentTest
-public void test1004() {
+public void test1004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9596,7 +9596,7 @@ public void test1008() {
 		"");
 }
 
-public void test1009() {
+public void test1009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9639,7 +9639,7 @@ public void test1009() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test1010() {
+public void test1010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -9659,7 +9659,7 @@ public void test1010() {
 		"");
 }
 
-public void test1011() {
+public void test1011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9698,7 +9698,7 @@ public void test1011() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test1012() {
+public void test1012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9728,7 +9728,7 @@ public void test1012() {
 
 // x cannot equal this then null with no assignment in between
 // each diagnostic is locally sound though
-public void test1013() {
+public void test1013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9774,7 +9774,7 @@ public void test1014() {
 		"");
 }
 
-public void test1015() {
+public void test1015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -9794,7 +9794,7 @@ public void test1015() {
 		"");
 }
 
-public void test1016() {
+public void test1016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9824,7 +9824,7 @@ public void test1016() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test1017() {
+public void test1017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9854,7 +9854,7 @@ public void test1017() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test1018() {
+public void test1018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -9885,7 +9885,7 @@ public void test1018() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test1019() {
+public void test1019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -9915,7 +9915,7 @@ public void test1019() {
 		"");
 }
 
-public void test1021() {
+public void test1021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -9947,7 +9947,7 @@ public void test1021() {
 		"");
 }
 
-public void test1022() {
+public void test1022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -9976,7 +9976,7 @@ public void test1022() {
 		"");
 }
 
-public void test1023() {
+public void test1023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10009,7 +10009,7 @@ public void test1023() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test1024() {
+public void test1024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10043,7 +10043,7 @@ public void test1024() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test1025() {
+public void test1025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10074,7 +10074,7 @@ public void test1025() {
 }
 
 // TODO (philippe) reenable once fixed
-public void _test1026() {
+public void _test1026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10093,7 +10093,7 @@ public void _test1026() {
 		"SUCCESS");
 }
 
-public void test1027() {
+public void test1027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -10121,7 +10121,7 @@ public void test1027() {
 }
 
 // TODO (philippe) reenable once fixed
-public void _test1028() {
+public void _test1028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10144,7 +10144,7 @@ public void _test1028() {
 		"");
 }
 
-public void test1029() {
+public void test1029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10167,7 +10167,7 @@ public void test1029() {
 		"SUCCESS");
 }
 
-public void test1030() {
+public void test1030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10199,7 +10199,7 @@ public void test1030() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test1031() {
+public void test1031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10246,7 +10246,7 @@ public void test1031() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test1032() {
+public void test1032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10274,7 +10274,7 @@ public void test1032() {
 }
 
 // (simplified to focus on nulls)
-public void test1033() {
+public void test1033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10309,7 +10309,7 @@ public void test1033() {
 }
 
 // from AssignmentTest#test034, simplified
-public void test1034() {
+public void test1034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -10351,7 +10351,7 @@ public void test1034() {
 		"----------\n");
 }
 
-public void test1036() {
+public void test1036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10385,7 +10385,7 @@ public void test1036() {
 // default for null options is Ignore
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=192875
 // changed default for null access to warning
-public void test1050_options_all_default() {
+public void test1050_options_all_default() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		setNullRelatedOptions = false;
 		runConformTest(
@@ -10428,7 +10428,7 @@ public void test1050_options_all_default() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
 // all null options set to Ignore
-public void test1051_options_all_ignore() {
+public void test1051_options_all_ignore() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.IGNORE);
 	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.IGNORE);
@@ -10458,7 +10458,7 @@ public void test1051_options_all_ignore() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
 // all options set to error
-public void test1052_options_all_error() {
+public void test1052_options_all_error() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10501,7 +10501,7 @@ public void test1052_options_all_error() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
 // selectively changing error levels
-public void test1053_options_mix() {
+public void test1053_options_mix() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.IGNORE);
@@ -10546,7 +10546,7 @@ public void test1053_options_mix() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
 // selectively changing error levels
-public void test1054_options_mix() {
+public void test1054_options_mix() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.WARNING);
 	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.IGNORE);
@@ -10596,7 +10596,7 @@ public void test1054_options_mix() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
 // selectively changing error levels
-public void test1055_options_mix() {
+public void test1055_options_mix() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.IGNORE);
 	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.ERROR);
@@ -10646,7 +10646,7 @@ public void test1055_options_mix() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
 // selectively changing error levels
-public void test1056_options_mix_with_SuppressWarnings() {
+public void test1056_options_mix_with_SuppressWarnings() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.WARNING);
@@ -10691,7 +10691,7 @@ public void test1056_options_mix_with_SuppressWarnings() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
-public void test1057_options_instanceof_is_check() {
+public void test1057_options_instanceof_is_check() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10713,7 +10713,7 @@ public void test1057_options_instanceof_is_check() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
-public void test1058_options_instanceof_is_check() {
+public void test1058_options_instanceof_is_check() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.IGNORE);
 	this.runConformTest(
@@ -10737,7 +10737,7 @@ public void test1058_options_instanceof_is_check() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=170704
 // adding distinct options to control null checks in more detail
-public void test1059_options_cannot_be_null_check() {
+public void test1059_options_cannot_be_null_check() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.IGNORE);
 	this.runConformTest(
@@ -10758,7 +10758,7 @@ public void test1059_options_cannot_be_null_check() {
 	  	false /* do not skip javac for this peculiar test */);
 }
 // encoding validation
-public void test1500() {
+public void test1500() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10781,7 +10781,7 @@ public void test1500() {
 }
 
 // encoding validation
-public void test1501() {
+public void test1501() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10807,7 +10807,7 @@ public void test1501() {
 }
 
 // encoding validation
-public void test1502() {
+public void test1502() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10833,7 +10833,7 @@ public void test1502() {
 }
 
 // encoding validation
-public void test1503() {
+public void test1503() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10861,7 +10861,7 @@ public void test1503() {
 }
 
 // flow info low-level validation
-public void test2000_flow_info() {
+public void test2000_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -10905,7 +10905,7 @@ public void test2000_flow_info() {
 	    JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 
-public void test2001_flow_info() {
+public void test2001_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10933,7 +10933,7 @@ public void test2001_flow_info() {
 		"");
 }
 
-public void test2002_flow_info() {
+public void test2002_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10959,7 +10959,7 @@ public void test2002_flow_info() {
 		"");
 }
 
-public void test2003_flow_info() {
+public void test2003_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -10984,7 +10984,7 @@ public void test2003_flow_info() {
 		"");
 }
 
-public void test2004_flow_info() {
+public void test2004_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11015,7 +11015,7 @@ public void test2004_flow_info() {
 		"----------\n");
 }
 
-public void test2005_flow_info() {
+public void test2005_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -11040,7 +11040,7 @@ public void test2005_flow_info() {
 		"");
 }
 
-public void test2006_flow_info() {
+public void test2006_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -11065,7 +11065,7 @@ public void test2006_flow_info() {
 		"");
 }
 
-public void test2007_flow_info() {
+public void test2007_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -11091,7 +11091,7 @@ public void test2007_flow_info() {
 }
 
 // null analysis -- flow info
-public void test2008_flow_info() {
+public void test2008_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -11127,7 +11127,7 @@ public void test2008_flow_info() {
 }
 
 // null analysis -- flow info
-public void test2009_flow_info() {
+public void test2009_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11168,7 +11168,7 @@ public void test2009_flow_info() {
 }
 
 // null analysis -- flow info
-public void test2010_flow_info() {
+public void test2010_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11210,7 +11210,7 @@ public void test2010_flow_info() {
 }
 
 // null analysis -- flow info
-public void test2011_flow_info() {
+public void test2011_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11255,7 +11255,7 @@ public void test2011_flow_info() {
 }
 
 // null analysis -- flow info
-public void test2012_flow_info() {
+public void test2012_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11300,7 +11300,7 @@ public void test2012_flow_info() {
 }
 
 // null analysis -- flow info
-public void test2013_flow_info() {
+public void test2013_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11331,7 +11331,7 @@ public void test2013_flow_info() {
 }
 
 // null analysis -- flow info
-public void test2014_flow_info() {
+public void test2014_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11383,7 +11383,7 @@ public void test2014_flow_info() {
 }
 
 // null analysis -- flow info
-public void test2015_flow_info() {
+public void test2015_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11449,7 +11449,7 @@ public void test2015_flow_info() {
 }
 
 // null analysis -- flow info
-public void test2016_flow_info() {
+public void test2016_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11498,7 +11498,7 @@ public void test2016_flow_info() {
 		"----------\n");
 }
 
-public void test2017_flow_info() {
+public void test2017_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -11525,7 +11525,7 @@ public void test2017_flow_info() {
 		"");
 }
 
-public void test2018_flow_info() {
+public void test2018_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11562,7 +11562,7 @@ public void test2018_flow_info() {
 		"----------\n");
 }
 
-public void test2019_flow_info() {
+public void test2019_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11599,7 +11599,7 @@ public void test2019_flow_info() {
 		"----------\n");
 }
 
-public void test2020_flow_info() {
+public void test2020_flow_info() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11646,7 +11646,7 @@ public void test2020_flow_info() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=291418
 // Test to verify that redundant null checks are properly reported in all loops
-public void testBug291418a() {
+public void testBug291418a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 			new String[] {
 					"X.java",
@@ -11729,7 +11729,7 @@ public void testBug291418a() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=291418
 // Test to verify that redundant null checks are properly reported
 // in a loop in case the null status is modified downstream in the loop
-public void testBug291418b() {
+public void testBug291418b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 			new String[] {
 					"X.java",
@@ -11762,7 +11762,7 @@ public void testBug291418b() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=293917
 // Test that a redundant null check doesn't affect the null status of
 // a variable downstream.
-public void testBug293917a() {
+public void testBug293917a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11792,7 +11792,7 @@ public void testBug293917a() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=293917
 // Test that a redundant null check doesn't affect the null status of
 // a variable downstream in a loop.
-public void testBug293917b() {
+public void testBug293917b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11819,7 +11819,7 @@ public void testBug293917b() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=293917
 // Test that a redundant null check doesn't affect the null status of
 // a variable downstream in a finally block.
-public void testBug293917c() {
+public void testBug293917c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11852,7 +11852,7 @@ public void testBug293917c() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=190623
 // Test that a redundant null check doesn't affect the null status of
 // a variable downstream.
-public void testBug190623() {
+public void testBug190623() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -11892,7 +11892,7 @@ public void testBug190623() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=299900
 //Test to verify that null checks are properly reported for the variable(s)
 //in the right expression of an OR condition statement.
-public void testBug299900a() {
+public void testBug299900a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -11920,7 +11920,7 @@ public void testBug299900a() {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=299900
 //Test to verify that null checks are properly reported for the variable(s)
 //in the right expression of an OR condition statement.
-public void testBug299900b() {
+public void testBug299900b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -11947,7 +11947,7 @@ public void testBug299900b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=253896
 // Test whether Null pointer access warnings are being reported correctly when auto-unboxing
-public void testBug253896a() {
+public void testBug253896a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -11996,7 +11996,7 @@ public void testBug253896a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=253896
 // To test whether null pointer access and potential null pointer access warnings are correctly reported when auto-unboxing
-public void testBug253896b() {
+public void testBug253896b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -12025,7 +12025,7 @@ public void testBug253896b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=253896
 // Test whether Null pointer access warnings are being reported correctly when auto-unboxing inside loops
-public void testBug253896c() {
+public void testBug253896c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -12091,7 +12091,7 @@ public void testBug253896c() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=253896
 // Test whether Null pointer access warnings are being reported correctly when auto-unboxing inside finally contexts
-public void testBug253896d() {
+public void testBug253896d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -12158,7 +12158,7 @@ public void testBug253896d() {
 //To check that code gen is not optimized for an if statement
 //where a local variable's definite nullness or otherwise is known because of
 //an earlier assert expression (inside finally context)
-public void testBug303448a() throws Exception {
+public void testBug303448a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.IGNORE);
 	options.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.IGNORE);
@@ -12257,7 +12257,7 @@ public void testBug303448a() throws Exception {
 					"        [pc: 64, same]\n" +
 					"        [pc: 72, same]\n";
 
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -12273,7 +12273,7 @@ public void testBug303448a() throws Exception {
 //To check that code gen is not optimized for an if statement
 //where a local variable's definite nullness or otherwise is known because of
 //an earlier assert expression (inside finally context)
-public void testBug303448b() throws Exception {
+public void testBug303448b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.IGNORE);
 	options.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.IGNORE);
@@ -12302,7 +12302,7 @@ public void testBug303448b() throws Exception {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=304416
-public void testBug304416() throws Exception {
+public void testBug304416() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.WARNING);
 	options.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.WARNING);
@@ -12345,13 +12345,13 @@ public void testBug304416() throws Exception {
 		"    22  aload_2 [s2]\n" +
 		"    23  invokevirtual java.io.PrintStream.println(java.lang.String) : void [22]\n" +
 		"    26  return\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=305590
 // To verify that a "instanceof always yields false" warning is not elicited in the
 // case when the expression has been assigned a non null value in the instanceof check.
-public void testBug305590() {
+public void testBug305590() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -12376,7 +12376,7 @@ public void testBug305590() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319201
 // unboxing raises an NPE
 //   LocalDeclaration
-public void testBug319201() {
+public void testBug319201() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 			new String[] {
 				"X.java",
@@ -12397,7 +12397,7 @@ public void testBug319201() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319201
 // unboxing could raise an NPE
 //   Assignment
-public void testBug319201a() {
+public void testBug319201a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 			new String[] {
 				"X.java",
@@ -12419,7 +12419,7 @@ public void testBug319201a() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319201
 // unboxing raises an NPE
 //   MessageSend
-public void testBug319201b() {
+public void testBug319201b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 			new String[] {
 				"X.java",
@@ -12455,7 +12455,7 @@ public void testBug319201b() {
 //   CastExpression
 //   AssertStatement
 //   ReturnStatement
-public void testBug319201c() {
+public void testBug319201c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 			new String[] {
               "X.java",
@@ -12582,7 +12582,7 @@ public void testBug319201c() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319201
 // unboxing raises an NPE
 // DoStatement, variants with assignement and/or continue in the body & empty body
-public void testBug319201d() {
+public void testBug319201d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryElse, CompilerOptions.IGNORE);
 	runNegativeTest(
@@ -12655,7 +12655,7 @@ public void testBug319201d() {
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=320414
-public void testBug320414() throws Exception {
+public void testBug320414() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.ERROR);
@@ -12705,12 +12705,12 @@ public void testBug320414() throws Exception {
 		"    20  iload_2 [i]\n" +
 		"    21  invokevirtual java.io.PrintStream.println(int) : void [38]\n" +
 		"    24  return\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=321926
 // To verify that a "redundant null check" warning is NOT elicited for a variable assigned non-null
 // in an infinite while loop inside a try catch block and that code generation shows no surprises.
-public void testBug321926a() {
+public void testBug321926a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -12742,7 +12742,7 @@ public void testBug321926a() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=321926
 // need more precise info from the throw location
-public void testBug321926a2() {
+public void testBug321926a2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNUSED_WARNING_TOKEN, JavaCore.ERROR);
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.WARNING);
@@ -12780,7 +12780,7 @@ public void testBug321926a2() {
 		options);
 }
 // Test that dead code warning does show up.
-public void testBug321926b() {
+public void testBug321926b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -12817,7 +12817,7 @@ public void testBug321926b() {
 			"----------\n");
 }
 // Check nullness in catch block, finally block and downstream code.
-public void testBug321926c() {
+public void testBug321926c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -12858,7 +12858,7 @@ public void testBug321926c() {
 		"Compiler good Compiler good Compiler good");
 }
 // Various nested loops.
-public void testBug321926d() {
+public void testBug321926d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -12903,7 +12903,7 @@ public void testBug321926d() {
 		"Compiler good Compiler good Compiler good");
 }
 // Test widening catch.
-public void testBug321926e() {
+public void testBug321926e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -12934,7 +12934,7 @@ public void testBug321926e() {
 		"Compiler good");
 }
 // Tested nested try blocks.
-public void testBug321926f() {
+public void testBug321926f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -12974,7 +12974,7 @@ public void testBug321926f() {
 		"Compiler good Compiler good");
 }
 // test for loop
-public void testBug321926g() {
+public void testBug321926g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -13005,7 +13005,7 @@ public void testBug321926g() {
 		"Compiler good");
 }
 // test do while loop
-public void testBug321926h() {
+public void testBug321926h() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -13036,7 +13036,7 @@ public void testBug321926h() {
 		"Compiler good");
 }
 // test with while (true) with a break inside. was working already.
-public void testBug321926i() {
+public void testBug321926i() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -13068,7 +13068,7 @@ public void testBug321926i() {
 		"Compiler good");
 }
 // Test with non-explicit throws, i.e call method which throws rather than an inline throw statement.
-public void testBug321926j() {
+public void testBug321926j() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -13102,7 +13102,7 @@ public void testBug321926j() {
 		"Compiler good");
 }
 // Variation with nested loops
-public void testBug321926k() {
+public void testBug321926k() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -13144,7 +13144,7 @@ public void testBug321926k() {
 		"Compiler good Compiler good");
 }
 // variation with nested loops.
-public void testBug321926l() {
+public void testBug321926l() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.WARNING);
 
@@ -13204,7 +13204,7 @@ public void testBug321926l() {
 		null,
 		JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings);
 }
-public void testBug321926m() {
+public void testBug321926m() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -13237,7 +13237,7 @@ public void testBug321926m() {
 			"}"},
 		"Compiler good");
 }
-public void testBug321926n() {
+public void testBug321926n() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.WARNING);
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.WARNING);
@@ -13272,7 +13272,7 @@ public void testBug321926n() {
 		"Compiler good",
 		options);
 }
-public void testBug321926o() {
+public void testBug321926o() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.WARNING);
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.WARNING);
@@ -13307,7 +13307,7 @@ public void testBug321926o() {
 		"Compiler good",
 		options);
 }
-public void testBug321926p() {
+public void testBug321926p() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.WARNING);
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.WARNING);
@@ -13342,7 +13342,7 @@ public void testBug321926p() {
 		"Compiler good",
 		options);
 }
-public void testBug321926q() {
+public void testBug321926q() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -13375,7 +13375,7 @@ public void testBug321926q() {
 			"}"},
 		"Compiler good", null, true, null, options, null);
 }
-public void testBug321926r() {
+public void testBug321926r() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.IGNORE);
 	this.runConformTest(
@@ -13408,7 +13408,7 @@ public void testBug321926r() {
 		"Compiler good", null, true, null, options, null
 		);
 }
-public void testBug321926s() {
+public void testBug321926s() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.IGNORE);
 	this.runConformTest(
@@ -13442,7 +13442,7 @@ public void testBug321926s() {
 		"Compiler good", null, true, null, options, null
 		);
 }
-public void testBug321926t() {
+public void testBug321926t() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -13470,7 +13470,7 @@ public void testBug321926t() {
 			"}\n"},
 		"Compiler good");
 }
-public void testBug321926u() {
+public void testBug321926u() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.IGNORE);
 	this.runConformTest(
@@ -13503,7 +13503,7 @@ public void testBug321926u() {
 		"Compiler good",
 		options);
 }
-public void testBug321926v() {
+public void testBug321926v() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.IGNORE);
 	this.runConformTest(
@@ -13537,7 +13537,7 @@ public void testBug321926v() {
 		options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=317829
-public void testBug317829a() {
+public void testBug317829a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.WARNING);
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.WARNING);
@@ -13573,7 +13573,7 @@ public void testBug317829a() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=317829
 // assignment from unknown - not reporting redundant check
-public void testBug317829a2() {
+public void testBug317829a2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -13605,7 +13605,7 @@ public void testBug317829a2() {
 			"Compiler good Compiler good");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=317829
-public void testBug317829b() {
+public void testBug317829b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.WARNING);
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.WARNING);
@@ -13643,7 +13643,7 @@ public void testBug317829b() {
 			options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=317829
-public void testBug317829c() {
+public void testBug317829c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.WARNING);
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.WARNING);
@@ -13678,7 +13678,7 @@ public void testBug317829c() {
 			options);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=317829
-public void testBug317829d() {
+public void testBug317829d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.WARNING);
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.WARNING);
@@ -13716,7 +13716,7 @@ public void testBug317829d() {
 			options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=317829
-public void testBug317829e() {
+public void testBug317829e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.WARNING);
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.WARNING);
@@ -13751,7 +13751,7 @@ public void testBug317829e() {
 			options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=317829
-public void testBug317829f() {
+public void testBug317829f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.WARNING);
 	options.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.WARNING);
@@ -13791,7 +13791,7 @@ public void testBug317829f() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292478 -  Report potentially null across variable assignment
 // LocalDeclaration
-public void testBug292478() {
+public void testBug292478() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     this.runNegativeTest(
             new String[] {
                 "X.java",
@@ -13813,7 +13813,7 @@ public void testBug292478() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292478 -  Report potentially null across variable assignment
 // Assignment
-public void testBug292478a() {
+public void testBug292478a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
   this.runNegativeTest(
           new String[] {
               "X.java",
@@ -13836,7 +13836,7 @@ public void testBug292478a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292478 -  Report potentially null across variable assignment
 // Assignment after definite null
-public void testBug292478b() {
+public void testBug292478b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
         new String[] {
             "X.java",
@@ -13859,7 +13859,7 @@ this.runNegativeTest(
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292478 -  Report potentially null across variable assignment
 // Assignment after definite null - many locals
-public void testBug292478c() {
+public void testBug292478c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 this.runNegativeTest(
       new String[] {
           "X.java",
@@ -13889,7 +13889,7 @@ this.runNegativeTest(
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292478 -  Report potentially null across variable assignment
 // Assignment affects initsOnFinally
-public void testBug292478d() {
+public void testBug292478d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -13923,7 +13923,7 @@ public void testBug292478d() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292478 -  Report potentially null across variable assignment
 // test regression reported in comment 8
-public void testBug292478e() {
+public void testBug292478e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Test.java",
@@ -13952,7 +13952,7 @@ public void testBug292478e() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292478 -  Report potentially null across variable assignment
 // variant where regression occurred inside the while-switch structure
-public void testBug292478f() {
+public void testBug292478f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Test.java",
@@ -13981,7 +13981,7 @@ public void testBug292478f() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292478 -  Report potentially null across variable assignment
 // variant for transfering state potentially unknown
-public void testBug292478g() {
+public void testBug292478g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Test.java",
@@ -14051,7 +14051,7 @@ public void testBug324762a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=325229
 // instancof expression
-public void testBug325229a() {
+public void testBug325229a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -14081,7 +14081,7 @@ public void testBug325229a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=325229
 // MessageSend in assert
-public void testBug325229b() {
+public void testBug325229b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -14114,7 +14114,7 @@ public void testBug325229b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=325229
 // QualifiedNameReference in assert
-public void testBug325229c() {
+public void testBug325229c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -14148,7 +14148,7 @@ public void testBug325229c() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=325229
 // EqualExpression in assert, comparison against non null
-public void testBug325229d() {
+public void testBug325229d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -14187,7 +14187,7 @@ public void testBug325229d() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=325342
 // Null warnings because of assert statements should be suppressed
 // when CompilerOptions.OPTION_IncludeNullInfoFromAsserts is disabled.
-public void testBug325342a() {
+public void testBug325342a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_IncludeNullInfoFromAsserts, CompilerOptions.DISABLED);
 	this.runNegativeTest(
@@ -14237,7 +14237,7 @@ public void testBug325342a() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=325342
 // Null warnings because of assert statements should not be suppressed
 // when CompilerOptions.OPTION_IncludeNullInfoFromAsserts is enabled.
-public void testBug325342b() {
+public void testBug325342b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_IncludeNullInfoFromAsserts, CompilerOptions.ENABLED);
 	this.runNegativeTest(
@@ -14305,7 +14305,7 @@ public void testBug325342b() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=325755
 // null analysis -- conditional expression
-public void testBug325755a() {
+public void testBug325755a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -14337,7 +14337,7 @@ public void testBug325755a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=325755
 // null analysis -- conditional expression, many locals
-public void testBug325755b() {
+public void testBug325755b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -14376,7 +14376,7 @@ public void testBug325755b() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=332637
 // Dead Code detection removing code that isn't dead
-public void testBug332637() {
+public void testBug332637() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"DeadCodeExample.java",
@@ -14440,7 +14440,7 @@ public void testBug332637() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=332637
 // Dead Code detection removing code that isn't dead
 // variant with a finally block
-public void testBug332637b() {
+public void testBug332637b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"DeadCodeExample.java",
@@ -14505,7 +14505,7 @@ public void testBug332637b() {
 		"-1");
 }
 
-public void testBug406160a() {
+public void testBug406160a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"DeadCodeExample.java",
@@ -14573,7 +14573,7 @@ public void testBug406160a() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=333089
 // null analysis -- to make sure no AIOOBE or NPE is thrown while calling UnconditionalFlowInfo.markNullStatus(..)
-public void testBug333089() {
+public void testBug333089() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -14618,7 +14618,7 @@ public void testBug336428() {
 //Bug 336428 - [compiler][null] bogus warning "redundant null check" in condition of do {} while() loop
 //hitting the same implementation branch from within the loop
 //information from unknown o1 is not propagated into the loop, analysis currently believes o2 is def null.
-public void _testBug336428a() {
+public void _testBug336428a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 	"DoWhileBug.java",
@@ -14639,7 +14639,7 @@ public void _testBug336428a() {
 
 //Bug 336428 - [compiler][null] bogus warning "redundant null check" in condition of do {} while() loop
 //in this variant the analysis believes o2 is def unknown and doesn't even consider raising a warning.
-public void _testBug336428b() {
+public void _testBug336428b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 	"DoWhileBug.java",
@@ -14681,7 +14681,7 @@ public void testBug336428c() {
 
 //Bug 336428 - [compiler][null] bogus warning "redundant null check" in condition of do {} while() loop
 //one more if-statement triggers the expected warnings
-public void testBug336428d() {
+public void testBug336428d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 	"DoWhileBug.java",
@@ -14717,7 +14717,7 @@ public void testBug336428d() {
 // variant after Bug 454031 to demonstrate:
 // - previously we would believe that o1 is always null in the assignment to o2 -> bogus warning re redundant null check
 // - with improved analysis we don't claim to know the value of o1 in this assignment -> no warning
-public void testBug336428d2() {
+public void testBug336428d2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 	"DoWhileBug.java",
@@ -14738,7 +14738,7 @@ public void testBug336428d2() {
 
 //Bug 336428 - [compiler][null] bogus warning "redundant null check" in condition of do {} while() loop
 //same analysis, but assert instead of if suppresses the warning
-public void testBug336428e() {
+public void testBug336428e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 	"DoWhileBug.java",
@@ -14772,7 +14772,7 @@ public void testBug336428e() {
 // Bug 336428 - [compiler][null] bogus warning "redundant null check" in condition of do {} while() loop
 // same analysis, but assert instead of if suppresses the warning
 // condition inside assert is redundant null check and hence should not be warned against
-public void testBug336428f() {
+public void testBug336428f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 	"DoWhileBug.java",
@@ -14799,7 +14799,7 @@ public void testBug336428f() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=332838
 // Null info of assert statements should not affect flow info
 // when CompilerOptions.OPTION_IncludeNullInfoFromAsserts is disabled.
-public void testBug332838() {
+public void testBug332838() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_IncludeNullInfoFromAsserts, CompilerOptions.DISABLED);
 	this.runNegativeTest(
@@ -14842,7 +14842,7 @@ public void testBug332838() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=336544
-public void testBug336544() {
+public void testBug336544() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -14865,7 +14865,7 @@ public void testBug336544() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=336544
-public void testBug336544_2() {
+public void testBug336544_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -14888,7 +14888,7 @@ public void testBug336544_2() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=336544
-public void testBug336544_3() {
+public void testBug336544_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -14912,7 +14912,7 @@ public void testBug336544_3() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=313870
-public void testBug313870() {
+public void testBug313870() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -14937,7 +14937,7 @@ public void testBug313870() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=313870
-public void testBug313870b() {
+public void testBug313870b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -14963,7 +14963,7 @@ public void testBug313870b() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=313870
-public void testBug313870c() {
+public void testBug313870c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -14989,7 +14989,7 @@ public void testBug313870c() {
 		"");
 }
 // https://bugs.eclipse.org/338303 - Warning about Redundant assignment conflicts with definite assignment
-public void testBug338303() {
+public void testBug338303() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Bug338303.java",
@@ -15019,7 +15019,7 @@ public void testBug338303() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=338234
-public void testBug338234() {
+public void testBug338234() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -15086,7 +15086,7 @@ public void testBug324178a() {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=326950
-public void testBug326950a() throws Exception {
+public void testBug326950a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.WARNING);
 	options.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.WARNING);
@@ -15125,11 +15125,11 @@ public void testBug326950a() throws Exception {
 		"    20  ldc <String \"Dead code, but don\'t optimize me out\"> [30]\n" +
 		"    22  invokevirtual java.io.PrintStream.println(java.lang.String) : void [24]\n" +
 		"    25  return\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=326950
 // Code marked dead due to if(false), etc. can be optimized out
-public void testBug326950b() throws Exception {
+public void testBug326950b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.WARNING);
 	options.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.WARNING);
@@ -15163,11 +15163,11 @@ public void testBug326950b() throws Exception {
 		"    1  istore_1 [i]\n" +
 		"    2  iinc 1 1 [i]\n" +
 		"    5  return\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=326950
 // Free return should be generated for a method even if it ends with dead code
-public void testBug326950c() throws Exception {
+public void testBug326950c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.WARNING);
 	options.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.WARNING);
@@ -15203,11 +15203,11 @@ public void testBug326950c() throws Exception {
 		"     9  return\n" +
 		"    10  iinc 3 1 [i]\n" +
 		"    13  return\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=326950
 // Free return should be generated for a constructor even if it ends with dead code
-public void testBug326950d() throws Exception {
+public void testBug326950d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.WARNING);
 	options.put(CompilerOptions.OPTION_ReportPotentialNullReference, CompilerOptions.WARNING);
@@ -15245,11 +15245,11 @@ public void testBug326950d() throws Exception {
 		"    13  return\n" +
 		"    14  iinc 2 1 [i]\n" +
 		"    17  return\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=339250
 // Check code gen
-public void testBug339250() throws Exception {
+public void testBug339250() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -15274,7 +15274,7 @@ public void testBug339250() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=339250
 // Check that the redundant null check warning is correctly produced
-public void testBug339250a() throws Exception {
+public void testBug339250a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -15297,7 +15297,7 @@ public void testBug339250a() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=339250
 // Check that the redundant null check warning is correctly produced
-public void testBug339250b() throws Exception {
+public void testBug339250b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -15337,7 +15337,7 @@ public void testBug339250b() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=342300
-public void testBug342300() throws Exception {
+public void testBug342300() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -15357,7 +15357,7 @@ public void testBug342300() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=342300
 // To make sure only the redundant null check is given and not a potential NPE
-public void testBug342300b() throws Exception {
+public void testBug342300b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -15381,7 +15381,7 @@ public void testBug342300b() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348379
-public void testBug348379a() throws Exception {
+public void testBug348379a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -15407,7 +15407,7 @@ public void testBug348379a() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348379
-public void testBug348379b() throws Exception {
+public void testBug348379b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -15428,7 +15428,7 @@ public void testBug348379b() throws Exception {
 		"abcd");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348379
-public void testBug348379c() throws Exception {
+public void testBug348379c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -15454,7 +15454,7 @@ public void testBug348379c() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348379
-public void testBug348379d() throws Exception {
+public void testBug348379d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -15480,7 +15480,7 @@ public void testBug348379d() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348379
-public void testBug348379e() throws Exception {
+public void testBug348379e() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -15502,7 +15502,7 @@ public void testBug348379e() throws Exception {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=348379
-public void testBug348379f() throws Exception {
+public void testBug348379f() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -15533,7 +15533,7 @@ public void testBug348379f() throws Exception {
 		"----------\n");
 }
 // Bug 354554 - [null] conditional with redundant condition yields weak error message
-public void testBug354554() {
+public void testBug354554() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"Bug354554.java",
@@ -15558,7 +15558,7 @@ public void testBug354554() {
 		"----------\n");
 }
 //Bug 354554 - [null] conditional with redundant condition yields weak error message
-public void testBug354554b() {
+public void testBug354554b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"Bug354554.java",
@@ -15578,7 +15578,7 @@ public void testBug354554b() {
 		"----------\n");
 }
 // Bug 358827 - [1.7] exception analysis for t-w-r spoils null analysis
-public void test358827() {
+public void test358827() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 			new String[] {
 				"Bug358827.java",
@@ -15603,7 +15603,7 @@ public void test358827() {
 			"----------\n");
 }
 // Bug 367879 - Incorrect "Potential null pointer access" warning on statement after try-with-resources within try-finally
-public void test367879() {
+public void test367879() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"Bug367879.java",
@@ -15627,7 +15627,7 @@ public void test367879() {
 			"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=256796
-public void testBug256796() {
+public void testBug256796() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportUnnecessaryElse, CompilerOptions.IGNORE);
 	compilerOptions.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.WARNING);
@@ -15677,7 +15677,7 @@ public void testBug256796() {
 			JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=256796
-public void testBug256796a() {
+public void testBug256796a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(CompilerOptions.OPTION_ReportUnnecessaryElse, CompilerOptions.IGNORE);
 	compilerOptions.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.WARNING);
@@ -15777,7 +15777,7 @@ public void testBug256796a() {
 			JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings);
 }
 // Bug 360328 - [compiler][null] detect null problems in nested code (local class inside a loop)
-public void testBug360328() {
+public void testBug360328() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.ERROR);
@@ -15841,7 +15841,7 @@ public void testBug360328() {
 }
 // Bug 360328 - [compiler][null] detect null problems in nested code (local class inside a loop)
 // constructors
-public void testBug360328b() {
+public void testBug360328b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.ERROR);
@@ -15911,7 +15911,7 @@ public void testBug360328b() {
 }
 // Bug 360328 - [compiler][null] detect null problems in nested code (local class inside a loop)
 // initializers
-public void testBug360328c() {
+public void testBug360328c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.ERROR);
@@ -15982,7 +15982,7 @@ public void testBug360328c() {
 }
 // Bug 360328 - [compiler][null] detect null problems in nested code (local class inside a loop)
 // try-finally instead of loop
-public void testBug360328d() {
+public void testBug360328d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNullReference, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantNullCheck, CompilerOptions.ERROR);
@@ -16049,7 +16049,7 @@ public void testBug360328d() {
 }
 // Bug 384380 - False positive on a "Potential null pointer access" after a continue
 // original test case
-public void testBug384380() {
+public void testBug384380() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Test.java",
@@ -16084,7 +16084,7 @@ public void testBug384380() {
 }
 // Bug 384380 - False positive on a "Potential null pointer access" after a continue
 // variant with a finally block
-public void testBug384380_a() {
+public void testBug384380_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Test.java",
@@ -16121,7 +16121,7 @@ public void testBug384380_a() {
 }
 // Bug 384380 - False positive on a "Potential null pointer access" after a continue
 // while & foreach loops
-public void testBug384380_b() {
+public void testBug384380_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Test.java",
@@ -16156,7 +16156,7 @@ public void testBug384380_b() {
 		},
 		"");
 }
-public void testBug376263() {
+public void testBug376263() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	runConformTest(
@@ -16192,7 +16192,7 @@ public void testBug376263() {
 		null/*requestor*/);
 }
 //object/array allocation
-public void testExpressions01() {
+public void testExpressions01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16236,7 +16236,7 @@ public void testExpressions01() {
 	);
 }
 //'this' expressions (incl. qualif.)
-public void testExpressions02() {
+public void testExpressions02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16272,7 +16272,7 @@ public void testExpressions02() {
 	);
 }
 //various non-null expressions: class-literal, string-literal, casted 'this'
-public void testExpressions03() {
+public void testExpressions03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16319,7 +16319,7 @@ public void testExpressions03() {
 }
 
 //a non-null ternary expression
-public void testExpressions04() {
+public void testExpressions04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16363,7 +16363,7 @@ public void testBug345305_1() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // original test case
-public void testBug345305_2() {
+public void testBug345305_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -16386,7 +16386,7 @@ public void testBug345305_2() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // assignment in method argument position
-public void testBug345305_3() {
+public void testBug345305_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -16410,7 +16410,7 @@ public void testBug345305_3() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // analysis of second local variable must not interfere
-public void testBug345305_4() {
+public void testBug345305_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16443,7 +16443,7 @@ public void testBug345305_4() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // block-less if involved - info about pot.nn. was lost when checking against loop's info (deferred check)
-public void testBug345305_6() {
+public void testBug345305_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16473,7 +16473,7 @@ public void testBug345305_6() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // block-less if involved
-public void testBug345305_7() {
+public void testBug345305_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16503,7 +16503,7 @@ public void testBug345305_7() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // consider exception thrown from cast expression
-public void testBug345305_8() {
+public void testBug345305_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16532,7 +16532,7 @@ public void testBug345305_8() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // consider exception thrown from binary expression
-public void testBug345305_9() {
+public void testBug345305_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16561,7 +16561,7 @@ public void testBug345305_9() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // inner labeled block with break
-public void testBug345305_10() {
+public void testBug345305_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16596,7 +16596,7 @@ public void testBug345305_10() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // switch statement
-public void testBug345305_11() {
+public void testBug345305_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16630,7 +16630,7 @@ public void testBug345305_11() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // assignment inside conditional expression
-public void testBug345305_12() {
+public void testBug345305_12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16659,7 +16659,7 @@ public void testBug345305_12() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // explicit throw
-public void testBug345305_13() {
+public void testBug345305_13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16691,7 +16691,7 @@ public void testBug345305_13() {
 
 // Bug 345305 - [compiler][null] Compiler misidentifies a case of "variable can only be null"
 // do-while
-public void testBug345305_14() {
+public void testBug345305_14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -16740,7 +16740,7 @@ public void testBug345305_14() {
 }
 
 // Bug 364326 - [compiler][null] NullPointerException is not found by compiler. FindBugs finds that one
-public void testBug364326() {
+public void testBug364326() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"NPE_OnBoxing.java",
@@ -16779,7 +16779,7 @@ public void testBug364326() {
 }
 
 // Bug 401088 - [compiler][null] Wrong warning "Redundant null check" inside nested try statement
-public void testBug401088() {
+public void testBug401088() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -16823,7 +16823,7 @@ public void testBug401088() {
 		"java.lang.Exception");
 }
 // Bug 401088 - [compiler][null] Wrong warning "Redundant null check" inside nested try statement
-public void testBug401088a() {
+public void testBug401088a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  runConformTest(
      new String[] {
          "X.java",
@@ -16868,7 +16868,7 @@ public void testBug401088a() {
      "1java.lang.Exception");
 }
 // Bug 401092 - [compiler][null] Wrong warning "Redundant null check" in outer catch of nested try
-public void test401092() {
+public void test401092() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -16905,7 +16905,7 @@ public void test401092() {
 		});
 }
 // Bug 401092 - [compiler][null] Wrong warning "Redundant null check" in outer catch of nested try
-public void test401092a() {
+public void test401092a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -16944,7 +16944,7 @@ public void test401092a() {
 		});
 }
 // Bug 402993 - [null] Follow up of bug 401088: Missing warning about redundant null check
-public void testBug402993() {
+public void testBug402993() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"Test.java",
@@ -16999,7 +16999,7 @@ public void testBug402993() {
 }
 // Bug 402993 - [null] Follow up of bug 401088: Missing warning about redundant null check
 // variant with finally block in inner try
-public void testBug402993a() {
+public void testBug402993a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"Test.java",
@@ -17054,7 +17054,7 @@ public void testBug402993a() {
 		"Redundant null check: The variable exc can only be null at this location\n" +
 		"----------\n");
 }
-public void testBug453305() {
+public void testBug453305() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"NullTest.java",
@@ -17090,7 +17090,7 @@ public void testBug453305() {
 			"}\n"
 		});
 }
-public void testBug431016() {
+public void testBug431016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"Test.java",
@@ -17113,7 +17113,7 @@ public void testBug431016() {
 		});
 }
 // originally created for documentation purpose, see https://bugs.eclipse.org/453483#c9
-public void testBug431016_simplified() {
+public void testBug431016_simplified() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"Test.java",
@@ -17131,7 +17131,7 @@ public void testBug431016_simplified() {
 			"}\n"
 		});
 }
-public void testBug432109() {
+public void testBug432109() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"Test.java",
@@ -17165,7 +17165,7 @@ public void testBug432109() {
 			"}\n"
 		});
 }
-public void testBug435528_orig() {
+public void testBug435528_orig() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -17209,7 +17209,7 @@ public void testBug435528_orig() {
 	runner.javacTestOptions = JavacTestOptions.Excuse.EclipseWarningConfiguredAsError;
 	runner.runNegativeTest();
 }
-public void testBug435528_notaconstant() {
+public void testBug435528_notaconstant() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		true/*flush*/,
 		new String[] {
@@ -17247,7 +17247,7 @@ public void testBug435528_notaconstant() {
 		"",
 		JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings);
 }
-public void testBug418500() {
+public void testBug418500() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"Test.java",
@@ -17280,7 +17280,7 @@ public void testBug418500() {
 			"}\n"
 		});
 }
-public void testBug441737() {
+public void testBug441737() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"Bogus.java",
@@ -17312,7 +17312,7 @@ public void testBug441737() {
 		});
 }
 // fixed in 3.6.2, likely via bug 332637.
-public void testBug195638_comment3() {
+public void testBug195638_comment3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"Test.java",
@@ -17354,7 +17354,7 @@ public void testBug195638_comment3() {
 			"}\n"
 		});
 }
-public void testBug195638_comment6() {
+public void testBug195638_comment6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"CanOnlyBeNullShouldBeMayBeNull.java",
@@ -17387,7 +17387,7 @@ public void testBug195638_comment6() {
 		"Potential null pointer access: The variable tblVarRpl may be null at this location\n" +
 		"----------\n");
 }
-public void testBug195638_comment14() {
+public void testBug195638_comment14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"Test.java",
@@ -17418,7 +17418,7 @@ public void testBug195638_comment14() {
 		"Potential null pointer access: The variable o may be null at this location\n" +
 		"----------\n");
 }
-public void testBug195638_comment19() {
+public void testBug195638_comment19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"Test.java",
@@ -17441,7 +17441,7 @@ public void testBug195638_comment19() {
 			"}\n"
 		});
 }
-public void testBug454031() {
+public void testBug454031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"xy/Try.java",
@@ -17480,7 +17480,7 @@ public void testBug454031() {
 		"----------\n");
 }
 // switch with fall-through nested in for:
-public void testBug451660() {
+public void testBug451660() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"X.java",
@@ -17510,7 +17510,7 @@ public void testBug451660() {
 		"Potential null pointer access: The variable s may be null at this location\n" +
 		"----------\n");
 }
-public void testBug486912KnownNullInLoop() {
+public void testBug486912KnownNullInLoop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"test/KnownNullInLoop.java",
@@ -17547,7 +17547,7 @@ public void testBug486912KnownNullInLoop() {
 		"----------\n"
 	);
 }
-public void testBug486912PotNullInLoop_orig() {
+public void testBug486912PotNullInLoop_orig() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"test/PotNullInLoop.java",
@@ -17679,7 +17679,7 @@ public void testBug486912PotNullInLoop_orig() {
 	);
 }
 // variant of testBug486912PotNullInLoop_orig spiced up with potentiality from an 'unknown' o0:
-public void testBug486912PotNullInLoop() {
+public void testBug486912PotNullInLoop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"test/PotNullInLoop.java",
@@ -17775,7 +17775,7 @@ public void testBug486912PotNullInLoop() {
 		"----------\n"
 	);
 }
-public void testBug447695() {
+public void testBug447695() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 		"test/Test447695.java",
@@ -17858,7 +17858,7 @@ public void testBug447695e() {
 		}
 	);
 }
-public void testBug447695f() {
+public void testBug447695f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"test/Test447695.java",
@@ -17879,7 +17879,7 @@ public void testBug447695f() {
 		}
 	);
 }
-public void testBug447695g() {
+public void testBug447695g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"test/Test447695.java",
@@ -17947,7 +17947,7 @@ public void testBug447695g() {
 		"----------\n"
 	);
 }
-public void testBug509188() {
+public void testBug509188() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"test/Bug509188.java",
@@ -17984,7 +17984,7 @@ public void testBug509188() {
 		"not dead"
 	);
 }
-public void testBug536408() {
+public void testBug536408() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -18014,11 +18014,11 @@ public void testBug536408() {
 	runner.javacTestOptions = JavacTestOptions.Excuse.EclipseWarningConfiguredAsError;
 	runner.runNegativeTest();
 }
-public void testBug542707_1() {
+public void testBug542707_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14) // switch expression
 		return;
 	Runner runner = new Runner();
-	runner.customOptions = new HashMap<>();
+	runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	runner.testFiles = new String[] {
 		"X.java",
 		"public class X {\n" +
@@ -18040,7 +18040,7 @@ public void testBug542707_1() {
 			"----------\n";
 	runner.runNegativeTest();
 }
-public void testBug544872() {
+public void testBug544872() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"Test.java",
@@ -18063,7 +18063,7 @@ public void testBug544872() {
 		"----------\n"
 	);
 }
-public void testBug551012() {
+public void testBug551012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeNullTest(
 		new String[] {
 			"NullConstants.java",
@@ -18114,7 +18114,7 @@ public void testBug551012() {
 		"Redundant null check: The field BAR is a nonnull constant\n" +
 		"----------\n");
 }
-public void testBug561280() {
+public void testBug561280() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"test/Test.java",
@@ -18214,7 +18214,7 @@ public void testBug561280() {
 			"}\n"
 		});
 }
-public void testBug380786() {
+public void testBug380786() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"PNA.java",
@@ -18266,7 +18266,7 @@ public void testGH1642_a() {
 			}
 			"""});
 }
-public void testGH1667() {
+public void testGH1667() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"Foo.java",
@@ -18296,7 +18296,7 @@ public void testGH1667() {
 		});
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
-public void testGH1461() {
+public void testGH1461() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK15) return;
 	runNegativeTest(
 		new String[] {
@@ -18325,7 +18325,7 @@ public void testGH1461() {
 			""");
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
-public void testGH1461SuppressWarnings() {
+public void testGH1461SuppressWarnings() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK15) return;
 	runConformTest(
 		new String[] {
@@ -18348,7 +18348,7 @@ public void testGH1461SuppressWarnings() {
 		"");
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
-public void testGH1461_a() {
+public void testGH1461_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK15) return;
 	runNegativeTest(
 		new String[] {
@@ -18377,7 +18377,7 @@ public void testGH1461_a() {
 			""");
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
-public void testGH1461_b() {
+public void testGH1461_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK15) return;
 	runNegativeTest(
 		new String[] {
@@ -18406,7 +18406,7 @@ public void testGH1461_b() {
 			""");
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
-public void testGH1461_c() {
+public void testGH1461_c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK15) return;
 	runNegativeTest(
 		new String[] {
@@ -18429,7 +18429,7 @@ public void testGH1461_c() {
 			""");
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
-public void testGH1461_d() {
+public void testGH1461_d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK15) return;
 	runNegativeTest(
 		new String[] {
@@ -18457,7 +18457,7 @@ public void testGH1461_d() {
 			----------
 			""");
 }
-public void testGH1755() {
+public void testGH1755() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",

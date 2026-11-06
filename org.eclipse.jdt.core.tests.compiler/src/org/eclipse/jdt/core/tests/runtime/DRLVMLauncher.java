@@ -28,31 +28,31 @@ public class DRLVMLauncher extends StandardVMLauncher {
 /**
  * @see LocalVMLauncher#getCommandLine
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String[] getCommandLine() {
-	List<String> commandLine= new ArrayList<>();
+	List<String> commandLine= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	// VM binary
-	String vmLocation = this.vmPath +
+	String vmLocation = this.vmPath + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    (this.vmPath.endsWith(File.separator) ? "" : File.separator) +
 	    "bin" +
 	    File.separator +
 	    "javaw";
 	final String osName = System.getProperty("os.name");
-	if (osName.indexOf("win32") == -1 && !new File(vmLocation).exists()) {
+	if (osName.indexOf("win32") == -1 && !new File(vmLocation).exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	    vmLocation = vmLocation.substring(0, vmLocation.length()-1);
 	}
 	commandLine.add(vmLocation);
 
 	// VM arguments
 	if (this.vmArguments != null) {
-		for (int i = 0; i < this.vmArguments.length; i++) {
+		for (int i = 0; i < this.vmArguments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			commandLine.add(this.vmArguments[i]);
 		}
 	}
 
 	// boot classpath
-	commandLine.add("-Xbootclasspath/a:" + buildBootClassPath());
+	commandLine.add("-Xbootclasspath/a:" + buildBootClassPath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// debug mode
 	if (this.debugPort != -1) {
@@ -60,7 +60,7 @@ public String[] getCommandLine() {
 		commandLine.add("-Xnoagent");
 		// commandLine.addElement("-Djava.compiler=NONE");
 		commandLine.add(
-			"-Xrunjdwp:transport=dt_socket,address=" +
+			"-Xrunjdwp:transport=dt_socket,address=" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.debugPort +
 			",server=y,suspend=n");
 	}
@@ -80,9 +80,9 @@ public String[] getCommandLine() {
 		commandLine.add(Integer.toString(this.evalPort));
 		if (TARGET_HAS_FILE_SYSTEM) {
 			commandLine.add(CODESNIPPET_CLASSPATH_ARG);
-			commandLine.add(this.evalTargetPath + File.separator + REGULAR_CLASSPATH_DIRECTORY);
+			commandLine.add(this.evalTargetPath + File.separator + REGULAR_CLASSPATH_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			commandLine.add(CODESNIPPET_BOOTPATH_ARG);
-			commandLine.add(this.evalTargetPath + File.separator + BOOT_CLASSPATH_DIRECTORY);
+			commandLine.add(this.evalTargetPath + File.separator + BOOT_CLASSPATH_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -93,7 +93,7 @@ public String[] getCommandLine() {
 
 	// program arguments
 	if (this.programArguments != null) {
-		for (int i=0;i<this.programArguments.length;i++) {
+		for (int i=0;i<this.programArguments.length;i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			commandLine.add(this.programArguments[i]);
 		}
 	}
@@ -109,10 +109,10 @@ public String[] getCommandLine() {
 	}
 
 	// check for spaces in result
-	for (int i = 0; i < result.length; i++) {
+	for (int i = 0; i < result.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String argument = result[i];
 		if (argument.indexOf(' ') != -1) {
-			result[i] = "\"" + argument + "\"";
+			result[i] = "\"" + argument + "\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -122,25 +122,25 @@ public String[] getCommandLine() {
 /**
  * Builds the actual boot class path that is going to be passed to the VM.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected String buildBootClassPath() {
-	StringBuilder bootPathString = new StringBuilder();
+	StringBuilder bootPathString = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	char pathSeparator = File.pathSeparatorChar;
 
 	if (this.bootPath != null) {
 		// Add boot class path given by client
 		int length = this.bootPath.length;
-		for (int i = 0; i < length; i++){
-			bootPathString.append(this.bootPath[i]);
-			bootPathString.append(pathSeparator);
+		for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			bootPathString.append(this.bootPath[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			bootPathString.append(pathSeparator); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
 	// Add boot class path directory if needed
 	if (this.evalTargetPath != null && TARGET_HAS_FILE_SYSTEM) {
-		bootPathString.append(this.evalTargetPath);
-		bootPathString.append(File.separatorChar);
-		bootPathString.append(BOOT_CLASSPATH_DIRECTORY);
+		bootPathString.append(this.evalTargetPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append(File.separatorChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append(BOOT_CLASSPATH_DIRECTORY); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	return bootPathString.toString();

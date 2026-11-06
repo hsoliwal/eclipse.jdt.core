@@ -61,7 +61,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 	}
 
 	// completion for local enum
-	public void test002() throws JavaModelException {
+	public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Completion/src/X.java",
 				"public seal class X permits Y{\n"
@@ -81,7 +81,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 
 	}
 	// completion for final keyword in instanceof pattern variable
-	public void test003() throws JavaModelException {
+	public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Point.java",
@@ -99,13 +99,13 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 		String completeBehind = "fina";
 		int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-		assertResults("final[KEYWORD]{final, null, null, final, null, " + (R_DEFAULT+R_RESOLVED+R_INTERESTING+R_CASE+R_NON_RESTRICTED+R_FINAL+R_EXPECTED_TYPE) + "}",
+		assertResults("final[KEYWORD]{final, null, null, final, null, " + (R_DEFAULT+R_RESOLVED+R_INTERESTING+R_CASE+R_NON_RESTRICTED+R_FINAL+R_EXPECTED_TYPE) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 
 
 	}
 	// completion for final keyword in instanceof pattern variable at higher relevance than Fin* classes
-	public void test004() throws JavaModelException {
+	public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[2];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Point.java",
@@ -128,7 +128,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 		String completeBehind = "fina";
 		int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-		assertResults("FinalCl[TYPE_REF]{abc.FinalCl, abc, Labc.FinalCl;, null, null, "+(R_DEFAULT+R_RESOLVED+R_INTERESTING+R_NON_RESTRICTED+R_EXPECTED_TYPE)+"}\n"
+		assertResults("FinalCl[TYPE_REF]{abc.FinalCl, abc, Labc.FinalCl;, null, null, "+(R_DEFAULT+R_RESOLVED+R_INTERESTING+R_NON_RESTRICTED+R_EXPECTED_TYPE)+"}\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "final[KEYWORD]{final, null, null, final, null, "+(R_DEFAULT+R_RESOLVED+R_INTERESTING+R_CASE+R_NON_RESTRICTED+R_FINAL+R_EXPECTED_TYPE)+"}",
 				requestor.getResults());
 
@@ -136,7 +136,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 	}
 
 	// completion for instanceof pattern variable for false condition - inside the instanceof block
-	public void test005() throws JavaModelException {
+	public void test005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Point.java",
@@ -163,7 +163,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 
 	}
 	// completion for instanceof pattern variable for true condition - outside the instanceof block
-	public void test006() throws JavaModelException {
+	public void test006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Point.java",
@@ -189,7 +189,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 
 	}
 	// completion for instanceof pattern variable for false condition - outside the instanceof block - in do-while loop
-	public void test007() throws JavaModelException {
+	public void test007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Point.java",
@@ -223,7 +223,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 				requestor.getResults());
 	}
 	// completion for instanceof pattern variable - double negation
-	public void test008() throws JavaModelException {
+	public void test008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Point.java",
@@ -249,7 +249,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 
 	}
 	// completion for instanceof pattern variable - triple negation
-	public void test009() throws JavaModelException {
+	public void test009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Point.java",
@@ -285,7 +285,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 
 	}
 	// completion for instanceof pattern variable - double negation
-	public void test010() throws JavaModelException {
+	public void test010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Point.java",
@@ -321,7 +321,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 
 	}
 	// completion for instanceof pattern variable for false condition
-	public void test011() throws JavaModelException {
+	public void test011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Point.java",
@@ -358,7 +358,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 	}
 
 	// completion for instanceof pattern variable for true condition
-	public void test012() throws JavaModelException {
+	public void test012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Point.java",
@@ -394,7 +394,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 
 	}
 
-	public void bug575599() throws Exception {
+	public void bug575599() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Bug_575599.java",
@@ -433,7 +433,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 				"wait[METHOD_REF]{wait(), Ljava.lang.Object;, (JI)V, wait, (millis, nanos), 60}",
 				requestor.getResults());
 	}
-	public void testConstructor7() throws JavaModelException {
+	public void testConstructor7() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[2];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -459,12 +459,12 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, monitor);
 
 		assertResults(
-				"TestConstructor1[CONSTRUCTOR_INVOCATION]{(), Ltest.TestConstructor1;, ([I)V, TestConstructor1, (i), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" +
+				"TestConstructor1[CONSTRUCTOR_INVOCATION]{(), Ltest.TestConstructor1;, ([I)V, TestConstructor1, (i), "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"   TestConstructor1[TYPE_REF]{TestConstructor1, test, Ltest.TestConstructor1;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CONSTRUCTOR)+"}",
 				requestor.getResults());
 	}
 
-	public void testCompletionFindConstructor() throws JavaModelException {
+	public void testCompletionFindConstructor() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wc = getWorkingCopy(
 	            "/Completion/src/CompletionFindConstructor.java",
 	            "public record CompletionFindConstructor(int i, int [] ia) {\n"+
@@ -499,7 +499,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3983
 	// [Records][Completion] Canonical constructor argument names missing from completion proposals
-	public void testIssue3983() throws JavaModelException {
+	public void testIssue3983() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/XIssue3983.java",
@@ -523,7 +523,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3983
 	// [Records][Completion] Canonical constructor argument names missing from completion proposals
-	public void testIssue3983_2() throws JavaModelException {
+	public void testIssue3983_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/XIssue3983.java",
@@ -548,7 +548,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3983
 	// [Records][Completion] Canonical constructor argument names missing from completion proposals
-	public void testIssue3983_3() throws JavaModelException {
+	public void testIssue3983_3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/XIssue3983.java",
@@ -571,7 +571,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 		assertResults("ExplicitCCtorContainingRecord[CONSTRUCTOR_INVOCATION]{(), LExplicitCCtorContainingRecord;, (IIDLjava.lang.Object;)V, ExplicitCCtorContainingRecord, (from, to, length, profile), 59}", requestor.getResults());
 	}
-	public void testRecordSyntheticMethods() throws JavaModelException {
+	public void testRecordSyntheticMethods() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[2];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/FooBar.java",
@@ -642,7 +642,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 				+ "wait[METHOD_REF]{wait(), Ljava.lang.Object;, (JI)V, wait, (millis, nanos), 60}",
 				requestor.getResults());
 	}
-	public void testGHIssue4158_1() throws JavaModelException {
+	public void testGHIssue4158_1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[2];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/FooBar.java",
@@ -669,7 +669,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 				+ "bar2[JAVADOC_PARAM_REF]{bar2, null, null, bar2, null, 44}",
 				requestor.getResults());
 	}
-	public void testGHIssue4158_2() throws JavaModelException {
+	public void testGHIssue4158_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[2];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/FooBar.java",
@@ -696,7 +696,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 				+ "bar[JAVADOC_PARAM_REF]{bar, null, null, bar, null, 45}",
 				requestor.getResults());
 	}
-	public void testGHIssue4158_3() throws JavaModelException {
+	public void testGHIssue4158_3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[2];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/FooBar.java",
@@ -720,7 +720,7 @@ public class CompletionTests16_2 extends AbstractJavaModelCompletionTests {
 				"XTZ[JAVADOC_PARAM_REF]{<XTZ>, null, null, XTZ, null, 38}",
 				requestor.getResults());
 	}
-	public void testGHIssue4158_4() throws JavaModelException {
+	public void testGHIssue4158_4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[2];
 		this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/FooBar.java",

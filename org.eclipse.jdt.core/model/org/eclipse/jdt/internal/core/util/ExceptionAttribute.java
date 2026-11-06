@@ -28,7 +28,7 @@ public class ExceptionAttribute extends ClassFileAttribute implements IException
 	private char[][] exceptionNames;
 	private int[] exceptionIndexes;
 
-	ExceptionAttribute(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException {
+	ExceptionAttribute(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super(classFileBytes, constantPool, offset);
 		this.exceptionsNumber = u2At(classFileBytes, 6, offset);
 		int exceptionLength = this.exceptionsNumber;
@@ -40,7 +40,7 @@ public class ExceptionAttribute extends ClassFileAttribute implements IException
 		}
 		int readOffset = 8;
 		IConstantPoolEntry constantPoolEntry;
-		for (int i = 0; i < exceptionLength; i++) {
+		for (int i = 0; i < exceptionLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.exceptionIndexes[i] = u2At(classFileBytes, readOffset, offset);
 			constantPoolEntry = constantPool.decodeEntry(this.exceptionIndexes[i]);
 			if (constantPoolEntry.getKind() != IConstantPoolConstant.CONSTANT_Class) {

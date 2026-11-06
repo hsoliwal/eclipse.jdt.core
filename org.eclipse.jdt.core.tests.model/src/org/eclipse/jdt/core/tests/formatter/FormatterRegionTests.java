@@ -63,9 +63,9 @@ public class FormatterRegionTests extends TestCase {
 		assertEquals(source, formatAndApply(source, new IRegion[] { new Region(offset, 0) }, "\n"));
 	}
 
-	private void assertEmptyLeadingRegionIsNeutral(String lineSeparator) throws Exception {
-		String source = lineSeparator + "class A{void foo(){int x=1;}}" + lineSeparator;
-		String expected = lineSeparator
+	private void assertEmptyLeadingRegionIsNeutral(String lineSeparator) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String source = lineSeparator + "class A{void foo(){int x=1;}}" + lineSeparator; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String expected = lineSeparator //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "class A {" + lineSeparator
 				+ "\tvoid foo() {" + lineSeparator
 				+ "\t\tint x = 1;" + lineSeparator

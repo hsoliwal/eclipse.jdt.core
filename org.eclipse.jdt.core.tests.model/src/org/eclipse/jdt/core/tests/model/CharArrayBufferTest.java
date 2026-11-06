@@ -38,7 +38,7 @@ public class CharArrayBufferTest extends TestCase {
 	private static void assertAIOOBE(char[] src, int start, int length) {
 		try {
 			new CharArrayBuffer().append(src, start, length);
-			fail("Expected ArrayIndexOutOfBoundsException for start=" + start + ", length=" + length);
+			fail("Expected ArrayIndexOutOfBoundsException for start=" + start + ", length=" + length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} catch (ArrayIndexOutOfBoundsException expected) {
 			// expected
 		}

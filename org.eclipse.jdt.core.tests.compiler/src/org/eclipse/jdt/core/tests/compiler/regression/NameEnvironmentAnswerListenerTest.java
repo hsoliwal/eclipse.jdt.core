@@ -87,12 +87,12 @@ public class NameEnvironmentAnswerListenerTest extends AbstractComparableTest {
 		}
 	}
 
-	public void testNameEnvironmentAnswerListener() throws IOException {
+	public void testNameEnvironmentAnswerListener() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String path = LIB_DIR;
 		if(!path.endsWith(File.separator)) {
 			path += File.separator;
 		}
-		String libPath = path + "lib.jar";
+		String libPath = path + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(
 				new String[] {
 						"p/Color.java",
@@ -106,7 +106,7 @@ public class NameEnvironmentAnswerListenerTest extends AbstractComparableTest {
 					},
 				libPath, JavaCore.VERSION_17);
 
-		String unusedLibPath = path + "lib_unused.jar";
+		String unusedLibPath = path + "lib_unused.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(
 				new String[] {
 						"p2/Color.java",
@@ -120,7 +120,7 @@ public class NameEnvironmentAnswerListenerTest extends AbstractComparableTest {
 					},
 				unusedLibPath, JavaCore.VERSION_17);
 
-		String srcDir =  path + "src";
+		String srcDir =  path + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String[] pathsAndContents =
 				new String[] {
 					"s/X.java",
@@ -132,20 +132,20 @@ public class NameEnvironmentAnswerListenerTest extends AbstractComparableTest {
 				};
 		Util.createSourceDir(pathsAndContents, srcDir);
 
-		List<String> classpath = new ArrayList<>(Arrays.asList(getDefaultClassPaths()));
+		List<String> classpath = new ArrayList<>(Arrays.asList(getDefaultClassPaths())); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		classpath.add(libPath);
 		classpath.add(unusedLibPath);
 
 		File outputDirectory = new File(Util.getOutputDirectory());
-		if (!outputDirectory.isDirectory()) {
-			outputDirectory.mkdirs();
+		if (!outputDirectory.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			outputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
-		List<String> ecjArguments = new ArrayList<>();
+		List<String> ecjArguments = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		ecjArguments.add("-classpath");
 		ecjArguments.add(classpath.stream()
-				.map(jar -> jar.equals(unusedLibPath) ? String.format("%s[-**/*]", jar) : jar)
+				.map(jar -> jar.equals(unusedLibPath) ? String.format("%s[-**/*]", jar) : jar) //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 				.collect(joining(File.pathSeparator)));
 
 
@@ -155,23 +155,23 @@ public class NameEnvironmentAnswerListenerTest extends AbstractComparableTest {
 		ecjArguments.add("--release");
 		ecjArguments.add("17");
 
-		ecjArguments.add(srcDir+ File.separator + "s"+ File.separator + "X.java");
+		ecjArguments.add(srcDir+ File.separator + "s"+ File.separator + "X.java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		EclipseBatchCompiler compiler;
 		File logFile = new File(outputDirectory, "compile.log");
-		try(PrintWriter log = new PrintWriter(new FileOutputStream(logFile))) {
+		try(PrintWriter log = new PrintWriter(new FileOutputStream(logFile))) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			compiler = new EclipseBatchCompiler(log);
 			boolean compileOK;
 			compileOK = compiler.compile(ecjArguments.toArray(new String[ecjArguments.size()]));
 			if(!compileOK) {
 				String logOutputString = Util.fileContent(logFile.getAbsolutePath());
-				Assert.fail("Compile failed, output: '" + logOutputString + "'");
+				Assert.fail("Compile failed, output: '" + logOutputString + "'"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		String libPathExpected = libPath.replace('\\', '/');
 		String unusedLibPathExpected = unusedLibPath.replace('\\', '/');
 		Set<String> answeredFileNames = compiler.answeredFileNames;
-		Assert.assertTrue("must reference p.Color: " + answeredFileNames, answeredFileNames.stream().anyMatch(s -> s.contains(libPathExpected)));
-		Assert.assertFalse("must not reference p2.Color: " + answeredFileNames, answeredFileNames.stream().anyMatch(s -> s.contains(unusedLibPathExpected)));
+		Assert.assertTrue("must reference p.Color: " + answeredFileNames, answeredFileNames.stream().anyMatch(s -> s.contains(libPathExpected))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		Assert.assertFalse("must not reference p2.Color: " + answeredFileNames, answeredFileNames.stream().anyMatch(s -> s.contains(unusedLibPathExpected))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

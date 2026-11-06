@@ -38,7 +38,7 @@ public class ExceptionHandlingProcessor extends BaseProcessor {
 		ProcessorTestStatus.setProcessorRan();
         Collection<Declaration> declarations = _env.getDeclarationsAnnotatedWith(_annotationType);
         assert declarations.size() == 1;
-        for (Declaration dec : declarations) {
+        for (Declaration dec : declarations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         	ExceptionHandlingAnnotation annotation = dec.getAnnotation(ExceptionHandlingAnnotation.class);
         	boolean booleanValue = annotation.booleanValue();
         	String strValue = annotation.strValue();

@@ -22,12 +22,16 @@ import static org.eclipse.jdt.internal.formatter.TokenManager.ANY;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.eclipse.jdt.core.dom.*;
 import org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants;
 
 /** Implementation of the "Keep braced code on one line" feature. */
 public class OneLineEnforcer extends ASTVisitor {
+	private static final Pattern END_VISIT_PATTERN = Pattern.compile("(is|get)\\p{Lu}.*"); //$NON-NLS-1$
+	private static final Pattern END_VISIT_PATTERN_2 = Pattern.compile("set\\p{Lu}.*"); //$NON-NLS-1$
+
 	private final TokenManager tm;
 	private final DefaultCodeFormatterOptions options;
 
@@ -51,7 +55,7 @@ public class OneLineEnforcer extends ASTVisitor {
 
 	@Override
 	public void endVisit(EnumDeclaration node) {
-		List<ASTNode> items = new ArrayList<>();
+		List<ASTNode> items = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		items.addAll(node.bodyDeclarations());
 		items.addAll(node.enumConstants());
 		tryKeepOnOneLine(node, node.getName(), items, this.options.keep_enum_declaration_on_one_line);
@@ -98,7 +102,7 @@ public class OneLineEnforcer extends ASTVisitor {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void endVisit(Block node) {
 		ASTNode parent = node.getParent();
 		List<Statement> statements = node.statements();
@@ -114,10 +118,10 @@ public class OneLineEnforcer extends ASTVisitor {
 				Type returnType = method.getReturnType2();
 				boolean returnsVoid = returnType instanceof PrimitiveType
 						&& ((PrimitiveType) returnType).getPrimitiveTypeCode() == PrimitiveType.VOID;
-				boolean isGetter = name.matches("(is|get)\\p{Lu}.*") //$NON-NLS-1$
+				boolean isGetter = END_VISIT_PATTERN.matcher(name).matches() //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						&& !method.isConstructor() && !returnsVoid && method.parameters().isEmpty()
 						&& statements.size() == 1 && statements.get(0) instanceof ReturnStatement;
-				boolean isSetter = name.matches("set\\p{Lu}.*") //$NON-NLS-1$
+				boolean isSetter = END_VISIT_PATTERN_2.matcher(name).matches() //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						&& !method.isConstructor() && returnsVoid && method.parameters().size() == 1
 						&& statements.size() == 1 && statements.get(0) instanceof ExpressionStatement
 						&& ((ExpressionStatement) statements.get(0)).getExpression() instanceof Assignment;
@@ -181,7 +185,7 @@ public class OneLineEnforcer extends ASTVisitor {
 		tryKeepOnOneLine(openBraceIndex, closeBraceIndex, closeBraceIndex, items, oneLineOption);
 	}
 
-	private void tryKeepOnOneLine(int openBraceIndex, int closeBraceIndex, int lastIndex, List<? extends ASTNode> items,
+	private void tryKeepOnOneLine(int openBraceIndex, int closeBraceIndex, int lastIndex, List<? extends ASTNode> items, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String oneLineOption) {
 		if (DefaultCodeFormatterConstants.ONE_LINE_NEVER.equals(oneLineOption))
 			return;
@@ -193,13 +197,13 @@ public class OneLineEnforcer extends ASTVisitor {
 				&& this.tm.countLineBreaksBetween(this.tm.get(openBraceIndex), this.tm.get(lastIndex)) > 0)
 			return;
 
-		Set<Integer> breakIndexes = items.stream().map(n -> this.tm.firstIndexIn(n, ANY)).collect(Collectors.toSet());
+		Set<Integer> breakIndexes = items.stream().map(n -> this.tm.firstIndexIn(n, ANY)).collect(Collectors.toSet()); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		breakIndexes.add(openBraceIndex + 1);
 		breakIndexes.add(closeBraceIndex);
 		Token prev = this.tm.get(openBraceIndex);
 		int startPos = this.tm.getPositionInLine(openBraceIndex);
 		int pos = startPos + this.tm.getLength(prev, startPos);
-		for (int i = openBraceIndex + 1; i <= lastIndex; i++) {
+		for (int i = openBraceIndex + 1; i <= lastIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = this.tm.get(i);
 			int preexistingBreaks = this.tm.countLineBreaksBetween(prev, token);
 			if (this.options.number_of_empty_lines_to_preserve > 0 && preexistingBreaks > 1)
@@ -234,7 +238,7 @@ public class OneLineEnforcer extends ASTVisitor {
 				return; // line width limit exceeded
 		}
 
-		for (Integer i : breakIndexes) {
+		for (Integer i : breakIndexes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			prev = this.tm.get(i - 1);
 			prev.clearLineBreaksAfter();
 			Token token = this.tm.get(i);

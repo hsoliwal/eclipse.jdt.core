@@ -46,7 +46,7 @@ public class CharacterLiteral extends Expression {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List properyList = new ArrayList(2);
+		List properyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(CharacterLiteral.class, properyList);
 		addProperty(ESCAPED_VALUE_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(properyList);
@@ -155,7 +155,7 @@ public class CharacterLiteral extends Expression {
 	 *    and embedded escapes
 	 * @exception IllegalArgumentException if the argument is incorrect
 	 */
-	public void setEscapedValue(String value) {
+	public void setEscapedValue(String value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// check setInternalEscapedValue(String) if this method is changed
 		if (value == null) {
 			throw new IllegalArgumentException();
@@ -204,7 +204,7 @@ public class CharacterLiteral extends Expression {
 	 *    escapes
 	 * @exception IllegalArgumentException if the literal value cannot be converted
 	 */
-	public char charValue() {
+	public char charValue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// create a new local scanner to allow concurrent use
 		Scanner scanner = new Scanner(
 				this.ast.scanner.tokenizeComments,
@@ -313,11 +313,11 @@ public class CharacterLiteral extends Expression {
 	 * @param value the character value
 	 */
 	public void setCharValue(char value) {
-		StringBuilder b = new StringBuilder(3);
+		StringBuilder b = new StringBuilder(3); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		b.append('\''); // opening delimiter
+		b.append('\''); // opening delimiter //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		Util.appendEscapedChar(b, value, false);
-		b.append('\''); // closing delimiter
+		b.append('\''); // closing delimiter //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		setEscapedValue(b.toString());
 	}
 

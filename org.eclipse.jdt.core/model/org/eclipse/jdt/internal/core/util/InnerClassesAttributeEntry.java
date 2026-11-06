@@ -34,7 +34,7 @@ public class InnerClassesAttributeEntry
 	private char[] innerName;
 	private final int accessFlags;
 
-	public InnerClassesAttributeEntry(byte classFileBytes[], IConstantPool constantPool, int offset)
+	public InnerClassesAttributeEntry(byte classFileBytes[], IConstantPool constantPool, int offset) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws ClassFormatException {
 		this.innerClassNameIndex = u2At(classFileBytes, 0, offset);
 		this.outerClassNameIndex = u2At(classFileBytes, 2, offset);

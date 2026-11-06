@@ -36,7 +36,7 @@ public static Test suite() {
 /**
  * Sanity test of IEvaluationContext.allVariables()
  */
-public void testAllVariables() {
+public void testAllVariables() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// No variables defined yet
 	GlobalVariable[] vars = this.context.allVariables();
 	assertEquals("No variables should be defined", 0, vars.length);
@@ -81,7 +81,7 @@ public void testEvaluate() {
 	try {
 		this.context.evaluate(snippet, getEnv(), getCompilerOptions(), requestor, getProblemFactory());
 	} catch (InstallException e) {
-		assertTrue("No targetException " + e.getMessage(), false);
+		assertTrue("No targetException " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	assertTrue("Got one result", requestor.resultIndex == 0);
 	EvaluationResult result = requestor.results[0];
@@ -93,7 +93,7 @@ public void testEvaluate() {
 /**
  * Sanity test of IEvaluationContext.evaluateImports(INameEnvironment, IRequestor , IProblemFactory)
  */
-public void testEvaluateImports() {
+public void testEvaluateImports() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Define imports
 		this.context.setImports(new char[][] {"java.util.*".toCharArray(), "java.lang.reflect.Method".toCharArray()});
@@ -114,7 +114,7 @@ public void testEvaluateImports() {
 /**
  * Sanity test of IEvaluationContext.evaluateVariable(IGlobalVariable, IRequestor)
  */
-public void testEvaluateVariable() {
+public void testEvaluateVariable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	GlobalVariable var = null;
 	try {
 		// Create the variable
@@ -130,7 +130,7 @@ public void testEvaluateVariable() {
 		try {
 			this.context.evaluateVariables(getEnv(), getCompilerOptions(), new NoPbRequestor(), getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("No targetException " + e.getMessage(), false);
+			assertTrue("No targetException " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		// Get its value
@@ -138,7 +138,7 @@ public void testEvaluateVariable() {
 		try {
 			this.context.evaluateVariable(var, getEnv(), getCompilerOptions(), requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("No targetException " + e.getMessage(), false);
+			assertTrue("No targetException " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertTrue("Got one result", requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
@@ -155,7 +155,7 @@ public void testEvaluateVariable() {
 /**
  * Sanity test of IEvaluationContext.evaluateVariables(INameEnvironment, ConfigurableOption[], IRequestor, IProblemFactory)
  */
-public void testEvaluateVariables() {
+public void testEvaluateVariables() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	GlobalVariable var = null;
 	try {
 		// Create 1 variable
@@ -166,7 +166,7 @@ public void testEvaluateVariables() {
 		try {
 			this.context.evaluateVariables(getEnv(), getCompilerOptions(), requestor, getProblemFactory());
 		} catch (InstallException e) {
-			assertTrue("No targetException " + e.getMessage(), false);
+			assertTrue("No targetException " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertTrue("Got one result", requestor.resultIndex == 0);
 		EvaluationResult result = requestor.results[0];
@@ -184,7 +184,7 @@ public void testEvaluateVariables() {
 /**
  * Sanity test of IEvaluationContext.getImports() and IEvaluationContext.setImports(char[][])
  */
-public void testGetSetImports() {
+public void testGetSetImports() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// No imports
 		assertTrue("No imports defined", this.context.getImports().length == 0);
@@ -194,8 +194,8 @@ public void testGetSetImports() {
 		this.context.setImports(imports);
 		char[][] storedImports = this.context.getImports();
 		assertEquals("Same length", imports.length, storedImports.length);
-		for (int i = 0; i < imports.length; i++){
-			assertEquals("Import #" + i, imports[i], storedImports[i]);
+		for (int i = 0; i < imports.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertEquals("Import #" + i, imports[i], storedImports[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} finally {
 		// Clean up
@@ -231,7 +231,7 @@ public void testNewDeleteVariable() {
 	// Delete it
 	this.context.deleteVariable(var);
 	GlobalVariable[] vars = this.context.allVariables();
-	for (int i = 0; i < vars.length; i++) {
+	for (int i = 0; i < vars.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		assertTrue("Variable should not exist", !var.getName().equals(vars[i].getName()));
 	}
 }

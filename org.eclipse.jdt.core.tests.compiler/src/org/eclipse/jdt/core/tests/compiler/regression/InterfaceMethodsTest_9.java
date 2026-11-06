@@ -104,7 +104,7 @@ public class InterfaceMethodsTest_9 extends AbstractComparableTest {
 	}
 
 	// illegal modifier combination - negative test
-	public void testBug488662_005() {
+	public void testBug488662_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 		new String[] {
 			"I.java",
@@ -143,7 +143,7 @@ public class InterfaceMethodsTest_9 extends AbstractComparableTest {
 	}
 
 	// illegal modifier combination - negative test
-	public void testBug488662_007() {
+	public void testBug488662_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 		new String[] {
 			"I.java",
@@ -165,7 +165,7 @@ public class InterfaceMethodsTest_9 extends AbstractComparableTest {
 	}
 
 	// reduced visibility modifier - negative test
-	public void testBug488662_008() {
+	public void testBug488662_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 		new String[] {
 			"X.java",
@@ -188,7 +188,7 @@ public class InterfaceMethodsTest_9 extends AbstractComparableTest {
 
 
 	// No unimplemented method error - positive test
-	public void testBug488662_009() {
+	public void testBug488662_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 		new String[] {
 			"X.java",
@@ -224,7 +224,7 @@ public class InterfaceMethodsTest_9 extends AbstractComparableTest {
 			"----------\n");
 	}
 	// illegal modifier combination - negative test
-	public void testBug488662_011() {
+	public void testBug488662_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 		new String[] {
 			"I.java",
@@ -245,7 +245,7 @@ public class InterfaceMethodsTest_9 extends AbstractComparableTest {
 			"----------\n");
 	}
 	// illegal modifier combination - multiple errors - negative test
-	public void testBug488662_012() {
+	public void testBug488662_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 		new String[] {
 			"I.java",
@@ -270,7 +270,7 @@ public class InterfaceMethodsTest_9 extends AbstractComparableTest {
 			"This method requires a body instead of a semicolon\n" +
 			"----------\n");
 	}
-	public void testBug517926() {
+	public void testBug517926() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I.java",
@@ -306,7 +306,7 @@ public class InterfaceMethodsTest_9 extends AbstractComparableTest {
 			},
 			"");
 	}
-	public void testBug520795() {
+	public void testBug520795() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"I.java",
@@ -347,7 +347,7 @@ public class InterfaceMethodsTest_9 extends AbstractComparableTest {
 				"}\n"
 		});
 	}
-	public void testBug520795b() {
+	public void testBug520795b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -369,7 +369,7 @@ public class InterfaceMethodsTest_9 extends AbstractComparableTest {
 			"This static method of interface X.I can only be accessed as X.I.foo\n" +
 			"----------\n" );
 	}
-	public void testBug520795c() {
+	public void testBug520795c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -394,7 +394,7 @@ public class InterfaceMethodsTest_9 extends AbstractComparableTest {
 			"This static method of interface X.I can only be accessed as X.I.foo\n" +
 			"----------\n" );
 	}
-	public void testBug518272() {
+	public void testBug518272() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"GeneratedAccessorBug.java",

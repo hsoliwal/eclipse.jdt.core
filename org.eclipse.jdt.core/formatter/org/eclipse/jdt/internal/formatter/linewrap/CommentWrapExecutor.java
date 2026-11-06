@@ -37,7 +37,7 @@ public class CommentWrapExecutor extends TokenTraverser {
 	private final TokenManager tm;
 	private final DefaultCodeFormatterOptions options;
 
-	private final ArrayList<Token> nlsTags = new ArrayList<>();
+	private final ArrayList<Token> nlsTags = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	private int lineStartPosition;
 	private int lineLimit;
@@ -63,7 +63,7 @@ public class CommentWrapExecutor extends TokenTraverser {
 	 * a NON-NLS tag after it). This method is still useful for checking comment length in that case.
 	 * @return position in line at the end of comment
 	 */
-	public int wrapMultiLineComment(Token commentToken, int startPosition, boolean simulate, boolean noWrap) {
+	public int wrapMultiLineComment(Token commentToken, int startPosition, boolean simulate, boolean noWrap) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.lineCounter = 1;
 		this.counter = startPosition;
 		commentToken.setIndent(this.tm.toIndent(startPosition, true));
@@ -101,11 +101,11 @@ public class CommentWrapExecutor extends TokenTraverser {
 		return this.lineCounter;
 	}
 
-	private int tryToFitInOneLine(List<Token> structure, int startPosition, boolean noWrap) {
+	private int tryToFitInOneLine(List<Token> structure, int startPosition, boolean noWrap) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int position = startPosition;
 		boolean hasWrapPotential = false;
 		boolean wasSpaceAfter = false;
-		for (int i = 0; i < structure.size(); i++) {
+		for (int i = 0; i < structure.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = structure.get(i);
 			if (token.getLineBreaksBefore() > 0 || token.getLineBreaksAfter() > 0) {
 				assert !noWrap; // comment already wrapped
@@ -134,7 +134,7 @@ public class CommentWrapExecutor extends TokenTraverser {
 		return position;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean token(Token token, int index) {
 		final int positionIfNewLine = getStartingPosition(token, true);
 
@@ -192,7 +192,7 @@ public class CommentWrapExecutor extends TokenTraverser {
 		return true;
 	}
 
-	private boolean shouldWrap() {
+	private boolean shouldWrap() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.wrapDisabled || this.counter <= this.lineLimit)
 			return false;
 		if (getLineBreaksAfter() == 0 && getNext() != null && getNext().getWrapPolicy() == WrapPolicy.DISABLE_WRAP) {
@@ -229,7 +229,7 @@ public class CommentWrapExecutor extends TokenTraverser {
 		}.traverse(structure, 0);
 	}
 
-	public void wrapLineComment(Token commentToken, int startPosition) {
+	public void wrapLineComment(Token commentToken, int startPosition) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List<Token> structure = commentToken.getInternalStructure();
 		if (structure == null || structure.isEmpty())
 			return;
@@ -244,7 +244,7 @@ public class CommentWrapExecutor extends TokenTraverser {
 		int indent = startPosition;
 		int limit = getLineLimit(position);
 
-		for (Token token : structure) {
+		for (Token token : structure) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (token.hasNLSTag()) {
 				this.nlsTags.add(token);
 				position += token.countChars() + (token.isSpaceBefore() ? 1 : 0);
@@ -271,7 +271,7 @@ public class CommentWrapExecutor extends TokenTraverser {
 		}
 
 		int lineStartIndex = whitespace == null ? 0 : 1;
-		for (int i = 0; i < structure.size(); i++) {
+		for (int i = 0; i < structure.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = structure.get(i);
 			token.setIndent(indent);
 			if (token.hasNLSTag()) {

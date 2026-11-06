@@ -41,7 +41,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=15051
 	 */
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A001 {\n" +
 			"	private int i = 6;\n" +
@@ -74,7 +74,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=25188
 	 */
-	public void test002() throws Exception {
+	public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A002 {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -103,7 +103,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26098
 	 */
-	public void test003() throws Exception {
+	public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A003 {\n" +
 			"\n" +
@@ -145,7 +145,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test004() throws Exception {
+	public void test004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -191,7 +191,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test005() throws Exception {
+	public void test005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -229,7 +229,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test006() throws Exception {
+	public void test006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -259,7 +259,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test007() throws Exception {
+	public void test007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -295,7 +295,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test008() throws Exception {
+	public void test008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -325,7 +325,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test009() throws Exception {
+	public void test009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -371,7 +371,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test010() throws Exception {
+	public void test010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -405,7 +405,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test011() throws Exception {
+	public void test011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -443,7 +443,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test012() throws Exception {
+	public void test012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -476,7 +476,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test013() throws Exception {
+	public void test013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -512,7 +512,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test014() throws Exception {
+	public void test014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -565,7 +565,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test015() throws Exception {
+	public void test015() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -603,7 +603,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test016() throws Exception {
+	public void test016() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -641,7 +641,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test017() throws Exception {
+	public void test017() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -677,7 +677,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test018() throws Exception {
+	public void test018() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -714,7 +714,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 * http:  //bugs.eclipse.org/bugs/show_bug.cgi?id=26881
 	 */
-	public void test019() throws Exception {
+	public void test019() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -763,7 +763,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test020() throws Exception {
+	public void test020() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -802,7 +802,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test021() throws Exception {
+	public void test021() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -839,7 +839,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test022() throws Exception {
+	public void test022() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -876,7 +876,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test023() throws Exception {
+	public void test023() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -913,7 +913,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test024() throws Exception {
+	public void test024() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -950,7 +950,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test025() throws Exception {
+	public void test025() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -990,7 +990,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test026() throws Exception {
+	public void test026() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1028,7 +1028,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test027() throws Exception {
+	public void test027() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1065,7 +1065,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test028() throws Exception {
+	public void test028() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1104,7 +1104,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test029() throws Exception {
+	public void test029() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1142,7 +1142,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test030() throws Exception {
+	public void test030() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1179,7 +1179,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test031() throws Exception {
+	public void test031() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1218,7 +1218,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test032() throws Exception {
+	public void test032() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1257,7 +1257,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test033() throws Exception {
+	public void test033() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1311,7 +1311,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test034() throws Exception {
+	public void test034() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1349,7 +1349,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test035() throws Exception {
+	public void test035() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1379,7 +1379,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test036() throws Exception {
+	public void test036() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1415,7 +1415,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test037() throws Exception {
+	public void test037() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1445,7 +1445,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test038() throws Exception {
+	public void test038() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1499,7 +1499,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test039() throws Exception {
+	public void test039() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1533,7 +1533,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test040() throws Exception {
+	public void test040() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1571,7 +1571,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test041() throws Exception {
+	public void test041() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1604,7 +1604,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test042() throws Exception {
+	public void test042() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1640,7 +1640,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test043() throws Exception {
+	public void test043() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1694,7 +1694,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test044() throws Exception {
+	public void test044() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1732,7 +1732,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test045() throws Exception {
+	public void test045() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1770,7 +1770,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test046() throws Exception {
+	public void test046() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1806,7 +1806,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26753
 	 */
-	public void test047() throws Exception {
+	public void test047() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1839,7 +1839,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("A", source, expectedOutput);
 	}
 
-	public void test048() throws Exception {
+	public void test048() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class A {\n" +
 			"\n" +
@@ -1907,7 +1907,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("A", source, expectedOutput);
 	}
 
-	public void test049() throws Exception {
+	public void test049() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1935,7 +1935,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test050() throws Exception {
+	public void test050() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1968,7 +1968,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test051() throws Exception {
+	public void test051() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1997,7 +1997,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test052() throws Exception {
+	public void test052() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2029,7 +2029,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test053() throws Exception {
+	public void test053() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2066,7 +2066,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test054() throws Exception {
+	public void test054() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2108,7 +2108,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test055() throws Exception {
+	public void test055() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2146,7 +2146,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test056() throws Exception {
+	public void test056() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2187,7 +2187,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test057() throws Exception {
+	public void test057() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2215,7 +2215,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test058() throws Exception {
+	public void test058() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2248,7 +2248,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test059() throws Exception {
+	public void test059() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2277,7 +2277,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test060() throws Exception {
+	public void test060() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2309,7 +2309,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test061() throws Exception {
+	public void test061() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2340,7 +2340,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test062() throws Exception {
+	public void test062() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2376,7 +2376,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test063() throws Exception {
+	public void test063() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2408,7 +2408,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test064() throws Exception {
+	public void test064() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2443,7 +2443,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test065() throws Exception {
+	public void test065() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2480,7 +2480,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test066() throws Exception {
+	public void test066() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2522,7 +2522,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test067() throws Exception {
+	public void test067() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2560,7 +2560,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("X", source, expectedOutput);
 	}
 
-	public void test068() throws Exception {
+	public void test068() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	static boolean boom() { \n" +
@@ -2623,7 +2623,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=111219
-	public void test072() throws Exception {
+	public void test072() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"package p;\n" +
 			"public abstract class X {\n" +
@@ -2714,7 +2714,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		checkClassFile("", "X", source, expectedOutput, ClassFileBytesDisassembler.WORKING_COPY);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=111219
-	public void test074() throws Exception {
+	public void test074() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"package p;\n" +
 			"public class X {\n" +
@@ -2734,7 +2734,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=111219
-	public void test075() throws Exception {
+	public void test075() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"package p;\n" +
 			"public class X {\n" +
@@ -2784,7 +2784,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=102473
-	public void test078() throws Exception {
+	public void test078() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	X(int i, int j) {}\n" +
@@ -2795,7 +2795,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		assertNotNull("No method infos", methodInfos);
 		int length = methodInfos.length;
 		assertTrue("At least one method", length > 0);
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[][] argNames = methodInfos[i].getArgumentNames();
 			assertNotNull("No names", argNames);
 			assertEquals("Wrong size", 2, argNames.length);
@@ -2810,7 +2810,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=102473
-	public void test079() throws Exception {
+	public void test079() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	X(int i, int j) {}\n" +
@@ -2830,7 +2830,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		assertNotNull("No method infos", methodInfos);
 		int length = methodInfos.length;
 		assertTrue("At least one method", length > 0);
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[][] argNames = methodInfos[i].getArgumentNames();
 			assertNotNull("No names", argNames);
 			assertEquals("Wrong size", 2, argNames.length);
@@ -2845,7 +2845,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=102473
-	public void test080() throws Exception {
+	public void test080() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"public class X {\n" +
 			"	X(int i, int j) {}\n" +
@@ -2866,7 +2866,7 @@ public class ClassFileReaderTest_1_4 extends AbstractRegressionTest {
 		assertNotNull("No method infos", methodInfos);
 		int length = methodInfos.length;
 		assertTrue("At least one method", length > 0);
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[][] argNames = methodInfos[i].getArgumentNames();
 			assertNotNull("No names", argNames);
 			assertEquals("Wrong size", 2, argNames.length);

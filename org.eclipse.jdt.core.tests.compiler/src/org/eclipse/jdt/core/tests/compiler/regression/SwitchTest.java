@@ -41,7 +41,7 @@ public static Test suite() {
 	return buildAllCompliancesTestSuite(testClass());
 }
 
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -62,7 +62,7 @@ public void test001() {
 		"}\n",
 	});
 }
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -83,7 +83,7 @@ public void test002() {
 	});
 }
 
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -102,7 +102,7 @@ public void test003() {
 	});
 }
 
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -141,7 +141,7 @@ public void test005() {
 }
 
 
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -168,7 +168,7 @@ public void test006() {
 	});
 }
 
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/X.java",
@@ -222,7 +222,7 @@ public void test009() {
 	},
 	"SUCCESS");
 }
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String newMessage =
 			"----------\n" +
 			"1. ERROR in X.java (at line 4)\n" +
@@ -292,7 +292,7 @@ public void test010() {
 	},
 	this.complianceLevel >= ClassFileConstants.JDK21 ? java21Plus : newMessage);
 }
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"X.java",
 		"public class X {\n" +
@@ -311,7 +311,7 @@ public void test011() {
 	"SUCCESS");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=86813
-public void test012() throws Exception {
+public void test012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"X.java",
 		"public class X {\n" +
@@ -383,7 +383,7 @@ public void test012() throws Exception {
 		assertEquals("Wrong contents", expectedOutput, result);
 	}
 }
-public void test013() throws Exception {
+public void test013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"X.java",
 		"public class X {\n" +
@@ -522,7 +522,7 @@ public void test013() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=245257
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	this.runNegativeTest(new String[] {
@@ -565,7 +565,7 @@ public void test014() {
 	options);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=245257 - variation
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	this.runNegativeTest(new String[] {
@@ -608,7 +608,7 @@ public void test015() {
 	options);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=245257 - variation
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	this.runNegativeTest(new String[] {
@@ -637,7 +637,7 @@ public void test016() {
 	options);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=245257 - variation
-public void test017() {
+public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	this.runNegativeTest(new String[] {
@@ -667,7 +667,7 @@ public void test017() {
 	options);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=286682
-public void test018() {
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/X.java",
 		"package p;\n" +
@@ -704,7 +704,7 @@ public void test019() {
 	"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=314830
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"X.java",
 		"public class X {\n" +
@@ -760,7 +760,7 @@ public void test022() {
 	"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=314830
-public void test023() {
+public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"X.java",
 		"public class X {\n" +
@@ -780,7 +780,7 @@ public void test023() {
 }
 
 // JDK7: Strings in Switch.
-public void testStringSwitchAtJDK6() {
+public void testStringSwitchAtJDK6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String newMessage =
 			"----------\n" +
 			"1. ERROR in X.java (at line 4)\n" +
@@ -802,7 +802,7 @@ public void testStringSwitchAtJDK6() {
 }
 
 //JDK7: Strings in Switch.
-public void testCaseTypeMismatch() {
+public void testCaseTypeMismatch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String newMessage =
 		"----------\n" +
 		"1. ERROR in X.java (at line 4)\n" +
@@ -876,7 +876,7 @@ public void testCaseTypeMismatch() {
 		newMessage);
 }
 // JDK7: Strings in Switch.
-public void testCaseTypeMismatch2() {
+public void testCaseTypeMismatch2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String newMessage =
 		"----------\n" +
 		"1. ERROR in X.java (at line 7)\n" +
@@ -901,7 +901,7 @@ public void testCaseTypeMismatch2() {
 		newMessage);
 }
 // JDK7: Strings in Switch.
-public void testCaseTypeMismatch3() {
+public void testCaseTypeMismatch3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String newMessage =
 		"----------\n" +
 		"1. ERROR in X.java (at line 7)\n" +
@@ -942,7 +942,7 @@ public void testCaseTypeMismatch3() {
 		newMessage);
 }
 // JDK7: Strings in Switch.
-public void testDuplicateCase() {
+public void testDuplicateCase() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String newMessage =
 			"----------\n" +
 			"1. ERROR in X.java (at line 5)\n" +
@@ -972,7 +972,7 @@ public void testDuplicateCase() {
 }
 
 // JDK7: Strings in Switch.
-public void testDuplicateCase2() {
+public void testDuplicateCase2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String newMessage =
 			"----------\n" +
 			"1. ERROR in X.java (at line 10)\n" +
@@ -1049,7 +1049,7 @@ public void testDuplicateCase2() {
 		newMessage);
 }
 // JDK7: Strings in Switch.
-public void testVariableCase() {
+public void testVariableCase() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String newMessage =
 			"----------\n" +
 			"1. ERROR in X.java (at line 7)\n" +
@@ -1098,7 +1098,7 @@ public void testVariableCase() {
 		newMessage);
 }
 // JDK7: Strings in Switch.
-public void testVariableCaseFinal() {
+public void testVariableCaseFinal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String newMessage =
 			"----------\n" +
 			"1. ERROR in X.java (at line 8)\n" +
@@ -1132,7 +1132,7 @@ public void testVariableCaseFinal() {
 		newMessage);
 }
 //JDK7: Strings in Switch.
-public void testNullCase() {
+public void testNullCase() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String newMessage =
 			"----------\n" +
 			"1. ERROR in X.java (at line 7)\n" +
@@ -1187,7 +1187,7 @@ public void testNullCase() {
 		newMessage);
 }
 // JDK7: Strings in Switch.
-public void testDuplicateCase3() {
+public void testDuplicateCase3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String newMessage =
 			"----------\n" +
 			"1. ERROR in X.java (at line 10)\n" +
@@ -1258,7 +1258,7 @@ public void testDuplicateCase3() {
 		newMessage);
 }
 
-public void testDuplicateHashCode() {
+public void testDuplicateHashCode() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"testDuplicateHashCode.java",
@@ -1302,7 +1302,7 @@ public void testDuplicateHashCode() {
 	};
 	this.runConformTest(sourceFiles, "1 2 3 4 5 6 7 8 Default");
 }
-public void testDuplicateHashCode2() {
+public void testDuplicateHashCode2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"testDuplicateHashCode.java",
@@ -1353,7 +1353,7 @@ public void testDuplicateHashCode2() {
 	};
 	this.runConformTest(sourceFiles, "1 3 5 7 8 6 4 2 Default");
 }
-public void testSwitchOnNull() {
+public void testSwitchOnNull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"testSwitchOnNull.java",
@@ -1417,7 +1417,7 @@ public void testSwitchOnNull() {
 	};
 	this.runConformTest(sourceFiles, "NPE1NPE2NPE3NPE4NPE5");
 }
-public void testSideEffect() {
+public void testSideEffect() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"testSideEffect.java",
@@ -1443,7 +1443,7 @@ public void testSideEffect() {
 	};
 	this.runConformTest(sourceFiles, "DONE");
 }
-public void testFallThrough() {
+public void testFallThrough() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"testFallThrough.java",
@@ -1481,7 +1481,7 @@ public void testFallThrough() {
 	};
 	this.runConformTest(sourceFiles, "0(even) 1(odd) 2(even) 3(odd) 4(even) 5(odd) 6(even) 7(odd) 8(even) 9(odd) DONE");
 }
-public void testFallThrough2() {
+public void testFallThrough2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"testFallThrough.java",
@@ -1526,7 +1526,7 @@ public void testMarysLamb() {
 	};
 	this.runConformTest(sourceFiles, "Mary Had A Little Lamb");
 }
-public void testBreakOut() {
+public void testBreakOut() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"testBreakOut.java",
@@ -1547,7 +1547,7 @@ public void testBreakOut() {
 	};
 	this.runConformTest(sourceFiles, "DONE");
 }
-public void testMultipleSwitches() {
+public void testMultipleSwitches() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"X.java",
@@ -1624,7 +1624,7 @@ public void testMultipleSwitches() {
 	};
 	this.runConformTest(sourceFiles, "SundayMondayTuesdayWednesdayThursdayFridaySaturday ---- SundayMondayTuesdayWednesdayThursdayFridaySaturday ---- HolidayWorkdayWorkdayWorkdayWorkdayWorkdayHoliday DONE");
 }
-public void testNestedSwitches() {
+public void testNestedSwitches() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"X.java",
@@ -1671,7 +1671,7 @@ public void testNestedSwitches() {
 										 "Saturday is a holiday\n" +
 										 "DONE");
 }
-public void testFor356002() {
+public void testFor356002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"X.java",
@@ -1693,7 +1693,7 @@ public void testFor356002() {
 	};
 	this.runConformTest(sourceFiles, "DONE");
 }
-public void testFor356002_2() {
+public void testFor356002_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"X.java",
@@ -1712,7 +1712,7 @@ public void testFor356002_2() {
 	};
 	this.runConformTest(sourceFiles, "DONE");
 }
-public void testFor356002_3() {
+public void testFor356002_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"X.java",
@@ -1738,7 +1738,7 @@ public void testFor356002_3() {
 	};
 	this.runConformTest(sourceFiles, "DONE");
 }
-public void testBug374605() {
+public void testBug374605() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SWITCH_MISSING_DEFAULT_CASE, JavaCore.WARNING);
 	this.runNegativeTest(
@@ -1768,7 +1768,7 @@ public void testBug374605() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=380927
-public void testBug380927() {
+public void testBug380927() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1797,7 +1797,7 @@ public void testBug380927() {
 			"Success");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=380927
-public void testBug380927a() {
+public void testBug380927a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1826,7 +1826,7 @@ public void testBug380927a() {
 			"Success");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=380927
-public void testBug380927b() {
+public void testBug380927b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1855,7 +1855,7 @@ public void testBug380927b() {
 			"Success");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=380927
-public void testBug380927c() {
+public void testBug380927c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1884,7 +1884,7 @@ public void testBug380927c() {
 			"Success");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=380927
-public void testBug380927d() {
+public void testBug380927d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1912,7 +1912,7 @@ public void testBug380927d() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=380927
-public void testBug380927e() {
+public void testBug380927e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1940,7 +1940,7 @@ public void testBug380927e() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=380927
-public void testBug380927f() {
+public void testBug380927f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1968,7 +1968,7 @@ public void testBug380927f() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=380927
-public void testBug380927g() {
+public void testBug380927g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1998,7 +1998,7 @@ public void testBug380927g() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=383629
 // To check that code gen is ok
-public void testBug383629() throws Exception {
+public void testBug383629() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2046,7 +2046,7 @@ public void testBug383629() throws Exception {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=381172
 // To check that code gen is ok
-public void testBug381172() throws Exception {
+public void testBug381172() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2108,7 +2108,7 @@ public void testBug381172() throws Exception {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=383643, NPE in problem reporter.
-public void test383643() {
+public void test383643() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SWITCH_MISSING_DEFAULT_CASE, JavaCore.WARNING);
 	this.runNegativeTest(
@@ -2152,7 +2152,7 @@ public void test383643() {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=387146 - the fall-through comment is ignored
-public void test387146a() {
+public void test387146a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	this.runNegativeTest(new String[] {
@@ -2181,7 +2181,7 @@ public void test387146a() {
 	options);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=387146 - the fall-through comment is respected
-public void test387146b() {
+public void test387146b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportFallthroughCase, CompilerOptions.ERROR);
 	this.runNegativeTest(new String[] {
@@ -2226,7 +2226,7 @@ public void test393537() {
 	this.runConformTest(sourceFiles, "");
 }
 //JDK7: Strings in Switch.
-public void test410892() {
+public void test410892() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"X.java",
@@ -2247,7 +2247,7 @@ public void test410892() {
 	this.runConformTest(sourceFiles, options);
 }
 //JDK7: Strings in Switch.
-public void test410892_2() {
+public void test410892_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"X.java",
@@ -2268,7 +2268,7 @@ public void test410892_2() {
 	this.runConformTest(sourceFiles, options);
 }
 //JDK7: Strings in Switch.
-public void test410892_3() {
+public void test410892_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"X.java",
@@ -2290,7 +2290,7 @@ public void test410892_3() {
 	this.runConformTest(sourceFiles, options);
 }
 //JDK7: Strings in Switch.
-public void test410892_4() {
+public void test410892_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	options.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2323,7 +2323,7 @@ public void test410892_4() {
 		options);
 }
 //JDK7: Strings in Switch.
-public void test410892_5() {
+public void test410892_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	options.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2356,7 +2356,7 @@ public void test410892_5() {
 		options);
 }
 //JDK7: Strings in Switch.
-public void test410892_6() {
+public void test410892_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	options.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
@@ -2389,7 +2389,7 @@ public void test410892_6() {
 		true,
 		options);
 }
-public void test526911() {
+public void test526911() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String [] sourceFiles =
 		new String[] {
 		"Main.java",
@@ -2493,7 +2493,7 @@ public void test526911() {
 	};
 	this.runConformTest(sourceFiles, "1 11");
 }
-public void test526911a() {
+public void test526911a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// target 1.8, run with 9, should work fine
 	if (this.complianceLevel < ClassFileConstants.JDK9)
 		return;
@@ -2602,7 +2602,7 @@ public void test526911a() {
 	};
 	this.runConformTest(sourceFiles, "1 11", options);
 }
-public void testBug533475() {
+public void testBug533475() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"SwitchBug.java",
@@ -2634,7 +2634,7 @@ public void testBug533475() {
 			"}\n"
 		});
 }
-public void testBug545518() {
+public void testBug545518() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel >= ClassFileConstants.JDK12)
 		return;
 	String message =
@@ -2659,7 +2659,7 @@ public void testBug545518() {
 		message);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=576093
-public void testBug576093a() {
+public void testBug576093a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 					"X.java",
@@ -2686,7 +2686,7 @@ public void testBug576093a() {
 			"Success");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=576093
-public void testBug576093b() {
+public void testBug576093b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X2.java",
@@ -2708,7 +2708,7 @@ public void testBug576093b() {
 			},
 			"Success");
 }
-public void testBug443576_1() {
+public void testBug443576_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK11) {
 		return;
 	}
@@ -2751,7 +2751,7 @@ public void testBug443576_1() {
 	options);
 }
 // Same as above, but keep swap the return and break statements
-public void testBug443576_2() {
+public void testBug443576_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK11) {
 		return;
 	}
@@ -2793,7 +2793,7 @@ public void testBug443576_2() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1782
 // [Follow up of #1773] For classic string switch, emitted code wastes two local variable slots
-public void testGHI1782() throws Exception {
+public void testGHI1782() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9)
 		return;
 
@@ -2863,7 +2863,7 @@ public void testGHI1782() throws Exception {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2190
 // [Enhanced switch] Case null disallowed when switching on arrays
-public void testIssue2190() throws Exception {
+public void testIssue2190() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21)
 		return;
 
@@ -2892,7 +2892,7 @@ public void testIssue2190() throws Exception {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1777
 // [Enhanced switch] Compiler fails to complain about non-exhaustive switch
-public void testIssue1777() throws Exception {
+public void testIssue1777() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21)
 		return;
 
@@ -2934,7 +2934,7 @@ public void testIssue1777() throws Exception {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1777
 // [Enhanced switch] Compiler fails to complain about non-exhaustive switch
-public void testIssue1777_2() throws Exception {
+public void testIssue1777_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21)
 		return;
 
@@ -2971,7 +2971,7 @@ public void testIssue1777_2() throws Exception {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1777
 // [Enhanced switch] Compiler fails to complain about non-exhaustive switch
-public void testIssue1777_3() throws Exception {
+public void testIssue1777_3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21)
 		return;
 
@@ -3007,7 +3007,7 @@ public void testIssue1777_3() throws Exception {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3274
 // [Enhanced Switch] Compiler tolerates pure expressions in switch rule expressions in a switch statement
-public void testIssue3274() throws Exception {
+public void testIssue3274() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return;
 
@@ -3042,7 +3042,7 @@ public void testIssue3274() throws Exception {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3276
 // [Switch Expression] Verify error since at least 4.18 on switch expression with instance creation in switch block
-public void testIssue3276() throws Exception {
+public void testIssue3276() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return;
 
@@ -3072,7 +3072,7 @@ public void testIssue3276() throws Exception {
 	"42");
 }
 
-public void testNonConstantCase() throws Exception {
+public void testNonConstantCase() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return;
 	this.runNegativeTest(new String[] {
@@ -3101,7 +3101,7 @@ public void testNonConstantCase() throws Exception {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3376
 // Incorrect control flow analysis causes statement subsequent to a switch statement to be flagged unreachable under some circumstances
-public void testIssue3376() throws Exception {
+public void testIssue3376() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return;
 
@@ -3155,7 +3155,7 @@ public void testIssue3376() throws Exception {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3376
 // Incorrect control flow analysis causes statement subsequent to a switch statement to be flagged unreachable under some circumstances
-public void testIssue3376_2() throws Exception {
+public void testIssue3376_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return;
 
@@ -3186,7 +3186,7 @@ public void testIssue3376_2() throws Exception {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3379
 // [Enhanced Switch] Wrong error message: Cannot switch on a value of type Integer... at levels that don't support enhanced switch
-public void testIssue3379() throws Exception {
+public void testIssue3379() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return; // uses switch rules.
 	String [] sources = new String[] {
@@ -3219,7 +3219,7 @@ public void testIssue3379() throws Exception {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3379
 // [Enhanced Switch] Wrong error message: Cannot switch on a value of type Integer... at levels that don't support enhanced switch
-public void testIssue3379_2() throws Exception {
+public void testIssue3379_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return; // uses switch rules.
 	String [] sources = new String[] {
@@ -3257,7 +3257,7 @@ public void testIssue3379_2() throws Exception {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3379
 // [Enhanced Switch] Wrong error message: Cannot switch on a value of type Integer... at levels that don't support enhanced switch
-public void testIssue3379_3() throws Exception {
+public void testIssue3379_3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return; // uses switch rules.
 
@@ -3293,7 +3293,7 @@ public void testIssue3379_3() throws Exception {
 // Duplicate case labels not detected when the two constants have different
 // compile-time kinds but the same value after binary numeric promotion to int,
 // e.g. (byte)0 + (byte)0 (an int constant) vs. a final byte constant 0.
-public void testDuplicateCasePromotedConstant() {
+public void testDuplicateCasePromotedConstant() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"X.java",
 		"public class X {\n" +
@@ -3316,7 +3316,7 @@ public void testDuplicateCasePromotedConstant() {
 }
 // Same as testDuplicateCasePromotedConstant but with the case labels in the
 // opposite order, to ensure detection is independent of label ordering.
-public void testDuplicateCasePromotedConstantReversed() {
+public void testDuplicateCasePromotedConstantReversed() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"X.java",
 		"public class X {\n" +
@@ -3339,7 +3339,7 @@ public void testDuplicateCasePromotedConstantReversed() {
 }
 // 'A' (a char constant, value 65) and 65 (an int constant) collide after
 // promotion to int and must be reported as duplicate case labels.
-public void testDuplicateCaseCharVsInt() {
+public void testDuplicateCaseCharVsInt() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"X.java",
 		"public class X {\n" +

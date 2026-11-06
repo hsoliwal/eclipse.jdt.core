@@ -32,7 +32,7 @@ public static Test suite() {
 	return buildUniqueComplianceTestSuite(testClass(), CompilerOptions.getFirstSupportedJdkLevel());
 }
 
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -59,7 +59,7 @@ public void test001() {
 		customOptions,
 		null);
 }
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -103,7 +103,7 @@ public void test002() {
 		"----------\n",
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -147,7 +147,7 @@ public void test003() {
 		"----------\n",
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -177,7 +177,7 @@ public void test004() {
 		null, null, JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=162903
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -202,7 +202,7 @@ public void test005() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=162903
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -224,7 +224,7 @@ public void test006() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=237245
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -272,7 +272,7 @@ public void test007() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3025
 // NON-NLS tag ignored for specific method references targeting a string literal
-public void testIssue3025() {
+public void testIssue3025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	this.runNegativeTest(

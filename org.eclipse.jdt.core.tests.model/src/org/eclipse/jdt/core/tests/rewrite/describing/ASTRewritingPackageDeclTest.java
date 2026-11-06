@@ -39,10 +39,10 @@ public class ASTRewritingPackageDeclTest extends ASTRewritingTest {
 	/**
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=328400
 	 */
-	public void testAnnotations_since_3() throws Exception {
+	public void testAnnotations_since_3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("package-info.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -58,9 +58,9 @@ public class ASTRewritingPackageDeclTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("@Deprecated\n");
-		buf.append("package test1;\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("@Deprecated\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 }

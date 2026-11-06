@@ -31,7 +31,7 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.internal.core.util.Messages;
 
-public class CopyPackageFragmentRootOperation extends JavaModelOperation {
+public class CopyPackageFragmentRootOperation extends JavaModelOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 	IPath destination;
 	int updateResourceFlags;
 	int updateModelFlags;
@@ -67,7 +67,7 @@ public class CopyPackageFragmentRootOperation extends JavaModelOperation {
 			addEntryToClasspath(rootEntry, workspaceRoot);
 		}
 	}
-	protected void copyResource(
+	protected void copyResource( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragmentRoot root,
 		IClasspathEntry rootEntry,
 		final IWorkspaceRoot workspaceRoot)
@@ -91,8 +91,8 @@ public class CopyPackageFragmentRootOperation extends JavaModelOperation {
 			final int sourceSegmentCount = rootEntry.getPath().segmentCount();
 			final IFolder destFolder = workspaceRoot.getFolder(this.destination);
 			final IPath[] nestedFolders = getNestedFolders(root);
-			IResourceProxyVisitor visitor = new IResourceProxyVisitor() {
-				@Override
+			IResourceProxyVisitor visitor = new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
+				@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				public boolean visit(IResourceProxy proxy) throws CoreException {
 					if (proxy.getType() == IResource.FOLDER) {
 						IPath path = proxy.requestFullPath();
@@ -142,7 +142,7 @@ public class CopyPackageFragmentRootOperation extends JavaModelOperation {
 		}
 		setAttribute(HAS_MODIFIED_RESOURCE_ATTR, TRUE);
 	}
-	protected void addEntryToClasspath(IClasspathEntry rootEntry, IWorkspaceRoot workspaceRoot) throws JavaModelException {
+	protected void addEntryToClasspath(IClasspathEntry rootEntry, IWorkspaceRoot workspaceRoot) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IProject destProject = workspaceRoot.getProject(this.destination.segment(0));
 		IJavaProject jProject = JavaCore.create(destProject);
@@ -153,7 +153,7 @@ public class CopyPackageFragmentRootOperation extends JavaModelOperation {
 		// case of existing entry and REPLACE was specified
 		if ((this.updateModelFlags & IPackageFragmentRoot.REPLACE) != 0) {
 			// find existing entry
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.destination.equals(classpath[i].getPath())) {
 					newClasspath = new IClasspathEntry[length];
 					System.arraycopy(classpath, 0, newClasspath, 0, length);
@@ -172,7 +172,7 @@ public class CopyPackageFragmentRootOperation extends JavaModelOperation {
 		} else {
 			// insert before sibling
 			position = -1;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.sibling.equals(classpath[i])) {
 					position = i;
 					break;
@@ -197,7 +197,7 @@ public class CopyPackageFragmentRootOperation extends JavaModelOperation {
 	 * Copies the given classpath entry replacing its path with the destination path
 	 * if it is a source folder or a library.
 	 */
-	protected IClasspathEntry copy(IClasspathEntry entry) throws JavaModelException {
+	protected IClasspathEntry copy(IClasspathEntry entry) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (entry.getEntryKind()) {
 			case IClasspathEntry.CPE_CONTAINER:
 				return JavaCore.newContainerEntry(entry.getPath(), entry.getAccessRules(), entry.getExtraAttributes(), entry.isExported());
@@ -223,7 +223,7 @@ public class CopyPackageFragmentRootOperation extends JavaModelOperation {
 				throw new JavaModelException(new JavaModelStatus(IJavaModelStatusConstants.ELEMENT_DOES_NOT_EXIST, getElementToProcess()));
 		}
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IJavaModelStatus verify() {
 		IJavaModelStatus status = super.verify();
 		if (!status.isOK()) {
@@ -250,7 +250,7 @@ public class CopyPackageFragmentRootOperation extends JavaModelOperation {
 					IClasspathEntry[] destClasspath = destProject.getRawClasspath();
 					boolean foundSibling = false;
 					boolean foundExistingEntry = false;
-					for (IClasspathEntry entry : destClasspath) {
+					for (IClasspathEntry entry : destClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (entry.equals(this.sibling)) {
 							foundSibling = true;
 							break;

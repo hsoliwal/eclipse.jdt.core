@@ -59,7 +59,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 		testReflectionPath(test);
 	}
 
-	private void testCompilerAPIPath(TypeDeclaration test){
+	private void testCompilerAPIPath(TypeDeclaration test){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final Collection<AnnotationMirror> annotations = test.getAnnotationMirrors();
 		final int numAnnotations = annotations == null ? 0 : annotations.size();
 		junit.framework.TestCase.assertEquals("annotation number mismatch", 1, numAnnotations);
@@ -74,7 +74,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 		final Map<AnnotationTypeElementDeclaration, AnnotationValue> elementValues =
 			annotation.getElementValues();
 
-		for( Map.Entry<AnnotationTypeElementDeclaration, AnnotationValue> entry :
+		for( Map.Entry<AnnotationTypeElementDeclaration, AnnotationValue> entry : //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			 elementValues.entrySet() ){
 			AnnotationTypeElementDeclaration elementDecl = entry.getKey();
 			final String name = elementDecl.getSimpleName();
@@ -83,7 +83,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 		}
 	}
 
-	private void testReflectionPath(TypeDeclaration test){
+	private void testReflectionPath(TypeDeclaration test){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final RefAnnotation refAnno = test.getAnnotation(RefAnnotation.class);
 		if( refAnno != null ){
 			assertValueMatch("z", refAnno.z(), true);
@@ -109,7 +109,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 		}
 	}
 
-	private void compare(final String name, final Object actualValue){
+	private void compare(final String name, final Object actualValue){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if( name.length() == 1 )
 		{
 			final Class<?> expectedType;
@@ -149,7 +149,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 				expectedValue = DOUBLE_49;
 				break;
 			default:
-				junit.framework.TestCase.assertNotNull("unexpected member " + name, null);
+				junit.framework.TestCase.assertNotNull("unexpected member " + name, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				throw new IllegalStateException(); // won't get here.
 			}
 			assertValueTypeMatch(name, actualValue, expectedType, expectedValue);
@@ -195,7 +195,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 				return;
 			}
 			else{
-				junit.framework.TestCase.assertNotNull("unexpected member " + name, null);
+				junit.framework.TestCase.assertNotNull("unexpected member " + name, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				throw new IllegalStateException(); // won't get here.
 			}
 			@SuppressWarnings("unchecked")
@@ -212,12 +212,12 @@ public class ValueConversionProcessor extends BaseProcessor {
 	{
 		if( actualValue != null && expectedType != actualValue.getClass() ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError("type mismatch for member " + name +
+			msgr.printError("type mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" expected " + expectedType.getName() + " but got " + actualValue.getClass().getName());
 		}
 		else if( !expectedValue.equals(actualValue) ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError("value mismatch for member " + name +
+			msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" expected " + expectedValue + " but got " + actualValue);
 		}
 	}
@@ -229,7 +229,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 			final Object[] expectedValues)
 	{
 		int i=0;
-		for( AnnotationValue av : actualValues ){
+		for( AnnotationValue av : actualValues ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			assertValueTypeMatch(name, av.getValue(), expectedElementType, expectedValues[i] );
 			i++;
 		}
@@ -242,7 +242,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		if( actual != expected ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError("value mismatch for member " + name +
+			msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" expected " + expected + " but got " + actual);
 		}
 	}
@@ -254,7 +254,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		if( actual != expected ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError("value mismatch for member " + name +
+			msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" expected " + expected + " but got " + actual);
 		}
 	}
@@ -266,7 +266,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		if( actual != expected ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError("value mismatch for member " + name +
+			msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" expected " + expected + " but got " + actual);
 		}
 	}
@@ -278,7 +278,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		if( actual != expected ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError("value mismatch for member " + name +
+			msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" expected " + expected + " but got " + actual);
 		}
 	}
@@ -290,7 +290,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		if( actual != expected ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError("value mismatch for member " + name +
+			msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" expected " + expected + " but got " + actual);
 		}
 	}
@@ -302,7 +302,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		if( actual != expected ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError("value mismatch for member " + name +
+			msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" expected " + expected + " but got " + actual);
 		}
 	}
@@ -314,7 +314,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		if( actual != expected ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError("value mismatch for member " + name +
+			msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" expected " + expected + " but got " + actual);
 		}
 	}
@@ -326,7 +326,7 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		if( actual != expected ){
 			final Messager msgr = _env.getMessager();
-			msgr.printError("value mismatch for member " + name +
+			msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" expected " + expected + " but got " + actual);
 		}
 	}
@@ -339,9 +339,9 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		int i=0;
 		final Messager msgr = _env.getMessager();
-		for( boolean a : actual ){
+		for( boolean a : actual ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( a != expected[i] ){
-				msgr.printError("value mismatch for member " + name +
+				msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" expected " + expected[i] + " but got " + a);
 			}
 			i++;
@@ -355,9 +355,9 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		int i=0;
 		final Messager msgr = _env.getMessager();
-		for( byte a : actual ){
+		for( byte a : actual ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( a != expected[i] ){
-				msgr.printError("value mismatch for member " + name +
+				msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" expected " + expected[i] + " but got " + a);
 			}
 			i++;
@@ -371,9 +371,9 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		int i=0;
 		final Messager msgr = _env.getMessager();
-		for( char a : actual ){
+		for( char a : actual ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( a != expected[i] ){
-				msgr.printError("value mismatch for member " + name +
+				msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" expected " + expected[i] + " but got " + a);
 			}
 			i++;
@@ -387,9 +387,9 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		int i=0;
 		final Messager msgr = _env.getMessager();
-		for( double a : actual ){
+		for( double a : actual ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( a != expected[i] ){
-				msgr.printError("value mismatch for member " + name +
+				msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" expected " + expected[i] + " but got " + a);
 			}
 			i++;
@@ -403,9 +403,9 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		int i=0;
 		final Messager msgr = _env.getMessager();
-		for( float a : actual ){
+		for( float a : actual ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( a != expected[i] ){
-				msgr.printError("value mismatch for member " + name +
+				msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" expected " + expected[i] + " but got " + a);
 			}
 			i++;
@@ -419,9 +419,9 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		int i=0;
 		final Messager msgr = _env.getMessager();
-		for( int a : actual ){
+		for( int a : actual ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( a != expected[i] ){
-				msgr.printError("value mismatch for member " + name +
+				msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" expected " + expected[i] + " but got " + a);
 			}
 			i++;
@@ -435,9 +435,9 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		int i=0;
 		final Messager msgr = _env.getMessager();
-		for( long a : actual ){
+		for( long a : actual ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( a != expected[i] ){
-				msgr.printError("value mismatch for member " + name +
+				msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" expected " + expected[i] + " but got " + a);
 			}
 			i++;
@@ -451,9 +451,9 @@ public class ValueConversionProcessor extends BaseProcessor {
 
 		int i=0;
 		final Messager msgr = _env.getMessager();
-		for( short a : actual ){
+		for( short a : actual ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if( a != expected[i] ){
-				msgr.printError("value mismatch for member " + name +
+				msgr.printError("value mismatch for member " + name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						" expected " + expected[i] + " but got " + a);
 			}
 			i++;

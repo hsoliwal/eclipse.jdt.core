@@ -45,7 +45,7 @@ public static Test suite() {
 public StatementRecoveryTest_1_5(String testName){
 	super(testName);
 }
-public void checkParse(
+public void checkParse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] source,
 	String expectedDietUnitToString,
 	String expectedDietWithStatementRecoveryUnitToString,
@@ -75,7 +75,7 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit diet structure" + testName,
+			"Invalid unit diet structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietUnitToString,
 			computedUnitToString);
 	}
@@ -98,7 +98,7 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit diet structure with statement recovery enabled" + testName,
+			"Invalid unit diet structure with statement recovery enabled" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietWithStatementRecoveryUnitToString,
 			computedUnitToString);
 	}
@@ -122,11 +122,11 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit diet structure" + testName,
+			"Invalid unit diet structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietUnitToString,
 			computedUnitToString);
 		if (computedUnit.types != null) {
-			for (int i = 0, length = computedUnit.types.length; i < length; i++){
+			for (int i = 0, length = computedUnit.types.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				computedUnit.types[i].parseMethods(parser, computedUnit);
 			}
 		}
@@ -136,7 +136,7 @@ public void checkParse(
 		}
 
 		assertEquals(
-			"Invalid unit diet+body structure" + testName,
+			"Invalid unit diet+body structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietPlusBodyUnitToString,
 			computedUnitToString);
 	}
@@ -159,11 +159,11 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit diet structure" + testName,
+			"Invalid unit diet structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietWithStatementRecoveryUnitToString,
 			computedUnitToString);
 		if (computedUnit.types != null) {
-			for (int i = 0, length = computedUnit.types.length; i < length; i++){
+			for (int i = 0, length = computedUnit.types.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				computedUnit.types[i].parseMethods(parser, computedUnit);
 			}
 		}
@@ -173,7 +173,7 @@ public void checkParse(
 		}
 
 		assertEquals(
-			"Invalid unit diet+body structure with statement recovery enabled" + testName,
+			"Invalid unit diet+body structure with statement recovery enabled" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedDietPlusBodyWithStatementRecoveryUnitToString,
 			computedUnitToString);
 	}
@@ -197,7 +197,7 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit full structure" + testName,
+			"Invalid unit full structure" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedFullUnitToString,
 			computedUnitToString);
 
@@ -221,7 +221,7 @@ public void checkParse(
 			System.out.println(Util.displayString(computedUnitToString));
 		}
 		assertEquals(
-			"Invalid unit full structure with statement recovery enabled" + testName,
+			"Invalid unit full structure with statement recovery enabled" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedFullWithStatementRecoveryUnitToString,
 			computedUnitToString);
 
@@ -238,7 +238,7 @@ protected Map getCompilerOptions() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=142793
-public void test0001() {
+public void test0001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -319,7 +319,7 @@ public void test0001() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=211180
-public void test0002() {
+public void test0002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;											\n"
@@ -382,7 +382,7 @@ public void test0002() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=130778
-public void test0003() {
+public void test0003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;															\n"
@@ -444,7 +444,7 @@ public void test0003() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=130778
-public void test0004() {
+public void test0004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;															\n"
@@ -506,7 +506,7 @@ public void test0004() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=130778
-public void test0005() {
+public void test0005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;															\n"
@@ -581,7 +581,7 @@ public void test0005() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=130778
-public void test0006() {
+public void test0006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;															\n"
@@ -656,7 +656,7 @@ public void test0006() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=130778
-public void test0007() {
+public void test0007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String s =
 		"package a;															\n"
@@ -733,7 +733,7 @@ public void test0007() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=340691
 // Verify that we don't get a recovered enum declaration when the error token is after an
 // incorrectly used modifier
-public void test0008() {
+public void test0008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String s =
 		"public class Try {\n" +
 		"\n" +

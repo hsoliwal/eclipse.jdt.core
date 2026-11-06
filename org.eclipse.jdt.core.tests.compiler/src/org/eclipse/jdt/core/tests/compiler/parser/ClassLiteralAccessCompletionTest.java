@@ -28,7 +28,7 @@ public static Test suite() {
 /*
  * Completion on the keyword 'class' on an array type
  */
-public void testArrayType() {
+public void testArrayType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {										\n" +
@@ -60,7 +60,7 @@ public void testArrayType() {
  * Test access to the keyword 'class' on an array type
  * where the keyword is non empty.
  */
-public void testArrayTypeWithNonEmptyIdentifier() {
+public void testArrayTypeWithNonEmptyIdentifier() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {										\n" +
@@ -91,7 +91,7 @@ public void testArrayTypeWithNonEmptyIdentifier() {
 /*
  * Completion on the keyword 'class' on a primitive array type
  */
-public void testPrimitiveArrayType() {
+public void testPrimitiveArrayType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {										\n" +
@@ -123,7 +123,7 @@ public void testPrimitiveArrayType() {
  * Completion on the keyword 'class' on a primitive array type where the
  * keyword is non empty
  */
-public void testPrimitiveArrayTypeWithNonEmptyIdentifier() {
+public void testPrimitiveArrayTypeWithNonEmptyIdentifier() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {										\n" +
@@ -154,7 +154,7 @@ public void testPrimitiveArrayTypeWithNonEmptyIdentifier() {
 /*
  * Completion on the keyword 'class' on a primitive type
  */
-public void testPrimitiveType() {
+public void testPrimitiveType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {										\n" +
@@ -186,7 +186,7 @@ public void testPrimitiveType() {
  * Completion on the keyword 'class' on a primitive type where the
  * keyword is non empty
  */
-public void testPrimitiveTypeWithNonEmptyIdentifier() {
+public void testPrimitiveTypeWithNonEmptyIdentifier() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {										\n" +

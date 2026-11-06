@@ -123,7 +123,7 @@ public final class Modifier extends ASTNode implements IExtendedModifier {
 		public static final ModifierKeyword MODULE_KEYWORD = new ModifierKeyword("module", MODULE);//$NON-NLS-1$
 
 		static {
-			KEYWORDS = new HashMap(20);
+			KEYWORDS = new HashMap(20); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			ModifierKeyword[] ops = {
 					PUBLIC_KEYWORD,
 					PROTECTED_KEYWORD,
@@ -141,7 +141,7 @@ public final class Modifier extends ASTNode implements IExtendedModifier {
 					NON_SEALED_KEYWORD,
 					MODULE_KEYWORD
 				};
-			for (ModifierKeyword op : ops) {
+			for (ModifierKeyword op : ops) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				KEYWORDS.put(op.toString(), op);
 			}
 		}
@@ -160,7 +160,7 @@ public final class Modifier extends ASTNode implements IExtendedModifier {
 		 * @see #toFlagValue()
 		 */
 		public static ModifierKeyword fromFlagValue(int flagValue) {
-			for (Object o : KEYWORDS.values()) {
+			for (Object o : KEYWORDS.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ModifierKeyword k = (ModifierKeyword) o;
 				if (k.toFlagValue() == flagValue) {
 					return k;
@@ -365,7 +365,7 @@ public final class Modifier extends ASTNode implements IExtendedModifier {
 	public static final int DEFAULT = 0x10000;
 
 	static {
-		List properyList = new ArrayList(2);
+		List properyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(Modifier.class, properyList);
 		addProperty(KEYWORD_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(properyList);

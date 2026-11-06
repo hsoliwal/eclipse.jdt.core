@@ -42,7 +42,7 @@ public boolean checkDeprecation(int commentPtr) {
 	return result;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected boolean parseIdentifierTag(boolean report) {
 	int end = this.lineEnd+1;
 	if (super.parseIdentifierTag(report) && this.index <= end) {
@@ -56,7 +56,7 @@ protected boolean parseIdentifierTag(boolean report) {
 			this.categories[this.categoriesPtr] = this.identifierStack[this.identifierPtr--];
 			// Store optional additional category identifiers
 			consumeToken();
-			while (this.index < end) {
+			while (this.index < end) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (readTokenSafely() == TerminalToken.TokenNameIdentifier && (this.scanner.currentCharacter == ' ' || ScannerHelper.isWhitespace(this.scanner.currentCharacter))) {
 					if (this.index > (this.lineEnd+1)) break;
 					// valid additional identifier
@@ -81,7 +81,7 @@ protected boolean parseIdentifierTag(boolean report) {
 	return false;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void parseSimpleTag() {
 
 	// Read first char
@@ -91,7 +91,7 @@ protected void parseSimpleTag() {
 		int c1, c2, c3, c4;
 		int pos = this.index;
 		this.index++;
-		while (this.source[this.index] == 'u')
+		while (this.source[this.index] == 'u') //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.index++;
 		if (!(((c1 = ScannerHelper.getHexadecimalValue(this.source[this.index++])) > 15 || c1 < 0)
 				|| ((c2 = ScannerHelper.getHexadecimalValue(this.source[this.index++])) > 15 || c2 < 0)

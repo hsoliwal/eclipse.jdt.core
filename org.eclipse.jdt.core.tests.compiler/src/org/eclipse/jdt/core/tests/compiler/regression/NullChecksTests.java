@@ -40,7 +40,7 @@ public class NullChecksTests extends AbstractNullAnnotationTest {
 		return NullChecksTests.class;
 	}
 
-	public void testAssertNonNull1() {
+	public void testAssertNonNull1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -72,7 +72,7 @@ public class NullChecksTests extends AbstractNullAnnotationTest {
 			"Shouldn\'t!");
 	}
 
-	public void testAssertNonNullElements() {
+	public void testAssertNonNullElements() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -110,7 +110,7 @@ public class NullChecksTests extends AbstractNullAnnotationTest {
 			"Shouldn\'t!");
 	}
 
-	public void testRequireNonNull() {
+	public void testRequireNonNull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -141,7 +141,7 @@ public class NullChecksTests extends AbstractNullAnnotationTest {
 			"Shouldn\'t!");
 	}
 
-	public void testRequireNonEmptyString() {
+	public void testRequireNonEmptyString() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -178,7 +178,7 @@ public class NullChecksTests extends AbstractNullAnnotationTest {
 			"Shouldn\'t!");
 	}
 
-	public void testRequireNonEmptyCollection() {
+	public void testRequireNonEmptyCollection() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -217,7 +217,7 @@ public class NullChecksTests extends AbstractNullAnnotationTest {
 			"Shouldn\'t!");
 	}
 
-	public void testIsNull() {
+	public void testIsNull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions();
 		compilerOptions.put(JavaCore.COMPILER_PB_SUPPRESS_OPTIONAL_ERRORS, JavaCore.ENABLED);
 		runConformTestWithLibs(
@@ -249,7 +249,7 @@ public class NullChecksTests extends AbstractNullAnnotationTest {
 			"IS ANY NULL 1");
 	}
 
-	public void testAsNullable() {
+	public void testAsNullable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -273,7 +273,7 @@ public class NullChecksTests extends AbstractNullAnnotationTest {
 			"NULL");
 	}
 
-	public void testNonNullElse() {
+	public void testNonNullElse() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -300,7 +300,7 @@ public class NullChecksTests extends AbstractNullAnnotationTest {
 			"ELSE4");
 	}
 
-	public void _testIfNonNull() { // FIXME: see https://bugs.eclipse.org/489609 - [1.8][null] null annotation on wildcard is dropped during inference
+	public void _testIfNonNull() { // FIXME: see https://bugs.eclipse.org/489609 - [1.8][null] null annotation on wildcard is dropped during inference //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTestWithLibs(
 			new String[] {
 				"X.java",
@@ -323,7 +323,7 @@ public class NullChecksTests extends AbstractNullAnnotationTest {
 			"good");
 	}
 
-	public void testBooleanNullAssertions() {
+	public void testBooleanNullAssertions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTestWithLibs(
 			new String[] {
 				"X.java",
@@ -420,7 +420,7 @@ public class NullChecksTests extends AbstractNullAnnotationTest {
 			"Null pointer access: The variable initiallyNN can only be null at this location\n" +
 			"----------\n");
 	}
-	public void testBug465085_comment12() {
+	public void testBug465085_comment12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.ERROR);
 		runConformTest(

@@ -44,7 +44,7 @@ public class MultiProjectTests extends BuilderTests {
 		return new OrderedTestSuite(MultiProjectTests.class);
 	}
 
-	public void testCompileOnlyDependent() throws JavaModelException {
+	public void testCompileOnlyDependent() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -104,7 +104,7 @@ public class MultiProjectTests extends BuilderTests {
 	}
 
 	// 14103 - avoid recompiling unaffected sources in dependent projects
-	public void testCompileOnlyStructuralDependent() throws JavaModelException {
+	public void testCompileOnlyStructuralDependent() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -175,7 +175,7 @@ public class MultiProjectTests extends BuilderTests {
 		env.removeProject(project3Path);
 	}
 
-	public void testRemoveField() throws JavaModelException {
+	public void testRemoveField() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		options.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.IGNORE);
 		JavaCore.setOptions(options);
@@ -229,7 +229,7 @@ public class MultiProjectTests extends BuilderTests {
 		env.removeProject(project2Path);
 	}
 
-	public void testCompileOrder() throws JavaModelException {
+	public void testCompileOrder() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.CORE_CIRCULAR_CLASSPATH, JavaCore.WARNING);
@@ -305,7 +305,7 @@ public class MultiProjectTests extends BuilderTests {
 		env.removeProject(p3);
 	}
 
-	public void testCyclesCleared() throws JavaModelException {
+	public void testCyclesCleared() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath p1 = env.addProject("P1"); //$NON-NLS-1$
 		IPath p2 = env.addProject("P2"); //$NON-NLS-1$
 		try {
@@ -347,7 +347,7 @@ public class MultiProjectTests extends BuilderTests {
 		}
 	}
 
-	public void testCycle1() throws JavaModelException {
+	public void testCycle1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.CORE_CIRCULAR_CLASSPATH, JavaCore.WARNING);
@@ -460,7 +460,7 @@ public class MultiProjectTests extends BuilderTests {
 		}
 	}
 
-	public void testCycle2() throws JavaModelException {
+	public void testCycle2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.CORE_CIRCULAR_CLASSPATH, JavaCore.WARNING);
@@ -574,7 +574,7 @@ public class MultiProjectTests extends BuilderTests {
 		}
 	}
 
-	public void testCycle3() throws JavaModelException {
+	public void testCycle3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.CORE_CIRCULAR_CLASSPATH, JavaCore.WARNING);
@@ -718,7 +718,7 @@ public class MultiProjectTests extends BuilderTests {
 			env.removeProject(p3);
 		}
 	}
-	public void testCycle4() throws JavaModelException {
+	public void testCycle4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.CORE_CIRCULAR_CLASSPATH, JavaCore.WARNING);
@@ -860,7 +860,7 @@ public class MultiProjectTests extends BuilderTests {
 		}
 	}
 
-	public void testCycle5() throws JavaModelException {
+	public void testCycle5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.CORE_CIRCULAR_CLASSPATH, JavaCore.WARNING); // $NON-NLS-1$
@@ -970,7 +970,7 @@ public class MultiProjectTests extends BuilderTests {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=114349
 // this one fails; compare with testCycle7 (only one change in Object source),
 // which passes
-public void testCycle6() throws JavaModelException {
+public void testCycle6() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	Hashtable newOptions = JavaCore.getOptions();
 	newOptions.put(JavaCore.CORE_CIRCULAR_CLASSPATH, JavaCore.WARNING);
@@ -1084,7 +1084,7 @@ public void testCycle6() throws JavaModelException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=114349
 // this one passes; compare with testCycle6 (only one change in Object source),
 // which fails
-public void testCycle7() throws JavaModelException {
+public void testCycle7() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	Hashtable newOptions = JavaCore.getOptions();
 	newOptions.put(JavaCore.CORE_CIRCULAR_CLASSPATH, JavaCore.WARNING);
@@ -1191,7 +1191,7 @@ public void testCycle7() throws JavaModelException {
 		env.removeProject(p3);
 	}
 }
-	public void testCycle8() throws JavaModelException {
+	public void testCycle8() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// specifically tests projects with (transitive) dependencies on a cycle, i.e., error messages with a non-empty prefix
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
@@ -1245,7 +1245,7 @@ public void testCycle7() throws JavaModelException {
 	}
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5494
-	public void testGH5494() throws JavaModelException {
+	public void testGH5494() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		Hashtable newOptions = JavaCore.getOptions();
 		newOptions.put(JavaCore.CORE_CIRCULAR_CLASSPATH, JavaCore.WARNING);
@@ -1309,7 +1309,7 @@ public void testCycle7() throws JavaModelException {
 	/*
 	 * Full buid case
 	 */
-	public void testExcludePartOfAnotherProject1() throws JavaModelException {
+	public void testExcludePartOfAnotherProject1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			//----------------------------
 			//         Project1
 			//----------------------------
@@ -1353,7 +1353,7 @@ public void testCycle7() throws JavaModelException {
 	/*
 	 * Incremental buid case
 	 */
-	public void testExcludePartOfAnotherProject2() throws JavaModelException {
+	public void testExcludePartOfAnotherProject2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -1408,7 +1408,7 @@ public void testCycle7() throws JavaModelException {
 	/*
 	 * Fix access restriction problem
 	 */
-	public void testExcludePartOfAnotherProject3() throws JavaModelException {
+	public void testExcludePartOfAnotherProject3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -1465,7 +1465,7 @@ public void testCycle7() throws JavaModelException {
 	/*
 	 * Full buid case
 	 */
-	public void testIncludePartOfAnotherProject1() throws JavaModelException {
+	public void testIncludePartOfAnotherProject1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			//----------------------------
 			//         Project1
 			//----------------------------
@@ -1509,7 +1509,7 @@ public void testCycle7() throws JavaModelException {
 	/*
 	 * Incremental buid case
 	 */
-	public void testIncludePartOfAnotherProject2() throws JavaModelException {
+	public void testIncludePartOfAnotherProject2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -1564,7 +1564,7 @@ public void testCycle7() throws JavaModelException {
 	/*
 	 * Fix access restriction problem
 	 */
-	public void testIncludePartOfAnotherProject3() throws JavaModelException {
+	public void testIncludePartOfAnotherProject3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -1623,7 +1623,7 @@ public void testCycle7() throws JavaModelException {
 	 * on another classpath entry.
 	 * (regression test for bug 98127 Access restrictions started showing up after switching to bundle)
 	 */
-	public void testIgnoreIfBetterNonAccessibleRule1() throws JavaModelException {
+	public void testIgnoreIfBetterNonAccessibleRule1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			//----------------------------
 			//         Project1
 			//----------------------------
@@ -1675,7 +1675,7 @@ public void testCycle7() throws JavaModelException {
 	 * on another classpath entry.
 	 * (regression test for bug 98127 Access restrictions started showing up after switching to bundle)
 	 */
-	public void testIgnoreIfBetterNonAccessibleRule2() throws JavaModelException {
+	public void testIgnoreIfBetterNonAccessibleRule2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			//----------------------------
 			//         Project1
 			//----------------------------
@@ -1722,7 +1722,7 @@ public void testCycle7() throws JavaModelException {
 		env.removeProject(project3Path);
 	}
 
-	public void testMissingRequiredBinaries() throws JavaModelException {
+	public void testMissingRequiredBinaries() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath p1 = env.addProject("P1"); //$NON-NLS-1$
 		IPath p2 = env.addProject("P2"); //$NON-NLS-1$
@@ -1788,7 +1788,7 @@ public void testCycle7() throws JavaModelException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=159118
 // contrast this with test101: get an error when the class folder is not
 // exported from the target project - P1 here
-public void test100_class_folder_exported() throws JavaModelException {
+public void test100_class_folder_exported() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath P1 = env.addProject("P1");
 	env.setOutputFolder(P1, "bin");
 	env.addExternalJars(P1, Util.getJavaClassLibs());
@@ -1827,7 +1827,7 @@ public void test100_class_folder_exported() throws JavaModelException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=159118
 // contrast this with test100: get an error when the class folder is not
 // exported from the target project - P1 here
-public void test101_class_folder_non_exported() throws JavaModelException {
+public void test101_class_folder_non_exported() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath P1 = env.addProject("P1");
 	env.setOutputFolder(P1, "bin");
 	env.addExternalJars(P1, Util.getJavaClassLibs());
@@ -1867,7 +1867,7 @@ public void test101_class_folder_non_exported() throws JavaModelException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=164622
-public void test102_missing_required_binaries() throws JavaModelException {
+public void test102_missing_required_binaries() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPath p1 = env.addProject("P1");
 	env.addExternalJars(p1, Util.getJavaClassLibs());
@@ -1928,7 +1928,7 @@ public void test102_missing_required_binaries() throws JavaModelException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=164622
-public void test103_missing_required_binaries() throws JavaModelException {
+public void test103_missing_required_binaries() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPath p1 = env.addProject("P1");
 	env.addExternalJars(p1, Util.getJavaClassLibs());
@@ -1991,7 +1991,7 @@ public void test103_missing_required_binaries() throws JavaModelException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=460993
-public void test104_missing_required_binaries() throws CoreException {
+public void test104_missing_required_binaries() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IPath p0 = env.addProject("JRE17", CompilerOptions.getFirstSupportedJavaVersion());
 	env.addExternalJars(p0, Util.getJavaClassLibs());
@@ -2072,7 +2072,7 @@ public void test104_missing_required_binaries() throws CoreException {
 
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=438923, [compiler]Type is inappropriately considered "indirectly referenced"
-public void test438923() throws JavaModelException {
+public void test438923() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//----------------------------
 	//         Project1
 	//----------------------------
@@ -2138,7 +2138,7 @@ public void test438923() throws JavaModelException {
 	env.removeProject(p3);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=461074, "indirectly referenced from required .class files" error for unreachable reference of type in overriding method declaration in a library on classpath
-public void test461074() throws JavaModelException {
+public void test461074() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//----------------------------
 	//         Project1
 	//----------------------------
@@ -2209,7 +2209,7 @@ public void test461074() throws JavaModelException {
 	env.removeProject(p3);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=461074, "indirectly referenced from required .class files" error for unreachable reference of type in overriding method declaration in a library on classpath
-public void test461074_error_1_8() throws JavaModelException {
+public void test461074_error_1_8() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// as of https://github.com/eclipse-jdt/eclipse.jdt.core/pull/2543 and at 1.8+ we tolerate the missing type
 	//----------------------------
 	//         Project1

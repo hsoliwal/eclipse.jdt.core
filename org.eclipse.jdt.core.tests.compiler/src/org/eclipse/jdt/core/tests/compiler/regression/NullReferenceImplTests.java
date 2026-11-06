@@ -220,21 +220,21 @@ public class NullReferenceImplTests extends NullReferenceTest {
 	private State(int numericValue) {
 		this(numericValue, null);
 	}
-	private State(int numericValue, String publicName) {
+	private State(int numericValue, String publicName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (numericValue > stateMaxValue) {
 			throw new IllegalArgumentException("state value overflow");
 		}
 		this.value = (byte) numericValue;
-		StringBuilder printableValue = new StringBuilder(6);
-		for (int i = stateWidth - 1; i >= 0; i--) {
-			printableValue.append((numericValue >>> i & 1) != 0 ? '1' : '0');
+		StringBuilder printableValue = new StringBuilder(6); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = stateWidth - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			printableValue.append((numericValue >>> i & 1) != 0 ? '1' : '0'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		this.printableBitsField = printableValue.toString();
 		if (this.value > 0xF) {
-			this.hexString = "0x" + Integer.toHexString(this.value).toUpperCase();
+			this.hexString = "0x" + Integer.toHexString(this.value).toUpperCase(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		else {
-			this.hexString = "0x0" + Integer.toHexString(this.value).toUpperCase();
+			this.hexString = "0x0" + Integer.toHexString(this.value).toUpperCase(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (publicName != null) {
 			this.name = publicName;
@@ -244,10 +244,10 @@ public class NullReferenceImplTests extends NullReferenceTest {
 			this.name = this.printableBitsField;
 		}
 	}
-	private State(String commentLine) {
+	private State(String commentLine) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char current = ' '; // keep the initialization status quiet
 		int cursor, length;
-		for (cursor = 0, length = commentLine.length();
+		for (cursor = 0, length = commentLine.length(); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cursor < length;
 			cursor++) {
 			if ((current = commentLine.charAt(cursor)) == '0' ||
@@ -256,31 +256,31 @@ public class NullReferenceImplTests extends NullReferenceTest {
 			}
 		}
 		if (cursor == length) {
-			throw new RuntimeException("bad state definition format (missing bits field): " + commentLine);
+			throw new RuntimeException("bad state definition format (missing bits field): " + commentLine); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// PREMATURE adopt consistent error policy
 		}
 		int valueDigits;
-		for (valueDigits = 1; cursor < (length - 1) && valueDigits < stateWidth; valueDigits++) {
+		for (valueDigits = 1; cursor < (length - 1) && valueDigits < stateWidth; valueDigits++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.value = (byte) ((this.value << 1) + (current - '0'));
 			if ((current = commentLine.charAt(++cursor)) != '0' &&
 					current != '1') {
-				throw new RuntimeException("bad state definition format (inappropriate character in bits field): " + commentLine);
+				throw new RuntimeException("bad state definition format (inappropriate character in bits field): " + commentLine); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				// PREMATURE adopt consistent error policy
 			}
 		}
 		if (valueDigits < stateWidth) {
-			throw new RuntimeException("bad state definition format (bits field is too short): " + commentLine);
+			throw new RuntimeException("bad state definition format (bits field is too short): " + commentLine); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// PREMATURE adopt consistent error policy
 		}
 		this.value = (byte) ((this.value << 1) + (current - '0'));
 		this.printableBitsField = commentLine.substring(cursor - stateWidth + 1, cursor + 1);
 		if (this.value > 0xF) {
-			this.hexString = "0x" + Integer.toHexString(this.value).toUpperCase();
+			this.hexString = "0x" + Integer.toHexString(this.value).toUpperCase(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		else {
-			this.hexString = "0x0" + Integer.toHexString(this.value).toUpperCase();
+			this.hexString = "0x0" + Integer.toHexString(this.value).toUpperCase(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		while (++cursor < length && Character.isWhitespace(current = commentLine.charAt(++cursor)) && current != '\n') {
+		while (++cursor < length && Character.isWhitespace(current = commentLine.charAt(++cursor)) && current != '\n') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// loop
 		}
 		if (cursor < length && current != '\n') {
@@ -293,38 +293,38 @@ public class NullReferenceImplTests extends NullReferenceTest {
 		}
 	}
 	private String asInitializer() {
-		StringBuilder result = new StringBuilder(70);
-		result.append("		new State(");
-		result.append(this.value);
+		StringBuilder result = new StringBuilder(70); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		result.append("		new State("); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		result.append(this.value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char first;
 		boolean nameIsSymbolic = (first = this.name.charAt(0)) != '0'
 			&& first != '1';
 		if (nameIsSymbolic) {
-			result.append(", \"");
-			result.append(this.name);
-			result.append('"');
+			result.append(", \""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			result.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			result.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		result.append("), // ");
-		result.append(this.printableBitsField);
+		result.append("), // "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		result.append(this.printableBitsField); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return result.toString();
 	}
 	long [] asLongArray() {
 		long[] result = new long[stateWidth];
-		for (int i = 0; i < stateWidth; i++) {
+		for (int i = 0; i < stateWidth; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i] = ((this.value >> (stateWidth - i - 1)) & 1) == 0 ? 0 : 1;
 		}
 		return result;
 	}
 	private String asSourceComment() {
-		StringBuilder result = new StringBuilder(70);
-		result.append("\t\t");
-		result.append(this.printableBitsField);
+		StringBuilder result = new StringBuilder(70); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		result.append("\t\t"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		result.append(this.printableBitsField); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		char first;
 		boolean nameIsSymbolic = (first = this.name.charAt(0)) != '0'
 			&& first != '1';
 		if (nameIsSymbolic) {
-			result.append('\t');
-			result.append(this.name);
+			result.append('\t'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			result.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return result.toString();
 	}
@@ -345,8 +345,8 @@ public class NullReferenceImplTests extends NullReferenceTest {
 	private static Map namesIndex;
 	static State fromSymbolicName (String name) {
 		if (namesIndex == null) {
-			namesIndex = new HashMap(states.length);
-			for (int i = 0; i < states.length; i++) {
+			namesIndex = new HashMap(states.length); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			for (int i = 0; i < states.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (states[i].name != null) {
 					namesIndex.put(states[i].name, states[i]);
 				}
@@ -354,20 +354,20 @@ public class NullReferenceImplTests extends NullReferenceTest {
 		}
 		return (State) namesIndex.get(name);
 	}
-	private static void grabDefinitionFromComment(BufferedReader input) {
+	private static void grabDefinitionFromComment(BufferedReader input) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String line;
 		State current;
 	// use when the initializer is incomplete, hence needs to be reinitialized
 	//	states = new State[stateMaxValue + 1];
 	// use when the states field is final, with the appropriate size:
-		for (int i = 0; i <= stateMaxValue; i++) {
+		for (int i = 0; i <= stateMaxValue; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			states[i] = null;
 		}
 		try {
-			while ((line = input.readLine()) != null && line.indexOf(definitionEndMarker) == -1) {
+			while ((line = input.readLine()) != null && line.indexOf(definitionEndMarker) == -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				current = new State(line);
 				if (states[current.value] != null) {
-					throw new RuntimeException("duplicate state for index: " + current.value);
+					throw new RuntimeException("duplicate state for index: " + current.value); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				else {
 					states[current.value] = current;
@@ -376,7 +376,7 @@ public class NullReferenceImplTests extends NullReferenceTest {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		for (int i = 0; i < stateMaxValue; i++) {
+		for (int i = 0; i < stateMaxValue; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (states[i] == null) {
 				states[i] = new State(i);
 			}
@@ -409,22 +409,22 @@ public class NullReferenceImplTests extends NullReferenceTest {
 	//	System.out.println("*/");
 	//}
 	private final static String
-		definitionStartMarker = "// STATES " + CodeAnalysis.definitionStartMarker,
-		definitionEndMarker = "// STATES " + CodeAnalysis.definitionEndMarker,
-		initializerStartMarker = "// STATES " + CodeAnalysis.initializerStartMarker,
-		initializerEndMarker = "// STATES " + CodeAnalysis.initializerEndMarker;
-	static void reinitializeFromComment(BufferedReader input, BufferedWriter output) {
+		definitionStartMarker = "// STATES " + CodeAnalysis.definitionStartMarker, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		definitionEndMarker = "// STATES " + CodeAnalysis.definitionEndMarker, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		initializerStartMarker = "// STATES " + CodeAnalysis.initializerStartMarker, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		initializerEndMarker = "// STATES " + CodeAnalysis.initializerEndMarker; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	static void reinitializeFromComment(BufferedReader input, BufferedWriter output) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String line, tab = "";
 		int cursor;
 		char c;
 		try {
-			while ((line = input.readLine()) != null) {
+			while ((line = input.readLine()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				output.write(line);
 				output.write('\n');
 				if ((cursor = line.indexOf(definitionStartMarker)) != -1) {
 					// check the line format
 					boolean reachedStart = true;
-					for (int i = 0; i < cursor; i++) {
+					for (int i = 0; i < cursor; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!Character.isWhitespace(c = line.charAt(i))) {
 							reachedStart = false;
 							break;
@@ -436,18 +436,18 @@ public class NullReferenceImplTests extends NullReferenceTest {
 					if (reachedStart) {
 						grabDefinitionFromComment(input); // consumes up to the END line
 						int i, length;
-						for (i = 0, length = states.length; i < length; i++) {
+						for (i = 0, length = states.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							output.write(states[i].asSourceComment());
 							output.write('\n');
 						}
-						output.write(tab + definitionEndMarker + "\n");
+						output.write(tab + definitionEndMarker + "\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 				if ((cursor = line.indexOf(initializerStartMarker)) != -1) {
 					// check the line format
 					boolean reachedStart = true;
 					tab = "";
-					for (int i = 0; i < cursor; i++) {
+					for (int i = 0; i < cursor; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!Character.isWhitespace(c = line.charAt(i))) {
 							reachedStart = false;
 							break;
@@ -457,16 +457,16 @@ public class NullReferenceImplTests extends NullReferenceTest {
 						}
 					}
 					if (reachedStart) {
-						while ((line = input.readLine()) != null &&
+						while ((line = input.readLine()) != null && //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								line.indexOf(initializerEndMarker) == -1) {
 							// loop
 						}
 						int i, length;
-						for (i = 0, length = states.length; i < length; i++) {
+						for (i = 0, length = states.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							output.write(states[i].asInitializer());
 							output.write('\n');
 						}
-						output.write(tab + initializerEndMarker + "\n");
+						output.write(tab + initializerEndMarker + "\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			}
@@ -476,19 +476,19 @@ public class NullReferenceImplTests extends NullReferenceTest {
 			throw new RuntimeException(e);
 		}
 	}
-	static Iterator symbolicStates() {
+	static Iterator symbolicStates() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return new Iterator() {
 			int nextSymbolic = -1;
 			@Override
 			public boolean hasNext() {
 				if (this.nextSymbolic == -1) {
-					for (this.nextSymbolic = 0; this.nextSymbolic < states.length; this.nextSymbolic++) {
+					for (this.nextSymbolic = 0; this.nextSymbolic < states.length; this.nextSymbolic++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (states[this.nextSymbolic].symbolic) {
 							break;
 						}
 					}
 				} else {
-					for (; this.nextSymbolic < states.length; this.nextSymbolic++) {
+					for (; this.nextSymbolic < states.length; this.nextSymbolic++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (states[this.nextSymbolic].symbolic) {
 							break;
 						}
@@ -539,7 +539,7 @@ public static Test suite() {
     Class clazz = testClass();
     TestSuite all = new TestSuite(clazz.getName());
     List tests = buildTestsList(testClass());
-    for (int i = 0, length = tests.size(); i < length; i++) {
+    for (int i = 0, length = tests.size(); i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     	all.addTest((Test) tests.get(i));
     }
 	return all;
@@ -551,42 +551,42 @@ public static Class testClass() {
 
 public void test2050_markAsComparedEqualToNonNull() {
 	int failures = NullReferenceImplTransformations.markAsComparedEqualToNonNull.test();
-	assertTrue("nb of failures: " + failures, failures == 0);
+	assertTrue("nb of failures: " + failures, failures == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 public void test2051_markAsComparedEqualToNull() {
 	int failures = NullReferenceImplTransformations.markAsComparedEqualToNull.test();
-	assertTrue("nb of failures: " + failures, failures == 0);
+	assertTrue("nb of failures: " + failures, failures == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 public void test2055_markAsDefinitelyNonNull() {
 	int failures = NullReferenceImplTransformations.markAsDefinitelyNonNull.test();
-	assertTrue("nb of failures: " + failures, failures == 0);
+	assertTrue("nb of failures: " + failures, failures == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 public void test2056_markAsDefinitelyNull() {
 	int failures = NullReferenceImplTransformations.markAsDefinitelyNull.test();
-	assertTrue("nb of failures: " + failures, failures == 0);
+	assertTrue("nb of failures: " + failures, failures == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 public void test2057_markAsDefinitelyUnknown() {
 	int failures = NullReferenceImplTransformations.markAsDefinitelyUnknown.test();
-	assertTrue("nb of failures: " + failures, failures == 0);
+	assertTrue("nb of failures: " + failures, failures == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 public void test2060_addInitializationsFrom() {
 	int failures = NullReferenceImplTransformations.addInitializationsFrom.test();
-	assertTrue("nb of failures: " + failures, failures == 0);
+	assertTrue("nb of failures: " + failures, failures == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 public void test2061_addPotentialInitializationsFrom() {
 	int failures = NullReferenceImplTransformations.addPotentialInitializationsFrom.test();
-	assertTrue("nb of failures: " + failures, failures == 0);
+	assertTrue("nb of failures: " + failures, failures == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 public void test2062_mergedWith() {
 	int failures = NullReferenceImplTransformations.mergedWith.test();
-	assertTrue("nb of failures: " + failures, failures == 0);
+	assertTrue("nb of failures: " + failures, failures == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // PREMATURE rewrite from scratch
@@ -641,15 +641,15 @@ public void test2062_mergedWith() {
 //	assertTrue("nb of failures: " + failures, failures == 0);
 //}
 
-public void test2400_state_consistency() {
+public void test2400_state_consistency() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int failures = 0;
 	long startNanos;
 	if (MEASURE_PERFORMANCES) {
 		startNanos = System.nanoTime();
 	}
 	String header = "state consistency failures: ";
-	for (int l = 0; l < COMBINATION_TESTS_LOOP_NB ; l++) {
-		for (int i = 0; i < State.states.length; i++) {
+	for (int l = 0; l < COMBINATION_TESTS_LOOP_NB ; l++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (int i = 0; i < State.states.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (State.states[i].symbolic) {
 				UnconditionalFlowInfoTestHarness
 					state = UnconditionalFlowInfoTestHarness.
@@ -674,7 +674,7 @@ public void test2400_state_consistency() {
 						System.out.println(header);
 					}
 					failures++;
-					System.out.println("\t\tconsistency breakage for definitely non null state " + State.states[i].name);
+					System.out.println("\t\tconsistency breakage for definitely non null state " + State.states[i].name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (isDefinitelyNull
 							&& (isDefinitelyNonNull || isDefinitelyUnknown
@@ -683,7 +683,7 @@ public void test2400_state_consistency() {
 						System.out.println(header);
 					}
 					failures++;
-					System.out.println("\t\tconsistency breakage for definitely null state " + State.states[i].name);
+					System.out.println("\t\tconsistency breakage for definitely null state " + State.states[i].name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (isDefinitelyUnknown
 							&& (isDefinitelyNonNull || isDefinitelyNull
@@ -693,7 +693,7 @@ public void test2400_state_consistency() {
 						System.out.println(header);
 					}
 					failures++;
-					System.out.println("\t\tconsistency breakage for definitely unknown state " + State.states[i].name);
+					System.out.println("\t\tconsistency breakage for definitely unknown state " + State.states[i].name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (isProtectedNonNull && !isDefinitelyNonNull
 						|| isProtectedNull && !isDefinitelyNull
@@ -714,16 +714,16 @@ public void test2400_state_consistency() {
 						System.out.println(header);
 					}
 					failures++;
-					System.out.println("\t\tconsistency breakage for " + State.states[i].name);
+					System.out.println("\t\tconsistency breakage for " + State.states[i].name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
 	}
 	if (MEASURE_PERFORMANCES) {
-		System.out.println("mergedWith\t\t\t" + COMBINATION_TESTS_LOOP_NB + "\t" +
+		System.out.println("mergedWith\t\t\t" + COMBINATION_TESTS_LOOP_NB + "\t" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				(System.nanoTime() - startNanos) / 1_000_000L);
 	}
-	for (int i = 0; i < State.states.length; i++) {
+	for (int i = 0; i < State.states.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (State.states[i].symbolic) {
 			UnconditionalFlowInfoTestHarness state;
 			state = UnconditionalFlowInfoTestHarness.
@@ -748,7 +748,7 @@ public void test2400_state_consistency() {
 						System.out.println(header);
 					}
 					failures++;
-					System.out.println("\t\tconsistency breakage (64) for definitely non null state " + State.states[i].name);
+					System.out.println("\t\tconsistency breakage (64) for definitely non null state " + State.states[i].name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (isDefinitelyNull
 							&& (isDefinitelyNonNull || isDefinitelyUnknown
@@ -757,7 +757,7 @@ public void test2400_state_consistency() {
 						System.out.println(header);
 					}
 					failures++;
-					System.out.println("\t\tconsistency breakage (64) for definitely null state " + State.states[i].name);
+					System.out.println("\t\tconsistency breakage (64) for definitely null state " + State.states[i].name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (isDefinitelyUnknown
 							&& (isDefinitelyNonNull || isDefinitelyNull
@@ -767,7 +767,7 @@ public void test2400_state_consistency() {
 						System.out.println(header);
 					}
 					failures++;
-					System.out.println("\t\tconsistency breakage (64) for definitely unknown state " + State.states[i].name);
+					System.out.println("\t\tconsistency breakage (64) for definitely unknown state " + State.states[i].name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (isProtectedNonNull && !isDefinitelyNonNull
 						|| isProtectedNull && !isDefinitelyNull
@@ -789,24 +789,24 @@ public void test2400_state_consistency() {
 						System.out.println(header);
 					}
 					failures++;
-					System.out.println("\t\tconsistency breakage (64) for " + State.states[i].name);
+					System.out.println("\t\tconsistency breakage (64) for " + State.states[i].name); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 		}
 	}
-	assertTrue("nb of failures: " + failures, failures == 0);
+	assertTrue("nb of failures: " + failures, failures == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
-public void test2500_addInitializationsFrom_for_definites() {
+public void test2500_addInitializationsFrom_for_definites() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// when an added initialization is a def. something, it should
 	// affect the left hand term as the markAsDefinite* method would
 	// do
 	int failures = 0;
-	for (int i = 0; i < State.states.length; i++) {
+	for (int i = 0; i < State.states.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (State.states[i].symbolic) {
 			UnconditionalFlowInfoTestHarness source1, source2, result1, result2;
 			source1 = UnconditionalFlowInfoTestHarness.
 				testUnconditionalFlowInfo(State.states[i]);
-			for (int j = 0; j < State.states.length; j++) {
+			for (int j = 0; j < State.states.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (State.states[j].symbolic) {
 					source2 = UnconditionalFlowInfoTestHarness.
 						testUnconditionalFlowInfo(State.states[j]);
@@ -834,7 +834,7 @@ public void test2500_addInitializationsFrom_for_definites() {
 							System.out.println("addInitializationsFrom_for_definites failures: "); //$NON-NLS-1$
 						}
 						failures++;
-						System.out.println("\t\t" + State.states[j].name +
+						System.out.println("\t\t" + State.states[j].name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							" should answer true to at least one isDefinite* query");
 						// PREMATURE move to specific queries test case
 					}
@@ -847,7 +847,7 @@ public void test2500_addInitializationsFrom_for_definites() {
 							System.out.println("addInitializationsFrom_for_definites failures: "); //$NON-NLS-1$
 						}
 						failures++;
-						System.out.println("\t\t" + State.states[i].name +
+						System.out.println("\t\t" + State.states[i].name + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							" + " + State.states[j].name +
 							" => " + result2.asState().name +
 							" instead of: " + result1.asState().name);
@@ -856,7 +856,7 @@ public void test2500_addInitializationsFrom_for_definites() {
 			}
 		}
 	}
-	assertTrue("nb of failures: " + failures, failures == 0);
+	assertTrue("nb of failures: " + failures, failures == 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // Use for coverage tests only. Needs specific instrumentation of code,
@@ -868,7 +868,7 @@ private static int coveragePointsNb = 45;
 
 // PREMATURE reactivate coverage tests
 // Coverage by state transition tables methods.
-public void test2998_coverage() {
+public void test2998_coverage() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (UnconditionalFlowInfo.COVERAGE_TEST_FLAG) {
 		// sanity check: need to be sure that the tests execute properly when not
 		// trying to check coverage
@@ -890,7 +890,7 @@ public void test2998_coverage() {
 		testBug292478g();
 		// coverage check
 		int failuresNb = 0;
-		for (int i = 1; i <= coveragePointsNb; i++) {
+		for (int i = 1; i <= coveragePointsNb; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i == 11 || i == 12 || i == 14) {
 				continue;
 				// these can only be reached via a direct call to addPotentialNullInfoFrom,
@@ -922,15 +922,15 @@ public void test2998_coverage() {
 				continue;
 			}
 			failuresNb++;
-			System.out.println("Missing coverage point: " + i);
+			System.out.println("Missing coverage point: " + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		UnconditionalFlowInfo.CoverageTestId = 0; // reset for other tests
-		assertEquals(failuresNb + " missing coverage point(s)", failuresNb, 0);
+		assertEquals(failuresNb + " missing coverage point(s)", failuresNb, 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 
 // Coverage by code samples.
-public void test2999_coverage() {
+public void test2999_coverage() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (UnconditionalFlowInfo.COVERAGE_TEST_FLAG) {
 		// sanity check: need to be sure that the tests execute properly when not
 		// trying to check coverage
@@ -952,7 +952,7 @@ public void test2999_coverage() {
 		test2020_flow_info();
 		// coverage check
 		int failuresNb = 0;
-		for (int i = 1; i <= coveragePointsNb; i++) {
+		for (int i = 1; i <= coveragePointsNb; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i < 3
 				|| 4 < i && i < 11
 				|| 11 < i && i < 16
@@ -988,34 +988,34 @@ public void test2999_coverage() {
 				continue;
 			}
 			failuresNb++;
-			System.out.println("Missing coverage point: " + i);
+			System.out.println("Missing coverage point: " + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		UnconditionalFlowInfo.CoverageTestId = 0; // reset for other tests
-		assertEquals(failuresNb + " missing coverage point(s)", failuresNb, 0);
+		assertEquals(failuresNb + " missing coverage point(s)", failuresNb, 0); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 
 // only works for info coded on bit 0 - least significant
 String testCodedValueOf(long[] data) {
 	int length;
-	StringBuilder result = new StringBuilder(length = data.length);
-	for (int i = 0; i < length; i++) {
-		result.append(data[i] == 0 ? '0' : '1');
+	StringBuilder result = new StringBuilder(length = data.length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		result.append(data[i] == 0 ? '0' : '1'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return result.toString();
 }
 
 static String testStringValueOf(long[] data) {
 	int length;
-	StringBuilder result = new StringBuilder((length = data.length) * 2 + 1);
-	result.append('{');
-	for (int i = 0; i < length; i++) {
+	StringBuilder result = new StringBuilder((length = data.length) * 2 + 1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	result.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (i > 0) {
-			result.append(',');
+			result.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		result.append(data[i]);
+		result.append(data[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	result.append('}');
+	result.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return result.toString();
 }
 }
@@ -1234,7 +1234,7 @@ public String testString(int position) {
 }
 
 	// Factorized implementation
-static NullReferenceImplTests.State asState(UnconditionalFlowInfo zis, int position) {
+static NullReferenceImplTests.State asState(UnconditionalFlowInfo zis, int position) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if ((zis.tagBits & NULL_FLAG_MASK) == 0) {
 		return NullReferenceImplTests.State.start;
 	}
@@ -1264,7 +1264,7 @@ static NullReferenceImplTests.State asState(UnconditionalFlowInfo zis, int posit
 	}
 }
 
-static void copy(UnconditionalFlowInfo source, UnconditionalFlowInfo target) {
+static void copy(UnconditionalFlowInfo source, UnconditionalFlowInfo target) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	target.definiteInits = source.definiteInits;
 	target.potentialInits = source.potentialInits;
 	boolean hasNullInfo = (source.tagBits & NULL_FLAG_MASK) != 0;
@@ -1288,13 +1288,13 @@ static void copy(UnconditionalFlowInfo source, UnconditionalFlowInfo target) {
 		System.arraycopy(source.extra[1], 0,
 			(target.extra[1] = new long[length]), 0, length);
 		if (hasNullInfo) {
-            for (int j = 0; j < extraLength; j++) {
+            for (int j = 0; j < extraLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			    System.arraycopy(source.extra[j], 0,
 				    (target.extra[j] = new long[length]), 0, length);
             }
 		}
 		else {
-            for (int j = 0; j < extraLength; j++) {
+            for (int j = 0; j < extraLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			    target.extra[j] = new long[length];
             }
 		}
@@ -1306,18 +1306,18 @@ public void grow(int position) {
 	int length = vectorIndex + 1, oldLength;
 	if (this.extra == null) {
 		this.extra = new long[extraLength][];
-		for (int j = 0; j < extraLength; j++) {
+		for (int j = 0; j < extraLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.extra[j] = new long[length];
 		}
 	} else if (length > (oldLength = this.extra[2].length)) {
-		for (int j = 0; j < extraLength; j++) {
+		for (int j = 0; j < extraLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			System.arraycopy(this.extra[j], 0,
 				this.extra[j] = new long[length], 0, oldLength);
 		}
 	}
 }
 
-static void init(UnconditionalFlowInfo zis, long [] nullBits, int position) {
+static void init(UnconditionalFlowInfo zis, long [] nullBits, int position) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (position < BitCacheSize) {
 		zis.nullBit1 = nullBits[0] << position;
 		zis.nullBit2 = nullBits[1] << position;
@@ -1331,7 +1331,7 @@ static void init(UnconditionalFlowInfo zis, long [] nullBits, int position) {
         zis.extra = new long[extraLength][];
 		zis.extra[0] = new long[length];
 		zis.extra[1] = new long[length];
-        for (int j = 2; j < extraLength; j++) {
+        for (int j = 2; j < extraLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		    zis.extra[j] = new long[length];
 		    zis.extra[j][vectorIndex] = nullBits[j - 2] << position;
         }
@@ -1354,7 +1354,7 @@ static void init(UnconditionalFlowInfo zis, long [] nullBits, int position) {
 	zis.maxFieldCount = 0;
 }
 
-static boolean testEquals(UnconditionalFlowInfo zis, UnconditionalFlowInfo other) {
+static boolean testEquals(UnconditionalFlowInfo zis, UnconditionalFlowInfo other) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (zis.tagBits != other.tagBits) {
 		return false;
 	}
@@ -1375,23 +1375,23 @@ static boolean testEquals(UnconditionalFlowInfo zis, UnconditionalFlowInfo other
 	else {
 		both = left;
 	}
-	for (i = 0; i < both ; i++) {
-		for (int j = 2; j < extraLength; j++) {
+	for (i = 0; i < both ; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (int j = 2; j < extraLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (zis.extra[j][i] !=
 					other.extra[j][i]) {
 				return false;
 			}
 		}
 	}
-	for (; i < left; i++) {
-		for (int j = 2; j < extraLength; j++) {
+	for (; i < left; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (int j = 2; j < extraLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (zis.extra[j][i] != 0) {
 				return false;
 			}
 		}
 	}
-	for (; i < right; i++) {
-		for (int j = 2; j < extraLength; j++) {
+	for (; i < right; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (int j = 2; j < extraLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (other.extra[j][i] != 0) {
 				return false;
 			}
@@ -1400,7 +1400,7 @@ static boolean testEquals(UnconditionalFlowInfo zis, UnconditionalFlowInfo other
 	return true;
 }
 
-static boolean testEquals(UnconditionalFlowInfo zis, UnconditionalFlowInfo other,
+static boolean testEquals(UnconditionalFlowInfo zis, UnconditionalFlowInfo other, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int position) {
 	int vectorIndex = position / BitCacheSize - 1;
 	if ((zis.tagBits & other.tagBits & NULL_FLAG_MASK) == 0) {
@@ -1431,7 +1431,7 @@ static boolean testEquals(UnconditionalFlowInfo zis, UnconditionalFlowInfo other
 		int both = left < right ? left : right;
 		if (vectorIndex < both) {
 			mask = (1L << (position % BitCacheSize));
-			for (int j = 2; j < extraLength; j++) {
+			for (int j = 2; j < extraLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (((zis.extra[j][vectorIndex] & mask)
 						^ (other.extra[j][vectorIndex] & mask)) != 0) {
 					return false;
@@ -1458,12 +1458,12 @@ static boolean testEquals(UnconditionalFlowInfo zis, UnconditionalFlowInfo other
 	}
 }
 
-static String testString(UnconditionalFlowInfo zis, int position) {
+static String testString(UnconditionalFlowInfo zis, int position) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (zis == DEAD_END) {
 		return "FlowInfo.DEAD_END"; //$NON-NLS-1$
 	}
 	if (position < BitCacheSize) {
-		return "{" + (zis.nullBit1 >> position) //$NON-NLS-1$
+		return "{" + (zis.nullBit1 >> position) //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ "," + (zis.nullBit2 >> position) //$NON-NLS-1$
 					+ "," + (zis.nullBit3 >> position) //$NON-NLS-1$
 					+ "," + (zis.nullBit4 >> position) //$NON-NLS-1$
@@ -1474,7 +1474,7 @@ static String testString(UnconditionalFlowInfo zis, int position) {
 	else {
 		int vectorIndex = position / BitCacheSize - 1,
 			shift = position % BitCacheSize;
-			return "{" + (zis.extra[2][vectorIndex] //$NON-NLS-1$
+			return "{" + (zis.extra[2][vectorIndex] //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			               >> shift)
 						+ "," + (zis.extra[3][vectorIndex] //$NON-NLS-1$
 						   >> shift)
@@ -1509,7 +1509,7 @@ static class Element {
 		this.value = value;
 	}
 }
-Map elements = new TreeMap();
+Map elements = new TreeMap(); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
 public TransitiveClosureHolder() {
 	Element start = new Element(NullReferenceImplTests.State.start);
 	this.elements.put(start.value, start);
@@ -1526,7 +1526,7 @@ void add(NullReferenceImplTests.State[] values) {
 	if (values == null) {
 		throw new IllegalArgumentException("not a valid states set");
 	}
-	for (int i = 0, length = values.length; i < length; i++) {
+	for (int i = 0, length = values.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		add(values[i]);
 	}
 }
@@ -1534,42 +1534,42 @@ NullReferenceImplTests.State[] asArray() {
 	int length;
 	NullReferenceImplTests.State[] result = new NullReferenceImplTests.State[length = this.elements.size()];
 	Iterator elementsIterator = this.elements.keySet().iterator();
-	for (int j = 0; j < length; j++) {
+	for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result[j] = (NullReferenceImplTests.State) elementsIterator.next();
 	}
 	return result;
 }
 NullReferenceImplTests.State[] notAlreadyKnowns() {
-	List resultAccumulator = new ArrayList(this.elements.size());
+	List resultAccumulator = new ArrayList(this.elements.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	Iterator i = this.elements.values().iterator();
 	Element current;
-	while (i.hasNext()) {
+	while (i.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (! (current = (Element) i.next()).alreadyKnown) {
 			resultAccumulator.add(current.value);
 		}
 	}
 	int length;
 	NullReferenceImplTests.State[] result = new NullReferenceImplTests.State[length = resultAccumulator.size()];
-	for (int j = 0; j < length; j++) {
+	for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result[j] = (NullReferenceImplTests.State) resultAccumulator.get(j);
 	}
 	return result;
 }
 void markAllAsAlreadyKnown() {
 	Iterator i = this.elements.values().iterator();
-	while (i.hasNext()) {
+	while (i.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		((Element) i.next()).alreadyKnown = true;
 	}
 }
 @Override
 public String toString() {
-	StringBuilder output = new StringBuilder();
-	output.append("Transitive closure:\n");
-	SortedMap sorted = new TreeMap(this.elements);
+	StringBuilder output = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	output.append("Transitive closure:\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	SortedMap sorted = new TreeMap(this.elements); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
 	Iterator i = sorted.keySet().iterator();
-	while (i.hasNext()) {
-		output.append(i.next().toString());
-		output.append('\n');
+	while (i.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		output.append(i.next().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	return output.toString();
 }
@@ -1591,9 +1591,9 @@ static NullReferenceImplTests.State[] computeTransitiveClosure() {
 	TransitiveClosureHolder transitiveClosure = new TransitiveClosureHolder();
 	NullReferenceImplTests.State[] unknowns;
 	unknowns = transitiveClosure.notAlreadyKnowns();
-	while (unknowns.length != 0) {
+	while (unknowns.length != 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		transitiveClosure.markAllAsAlreadyKnown();
-		for (int i = 0, length = NullReferenceImplTransformations.transformations.length;	i < length; i ++) {
+		for (int i = 0, length = NullReferenceImplTransformations.transformations.length;	i < length; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			transitiveClosure.add(
 				NullReferenceImplTransformations.transformations[i].
 					computeOutputs(transitiveClosure.asArray()));
@@ -1602,7 +1602,7 @@ static NullReferenceImplTests.State[] computeTransitiveClosure() {
 	}
 	return transitiveClosure.asArray();
 }
-public static void main(String[] args) {
+public static void main(String[] args) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (args.length == 0) {
 		printHelp(false);
 		System.exit(1);
@@ -1621,8 +1621,8 @@ public static void main(String[] args) {
 		case 2:
 			if (args[0].equals("--printTruthTables")) {
 				File outputDir = new File(args[1]);
-				if (outputDir.isDirectory()) {
-					for (int i = 0, length = NullReferenceImplTransformations.transformations.length; i < length; i++) {
+				if (outputDir.isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					for (int i = 0, length = NullReferenceImplTransformations.transformations.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						NullReferenceImplTransformations.transformations[i].printTruthTables(outputDir);
 					}
 				}
@@ -1639,14 +1639,14 @@ public static void main(String[] args) {
 		case 3:
 			if (args[0].equals("--reinitializeFromComputedValues")) {
 				reinitializeFromComputedValues(args[1], args[2]);
-				System.out.println("Generator generated new file into " + args[2]);
+				System.out.println("Generator generated new file into " + args[2]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				System.exit(0);
 			}
 			//$FALL-THROUGH$
 		case 5:
 			if (args[0].equals("--reinitializeFromComments")) {
 				reinitializeFromComments(args[1], args[2], args[3], args[4]);
-				System.out.println("Generator generated new files into " + args[2]
+				System.out.println("Generator generated new files into " + args[2] //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ " and " + args[4]);
 				System.exit(0);
 			}
@@ -1657,7 +1657,7 @@ public static void main(String[] args) {
 	}
 }
 
-private static void reinitializeFromComments(
+private static void reinitializeFromComments( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String statesSource, String statesTarget,
 		String transformationsSource, String transformationsTarget) {
 	if (statesSource.equals(transformationsSource) ||
@@ -1669,8 +1669,8 @@ private static void reinitializeFromComments(
 		BufferedWriter out;
 		NullReferenceImplTests.State.reinitializeFromComment(
 			in = new BufferedReader(
-				new FileReader(statesSource)),
-			out = new BufferedWriter(new FileWriter(statesTarget)));
+				new FileReader(statesSource)), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+			out = new BufferedWriter(new FileWriter(statesTarget))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		in.close();
 		out.close();
 		File[] tempFiles = new File[2];
@@ -1678,23 +1678,23 @@ private static void reinitializeFromComments(
 		tempFiles[1] = File.createTempFile("generator", "java");
 		NullReferenceImplTransformations.transformations[0].reinitializeFromComments(
 			in = new BufferedReader(
-				new FileReader(transformationsSource)),
-			out = new BufferedWriter(new FileWriter(tempFiles[0])));
+				new FileReader(transformationsSource)), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+			out = new BufferedWriter(new FileWriter(tempFiles[0]))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		in.close();
 		out.close();
 		int i, length;
-		for (i = 1, length = NullReferenceImplTransformations.transformations.length - 1; i < length; i++) {
+		for (i = 1, length = NullReferenceImplTransformations.transformations.length - 1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			NullReferenceImplTransformations.transformations[i].reinitializeFromComments(
 				in = new BufferedReader(
-					new FileReader(tempFiles[(i + 1) % 2])),
-				out = new BufferedWriter(new FileWriter(tempFiles[i % 2])));
+					new FileReader(tempFiles[(i + 1) % 2])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+				out = new BufferedWriter(new FileWriter(tempFiles[i % 2]))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			in.close();
 			out.close();
 		}
 		NullReferenceImplTransformations.transformations[i].reinitializeFromComments(
 			in = new BufferedReader(
-				new FileReader(tempFiles[(i + 1) % 2])),
-			out = new BufferedWriter(new FileWriter(transformationsTarget)));
+				new FileReader(tempFiles[(i + 1) % 2])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+			out = new BufferedWriter(new FileWriter(transformationsTarget))); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		in.close();
 		out.close();
 	} catch (Throwable t) {
@@ -1704,8 +1704,8 @@ private static void reinitializeFromComments(
 	}
 }
 
-private static void reinitializeFromComputedValues(String source, String target) {
-	for (int i = 0, length = NullReferenceImplTransformations.transformations.length;
+private static void reinitializeFromComputedValues(String source, String target) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	for (int i = 0, length = NullReferenceImplTransformations.transformations.length; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			i < length; i++) {
 		NullReferenceImplTransformations.transformations[i].hydrate();
 	}
@@ -1725,25 +1725,25 @@ private static void reinitializeFromComputedValues(String source, String target)
 		tempFiles[1] = File.createTempFile("generator", "java");
 		NullReferenceImplTransformations.transformations[0].reinitializeFromComputedValues(
 			in = new BufferedReader(
-				new FileReader(source)),
-			out = new BufferedWriter(new FileWriter(tempFiles[0])),
+				new FileReader(source)), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+			out = new BufferedWriter(new FileWriter(tempFiles[0])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			transitiveClosure);
 		in.close();
 		out.close();
 		int i, length;
-		for (i = 1, length = NullReferenceImplTransformations.transformations.length - 1; i < length; i++) {
+		for (i = 1, length = NullReferenceImplTransformations.transformations.length - 1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			NullReferenceImplTransformations.transformations[i].reinitializeFromComputedValues(
 				in = new BufferedReader(
-					new FileReader(tempFiles[(i + 1) % 2])),
-				out = new BufferedWriter(new FileWriter(tempFiles[i % 2])),
+					new FileReader(tempFiles[(i + 1) % 2])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+				out = new BufferedWriter(new FileWriter(tempFiles[i % 2])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				transitiveClosure);
 			in.close();
 			out.close();
 		}
 		NullReferenceImplTransformations.transformations[i].reinitializeFromComputedValues(
 			in = new BufferedReader(
-				new FileReader(tempFiles[(i + 1) % 2])),
-			out = new BufferedWriter(new FileWriter(target)),
+				new FileReader(tempFiles[(i + 1) % 2])), //FLLDCIM: MARK — M31 M3FILE_IO NEW
+			out = new BufferedWriter(new FileWriter(target)), //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			transitiveClosure);
 		in.close();
 		out.close();
@@ -1754,15 +1754,15 @@ private static void reinitializeFromComputedValues(String source, String target)
 	}
 }
 private static State[] addSymbolicStates(State[] transitiveClosure) {
-	Set allStates = new HashSet();
+	Set allStates = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	allStates.addAll(Arrays.asList(transitiveClosure));
-	for (int i=0; i < State.statesNb; i++)
+	for (int i=0; i < State.statesNb; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (State.states[i].symbolic)
 			allStates.add(State.states[i]);
 	return (State[]) allStates.toArray(new State[allStates.size()]);
 }
 
-private static void printHelp(boolean longText) {
+private static void printHelp(boolean longText) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (longText) {
 		System.out.println(
 			"Generator use cases\n" +

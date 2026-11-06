@@ -108,12 +108,12 @@ public class PackageDeclarationImpl extends DeclarationImpl implements PackageDe
 		return Collections.emptyList();
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Collection<ClassDeclaration> getClasses() {
     	initFragments();
     	List<IType> types = getTypesInPackage(_pkgFragments);
-		List<ClassDeclaration> classes = new ArrayList<>();
-		for (IType type : types) {
+		List<ClassDeclaration> classes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IType type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				// isClass() will return true if TypeDeclaration is an InterfaceDeclaration
 				if (type.isClass()) {
@@ -133,8 +133,8 @@ public class PackageDeclarationImpl extends DeclarationImpl implements PackageDe
 	public Collection<EnumDeclaration> getEnums() {
     	initFragments();
     	List<IType> types = getTypesInPackage(_pkgFragments);
-		List<EnumDeclaration> enums = new ArrayList<>();
-		for (IType type : types) {
+		List<EnumDeclaration> enums = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IType type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				if (type.isEnum()) {
 					enums.add((EnumDeclaration)_env.getTypeDeclaration(type));
@@ -150,8 +150,8 @@ public class PackageDeclarationImpl extends DeclarationImpl implements PackageDe
 	public Collection<InterfaceDeclaration> getInterfaces() {
     	initFragments();
     	List<IType> types = getTypesInPackage(_pkgFragments);
-		List<InterfaceDeclaration> interfaces = new ArrayList<>();
-		for (IType type : types) {
+		List<InterfaceDeclaration> interfaces = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IType type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				if (type.isInterface()) {
 					interfaces.add((InterfaceDeclaration)_env.getTypeDeclaration(type));
@@ -235,19 +235,19 @@ public class PackageDeclarationImpl extends DeclarationImpl implements PackageDe
 		}
 	}
 
-	private static List<IType> getTypesInPackage(final IPackageFragment[] fragments) {
-		List<IType> types = new ArrayList<>();
+	private static List<IType> getTypesInPackage(final IPackageFragment[] fragments) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<IType> types = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		try {
 			// Get all top-level classes -- ignore local, member, and anonymous classes
-			for (IPackageFragment fragment : fragments) {
-				for (IOrdinaryClassFile classFile : fragment.getOrdinaryClassFiles()) {
+			for (IPackageFragment fragment : fragments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (IOrdinaryClassFile classFile : fragment.getOrdinaryClassFiles()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IType type = classFile.getType();
 					if (! (type.isLocal() || type.isMember() || type.isAnonymous()) ) {
 						types.add(type);
 					}
 				}
-				for (ICompilationUnit compUnit : fragment.getCompilationUnits()) {
-					for (IType type : compUnit.getTypes()) {
+				for (ICompilationUnit compUnit : fragment.getCompilationUnits()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					for (IType type : compUnit.getTypes()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (! (type.isLocal() || type.isMember() || type.isAnonymous()) ) {
 							types.add(type);
 						}

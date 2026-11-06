@@ -42,8 +42,8 @@ import java.util.Set;
  */
 public class ManyToMany<T1, T2> {
 
-	private final Map<T1, Set<T2>> _forward = new HashMap<>();
-	private final Map<T2, Set<T1>> _reverse = new HashMap<>();
+	private final Map<T1, Set<T2>> _forward = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	private final Map<T2, Set<T1>> _reverse = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	private boolean _dirty = false;
 
 	/**
@@ -110,7 +110,7 @@ public class ManyToMany<T1, T2> {
 		if (null == keys) {
 			return Collections.emptySet();
 		}
-		return new HashSet<>(keys);
+		return new HashSet<>(keys); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class ManyToMany<T1, T2> {
 		if (null == values) {
 			return Collections.emptySet();
 		}
-		return new HashSet<>(values);
+		return new HashSet<>(values); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class ManyToMany<T1, T2> {
 	 * @see #getValueSet()
 	 */
 	public synchronized Set<T1> getKeySet() {
-		Set<T1> keys = new HashSet<>(_forward.keySet());
+		Set<T1> keys = new HashSet<>(_forward.keySet()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		return keys;
 	}
 
@@ -145,7 +145,7 @@ public class ManyToMany<T1, T2> {
 	 * @see #getKeySet()
 	 */
 	public synchronized Set<T2> getValueSet() {
-		Set<T2> values = new HashSet<>(_reverse.keySet());
+		Set<T2> values = new HashSet<>(_reverse.keySet()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		return values;
 	}
 
@@ -194,11 +194,11 @@ public class ManyToMany<T1, T2> {
 	 * @param value can be null
 	 * @return true if the key/value pair did not exist prior to being added
 	 */
-	public synchronized boolean put(T1 key, T2 value) {
+	public synchronized boolean put(T1 key, T2 value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Add to forward map
 		Set<T2> values = _forward.get(key);
 		if (null == values) {
-			values = new HashSet<>();
+			values = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			_forward.put(key, values);
 		}
 		boolean added = values.add(value);
@@ -207,7 +207,7 @@ public class ManyToMany<T1, T2> {
 		// Add to reverse map
 		Set<T1> keys = _reverse.get(value);
 		if (null == keys) {
-			keys = new HashSet<>();
+			keys = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			_reverse.put(value, keys);
 		}
 		keys.add(key);
@@ -223,7 +223,7 @@ public class ManyToMany<T1, T2> {
 	 * has no effect.
 	 * @return true if the key/value pair existed in the map prior to removal
 	 */
-	public synchronized boolean remove(T1 key, T2 value) {
+	public synchronized boolean remove(T1 key, T2 value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Set<T2> values = _forward.get(key);
 		if (values == null) {
 			assert checkIntegrity();
@@ -252,7 +252,7 @@ public class ManyToMany<T1, T2> {
 	 * for every v in getValues(k).
 	 * @return true if the key existed in the map prior to removal
 	 */
-	public synchronized boolean removeKey(T1 key) {
+	public synchronized boolean removeKey(T1 key) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Remove all back-references to key.
 		Set<T2> values = _forward.get(key);
 		if (null == values) {
@@ -260,7 +260,7 @@ public class ManyToMany<T1, T2> {
 			assert checkIntegrity();
 			return false;
 		}
-		for (T2 value : values) {
+		for (T2 value : values) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Set<T1> keys = _reverse.get(value);
 			if (null != keys) {
 				keys.remove(key);
@@ -282,7 +282,7 @@ public class ManyToMany<T1, T2> {
 	 * for every k in getKeys(v).
 	 * @return true if the value existed in the map prior to removal.
 	 */
-	public synchronized boolean removeValue(T2 value) {
+	public synchronized boolean removeValue(T2 value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Remove any forward references to value
 		Set<T1> keys = _reverse.get(value);
 		if (null == keys) {
@@ -290,7 +290,7 @@ public class ManyToMany<T1, T2> {
 			assert checkIntegrity();
 			return false;
 		}
-		for (T1 key : keys) {
+		for (T1 key : keys) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Set<T2> values = _forward.get(key);
 			if (null != values) {
 				values.remove(value);
@@ -336,31 +336,31 @@ public class ManyToMany<T1, T2> {
 	 * @return true if everything is okay.
 	 * @throws IllegalStateException if there is a problem.
 	 */
-	private boolean checkIntegrity() {
+	private boolean checkIntegrity() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// For every T1->T2 mapping in the forward map, there should be a corresponding
 		// T2->T1 mapping in the reverse map.
-		for (Map.Entry<T1, Set<T2>> entry : _forward.entrySet()) {
+		for (Map.Entry<T1, Set<T2>> entry : _forward.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Set<T2> values = entry.getValue();
 			if (values.isEmpty()) {
 				throw new IllegalStateException("Integrity compromised: forward map contains an empty set"); //$NON-NLS-1$
 			}
-			for (T2 value : values) {
+			for (T2 value : values) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Set<T1> keys = _reverse.get(value);
 				if (null == keys || !keys.contains(entry.getKey())) {
-					throw new IllegalStateException("Integrity compromised: forward map contains an entry missing from reverse map: " + value); //$NON-NLS-1$
+					throw new IllegalStateException("Integrity compromised: forward map contains an entry missing from reverse map: " + value); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
 		// And likewise in the other direction.
-		for (Map.Entry<T2, Set<T1>> entry : _reverse.entrySet()) {
+		for (Map.Entry<T2, Set<T1>> entry : _reverse.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Set<T1> keys = entry.getValue();
 			if (keys.isEmpty()) {
 				throw new IllegalStateException("Integrity compromised: reverse map contains an empty set"); //$NON-NLS-1$
 			}
-			for (T1 key : keys) {
+			for (T1 key : keys) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Set<T2> values = _forward.get(key);
 				if (null == values || !values.contains(entry.getKey())) {
-					throw new IllegalStateException("Integrity compromised: reverse map contains an entry missing from forward map: " + key); //$NON-NLS-1$
+					throw new IllegalStateException("Integrity compromised: reverse map contains an entry missing from forward map: " + key); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}

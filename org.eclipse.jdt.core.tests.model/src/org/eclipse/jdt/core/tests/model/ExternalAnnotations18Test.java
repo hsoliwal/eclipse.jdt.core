@@ -75,9 +75,9 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		 *  </ul>
 		 */
 		public TestCustomContainerInitializer(String... elementsAndAnnotationPaths) {
-			this.allEntries = new ArrayList<>();
-			this.elementAnnotationPaths = new HashMap<>();
-			for (int i = 0; i < elementsAndAnnotationPaths.length; i+=2) {
+			this.allEntries = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			this.elementAnnotationPaths = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+			for (int i = 0; i < elementsAndAnnotationPaths.length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String entryPath = elementsAndAnnotationPaths[i];
 				this.allEntries.add(entryPath);
 				String annotsPath = elementsAndAnnotationPaths[i+1];
@@ -101,10 +101,10 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 			public int getKind() { return 0; }
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void initialize(IPath containerPath, IJavaProject project) throws CoreException {
-			List<IClasspathEntry> entries = new ArrayList<>();
-			for (String entryPath : this.allEntries) {
+			List<IClasspathEntry> entries = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (String entryPath : this.allEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathAttribute[] extraAttributes;
 				String elementAnnotationPath = this.elementAnnotationPaths.get(entryPath);
 				if (elementAnnotationPath != null)
@@ -127,7 +127,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 	static class LogListener implements ILogListener {
-    	List<IStatus> loggedStatus = new ArrayList<>();
+    	List<IStatus> loggedStatus = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
         public void logging(IStatus status, String plugin) {
             this.loggedStatus.add(status);
         }
@@ -178,7 +178,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 
 		Bundle[] bundles = getAnnotationBundles();
 		File bundleFile = FileLocator.getBundleFileLocation(bundles[0]).get();
-		this.ANNOTATION_LIB = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath();
+		this.ANNOTATION_LIB = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		// set up class path container bridging to the host JRE:
 		ContainerInitializer.setInitializer(new TestContainerInitializer(IClasspathContainer.K_DEFAULT_SYSTEM));
@@ -211,7 +211,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	@Override
 	public String getSourceWorkspacePath() {
 		// we read individual projects from within this folder:
-		return super.getSourceWorkspacePath()+"/ExternalAnnotations18";
+		return super.getSourceWorkspacePath()+"/ExternalAnnotations18"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	protected String getSourceWorkspacePathBase() {
@@ -222,7 +222,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		setupJavaProject(name, false, true);
 	}
 
-	void setupJavaProject(String name, boolean useFullJCL, boolean addAnnotationLib) throws CoreException, IOException {
+	void setupJavaProject(String name, boolean useFullJCL, boolean addAnnotationLib) throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.project = setUpJavaProject(name, this.compliance, useFullJCL); //$NON-NLS-1$
 		if(addAnnotationLib)
 			addLibraryEntry(this.project, this.ANNOTATION_LIB, false);
@@ -233,7 +233,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 
 		IPackageFragmentRoot[] roots = this.project.getAllPackageFragmentRoots();
 		int count = 0;
-		for (int i = 0, max = roots.length; i < max; i++) {
+		for (int i = 0, max = roots.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final IPackageFragmentRoot packageFragmentRoot = roots[i];
 			switch(packageFragmentRoot.getKind()) {
 				case IPackageFragmentRoot.K_SOURCE :
@@ -250,7 +250,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	void myCreateJavaProject(String name) throws CoreException {
 		myCreateJavaProject(name, this.compliance, this.jclLib);
 	}
-	void myCreateJavaProject(String name, String projectCompliance, String projectJclLib) throws CoreException {
+	void myCreateJavaProject(String name, String projectCompliance, String projectJclLib) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.project = createJavaProject(name, new String[]{"src"}, new String[]{projectJclLib}, null, null, "bin", null, null, null, projectCompliance);
 		addLibraryEntry(this.project, this.ANNOTATION_LIB, false);
 		Map options = this.project.getOptions(true);
@@ -259,7 +259,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 
 		IPackageFragmentRoot[] roots = this.project.getAllPackageFragmentRoots();
 		int count = 0;
-		for (int i = 0, max = roots.length; i < max; i++) {
+		for (int i = 0, max = roots.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final IPackageFragmentRoot packageFragmentRoot = roots[i];
 			switch(packageFragmentRoot.getKind()) {
 				case IPackageFragmentRoot.K_SOURCE :
@@ -302,10 +302,10 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		addClasspathEntry(this.project, entry);
 	}
 
-	protected void addEeaToVariableEntry(String variableName, String annotationPath) throws JavaModelException {
+	protected void addEeaToVariableEntry(String variableName, String annotationPath) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] rawClasspath = this.project.getRawClasspath();
 		boolean found = false;
-		for (int i = 0; i < rawClasspath.length; i++) {
+		for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = rawClasspath[i];
 			if (entry.getPath().toString().equals(variableName)) {
 				rawClasspath[i] = JavaCore.newVariableEntry(
@@ -321,7 +321,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				break;
 			}
 		}
-		assertTrue("Should find classpath entry "+variableName, found);
+		assertTrue("Should find classpath entry "+variableName, found); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		this.project.setRawClasspath(rawClasspath, new NullProgressMonitor());
 	}
 
@@ -333,27 +333,27 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 	protected void createFileInProject(String projectRelativeFolder, String fileName, String content) throws CoreException {
-		String folderPath = this.project.getProject().getName()+'/'+projectRelativeFolder;
+		String folderPath = this.project.getProject().getName()+'/'+projectRelativeFolder; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(folderPath);
-		createFile(folderPath+'/'+fileName, content);
+		createFile(folderPath+'/'+fileName, content); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	protected void assertNoMarkers(IMarker[] markers) throws CoreException {
-		for (int i = 0; i < markers.length; i++)
-			System.err.println("Unexpected marker: "+markers[i].getAttributes().entrySet());
+		for (int i = 0; i < markers.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			System.err.println("Unexpected marker: "+markers[i].getAttributes().entrySet()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("Number of markers", 0, markers.length);
 	}
 
 	protected void assertNoProblems(IProblem[] problems) throws CoreException {
-		for (int i = 0; i < problems.length; i++)
-			System.err.println("Unexpected marker: "+problems[i]);
+		for (int i = 0; i < problems.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			System.err.println("Unexpected marker: "+problems[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("Number of markers", 0, problems.length);
 	}
 
-	protected void assertProblems(IProblem[] problems, String[] messages, int[] lines) throws CoreException {
+	protected void assertProblems(IProblem[] problems, String[] messages, int[] lines) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int nMatch = 0;
-		for (int i = 0; i < problems.length; i++) {
-			for (int j = 0; j < messages.length; j++) {
+		for (int i = 0; i < problems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < messages.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (messages[j] == null) continue;
 				if (problems[i].toString().equals(messages[j])
 						&& problems[i].getSourceLineNumber() == lines[j]) {
@@ -364,63 +364,63 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				}
 			}
 		}
-		for (int i = 0; i < problems.length; i++) {
+		for (int i = 0; i < problems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problems[i] != null)
-				fail("Unexpected problem "+problems[i]+" at "+problems[i].getSourceLineNumber());
+				fail("Unexpected problem "+problems[i]+" at "+problems[i].getSourceLineNumber()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (int i = 0; i < messages.length; i++) {
+		for (int i = 0; i < messages.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (messages[i] != null)
-				System.err.println("Unmatched problem "+messages[i]);
+				System.err.println("Unmatched problem "+messages[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals("Number of problems", messages.length, nMatch);
 	}
 
-	protected void assertProblems(IProblem[] problems, String[] messages, int[] lines, int[] severities) throws CoreException {
+	protected void assertProblems(IProblem[] problems, String[] messages, int[] lines, int[] severities) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int nMatch = 0;
-		for (int i = 0; i < problems.length; i++) {
-			for (int j = 0; j < messages.length; j++) {
+		for (int i = 0; i < problems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = 0; j < messages.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (messages[j] == null) continue;
 				if (problems[i].toString().equals(messages[j])) {
 					if (problems[i].getSourceLineNumber() == lines[j]) {
 						switch(severities[j] & ProblemSeverities.CoreSeverityMASK ) {
 						case ProblemSeverities.Error:
 							if (!problems[i].isError()) {
-								System.err.println("Not an error as expected: "+messages[j]);
+								System.err.println("Not an error as expected: "+messages[j]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								continue;
 							}
 							break;
 						case ProblemSeverities.Warning:
 							if (!problems[i].isWarning()) {
-								System.err.println("Not a warning as expected: "+messages[j]);
+								System.err.println("Not a warning as expected: "+messages[j]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								continue;
 							}
 							break;
 						case ProblemSeverities.Info:
 							if (!problems[i].isInfo()) {
-								System.err.println("Not an info as expected: "+messages[j]);
+								System.err.println("Not an info as expected: "+messages[j]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								continue;
 							}
 							break;
 						default:
-							throw new IllegalArgumentException("Bad severity expected: "+severities[j]);
+							throw new IllegalArgumentException("Bad severity expected: "+severities[j]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						messages[j] = null;
 						problems[i] = null;
 						nMatch++;
 						break;
 					} else {
-						System.err.println("Match at wrong line: "+problems[i].getSourceLineNumber()+" vs. "+lines[j]+": "+messages[j]);
+						System.err.println("Match at wrong line: "+problems[i].getSourceLineNumber()+" vs. "+lines[j]+": "+messages[j]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			}
 		}
-		for (int i = 0; i < problems.length; i++) {
+		for (int i = 0; i < problems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problems[i] != null)
-				fail("Unexpected problem "+problems[i]+" at "+problems[i].getSourceLineNumber());
+				fail("Unexpected problem "+problems[i]+" at "+problems[i].getSourceLineNumber()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (int i = 0; i < messages.length; i++) {
+		for (int i = 0; i < messages.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (messages[i] != null)
-				System.err.println("Unmatched problem "+messages[i]);
+				System.err.println("Unmatched problem "+messages[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertEquals("Number of problems", messages.length, nMatch);
 	}
@@ -431,11 +431,11 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	String readFully(IFile file) throws IOException, CoreException {
 		try (BufferedInputStream bs = new BufferedInputStream(file.getContents())) {
 			int available = 0;
-			StringBuilder buf = new StringBuilder();
-			while ((available = bs.available()) > 0) {
+			StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while ((available = bs.available()) > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				byte[] contents = new byte[available];
 				bs.read(contents);
-				buf.append(new String(contents));
+				buf.append(new String(contents)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return buf.toString();
 		}
@@ -484,7 +484,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		assertNoProblems(problems);
 	}
 
-	public void testLibs1() throws Exception {
+	public void testLibs1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
 				"/UnannotatedLib/libs/Lib1.java",
@@ -547,7 +547,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		assertNoProblems(problems);
 	}
 
-	public void testLibsWithWildcards() throws Exception {
+	public void testLibsWithWildcards() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
 				"/UnannotatedLib/libs/Lib1.java",
@@ -618,7 +618,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 			}, new int[] { 10, 13, 16, 19 });
 	}
 
-	public void testLibsWithArrays() throws Exception {
+	public void testLibsWithArrays() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
 				"/UnannotatedLib/libs/Lib1.java",
@@ -677,7 +677,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}, new int[] { 12, 16 });
 	}
 
-	public void testLibsWithFields() throws Exception {
+	public void testLibsWithFields() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
 				"/UnannotatedLib/libs/Lib1.java",
@@ -722,7 +722,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}, new int[] { 8 });
 	}
 
-	public void testLibsWithFieldsZipped() throws Exception {
+	public void testLibsWithFieldsZipped() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots.zip", new String[] {
 				"/UnannotatedLib/libs/Lib1.java",
@@ -747,7 +747,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				" L0java/lang/String;\n" +
 				"\n"
 			},
-			this.project.getProject().getLocation().toString()+"/annots.zip");
+			this.project.getProject().getLocation().toString()+"/annots.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    this.project.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 
 		IPackageFragment fragment = this.project.getPackageFragmentRoots()[0].createPackageFragment("tests", true, null);
@@ -773,9 +773,9 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}, new int[] { 8 });
 	}
 
-	public void testLibsWithFieldsExternalZipped() throws Exception {
+	public void testLibsWithFieldsExternalZipped() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
-		String zipPath = Util.getOutputDirectory() + '/' + "annots.zip";
+		String zipPath = Util.getOutputDirectory() + '/' + "annots.zip"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", zipPath, new String[] {
 				"/UnannotatedLib/libs/Lib1.java",
 				"package libs;\n" +
@@ -824,7 +824,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}, new int[] { 8 });
 	}
 
-	public void testLibsWithTypeParameters() throws Exception {
+	public void testLibsWithTypeParameters() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
 				"/UnannotatedLib/libs/Lib1.java",
@@ -883,7 +883,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}, new int[] { 8, 16, 17, 18, 20, 20 });
 	}
 
-	public void testLibsWithTypeArgOfSuper() throws Exception {
+	public void testLibsWithTypeArgOfSuper() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
 				"/UnannotatedLib/libs/LibSuper.java",
@@ -945,7 +945,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	 * More interesting work with generics
 	 * .classpath uses var TESTWORK for path to external annotations.
 	 */
-	public void test3() throws Exception {
+	public void test3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!hasJRE18()) {
 			System.out.println("Skipping ExternalAnnotations18Test.test3(), needs JRE8");
 			return;
@@ -967,7 +967,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 
 	// ===== Full round trip: detect problem - annotated - detect problem change =====
 
-	public void testAnnotateFieldWithParameterizedType() throws Exception {
+	public void testAnnotateFieldWithParameterizedType() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		String lib1Content =
 				"package libs;\n" +
@@ -1039,7 +1039,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 
-	public void testAnnotateMethodParameter() throws Exception {
+	public void testAnnotateMethodParameter() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		String lib1Content =
 				"package libs;\n" +
@@ -1109,7 +1109,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 
-	public void testAnnotateConstructorParameter() throws Exception {
+	public void testAnnotateConstructorParameter() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		String lib1Content =
 				"package libs;\n" +
@@ -1201,7 +1201,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				readFully(annotationFile));
 	}
 
-	public void testAnnotateMethodTypeParameter1() throws Exception {
+	public void testAnnotateMethodTypeParameter1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		String lib1Content =
 				"package libs;\n" +
@@ -1293,7 +1293,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				readFully(annotationFile));
 	}
 
-	public void testAnnotateMethodTypeParameter2() throws Exception {
+	public void testAnnotateMethodTypeParameter2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		String lib1Content =
 				"package libs;\n" +
@@ -1386,7 +1386,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				Arrays.toString(annotatedSign));
 	}
 
-	public void testAnnotateClassTypeParameter1() throws Exception {
+	public void testAnnotateClassTypeParameter1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		String lib1Content =
 				"package libs;\n" +
@@ -1479,7 +1479,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 
 	// ===== white box tests for ExternalAnnotationUtil =====
 
-	public void testBug470666a() throws CoreException, IOException {
+	public void testBug470666a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestAnnot");
 		String lib1Content =
 				"package libs;\n" +
@@ -1512,7 +1512,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		ASTNode name = NodeFinder.perform(unit, start, 0);
 		assertTrue("should be simple name", name.getNodeType() == ASTNode.SIMPLE_NAME);
 		ASTNode method = name.getParent();
-		while (!(method instanceof MethodDeclaration))
+		while (!(method instanceof MethodDeclaration)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			method = method.getParent();
 		IMethodBinding methodBinding = ((MethodDeclaration)method).resolveBinding();
 
@@ -1534,7 +1534,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				Arrays.toString(annotatedSign));
 	}
 
-	public void testBug470666b() throws CoreException, IOException {
+	public void testBug470666b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestAnnot");
 		String lib1Content =
 				"package libs;\n" +
@@ -1567,7 +1567,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		ASTNode name = NodeFinder.perform(unit, start, 0);
 		assertTrue("should be simple name", name.getNodeType() == ASTNode.SIMPLE_NAME);
 		ASTNode method = name.getParent();
-		while (!(method instanceof MethodDeclaration))
+		while (!(method instanceof MethodDeclaration)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			method = method.getParent();
 		IMethodBinding methodBinding = ((MethodDeclaration)method).resolveBinding();
 
@@ -1589,7 +1589,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				Arrays.toString(annotatedSign));
 	}
 
-	public void testBug464081() throws CoreException, IOException {
+	public void testBug464081() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestAnnot");
 		String lib1Content =
 				"package libs;\n" +
@@ -1619,7 +1619,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		ASTNode name = NodeFinder.perform(unit, start, 0);
 		assertTrue("should be simple name", name.getNodeType() == ASTNode.SIMPLE_NAME);
 		ASTNode method = name.getParent();
-		while (!(method instanceof MethodDeclaration))
+		while (!(method instanceof MethodDeclaration)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			method = method.getParent();
 		IMethodBinding methodBinding = ((MethodDeclaration)method).resolveBinding();
 
@@ -1642,7 +1642,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				Arrays.toString(annotatedSign));
 	}
 
-	public void testBug471352() throws CoreException, IOException {
+	public void testBug471352() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestAnnot");
 		String lib1Content =
 				"package libs;\n" +
@@ -1673,7 +1673,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		ASTNode name = NodeFinder.perform(unit, start, 0);
 		assertTrue("should be simple name", name.getNodeType() == ASTNode.SIMPLE_NAME);
 		ASTNode method = name.getParent();
-		while (!(method instanceof MethodDeclaration))
+		while (!(method instanceof MethodDeclaration)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			method = method.getParent();
 		IMethodBinding methodBinding = ((MethodDeclaration)method).resolveBinding();
 
@@ -1697,7 +1697,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 	// array content
-	public void testBug471034a() throws CoreException, IOException {
+	public void testBug471034a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestAnnot");
 		String lib1Content =
 				"package libs;\n" +
@@ -1728,7 +1728,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		ASTNode name = NodeFinder.perform(unit, start, 0);
 		assertTrue("should be simple name", name.getNodeType() == ASTNode.SIMPLE_NAME);
 		ASTNode method = name.getParent();
-		while (!(method instanceof MethodDeclaration))
+		while (!(method instanceof MethodDeclaration)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			method = method.getParent();
 		IMethodBinding methodBinding = ((MethodDeclaration)method).resolveBinding();
 
@@ -1752,7 +1752,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 	// array dimension
-	public void testBug471034b() throws CoreException, IOException {
+	public void testBug471034b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestAnnot");
 		String lib1Content =
 				"package libs;\n" +
@@ -1783,7 +1783,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		ASTNode name = NodeFinder.perform(unit, start, 0);
 		assertTrue("should be dimension", name.getNodeType() == ASTNode.DIMENSION);
 		ASTNode method = name.getParent();
-		while (!(method instanceof MethodDeclaration))
+		while (!(method instanceof MethodDeclaration)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			method = method.getParent();
 		IMethodBinding methodBinding = ((MethodDeclaration)method).resolveBinding();
 
@@ -1807,7 +1807,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 	// varargs
-	public void testBug471034c() throws CoreException, IOException {
+	public void testBug471034c() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestAnnot");
 		String lib1Content =
 				"package libs;\n" +
@@ -1838,7 +1838,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		ASTNode name = NodeFinder.perform(unit, start, 0);
 		assertTrue("should be variable", name.getNodeType() == ASTNode.SINGLE_VARIABLE_DECLARATION);
 		ASTNode method = name.getParent();
-		while (!(method instanceof MethodDeclaration))
+		while (!(method instanceof MethodDeclaration)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			method = method.getParent();
 		IMethodBinding methodBinding = ((MethodDeclaration)method).resolveBinding();
 
@@ -1861,7 +1861,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				Arrays.toString(annotatedSign));
 	}
 
-	public void testBrokenConfig1() throws Exception {
+	public void testBrokenConfig1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		LogListener listener = new LogListener();
 		try {
 			Platform.addLogListener(listener);
@@ -1971,7 +1971,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 	/** Lib exists as workspace project. Type-Annotations in zip file. Reconcile an individual CU. */
-	public void testProjectDependencyReconcile2() throws Exception {
+	public void testProjectDependencyReconcile2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			setupJavaProject("Lib");
 			this.project.getProject().build(IncrementalProjectBuilder.FULL_BUILD, null);
@@ -1999,7 +1999,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 					" ()[[Ljava/lang/String;\n" +
 					" ()[0[1L0java/lang/String;\n"
 				},
-				this.project.getProject().getLocation().toString()+"/annots.zip");
+				this.project.getProject().getLocation().toString()+"/annots.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.project.getProject().refreshLocal(1, new NullProgressMonitor());
 
 			addProjectDependencyWithExternalAnnotations(this.project, "/Lib", "annots.zip", null);
@@ -2014,7 +2014,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 	/** Lib exists as workspace project. Invocations conflict with type parameter constraints. Reconcile an individual CU. */
-	public void testProjectDependencyReconcile3() throws Exception {
+	public void testProjectDependencyReconcile3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			setupJavaProject("Lib");
 			this.project.getProject().build(IncrementalProjectBuilder.FULL_BUILD, null);
@@ -2034,7 +2034,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 					" <1V:Ljava/lang/Object;>(Llibs/MyFunction<-TV;+TT;>;)Llibs/MyFunction<TV;TR;>;\n" +
 					"\n",
 				},
-				this.project.getProject().getLocation().toString()+"/annots.zip");
+				this.project.getProject().getLocation().toString()+"/annots.zip"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.project.getProject().refreshLocal(1, new NullProgressMonitor());
 
 			addProjectDependencyWithExternalAnnotations(this.project, "/Lib", "annots.zip", null);
@@ -2050,7 +2050,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}
 	}
 
-	public void testFreeTypeVariableReturn() throws Exception {
+	public void testFreeTypeVariableReturn() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
 				"/UnannotatedLib/libs/Lib1.java",
@@ -2093,7 +2093,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}, new int[] { 8 });
 	}
 
-	public void testFreeTypeVariableReturnSeverities() throws Exception {
+	public void testFreeTypeVariableReturnSeverities() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
 				"/UnannotatedLib/libs/Lib1.java",
@@ -2146,7 +2146,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}, new int[] { 9, 12 }, new int[] { ProblemSeverities.Warning, ProblemSeverities.Info } );
 	}
 
-	public void testBug490343() throws Exception {
+	public void testBug490343() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
 				"/UnannotatedLibs/libs/Map.java",
@@ -2193,7 +2193,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				"Pb(149) Dead code"
 			}, new int[] { 7 });
 	}
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug507256() throws Exception {
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
@@ -2252,7 +2252,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	 * Assert that external annotations configured for project A's library are considered also while compiling dependent project B.
 	 * Full build.
 	 */
-	public void testBug509715fullBuild() throws Exception {
+	public void testBug509715fullBuild() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Hashtable options = JavaCore.getOptions();
 		try {
 			setupJavaProject("Bug509715ProjA");
@@ -2276,7 +2276,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	 * Assert that external annotations configured for project A's library are considered also while compiling dependent project B.
 	 * Reconcile.
 	 */
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug509715reconcile() throws Exception {
 		try {
 			setupJavaProject("Bug509715ProjA");
@@ -2297,14 +2297,14 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug500024dir() throws CoreException, IOException {
 		try {
 			String projectName = "Bug500024";
 			setupJavaProject(projectName, true, true);
 			this.project.setOption(JavaCore.COMPILER_PB_REDUNDANT_NULL_ANNOTATION, JavaCore.IGNORE);
 
-			addEeaToVariableEntry("JCL18_FULL", "/"+projectName+"/annots");
+			addEeaToVariableEntry("JCL18_FULL", "/"+projectName+"/annots"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IPackageFragment fragment = this.project.getPackageFragmentRoots()[0].createPackageFragment("test1", true, null);
 			ICompilationUnit unit = fragment.getCompilationUnit("Test1.java").getWorkingCopy(new NullProgressMonitor());
 			CompilationUnit reconciled = unit.reconcile(AST.JLS8, true, null, new NullProgressMonitor());
@@ -2327,9 +2327,9 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 					"Unsafe interpretation of method return type as \'@NonNull\' based on the receiver type \'@NonNull Map<@NonNull String,@NonNull Test1>\'. Type \'Map<K,V>\' doesn\'t seem to be designed with null type annotations in mind",
 					markers);
 			int[] severities = new int[] { IMarker.SEVERITY_WARNING, IMarker.SEVERITY_ERROR, IMarker.SEVERITY_WARNING };
-			for (int i = 0; i < markers.length; i++) {
+			for (int i = 0; i < markers.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IMarker marker = markers[i];
-				assertEquals("severity of "+marker.getAttribute(IMarker.MESSAGE),
+				assertEquals("severity of "+marker.getAttribute(IMarker.MESSAGE), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						severities[i], marker.getAttribute(IMarker.SEVERITY));
 			}
 		} finally {
@@ -2337,7 +2337,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug500024jar() throws CoreException, IOException {
 		try {
 			String projectName = "Bug500024";
@@ -2346,12 +2346,12 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 
 			String projectLoc = this.project.getResource().getLocation().toString();
 			String annotsZip = "/annots.zip";
-			String zipFile = projectLoc + annotsZip;
-			String tmpFolder = projectLoc+"/annots";
+			String zipFile = projectLoc + annotsZip; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			String tmpFolder = projectLoc+"/annots"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.zip(new File(tmpFolder), zipFile);
 			Util.delete(tmpFolder);
 			this.project.getProject().refreshLocal(1, new NullProgressMonitor());
-			addEeaToVariableEntry("JCL18_FULL", "/"+projectName+annotsZip);
+			addEeaToVariableEntry("JCL18_FULL", "/"+projectName+annotsZip); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IPackageFragment fragment = this.project.getPackageFragmentRoots()[0].createPackageFragment("test1", true, null);
 			ICompilationUnit unit = fragment.getCompilationUnit("Test1.java").getWorkingCopy(new NullProgressMonitor());
 
@@ -2375,9 +2375,9 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 					"Unsafe interpretation of method return type as \'@NonNull\' based on the receiver type \'@NonNull Map<@NonNull String,@NonNull Test1>\'. Type \'Map<K,V>\' doesn\'t seem to be designed with null type annotations in mind",
 					markers);
 			int[] severities = new int[] { IMarker.SEVERITY_WARNING, IMarker.SEVERITY_ERROR, IMarker.SEVERITY_WARNING };
-			for (int i = 0; i < markers.length; i++) {
+			for (int i = 0; i < markers.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IMarker marker = markers[i];
-				assertEquals("severity of "+marker.getAttribute(IMarker.MESSAGE),
+				assertEquals("severity of "+marker.getAttribute(IMarker.MESSAGE), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						severities[i], marker.getAttribute(IMarker.SEVERITY));
 			}
 		} finally {
@@ -2385,7 +2385,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug508955() throws CoreException, IOException {
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots",
@@ -2418,7 +2418,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				" (Ljava/lang/CharSequence;)L1libs/Collector<L1java/lang/CharSequence;*1L1java/lang/String;>;\n" +
 				"\n" +
 				"\n");
-		createFile(this.project.getElementName()+"/annots/libs/Stream.eea",
+		createFile(this.project.getElementName()+"/annots/libs/Stream.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"class libs/Stream\n" +
 				"\n");
 		IPackageFragment fragment = this.project.getPackageFragmentRoots()[0].createPackageFragment("tests", true, null);
@@ -2437,7 +2437,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		assertNoProblems(problems);
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug508955b() throws CoreException, IOException {
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots",
@@ -2470,7 +2470,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				" (Ljava/lang/CharSequence;)L1libs/Collector<L1java/lang/CharSequence;+1L1java/lang/Object;L1java/lang/String;>;\n" +
 				"\n" +
 				"\n");
-		createFile(this.project.getElementName()+"/annots/libs/Stream.eea",
+		createFile(this.project.getElementName()+"/annots/libs/Stream.eea", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"class libs/Stream\n" +
 				"\n");
 		IPackageFragment fragment = this.project.getPackageFragmentRoots()[0].createPackageFragment("tests", true, null);
@@ -2499,7 +2499,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		IMarker[] markers = this.project.getProject().findMarkers(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, false, IResource.DEPTH_INFINITE);
 		assertNoMarkers(markers);
 	}
-	public void testBug525715() throws Exception {
+	public void testBug525715() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		String lib1Content =
 				"package libs;\n" +
@@ -2566,7 +2566,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		reconciled = cu.reconcile(getJSL9(), true, null, new NullProgressMonitor());
 		assertNoProblems(reconciled.getProblems());
 	}
-	public void testBug517275() throws Exception {
+	public void testBug517275() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		this.project.setOption(JavaCore.COMPILER_PB_REDUNDANT_NULL_ANNOTATION, JavaCore.IGNORE);
 		String lib1Content =
@@ -2611,7 +2611,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		CompilationUnit reconciled = cu.reconcile(getJSL9(), true, null, new NullProgressMonitor());
 		assertNoProblems(reconciled.getProblems());
 	}
-	public void testBug513880() throws Exception {
+	public void testBug513880() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		this.project.setOption(JavaCore.COMPILER_PB_REDUNDANT_NULL_ANNOTATION, JavaCore.IGNORE);
 		String lib1Content =
@@ -2663,7 +2663,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 	// Bug 522377 - [null] String.format(""...) shows warning
-	public void testVargs() throws CoreException, IOException {
+	public void testVargs() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		String lib1Content =
 				"package libs;\n" +
@@ -2702,13 +2702,13 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		assertNoProblems(reconciled.getProblems());
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug482242() throws CoreException, IOException {
 		try {
 			String projectName = "Bug482242";
 			setupJavaProject(projectName, true, true);
 			this .project.setOption(JavaCore.COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED, JavaCore.WARNING);
-			addEeaToVariableEntry("JCL18_FULL", "/"+projectName+"/annots");
+			addEeaToVariableEntry("JCL18_FULL", "/"+projectName+"/annots"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IPackageFragment fragment = this.project.getPackageFragmentRoots()[0].createPackageFragment("test1", true, null);
 			ICompilationUnit unit = fragment.getCompilationUnit("Test.java").getWorkingCopy(new NullProgressMonitor());
 			CompilationUnit reconciled = unit.reconcile(AST.JLS8, true, null, new NullProgressMonitor());
@@ -2728,9 +2728,9 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 					"Unsafe null type conversion (type annotations): The value of type 'Collector<@NonNull String,capture#of ?,Set<@NonNull String>>' is made accessible using the less-annotated type 'Collector<? super String,Object,Set<@NonNull String>>'",
 					markers);
 			int[] severities = new int[] { IMarker.SEVERITY_WARNING };
-			for (int i = 0; i < markers.length; i++) {
+			for (int i = 0; i < markers.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IMarker marker = markers[i];
-				assertEquals("severity of "+marker.getAttribute(IMarker.MESSAGE),
+				assertEquals("severity of "+marker.getAttribute(IMarker.MESSAGE), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						severities[i], marker.getAttribute(IMarker.SEVERITY));
 			}
 		} finally {
@@ -2739,7 +2739,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 	// reconcile client of a "generated" source+eea
-    @SuppressWarnings("deprecation")
+    @SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSourceFolder1() throws CoreException {
 		myCreateJavaProject("Bug509397");
 		addSourceFolderWithExternalAnnotations(this.project, "/Bug509397/src-gen", "/Bug509397/bin-gen", "/Bug509397/annot-gen");
@@ -2778,7 +2778,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 
 	// reconcile client of a "generated" source+eea
     // single merged output folder
-    @SuppressWarnings("deprecation")
+    @SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSourceFolder1a() throws CoreException {
 		myCreateJavaProject("Bug509397");
 		addSourceFolderWithExternalAnnotations(this.project, "/Bug509397/src-gen", null, "/Bug509397/annot-gen");
@@ -2817,7 +2817,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
 	// reconcile client of a "generated" source+eea -- constant in nested interface
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testSourceFolder1b() throws CoreException {
 		myCreateJavaProject("Bug509397");
 		addSourceFolderWithExternalAnnotations(this.project, "/Bug509397/src-gen", "/Bug509397/bin-gen", "/Bug509397/annot-gen");
@@ -2857,7 +2857,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 	}
 
     // full build of a project with src-gen & annot-gen
-	public void testSourceFolder2() throws CoreException {
+	public void testSourceFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("Bug509397");
 		addSourceFolderWithExternalAnnotations(this.project, "/Bug509397/src-gen", "/Bug509397/bin-gen", "/Bug509397/annot-gen");
 
@@ -2893,7 +2893,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 
     // full build of a project with src-gen & annot-gen
     // single merged output folder
-	public void testSourceFolder2a() throws CoreException {
+	public void testSourceFolder2a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("Bug509397");
 		addSourceFolderWithExternalAnnotations(this.project, "/Bug509397/src-gen", null, "/Bug509397/annot-gen");
 
@@ -2951,7 +2951,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 			"	public String get2(Exception in) { return in.toString(); }\n" +
 			"}\n";
 
-	public void testMultiProject1() throws CoreException {
+	public void testMultiProject1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// PrjTest depends on two projects bundled with eea for their respective generated classes
 		// accessed using CORE_JAVA_BUILD_EXTERNAL_ANNOTATIONS_FROM_ALL_LOCATIONS
 		IJavaProject prj1 = null, prj2 = null;
@@ -2985,7 +2985,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 				prj2.getProject().delete(true, true , null);
 		}
 	}
-	public void testSelfAnnotatedJars() throws CoreException, IOException {
+	public void testSelfAnnotatedJars() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// this is the "deployed" variant of testMultiProject1(), i.e, dependencies are jars, not projects
 		myCreateJavaProject("PrjTest");
 		this.project.setOption(JavaCore.CORE_JAVA_BUILD_EXTERNAL_ANNOTATIONS_FROM_ALL_LOCATIONS, JavaCore.ENABLED);
@@ -2994,21 +2994,21 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		Util.createJar(
 			new String[] { "lib/pgen/CGen.java", mixedArtifacts_CGen_java_content },
 			new String[] { "lib/pgen/CGen.eea",  mixedArtifacts_CGen_eea_content },
-			projectLoc+"/lib/prj1.jar", "1.8");
+			projectLoc+"/lib/prj1.jar", "1.8"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		addClasspathEntry(this.project,
 				JavaCore.newLibraryEntry(new Path("/PrjTest/lib/prj1.jar"), null/*access rules*/, null, false/*exported*/));
 
 		Util.createJar(
 			new String[] { "lib/pgen2/CGen2.java", mixedArtifacts_CGen2_java_content },
 			new String[] { "lib/pgen2/CGen2.eea",  mixedArtifacts_CGen2_eea_content },
-			projectLoc+"/lib/prj2.jar", "1.8");
+			projectLoc+"/lib/prj2.jar", "1.8"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		addClasspathEntry(this.project,
 				JavaCore.newLibraryEntry(new Path("/PrjTest/lib/prj2.jar"), null/*access rules*/, null, false/*exported*/));
 
 		internalTestMixedArtifactsTest();
 	}
 
-	public void testSeparateAnnotationJar() throws CoreException, IOException {
+	public void testSeparateAnnotationJar() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// all .eeas are deployed in a separate jar on the build path
 		// accessed using CORE_JAVA_BUILD_EXTERNAL_ANNOTATIONS_FROM_ALL_LOCATIONS
 		myCreateJavaProject("PrjTest");
@@ -3019,19 +3019,19 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 					"lib/pgen/CGen.eea", mixedArtifacts_CGen_eea_content,
 					"lib/pgen2/CGen2.eea", mixedArtifacts_CGen2_eea_content,
 				},
-				projectLoc+"/lib/eeas.jar", "1.8");
+				projectLoc+"/lib/eeas.jar", "1.8"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		addClasspathEntry(this.project,
 				JavaCore.newLibraryEntry(new Path("/PrjTest/lib/eeas.jar"), null/*access rules*/, null, false/*exported*/));
 
 		// one jar dependency in the workspace
 		Util.createJar(
 				new String[] { "lib/pgen/CGen.java", mixedArtifacts_CGen_java_content },
-				projectLoc+"/lib/prj1.jar", "1.8");
+				projectLoc+"/lib/prj1.jar", "1.8"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		addClasspathEntry(this.project,
 				JavaCore.newLibraryEntry(new Path("/PrjTest/lib/prj1.jar"), null/*access rules*/, null, false/*exported*/));
 
 		// second dependency is external jar file
-		String externalJarLoc = Util.getOutputDirectory()+"/lib/prj2.jar";
+		String externalJarLoc = Util.getOutputDirectory()+"/lib/prj2.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(
 				new String[] { "lib.pgen2/CGen2.java", mixedArtifacts_CGen2_java_content },
 				externalJarLoc, "1.8");
@@ -3041,15 +3041,15 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		internalTestMixedArtifactsTest();
 	}
 
-	public void testSeparateAnnotationJarInContainer() throws CoreException, IOException {
+	public void testSeparateAnnotationJarInContainer() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// .eeas are deployed as a member of a classpath container
 		// referenced relative to the container.
 		myCreateJavaProject("PrjTest");
 		String projectLoc = this.project.getProject().getLocation().toString();
 
 		ITestInitializer prev = ContainerInitializer.initializer;
-		String fullPathToEEA = projectLoc+"/lib/my.eeas-0.1.jar";
-		String fullPathToPrj1 = projectLoc+"/lib/prj1.jar";
+		String fullPathToEEA = projectLoc+"/lib/my.eeas-0.1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String fullPathToPrj1 = projectLoc+"/lib/prj1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ContainerInitializer.setInitializer(new TestCustomContainerInitializer(
 				fullPathToEEA, null,
 				fullPathToPrj1, null));
@@ -3066,17 +3066,17 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 
 			// eeas & prj1 accessed via the Container:
 			IClasspathEntry entry = JavaCore.newContainerEntry(new Path(TestContainerInitializer.TEST_CONTAINER_NAME), null/*access rules*/,
-					externalAnnotationExtraAttributes(TestContainerInitializer.TEST_CONTAINER_NAME+"/my.eeas"),
+					externalAnnotationExtraAttributes(TestContainerInitializer.TEST_CONTAINER_NAME+"/my.eeas"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					false/*exported*/);
 			addClasspathEntry(this.project, entry);
 
 			// other jar accessed via separate entry, also annotated using eea in container
-			String externalJarLoc = Util.getOutputDirectory() + "/lib/prj2.jar";
+			String externalJarLoc = Util.getOutputDirectory() + "/lib/prj2.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(
 					new String[] { "lib.pgen2/CGen2.java", mixedArtifacts_CGen2_java_content },
 					externalJarLoc, "1.8");
 			entry = JavaCore.newLibraryEntry(new Path(externalJarLoc), null, null, null,
-					externalAnnotationExtraAttributes(TestContainerInitializer.TEST_CONTAINER_NAME+"/my.eeas"),
+					externalAnnotationExtraAttributes(TestContainerInitializer.TEST_CONTAINER_NAME+"/my.eeas"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					false/*exported*/);
 			addClasspathEntry(this.project, entry);
 
@@ -3094,7 +3094,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		URI location = parentLocation.resolve(URI.create("external-project"));
 		internalTestAnnotationsInProjectReferencedViaContainer(location);
 	}
-	void internalTestAnnotationsInProjectReferencedViaContainer(URI location) throws CoreException, IOException {
+	void internalTestAnnotationsInProjectReferencedViaContainer(URI location) throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// undeployed version of testSeparateAnnotationJarInContainer:
 		// container "resolved" the eea-artifact to a workspace project
 		myCreateJavaProject("PrjTest");
@@ -3102,9 +3102,9 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 
 		ITestInitializer prev = ContainerInitializer.initializer;
 		String eeaProjectName = "my.eeas";
-		String fullPathToPrj1 = projectLoc+"/lib/prj1.jar";
+		String fullPathToPrj1 = projectLoc+"/lib/prj1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ContainerInitializer.setInitializer(new TestCustomContainerInitializer(
-				'/'+eeaProjectName, null,
+				'/'+eeaProjectName, null, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				fullPathToPrj1, null));
 
 		IJavaProject eeaProject = null;
@@ -3114,10 +3114,10 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 					new String[] {""}, new String[] {"JCL_LIB"}, // XXX JCL18_LIB
 					null, null, null, null, null, true, null,
 					"", null, null, null, "", false, false);
-			createFolder('/'+eeaProjectName+"/lib/pgen");
-			createFolder('/'+eeaProjectName+"/lib/pgen2");
-			createFile(eeaProjectName+"/lib/pgen/CGen.eea",   mixedArtifacts_CGen_eea_content);
-			createFile(eeaProjectName+"/lib/pgen2/CGen2.eea", mixedArtifacts_CGen2_eea_content);
+			createFolder('/'+eeaProjectName+"/lib/pgen"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			createFolder('/'+eeaProjectName+"/lib/pgen2"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			createFile(eeaProjectName+"/lib/pgen/CGen.eea",   mixedArtifacts_CGen_eea_content); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			createFile(eeaProjectName+"/lib/pgen2/CGen2.eea", mixedArtifacts_CGen2_eea_content); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 			Util.createJar(
 					new String[] { "lib/pgen/CGen.java", mixedArtifacts_CGen_java_content },
@@ -3126,18 +3126,18 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 			// eeas & prj1 accessed via the Container:
 			IClasspathEntry entry = JavaCore.newContainerEntry(
 					new Path(TestContainerInitializer.TEST_CONTAINER_NAME), null/*access rules*/,
-					externalAnnotationExtraAttributes(TestContainerInitializer.TEST_CONTAINER_NAME+"/my.eeas"),
+					externalAnnotationExtraAttributes(TestContainerInitializer.TEST_CONTAINER_NAME+"/my.eeas"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					false/*exported*/);
 			addClasspathEntry(this.project, entry);
 
 			// other jar accessed via separate entry, also annotated using eea in container
-			String externalJarLoc = Util.getOutputDirectory() + "/lib/prj2.jar";
+			String externalJarLoc = Util.getOutputDirectory() + "/lib/prj2.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(
 					new String[] { "lib.pgen2/CGen2.java", mixedArtifacts_CGen2_java_content },
 					externalJarLoc, "1.8");
 			entry = JavaCore.newLibraryEntry(
 					new Path(externalJarLoc), null, null, null,
-					externalAnnotationExtraAttributes(TestContainerInitializer.TEST_CONTAINER_NAME+"/my.eeas"),
+					externalAnnotationExtraAttributes(TestContainerInitializer.TEST_CONTAINER_NAME+"/my.eeas"), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					false/*exported*/);
 			addClasspathEntry(this.project, entry);
 
@@ -3149,22 +3149,22 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}
 	}
 
-	public void testMixedElementAndContainerAnnotation() throws Exception {
+	public void testMixedElementAndContainerAnnotation() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// container mixes annotations from internal resolving ("self") and client-side annotation path
 		myCreateJavaProject("PrjTest");
 		String projectLoc = this.project.getProject().getLocation().toString();
 		ITestInitializer prev = ContainerInitializer.initializer;
-		ContainerInitializer.setInitializer(new TestCustomContainerInitializer(projectLoc+"/lib1.jar", "self", projectLoc+"/lib2.jar", null));
+		ContainerInitializer.setInitializer(new TestCustomContainerInitializer(projectLoc+"/lib1.jar", "self", projectLoc+"/lib2.jar", null)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 
 			// jar with external annotations for its own class
 			Util.createJar(
 				new String[] { "lib/pgen/CGen.java", mixedArtifacts_CGen_java_content },
 				new String[] { "lib/pgen/CGen.eea",  mixedArtifacts_CGen_eea_content, },
-				projectLoc+"/lib1.jar", "1.8");
+				projectLoc+"/lib1.jar", "1.8"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.createJar(
 				new String[] { "lib/pgen2/CGen2.java", mixedArtifacts_CGen2_java_content },
-				projectLoc+"/lib2.jar", "1.8");
+				projectLoc+"/lib2.jar", "1.8"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IClasspathEntry containerEntry = JavaCore.newContainerEntry(
 					new Path(TestContainerInitializer.TEST_CONTAINER_NAME),
 					null,
@@ -3179,7 +3179,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 			ContainerInitializer.setInitializer(prev);
 		}
 	}
-	protected void internalTestMixedArtifactsTest() throws CoreException, JavaModelException {
+	protected void internalTestMixedArtifactsTest() throws CoreException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.project.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 		createFileInProject("src/p", "Use.java",
 				"package p;\n" +
@@ -3217,7 +3217,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 			new int[] { 7, 11 });
 	}
 
-	public void testAnnotatedSourceSharesOutputFolder() throws CoreException {
+	public void testAnnotatedSourceSharesOutputFolder() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject prj1 = null;
 		myCreateJavaProject("Prj1");
 		addSourceFolderWithExternalAnnotations(this.project, "/Prj1/src-gen", null, "/Prj1/annot-gen");
@@ -3256,7 +3256,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		}
 	}
 
-	public void testGH1008() throws Exception {
+	public void testGH1008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("ValueOf");
 		Map options = this.project.getOptions(true);
 		options.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
@@ -3335,7 +3335,7 @@ public class ExternalAnnotations18Test extends ModifyingResourceTests {
 		IProblem[] problems = reconciled.getProblems();
 		assertNoProblems(problems);
 	}
-	public void testGH2178() throws CoreException, IOException {
+	public void testGH2178() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("GH2178", "21", "JCL_21_LIB");
 		Map options = this.project.getOptions(true);
 		options.put(JavaCore.COMPILER_PB_NULL_SPECIFICATION_VIOLATION, JavaCore.ERROR);

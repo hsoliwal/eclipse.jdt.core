@@ -27,7 +27,7 @@ public class VerificationInfo extends ClassFileStruct implements IVerificationTy
 	private char[] classTypeName;
 	private int readOffset;
 
-	public VerificationInfo(
+	public VerificationInfo( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			byte[] classFileBytes,
 			IConstantPool constantPool,
 			int offset) throws ClassFormatException {

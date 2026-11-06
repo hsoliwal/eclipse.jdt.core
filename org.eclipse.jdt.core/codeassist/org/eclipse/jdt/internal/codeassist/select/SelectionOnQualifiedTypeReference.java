@@ -43,7 +43,7 @@ public SelectionOnQualifiedTypeReference(char[][] previousIdentifiers, char[] se
 public void aboutToResolve(Scope scope) {
 	getTypeBinding(scope.parent); // step up from the ClassScope
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected TypeBinding getTypeBinding(Scope scope) {
 	// it can be a package, type or member type
 	Binding binding = scope.getTypeOrPackage(this.tokens);
@@ -68,11 +68,11 @@ protected TypeBinding getTypeBinding(Scope scope) {
 @Override
 public StringBuilder printExpression(int indent, StringBuilder output) {
 
-	output.append("<SelectOnType:"); //$NON-NLS-1$
-	for (int i = 0, length = this.tokens.length; i < length; i++) {
-		if (i > 0) output.append('.');
-		output.append(this.tokens[i]);
+	output.append("<SelectOnType:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (int i = 0, length = this.tokens.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		if (i > 0) output.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(this.tokens[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	return output.append('>');
+	return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 }

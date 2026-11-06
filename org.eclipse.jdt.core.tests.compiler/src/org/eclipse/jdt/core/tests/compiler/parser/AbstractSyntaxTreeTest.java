@@ -76,7 +76,7 @@ public class AbstractSyntaxTreeTest extends AbstractCompilerTest implements IDoc
 		options.targetJDK = CompilerOptions.getFirstSupportedJdkLevel();
 		checkParse(parserToCheck, source, expectedSyntaxErrorDiagnosis, testName, expectedUnitToString, visitor, options);
 	}
-	public void checkParse(int parserToCheck, char[] source, String expectedSyntaxErrorDiagnosis,
+	public void checkParse(int parserToCheck, char[] source, String expectedSyntaxErrorDiagnosis, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String testName, String expectedUnitToString, ASTVisitor visitor, CompilerOptions options) throws IOException {
 
 				ICompilationUnit sourceUnit = null;
@@ -84,9 +84,9 @@ public class AbstractSyntaxTreeTest extends AbstractCompilerTest implements IDoc
 				CompilationUnitDeclaration unit = null;
 
 				if (this.referenceCompiler != null && (parserToCheck & CHECK_JAVAC_PARSER) != 0) {
-					String javaFilePath = this.referenceCompilerTestsScratchArea + "\\Xyz.java";
+					String javaFilePath = this.referenceCompilerTestsScratchArea + "\\Xyz.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					File f = new File(javaFilePath);
-					FileOutputStream o = new FileOutputStream(f);
+					FileOutputStream o = new FileOutputStream(f); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 					OutputStreamWriter w = new OutputStreamWriter(o);
 					w.write(source);
 					w.close();
@@ -95,9 +95,9 @@ public class AbstractSyntaxTreeTest extends AbstractCompilerTest implements IDoc
 						BufferedReader stdout  = new BufferedReader(new InputStreamReader(p.getInputStream()));
 						BufferedReader stderr  = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 						String line;
-						while ((line = stderr.readLine())!= null)
+						while ((line = stderr.readLine())!= null) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							System.out.println(line);
-						while ((line = stdout.readLine())!= null)
+						while ((line = stdout.readLine())!= null) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							System.out.println(line);
 						assertTrue("javac unhappy", p.waitFor() == 0);
 					} catch (InterruptedException e) {
@@ -235,33 +235,33 @@ public class AbstractSyntaxTreeTest extends AbstractCompilerTest implements IDoc
 	private void assertDianosticEquals(String expectedSyntaxErrorDiagnosis, String testName, CompilationResult compilationResult) {
 		String computedSyntaxErrorDiagnosis = getCompilerMessages(compilationResult);
 		assertEquals(
-			"Invalid syntax error diagnosis" + testName,
+			"Invalid syntax error diagnosis" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Util.convertToIndependantLineDelimiter(expectedSyntaxErrorDiagnosis),
 			Util.convertToIndependantLineDelimiter(computedSyntaxErrorDiagnosis));
 	}
 
-	private String getCompilerMessages(CompilationResult compilationResult) {
-		StringBuilder buffer = new StringBuilder(100);
+	private String getCompilerMessages(CompilationResult compilationResult) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buffer = new StringBuilder(100); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (compilationResult.hasProblems() || compilationResult.hasTasks()) {
 			CategorizedProblem[] problems = compilationResult.getAllProblems();
 			int count = problems.length;
 			int problemCount = 0;
 			char[] unitSource = compilationResult.compilationUnit.getContents();
-			for (int i = 0; i < count; i++) {
+			for (int i = 0; i < count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (problems[i] != null) {
 					if (problemCount == 0)
-						buffer.append("----------\n");
+						buffer.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					problemCount++;
-					buffer.append(problemCount + (problems[i].isError() ? ". ERROR" : ". WARNING"));
-					buffer.append(" in " + new String(problems[i].getOriginatingFileName()).replace('/', '\\'));
+					buffer.append(problemCount + (problems[i].isError() ? ". ERROR" : ". WARNING")); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(" in " + new String(problems[i].getOriginatingFileName()).replace('/', '\\')); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					try {
-						buffer.append(((DefaultProblem)problems[i]).errorReportSource(unitSource));
-						buffer.append("\n");
-						buffer.append(problems[i].getMessage());
-						buffer.append("\n");
+						buffer.append(((DefaultProblem)problems[i]).errorReportSource(unitSource)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buffer.append(problems[i].getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					} catch (Exception e) {
 					}
-					buffer.append("----------\n");
+					buffer.append("----------\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}

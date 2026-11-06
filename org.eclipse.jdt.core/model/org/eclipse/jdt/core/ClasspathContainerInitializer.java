@@ -215,7 +215,7 @@ public abstract class ClasspathContainerInitializer {
 	 * @return the default failure container, or <code>null</code> if wishing to run the initializer again
      * @since 3.3
      */
-    public IClasspathContainer getFailureContainer(final IPath containerPath, IJavaProject project) {
+    public IClasspathContainer getFailureContainer(final IPath containerPath, IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	final String description = getDescription(containerPath, project);
     	return
     		new IClasspathContainer() {

@@ -61,7 +61,7 @@ protected void setUp() throws Exception {
  * Field occurences in 2 working copies within 2 projects (one prereq this other one).
  * (regression test for bug 41534 incorrect shadowing reported by rename [refactoring])
  */
-public void testFieldOccurencesInWorkingCopies() throws CoreException {
+public void testFieldOccurencesInWorkingCopies() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit wc1 = null, wc2 = null;
 	try {
 		// setup project P1
@@ -138,7 +138,7 @@ public void testFieldOccurencesInWorkingCopies() throws CoreException {
  * Search for references in a hierarchy should find matches in super type.
  * (regression test for bug 31748 [search] search for reference is broken 2.1 M5)
  */
-public void testHierarchyScope1() throws CoreException {
+public void testHierarchyScope1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		createFolder("/P1/p");
@@ -185,7 +185,7 @@ public void testHierarchyScope1() throws CoreException {
  * Search for references in a hierarchy should find matches in super type.
  * (regression test for bug 31748 [search] search for reference is broken 2.1 M5)
  */
-public void testHierarchyScope2() throws CoreException {
+public void testHierarchyScope2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		createFolder("/P1/p");
@@ -240,7 +240,7 @@ public void testHierarchyScope2() throws CoreException {
  * Search for references in a hierarchy should find matches in super type.
  * (regression test for bug 35755 Search in hierarchy misses dependent projects )
  */
-public void testHierarchyScope3() throws CoreException {
+public void testHierarchyScope3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		createFolder("/P1/p");
@@ -288,7 +288,7 @@ public void testHierarchyScope3() throws CoreException {
  * Search for references in a hierarchy should not find inaccurate match if reference is indirect.
  * (regression test for bug 35755 Search in hierarchy misses dependent projects )
  */
-public void testHierarchyScope4() throws CoreException {
+public void testHierarchyScope4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P0");
 		createFolder("/P0/p0");
@@ -365,7 +365,7 @@ public void testHierarchyScope4() throws CoreException {
  * Method occurences with 2 unrelated projects that contain the same source.
  * (regression test for bug 33800 search: reporting too many method occurrences)
  */
-public void testMethodOccurences() throws CoreException {
+public void testMethodOccurences() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// setup project P1
 		IJavaProject p1 = createJavaProject("P1");
@@ -413,7 +413,7 @@ public void testMethodOccurences() throws CoreException {
  * Package declaration with 2 unrelated projects that contain the same source.
  * (regression test for bug 46276 Search for package declarations incorrectly finds matches in clone project)
  */
-public void testPackageDeclaration() throws CoreException {
+public void testPackageDeclaration() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// setup project P1
 		IJavaProject p1 = createJavaProject("P1");
@@ -451,7 +451,7 @@ public void testPackageDeclaration() throws CoreException {
  * Package reference with fragments in 2 different source projects.
  * (regression test for bug 47415 [Search] package references confused with multiple fragments)
  */
-public void testPackageReference1() throws CoreException {
+public void testPackageReference1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// setup project P1
 		IJavaProject p1 = createJavaProject("P1");
@@ -518,7 +518,7 @@ public void testPackageReference1() throws CoreException {
  * Package reference with fragments in 2 different binary projects.
  * (regression test for bug 47415 [Search] package references confused with multiple fragments)
  */
-public void testPackageReference2() throws CoreException, IOException {
+public void testPackageReference2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// setup project JavaSearchMultipleProjects1
 		IJavaProject p1 = setUpJavaProject("JavaSearchMultipleProjects1");
@@ -549,7 +549,7 @@ public void testPackageReference2() throws CoreException, IOException {
  * Method reference with 2 working copies in 2 different project.
  * (regression test for bug 57749 Search in working copies doesn't find all matches)
  */
-public void testReferenceInWorkingCopies() throws CoreException {
+public void testReferenceInWorkingCopies() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit workingCopy1 = null;
 	ICompilationUnit workingCopy2 = null;
 	try {
@@ -645,7 +645,7 @@ public void testReferenceInWorkingCopies() throws CoreException {
  * Type declaration in external jar file that is shared by 2 projects.
  * (regression test for bug 27485 SearchEngine returns wrong java element when searching in an archive that is included by two distinct java projects.)
  */
-public void testTypeDeclarationInJar() throws CoreException {
+public void testTypeDeclarationInJar() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = createJavaProject("P1", new String[] {}, new String[] {"JCL18_LIB"}, "");
 		IJavaProject p2 = createJavaProject("P2", new String[] {}, new String[] {"JCL18_LIB"}, "");
@@ -661,7 +661,7 @@ public void testTypeDeclarationInJar() throws CoreException {
 			resultCollector);
 		assertSearchResults(
 			"Unexpected result in scope of P1",
-			getExternalJCLPathString() + " [in P1] java.lang.Object",
+			getExternalJCLPathString() + " [in P1] java.lang.Object", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			resultCollector);
 
 		scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {p2});
@@ -675,7 +675,7 @@ public void testTypeDeclarationInJar() throws CoreException {
 			resultCollector);
 		assertSearchResults(
 			"Unexpected result in scope of P2",
-			getExternalJCLPathString() + " [in P2] java.lang.Object",
+			getExternalJCLPathString() + " [in P2] java.lang.Object", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			resultCollector);
 	} finally {
 		deleteProject("P1");
@@ -687,7 +687,7 @@ public void testTypeDeclarationInJar() throws CoreException {
  * Bug 151189: [search] Declaration search does not find all matches
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=151189"
  */
-public void testBug151189_Workspace() throws CoreException {
+public void testBug151189_Workspace() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// setup project P1
 		/*IJavaProject p1 = */createJavaProject("P1");
@@ -755,7 +755,7 @@ public void testBug151189_Workspace() throws CoreException {
 		deleteProject("P2");
 	}
 }
-public void testBug151189_Project() throws CoreException {
+public void testBug151189_Project() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// setup project P1
 		createJavaProject("P1");
@@ -816,7 +816,7 @@ public void testBug151189_Project() throws CoreException {
  * test Ensure that there's no potential match while searching in two projects having 1.4 and 1.5 compliances
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=163072"
  */
-public void testBug163072() throws CoreException {
+public void testBug163072() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// setup project P1
 		/*IJavaProject p1 = */createJavaProject("P1"); // standard project using 1.4 compliance
@@ -888,7 +888,7 @@ public void testBug163072() throws CoreException {
  * test Ensure that types are found even in default package fragment root
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=167743"
  */
-public void testBug167743() throws CoreException {
+public void testBug167743() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		createFolder("/P/test");
@@ -942,7 +942,7 @@ public void testBug167743() throws CoreException {
  * test Verify that type are found in rt.jar even if it's added as a library on the classpath
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=176831"
  */
-public void testBug176831() throws CoreException {
+public void testBug176831() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create projects and files
 		final IJavaProject p1 = createJavaProject("P1", new String[] {"src"}, null, new String[] {"/P2"}, "bin");
@@ -962,14 +962,14 @@ public void testBug176831() throws CoreException {
 		);
 		assertSearchResults(
 			"Unexpected references to /P1/p/A.java",
-			""+ getExternalJCLPathString() + " [in P2] java.lang.String java.lang.Object.toString() EXACT_MATCH",
+			""+ getExternalJCLPathString() + " [in P2] java.lang.String java.lang.Object.toString() EXACT_MATCH", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			resultCollector);
 	} finally {
 		deleteProject("P1");
 		deleteProject("P2");
 	}
 }
-public void testBug176831b() throws CoreException {
+public void testBug176831b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create projects and files
 		final IJavaProject p1 = createJavaProject("P1", new String[] {"src"}, null, new String[] {"/P2"}, "bin");
@@ -990,7 +990,7 @@ public void testBug176831b() throws CoreException {
 		);
 		assertSearchResults(
 			"Unexpected references to /P1/p/A.java",
-			""+ getExternalJCLPathString() + " [in P3] java.lang.String java.lang.Object.toString() EXACT_MATCH",
+			""+ getExternalJCLPathString() + " [in P3] java.lang.String java.lang.Object.toString() EXACT_MATCH", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			resultCollector);
 	} finally {
 		deleteProject("P1");
@@ -1004,7 +1004,7 @@ public void testBug176831b() throws CoreException {
  * test Verify that correct types are found even with project and source folders in the classpath
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=195228"
  */
-public void testBug195228() throws CoreException {
+public void testBug195228() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create projects and files
 		final IJavaProject project = createJavaProject("P1", new String[] {"src"}, "bin");
@@ -1043,7 +1043,7 @@ public void testBug195228() throws CoreException {
 		String allTypes = requestor.toString();
 
 		// Add project folder to classpath with inclusion and exclusion patterns
-		getWorkspace().run(new IWorkspaceRunnable() {
+		getWorkspace().run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				IClasspathEntry[] entries = project.getRawClasspath();
 				int length = entries.length;
@@ -1078,7 +1078,7 @@ public void testBug195228() throws CoreException {
  * test Ensure that types are found even in project which name ends either with ".jar" or ".zip"
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=199392"
  */
-public void testBug199392_Jar() throws CoreException {
+public void testBug199392_Jar() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("Test.jar");
 		createFolder("/Test.jar/test");
@@ -1115,7 +1115,7 @@ public void testBug199392_Jar() throws CoreException {
 		deleteProject("Test.jar");
 	}
 }
-public void testBug199392_Jar_SamePartCount() throws CoreException {
+public void testBug199392_Jar_SamePartCount() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("Test.jar");
 		createFolder("/Test.jar/test");
@@ -1152,7 +1152,7 @@ public void testBug199392_Jar_SamePartCount() throws CoreException {
 		deleteProject("Test.jar");
 	}
 }
-public void testBug199392_Zip() throws CoreException {
+public void testBug199392_Zip() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("Test.zip");
 		createFolder("/Test.zip/test");
@@ -1189,7 +1189,7 @@ public void testBug199392_Zip() throws CoreException {
 		deleteProject("Test.zip");
 	}
 }
-public void testBug199392_Zip_SamePartCount() throws CoreException {
+public void testBug199392_Zip_SamePartCount() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("Test.zip");
 		createFolder("/Test.zip/test");
@@ -1232,7 +1232,7 @@ public void testBug199392_Zip_SamePartCount() throws CoreException {
  * test Ensure that import references are found when searching on working copies not written on disk
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=210689"
  */
-public void testBug210689() throws CoreException {
+public void testBug210689() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// setup project P0
 		createJavaProject("P0");
@@ -1301,7 +1301,7 @@ public void testBug210689() throws CoreException {
  * test Ensure that an annotation reference is not found in a working copy if outside the scope
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=229128"
  */
-public void testBug229128() throws CoreException {
+public void testBug229128() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit[] copies = new ICompilationUnit[2];
 	try {
 		// setup project P1
@@ -1359,7 +1359,7 @@ public void testBug229128() throws CoreException {
  * test Ensure that no StackOverFlowError occurs when searching in a project referencing a cycle
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=229951"
  */
-public void testBug229951a() throws Exception {
+public void testBug229951a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		createFile("/P1/test.jar", "");
@@ -1406,7 +1406,7 @@ public void testBug229951a() throws Exception {
  * test Ensure that no StackOverFlowError occurs when creating a search scope on a project referencing a cycle
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=229951"
  */
-public void testBug229951b() throws Exception {
+public void testBug229951b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		createFile("/P1/test.jar", "");
@@ -1438,7 +1438,7 @@ public void testBug229951b() throws Exception {
 		);
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] {p3});
 		assertScopeEquals(
-			"JavaSearchScope on [\n" +
+			"JavaSearchScope on [\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	/P3\n" +
 			"	" + getExternalJCLPathString() + "\n" +
 			"]",
@@ -1453,7 +1453,7 @@ public void testBug229951b() throws Exception {
  * test Ensure that search does not find illegal references with given projects setup
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=250454"
  */
-public void testBug250454() throws CoreException {
+public void testBug250454() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// setup project P0
 		createJavaProject("P0");
@@ -1505,7 +1505,7 @@ public void testBug250454() throws CoreException {
 			null
 		);
 		assertSearchResults(
-			"Unexpected references to "+method,
+			"Unexpected references to "+method, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"p/ShapeUser.java [in P2] void p.ShapeUser.useShape(Shape) [f()] EXACT_MATCH SUPER INVOCATION",
 			resultCollector);
 	} finally {
@@ -1514,8 +1514,8 @@ public void testBug250454() throws CoreException {
 		deleteProject("P2");
 	}
 }
-public void testBug250454_jars() throws CoreException, IOException {
-	String jarPath = getExternalPath()+"b250454.jar";
+public void testBug250454_jars() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String jarPath = getExternalPath()+"b250454.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 		// setup jar
 		String[] pathsAndContents= new String[] {
@@ -1566,7 +1566,7 @@ public void testBug250454_jars() throws CoreException, IOException {
 			null
 		);
 		assertSearchResults(
-			"Unexpected references to "+method,
+			"Unexpected references to "+method, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"p/ShapeUser.java [in P2] void p.ShapeUser.useShape(Shape) [f()] EXACT_MATCH SUPER INVOCATION",
 			resultCollector);
 	} finally {

@@ -485,7 +485,7 @@ public interface IClasspathEntry {
 	 * @since 3.14
 	 */
 	default public boolean isTest() {
-		for (IClasspathAttribute attribute : getExtraAttributes()) {
+		for (IClasspathAttribute attribute : getExtraAttributes()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (IClasspathAttribute.TEST.equals(attribute.getName()) && "true".equals(attribute.getValue())) //$NON-NLS-1$
 				return true;
 		}
@@ -503,7 +503,7 @@ public interface IClasspathEntry {
 	 * @since 3.14
 	 */
 	default public boolean isWithoutTestCode() {
-		for (IClasspathAttribute attribute : getExtraAttributes()) {
+		for (IClasspathAttribute attribute : getExtraAttributes()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (IClasspathAttribute.WITHOUT_TEST_CODE.equals(attribute.getName()) && "true".equals(attribute.getValue())) //$NON-NLS-1$
 				return true;
 		}

@@ -34,7 +34,7 @@ public IntersectingPattern(int patternKind, int matchRule) {
 	super(patternKind, matchRule);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void findIndexMatches(Index index, IndexQueryRequestor requestor, SearchParticipant participant, IJavaSearchScope scope, IProgressMonitor progressMonitor) throws IOException {
 	if (progressMonitor != null && progressMonitor.isCanceled()) throw new OperationCanceledException();
 
@@ -42,25 +42,25 @@ public void findIndexMatches(Index index, IndexQueryRequestor requestor, SearchP
 	SimpleSet intersectedNames = null;
 	try {
 		index.startQuery();
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			SearchPattern pattern = currentPattern();
 			EntryResult[] entries = pattern.queryIn(index);
 			if (entries == null) return;
 
 			SearchPattern decodedResult = pattern.getBlankPattern();
 			SimpleSet newIntersectedNames = new SimpleSet(3);
-			for (EntryResult entry : entries) {
+			for (EntryResult entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (progressMonitor != null && progressMonitor.isCanceled()) throw new OperationCanceledException();
 
 				decodedResult.decodeIndexKey(entry.getWord());
 				if (pattern.matchesDecodedKey(decodedResult)) {
 					String[] names = entry.getDocumentNames(index);
 					if (intersectedNames != null) {
-						for (String name : names)
+						for (String name : names) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (intersectedNames.includes(name))
 								newIntersectedNames.add(name);
 					} else {
-						for (String name : names)
+						for (String name : names) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							newIntersectedNames.add(name);
 					}
 				}
@@ -76,7 +76,7 @@ public void findIndexMatches(Index index, IndexQueryRequestor requestor, SearchP
 	String containerPath = index.containerPath;
 	char separator = index.separator;
 	Object[] names = intersectedNames.values;
-	for (Object name : names)
+	for (Object name : names) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (name != null)
 			acceptMatch((String) name, containerPath, separator, null/*no pattern*/, requestor, participant, scope, progressMonitor); // AndPatterns cannot provide the decoded result
 }

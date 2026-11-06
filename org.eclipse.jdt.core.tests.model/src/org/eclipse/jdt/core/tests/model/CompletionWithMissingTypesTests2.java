@@ -48,19 +48,19 @@ public static Test suite() {
 
 File createFile(File parent, String name, String content) throws IOException {
 	File file = new File(parent, name);
-	try (FileOutputStream out = new FileOutputStream(file))  {
+	try (FileOutputStream out = new FileOutputStream(file))  { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		out.write(content.getBytes());
 	}
 	return file;
 }
 File createDirectory(File parent, String name) {
 	File dir = new File(parent, name);
-	dir.mkdirs();
+	dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	return dir;
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0001() throws Exception {
+public void test0001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		Hashtable options = new Hashtable(this.oldOptions);
 		options.put(JavaCore.COMPILER_PB_FORBIDDEN_REFERENCE, JavaCore.ERROR);
@@ -141,7 +141,7 @@ public void test0001() throws Exception {
 		int start2 = str.lastIndexOf("XX");
 		int end2 = start2 + "XX".length();
 		assertResults(
-				"foo[METHOD_REF]{foo(), La.XX;, ()V, foo, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+				"foo[METHOD_REF]{foo(), La.XX;, ()V, foo, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"   XX[TYPE_REF]{a.XX, a, La.XX;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n" +
 				"foo[METHOD_REF]{foo(), Lb.XX;, ()V, foo, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
 				"   XX[TYPE_REF]{b.XX, b, Lb.XX;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
@@ -153,7 +153,7 @@ public void test0001() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=44984
-public void test0002() throws Exception {
+public void test0002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		Hashtable options = new Hashtable(this.oldOptions);
 		options.put(JavaCore.COMPILER_PB_FORBIDDEN_REFERENCE, JavaCore.ERROR);
@@ -234,7 +234,7 @@ public void test0002() throws Exception {
 		int start2 = str.lastIndexOf("XX");
 		int end2 = start2 + "XX".length();
 		assertResults(
-				"foo[METHOD_REF]{foo(), Lb.XX;, ()V, foo, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+				"foo[METHOD_REF]{foo(), Lb.XX;, ()V, foo, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"   XX[TYPE_REF]{b.XX, b, Lb.XX;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 				requestor.getResults());
 	} finally {

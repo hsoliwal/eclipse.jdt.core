@@ -25,7 +25,7 @@ import org.eclipse.jdt.internal.compiler.env.AccessRuleSet;
 public class PathCollector extends IndexQueryRequestor {
 
 	/* a set of resource paths */
-	public Set<String> paths = new HashSet<>(5);
+	public Set<String> paths = new HashSet<>(5); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 	@Override
 	public boolean acceptIndexMatch(String documentPath, SearchPattern indexRecord, SearchParticipant participant, AccessRuleSet access) {

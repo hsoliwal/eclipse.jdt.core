@@ -43,7 +43,7 @@ class AddFolderToIndex extends IndexRequest {
 		this.inclusionPatterns = inclusionPatterns;
 		this.exclusionPatterns = exclusionPatterns;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean execute(IProgressMonitor progressMonitor) {
 
 		if (this.isCancelled || progressMonitor != null && progressMonitor.isCanceled()) return true;
@@ -65,7 +65,7 @@ class AddFolderToIndex extends IndexRequest {
 			final SourceElementParser parser = indexManager.getSourceElementParser(JavaCore.create(this.project), null/*requestor will be set by indexer*/);
 			if (this.exclusionPatterns == null && this.inclusionPatterns == null) {
 				folder.accept(
-					new IResourceProxyVisitor() {
+					new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
 						@Override
 						public boolean visit(IResourceProxy proxy) /* throws CoreException */{
 							if (proxy.getType() == IResource.FILE) {
@@ -83,8 +83,8 @@ class AddFolderToIndex extends IndexRequest {
 				);
 			} else {
 				folder.accept(
-					new IResourceProxyVisitor() {
-						@Override
+					new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
+						@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 						public boolean visit(IResourceProxy proxy) /* throws CoreException */{
 							switch(proxy.getType()) {
 								case IResource.FILE :
@@ -114,7 +114,7 @@ class AddFolderToIndex extends IndexRequest {
 			}
 		} catch (CoreException e) {
 			if (JobManager.VERBOSE) {
-				trace("-> failed to add " + this.folderPath + " to index because of the following exception:", e); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("-> failed to add " + this.folderPath + " to index because of the following exception:", e); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			return false;
 		} finally {
@@ -124,6 +124,6 @@ class AddFolderToIndex extends IndexRequest {
 	}
 	@Override
 	public String toString() {
-		return "adding " + this.folderPath + " to index " + this.containerPath; //$NON-NLS-1$ //$NON-NLS-2$
+		return "adding " + this.folderPath + " to index " + this.containerPath; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

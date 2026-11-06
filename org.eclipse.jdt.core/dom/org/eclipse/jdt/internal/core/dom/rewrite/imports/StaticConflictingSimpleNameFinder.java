@@ -38,21 +38,21 @@ final class StaticConflictingSimpleNameFinder implements ConflictingSimpleNameFi
 		this.project = project;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Set<String> findConflictingSimpleNames(
 			Set<String> simpleNames,
 			Set<String> onDemandAndImplicitContainerNames,
 			IProgressMonitor monitor) throws JavaModelException {
-		Set<String> memberNamesFoundInMultipleTypes = new HashSet<>();
+		Set<String> memberNamesFoundInMultipleTypes = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
-		Set<String> foundMemberNames = new HashSet<>();
-		for (String containerName : onDemandAndImplicitContainerNames) {
+		Set<String> foundMemberNames = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		for (String containerName : onDemandAndImplicitContainerNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IType containingType = this.project.findType(containerName, monitor);
 			if (containingType != null) {
 				if (!containingType.exists()) { // workaround for https://bugs.eclipse.org/483887
 					continue;
 				}
-				for (String memberName : extractStaticMemberNames(containingType)) {
+				for (String memberName : extractStaticMemberNames(containingType)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (simpleNames.contains(memberName)) {
 						if (foundMemberNames.contains(memberName)) {
 							memberNamesFoundInMultipleTypes.add(memberName);
@@ -68,15 +68,15 @@ final class StaticConflictingSimpleNameFinder implements ConflictingSimpleNameFi
 	}
 
 	private Set<String> extractStaticMemberNames(IType type) throws JavaModelException {
-		Set<String> memberNames = new HashSet<>();
+		Set<String> memberNames = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
-		for (IField field : type.getFields()) {
+		for (IField field : type.getFields()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (isStaticImportableMember(field.getFlags())) {
 				memberNames.add(field.getElementName());
 			}
 		}
 
-		for (IMethod method : type.getMethods()) {
+		for (IMethod method : type.getMethods()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (isStaticImportableMember(method.getFlags())) {
 				memberNames.add(method.getElementName());
 			}

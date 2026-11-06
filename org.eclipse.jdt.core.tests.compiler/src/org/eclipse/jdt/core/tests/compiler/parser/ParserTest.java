@@ -29,7 +29,7 @@ static {
 public ParserTest(String name) {
 	super(name);
 }
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -47,7 +47,7 @@ public void test001() {
 		"----------\n"
 	);
 }
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -65,7 +65,7 @@ public void test002() {
 		"----------\n"
 	);
 }
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -92,7 +92,7 @@ public void test003() {
 		"Syntax error, insert \";\" to complete BlockStatements\n" +
 		"----------\n");
 }
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -110,7 +110,7 @@ public void test004() {
 		"----------\n"
 	);
 }
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -128,7 +128,7 @@ public void test005() {
 		"----------\n"
 	);
 }
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -155,7 +155,7 @@ public void test006() {
 		"Syntax error, insert \";\" to complete BlockStatements\n" +
 		"----------\n");
 }
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -177,7 +177,7 @@ public void test007() {
 		"----------\n"
 	);
 }
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -204,7 +204,7 @@ public void test008() {
 		"----------\n"
 	);
 }
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -222,7 +222,7 @@ public void test009() {
 		"----------\n"
 	);
 }
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -240,7 +240,7 @@ public void test010() {
 		"----------\n"
 	);
 }
-public void _test011() {
+public void _test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -261,7 +261,7 @@ public void _test011() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=40681
  */
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable nls = new Hashtable();
 	nls.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -292,7 +292,7 @@ public void test012() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=40681
  */
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable nls = new Hashtable();
 	nls.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -323,7 +323,7 @@ public void test013() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=47227
  */
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -349,7 +349,7 @@ public void test014() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=60848
  */
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -426,7 +426,7 @@ public void test018() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=12287
  */
-public void test019() {
+public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -453,7 +453,7 @@ public void test019() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=38895
  */
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -489,19 +489,19 @@ public void test020() {
 		"----------\n"
 	);
 }
-public void test021() {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append("public class X {\n");
-	for (int i = 0; i < 1000; i++) {
-		buffer.append("\tint field_" + i + " = 0; \n");
+public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	for (int i = 0; i < 1000; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append("\tint field_" + i + " = 0; \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	for (int i = 0; i < 1000; i++) {
+	for (int i = 0; i < 1000; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (i == 0)
-			buffer.append("\tvoid method_" + i + "() { /* default */ } \n");
+			buffer.append("\tvoid method_" + i + "() { /* default */ } \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		else
-			buffer.append("\tvoid method_" + i + "() { method_" + (i - 1) + "() \n");
+			buffer.append("\tvoid method_" + i + "() { method_" + (i - 1) + "() \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	buffer.append("}\n");
+	buffer.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	Hashtable options = new Hashtable();
 	options.put(CompilerOptions.OPTION_MaxProblemPerUnit, "10");
@@ -569,7 +569,7 @@ public void test021() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=156119
  */
-public void test022() {
+public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportEmptyStatement, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -592,7 +592,7 @@ public void test022() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=156119
  */
-public void test023() {
+public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportEmptyStatement, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -615,7 +615,7 @@ public void test023() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=156119
  */
-public void test024() {
+public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportEmptyStatement, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -638,7 +638,7 @@ public void test024() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=160337
  */
-public void test025() {
+public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUndocumentedEmptyBlock, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -671,7 +671,7 @@ public void test025() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=160337
  */
-public void test026() {
+public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUndocumentedEmptyBlock, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -711,7 +711,7 @@ public void test026() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=173992
  */
-public void test027() {
+public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -752,7 +752,7 @@ public void test027() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=239198
  */
-public void _test028() {
+public void _test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String error = (this.complianceLevel == ClassFileConstants.JDK14) ?
 			"----------\n" +
 			"1. ERROR in X.java (at line 4)\n" +
@@ -789,7 +789,7 @@ public void _test028() {
 		true,
 		options);
 }
-public void testBug485477() {
+public void testBug485477() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"T.java",
@@ -825,7 +825,7 @@ public void testBug485477() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5217
 // OPTION_GenerateClassFiles silently ignores GENERATE/DO_NOT_GENERATE — accepts only enabled/disabled
-public void testIssue5217() {
+public void testIssue5217() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompilerOptions options = new CompilerOptions(Map.of(
 	        CompilerOptions.OPTION_GenerateClassFiles, CompilerOptions.DO_NOT_GENERATE));
 	if (options.generateClassFiles)

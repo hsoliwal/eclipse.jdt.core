@@ -80,13 +80,13 @@ public final class TagElement extends AbstractTagElement {
 	private static final List PROPERTY_DESCRIPTORS_18;
 
 	static {
-		List propertyList = new ArrayList(3);
+		List propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TagElement.class, propertyList);
 		addProperty(TAG_NAME_PROPERTY, propertyList);
 		addProperty(FRAGMENTS_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(4);
+		propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TagElement.class, propertyList);
 		addProperty(TAG_NAME_PROPERTY, propertyList);
 		addProperty(FRAGMENTS_PROPERTY, propertyList);
@@ -400,10 +400,10 @@ public final class TagElement extends AbstractTagElement {
 	 */
 	public List tagRegions() {
 		unsupportedBelow18();
-		List<JavaDocRegion> regions = new ArrayList<>();
+		List<JavaDocRegion> regions = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		List<Object> frags = this.fragments();
 		if ( frags != null) {
-			for (Object fragment : frags) {
+			for (Object fragment : frags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (fragment instanceof JavaDocRegion
 						&& !((JavaDocRegion)fragment).isDummyRegion()) {
 					regions.add((JavaDocRegion)fragment);
@@ -421,16 +421,16 @@ public final class TagElement extends AbstractTagElement {
 	 * @exception UnsupportedOperationException if this operation is used less than JLS18
 	 * @since 3.30
 	 */
-	public List tagRegionsContainingTextElement(ASTNode docElem) {
+	public List tagRegionsContainingTextElement(ASTNode docElem) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		unsupportedBelow18();
-		List<JavaDocRegion> regions = new ArrayList<>();
+		List<JavaDocRegion> regions = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (docElem == null || !(docElem instanceof IDocElement)) {
 			return regions;
 		} else {
 			int textElemStart = docElem.getStartPosition();
 			int textElemEnd = textElemStart + docElem.getLength();
 			List<JavaDocRegion> javaDocRegions = this.tagRegions();
-			for (JavaDocRegion region : javaDocRegions) {
+			for (JavaDocRegion region : javaDocRegions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int regionStart = region.getStartPosition();
 				int regionEnd = regionStart + region.getLength();
 				if (regionStart <= textElemStart && regionEnd >= textElemEnd) {
@@ -449,15 +449,15 @@ public final class TagElement extends AbstractTagElement {
 	 * @exception UnsupportedOperationException if this operation is used less than JLS18
 	 * @since 3.30
 	 */
-	public List tagRegionsStartingAtTextElement(ASTNode docElem) {
+	public List tagRegionsStartingAtTextElement(ASTNode docElem) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		unsupportedBelow18();
-		List<JavaDocRegion> regions = new ArrayList<>();
+		List<JavaDocRegion> regions = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (docElem == null || !(docElem instanceof AbstractTextElement)) {
 			return regions;
 		} else {
 			AbstractTextElement textElem= (AbstractTextElement) docElem;
 			List<JavaDocRegion> javaDocRegions = this.tagRegions();
-			for (JavaDocRegion region : javaDocRegions) {
+			for (JavaDocRegion region : javaDocRegions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!region.isDummyRegion()) {
 					Object textObj= region.getProperty(TagProperty.TAG_PROPERTY_SNIPPET_REGION_TEXT);
 					if (textElem.equals(textObj)) {

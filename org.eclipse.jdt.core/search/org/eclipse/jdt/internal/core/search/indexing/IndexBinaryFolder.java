@@ -45,7 +45,7 @@ public class IndexBinaryFolder extends IndexRequest {
 	 * and discover resources which have either been changed, added or deleted
 	 * since the index was produced.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean execute(IProgressMonitor progressMonitor) {
 
 		if (this.isCancelled || progressMonitor != null && progressMonitor.isCanceled()) return true;
@@ -65,7 +65,7 @@ public class IndexBinaryFolder extends IndexRequest {
 			final String OK = "OK"; //$NON-NLS-1$
 			final String DELETED = "DELETED"; //$NON-NLS-1$
 			if (paths == null) {
-				this.folder.accept(new IResourceProxyVisitor() {
+				this.folder.accept(new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
 					@Override
 					public boolean visit(IResourceProxy proxy) {
 						if (IndexBinaryFolder.this.isCancelled) return false;
@@ -81,13 +81,13 @@ public class IndexBinaryFolder extends IndexRequest {
 					}
 				}, IResource.NONE);
 			} else {
-				for (int i = 0; i < max; i++) {
+				for (int i = 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					indexedFileNames.put(paths[i], DELETED);
 				}
 				final long indexLastModified = index.getIndexLastModified();
 				this.folder.accept(
-					new IResourceProxyVisitor() {
-						@Override
+					new IResourceProxyVisitor() { //FLLDCIM: MARK — T07  ANONYMOUS
+						@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 						public boolean visit(IResourceProxy proxy) throws CoreException {
 							if (IndexBinaryFolder.this.isCancelled) return false;
 							if (proxy.getType() == IResource.FILE) {
@@ -115,7 +115,7 @@ public class IndexBinaryFolder extends IndexRequest {
 
 			Object[] names = indexedFileNames.keyTable;
 			Object[] values = indexedFileNames.valueTable;
-			for (int i = 0, length = names.length; i < length; i++) {
+			for (int i = 0, length = names.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String name = (String) names[i];
 				if (name != null) {
 					if (this.isCancelled) return false;
@@ -134,7 +134,7 @@ public class IndexBinaryFolder extends IndexRequest {
 			// request to save index when all class files have been indexed... also sets state to SAVED_STATE
 			this.manager.request(new SaveIndex(this.containerPath, this.manager));
 		} catch (CoreException | IOException e) {
-			Util.log(e, "Failed to index " + this.folder + ": " + e.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+			Util.log(e, "Failed to index " + this.folder + ": " + e.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.manager.removeIndex(this.containerPath);
 			return false;
 		} finally {
@@ -152,6 +152,6 @@ public class IndexBinaryFolder extends IndexRequest {
 	}
 	@Override
 	public String toString() {
-		return "indexing binary folder " + this.folder.getFullPath(); //$NON-NLS-1$
+		return "indexing binary folder " + this.folder.getFullPath(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

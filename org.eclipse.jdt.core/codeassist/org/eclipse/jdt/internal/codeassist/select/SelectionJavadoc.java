@@ -43,7 +43,7 @@ public class SelectionJavadoc extends Javadoc {
 		this.inheritDocSelected = false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public StringBuilder print(int indent, StringBuilder output) {
 		super.print(indent, output);
 		if (this.selectedNode != null) {
@@ -75,7 +75,7 @@ public class SelectionJavadoc extends Javadoc {
 				selectedString = "<SelectOnType:"; //$NON-NLS-1$
 			}
 			int pos = output.length()-3;
-			output.replace(pos-2,pos, selectedString+this.selectedNode+'>');
+			output.replace(pos-2,pos, selectedString+this.selectedNode+'>'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return output;
 	}
@@ -84,7 +84,7 @@ public class SelectionJavadoc extends Javadoc {
 	 * Resolve selected node if not null and throw exception to let clients know
 	 * that it has been found.
 	 */
-	private void internalResolve(Scope scope) {
+	private void internalResolve(Scope scope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.selectedNode != null) {
 			switch (scope.kind) {
 				case Scope.CLASS_SCOPE:

@@ -60,13 +60,13 @@ public static Test suite() {
 /* (non-Javadoc)
  * @see org.eclipse.jdt.core.tests.model.AbstractJavaModelTests#setUp()
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void setUp() throws Exception {
 	super.setUp();
 	if (TEST_PROJECT == null) {
 		String[] sourceFolders = new String[SF_LENGTH];
-		for (int i=0; i<SF_LENGTH; i++) {
-			sourceFolders[i] = "src" + i;
+		for (int i=0; i<SF_LENGTH; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			sourceFolders[i] = "src" + i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		TEST_PROJECT = createJavaProject("TestProject", sourceFolders, new String[] {"JCL18_LIB"}, "bin");
 		createFolder("/TestProject/src0/org/eclipse/jdt/core/test0");
@@ -90,18 +90,18 @@ protected void setUp() throws Exception {
 			"}\n"
 		);
 		int length = SF_LENGTH - 1;
-		createFolder("/TestProject/src"+length+"/org/eclipse/jdt/core/test"+length);
+		createFolder("/TestProject/src"+length+"/org/eclipse/jdt/core/test"+length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFile(
-			"/TestProject/src"+length+"/org/eclipse/jdt/core/test"+length+"/Foo.java",
-			"package org.eclipse.jdt.core.test"+length+";\n" +
+			"/TestProject/src"+length+"/org/eclipse/jdt/core/test"+length+"/Foo.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			"package org.eclipse.jdt.core.test"+length+";\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class Foo {\n" +
 			"}\n" +
 			"class Secondary {\n" +
 			"}\n"
 		);
 		createFile(
-			"/TestProject/src"+length+"/org/eclipse/jdt/core/test"+length+"/Test.java",
-			"package org.eclipse.jdt.core.test"+length+";\n" +
+			"/TestProject/src"+length+"/org/eclipse/jdt/core/test"+length+"/Test.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			"package org.eclipse.jdt.core.test"+length+";\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class Test {\n" +
 			"	public static void main(String[] args) {\n" +
 			"		Secondary s = new Secondary();\n" +
@@ -126,8 +126,8 @@ protected void tearDown() throws Exception {
 protected void assertTypeFound(String typeName, String expectedResult) throws JavaModelException {
 	assertNotNull("TEST_PROJECT should not be null!!!", TEST_PROJECT);
 	IType type = TEST_PROJECT.findType(typeName, new NullProgressMonitor());
-	assertTrue("type "+typeName+" should exist!", type != null && type.exists());
-	assertEquals("Expected type "+typeName+" NOT found!",
+	assertTrue("type "+typeName+" should exist!", type != null && type.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertEquals("Expected type "+typeName+" NOT found!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		expectedResult,
 		((SourceType)type).toStringWithAncestors()
 	);
@@ -135,8 +135,8 @@ protected void assertTypeFound(String typeName, String expectedResult) throws Ja
 protected void assertTypeFound(String packageName, String typeName, String expectedResult) throws JavaModelException {
 	assertNotNull("TEST_PROJECT should not be null!!!", TEST_PROJECT);
 	IType type = TEST_PROJECT.findType(packageName, typeName, new NullProgressMonitor());
-	assertTrue("type "+typeName+" should exist!", type != null && type.exists());
-	assertEquals("Expected type "+typeName+" NOT found!",
+	assertTrue("type "+typeName+" should exist!", type != null && type.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertEquals("Expected type "+typeName+" NOT found!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		expectedResult,
 		((SourceType)type).toStringWithAncestors()
 	);
@@ -145,31 +145,31 @@ protected void assertTypeFound(String packageName, String typeName, String expec
 protected void assertTypeNotFound(String typeName) throws JavaModelException {
 	assertNotNull("TEST_PROJECT should not be null!!!", TEST_PROJECT);
 	IType type = TEST_PROJECT.findType(typeName, new NullProgressMonitor());
-	assertNotNull("type "+typeName+" should NOT be null!", type);
-	assertFalse("type "+typeName+" should NOT exist!", type.exists());
+	assertNotNull("type "+typeName+" should NOT be null!", type); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("type "+typeName+" should NOT exist!", type.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 protected void assertTypeNotFound(String packageName, String typeName) throws JavaModelException {
 	assertNotNull("TEST_PROJECT should not be null!!!", TEST_PROJECT);
 	IType type = TEST_PROJECT.findType(packageName, typeName, new NullProgressMonitor());
-	assertNotNull("type "+typeName+" should NOT be null!", type);
-	assertFalse("type "+typeName+" should NOT exist!", type.exists());
+	assertNotNull("type "+typeName+" should NOT be null!", type); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertFalse("type "+typeName+" should NOT exist!", type.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 protected void assertTypeUnknown(String typeName) throws JavaModelException {
 	assertNotNull("TEST_PROJECT should not be null!!!", TEST_PROJECT);
 	IType type = TEST_PROJECT.findType(typeName, new NullProgressMonitor());
-	assertNull("type "+typeName+" should NOT be found!", type);
+	assertNull("type "+typeName+" should NOT be found!", type); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 protected void assertTypeUnknown(String packageName, String typeName) throws JavaModelException {
 	assertNotNull("TEST_PROJECT should not be null!!!", TEST_PROJECT);
 	IType type = TEST_PROJECT.findType(packageName, typeName, new NullProgressMonitor());
-	assertNull("type "+typeName+" should NOT be found!", type);
+	assertNull("type "+typeName+" should NOT be found!", type); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 /**
  * Tests that a type in a jar with a name ending with $ can be retrieved.
  */
-public void testClassNameWithDollar() throws JavaModelException, CoreException {
+public void testClassNameWithDollar() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		byte[] tab = new byte[372];
 		tab[0]=80;
@@ -558,7 +558,7 @@ public void testClassNameWithDollar() throws JavaModelException, CoreException {
 /**
  * Tests that a member type can be retrived using a dot qualified name.
  */
-public void testFindTypeWithDot() throws JavaModelException, CoreException {
+public void testFindTypeWithDot() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject javaProject = createJavaProject("P", new String[] {""}, "");
 		this.createFolder("/P/p");
@@ -584,7 +584,7 @@ public void testFindTypeWithDot() throws JavaModelException, CoreException {
 /**
  * Tests that a type in a jar with a name ending with $ can be retrieved.
  */
-public void testSearchTypeNameInJars() throws JavaModelException, CoreException {
+public void testSearchTypeNameInJars() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		byte[] tab = new byte[478];
 		tab[0]=80;
@@ -1087,15 +1087,15 @@ public void testSearchTypeNameInJars() throws JavaModelException, CoreException 
 public void testFindSecondaryType_Exist01() throws JavaModelException, CoreException {
 	int length = SF_LENGTH - 1;
 	assertTypeFound(
-		"org.eclipse.jdt.core.test"+length+".Foo",
-		"Foo [in Foo.java [in org.eclipse.jdt.core.test"+length+" [in src"+length+" [in TestProject]]]]"
+		"org.eclipse.jdt.core.test"+length+".Foo", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		"Foo [in Foo.java [in org.eclipse.jdt.core.test"+length+" [in src"+length+" [in TestProject]]]]" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 public void testFindSecondaryType_Exist02() throws JavaModelException, CoreException {
 	int length = SF_LENGTH - 1;
 	assertTypeFound(
-		"org.eclipse.jdt.core.test"+length+".Secondary",
-		"Secondary [in Foo.java [in org.eclipse.jdt.core.test"+length+" [in src"+length+" [in TestProject]]]]"
+		"org.eclipse.jdt.core.test"+length+".Secondary", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		"Secondary [in Foo.java [in org.eclipse.jdt.core.test"+length+" [in src"+length+" [in TestProject]]]]" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	);
 }
 public void testFindSecondaryType_Exist03() throws JavaModelException, CoreException {
@@ -1123,7 +1123,7 @@ public void testFindSecondaryType_Exist06() throws JavaModelException, CoreExcep
 	);
 }
 // duplicate bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=72179
-public void testFindSecondaryType_Bug72179() throws JavaModelException, CoreException {
+public void testFindSecondaryType_Bug72179() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject javaProject = createJavaProject("P", new String[] {""}, "");
 		createFolder("/P/p1");
@@ -1189,7 +1189,7 @@ public void testFindSecondaryType_Unknown03() throws JavaModelException, CoreExc
  * test Ensure that secondary type is found just after having created the compilation unit
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=152841"
  */
-public void testBug152841() throws Exception{
+public void testBug152841() throws Exception{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project= createJavaProject("P", new String[] { "src" }, new String[] { "JCL18_LIB" }, "bin");
 		IPackageFragmentRoot root = (IPackageFragmentRoot) project.getChildren()[0];
@@ -1262,7 +1262,7 @@ public void testBug152841() throws Exception{
  * 		cache at the end of the test...
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=302455"
  */
-public void testBug302455() throws CoreException, InterruptedException {
+public void testBug302455() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IContentType javaContentType = Platform.getContentTypeManager().getContentType(JavaCore.JAVA_SOURCE_CONTENT_TYPE);
 	try {
 		// Create project and file
@@ -1300,7 +1300,7 @@ public void testBug302455() throws CoreException, InterruptedException {
  * test Ensure that enum secondary type are well indexed
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=306477"
  */
-public void testBug306477() throws Exception {
+public void testBug306477() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create test case
 		IJavaProject project = createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
@@ -1331,7 +1331,7 @@ public void testBug306477() throws Exception {
 	}
 }
 
-public void testBug351498() throws CoreException, InterruptedException {
+public void testBug351498() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IContentType javaContentType = Platform.getContentTypeManager().getContentType(JavaCore.JAVA_SOURCE_CONTENT_TYPE);
 	try {
 		// Create project and file

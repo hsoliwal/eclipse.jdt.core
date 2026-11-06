@@ -32,7 +32,7 @@ class RemoveFolderFromIndex extends IndexRequest {
 		this.inclusionPatterns = inclusionPatterns;
 		this.exclusionPatterns = exclusionPatterns;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean execute(IProgressMonitor progressMonitor) {
 
 		if (this.isCancelled || progressMonitor != null && progressMonitor.isCanceled()) return true;
@@ -50,19 +50,19 @@ class RemoveFolderFromIndex extends IndexRequest {
 			// all file names belonging to the folder or its subfolders and that are not excluded (see http://bugs.eclipse.org/bugs/show_bug.cgi?id=32607)
 			if (paths != null) {
 				if (this.exclusionPatterns == null && this.inclusionPatterns == null) {
-					for (String path : paths) {
+					for (String path : paths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						this.manager.remove(path, this.containerPath); // write lock will be acquired by the remove operation
 					}
 				} else {
-					for (String path : paths) {
-						String documentPath =  this.containerPath.toString() + '/' + path;
+					for (String path : paths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						String documentPath =  this.containerPath.toString() + '/' + path; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						if (!Util.isExcluded(new Path(documentPath), this.inclusionPatterns, this.exclusionPatterns, false))
 							this.manager.remove(path, this.containerPath); // write lock will be acquired by the remove operation
 					}
 				}
 			}
 		} catch (IOException e) {
-			Util.log(e, "Failed to remove " + this.folderPath + " from index: " + e.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+			Util.log(e, "Failed to remove " + this.folderPath + " from index: " + e.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return false;
 		} finally {
 			monitor.exitRead(); // free read lock
@@ -71,6 +71,6 @@ class RemoveFolderFromIndex extends IndexRequest {
 	}
 	@Override
 	public String toString() {
-		return "removing " + this.folderPath + " from index " + this.containerPath; //$NON-NLS-1$ //$NON-NLS-2$
+		return "removing " + this.folderPath + " from index " + this.containerPath; //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

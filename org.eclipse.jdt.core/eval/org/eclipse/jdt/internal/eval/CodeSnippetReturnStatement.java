@@ -60,7 +60,7 @@ public void generateReturnBytecode(CodeStream codeStream) {
 	// output the return bytecode
 	codeStream.return_();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generateStoreSaveValueIfNecessary(Scope scope, CodeStream codeStream){
 
 	// push receiver
@@ -123,7 +123,7 @@ public void prepareSaveValueLocation(TryStatement targetTryStatement){
 
 	// do nothing: no storage is necessary for snippets
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void resolve(BlockScope scope) {
 	if (this.expression != null) {
 		if (this.expression.resolveType(scope) != null) {

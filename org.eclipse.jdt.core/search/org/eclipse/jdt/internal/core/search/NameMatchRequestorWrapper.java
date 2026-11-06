@@ -58,7 +58,7 @@ public NameMatchRequestorWrapper(IJavaSearchScope scope) {
 /* (non-Javadoc)
  * @see org.eclipse.jdt.internal.core.search.IRestrictedAccessTypeRequestor#acceptType(int, char[], char[], char[][], java.lang.String, org.eclipse.jdt.internal.compiler.env.AccessRestriction)
  */
-public IType getType(int modifiers, char[] packageName, char[] simpleTypeName, char[][] enclosingTypeNames, String path, AccessRestriction access) {
+public IType getType(int modifiers, char[] packageName, char[] simpleTypeName, char[][] enclosingTypeNames, String path, AccessRestriction access) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = null;
 	try {
 		if (this.handleFactory != null) {
@@ -68,7 +68,7 @@ public IType getType(int modifiers, char[] packageName, char[] simpleTypeName, c
 				ICompilationUnit cu = (ICompilationUnit) openable;
 				if (enclosingTypeNames != null && enclosingTypeNames.length > 0) {
 					type = cu.getType(new String(enclosingTypeNames[0]));
-					for (int j=1, l=enclosingTypeNames.length; j<l; j++) {
+					for (int j=1, l=enclosingTypeNames.length; j<l; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						type = type.getType(new String(enclosingTypeNames[j]));
 					}
 					type = type.getType(new String(simpleTypeName));
@@ -90,7 +90,7 @@ public IType getType(int modifiers, char[] packageName, char[] simpleTypeName, c
 	return type;
 }
 
-private IType createTypeFromJar(String resourcePath, int separatorIndex) throws JavaModelException {
+private IType createTypeFromJar(String resourcePath, int separatorIndex) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// path to a class file inside a jar
 	// Optimization: cache package fragment root handle and package handles
 	if (this.lastPkgFragmentRootPath == null
@@ -129,7 +129,7 @@ private IType createTypeFromJar(String resourcePath, int separatorIndex) throws 
 	}
 	return pkgFragment.getOrdinaryClassFile(simpleNames[length]).getType();
 }
-private IType createTypeFromPath(String resourcePath, String simpleTypeName, char[][] enclosingTypeNames) throws JavaModelException {
+private IType createTypeFromPath(String resourcePath, String simpleTypeName, char[][] enclosingTypeNames) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// path to a file in a directory
 	// Optimization: cache package fragment root handle and package handles
 	int rootPathLength = -1;
@@ -165,7 +165,7 @@ private IType createTypeFromPath(String resourcePath, String simpleTypeName, cha
 		int etnLength = enclosingTypeNames == null ? 0 : enclosingTypeNames.length;
 		IType type = (etnLength == 0) ? unit.getType(simpleTypeName) : unit.getType(new String(enclosingTypeNames[0]));
 		if (etnLength > 0) {
-			for (int i=1; i<etnLength; i++) {
+			for (int i=1; i<etnLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				type = type.getType(new String(enclosingTypeNames[i]));
 			}
 			type = type.getType(simpleTypeName);

@@ -43,9 +43,9 @@ public class AptReconcileTests extends ModifyingResourceTests
 		return new TestSuite(AptReconcileTests.class);
 	}
 
-	public void testGeneratedFile() throws Throwable
+	public void testGeneratedFile() throws Throwable //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
-		String fname = _testFolder + "/A.java";
+		String fname = _testFolder + "/A.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try
 		{
 
@@ -71,7 +71,7 @@ public class AptReconcileTests extends ModifyingResourceTests
 			this._workingCopy.reconcile( ICompilationUnit.NO_AST, true, null,
 				null );
 
-			String expectedProblems = "----------\n" +
+			String expectedProblems = "----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in /" + _testProject + "/src/test/A.java (at line 8)\n" +
 				"	generatedfilepackage.GeneratedFileTest.helloWorld();\n" +
 				"	^^^^^^^^^^^^^^^^^^^^\n" +
@@ -125,9 +125,9 @@ public class AptReconcileTests extends ModifyingResourceTests
 	 *   generates a file that should fix an error in the parent file.
 	 *   TODO: re-enable this test - it seems sporadically flaky, need to find out why.
 	 */
-	public void testNestedGeneratedFile() throws Throwable
+	public void testNestedGeneratedFile() throws Throwable //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
-		String fname = _testFolder + "/A.java";
+		String fname = _testFolder + "/A.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try
 		{
 
@@ -153,7 +153,7 @@ public class AptReconcileTests extends ModifyingResourceTests
 			this._workingCopy.reconcile( ICompilationUnit.NO_AST, true, null,
 				null );
 
-			String expectedProblems = "----------\n" +
+			String expectedProblems = "----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in /" + _testProject + "/src/test/A.java (at line 8)\n" +
 				"	generatedfilepackage.GeneratedFileTest.helloWorld();\n" +
 				"	^^^^^^^^^^^^^^^^^^^^\n" +
@@ -202,9 +202,9 @@ public class AptReconcileTests extends ModifyingResourceTests
 	}
 
 
-	public void testStopGeneratingFileInReconciler() throws Exception
+	public void testStopGeneratingFileInReconciler() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
-		String fname = _testFolder + "/A.java";
+		String fname = _testFolder + "/A.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try
 		{
 
@@ -230,7 +230,7 @@ public class AptReconcileTests extends ModifyingResourceTests
 			this._workingCopy.reconcile( ICompilationUnit.NO_AST, true, null,
 				null );
 
-			String expectedProblems = "----------\n" +
+			String expectedProblems = "----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in /" + _testProject + "/src/test/A.java (at line 8)\n" +
 				"	generatedfilepackage.GeneratedFileTest.helloWorld();\n" +
 				"	^^^^^^^^^^^^^^^^^^^^\n" +
@@ -272,7 +272,7 @@ public class AptReconcileTests extends ModifyingResourceTests
 			this._workingCopy.reconcile( ICompilationUnit.NO_AST, true, null,
 					null );
 
-			String expectedProblems2 = 	"----------\n" +
+			String expectedProblems2 = 	"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in /" + _testProject + "/src/test/A.java (at line 8)\n" +
 				"	generatedfilepackage.GeneratedFileTest.helloWorld();\n" +
 				"	^^^^^^^^^^^^^^^^^^^^\n" +
@@ -291,10 +291,10 @@ public class AptReconcileTests extends ModifyingResourceTests
 	 * Tests that when a working copy is discarded, we clean up any cached data in the
 	 * GeneratedFileManager.
 	 */
-	public void testDiscardParentWorkingCopy()
+	public void testDiscardParentWorkingCopy() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 	throws Throwable
 	{
-		String fname = _testFolder + "/A.java";
+		String fname = _testFolder + "/A.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try
 		{
 			String codeWithOutErrors = "package test;" + "\n" +
@@ -336,8 +336,8 @@ public class AptReconcileTests extends ModifyingResourceTests
 		}
 	}
 
-	public void testBasicReconcile() throws Exception {
-		String fname = _testFolder + "/X.java";
+	public void testBasicReconcile() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String fname = _testFolder + "/X.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try
 		{
 
@@ -367,10 +367,10 @@ public class AptReconcileTests extends ModifyingResourceTests
 
 	}
 
-	public void testNoReconcile() throws Throwable {
+	public void testNoReconcile() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Start by disabling reconcile-time processing
 		AptConfig.setProcessDuringReconcile(_jproject, false);
-		String fname = _testFolder + "/A.java";
+		String fname = _testFolder + "/A.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try
 		{
 
@@ -396,7 +396,7 @@ public class AptReconcileTests extends ModifyingResourceTests
 			this._workingCopy.reconcile( ICompilationUnit.NO_AST, true, null,
 				null );
 
-			String expectedProblems = "----------\n" +
+			String expectedProblems = "----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in /" + _testProject + "/src/test/A.java (at line 8)\n" +
 				"	generatedfilepackage.GeneratedFileTest.helloWorld();\n" +
 				"	^^^^^^^^^^^^^^^^^^^^\n" +
@@ -430,7 +430,7 @@ public class AptReconcileTests extends ModifyingResourceTests
 			this._workingCopy.reconcile( ICompilationUnit.NO_AST, true, null,
 					null );
 
-			String expectedProblems2 = "----------\n" +
+			String expectedProblems2 = "----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in /" + _testProject + "/src/test/A.java (at line 8)\n" +
 			"	generatedfilepackage.GeneratedFileTest.helloWorld();\n" +
 			"	^^^^^^^^^^^^^^^^^^^^\n" +
@@ -472,14 +472,14 @@ public class AptReconcileTests extends ModifyingResourceTests
 		}
 	}
 
-	public void setUp() throws Exception
+	public void setUp() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		// This increments the project name for each test, which helps get past
 		// sporadic threading problems.  It has not been necessary lately - WHarley 12/06
 		//++_testProjectNum;
-		_testProject = TEST_PROJECT + _testProjectNum;
-		_testFolder = "/" + _testProject + "/src/test";
-		AptPlugin.trace("Setting up " + _testProject );
+		_testProject = TEST_PROJECT + _testProjectNum; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		_testFolder = "/" + _testProject + "/src/test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		AptPlugin.trace("Setting up " + _testProject ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		super.setUp();
 		// disable auto-build.  We don't want build-time type-generation interfering with
@@ -502,7 +502,7 @@ public class AptReconcileTests extends ModifyingResourceTests
 	public void tearDown() throws Exception
 	{
 		_jproject = null;
-		AptPlugin.trace("Tearing down " + _testProject );
+		AptPlugin.trace("Tearing down " + _testProject ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		deleteProject( _testProject );
 		super.tearDown();
@@ -551,7 +551,7 @@ public class AptReconcileTests extends ModifyingResourceTests
 
 	private static int _testProjectNum = 0;
 
-	private static final String	TEST_PROJECT	= AptReconcileTests.class.getName() + "Project"; //$NON-NLS-1$
+	private static final String	TEST_PROJECT	= AptReconcileTests.class.getName() + "Project"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 
 }

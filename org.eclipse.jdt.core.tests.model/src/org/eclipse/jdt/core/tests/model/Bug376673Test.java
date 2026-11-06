@@ -40,7 +40,7 @@ public class Bug376673Test extends ModifyingResourceTests {
      * We want to know whether we can compile with when using a class from a jar as created in
      * {@link org.eclipse.jdt.core.tests.model.JavaSearchBugsTests2#testBug376673e()}.
 	 */
-	public void testBug376673() throws Exception {
+	public void testBug376673() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			if ("macosx".equals(System.getProperty("osgi.os"))) {
 				return;
@@ -65,9 +65,9 @@ public class Bug376673Test extends ModifyingResourceTests {
 			waitForAutoBuild();
 			waitUntilIndexesReady();
 			IMarker[] markers = p.getProject().findMarkers(null, true, IResource.DEPTH_INFINITE);
-			List<String> errors = new ArrayList<>();
-			StringBuilder markersToString = new StringBuilder();
-			for (IMarker marker : markers) {
+			List<String> errors = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			StringBuilder markersToString = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (IMarker marker : markers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 				Integer severity = (Integer) marker.getAttribute(IMarker.SEVERITY);
 				String message = (String) marker.getAttribute(IMarker.MESSAGE);
@@ -75,16 +75,16 @@ public class Bug376673Test extends ModifyingResourceTests {
 					errors.add(message);
 				}
 
-				markersToString.append("Marker with severity: ");
-				markersToString.append(severity);
-				markersToString.append(", and message: ");
-				markersToString.append(message);
-				markersToString.append(", at location: ");
-				markersToString.append(marker.getAttribute(IMarker.LOCATION));
-				markersToString.append(", at line: ");
-				markersToString.append(marker.getAttribute(IMarker.LINE_NUMBER));
+				markersToString.append("Marker with severity: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				markersToString.append(severity); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				markersToString.append(", and message: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				markersToString.append(message); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				markersToString.append(", at location: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				markersToString.append(marker.getAttribute(IMarker.LOCATION)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				markersToString.append(", at line: "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				markersToString.append(marker.getAttribute(IMarker.LINE_NUMBER)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			assertEquals("expected no markers on test project, all markers are:" + System.lineSeparator() + markersToString,
+			assertEquals("expected no markers on test project, all markers are:" + System.lineSeparator() + markersToString, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					Collections.emptyList(), errors);
 		} finally {
 			deleteProject("P");

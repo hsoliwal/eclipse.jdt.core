@@ -46,9 +46,9 @@ public FormatterBugsTests(String name) {
 /* (non-Javadoc)
  * @see org.eclipse.jdt.core.tests.formatter.FormatterRegressionTests#setUp()
  */
-private void setUpBracesPreferences(String braces) {
+private void setUpBracesPreferences(String braces) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (braces != null) {
-	 	assertTrue("Invalid value for braces preferences: "+braces,
+	 	assertTrue("Invalid value for braces preferences: "+braces, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			braces.equals(DefaultCodeFormatterConstants.END_OF_LINE) ||
 	 		braces.equals(DefaultCodeFormatterConstants.NEXT_LINE) ||
 	 		braces.equals(DefaultCodeFormatterConstants.NEXT_LINE_ON_WRAP) ||
@@ -83,7 +83,7 @@ public void setUpSuite() throws Exception {
  * test Ensure that the formatter does not format code between specific javadoc comments
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=27079"
  */
-public void testBug027079a() throws JavaModelException {
+public void testBug027079a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class X01 {\n" +
 		"\n" +
@@ -111,7 +111,7 @@ public void testBug027079a() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079a1() throws JavaModelException {
+public void testBug027079a1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
@@ -141,7 +141,7 @@ public void testBug027079a1() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079a2() throws JavaModelException {
+public void testBug027079a2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
@@ -171,7 +171,7 @@ public void testBug027079a2() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079a3() throws JavaModelException {
+public void testBug027079a3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
@@ -201,7 +201,7 @@ public void testBug027079a3() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079a4() throws JavaModelException {
+public void testBug027079a4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
@@ -232,7 +232,7 @@ public void testBug027079a4() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079b() throws JavaModelException {
+public void testBug027079b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
@@ -271,7 +271,7 @@ public void testBug027079b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079c() throws JavaModelException {
+public void testBug027079c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
@@ -321,7 +321,7 @@ public void testBug027079c() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079c2() throws JavaModelException {
+public void testBug027079c2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
@@ -369,7 +369,7 @@ public void testBug027079c2() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079d() throws JavaModelException {
+public void testBug027079d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
@@ -404,7 +404,7 @@ public void testBug027079d() throws JavaModelException {
 		"\n",
 		true/*repeat*/);
 }
-public void testBug027079d2() throws JavaModelException {
+public void testBug027079d2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
@@ -439,7 +439,7 @@ public void testBug027079d2() throws JavaModelException {
 		"\n",
 		true/*repeat*/);
 }
-public void testBug027079d3() throws JavaModelException {
+public void testBug027079d3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
@@ -474,7 +474,7 @@ public void testBug027079d3() throws JavaModelException {
 		"\n",
 		true/*repeat*/);
 }
-public void testBug027079d4() throws JavaModelException {
+public void testBug027079d4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
@@ -509,7 +509,7 @@ public void testBug027079d4() throws JavaModelException {
 		"\n",
 		true/*repeat*/);
 }
-public void testBug027079e() throws JavaModelException {
+public void testBug027079e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "format: off".toCharArray();
 	this.formatterPrefs.enabling_tag = "format: on".toCharArray();
@@ -539,7 +539,7 @@ public void testBug027079e() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079f() throws JavaModelException {
+public void testBug027079f() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "format: off".toCharArray();
 	this.formatterPrefs.enabling_tag = "format: on".toCharArray();
@@ -569,7 +569,7 @@ public void testBug027079f() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079f2() throws JavaModelException {
+public void testBug027079f2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "format: off".toCharArray();
 	this.formatterPrefs.enabling_tag = "format: on".toCharArray();
@@ -599,7 +599,7 @@ public void testBug027079f2() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079f3() throws JavaModelException {
+public void testBug027079f3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "    format:  	  off    ".toCharArray();
 	this.formatterPrefs.enabling_tag = "	format:	  	on	".toCharArray();
@@ -629,7 +629,7 @@ public void testBug027079f3() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug027079f4() throws JavaModelException {
+public void testBug027079f4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "    format:  	  off    ".toCharArray();
 	this.formatterPrefs.enabling_tag = "	format:	  	on	".toCharArray();
@@ -683,7 +683,7 @@ public void testBug059891_01() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_01b() throws JavaModelException {
+public void testBug059891_01b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "40");
 	this.formatterOptions.put(
@@ -704,7 +704,7 @@ public void testBug059891_01b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_02() throws JavaModelException {
+public void testBug059891_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 40;
 	String source =
 		"public class X02 {\n" +
@@ -724,7 +724,7 @@ public void testBug059891_02() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_02b() throws JavaModelException {
+public void testBug059891_02b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "40");
 	this.formatterOptions.put(
@@ -747,7 +747,7 @@ public void testBug059891_02b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_03() throws JavaModelException {
+public void testBug059891_03() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 40;
 	String source =
 		"public class X03 {\n" +
@@ -765,7 +765,7 @@ public void testBug059891_03() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_03b() throws JavaModelException {
+public void testBug059891_03b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "40");
 	this.formatterOptions.put(
@@ -788,7 +788,7 @@ public void testBug059891_03b() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146175
-public void testBug059891_146175() throws JavaModelException {
+public void testBug059891_146175() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class FormatterDemo {\n" +
@@ -839,7 +839,7 @@ public void testBug059891_146175() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=164093
-public void testBug059891_164093_01() throws JavaModelException {
+public void testBug059891_164093_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "30");
 	this.formatterOptions.put(
@@ -861,7 +861,7 @@ public void testBug059891_164093_01() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_164093_02() throws JavaModelException {
+public void testBug059891_164093_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "55");
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
@@ -887,7 +887,7 @@ public void testBug059891_164093_02() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=203588
-public void testBug059891_203588() throws JavaModelException {
+public void testBug059891_203588() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class Test {\n" +
@@ -911,7 +911,7 @@ public void testBug059891_203588() throws JavaModelException {
 	);
 }
 // wksp1
-public void testBug059891_wksp1_01() throws JavaModelException {
+public void testBug059891_wksp1_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class X01 {\n" +
@@ -929,7 +929,7 @@ public void testBug059891_wksp1_01() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_wksp1_02() throws JavaModelException {
+public void testBug059891_wksp1_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class X02 {\n" +
@@ -963,7 +963,7 @@ public void testBug059891_wksp1_02() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_wksp1_03() throws JavaModelException {
+public void testBug059891_wksp1_03() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class X03 {\n" +
@@ -982,7 +982,7 @@ public void testBug059891_wksp1_03() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_wksp1_04() throws JavaModelException {
+public void testBug059891_wksp1_04() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class X04 {\n" +
 		"	void foo() {\n" +
@@ -1002,7 +1002,7 @@ public void testBug059891_wksp1_04() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_wksp1_05() throws JavaModelException {
+public void testBug059891_wksp1_05() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class X05 {\n" +
@@ -1021,7 +1021,7 @@ public void testBug059891_wksp1_05() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_wksp1_06() throws JavaModelException {
+public void testBug059891_wksp1_06() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class X06 {\n" +
@@ -1049,7 +1049,7 @@ public void testBug059891_wksp1_06() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_wksp1_07() throws JavaModelException {
+public void testBug059891_wksp1_07() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class X07 {\n" +
@@ -1071,7 +1071,7 @@ public void testBug059891_wksp1_07() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_wksp1_08() throws JavaModelException {
+public void testBug059891_wksp1_08() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class X08 {\n" +
@@ -1097,7 +1097,7 @@ public void testBug059891_wksp1_08() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_wksp1_09() throws JavaModelException {
+public void testBug059891_wksp1_09() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class X09 {\n" +
@@ -1119,7 +1119,7 @@ public void testBug059891_wksp1_09() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_wksp1_10() throws JavaModelException {
+public void testBug059891_wksp1_10() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class X10 {\n" +
@@ -1161,7 +1161,7 @@ public void testBug059891_wksp1_11() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug059891_wksp1_12() throws JavaModelException {
+public void testBug059891_wksp1_12() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class X12 {\n" +
@@ -1189,7 +1189,7 @@ public void testBug059891_wksp1_12() throws JavaModelException {
  * test Ensure that the formatter keep line breaks wrapping set by users in the code
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=198074"
  */
-public void testBug198074() throws JavaModelException {
+public void testBug198074() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -1211,7 +1211,7 @@ public void testBug198074() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug198074b() throws JavaModelException {
+public void testBug198074b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
 	String source =
@@ -1235,7 +1235,7 @@ public void testBug198074b() throws JavaModelException {
 	);
 }
 // another test case put in bug's comment 1
-public void testBug198074_c1() throws JavaModelException {
+public void testBug198074_c1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -1264,7 +1264,7 @@ public void testBug198074_c1() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug198074_c1b() throws JavaModelException {
+public void testBug198074_c1b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
 	String source =
@@ -1295,7 +1295,7 @@ public void testBug198074_c1b() throws JavaModelException {
 	);
 }
 // another test case put in bug's comment 3
-public void testBug198074_c3() throws JavaModelException {
+public void testBug198074_c3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -1324,7 +1324,7 @@ public void testBug198074_c3() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug198074_c3b() throws JavaModelException {
+public void testBug198074_c3b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
 	String source =
@@ -1354,7 +1354,7 @@ public void testBug198074_c3b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug198074_comments() throws JavaModelException {
+public void testBug198074_comments() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_lines_in_comments = false;
 	String source =
 		"public class Test {\n" +
@@ -1376,7 +1376,7 @@ public void testBug198074_comments() throws JavaModelException {
 }
 // duplicate bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=201022
 // see also bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=287462
-public void testBug198074_dup201022() throws JavaModelException {
+public void testBug198074_dup201022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -1402,7 +1402,7 @@ public void testBug198074_dup201022() throws JavaModelException {
 	);
 }
 // duplicate bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=213700
-public void testBug198074_dup213700() throws JavaModelException {
+public void testBug198074_dup213700() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -1478,7 +1478,7 @@ public void testBug199265c1() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug199265c2() throws JavaModelException {
+public void testBug199265c2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setFormatLineCommentOnFirstColumn();
 	this.formatterPrefs.comment_format_header = true;
 	String source =
@@ -1506,7 +1506,7 @@ public void testBug199265c3() throws JavaModelException {
 		"}\n";
 	formatSource(source);
 }
-public void testBug199265d1() throws JavaModelException {
+public void testBug199265d1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"import java.util.Set; // trailing comment\n" +
 		"// line comment\n" +
@@ -1538,7 +1538,7 @@ public void testBug199265d2() throws JavaModelException {
 		"}\n";
 	formatSource(source);
 }
-public void testBug199265d3() throws JavaModelException {
+public void testBug199265d3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"import java.util.Set; // trailing comment\n" +
 		"	// line comment\n" +
@@ -1573,7 +1573,7 @@ public void testBug199265_wksp1a() throws JavaModelException {
 		"}\n";
 	formatSource(source);
 }
-public void testBug199265_wksp1b() throws JavaModelException {
+public void testBug199265_wksp1b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp1;\n" +
 		"\n" +
@@ -1608,7 +1608,7 @@ public void testBug199265_wksp2a() throws JavaModelException {
 		"}\n";
 	formatSource(source);
 }
-public void testBug199265_wksp3a() throws JavaModelException {
+public void testBug199265_wksp3a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp3;\n" +
 		"\n" +
@@ -1636,7 +1636,7 @@ public void testBug199265_wksp3a() throws JavaModelException {
  * bug 208541: [formatter] Formatter does not format whole region/selection
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=208541"
  */
-public void testBug208541() throws JavaModelException {
+public void testBug208541() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class MyTest {\n" +
@@ -1667,7 +1667,7 @@ public void testBug208541() throws JavaModelException {
  * bug 203588: [formatter] Qualified invocation + binary expressions excessive wrap
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=203588"
  */
-public void testBug203588() throws JavaModelException {
+public void testBug203588() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"public class Test {\n" +
@@ -1702,7 +1702,7 @@ public void testBug203588() throws JavaModelException {
  * bug 252556: [formatter] Spaces removed before formatted region of a compilation unit.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=252556"
  */
-public void testBug252556() {
+public void testBug252556() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package a;\n" +
 		"\n" +
@@ -1732,7 +1732,7 @@ public void testBug252556() {
 	);
 }
 // see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=95340
-public void testBug252556a() {
+public void testBug252556a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class Test {\n" +
 		"\n" +
@@ -1752,7 +1752,7 @@ public void testBug252556a() {
 	);
 }
 // see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=95340
-public void testBug252556b() {
+public void testBug252556b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class Test {\n" +
 		"\n" +
@@ -1772,7 +1772,7 @@ public void testBug252556b() {
 	);
 }
 // see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=95340
-public void testBug252556c() {
+public void testBug252556c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class Test {\n" +
 		"\n" +
@@ -1792,7 +1792,7 @@ public void testBug252556c() {
 	);
 }
 // see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=95340
-public void testBug252556d() {
+public void testBug252556d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class Test {\n" +
 		"\n" +
@@ -1812,7 +1812,7 @@ public void testBug252556d() {
 	);
 }
 // see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=95340
-public void testBug252556e() {
+public void testBug252556e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class Test {\n" +
 		"\n" +
@@ -1833,7 +1833,7 @@ public void testBug252556e() {
 	);
 }
 // see org.eclipse.jdt.ui.tests.core.CodeFormatterUtilTest.testFormatSubstring()
-public void testBug252556f() {
+public void testBug252556f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package test1;\n" +
 		"\n" +
@@ -1860,7 +1860,7 @@ public void testBug252556f() {
 	);
 }
 // Adding a test case impacted by the fix for bug 252556 got from massive tests
-public void testBug252556_wksp3a() {
+public void testBug252556_wksp3a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp3;\n" +
 		"\n" +
@@ -1893,7 +1893,7 @@ public void testBug252556_wksp3a() {
  * 		element-value pairs are well wrapped using the new formatter option
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=281655"
  */
-public void testBug281655() throws JavaModelException {
+public void testBug281655() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.alignment_for_arguments_in_annotation = Alignment.M_COMPACT_SPLIT;
 	String source =
@@ -1920,7 +1920,7 @@ public void testBug281655() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug281655a() throws JavaModelException {
+public void testBug281655a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_arguments_in_annotation = Alignment.M_NO_ALIGNMENT;
 	this.formatterPrefs.alignment_for_expressions_in_array_initializer = Alignment.M_NO_ALIGNMENT;
 	String source =
@@ -1943,7 +1943,7 @@ public void testBug281655a() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug281655b() throws JavaModelException {
+public void testBug281655b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_arguments_in_annotation = Alignment.M_COMPACT_SPLIT;
 	setPageWidth80();
 	String source =
@@ -1969,7 +1969,7 @@ public void testBug281655b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug281655c() throws JavaModelException {
+public void testBug281655c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_arguments_in_annotation = Alignment.M_COMPACT_FIRST_BREAK_SPLIT;
 	setPageWidth80();
 	String source =
@@ -1996,7 +1996,7 @@ public void testBug281655c() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug281655d() throws JavaModelException {
+public void testBug281655d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_arguments_in_annotation = Alignment.M_ONE_PER_LINE_SPLIT;
 	setPageWidth80();
 	String source =
@@ -2023,7 +2023,7 @@ public void testBug281655d() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug281655e() throws JavaModelException {
+public void testBug281655e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_arguments_in_annotation = Alignment.M_NEXT_SHIFTED_SPLIT;
 	setPageWidth80();
 	String source =
@@ -2050,7 +2050,7 @@ public void testBug281655e() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug281655f() throws JavaModelException {
+public void testBug281655f() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_arguments_in_annotation = Alignment.M_NEXT_PER_LINE_SPLIT;
 	setPageWidth80();
 	String source =
@@ -2214,7 +2214,7 @@ public void testBug282030g2() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug282030h1() throws JavaModelException {
+public void testBug282030h1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_arguments_in_annotation = Alignment.M_ONE_PER_LINE_SPLIT;
 	setPageWidth80();
 	String source =
@@ -2233,7 +2233,7 @@ public void testBug282030h1() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug282030h2() throws JavaModelException {
+public void testBug282030h2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_arguments_in_annotation = Alignment.M_ONE_PER_LINE_SPLIT | Alignment.M_FORCE;
 	String source =
 		"@MyAnnot1(name = \"sample1\", \n" +
@@ -2258,7 +2258,7 @@ public void testBug282030h2() throws JavaModelException {
  * bug 283467: [formatter] wrong indentation with 'Never join lines' selected
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=283467"
  */
-public void testBug283467() throws JavaModelException {
+public void testBug283467() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class TestFormatter {\n" +
@@ -2300,7 +2300,7 @@ public void testBug283467() throws JavaModelException {
  * test Verify that the new preference to split method declaration works properly
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=284789"
  */
-public void testBug284789() throws JavaModelException {
+public void testBug284789() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_COMPACT_SPLIT;
 	setPageWidth80();
 	String source =
@@ -2335,7 +2335,7 @@ public void testBug284789_01a() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug284789_01b() throws JavaModelException {
+public void testBug284789_01b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_COMPACT_SPLIT;
 	setPageWidth80();
 	String source =
@@ -2353,7 +2353,7 @@ public void testBug284789_01b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug284789_01c() throws JavaModelException {
+public void testBug284789_01c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_COMPACT_FIRST_BREAK_SPLIT;
 	setPageWidth80();
 	String source =
@@ -2371,7 +2371,7 @@ public void testBug284789_01c() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug284789_01d() throws JavaModelException {
+public void testBug284789_01d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_ONE_PER_LINE_SPLIT;
 	setPageWidth80();
 	String source =
@@ -2390,7 +2390,7 @@ public void testBug284789_01d() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug284789_01e() throws JavaModelException {
+public void testBug284789_01e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_NEXT_SHIFTED_SPLIT;
 	setPageWidth80();
 	String source =
@@ -2409,7 +2409,7 @@ public void testBug284789_01e() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug284789_01f() throws JavaModelException {
+public void testBug284789_01f() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_NEXT_PER_LINE_SPLIT;
 	setPageWidth80();
 	String source =
@@ -2427,7 +2427,7 @@ public void testBug284789_01f() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug284789_02a() throws JavaModelException {
+public void testBug284789_02a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// default is no wrapping for method declaration
 	setPageWidth80();
 	String source =
@@ -2445,7 +2445,7 @@ public void testBug284789_02a() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug284789_02b() throws JavaModelException {
+public void testBug284789_02b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_COMPACT_SPLIT;
 	this.formatterPrefs.alignment_for_parameters_in_method_declaration = Alignment.M_COMPACT_SPLIT;
 	setPageWidth80();
@@ -2465,7 +2465,7 @@ public void testBug284789_02b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug284789_02c() throws JavaModelException {
+public void testBug284789_02c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_COMPACT_FIRST_BREAK_SPLIT;
 	this.formatterPrefs.alignment_for_parameters_in_method_declaration = Alignment.M_COMPACT_FIRST_BREAK_SPLIT;
 	setPageWidth80();
@@ -2485,7 +2485,7 @@ public void testBug284789_02c() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug284789_02d() throws JavaModelException {
+public void testBug284789_02d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_ONE_PER_LINE_SPLIT;
 	this.formatterPrefs.alignment_for_parameters_in_method_declaration = Alignment.M_ONE_PER_LINE_SPLIT;
 	setPageWidth80();
@@ -2508,7 +2508,7 @@ public void testBug284789_02d() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug284789_02e() throws JavaModelException {
+public void testBug284789_02e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_NEXT_SHIFTED_SPLIT;
 	this.formatterPrefs.alignment_for_parameters_in_method_declaration = Alignment.M_NEXT_SHIFTED_SPLIT;
 	setPageWidth80();
@@ -2531,7 +2531,7 @@ public void testBug284789_02e() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug284789_02f() throws JavaModelException {
+public void testBug284789_02f() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_NEXT_PER_LINE_SPLIT;
 	this.formatterPrefs.alignment_for_parameters_in_method_declaration = Alignment.M_NEXT_PER_LINE_SPLIT;
 	setPageWidth80();
@@ -2569,7 +2569,7 @@ public void testBug285565a() {
 		assertTrue("Should not happen", false);
 	}
 }
-public void testBug285565b() {
+public void testBug285565b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.indentation_size = 0;
 	this.formatterPrefs.tab_size = 0;
 	String source = "public class test {\n"
@@ -2590,7 +2590,7 @@ public void testBug285565b() {
 			+ "}\n"
 			+ "}\n");
 }
-public void testBug285565c() {
+public void testBug285565c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String result = "int B = 12;\n"
 		+ " int C = B - 1;\n"
 		+ " int K = 99;\n"
@@ -2608,7 +2608,7 @@ public void testBug285565c() {
 		assertTrue("Should not happen", false);
 	}
 }
-public void testBug285565d() {
+public void testBug285565d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String result = "int B = 12;\n"
 		+ "int C = B - 1;\n"
 		+ "int K = 99;\n"
@@ -2644,7 +2644,7 @@ public void testBug285565e() {
  * test Test to make sure that indentation is correct in anonymous inner class
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=286601"
  */
-public void testBug286601() throws JavaModelException {
+public void testBug286601() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test\n" +
@@ -2667,7 +2667,7 @@ public void testBug286601() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug286601b() throws JavaModelException {
+public void testBug286601b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -2707,7 +2707,7 @@ public void testBug286601b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug286601c() {
+public void testBug286601c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.brace_position_for_anonymous_type_declaration= DefaultCodeFormatterConstants.NEXT_LINE;
 	String source =
@@ -2738,7 +2738,7 @@ public void testBug286601c() {
 		"}\n"
 	);
 }
-public void testBug286601d() {
+public void testBug286601d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.brace_position_for_anonymous_type_declaration= DefaultCodeFormatterConstants.NEXT_LINE;
 	String source =
@@ -2770,7 +2770,7 @@ public void testBug286601d() {
 		"}\n"
 	);
 }
-public void testBug286601_massive_01() {
+public void testBug286601_massive_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
 	String source =
@@ -2823,7 +2823,7 @@ public void testBug286601_massive_01() {
 		"}\n"
 	);
 }
-public void testBug286601_massive_02() {
+public void testBug286601_massive_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
 	setPageWidth80();
@@ -2874,7 +2874,7 @@ public void testBug286601_massive_02() {
 		"}\n"
 	);
 }
-public void testBug286601_massive_03() {
+public void testBug286601_massive_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -2925,7 +2925,7 @@ public void testBug286601_massive_03() {
 		"}\n"
 	);
 }
-public void testBug286601_wksp_03b() {
+public void testBug286601_wksp_03b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
 	setPageWidth80();
@@ -2990,7 +2990,7 @@ public void testBug286601_wksp_03b() {
  * test Test to make sure that lines are joined when using 'Never Join Lines' preference
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=286668"
  */
-public void testBug286668() throws JavaModelException {
+public void testBug286668() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -3014,7 +3014,7 @@ public void testBug286668() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug286668b() throws JavaModelException {
+public void testBug286668b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -3038,7 +3038,7 @@ public void testBug286668b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug286668c() throws JavaModelException {
+public void testBug286668c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -3064,7 +3064,7 @@ public void testBug286668c() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug286668_40w() throws JavaModelException {
+public void testBug286668_40w() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.page_width = 40;
 	String source =
@@ -3094,7 +3094,7 @@ public void testBug286668_40w() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug286668b_40w() throws JavaModelException {
+public void testBug286668b_40w() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.page_width = 40;
 	String source =
@@ -3125,7 +3125,7 @@ public void testBug286668b_40w() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug286668c_40w() throws JavaModelException {
+public void testBug286668c_40w() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.page_width = 40;
 	String source =
@@ -3157,7 +3157,7 @@ public void testBug286668c_40w() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug286668_60w() throws JavaModelException {
+public void testBug286668_60w() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.page_width = 60;
 	String source =
@@ -3182,7 +3182,7 @@ public void testBug286668_60w() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug286668b_60w() throws JavaModelException {
+public void testBug286668b_60w() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.page_width = 60;
 	String source =
@@ -3232,7 +3232,7 @@ public void testBug286668c_60w() throws JavaModelException {
  * 	missed test cases.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=290905"
  */
-public void testBug290905a() throws JavaModelException {
+public void testBug290905a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.MIXED;
 	this.formatterPrefs.tab_size = 0;
 	this.formatterPrefs.indentation_size = 2;
@@ -3258,7 +3258,7 @@ public void testBug290905a() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug290905b() throws JavaModelException {
+public void testBug290905b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.MIXED;
 	this.formatterPrefs.tab_size = 0;
 	this.formatterPrefs.indentation_size = 2;
@@ -3284,7 +3284,7 @@ public void testBug290905b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug290905c() throws JavaModelException {
+public void testBug290905c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.MIXED;
 	this.formatterPrefs.tab_size = 0;
@@ -3308,7 +3308,7 @@ public void testBug290905c() throws JavaModelException {
 		false /* do not repeat */
 	);
 }
-public void testBug290905d() throws JavaModelException {
+public void testBug290905d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.MIXED;
 	this.formatterPrefs.tab_size = 0;
@@ -3332,7 +3332,7 @@ public void testBug290905d() throws JavaModelException {
 		false /* do not repeat */
 	);
 }
-public void testBug290905e() throws JavaModelException {
+public void testBug290905e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.TAB;
 	this.formatterPrefs.tab_size = 0;
@@ -3356,7 +3356,7 @@ public void testBug290905e() throws JavaModelException {
 		false /* do not repeat */
 	);
 }
-public void testBug290905f() throws JavaModelException {
+public void testBug290905f() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.TAB;
 	this.formatterPrefs.tab_size = 0;
@@ -3387,7 +3387,7 @@ public void testBug290905f() throws JavaModelException {
  * 		preference initial value.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=293496"
  */
-public void testBug293240() {
+public void testBug293240() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
 	setPageWidth80();
 	String source =
@@ -3425,7 +3425,7 @@ public void testBug293240() {
  * test Verify that formatting twice a compilation unit does not produce different output
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=293300"
  */
-public void testBug293300_wksp1_01() {
+public void testBug293300_wksp1_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package wksp1;\n" +
@@ -3463,7 +3463,7 @@ public void testBug293300_wksp1_01() {
 		"}\n"
 	);
 }
-public void testBug293300_wkps1_02() {
+public void testBug293300_wkps1_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package wksp1;\n" +
@@ -3502,7 +3502,7 @@ public void testBug293300_wkps1_02() {
 		"}\n"
 	);
 }
-public void testBug293300_wkps1_03() {
+public void testBug293300_wkps1_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"package wksp1;\n" +
@@ -3531,7 +3531,7 @@ public void testBug293300_wkps1_03() {
 		"}\n"
 	);
 }
-public void testBug293300_wkps1_04() {
+public void testBug293300_wkps1_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package wksp1;\n" +
@@ -3557,7 +3557,7 @@ public void testBug293300_wkps1_04() {
 		"}\n"
 	);
 }
-public void testBug293300_wkps1_05() {
+public void testBug293300_wkps1_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp1;\n" +
 		"\n" +
@@ -3578,7 +3578,7 @@ public void testBug293300_wkps1_05() {
 		"}\n"
 	);
 }
-public void testBug293300_wkps1_05_JoinLinesComments_BracesNextLine() {
+public void testBug293300_wkps1_05_JoinLinesComments_BracesNextLine() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
 	String source =
@@ -3603,7 +3603,7 @@ public void testBug293300_wkps1_05_JoinLinesComments_BracesNextLine() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_01() {
+public void testBug293300_wksp2_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -3642,7 +3642,7 @@ public void testBug293300_wksp2_01() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_02() {
+public void testBug293300_wksp2_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -3692,7 +3692,7 @@ public void testBug293300_wksp2_02() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_03() {
+public void testBug293300_wksp2_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -3733,7 +3733,7 @@ public void testBug293300_wksp2_03() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_04() {
+public void testBug293300_wksp2_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package wksp2;\n" +
@@ -3790,7 +3790,7 @@ private static final String EXPECTED_OUTPUT_WKSP2E1 =
 	"		}\n" +
 	"	}\n" +
 	"}\n";
-public void testBug293300_wksp2_05() {
+public void testBug293300_wksp2_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -3823,7 +3823,7 @@ public void testBug293300_wksp2_05() {
 		"}\n";
 	formatSource(source, EXPECTED_OUTPUT_WKSP2E1);
 }
-public void testBug293300_wksp2_05b() {
+public void testBug293300_wksp2_05b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -3885,7 +3885,7 @@ private static final String EXPECTED_OUTPUT_WKSP2E3 =
 	"		}\n" +
 	"	}\n" +
 	"}\n";
-public void testBug293300_wksp2_05c() {
+public void testBug293300_wksp2_05c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -3918,7 +3918,7 @@ public void testBug293300_wksp2_05c() {
 		"}\n";
 	formatSource(source, EXPECTED_OUTPUT_WKSP2E3);
 }
-public void testBug293300_wksp2_05d() {
+public void testBug293300_wksp2_05d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -3951,7 +3951,7 @@ public void testBug293300_wksp2_05d() {
 		"}\n";
 	formatSource(source, EXPECTED_OUTPUT_WKSP2E3);
 }
-public void testBug293300_wksp2_05e() {
+public void testBug293300_wksp2_05e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -4013,7 +4013,7 @@ private static final String EXPECTED_OUTPUT_WKSP2E1_SPACES =
 	"        }\n" +
 	"    }\n" +
 	"}\n";
-public void testBug293300_wksp2_05_spaces() {
+public void testBug293300_wksp2_05_spaces() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
 	String source =
 		"package wksp2;\n" +
@@ -4047,7 +4047,7 @@ public void testBug293300_wksp2_05_spaces() {
 		"}\n";
 	formatSource(source, EXPECTED_OUTPUT_WKSP2E1_SPACES);
 }
-public void testBug293300_wksp2_05b_spaces() {
+public void testBug293300_wksp2_05b_spaces() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
 	String source =
 		"package wksp2;\n" +
@@ -4110,7 +4110,7 @@ private static final String EXPECTED_OUTPUT_WKSP2E3_SPACES =
 	"        }\n" +
 	"    }\n" +
 	"}\n";
-public void testBug293300_wksp2_05c_spaces() {
+public void testBug293300_wksp2_05c_spaces() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
 	String source =
 		"package wksp2;\n" +
@@ -4144,7 +4144,7 @@ public void testBug293300_wksp2_05c_spaces() {
 		"}\n";
 	formatSource(source, EXPECTED_OUTPUT_WKSP2E3_SPACES);
 }
-public void testBug293300_wksp2_05d_spaces() {
+public void testBug293300_wksp2_05d_spaces() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
 	String source =
 		"package wksp2;\n" +
@@ -4178,7 +4178,7 @@ public void testBug293300_wksp2_05d_spaces() {
 		"}\n";
 	formatSource(source, EXPECTED_OUTPUT_WKSP2E3_SPACES);
 }
-public void testBug293300_wksp2_05e_spaces() {
+public void testBug293300_wksp2_05e_spaces() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
 	String source =
 		"package wksp2;\n" +
@@ -4212,7 +4212,7 @@ public void testBug293300_wksp2_05e_spaces() {
 		"}\n";
 	formatSource(source, EXPECTED_OUTPUT_WKSP2E3_SPACES);
 }
-public void testBug293300_wksp_06() {
+public void testBug293300_wksp_06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package wksp2;\n" +
@@ -4237,7 +4237,7 @@ public void testBug293300_wksp_06() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp_07() {
+public void testBug293300_wksp_07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -4270,7 +4270,7 @@ public void testBug293300_wksp_07() {
 		"}\n";
 	formatSource(source);
 }
-public void testBug293300_wksp2_08() {
+public void testBug293300_wksp2_08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -4311,7 +4311,7 @@ public void testBug293300_wksp2_08() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_08b() {
+public void testBug293300_wksp2_08b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -4352,7 +4352,7 @@ public void testBug293300_wksp2_08b() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_08c() {
+public void testBug293300_wksp2_08c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -4393,7 +4393,7 @@ public void testBug293300_wksp2_08c() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_09() {
+public void testBug293300_wksp2_09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -4420,7 +4420,7 @@ public void testBug293300_wksp2_09() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_10() {
+public void testBug293300_wksp2_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package wksp2;\n" +
@@ -4450,7 +4450,7 @@ public void testBug293300_wksp2_10() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_11() {
+public void testBug293300_wksp2_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setFormatLineCommentOnFirstColumn();
 	String source =
 		"package wksp2;\n" +
@@ -4507,7 +4507,7 @@ public void testBug293300_wksp2_11() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_12a() {
+public void testBug293300_wksp2_12a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package wksp2;\n" +
@@ -4546,7 +4546,7 @@ public void testBug293300_wksp2_12a() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_12b() {
+public void testBug293300_wksp2_12b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package wksp2;\n" +
@@ -4585,7 +4585,7 @@ public void testBug293300_wksp2_12b() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_13() {
+public void testBug293300_wksp2_13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	setFormatLineCommentOnFirstColumn();
 	String source =
@@ -4618,7 +4618,7 @@ public void testBug293300_wksp2_13() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_14() {
+public void testBug293300_wksp2_14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setFormatLineCommentOnFirstColumn();
 	String source =
 		"package wksp2;\n" +
@@ -4642,7 +4642,7 @@ public void testBug293300_wksp2_14() {
 	);
 }
 // TODO (frederic) try to fix the formatter instability in the following test case
-public void _testBug293300_wksp2_15a() {
+public void _testBug293300_wksp2_15a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -4672,7 +4672,7 @@ public void _testBug293300_wksp2_15a() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp2_15b() {
+public void testBug293300_wksp2_15b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package wksp2;\n" +
@@ -4703,7 +4703,7 @@ public void testBug293300_wksp2_15b() {
 		"}\n"
 	);
 }
-public void testBug293300_wksp3_01() {
+public void testBug293300_wksp3_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setFormatLineCommentOnFirstColumn();
 	String source =
 		"package wksp3;\n" +
@@ -4749,7 +4749,7 @@ public void testBug293496() {
  * test Verify that no MalformedTreeException occurs while formatting bug test cases
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=294500"
  */
-public void testBug294500a() {
+public void testBug294500a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wkps3;\n" +
 		"/**\n" +
@@ -4790,7 +4790,7 @@ public void testBug294500a() {
 		"}\n"
 	);
 }
-public void testBug294500b() {
+public void testBug294500b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wkps3;\n" +
 		"/**\n" +
@@ -4823,7 +4823,7 @@ public void testBug294500b() {
  * test Verify that the specific sequence of html tags is well formatted in one pass
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=294618"
  */
-public void testBug294618a() {
+public void testBug294618a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wkps3;\n" +
 		"\n" +
@@ -4885,7 +4885,7 @@ public void testBug294618a() {
 		"}\n"
 	);
 }
-public void testBug294618b() {
+public void testBug294618b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"/**\n" +
 		" * Verify deep html tag nesting:\n" +
@@ -4942,7 +4942,7 @@ public void testBug294618b() {
  * test Verify that the specific sequence of html tags is well formatted in one pass
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=294631"
  */
-public void testBug294631() {
+public void testBug294631() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wkps3;\n" +
 		"\n" +
@@ -4980,7 +4980,7 @@ public void testBug294631() {
  * test Verify that space is well inserted before the leading string
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=295175"
  */
-public void testBug295175a() {
+public void testBug295175a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class X {\n" +
 		"/**\n" +
@@ -5002,7 +5002,7 @@ public void testBug295175a() {
 		"}\n"
 	);
 }
-public void testBug295175b() {
+public void testBug295175b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -5031,7 +5031,7 @@ public void testBug295175b() {
 		"}\n"
 	);
 }
-public void testBug295175c() {
+public void testBug295175c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -5059,7 +5059,7 @@ public void testBug295175c() {
 		"}\n"
 	);
 }
-public void testBug295175d() {
+public void testBug295175d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -5093,7 +5093,7 @@ public void testBug295175d() {
 		"}\n"
 	);
 }
-public void testBug295175e() {
+public void testBug295175e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package wksp3;\n" +
@@ -5122,7 +5122,7 @@ public void testBug295175e() {
 		"}\n"
 	);
 }
-public void testBug295175f() {
+public void testBug295175f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	String source =
 		"package wksp1;\n" +
@@ -5160,7 +5160,7 @@ public void testBug295175f() {
  * 		when the 'Never join lines' option is set
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=295238"
  */
-public void testBug295238() {
+public void testBug295238() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.join_lines_in_comments = false;
 	String source =
@@ -5197,7 +5197,7 @@ public void testBug295238() {
 	);
 }
 // the following test already passed with v_A21, but failed with first version of the patch
-public void testBug295238b1() {
+public void testBug295238b1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.join_lines_in_comments = false;
 	String source =
@@ -5231,7 +5231,7 @@ public void testBug295238b1() {
 	);
 }
 // the following test failed with v_A21 and with the version v00 of the patch
-public void testBug295238b2() {
+public void testBug295238b2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.join_lines_in_comments = false;
 	String source =
@@ -5260,7 +5260,7 @@ public void testBug295238b2() {
 	);
 }
 // the following test failed with v_A21 and with the version v00 of the patch
-public void testBug295238b3() {
+public void testBug295238b3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.join_lines_in_comments = false;
 	String source =
@@ -5296,7 +5296,7 @@ public void testBug295238b3() {
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=264112"
  */
 // Max line width = 24
-public void testBug264112_w24_S1() {
+public void testBug264112_w24_S1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 24;
 	String source =
 		"class Sample1 {void foo() {Other.bar( 100,\n" +
@@ -5337,7 +5337,7 @@ public void testBug264112_w24_S2() {
 	);
 }
 // Max line width = 25
-public void testBug264112_w25_S1() {
+public void testBug264112_w25_S1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 25;
 	String source =
 		"class Sample1 {void foo() {Other.bar( 100,\n" +
@@ -5375,7 +5375,7 @@ public void testBug264112_w25_S2() {
 	);
 }
 // Max line width = 26
-public void testBug264112_w26_S1() {
+public void testBug264112_w26_S1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 26;
 	String source =
 		"class Sample1 {void foo() {Other.bar( 100,\n" +
@@ -5411,7 +5411,7 @@ public void testBug264112_w26_S2() {
 		"}\n"
 	);
 }
-public void testBug264112_wksp1_01() {
+public void testBug264112_wksp1_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"package wksp1;\n" +
@@ -5462,7 +5462,7 @@ public void testBug264112_wksp1_01() {
 		"}\n"
 	);
 }
-public void testBug264112_wksp1_02() {
+public void testBug264112_wksp1_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp1;\n" +
 		"\n" +
@@ -5499,7 +5499,7 @@ public void testBug264112_wksp1_02() {
 		"}\n"
 	);
 }
-public void testBug264112_wksp2_01() {
+public void testBug264112_wksp2_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"package wksp2;\n" +
@@ -5575,7 +5575,7 @@ public void testBug264112_wksp2_01() {
 		"}\n"
 	);
 }
-public void testBug264112_wksp2_02() {
+public void testBug264112_wksp2_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -5624,7 +5624,7 @@ public void testBug264112_wksp2_02() {
  * 		existing indentation and all comments formatting is off.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=297225"
  */
-public void testBug297225() {
+public void testBug297225() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.comment_format_line_comment = false;
 	this.formatterPrefs.comment_format_block_comment = false;
 	this.formatterPrefs.comment_format_javadoc_comment = false;
@@ -5653,7 +5653,7 @@ public void testBug297225() {
  * test Verify that space after the @see tag is not removed while formatting
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=297546"
  */
-public void testBug297546() {
+public void testBug297546() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package org.eclipse.jdt.core;\n" +
 		"public class TestClass implements TestInterface {\n" +
@@ -5760,7 +5760,7 @@ public void testBug298844b() {
  * test Verify that no exception occurs while formatting source including the specific comment
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=302123"
  */
-public void testBug302123() {
+public void testBug302123() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package test;\n" +
 		"public class Test {\n" +
@@ -5781,7 +5781,7 @@ public void testBug302123() {
 		"}\n"
 	);
 }
-public void testBug302123b() {
+public void testBug302123b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package test;\n" +
 		"public class Test {\n" +
@@ -5802,7 +5802,7 @@ public void testBug302123b() {
 		"}\n"
 	);
 }
-public void testBug302123c() {
+public void testBug302123c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package test;\n" +
 		"public class Test {\n" +
@@ -5823,7 +5823,7 @@ public void testBug302123c() {
 		"}\n"
 	);
 }
-public void testBug302123d() {
+public void testBug302123d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package test;\n" +
 		"public class Test {\n" +
@@ -5950,7 +5950,7 @@ public void testBug304529() {
 		"}\n";
 	formatSource(source);
 }
-public void testBug304529b() {
+public void testBug304529b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = null;
 	this.formatterPrefs.enabling_tag = "on".toCharArray();
@@ -5984,7 +5984,7 @@ public void testBug304529c() {
 		"}\n";
 	formatSource(source);
 }
-public void testBug304529d() {
+public void testBug304529d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_USE_ON_OFF_TAGS, DefaultCodeFormatterConstants.TRUE);
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_DISABLING_TAG, "");
@@ -6005,7 +6005,7 @@ public void testBug304529d() {
 		"}\n"
 	);
 }
-public void testBug304529e() {
+public void testBug304529e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_USE_ON_OFF_TAGS, DefaultCodeFormatterConstants.TRUE);
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_DISABLING_TAG, "off");
@@ -6040,7 +6040,7 @@ public void testBug304529e() {
  * test Verify that formatter does get puzzled by three consecutive semicolons
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=309706"
  */
-public void testBug309706() {
+public void testBug309706() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class Test {\n" +
 		"\n" +
@@ -6067,7 +6067,7 @@ public void testBug309706() {
 		"}\n"
 	);
 }
-public void testBug309706b() {
+public void testBug309706b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"    private int id;;;\n" +
 		"\n" +
@@ -6095,7 +6095,7 @@ public void testBug309706b() {
  * test Ensure that the formatter now accepts tags with comment start/end tokens
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=311578"
  */
-public void testBug311578a() throws JavaModelException {
+public void testBug311578a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "//J-".toCharArray();
 	this.formatterPrefs.enabling_tag = "//J+".toCharArray();
@@ -6162,7 +6162,7 @@ public void testBug311578a() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug311578b() throws JavaModelException {
+public void testBug311578b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setFormatLineCommentOnFirstColumn();
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "/* J- */".toCharArray();
@@ -6230,7 +6230,7 @@ public void testBug311578b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug311578c() throws JavaModelException {
+public void testBug311578c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_USE_ON_OFF_TAGS, DefaultCodeFormatterConstants.TRUE);
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_DISABLING_TAG, "//F--");
@@ -6298,7 +6298,7 @@ public void testBug311578c() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug311578d() throws JavaModelException {
+public void testBug311578d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_COMMENT_FORMAT_LINE_COMMENT_STARTING_ON_FIRST_COLUMN,
 			DefaultCodeFormatterConstants.TRUE);
 	this.formatterPrefs = null;
@@ -6380,7 +6380,7 @@ public void testBug311578d() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug311578e() throws JavaModelException {
+public void testBug311578e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "//J-".toCharArray();
 	this.formatterPrefs.enabling_tag = "//J+".toCharArray();
@@ -6453,7 +6453,7 @@ public void testBug311578e() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug311578_320754a() throws JavaModelException {
+public void testBug311578_320754a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "//J-".toCharArray();
 	this.formatterPrefs.enabling_tag = "//J+".toCharArray();
@@ -6481,7 +6481,7 @@ public void testBug311578_320754a() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug311578_320754b() throws JavaModelException {
+public void testBug311578_320754b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	this.formatterPrefs.disabling_tag = "/*J-*/".toCharArray();
 	this.formatterPrefs.enabling_tag = "/*J+*/".toCharArray();
@@ -6515,7 +6515,7 @@ public void testBug311578_320754b() throws JavaModelException {
  * test Ensure that the formatter does take care of formatting tags by default
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=311582"
  */
-public void testBug311582a() throws JavaModelException {
+public void testBug311582a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.disabling_tag = "disable-formatter".toCharArray();
 	this.formatterPrefs.enabling_tag = "enable-formatter".toCharArray();
 	String source =
@@ -6563,7 +6563,7 @@ public void testBug311582b() {
  * test Ensure that the formatter does not take care of formatting tags by default
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=311617"
  */
-public void testBug311617() throws JavaModelException {
+public void testBug311617() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	String source =
 		"public class X01 {\n" +
@@ -6610,7 +6610,7 @@ public void testBug311617b() {
  * 		the "Try to keep nested expressions on one line" preference is set.
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=313524"
  */
-public void testBug313524_01() throws JavaModelException {
+public void testBug313524_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 40;
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	String source =
@@ -6628,7 +6628,7 @@ public void testBug313524_01() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_01b() throws JavaModelException {
+public void testBug313524_01b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "40");
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_WRAP_OUTER_EXPRESSIONS_WHEN_NESTED, DefaultCodeFormatterConstants.FALSE);
@@ -6651,7 +6651,7 @@ public void testBug313524_01b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_02() throws JavaModelException {
+public void testBug313524_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 40;
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	String source =
@@ -6671,7 +6671,7 @@ public void testBug313524_02() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_02b() throws JavaModelException {
+public void testBug313524_02b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "40");
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_WRAP_OUTER_EXPRESSIONS_WHEN_NESTED, DefaultCodeFormatterConstants.FALSE);
@@ -6696,7 +6696,7 @@ public void testBug313524_02b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_03() throws JavaModelException {
+public void testBug313524_03() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 40;
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	String source =
@@ -6715,7 +6715,7 @@ public void testBug313524_03() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_03b() throws JavaModelException {
+public void testBug313524_03b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "40");
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_WRAP_OUTER_EXPRESSIONS_WHEN_NESTED, DefaultCodeFormatterConstants.FALSE);
@@ -6740,7 +6740,7 @@ public void testBug313524_03b() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=146175
-public void testBug313524_146175() throws JavaModelException {
+public void testBug313524_146175() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -6792,7 +6792,7 @@ public void testBug313524_146175() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=164093
-public void testBug313524_164093_01() throws JavaModelException {
+public void testBug313524_164093_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "30");
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_WRAP_OUTER_EXPRESSIONS_WHEN_NESTED, DefaultCodeFormatterConstants.FALSE);
@@ -6815,7 +6815,7 @@ public void testBug313524_164093_01() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_164093_02() throws JavaModelException {
+public void testBug313524_164093_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs = null;
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_LINE_SPLIT, "55");
 	this.formatterOptions.put(DefaultCodeFormatterConstants.FORMATTER_TAB_CHAR, JavaCore.SPACE);
@@ -6842,7 +6842,7 @@ public void testBug313524_164093_02() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=203588
-public void testBug313524_203588() throws JavaModelException {
+public void testBug313524_203588() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -6867,7 +6867,7 @@ public void testBug313524_203588() throws JavaModelException {
 	);
 }
 // wksp1
-public void testBug313524_wksp1_01() throws JavaModelException {
+public void testBug313524_wksp1_01() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -6885,7 +6885,7 @@ public void testBug313524_wksp1_01() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_wksp1_02() throws JavaModelException {
+public void testBug313524_wksp1_02() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -6920,7 +6920,7 @@ public void testBug313524_wksp1_02() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_wksp1_03() throws JavaModelException {
+public void testBug313524_wksp1_03() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -6940,7 +6940,7 @@ public void testBug313524_wksp1_03() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_wksp1_04() throws JavaModelException {
+public void testBug313524_wksp1_04() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -6962,7 +6962,7 @@ public void testBug313524_wksp1_04() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_wksp1_05() throws JavaModelException {
+public void testBug313524_wksp1_05() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	String source =
 		"public class X05 {\n" +
@@ -6982,7 +6982,7 @@ public void testBug313524_wksp1_05() throws JavaModelException {
 	);
 }
 // TODO Improve this formatting as it let the message send argument in one line over the max width
-public void testBug313524_wksp1_06() throws JavaModelException {
+public void testBug313524_wksp1_06() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -7011,7 +7011,7 @@ public void testBug313524_wksp1_06() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_wksp1_07() throws JavaModelException {
+public void testBug313524_wksp1_07() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -7034,7 +7034,7 @@ public void testBug313524_wksp1_07() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_wksp1_08() throws JavaModelException {
+public void testBug313524_wksp1_08() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -7059,7 +7059,7 @@ public void testBug313524_wksp1_08() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_wksp1_09() throws JavaModelException {
+public void testBug313524_wksp1_09() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -7082,7 +7082,7 @@ public void testBug313524_wksp1_09() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_wksp1_10() throws JavaModelException {
+public void testBug313524_wksp1_10() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -7108,7 +7108,7 @@ public void testBug313524_wksp1_10() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_wksp1_11() throws JavaModelException {
+public void testBug313524_wksp1_11() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -7126,7 +7126,7 @@ public void testBug313524_wksp1_11() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug313524_wksp1_12() throws JavaModelException {
+public void testBug313524_wksp1_12() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.wrap_outer_expressions_when_nested = false;
 	setPageWidth80();
 	String source =
@@ -7155,7 +7155,7 @@ public void testBug313524_wksp1_12() throws JavaModelException {
  * test Ensure formatter is stable when 'Never Join Lines' preference is checked
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=317039"
  */
-public void testBug317039_njl() {
+public void testBug317039_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class X01\n" +
@@ -7195,7 +7195,7 @@ public void testBug317039_njl() {
  * test Ensure disabling/enabling tags work properly around annotations
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=320754"
  */
-public void testBug320754_00() throws JavaModelException {
+public void testBug320754_00() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class X00\n" +
 		"{\n" +
@@ -7219,7 +7219,7 @@ public void testBug320754_00() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug320754_01a() throws JavaModelException {
+public void testBug320754_01a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	String source =
 		"//@formatter:off\n" +
@@ -7248,7 +7248,7 @@ public void testBug320754_01a() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug320754_01b() throws JavaModelException {
+public void testBug320754_01b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	String source =
 		"/* @formatter:off */\n" +
@@ -7277,7 +7277,7 @@ public void testBug320754_01b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug320754_01c() throws JavaModelException {
+public void testBug320754_01c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	String source =
 		"/** @formatter:off */\n" +
@@ -7306,7 +7306,7 @@ public void testBug320754_01c() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug320754_02a() throws JavaModelException {
+public void testBug320754_02a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	String source =
 		"//@formatter:off\n" +
@@ -7341,7 +7341,7 @@ public void testBug320754_02a() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug320754_02b() throws JavaModelException {
+public void testBug320754_02b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	String source =
 		"/* @formatter:off */\n" +
@@ -7376,7 +7376,7 @@ public void testBug320754_02b() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug320754_02c() throws JavaModelException {
+public void testBug320754_02c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	String source =
 		"/** @formatter:off */\n" +
@@ -7411,7 +7411,7 @@ public void testBug320754_02c() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug320754_02d() throws JavaModelException {
+public void testBug320754_02d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	String source =
 		"//@formatter:off\n" +
@@ -7448,7 +7448,7 @@ public void testBug320754_02d() throws JavaModelException {
 		"}\n"
 	);
 }
-public void testBug320754_03() throws JavaModelException {
+public void testBug320754_03() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	String source =
 		"//@formatter:off\n" +
@@ -7485,7 +7485,7 @@ public void testBug320754_03() throws JavaModelException {
  * test Ensure that no exception occurs while formatting the given sample
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=328240"
  */
-public void testBug328240() {
+public void testBug328240() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	useOldJavadocTagsFormatting();
 	String source =
@@ -7540,7 +7540,7 @@ public void testBug328240() {
  * test Ensure that the given regions are well formatted
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=328362"
  */
-public void testBug328362() throws Exception {
+public void testBug328362() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package test1;\n" +
 		"\n" +
@@ -7565,7 +7565,7 @@ public void testBug328362() throws Exception {
  * test Ensure that indentation is correct when 'Never join already wrapped lines' is set
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=330313"
  */
-public void testBug330313() {
+public void testBug330313() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -7600,7 +7600,7 @@ public void testBug330313a() {
 		"}\n";
 	formatSource(source);
 }
-public void testBug330313b() {
+public void testBug330313b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -7622,7 +7622,7 @@ public void testBug330313b() {
 		"}\n"
 	);
 }
-public void testBug330313c() {
+public void testBug330313c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -7644,7 +7644,7 @@ public void testBug330313c() {
 		"}\n"
 	);
 }
-public void testBug330313d() {
+public void testBug330313d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\n" +
@@ -7666,7 +7666,7 @@ public void testBug330313d() {
 		"}\n"
 	);
 }
-public void testBug330313_regression_187a() {
+public void testBug330313_regression_187a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"import java.io.File;\n" +
@@ -7694,7 +7694,7 @@ public void testBug330313_regression_187a() {
 		"}\n"
 	);
 }
-public void testBug330313_regression_187b() {
+public void testBug330313_regression_187b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"import java.io.File;\n" +
@@ -7723,7 +7723,7 @@ public void testBug330313_regression_187b() {
 	);
 }
 //static { TESTS_PREFIX = "testBug330313_wksp1"; }
-public void testBug330313_wksp1_01_njl() {
+public void testBug330313_wksp1_01_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -7783,7 +7783,7 @@ public void testBug330313_wksp1_01_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_02_njl() {
+public void testBug330313_wksp1_02_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -7807,7 +7807,7 @@ public void testBug330313_wksp1_02_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_03_njl() {
+public void testBug330313_wksp1_03_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -7852,7 +7852,7 @@ public void testBug330313_wksp1_03_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_04() {
+public void testBug330313_wksp1_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp1;\n" +
 		"\n" +
@@ -7891,7 +7891,7 @@ public void testBug330313_wksp1_04() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_04_njl() {
+public void testBug330313_wksp1_04_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -7931,7 +7931,7 @@ public void testBug330313_wksp1_04_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_05_njl() {
+public void testBug330313_wksp1_05_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
 	String source =
@@ -7957,7 +7957,7 @@ public void testBug330313_wksp1_05_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_06_njl() {
+public void testBug330313_wksp1_06_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
 	setPageWidth80();
@@ -7994,7 +7994,7 @@ public void testBug330313_wksp1_06_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_07() {
+public void testBug330313_wksp1_07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp1;\n" +
 		"\n" +
@@ -8019,7 +8019,7 @@ public void testBug330313_wksp1_07() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_07_bnl() {
+public void testBug330313_wksp1_07_bnl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
 	String source =
 		"package wksp1;\n" +
@@ -8048,7 +8048,7 @@ public void testBug330313_wksp1_07_bnl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_07_njl() {
+public void testBug330313_wksp1_07_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -8078,7 +8078,7 @@ public void testBug330313_wksp1_07_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_07_njl_bnl() {
+public void testBug330313_wksp1_07_njl_bnl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
 	String source =
@@ -8112,7 +8112,7 @@ public void testBug330313_wksp1_07_njl_bnl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_08_njl() {
+public void testBug330313_wksp1_08_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.alignment_for_assignment = Alignment.M_COMPACT_SPLIT;
 	String source =
@@ -8138,7 +8138,7 @@ public void testBug330313_wksp1_08_njl() {
 	);
 }
 // testCompare1159_1: org.eclipse.debug.internal.ui.DebugUIPropertiesAdapterFactory
-public void testBug330313_wksp1_09_njl() {
+public void testBug330313_wksp1_09_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -8163,7 +8163,7 @@ public void testBug330313_wksp1_09_njl() {
 	);
 }
 // testCompare1723_1: org.eclipse.jdt.internal.compiler.ast.DoubleLiteral
-public void testBug330313_wksp1_10_njl() {
+public void testBug330313_wksp1_10_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -8192,7 +8192,7 @@ public void testBug330313_wksp1_10_njl() {
 	);
 }
 // testCompare1794_1: org.eclipse.jdt.internal.compiler.ast.ClassFile
-public void testBug330313_wksp1_11_njl() {
+public void testBug330313_wksp1_11_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -8225,7 +8225,7 @@ public void testBug330313_wksp1_11_njl() {
 	);
 }
 // rg.eclipse.ant.ui/Ant Editor/org/eclipse/ant/internal/ui/editor/formatter/XmlFormatter.java
-public void testBug330313_wksp1_12() {
+public void testBug330313_wksp1_12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"package wksp1;\n" +
@@ -8282,7 +8282,7 @@ public void testBug330313_wksp1_12() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_12_njl() {
+public void testBug330313_wksp1_12_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -8341,7 +8341,7 @@ public void testBug330313_wksp1_12_njl() {
 	);
 }
 // Test case extracted from org.eclipse.ant.ui/org/eclipse/core/internal/dtree/NodeInfo.java
-public void testBug330313_wksp1_13() {
+public void testBug330313_wksp1_13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"package wksp1;\n" +
@@ -8365,7 +8365,7 @@ public void testBug330313_wksp1_13() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_13_njl() {
+public void testBug330313_wksp1_13_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -8391,7 +8391,7 @@ public void testBug330313_wksp1_13_njl() {
 	);
 }
 // Test case extracted from org.eclipse.jdt.core/org/eclipse/jdt/internal/compiler/ast/SingleNameReference.java
-public void testBug330313_wksp1_14() {
+public void testBug330313_wksp1_14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"package wksp1;\n" +
@@ -8429,7 +8429,7 @@ public void testBug330313_wksp1_14() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_14_njl() {
+public void testBug330313_wksp1_14_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
@@ -8468,7 +8468,7 @@ public void testBug330313_wksp1_14_njl() {
 	);
 }
 // Test case extracted from org.eclipse.jdt.core/org/eclipse/jdt/internal/compiler/ast/SingleNameReference.java
-public void testBug330313_wksp1_15_njl() {
+public void testBug330313_wksp1_15_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -8524,7 +8524,7 @@ public void testBug330313_wksp1_15_njl() {
 	);
 }
 // Test case 1941_1 (extracted from org.eclipse.jdt.core/org/eclipse/jdt/internal/compiler/ast/Parser.java)
-public void testBug330313_wksp1_16() {
+public void testBug330313_wksp1_16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"package wksp1;\n" +
@@ -8564,7 +8564,7 @@ public void testBug330313_wksp1_16() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_16_njl() {
+public void testBug330313_wksp1_16_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -8606,7 +8606,7 @@ public void testBug330313_wksp1_16_njl() {
 	);
 }
 // Test case 1872_1 (extracted from org.eclipse.jdt.core/org/eclipse/jdt/internal/compiler/lookup/BlockScope.java)
-public void testBug330313_wksp1_17_njl() {
+public void testBug330313_wksp1_17_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -8632,7 +8632,7 @@ public void testBug330313_wksp1_17_njl() {
 	);
 }
 // Test case 1964_1 (extracted from org.eclipse.jdt.core/org/eclipse/jdt/core/dom/ASTMatcher.java)
-public void testBug330313_wksp1_18_njl() {
+public void testBug330313_wksp1_18_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -8665,7 +8665,7 @@ public void testBug330313_wksp1_18_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_19_njl() {
+public void testBug330313_wksp1_19_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -8701,7 +8701,7 @@ public void testBug330313_wksp1_19_njl() {
 	);
 }
 // Test case extracted from org.eclipse.debug.ui/ui/org/eclipse/debug/ui/AbstractDebugView.java
-public void testBug330313_wksp1_20_njl() {
+public void testBug330313_wksp1_20_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.alignment_for_assignment = Alignment.M_COMPACT_SPLIT;
 	setPageWidth80();
@@ -8741,7 +8741,7 @@ public void testBug330313_wksp1_20_njl() {
 	);
 }
 // Test case extracted from org.apache.lucene/src/org/apache/lucene/demo/html/Entities.java
-public void testBug330313_wksp1_21_njl() {
+public void testBug330313_wksp1_21_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -8764,7 +8764,7 @@ public void testBug330313_wksp1_21_njl() {
 	);
 }
 // Test case extracted from differences noticed with patch v27.txt
-public void testBug330313_wksp1_22_njl() {
+public void testBug330313_wksp1_22_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -8806,7 +8806,7 @@ public void testBug330313_wksp1_23_njl() {
 		"}\n";
 	formatSource(source	);
 }
-public void testBug330313_wksp1_24_njl() {
+public void testBug330313_wksp1_24_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -8842,7 +8842,7 @@ public void testBug330313_wksp1_25_njl() {
 		"}\n";
 	formatSource(source	);
 }
-public void testBug330313_wksp1_26_njl() {
+public void testBug330313_wksp1_26_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -8884,7 +8884,7 @@ public void testBug330313_wksp1_26_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_27_njl() {
+public void testBug330313_wksp1_27_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -8916,7 +8916,7 @@ public void testBug330313_wksp1_27_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_28_njl() {
+public void testBug330313_wksp1_28_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -8968,7 +8968,7 @@ public void testBug330313_wksp1_28_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_29_njl() {
+public void testBug330313_wksp1_29_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -8992,7 +8992,7 @@ public void testBug330313_wksp1_29_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_30_njl() {
+public void testBug330313_wksp1_30_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9018,7 +9018,7 @@ public void testBug330313_wksp1_30_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_31_njl() {
+public void testBug330313_wksp1_31_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9055,7 +9055,7 @@ public void testBug330313_wksp1_31_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_32_njl() {
+public void testBug330313_wksp1_32_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9080,7 +9080,7 @@ public void testBug330313_wksp1_32_njl() {
 	);
 }
 // Test case extracted from differences noticed with patch v29.txt
-public void testBug330313_wksp1_33() {
+public void testBug330313_wksp1_33() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setPageWidth80();
 	String source =
 		"package wksp1;\n" +
@@ -9112,7 +9112,7 @@ public void testBug330313_wksp1_33() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_33_njl() {
+public void testBug330313_wksp1_33_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -9144,7 +9144,7 @@ public void testBug330313_wksp1_33_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_34_njl() {
+public void testBug330313_wksp1_34_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9180,7 +9180,7 @@ public void testBug330313_wksp1_34_njl() {
 	);
 }
 // Test case extracted from differences noticed with patch v30.txt
-public void testBug330313_wksp1_35_njl() {
+public void testBug330313_wksp1_35_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9211,7 +9211,7 @@ public void testBug330313_wksp1_35_njl() {
 	);
 }
 // Test case extracted from differences noticed with patch v32.txt
-public void testBug330313_wksp1_36_njl() {
+public void testBug330313_wksp1_36_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9238,7 +9238,7 @@ public void testBug330313_wksp1_36_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_37_njl() {
+public void testBug330313_wksp1_37_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9275,7 +9275,7 @@ public void testBug330313_wksp1_37_njl() {
 	);
 }
 // Test case extracted from differences noticed with patch v33.txt
-public void testBug330313_wksp1_38_njl() {
+public void testBug330313_wksp1_38_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -9305,7 +9305,7 @@ public void testBug330313_wksp1_38_njl() {
 			"	}\n" +
 			"}\n");
 }
-public void testBug330313_wksp1_39_njl() {
+public void testBug330313_wksp1_39_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -9345,7 +9345,7 @@ public void testBug330313_wksp1_39_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_40_njl() {
+public void testBug330313_wksp1_40_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9373,7 +9373,7 @@ public void testBug330313_wksp1_40_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_41_njl() {
+public void testBug330313_wksp1_41_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setFormatLineCommentOnFirstColumn();
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
@@ -9441,7 +9441,7 @@ public void testBug330313_wksp1_41_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_42_njl() {
+public void testBug330313_wksp1_42_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -9469,7 +9469,7 @@ public void testBug330313_wksp1_42_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_43_njl() {
+public void testBug330313_wksp1_43_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -9517,7 +9517,7 @@ public void testBug330313_wksp1_43_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_44_njl() {
+public void testBug330313_wksp1_44_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -9547,7 +9547,7 @@ public void testBug330313_wksp1_44_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_45_njl() {
+public void testBug330313_wksp1_45_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9581,7 +9581,7 @@ public void testBug330313_wksp1_45_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_45b_njl() {
+public void testBug330313_wksp1_45b_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9615,7 +9615,7 @@ public void testBug330313_wksp1_45b_njl() {
 					"}\n"
 			);
 }
-public void testBug330313_wksp1_46_njl() {
+public void testBug330313_wksp1_46_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9654,7 +9654,7 @@ public void testBug330313_wksp1_46_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_47_njl() {
+public void testBug330313_wksp1_47_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
@@ -9702,7 +9702,7 @@ public void testBug330313_wksp1_47_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_48_njl() {
+public void testBug330313_wksp1_48_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
@@ -9746,7 +9746,7 @@ public void testBug330313_wksp1_48_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_49_njl() {
+public void testBug330313_wksp1_49_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9776,7 +9776,7 @@ public void testBug330313_wksp1_49_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_50_njl() {
+public void testBug330313_wksp1_50_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp1;\n" +
@@ -9825,7 +9825,7 @@ public void testBug330313_wksp1_50_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_51_njl() {
+public void testBug330313_wksp1_51_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -9923,7 +9923,7 @@ public void testBug330313_wksp1_51_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_52_njl() {
+public void testBug330313_wksp1_52_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setPageWidth80();
 	String source =
@@ -10110,7 +10110,7 @@ public void testBug330313_wksp1_52_njl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp1_53_njl_bnl() {
+public void testBug330313_wksp1_53_njl_bnl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
 	String source =
@@ -10161,7 +10161,7 @@ public void testBug330313_wksp1_53_njl_bnl() {
 		"}\n"
 	);
 }
-public void testBug330313_wksp2_01 () {
+public void testBug330313_wksp2_01 () { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package wksp2;\n" +
 		"\n" +
@@ -10198,7 +10198,7 @@ public void testBug330313_wksp2_01 () {
 		"}\n"
 	);
 }
-public void testBug330313_wksp3_X01_njl() {
+public void testBug330313_wksp3_X01_njl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"package wksp3;\n" +
@@ -10223,7 +10223,7 @@ public void testBug330313_wksp3_X01_njl() {
 	);
 }
 // Test cases added from bug 286601
-public void testBug330313_b286601_04() {
+public void testBug330313_b286601_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.alignment_for_expressions_in_array_initializer = Alignment.M_ONE_PER_LINE_SPLIT;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
@@ -10304,7 +10304,7 @@ public void testBug330313_b286601_04() {
 		"}\n"
 	);
 }
-public void testBug330313_b286601_05() {
+public void testBug330313_b286601_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.alignment_for_expressions_in_array_initializer = Alignment.M_ONE_PER_LINE_SPLIT;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
@@ -10351,7 +10351,7 @@ public void testBug330313_b286601_05() {
 		"}\n"
 	);
 }
-public void testBug330313_b286601_06() {
+public void testBug330313_b286601_06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.alignment_for_expressions_in_array_initializer = Alignment.M_ONE_PER_LINE_SPLIT;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
@@ -10400,7 +10400,7 @@ public void testBug330313_b286601_06() {
 		"}\n"
 	);
 }
-public void testBug330313_b286601_07() {
+public void testBug330313_b286601_07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
 	this.formatterPrefs.alignment_for_expressions_in_array_initializer = Alignment.M_ONE_PER_LINE_SPLIT;
@@ -10442,7 +10442,7 @@ public void testBug330313_b286601_07() {
 		"}\n"
 	);
 }
-public void testBug330313_b286601_08() {
+public void testBug330313_b286601_08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	this.formatterPrefs.alignment_for_expressions_in_array_initializer = Alignment.M_ONE_PER_LINE_SPLIT;
 	setUpBracesPreferences(DefaultCodeFormatterConstants.NEXT_LINE);
@@ -10491,7 +10491,7 @@ public void testBug330313_b286601_08() {
  * test Ensure that the indentation is set on all blank lines
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=332818"
  */
-public void testBug332818() throws Exception {
+public void testBug332818() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.indent_empty_lines = true;
 	this.formatterPrefs.number_of_empty_lines_to_preserve = 99;
 	String source =
@@ -10563,7 +10563,7 @@ public void testBug332877() throws Exception {
  * test Ensure that with line comment formatting turned off comment alignment doesn't change
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=282988"
  */
-public void testBug282988() throws Exception {
+public void testBug282988() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.comment_preserve_white_space_between_code_and_line_comments = true;
 	String source =
 		"package test;\n" +
@@ -10589,7 +10589,7 @@ public void testBug282988() throws Exception {
 		"}\n"
     );
 }
-public void testBug356851() throws Exception {
+public void testBug356851() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class X {\n" +
 		"	public X LongMethodName(X x) {\n" +
@@ -10621,7 +10621,7 @@ public void testBug356851() throws Exception {
  * test test that the AIOOB is not generated
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=437639"
  */
-public void testBug437639() throws Exception {
+public void testBug437639() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.blank_lines_between_import_groups = ~0;
 	String source =
 		"package com.test;\n" +
@@ -10708,7 +10708,7 @@ public void testBug462945() throws Exception {
 		"}\n"
 	);
 }
-public void testBug407629() throws Exception {
+public void testBug407629() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 		"	/**\n" +
@@ -10773,7 +10773,7 @@ public void testBug464312() throws Exception {
  * test test a space is not added after a lambda expression in parenthesis
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=458208#c2"
  */
-public void testBug458208() throws Exception {
+public void testBug458208() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"package p;\n" +
 		"import java.util.function.IntConsumer;\n" +
@@ -10800,7 +10800,7 @@ public void testBug458208() throws Exception {
  * test test that comments in switch statements are properly indented
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=458208#c21"
  */
-public void testBug458208b() throws Exception {
+public void testBug458208b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	formatSource(
 		"package p;\n" +
 		"\n" +
@@ -10842,7 +10842,7 @@ public void testBug458208b() throws Exception {
  * test test that elements separated with empty lines are properly indented
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=458208#c18"
  */
-public void testBug458208c() throws Exception {
+public void testBug458208c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final int wrapAllOnColumn = Alignment.M_NEXT_PER_LINE_SPLIT + Alignment.M_INDENT_ON_COLUMN + Alignment.M_FORCE;
 	this.formatterPrefs.alignment_for_enum_constants = wrapAllOnColumn;
 	this.formatterPrefs.alignment_for_arguments_in_enum_constant = wrapAllOnColumn;
@@ -10902,7 +10902,7 @@ public void testBug458208c() throws Exception {
  * test test that enum constants are not indented with spaces when "Use spaces to indent wrapped lines" is on
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=458208#c24"
  */
-public void testBug458208d() throws Exception {
+public void testBug458208d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_enum_constants = Alignment.M_COMPACT_SPLIT;
 	this.formatterPrefs.use_tabs_only_for_leading_indentations = true;
 	setPageWidth80();
@@ -10926,7 +10926,7 @@ public void testBug458208d() throws Exception {
  * test test that no NPE is thrown
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=465669"
  */
-public void testBug465669() throws Exception {
+public void testBug465669() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
 	this.formatterPrefs.indentation_size = 2;
 	setPageWidth80();
@@ -10982,7 +10982,7 @@ public void testBug471090() throws JavaModelException {
  * test test that methods without modifiers are properly indented
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=471364"
  */
-public void testBug471364() throws JavaModelException {
+public void testBug471364() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.blank_lines_before_abstract_method = 0;
 	this.formatterPrefs.alignment_for_method_declaration = Alignment.M_COMPACT_SPLIT;
 	String source =
@@ -11022,7 +11022,7 @@ public void testBug471364() throws JavaModelException {
  * test test that no unnecessary space is added
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=471145"
  */
-public void testBug471145() throws JavaModelException {
+public void testBug471145() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.insert_space_before_opening_brace_in_block = false;
 	this.formatterPrefs.keep_simple_if_on_one_line = true;
 	String source =
@@ -11053,7 +11053,7 @@ public void testBug471145() throws JavaModelException {
  * test test that no exception is thrown
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=469438"
  */
-public void testBug469438() {
+public void testBug469438() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tags = true;
 	String source =
 			"public class C1 {\r\n" +
@@ -11101,7 +11101,7 @@ public void testBug471883() throws Exception {
  * test test that spaces after assert are correct
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=470977"
  */
-public void testBug470977() throws Exception {
+public void testBug470977() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class TestFormat {\r\n" +
 		"	public static void main(String[] args) {\r\n" +
@@ -11154,7 +11154,7 @@ public void testBug470506() {
 /**
  * bug 472205: Class extends generic type and implements another type, missing space after ">"
  */
-public void testBug472205() {
+public void testBug472205() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class Test<E> extends ArrayList<String> implements Callable<String> {\n" +
 		"}\n" +
@@ -11215,7 +11215,7 @@ public void testBug474629() {
 /**
  * https://bugs.eclipse.org/467618 - [formatter] Empty lines should not affect indentation of wrapped elements
  */
-public void testBug467618() {
+public void testBug467618() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_enum_constants = Alignment.M_NEXT_PER_LINE_SPLIT + Alignment.M_INDENT_ON_COLUMN + Alignment.M_FORCE;
 	String source =
 		"public enum E2 {\r\n" +
@@ -11242,7 +11242,7 @@ public void testBug467618() {
  * test test that formatting finishes in reasonable time
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=474916"
  */
-public void testBug474916() {
+public void testBug474916() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"/**\r\n" +
 			" * <                                                           \r\n" +
@@ -11265,7 +11265,7 @@ public void testBug474916() {
 /**
  * https://bugs.eclipse.org/474918 - [formatter] doesn't align fields in declarations of annotations, enums and anonymous classes
  */
-public void testBug474918() {
+public void testBug474918() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.align_type_members_on_columns = true;
 	String source =
@@ -11331,7 +11331,7 @@ public void testBug474918() {
 /**
  * https://bugs.eclipse.org/474918 - [formatter] doesn't align fields in declarations of annotations, enums and anonymous classes
  */
-public void testBug474918b() {
+public void testBug474918b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.align_type_members_on_columns = true;
 	this.formatterPrefs.tab_char = DefaultCodeFormatterOptions.SPACE;
@@ -11398,7 +11398,7 @@ public void testBug474918b() {
 /**
  * https://bugs.eclipse.org/474918 - [formatter] doesn't align fields in declarations of annotations, enums and anonymous classes
  */
-public void testBug474918c() {
+public void testBug474918c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	useOldCommentWidthCounting();
 	this.formatterPrefs.align_type_members_on_columns = true;
 	this.formatterPrefs.use_tabs_only_for_leading_indentations = true;
@@ -11479,7 +11479,7 @@ public void testBug475865() {
 /**
  * https://bugs.eclipse.org/435241 - [1.8][lambda][formatter] if/else within lambda is incorrectly formatted
  */
-public void testBug435241() {
+public void testBug435241() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.brace_position_for_block = DefaultCodeFormatterConstants.NEXT_LINE;
 	this.formatterPrefs.insert_new_line_before_else_in_if_statement = true;
 	String source =
@@ -11502,7 +11502,7 @@ public void testBug435241() {
 /**
  * https://bugs.eclipse.org/472815 - [formatter] 'Indent Empty lines' option doesn't work inside empty blocks
  */
-public void testBug472815() {
+public void testBug472815() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.number_of_empty_lines_to_preserve = 2;
 	String source =
 		"public class Snippet {\r\n" +
@@ -11581,7 +11581,7 @@ public void testBug472815() {
 /**
  * https://bugs.eclipse.org/472815 - [formatter] 'Indent Empty lines' option doesn't work inside empty blocks
  */
-public void testBug472815b() {
+public void testBug472815b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.number_of_empty_lines_to_preserve = 2;
 	this.formatterPrefs.indent_empty_lines = true;
 	String source =
@@ -11661,7 +11661,7 @@ public void testBug472815b() {
 /**
  * https://bugs.eclipse.org/472413 - [formatter] Wrap all arguments on new lines and prefer outer expressions result is inconsistent
  */
-public void testBug472413() {
+public void testBug472413() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_arguments_in_method_invocation =
 		DefaultCodeFormatterOptions.Alignment.M_ONE_PER_LINE_SPLIT
 		+ DefaultCodeFormatterOptions.Alignment.M_INDENT_BY_ONE;
@@ -11780,7 +11780,7 @@ public void testBug475793() {
 /**
  * https://bugs.eclipse.org/475746 - [formatter] insert-space rules sometimes ignored with anonymous subclass or when Annotations present
  */
-public void testBug475746() {
+public void testBug475746() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.keep_lambda_body_block_on_one_line = DefaultCodeFormatterConstants.ONE_LINE_IF_EMPTY;
 	this.formatterPrefs.insert_space_after_opening_paren_in_method_invocation = true;
 	this.formatterPrefs.insert_space_before_closing_paren_in_method_invocation = true;
@@ -11853,7 +11853,7 @@ public void testBug477005() {
 /**
  * https://bugs.eclipse.org/471202 - [formatter] Extra line break after annotation default expression
  */
-public void testBug471202() {
+public void testBug471202() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public @interface MyAnnotation {\r\n" +
 		"	Attributes attributes() default @Attributes()\r\n" +
@@ -11874,7 +11874,7 @@ public void testBug471202() {
 /**
  * https://bugs.eclipse.org/475791 - [formatter] Additional blank line before static initializer
  */
-public void testBug475791() {
+public void testBug475791() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.blank_lines_before_new_chunk = 0;
 	String source =
 		"public class Example {\r\n" +
@@ -11931,7 +11931,7 @@ public void testBug475791() {
 /**
  * https://bugs.eclipse.org/475791 - [formatter] Additional blank line before static initializer
  */
-public void testBug475791b() {
+public void testBug475791b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.blank_lines_before_new_chunk = 2;
 	String source =
 		"public class Example {\r\n" +
@@ -12000,7 +12000,7 @@ public void testBug475791b() {
 /**
  * https://bugs.eclipse.org/477430 - [formatter] wrong indentation when nesting anonymous classes
  */
-public void testBug477430() {
+public void testBug477430() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.alignment_for_arguments_in_method_invocation =
 		DefaultCodeFormatterOptions.Alignment.M_ONE_PER_LINE_SPLIT
 		+ DefaultCodeFormatterOptions.Alignment.M_FORCE;
@@ -12041,7 +12041,7 @@ public void testBug480074() {
 /**
  * https://bugs.eclipse.org/479959 - [formatter] indented empty lines after ifs and loops without braces
  */
-public void testBug479959() {
+public void testBug479959() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.indent_empty_lines = true;
 	this.formatterPrefs.number_of_empty_lines_to_preserve = 2;
 	String source =
@@ -12153,7 +12153,7 @@ public void testBug480735() {
 /**
  * https://bugs.eclipse.org/481221 - [formatter] New formatter incorrectly formats ", ;" in enum declaration
  */
-public void testBug481221a() {
+public void testBug481221a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.join_wrapped_lines = false;
 	String source =
 		"public class Test {\r\n" +
@@ -12237,7 +12237,7 @@ public void testBug483922b() {
 /**
  * https://bugs.eclipse.org/485163 - [formatter] Incorrect indentation after line wrap
  */
-public void testBug485163() {
+public void testBug485163() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.indent_empty_lines = true;
 	this.formatterPrefs.blank_lines_before_field = 1;
 	String source =
@@ -12356,7 +12356,7 @@ public void testBug479898() {
 /**
  * https://bugs.eclipse.org/485276 - [formatter] another ArrayIndexOutOfBoundsException while formatting code
  */
-public void testBug485276() {
+public void testBug485276() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tabs_only_for_leading_indentations = true;
 	this.formatterPrefs.alignment_for_expressions_in_array_initializer = Alignment.M_COMPACT_SPLIT + Alignment.M_INDENT_BY_ONE;
 	String source =
@@ -12389,7 +12389,7 @@ public void testBug487375() {
 /**
  * https://bugs.eclipse.org/489797 - [formatter] 'Indent empty lines' sometimes doesn't work with 'format edited lines' save action
  */
-public void testBug489797a() {
+public void testBug489797a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.indent_empty_lines = true;
 	String source =
 		"public class Example {\r\n" +
@@ -12414,7 +12414,7 @@ public void testBug489797a() {
 /**
  * https://bugs.eclipse.org/489797 - [formatter] 'Indent empty lines' sometimes doesn't work with 'format edited lines' save action
  */
-public void testBug489797b() {
+public void testBug489797b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.indent_empty_lines = true;
 	String source =
 		"public class Example {\r\n" +
@@ -12439,7 +12439,7 @@ public void testBug489797b() {
 /**
  * https://bugs.eclipse.org/489797 - [formatter] 'Indent empty lines' sometimes doesn't work with 'format edited lines' save action
  */
-public void testBug489797c() {
+public void testBug489797c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.indent_empty_lines = true;
 	this.formatterPrefs.number_of_empty_lines_to_preserve = 5;
 	String source =
@@ -12611,7 +12611,7 @@ public void testBug500096b() {
 /**
  * https://bugs.eclipse.org/500093 - [formatter] AssertionError with 'Next line on wrap' for array initializers
  */
-public void testBug500093() {
+public void testBug500093() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.brace_position_for_array_initializer = DefaultCodeFormatterConstants.NEXT_LINE_ON_WRAP;
 	this.formatterPrefs.page_width = 60;
 	this.formatterPrefs.use_tabs_only_for_leading_indentations = true;
@@ -12925,7 +12925,7 @@ public void testBug542625() {
 /**
  * https://bugs.eclipse.org/543780 - [formatter] Compact 'if else': can't wrap before else statement
  */
-public void testBug543780() {
+public void testBug543780() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.keep_then_statement_on_same_line = true;
 	this.formatterPrefs.keep_else_statement_on_same_line = true;
 	this.formatterPrefs.alignment_for_compact_if = Alignment.M_ONE_PER_LINE_SPLIT + Alignment.M_FORCE;
@@ -12946,7 +12946,7 @@ public void testBug543780() {
 /**
  * https://bugs.eclipse.org/413193 - [formatter] Blank lines before the first declarations and declarations of same kind not respected in enums
  */
-public void testBug413193a() {
+public void testBug413193a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.blank_lines_before_first_class_body_declaration = 2;
 	this.formatterPrefs.blank_lines_after_last_class_body_declaration = 3;
 	this.formatterPrefs.blank_lines_before_new_chunk = 4;
@@ -12982,7 +12982,7 @@ public void testBug413193b() {
 /**
  * https://bugs.eclipse.org/413193 - [formatter] Blank lines before the first declarations and declarations of same kind not respected in enums
  */
-public void testBug413193c() {
+public void testBug413193c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.blank_lines_before_first_class_body_declaration = ~0;
 	this.formatterPrefs.blank_lines_after_last_class_body_declaration = ~0;
 	this.formatterPrefs.blank_lines_before_new_chunk = ~0;
@@ -13070,7 +13070,7 @@ public void testBug250656() {
 /**
  * https://bugs.eclipse.org/559006 - [formatter] Wrong indentation in region after wrapped line
  */
-public void testBug559006() {
+public void testBug559006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 50;
 	formatSource(
 		"class C {\n" +
@@ -13107,7 +13107,7 @@ public void testBug560889() {
 		"	}\n" +
 		"}");
 }
-public void testBug563487a() {
+public void testBug563487a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	formatSource(
 		"class A {\n" +
 		"	protected void f() {\n" +
@@ -13130,7 +13130,7 @@ public void testBug563487a() {
 		"	}\n" +
 		"}");
 }
-public void testBug563487b() {
+public void testBug563487b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	formatSource(
 		"class A {\n" +
 		"	protected void f() {\n" +
@@ -13153,7 +13153,7 @@ public void testBug563487b() {
 		"	}\n" +
 		"}");
 }
-public void testBug563487c() {
+public void testBug563487c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	formatSource(
 		"class A {\n" +
 		"protected void f() {\n" +
@@ -13339,7 +13339,7 @@ public void testIssue369() {
 /**
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1510
  */
-public void testIssue1510() {
+public void testIssue1510() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setComplianceLevel(CompilerOptions.VERSION_15);
 	this.formatterPrefs.comment_format_line_comment = true;
 	String source =
@@ -13363,7 +13363,7 @@ public void testIssue1510() {
 /**
  * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1624
  */
-public void testIssue1624() {
+public void testIssue1624() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.use_tabs_only_for_leading_indentations = true;
 	this.formatterPrefs.alignment_for_logical_operator = Alignment.M_ONE_PER_LINE_SPLIT | Alignment.M_FORCE;
 	String source =
@@ -13425,7 +13425,7 @@ public void testIssue5195_shortArrayStaysInline() {
 		""";
 	formatSource(source);
 }
-public void testIssue5195_wrappedArrayGetsOwnLine() {
+public void testIssue5195_wrappedArrayGetsOwnLine() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.page_width = 40;
 	this.formatterPrefs.insert_new_line_before_closing_brace_in_array_initializer_on_wrap = true;
 	String source =
@@ -13450,7 +13450,7 @@ public void testIssue5195_wrappedArrayGetsOwnLine() {
  * With NEXT_LINE_ON_WRAP, an existing new line before the closing brace is removed when the
  * initializer's elements are not wrapped - here because wrapping is disabled altogether.
  */
-public void testIssue5195_noWrappingRemovesNewLineBeforeClosingBrace() {
+public void testIssue5195_noWrappingRemovesNewLineBeforeClosingBrace() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.insert_new_line_before_closing_brace_in_array_initializer_on_wrap = true;
 	this.formatterPrefs.alignment_for_expressions_in_array_initializer = Alignment.M_NO_ALIGNMENT;
 	String source =
@@ -13474,7 +13474,7 @@ public void testIssue5195_noWrappingRemovesNewLineBeforeClosingBrace() {
  * Same as above, but with "wrap where necessary": the elements fit on a single line, so no
  * wrapping happens and the new line before the closing brace is removed.
  */
-public void testIssue5195_wrapWhereNecessaryRemovesNewLineBeforeClosingBrace() {
+public void testIssue5195_wrapWhereNecessaryRemovesNewLineBeforeClosingBrace() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.insert_new_line_before_closing_brace_in_array_initializer_on_wrap = true;
 	this.formatterPrefs.alignment_for_expressions_in_array_initializer = Alignment.M_COMPACT_SPLIT;
 	String source =
@@ -13498,7 +13498,7 @@ public void testIssue5195_wrapWhereNecessaryRemovesNewLineBeforeClosingBrace() {
  * With forced wrapping the elements always wrap, so the closing brace always gets its own line,
  * even for an initializer that would otherwise fit on a single line.
  */
-public void testIssue5195_forcedWrappingGetsOwnLine() {
+public void testIssue5195_forcedWrappingGetsOwnLine() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.formatterPrefs.insert_new_line_before_closing_brace_in_array_initializer_on_wrap = true;
 	this.formatterPrefs.alignment_for_expressions_in_array_initializer = Alignment.M_ONE_PER_LINE_SPLIT | Alignment.M_FORCE;
 	String source =

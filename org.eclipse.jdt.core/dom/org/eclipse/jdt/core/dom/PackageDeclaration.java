@@ -72,12 +72,12 @@ public class PackageDeclaration extends ASTNode {
 	private static final List PROPERTY_DESCRIPTORS_3_0;
 
 	static {
-		List propertyList = new ArrayList(2);
+		List propertyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(PackageDeclaration.class, propertyList);
 		addProperty(NAME_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS_2_0 = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(4);
+		propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(PackageDeclaration.class, propertyList);
 		addProperty(JAVADOC_PROPERTY, propertyList);
 		addProperty(ANNOTATIONS_PROPERTY, propertyList);
@@ -149,7 +149,7 @@ public class PackageDeclaration extends ASTNode {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == JAVADOC_PROPERTY) {
 			if (get) {

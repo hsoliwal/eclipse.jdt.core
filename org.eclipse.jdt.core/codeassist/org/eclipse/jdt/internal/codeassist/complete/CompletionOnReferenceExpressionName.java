@@ -27,7 +27,7 @@ public class CompletionOnReferenceExpressionName extends ReferenceExpression imp
 		super(scanner);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeBinding resolveType(BlockScope scope) {
 
 		TypeBinding lhsType;
@@ -39,7 +39,7 @@ public class CompletionOnReferenceExpressionName extends ReferenceExpression imp
 			int length = this.typeArguments.length;
 			typeArgumentsHaveErrors = false;
 			this.resolvedTypeArguments = new TypeBinding[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeReference typeReference = this.typeArguments[i];
 				if ((this.resolvedTypeArguments[i] = typeReference.resolveType(scope, true /* check bounds*/)) == null) {
 					typeArgumentsHaveErrors = true;
@@ -59,20 +59,20 @@ public class CompletionOnReferenceExpressionName extends ReferenceExpression imp
 
 	@Override
 	public StringBuilder printExpression(int tab, StringBuilder output) {
-		output.append("<CompletionOnReferenceExpressionName:"); //$NON-NLS-1$
+		output.append("<CompletionOnReferenceExpressionName:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		this.lhs.print(0, output);
-		output.append("::"); //$NON-NLS-1$
+		output.append("::"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.typeArguments != null) {
-			output.append('<');
+			output.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			int max = this.typeArguments.length - 1;
-			for (int j = 0; j < max; j++) {
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.typeArguments[j].print(0, output);
-				output.append(", ");//$NON-NLS-1$
+				output.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			this.typeArguments[max].print(0, output);
-			output.append('>');
+			output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		output.append(this.selector);
-		return output.append('>');
+		output.append(this.selector); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }

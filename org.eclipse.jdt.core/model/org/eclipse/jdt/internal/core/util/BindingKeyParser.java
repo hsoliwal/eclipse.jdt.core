@@ -162,12 +162,12 @@ public class BindingKeyParser {
 				&& this.source[this.index] == '"';
 		}
 
-		int nextToken() {
+		int nextToken() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int previousTokenEnd = this.index;
 			this.start = this.index;
 			int dollarIndex = -1;
 			int length = this.source.length;
-			while (this.index <= length) {
+			while (this.index <= length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char currentChar = this.index == length ? Character.MIN_VALUE : this.source[this.index];
 				switch (currentChar) {
 					case 'B':
@@ -243,7 +243,7 @@ public class BindingKeyParser {
 						previousTokenEnd = this.start;
 						break;
 					case '[':
-						while (this.index < length && this.source[this.index] == '[')
+						while (this.index < length && this.source[this.index] == '[') //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							this.index++;
 						this.token = ARRAY;
 						return this.token;
@@ -343,10 +343,10 @@ public class BindingKeyParser {
 			return this.token;
 		}
 
-		void skipMethodSignature() {
+		void skipMethodSignature() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.start = this.index;
 			int braket = 0;
-			while (this.index < this.source.length) {
+			while (this.index < this.source.length) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (this.source[this.index]) {
 					case '#':
 					case '%':
@@ -372,22 +372,22 @@ public class BindingKeyParser {
 
 		void skipRank() {
 			this.start = this.index;
-			while (this.index < this.source.length && "0123456789".indexOf(this.source[this.index]) != -1) //$NON-NLS-1$
+			while (this.index < this.source.length && "0123456789".indexOf(this.source[this.index]) != -1) //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.index++;
 		}
 
 		void skipThrownStart() {
-			while (this.index < this.source.length && this.source[this.index] == C_THROWN)
+			while (this.index < this.source.length && this.source[this.index] == C_THROWN) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.index++;
 		}
 
 		void skipParametersStart() {
-			while (this.index < this.source.length && (this.source[this.index] == '<' || this.source[this.index] == '%'))
+			while (this.index < this.source.length && (this.source[this.index] == '<' || this.source[this.index] == '%')) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.index++;
 		}
 
 		void skipParametersEnd() {
-			while (this.index < this.source.length && this.source[this.index] != '>')
+			while (this.index < this.source.length && this.source[this.index] != '>') //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.index++;
 			this.index++;
 		}
@@ -414,70 +414,70 @@ public class BindingKeyParser {
 			this.start = this.index;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public String toString() {
-			StringBuilder buffer = new StringBuilder();
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			switch (this.token) {
 				case START:
-					buffer.append("START: "); //$NON-NLS-1$
+					buffer.append("START: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case PACKAGE:
-					buffer.append("PACKAGE: "); //$NON-NLS-1$
+					buffer.append("PACKAGE: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case TYPE:
-					buffer.append("TYPE: "); //$NON-NLS-1$
+					buffer.append("TYPE: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case FIELD:
-					buffer.append("FIELD: "); //$NON-NLS-1$
+					buffer.append("FIELD: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case METHOD:
-					buffer.append("METHOD: "); //$NON-NLS-1$
+					buffer.append("METHOD: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case ARRAY:
-					buffer.append("ARRAY: "); //$NON-NLS-1$
+					buffer.append("ARRAY: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case LOCAL_VAR:
-					buffer.append("LOCAL VAR: "); //$NON-NLS-1$
+					buffer.append("LOCAL VAR: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case FLAGS:
-					buffer.append("MODIFIERS: "); //$NON-NLS-1$
+					buffer.append("MODIFIERS: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case WILDCARD:
-					buffer.append("WILDCARD: "); //$NON-NLS-1$
+					buffer.append("WILDCARD: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case CAPTURE:
-					buffer.append("CAPTURE: "); //$NON-NLS-1$
+					buffer.append("CAPTURE: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case CAPTURE18:
-					buffer.append("CAPTURE18: "); //$NON-NLS-1$
+					buffer.append("CAPTURE18: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case BASE_TYPE:
-					buffer.append("BASE TYPE: "); //$NON-NLS-1$
+					buffer.append("BASE TYPE: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case MODULE:
-					buffer.append("MODULE: "); //$NON-NLS-1$
+					buffer.append("MODULE: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case END:
-					buffer.append("END: "); //$NON-NLS-1$
+					buffer.append("END: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 			}
 			if (this.index < 0) {
-				buffer.append("**"); //$NON-NLS-1$
-				buffer.append(this.source);
+				buffer.append("**"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(this.source); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (this.index <= this.source.length) {
-				buffer.append(this.source, 0, this.start);
-				buffer.append('*');
+				buffer.append(this.source, 0, this.start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('*'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (this.start <= this.index) {
-					buffer.append(this.source, this.start, this.index - this.start);
-					buffer.append('*');
-					buffer.append(this.source, this.index, this.source.length - this.index);
+					buffer.append(this.source, this.start, this.index - this.start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append('*'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(this.source, this.index, this.source.length - this.index); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					buffer.append('*');
-					buffer.append(this.source, this.start, this.source.length - this.start);
+					buffer.append('*'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(this.source, this.start, this.source.length - this.start); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			} else {
-				buffer.append(this.source);
-				buffer.append("**"); //$NON-NLS-1$
+				buffer.append(this.source); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append("**"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return buffer.toString();
 		}
@@ -650,7 +650,7 @@ public class BindingKeyParser {
 		parse(false/*don't pause after fully qualified name*/);
 	}
 
-	public void parse(boolean pauseAfterFullyQualifiedName) {
+	public void parse(boolean pauseAfterFullyQualifiedName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.parsingPaused) {
 			if (parseModule())
 				return;
@@ -743,7 +743,7 @@ public class BindingKeyParser {
 		return false;
 	}
 
-	private void parseFullyQualifiedName() {
+	private void parseFullyQualifiedName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.scanner.isAtCaptureStart()) {
 			parseCapture();
 			this.hasTypeName = false;
@@ -812,14 +812,14 @@ public class BindingKeyParser {
 
 	private void parseParameterizedMethod() {
 		this.scanner.skipParametersStart();
-		while (!this.scanner.isAtParametersEnd() && !this.isMalformed) {
+		while (!this.scanner.isAtParametersEnd() && !this.isMalformed) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parseTypeArgument();
 		}
 		consumeParameterizedGenericMethod();
 	}
 
 	private void parseGenericType() {
-		while (!this.scanner.isAtParametersEnd() && !this.isMalformed) {
+		while (!this.scanner.isAtParametersEnd() && !this.isMalformed) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.scanner.nextToken() != Scanner.TYPE) {
 				malformedKey();
 				return;
@@ -829,7 +829,7 @@ public class BindingKeyParser {
 		}
 	}
 
-	private void parseInnerType() {
+	private void parseInnerType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.scanner.isAtMemberTypeStart() || this.scanner.nextToken() != Scanner.TYPE)
 			return;
 		char[] typeName = this.scanner.getTokenSource();
@@ -839,7 +839,7 @@ public class BindingKeyParser {
 		if (Character.isDigit(typeName[0])) {
 			// anonymous or local type
 			int nextToken = Scanner.TYPE;
-			while (this.scanner.isAtMemberTypeStart() && !this.isMalformed)
+			while (this.scanner.isAtMemberTypeStart() && !this.isMalformed) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				nextToken = this.scanner.nextToken();
 			typeName = nextToken == Scanner.END ? this.scanner.source : CharOperation.subarray(this.scanner.source, this.keyStart, this.scanner.index+1);
 			consumeLocalType(typeName);
@@ -849,7 +849,7 @@ public class BindingKeyParser {
 		}
 	}
 
-	private void parseLocalVariable() {
+	private void parseLocalVariable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.scanner.nextToken() != Scanner.LOCAL_VAR) {
 			malformedKey();
 			return;
@@ -925,7 +925,7 @@ public class BindingKeyParser {
 		this.scanner.skipTypeEnd();
 	}
 
-	private void parseCapture18() {
+	private void parseCapture18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// syntax: ^{int#int}
 		if (this.scanner.nextToken() != Scanner.CAPTURE18) return;
 
@@ -970,7 +970,7 @@ public class BindingKeyParser {
 		 * See bug 264443
 		 */
 		int token = this.scanner.token;
-		while (this.scanner.isAtThrownStart() && !this.isMalformed) {
+		while (this.scanner.isAtThrownStart() && !this.isMalformed) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.scanner.skipThrownStart();
 			BindingKeyParser parser = newParser();
 			parser.isParsingThrownExceptions = true;
@@ -982,9 +982,9 @@ public class BindingKeyParser {
 		this.scanner.token = token;
 	}
 
-	private void parseParameterizedType(char[] typeName, boolean isRaw) {
+	private void parseParameterizedType(char[] typeName, boolean isRaw) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isRaw) {
-			while (!this.scanner.isAtParametersEnd() && !this.isMalformed) {
+			while (!this.scanner.isAtParametersEnd() && !this.isMalformed) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				parseTypeArgument();
 			}
 		}
@@ -1063,7 +1063,7 @@ public class BindingKeyParser {
 		this.scanner.token = token;
 	}
 
-	private void parseTypeVariable() {
+	private void parseTypeVariable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.scanner.nextToken() != Scanner.TYPE) {
 			malformedKey();
 			return;
@@ -1082,7 +1082,7 @@ public class BindingKeyParser {
 		this.scanner.skipTypeEnd();
 	}
 
-	private void parseWildcard() {
+	private void parseWildcard() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		parseWildcardRank();
 		if (this.scanner.nextToken() != Scanner.WILDCARD) return;
 		char[] source = this.scanner.getTokenSource();

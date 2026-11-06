@@ -45,7 +45,7 @@ public class StringLiteral extends Expression {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(2);
+		List propertyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(StringLiteral.class, propertyList);
 		addProperty(ESCAPED_VALUE_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
@@ -157,7 +157,7 @@ public class StringLiteral extends Expression {
 	 *    quotes and embedded escapes
 	 * @exception IllegalArgumentException if the argument is incorrect
 	 */
-	public void setEscapedValue(String token) {
+	public void setEscapedValue(String token) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// update internalSetEscapedValue(String) if this is changed
 		if (token == null) {
 			throw new IllegalArgumentException("Token cannot be null"); //$NON-NLS-1$
@@ -172,10 +172,10 @@ public class StringLiteral extends Expression {
 				case TokenNameStringLiteral:
 					break;
 				default:
-					throw new IllegalArgumentException("Invalid string literal : >" + token + "<"); //$NON-NLS-1$//$NON-NLS-2$
+					throw new IllegalArgumentException("Invalid string literal : >" + token + "<"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} catch(InvalidInputException e) {
-			throw new IllegalArgumentException("Invalid string literal : >" + token + "<");//$NON-NLS-1$//$NON-NLS-2$
+			throw new IllegalArgumentException("Invalid string literal : >" + token + "<");//$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		preValueChange(ESCAPED_VALUE_PROPERTY);
 		this.escapedValue = token;
@@ -209,7 +209,7 @@ public class StringLiteral extends Expression {
 	 *    escapes
 	 * @exception IllegalArgumentException if the literal value cannot be converted
 	 */
-	public String getLiteralValue() {
+	public String getLiteralValue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String s = getEscapedValue();
 		int len = s.length();
 		if (len < 2 || s.charAt(0) != '\"' || s.charAt(len-1) != '\"' ) {
@@ -237,7 +237,7 @@ public class StringLiteral extends Expression {
 				case TokenNameStringLiteral:
 					return scanner.getCurrentStringLiteral();
 				default:
-					throw new IllegalArgumentException("tokenType: " + tokenType); //$NON-NLS-1$
+					throw new IllegalArgumentException("tokenType: " + tokenType); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} catch(InvalidInputException e) {
 			throw new IllegalArgumentException(e);
@@ -268,14 +268,14 @@ public class StringLiteral extends Expression {
 			throw new IllegalArgumentException();
 		}
 		int len = value.length();
-		StringBuilder b = new StringBuilder(len + 2);
+		StringBuilder b = new StringBuilder(len + 2); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		b.append("\""); // opening delimiter //$NON-NLS-1$
-		for (int i = 0; i < len; i++) {
+		b.append("\""); // opening delimiter //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i < len; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c = value.charAt(i);
 			Util.appendEscapedChar(b, c, true);
 		}
-		b.append("\""); // closing delimiter //$NON-NLS-1$
+		b.append("\""); // closing delimiter //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		setEscapedValue(b.toString());
 	}
 

@@ -57,7 +57,7 @@ public class AnnotationProcessingCompilerToolTest extends AbstractBatchCompilerT
 		_extJar = TestUtil.createAndAddExternalAnnotationJar(null /* no project */);
 	}
 
-	public void test_github844() throws IOException {
+	public void test_github844() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// @formatter:off
 		runTest(
 			true /* shouldCompileOK */,
@@ -77,8 +77,8 @@ public class AnnotationProcessingCompilerToolTest extends AbstractBatchCompilerT
 					"-d", OUTPUT_DIR,
 			        "-source", CompilerOptions.getFirstSupportedJavaVersion(),
 			        "-g", "-preserveAllLocals",
-			        "-cp",  OUTPUT_DIR  + File.pathSeparator + _extJar.getAbsolutePath() ,
-			        "-s", OUTPUT_DIR  +  File.separator + "src-gen",
+			        "-cp",  OUTPUT_DIR  + File.pathSeparator + _extJar.getAbsolutePath() , //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			        "-s", OUTPUT_DIR  +  File.separator + "src-gen", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			        "-processorpath", _extJar.getAbsolutePath(),
 			        "-XprintProcessorInfo", "-XprintRounds",
 			        "-proceedOnError"
@@ -86,7 +86,7 @@ public class AnnotationProcessingCompilerToolTest extends AbstractBatchCompilerT
 			new String[] { /* compileFileNames */
 				"X.java"
 			},
-			"Round 1:\n"
+			"Round 1:\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "	input files: {p1.X}\n"
 			+ "	annotations: [org.eclipse.jdt.apt.tests.external.annotations.batch.BatchGen]\n"
 			+ "	last round: false\n"
@@ -108,7 +108,7 @@ public class AnnotationProcessingCompilerToolTest extends AbstractBatchCompilerT
 		// @formatter:on
 	}
 
-	public void test_github1654() throws IOException {
+	public void test_github1654() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// @formatter:off
 		runTest(
 			true /* shouldCompileOK */,
@@ -161,8 +161,8 @@ public class AnnotationProcessingCompilerToolTest extends AbstractBatchCompilerT
 					"-d", OUTPUT_DIR,
 			        "-source", CompilerOptions.getFirstSupportedJavaVersion(),
 			        "-g", "-preserveAllLocals",
-			        "-cp",  OUTPUT_DIR  + File.pathSeparator + _extJar.getAbsolutePath() ,
-			        "-s", OUTPUT_DIR  +  File.separator + "src-gen",
+			        "-cp",  OUTPUT_DIR  + File.pathSeparator + _extJar.getAbsolutePath() , //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			        "-s", OUTPUT_DIR  +  File.separator + "src-gen", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			        "-processorpath", _extJar.getAbsolutePath(),
 			        "-XprintProcessorInfo",
 			        // TODO: after fixing the issue, enable and update expected output of:
@@ -176,7 +176,7 @@ public class AnnotationProcessingCompilerToolTest extends AbstractBatchCompilerT
 				"Works1.java",
 				"Works2.java"
 			},
-			"Discovered processor service org.eclipse.jdt.apt.tests.external.annotations.batch.BatchGenProcessor\n" +
+			"Discovered processor service org.eclipse.jdt.apt.tests.external.annotations.batch.BatchGenProcessor\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  supporting [org.eclipse.jdt.apt.tests.external.annotations.batch.BatchGen]\n" + 
 			"  in jar:"  + Path.of(_extJar.toPath().normalize().toAbsolutePath().toString()).toUri().toURL().toString() + "!/\n" + 
 			"Processor org.eclipse.jdt.apt.tests.external.annotations.batch.BatchGenProcessor matches [org.eclipse.jdt.apt.tests.external.annotations.batch.BatchGen] and returns true\n" + 
@@ -200,10 +200,10 @@ public class AnnotationProcessingCompilerToolTest extends AbstractBatchCompilerT
 		}
 		@Override
 		public String toString() {
-			StringBuilder result = new StringBuilder();
-			for (String option: this.options) {
-				result.append(option);
-				result.append(' ');
+			StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (String option: this.options) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				result.append(option); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				result.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			return result.toString();
 		}
@@ -242,7 +242,7 @@ public class AnnotationProcessingCompilerToolTest extends AbstractBatchCompilerT
 	}
 	static EclipseCompiler COMPILER = new EclipseCompiler();
 	static JavaCompiler JAVAC_COMPILER = ToolProvider.getSystemJavaCompiler();
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean invokeCompiler(
 			PrintWriter out,
 			PrintWriter err,
@@ -256,13 +256,13 @@ public class AnnotationProcessingCompilerToolTest extends AbstractBatchCompilerT
 			ownsManager = true;
 		}
 		try {
-			List<File> files = new ArrayList<>();
+			List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			String[] fileNames = arguments.fileNames;
-			for (int i = 0, l = fileNames.length; i < l; i++) {
+			for (int i = 0, l = fileNames.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (fileNames[i].startsWith(OUTPUT_DIR)) {
 					files.add(new File(fileNames[i]));
 				} else {
-					files.add(new File(OUTPUT_DIR + File.separator + fileNames[i]));
+					files.add(new File(OUTPUT_DIR + File.separator + fileNames[i])); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			CompilationTask task = COMPILER.getTask(out, arguments.standardJavaFileManager /* carry the null over */, new CompilerInvocationDiagnosticListener(err), arguments.options, null, manager.getJavaFileObjectsFromFiles(files));

@@ -30,7 +30,7 @@ public interface IJavaModelMarker {
 	 * recognize those markers in the workspace that flag problems detected by
 	 * the Java tooling during compilation.
 	 */
-	String JAVA_MODEL_PROBLEM_MARKER = JavaCore.PLUGIN_ID + ".problem"; //$NON-NLS-1$
+	String JAVA_MODEL_PROBLEM_MARKER = JavaCore.PLUGIN_ID + ".problem"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Java model transient problem marker type (value
@@ -46,7 +46,7 @@ public interface IJavaModelMarker {
 	 * @see org.eclipse.jdt.core.eval.ICodeSnippetRequestor#acceptProblem(org.eclipse.core.resources.IMarker,String,
 	 *      int)
 	 */
-	String TRANSIENT_PROBLEM = JavaCore.PLUGIN_ID + ".transient_problem"; //$NON-NLS-1$
+	String TRANSIENT_PROBLEM = JavaCore.PLUGIN_ID + ".transient_problem"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Java model task marker type (value
@@ -59,7 +59,7 @@ public interface IJavaModelMarker {
 	 *
 	 * @since 2.1
 	 */
-	String TASK_MARKER = JavaCore.PLUGIN_ID + ".task"; //$NON-NLS-1$
+	String TASK_MARKER = JavaCore.PLUGIN_ID + ".task"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Id marker attribute (value <code>"arguments"</code>). Arguments are
@@ -106,7 +106,7 @@ public interface IJavaModelMarker {
 	 * used to recognize those markers in the workspace that flag problems
 	 * detected by the Java tooling during classpath setting.
 	 */
-	String BUILDPATH_PROBLEM_MARKER = JavaCore.PLUGIN_ID
+	String BUILDPATH_PROBLEM_MARKER = JavaCore.PLUGIN_ID //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ ".buildpath_problem"; //$NON-NLS-1$
 
 	/**

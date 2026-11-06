@@ -40,7 +40,7 @@ public static Test suite() {
 static {
 //	TESTS_NAMES = new String[]{"test0002"};
 }
-public void test0001() throws JavaModelException {
+public void test0001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src3/test0001/X.java",
@@ -69,7 +69,7 @@ public void test0001() throws JavaModelException {
 			false);
 
 	assertResults(
-		"completion offset="+(cursorLocation)+"\n" +
+		"completion offset="+(cursorLocation)+"\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"completion range=["+(tokenStart)+", "+(tokenEnd)+"]\n" +
 		"completion token=\"ZZZZ\"\n" +
 		"completion token kind=TOKEN_KIND_NAME\n" +
@@ -78,7 +78,7 @@ public void test0001() throws JavaModelException {
 		"completion token location={STATEMENT_START}",
 		result.context);
 }
-public void test0002() throws JavaModelException {
+public void test0002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src3/test0002/X.java",
@@ -107,7 +107,7 @@ public void test0002() throws JavaModelException {
 			false);
 
 	assertResults(
-		"completion offset="+(cursorLocation)+"\n" +
+		"completion offset="+(cursorLocation)+"\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"completion range=["+(tokenStart)+", "+(tokenEnd)+"]\n" +
 		"completion token=\"\"\n" +
 		"completion token kind=TOKEN_KIND_NAME\n" +
@@ -116,7 +116,7 @@ public void test0002() throws JavaModelException {
 		"completion token location={STATEMENT_START}",
 		result.context);
 }
-public void test0003() throws JavaModelException {
+public void test0003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src3/test0003/X.java",
@@ -145,7 +145,7 @@ public void test0003() throws JavaModelException {
 			false);
 
 	assertResults(
-		"completion offset="+(cursorLocation)+"\n" +
+		"completion offset="+(cursorLocation)+"\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"completion range=["+(tokenStart)+", "+(tokenEnd)+"]\n" +
 		"completion token=\"ZZ\"\n" +
 		"completion token kind=TOKEN_KIND_NAME\n" +
@@ -154,7 +154,7 @@ public void test0003() throws JavaModelException {
 		"completion token location={STATEMENT_START}",
 		result.context);
 }
-public void test0004() throws JavaModelException {
+public void test0004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src3/test0004/X.java",
@@ -183,7 +183,7 @@ public void test0004() throws JavaModelException {
 			false);
 
 	assertResults(
-		"completion offset="+(cursorLocation)+"\n" +
+		"completion offset="+(cursorLocation)+"\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"completion range=["+(tokenStart)+", "+(tokenEnd)+"]\n" +
 		"completion token=\"\"\n" +
 		"completion token kind=TOKEN_KIND_NAME\n" +

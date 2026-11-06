@@ -51,7 +51,7 @@ static {
 public static Test suite() {
 	return buildMinimalComplianceTestSuite(testClass(), F_1_8);
 }
-public void test001() throws Exception {
+public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -70,7 +70,7 @@ public void test001() throws Exception {
 	);
 
 	String expectedOutput =
-		"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+		"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"public class X {\n" +
 		"  Constant pool:\n" +
 		"    constant #1 class: #2 X\n" +
@@ -152,7 +152,7 @@ public void test001() throws Exception {
 
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test002() throws Exception {
+public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -177,7 +177,7 @@ public void test002() throws Exception {
 	);
 
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -260,7 +260,7 @@ public void test002() throws Exception {
 
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test003() throws Exception {
+public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -286,7 +286,7 @@ public void test003() throws Exception {
 	);
 
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -368,7 +368,7 @@ public void test003() throws Exception {
 
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test004() throws Exception {
+public void test004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -391,7 +391,7 @@ public void test004() throws Exception {
 	);
 
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -495,7 +495,7 @@ public void test004() throws Exception {
 
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test005() throws Exception {
+public void test005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -519,7 +519,7 @@ public void test005() throws Exception {
 		},
 	"SUCCESS"
 	);
-	verifyClassFile("// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+	verifyClassFile("// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -603,7 +603,7 @@ public void test005() throws Exception {
 			"		#39 ()LMain;\n" +
 			"}", "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test006() throws Exception {
+public void test006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -633,7 +633,7 @@ public void test006() throws Exception {
 	"SUCCESS"
 	);
 	String expected =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -724,7 +724,7 @@ public void test006() throws Exception {
 			"}";
 	verifyClassFile(expected, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test007() throws Exception {
+public void test007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -744,7 +744,7 @@ public void test007() throws Exception {
 	);
 
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -849,7 +849,7 @@ public void test007() throws Exception {
 
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test007a() throws Exception {
+public void test007a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -867,7 +867,7 @@ public void test007a() throws Exception {
 	);
 
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -971,7 +971,7 @@ public void test007a() throws Exception {
 
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test008() throws Exception {
+public void test008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -989,7 +989,7 @@ public void test008() throws Exception {
 	);
 
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -1085,7 +1085,7 @@ public void test008() throws Exception {
 
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test009() throws Exception {
+public void test009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -1108,7 +1108,7 @@ public void test009() throws Exception {
 	);
 
 	String expectedOutput = this.complianceLevel < ClassFileConstants.JDK9 ?
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -1230,7 +1230,7 @@ public void test009() throws Exception {
 			"		#62 invokestatic X.lambda$0:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\n" +
 			"		#63 (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\n" +
 			"}" :
-				"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+				"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"public class X {\n" +
 				"  Constant pool:\n" +
 				"    constant #1 class: #2 X\n" +
@@ -1343,7 +1343,7 @@ public void test009() throws Exception {
 				"}";
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test010() throws Exception {
+public void test010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -1370,7 +1370,7 @@ public void test010() throws Exception {
 	);
 
 	String expectedOutput = this.complianceLevel < ClassFileConstants.JDK9 ?
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -1508,7 +1508,7 @@ public void test010() throws Exception {
 			"		#68 (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\n" +
 			"}"
 			:
-				"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+				"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"public class X {\n" +
 				"  Constant pool:\n" +
 				"    constant #1 class: #2 X\n" +
@@ -1640,7 +1640,7 @@ public void test010() throws Exception {
 
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test011() throws Exception {
+public void test011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"Main.java",
@@ -1667,7 +1667,7 @@ public void test011() throws Exception {
 	);
 
 	String expectedOutput = this.complianceLevel < ClassFileConstants.JDK9 ?
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -1805,7 +1805,7 @@ public void test011() throws Exception {
 			"		#68 (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\n" +
 			"}"
 			:
-				"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+				"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"public class X {\n" +
 				"  Constant pool:\n" +
 				"    constant #1 class: #2 X\n" +
@@ -1938,7 +1938,7 @@ public void test011() throws Exception {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406627,  [1.8][compiler][codegen] Annotations on lambda parameters go the way of /dev/null
-public void test012() throws Exception {
+public void test012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -1965,7 +1965,7 @@ public void test012() throws Exception {
 		"");
 
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -2102,7 +2102,7 @@ public void test012() throws Exception {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406627,  [1.8][compiler][codegen] Annotations on lambda parameters go the way of /dev/null
-public void test013() throws Exception {
+public void test013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -2127,7 +2127,7 @@ public void test013() throws Exception {
 		"");
 
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -2237,7 +2237,7 @@ public void test013() throws Exception {
 
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
-public void test014() throws Exception {
+public void test014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -2266,7 +2266,7 @@ public void test014() throws Exception {
 		"");
 
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -2444,7 +2444,7 @@ public void test014() throws Exception {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406641, [1.8][compiler][codegen] Code generation for intersection cast.
-public void test015() throws Exception {
+public void test015() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -2460,7 +2460,7 @@ public void test015() throws Exception {
 		"");
 
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X\n" +
@@ -2672,7 +2672,7 @@ public void test015() throws Exception {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406392, [1.8][compiler][codegen] Improve identification of lambdas that must capture enclosing instance
-public void test016() throws Exception {
+public void test016() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test proves that when a lambda body references a type variable of an enclosing method, it can still be emitted as a static method.
 	this.runConformTest(
 		new String[] {
@@ -2709,7 +2709,7 @@ public void test016() throws Exception {
 				"Nest Host: #53 X\n";
 	}
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"class X$1Y {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X$1Y\n" +
@@ -2859,7 +2859,7 @@ public void test016() throws Exception {
 	verifyClassFile(expectedOutput, "X$1Y.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=406392, [1.8][compiler][codegen] Improve identification of lambdas that must capture enclosing instance
-public void test017() throws Exception {
+public void test017() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// This test proves that when a lambda body references a type variable of an enclosing class, it can still be emitted as a static method.
 	this.runConformTest(
 		new String[] {
@@ -2896,7 +2896,7 @@ public void test017() throws Exception {
 				"Nest Host: #53 X\n";
 	}
 	String expectedOutput =
-			"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+			"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"class X$1Y {\n" +
 			"  Constant pool:\n" +
 			"    constant #1 class: #2 X$1Y\n" +
@@ -3046,7 +3046,7 @@ public void test017() throws Exception {
 	verifyClassFile(expectedOutput, "X$1Y.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424444, [1.8] VerifyError when constructor reference used with array
-public void test424444() throws Exception {
+public void test424444() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -3080,7 +3080,7 @@ public void test424444() throws Exception {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424444, [1.8] VerifyError when constructor reference used with array
-public void test424444a() throws Exception {
+public void test424444a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -3114,7 +3114,7 @@ public void test424444a() throws Exception {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424444, [1.8] VerifyError when constructor reference used with array
-public void test424444b() throws Exception {
+public void test424444b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -3148,7 +3148,7 @@ public void test424444b() throws Exception {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424444, [1.8] VerifyError when constructor reference used with array
-public void test424444c() throws Exception {
+public void test424444c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -3182,7 +3182,7 @@ public void test424444c() throws Exception {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424444, [1.8] VerifyError when constructor reference used with array
-public void test424444d() throws Exception {
+public void test424444d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 				"X.java",
@@ -3216,7 +3216,7 @@ public void test424444d() throws Exception {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430015, [1.8] NPE trying to disassemble classfile with lambda method and MethodParameters
-public void test430015() throws IOException, ClassFormatException {
+public void test430015() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3255,7 +3255,7 @@ public void test430015() throws IOException, ClassFormatException {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430015, [1.8] NPE trying to disassemble classfile with lambda method and MethodParameters
-public void test430015a() throws IOException, ClassFormatException {
+public void test430015a() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_MethodParametersAttribute, CompilerOptions.GENERATE);
 	this.runConformTest(
@@ -3290,7 +3290,7 @@ public void test430015a() throws IOException, ClassFormatException {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430035, [1.8][compiler][codegen] Bridge methods are not generated for lambdas/method references
-public void test430035() throws IOException, ClassFormatException {
+public void test430035() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 						"X.java",
@@ -3319,7 +3319,7 @@ public void test430035() throws IOException, ClassFormatException {
 			"m(bridge method(i))");
 
 		String expectedOutput = this.complianceLevel < ClassFileConstants.JDK9 ?
-				"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+				"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"public class X {\n" +
 				"  Constant pool:\n" +
 				"    constant #1 class: #2 X\n" +
@@ -3524,7 +3524,7 @@ public void test430035() throws IOException, ClassFormatException {
 				"		#107 (Ljava/lang/Object;Ljava/lang/String;)V\n" +
 				"}"
 				:
-				"// Compiled from X.java (" + this.versionString + ", super bit)\n" +
+				"// Compiled from X.java (" + this.versionString + ", super bit)\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"public class X {\n" +
 				"  Constant pool:\n" +
 				"    constant #1 class: #2 X\n" +
@@ -3723,7 +3723,7 @@ public void test430035() throws IOException, ClassFormatException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430571,  [1.8][compiler] Lambda parameter names and annotations don't make it to class files.
-public void test430571() throws IOException, ClassFormatException {
+public void test430571() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_MethodParametersAttribute, CompilerOptions.GENERATE);
 	this.runConformTest(
@@ -3765,7 +3765,7 @@ public void test430571() throws IOException, ClassFormatException {
 	verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435869, [1.8][compiler]AIOOB with annotated intersection cast
-public void test435869() throws IOException, ClassFormatException {
+public void test435869() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",

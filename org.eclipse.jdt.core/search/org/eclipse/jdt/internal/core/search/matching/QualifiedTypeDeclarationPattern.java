@@ -41,7 +41,7 @@ public QualifiedTypeDeclarationPattern(char[] qualification, int qualificationMa
 QualifiedTypeDeclarationPattern(int matchRule) {
 	super(matchRule);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void decodeIndexKey(char[] key) {
 	int slash = CharOperation.indexOf(SEPARATOR, key, 0);
 	this.simpleName = CharOperation.subarray(key, 0, slash);
@@ -102,44 +102,44 @@ public boolean matchesDecodedKey(SearchPattern decodedPattern) {
 	return matchesName(this.simpleName, pattern.simpleName) &&
 		(this.qualification == null || this.packagePattern == null || this.packagePattern.matchesName(this.qualification, pattern.qualification));
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected StringBuilder print(StringBuilder output) {
 	switch (this.typeSuffix){
 		case CLASS_SUFFIX :
-			output.append("ClassDeclarationPattern: qualification<"); //$NON-NLS-1$
+			output.append("ClassDeclarationPattern: qualification<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case CLASS_AND_INTERFACE_SUFFIX:
-			output.append("ClassAndInterfaceDeclarationPattern: qualification<"); //$NON-NLS-1$
+			output.append("ClassAndInterfaceDeclarationPattern: qualification<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case CLASS_AND_ENUM_SUFFIX :
-			output.append("ClassAndEnumDeclarationPattern: qualification<"); //$NON-NLS-1$
+			output.append("ClassAndEnumDeclarationPattern: qualification<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case INTERFACE_SUFFIX :
-			output.append("InterfaceDeclarationPattern: qualification<"); //$NON-NLS-1$
+			output.append("InterfaceDeclarationPattern: qualification<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case INTERFACE_AND_ANNOTATION_SUFFIX:
-			output.append("InterfaceAndAnnotationDeclarationPattern: qualification<"); //$NON-NLS-1$
+			output.append("InterfaceAndAnnotationDeclarationPattern: qualification<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case ENUM_SUFFIX :
-			output.append("EnumDeclarationPattern: qualification<"); //$NON-NLS-1$
+			output.append("EnumDeclarationPattern: qualification<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case ANNOTATION_TYPE_SUFFIX :
-			output.append("AnnotationTypeDeclarationPattern: qualification<"); //$NON-NLS-1$
+			output.append("AnnotationTypeDeclarationPattern: qualification<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		default :
-			output.append("TypeDeclarationPattern: qualification<"); //$NON-NLS-1$
+			output.append("TypeDeclarationPattern: qualification<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 	}
 	if (this.qualification != null)
-		output.append(this.qualification);
+		output.append(this.qualification); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else
-		output.append("*"); //$NON-NLS-1$
-	output.append(">, type<"); //$NON-NLS-1$
+		output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	output.append(">, type<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.simpleName != null)
-		output.append(this.simpleName);
+		output.append(this.simpleName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else
-		output.append("*"); //$NON-NLS-1$
-	output.append("> "); //$NON-NLS-1$
+		output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	output.append("> "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.print(output);
 }
 }

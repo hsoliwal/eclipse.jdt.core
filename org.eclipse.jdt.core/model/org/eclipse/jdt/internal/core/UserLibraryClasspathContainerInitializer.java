@@ -81,14 +81,14 @@ public class UserLibraryClasspathContainerInitializer extends ClasspathContainer
 
 	private void verbose_no_user_library_found(IJavaProject project, String userLibraryName) {
 		JavaModelManager.trace(
-			"UserLibrary INIT - FAILED (no user library found)\n" + //$NON-NLS-1$
+			"UserLibrary INIT - FAILED (no user library found)\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + project.getElementName() + '\n' + //$NON-NLS-1$
 			"	userLibraryName: " + userLibraryName); //$NON-NLS-1$
 	}
 
 	private void verbose_not_a_user_library(IJavaProject project, IPath containerPath) {
 		JavaModelManager.trace(
-			"UserLibrary INIT - FAILED (not a user library)\n" + //$NON-NLS-1$
+			"UserLibrary INIT - FAILED (not a user library)\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + project.getElementName() + '\n' + //$NON-NLS-1$
 			"	container path: " + containerPath); //$NON-NLS-1$
 	}

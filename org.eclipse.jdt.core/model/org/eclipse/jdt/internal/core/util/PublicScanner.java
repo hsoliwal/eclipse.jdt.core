@@ -129,7 +129,7 @@ public class PublicScanner implements IScanner, ITerminalSymbols {
 	 * Note for maintainers: new tokens from {@link TerminalToken} should be added to {@link ITerminalSymbols} with
 	 * <b>adopted</b> numerical values (they differ in each interface).
 	 */
-	@Deprecated // uses deprecated TerminalTokensIdentifier
+	@Deprecated // uses deprecated TerminalTokensIdentifier //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	private int translateTokenToTerminalSymbol(TerminalToken nextTokenEnum) throws InvalidInputException {
 		int nextToken = nextTokenEnum.tokenNumber();
 		switch (nextTokenEnum) {

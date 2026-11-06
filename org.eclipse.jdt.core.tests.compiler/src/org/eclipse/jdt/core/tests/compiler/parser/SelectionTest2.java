@@ -56,7 +56,7 @@ static class SpecialSelectionParser extends SelectionParser {
 				new DefaultProblemFactory(Locale.getDefault())));
 	return parser;
 }
-void checkMethodParse(
+void checkMethodParse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SelectionParser parser,
 		char[] source,
 		int selectionStart,
@@ -75,7 +75,7 @@ void checkMethodParse(
 
 	ASTNode foundMethod = null;
 	if (unit.types != null) {
-		for (int i = 0; i < unit.types.length; i++) {
+		for (int i = 0; i < unit.types.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeDeclaration type = unit.types[i];
 			ASTNode method = findMethod(type, selectionStart);
 			if (method != null) {
@@ -90,7 +90,7 @@ void checkMethodParse(
 	} else {
 		TypeDeclaration type = (TypeDeclaration)foundMethod;
 		if (type.fields != null) {
-			for (int i = 0; i < type.fields.length; i++) {
+			for (int i = 0; i < type.fields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				FieldDeclaration field = type.fields[i];
 				if (field instanceof Initializer && field.sourceStart <= selectionStart && selectionStart <= field.sourceEnd) {
 					parser.parseBlockStatements((Initializer)field, type, unit);
@@ -109,12 +109,12 @@ void checkMethodParse(
 								? NONE
 								: parser.assistNode.toString();
 	assertEquals(
-		"invalid selection node-" + testName,
+		"invalid selection node-" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		expectedSelection,
 		computedCompletion);
 
 	assertEquals(
-		"invalid selection location-"+testName,
+		"invalid selection location-"+testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		expectedUnitToString,
 		computedUnitToString);
 
@@ -122,7 +122,7 @@ void checkMethodParse(
 		char[] chars = ((SelectionScanner)parser.scanner).selectionIdentifier;
 		String computedSelectionIdentifier = chars == null ? NONE : new String(chars);
 		assertEquals(
-			"invalid selection identifier-" + testName,
+			"invalid selection identifier-" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedSelectionIdentifier,
 			computedSelectionIdentifier);
 	}
@@ -146,7 +146,7 @@ void checkMethodParse(
 		}
 		String computedReplacedSource  = chars == null ? NONE : new String(chars);
 		assertEquals(
-			"invalid replaced source-" + testName,
+			"invalid replaced source-" + testName, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			expectedSelectedSource,
 			computedReplacedSource);
 	}
@@ -154,11 +154,11 @@ void checkMethodParse(
 /*
  * http://dev.eclipse.org/bugs/show_bug.cgi?id=30946
  */
-public void testBug30946() {
+public void testBug30946() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final SpecialSelectionParser parser = createParser();
 	Thread query = new Thread(
 		new Runnable(){
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			public void run(){
 				String str =
 					"public class A {\n" +

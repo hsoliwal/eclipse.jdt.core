@@ -69,18 +69,18 @@ protected static final String NOTOWNING_CONTENT =
 @Override
 protected String potentialLeakOrCloseNotShown(String resourceName) {
 	// some leaks are considered as definite when annotations are used.
-	return "Mandatory close of resource '"+resourceName+"' has not been shown\n";
+	return "Mandatory close of resource '"+resourceName+"' has not been shown\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 @Override
 protected String potentialLeakOrCloseNotShownAtExit(String resourceName) {
 	// some leaks are considered as definite when annotations are used - variant
 	// at-exit is irrelevant for unassigned closeables:
 	String suffix = resourceName.startsWith("<unassigned Closeable") ? "\n" : " at this location\n";
-	return "Mandatory close of resource '"+resourceName+"' has not been shown"+suffix;
+	return "Mandatory close of resource '"+resourceName+"' has not been shown"+suffix; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 @Override
 protected String potentialOrDefiniteLeak(String string) {
-	return "Resource leak: '"+string+"' is never closed\n";
+	return "Resource leak: '"+string+"' is never closed\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 protected String fieldDeclPrefix() {
 	return "@org.eclipse.jdt.annotation.Owning "; // intentionally no linebreak
@@ -150,7 +150,7 @@ protected String getTest056y_log() {
 			----------
 			""";
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected String getTest061l2_log() {
 	return """
 		----------
@@ -218,7 +218,7 @@ String getBug561334_log() {
 			""";
 }
 
-public void testBug411098_comment19_annotated() {
+public void testBug411098_comment19_annotated() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"A.java",
@@ -244,7 +244,7 @@ public void testBug411098_comment19_annotated() {
 		null);
 }
 
-public void testBug440282_annotated() {
+public void testBug440282_annotated() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"ResourceLeakFalseNegative.java",
@@ -332,7 +332,7 @@ public void testBug440282_annotated() {
 		null);
 }
 
-public void testOwningField_NOK1() {
+public void testOwningField_NOK1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"A.java",
@@ -383,7 +383,7 @@ public void testOwningField_NOK1() {
 		null);
 }
 
-public void testOwningField_NOK2() {
+public void testOwningField_NOK2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"A.java",
@@ -425,7 +425,7 @@ public void testOwningField_NOK2() {
 		null);
 }
 
-public void testOwningField_binaryField_lazyInit() {
+public void testOwningField_binaryField_lazyInit() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"A.java",
@@ -487,7 +487,7 @@ public void testOwningField_binaryField_lazyInit() {
 		false);
 }
 
-public void testOwningField_binaryField_lazyInit2() {
+public void testOwningField_binaryField_lazyInit2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"A.java",
@@ -550,7 +550,7 @@ public void testOwningField_binaryField_lazyInit2() {
 		false);
 }
 
-public void testOwningField_OK() {
+public void testOwningField_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"A.java",
@@ -578,7 +578,7 @@ public void testOwningField_OK() {
 		null);
 }
 
-public void testSharedField() {
+public void testSharedField() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportInsufficientResourceManagement, CompilerOptions.WARNING);
 	runLeakTestWithAnnotations(
@@ -623,7 +623,7 @@ public void testSharedField() {
 		);
 }
 
-public void testOwning_receiving_parameter() {
+public void testOwning_receiving_parameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9)
 		return; // t-w-r with pre-declared local available since 9
 	runLeakTestWithAnnotations(
@@ -654,7 +654,7 @@ public void testOwning_receiving_parameter() {
 		null);
 }
 
-public void testOwning_sending() {
+public void testOwning_sending() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9)
 		return; // t-w-r with pre-declared local available since 9
 	runLeakTestWithAnnotations(
@@ -716,7 +716,7 @@ public void testOwning_sending() {
 		""",
 		null);
 }
-public void testOwning_sending_toBinary() {
+public void testOwning_sending_toBinary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9)
 		return; // t-w-r with pre-declared local available since 9
 	runLeakTestWithAnnotations(
@@ -786,7 +786,7 @@ public void testOwning_sending_toBinary() {
 		false);
 }
 
-public void testOwning_receiving_from_call() {
+public void testOwning_receiving_from_call() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"X.java",
@@ -844,7 +844,7 @@ public void testOwning_receiving_from_call() {
 		null);
 
 }
-public void testOwning_receiving_from_binaryCall() {
+public void testOwning_receiving_from_binaryCall() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"p/Produce.java",
@@ -916,7 +916,7 @@ public void testOwning_receiving_from_binaryCall() {
 		false);
 
 }
-public void testOwning_return() {
+public void testOwning_return() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"X.java",
@@ -957,7 +957,7 @@ public void testOwning_return() {
 		""",
 		null);
 }
-public void testUnannotated_return() {
+public void testUnannotated_return() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"X.java",
@@ -992,7 +992,7 @@ public void testUnannotated_return() {
 		""",
 		null);
 }
-public void testNotOwning_return() {
+public void testNotOwning_return() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"X.java",
@@ -1048,7 +1048,7 @@ public void testNotOwning_return() {
 		""",
 		null);
 }
-public void testNotOwningCloseableClass() {
+public void testNotOwningCloseableClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"p/A.java",
@@ -1072,7 +1072,7 @@ public void testNotOwningCloseableClass() {
 		"",
 		null);
 }
-public void testNotOwningCloseableClass_binary() {
+public void testNotOwningCloseableClass_binary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"p/A.java",
@@ -1102,7 +1102,7 @@ public void testNotOwningCloseableClass_binary() {
 			null,
 			false);
 }
-public void testInheritance() {
+public void testInheritance() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"Super.java",
@@ -1159,7 +1159,7 @@ public void testInheritance() {
 		""",
 		null);
 }
-public void testCustomWrapperResource() {
+public void testCustomWrapperResource() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"p1/C.java",
@@ -1211,7 +1211,7 @@ public void testCustomWrapperResource() {
 		""",
 		null);
 }
-public void testCustomWrapperResource_binary() {
+public void testCustomWrapperResource_binary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"p1/C.java",
@@ -1261,7 +1261,7 @@ public void testCustomWrapperResource_binary() {
 		false);
 
 }
-public void testSubclassingWrapperResource() {
+public void testSubclassingWrapperResource() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"p1/C.java",
@@ -1309,7 +1309,7 @@ public void testSubclassingWrapperResource() {
 		""",
 		null);
 }
-public void testWrappingTwoResources() {
+public void testWrappingTwoResources() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"X.java",
@@ -1333,7 +1333,7 @@ public void testWrappingTwoResources() {
 		"",
 		null);
 }
-public void testConsumingMethod_nok() {
+public void testConsumingMethod_nok() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"F.java",
@@ -1359,7 +1359,7 @@ public void testConsumingMethod_nok() {
 		""",
 		null);
 }
-public void testConsumingMethodUse() {
+public void testConsumingMethodUse() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 		new String[] {
 			"F.java",
@@ -1386,7 +1386,7 @@ public void testConsumingMethodUse() {
 		""",
 		null);
 }
-public void testConsumingMethodUse_binary() {
+public void testConsumingMethodUse_binary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(
 			new String[] {
 				"p1/F.java",
@@ -1426,7 +1426,7 @@ public void testConsumingMethodUse_binary() {
 			null,
 			false);
 }
-public void testGH2207_2() {
+public void testGH2207_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -1469,7 +1469,7 @@ public void testGH2207_2() {
 		""",
 		options);
 }
-public void testGH2207_3() {
+public void testGH2207_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -1508,7 +1508,7 @@ public void testGH2207_3() {
 		""",
 		options);
 }
-public void testGH2207_4() {
+public void testGH2207_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -1547,7 +1547,7 @@ public void testGH2207_4() {
 		""",
 		options);
 }
-public void testGH2161_staticBlock() {
+public void testGH2161_staticBlock() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -1607,7 +1607,7 @@ public void testGH2161_staticBlock() {
 		""",
 		options);
 }
-public void testGH2161_initializers() {
+public void testGH2161_initializers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -1655,7 +1655,7 @@ public void testGH2161_initializers() {
 		""",
 		options);
 }
-public void testGH2635() {
+public void testGH2635() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -1717,7 +1717,7 @@ public void testGH2635() {
 		"",
 		options);
 }
-public void testGH3278_OK() {
+public void testGH3278_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportPotentiallyUnclosedCloseable, CompilerOptions.ERROR);
 	options.put(CompilerOptions.OPTION_ReportUnclosedCloseable, CompilerOptions.ERROR);
@@ -1770,7 +1770,7 @@ public void testGH3278_OK() {
 		"----------\n",
 		options);
 }
-public void testGH3278_missingAnnotations() {
+public void testGH3278_missingAnnotations() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(new String[] {
 			"annotated/TestNotOwning.java",
 			"""
@@ -1844,7 +1844,7 @@ public void testGH3278_missingAnnotations() {
 		options,
 		false);
 }
-public void testGH4899() {
+public void testGH4899() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runLeakTestWithAnnotations(new String[] {
 			"X.java",
 			"""

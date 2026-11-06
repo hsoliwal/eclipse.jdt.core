@@ -38,17 +38,17 @@ public class AutomaticModuleNamingTest extends AbstractRegressionTest {
 	}
 
 	public void testManifest() throws Exception {
-		String dirName = OUTPUT_DIR + File.separator + "automatic";
+		String dirName = OUTPUT_DIR + File.separator + "automatic"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			String metaInfDir = dirName + File.separator + "META-INF";
-			new File(metaInfDir).mkdirs();
+			String metaInfDir = dirName + File.separator + "META-INF"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			new File(metaInfDir).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
-			Util.createFile(metaInfDir + File.separator + "MANIFEST.MF", //
+			Util.createFile(metaInfDir + File.separator + "MANIFEST.MF", // //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"Manifest-Version: 1.0\n" //
 							+ "Automatic-Module-Name: module.123\n");
-			Util.zip(new File(dirName), dirName + File.separator + "foo.bar-1.2.3.jar");
+			Util.zip(new File(dirName), dirName + File.separator + "foo.bar-1.2.3.jar"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertEquals("module.123", new String(
-					determineAutomaticModuleName((dirName + File.separator + "foo.bar-1.2.3.jar").toString())));
+					determineAutomaticModuleName((dirName + File.separator + "foo.bar-1.2.3.jar").toString()))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} finally {
 			Util.delete(dirName);
 		}
@@ -89,19 +89,19 @@ public class AutomaticModuleNamingTest extends AbstractRegressionTest {
 	public void testMultipleSpecialCharactersWithDirectory() throws Exception {
 		assertEquals("foo.bar.bla",
 				new String(determineAutomaticModuleNameFromFileName(
-						File.separator + "somedir" + File.separator + "?@#foo?@#bar?@#bla?@#-1.2.3-SNAPSHOT.jar", true,
+						File.separator + "somedir" + File.separator + "?@#foo?@#bar?@#bla?@#-1.2.3-SNAPSHOT.jar", true, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						true)));
 	}
 
 	public void testFileEndsWithDotJar() throws Exception {
 		assertEquals("module.jar", new String(
-				determineAutomaticModuleNameFromFileName("somedir" + File.separator + "module.jar.jar", true, true)));
+				determineAutomaticModuleNameFromFileName("somedir" + File.separator + "module.jar.jar", true, true))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testProjectNameEndsWithDotJar() throws Exception {
 		// for hypothetical use case: project on module path treated as automatic module
 		assertEquals("module.jar", new String(
-				determineAutomaticModuleNameFromFileName("somedir" + File.separator + "module.jar", true, false)));
+				determineAutomaticModuleNameFromFileName("somedir" + File.separator + "module.jar", true, false))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testUPPERCASE() throws Exception {

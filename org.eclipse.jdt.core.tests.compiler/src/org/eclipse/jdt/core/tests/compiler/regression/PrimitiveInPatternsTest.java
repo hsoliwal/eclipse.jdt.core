@@ -72,7 +72,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	protected INameEnvironment getNameEnvironment(final String[] testFiles, String[] classPaths, Map<String, String> options) {
 		this.classpaths = classPaths == null ? getDefaultClassPaths() : classPaths;
 		INameEnvironment[] classLibs = getClassLibs(false, options);
-		for (INameEnvironment nameEnvironment : classLibs) {
+		for (INameEnvironment nameEnvironment : classLibs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((FileSystem) nameEnvironment).scanForModules(createParser());
 		}
 		return new InMemoryNameEnvironment9(testFiles, this.moduleMap, classLibs);
@@ -87,7 +87,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			return;
 		runConformTest(testFiles, expectedOutput, customOptions, VMARGS, JAVAC_OPTIONS);
 	}
-	protected void runConformTest(
+	protected void runConformTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] testFiles,
 			String expectedOutputString,
 			String[] classLibraries,
@@ -143,7 +143,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	// https://cr.openjdk.org/~abimpoudis/instanceof/jep455-20240424/specs/instanceof-jls.html#jls-5.1.2
 	// 5.7 Testing Contexts
 	// Identity Conversion
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -163,7 +163,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -183,7 +183,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -203,7 +203,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -223,7 +223,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -243,7 +243,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -263,7 +263,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -283,7 +283,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test008() {
+	public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -303,7 +303,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -323,7 +323,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test010() {
+	public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -344,7 +344,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1.0");
 	}
 
-	public void test011() {
+	public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -368,7 +368,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test012() {
+	public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -391,7 +391,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test013() {
+	public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -415,7 +415,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test014() {
+	public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -438,7 +438,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test015() {
+	public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -461,7 +461,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test016() {
+	public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -483,7 +483,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test017() {
+	public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -507,7 +507,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test018() {
+	public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -530,7 +530,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test019() {
+	public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -554,7 +554,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test020() {
+	public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -579,7 +579,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1.0");
 	}
 	// Widening primitive conversions
-	public void test021() {
+	public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -600,7 +600,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test022() {
+	public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -620,7 +620,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test023() {
+	public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -641,7 +641,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test024() {
+	public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -661,7 +661,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test025() {
+	public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -682,7 +682,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test026() {
+	public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -702,7 +702,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test027() {
+	public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -723,7 +723,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test028() {
+	public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -743,7 +743,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test029() {
+	public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -764,7 +764,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test030() {
+	public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -784,7 +784,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test031() {
+	public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -805,7 +805,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test032() {
+	public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -825,7 +825,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test033() {
+	public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -846,7 +846,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test034() {
+	public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -866,7 +866,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test035() {
+	public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -887,7 +887,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test036() {
+	public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -907,7 +907,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test037() {
+	public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -928,7 +928,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test038() {
+	public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -948,7 +948,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test039() {
+	public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -969,7 +969,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test040() {
+	public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -989,7 +989,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test041() {
+	public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1010,7 +1010,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test042() {
+	public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1030,7 +1030,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test043() {
+	public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1051,7 +1051,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test044() {
+	public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1071,7 +1071,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test045() {
+	public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1092,7 +1092,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test046() {
+	public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1112,7 +1112,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test047() {
+	public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1133,7 +1133,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test048() {
+	public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1153,7 +1153,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test049() {
+	public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1174,7 +1174,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test050() {
+	public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1194,7 +1194,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test051() {
+	public void test051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1215,7 +1215,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test052() {
+	public void test052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1235,7 +1235,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test053() {
+	public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1256,7 +1256,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test054() {
+	public void test054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1276,7 +1276,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test055() {
+	public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1297,7 +1297,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test056() {
+	public void test056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1317,7 +1317,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test057() {
+	public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1338,7 +1338,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test058() {
+	public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1358,7 +1358,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test059() {
+	public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1379,7 +1379,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"-1.0");
 	}
-	public void test060() {
+	public void test060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1399,7 +1399,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"-1.0");
 	}
-	public void test061() {
+	public void test061() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1420,7 +1420,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"-1.0");
 	}
-	public void test062() {
+	public void test062() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1442,7 +1442,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	}
 
 	// Widening with functions
-	public void test063() {
+	public void test063() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1465,7 +1465,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test064() {
+	public void test064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1487,7 +1487,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test065() {
+	public void test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1510,7 +1510,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test066() {
+	public void test066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1532,7 +1532,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test067() {
+	public void test067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1555,7 +1555,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test068() {
+	public void test068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1577,7 +1577,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test069() {
+	public void test069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1600,7 +1600,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test070() {
+	public void test070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1622,7 +1622,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test071() {
+	public void test071() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1645,7 +1645,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test072() {
+	public void test072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1667,7 +1667,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test073() {
+	public void test073() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1717,7 +1717,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			+ "1.0\n"
 			+ "1.0");
 	}
-	public void test074() {
+	public void test074() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1763,7 +1763,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			+ "1.0\n"
 			+ "1.0");
 	}
-	public void test075() {
+	public void test075() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1813,7 +1813,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			+ "1.0\n"
 			+ "1.0");
 	}
-	public void test076() {
+	public void test076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1859,7 +1859,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			+ "1.0\n"
 			+ "1.0");
 	}
-	public void test077() {
+	public void test077() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1900,7 +1900,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			+ "1.0\n"
 			+ "1.0");
 	}
-	public void test078() {
+	public void test078() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1938,7 +1938,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			+ "1.0\n"
 			+ "1.0");
 	}
-	public void test079() {
+	public void test079() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1971,7 +1971,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			+ "1.0");
 	}
 
-	public void test080() {
+	public void test080() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2001,7 +2001,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1.0\n"
 			+ "1.0");
 	}
-	public void test081() {
+	public void test081() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2024,7 +2024,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test082() {
+	public void test082() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2046,7 +2046,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1.0");
 	}
-	public void test083() {
+	public void test083() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2067,7 +2067,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"-1.0");
 	}
-	public void test084() {
+	public void test084() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2087,7 +2087,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"-1.0");
 	}
-	public void test085() {
+	public void test085() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2108,7 +2108,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"-1.0");
 	}
-	public void test086() {
+	public void test086() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2130,7 +2130,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	}
 	// Narrowing Primitive Double
 
-	public void test087() {
+	public void test087() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2196,7 +2196,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"49\n" +
 			"49.0");
 	}
-	public void test088() {
+	public void test088() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2257,7 +2257,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"49.0");
 	}
 
-	public void test089() {
+	public void test089() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2325,7 +2325,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"49\n" +
 			"49.0");
 	}
-	public void test090() {
+	public void test090() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2390,7 +2390,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 
 
 	//Narrowing float
-	public void test091() {
+	public void test091() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2457,7 +2457,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"49.0");
 	}
-	public void test092() {
+	public void test092() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2509,7 +2509,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"49");
 	}
-	public void test093() {
+	public void test093() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2568,7 +2568,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"49");
 	}
-	public void test094() {
+	public void test094() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2624,7 +2624,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	}
 
 	// Narrowing Long
-	public void test095() {
+	public void test095() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2673,7 +2673,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"1\n" +
 				"49");
 	}
-	public void test096() {
+	public void test096() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2717,7 +2717,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"1\n" +
 				"49");
 	}
-	public void test097() {
+	public void test097() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2767,7 +2767,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"1\n" +
 				"49");
 	}
-	public void test098() {
+	public void test098() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2814,7 +2814,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49");
 	}
 	// Narrowing int
-	public void test099() {
+	public void test099() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2854,7 +2854,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"1");
 	}
-	public void test100() {
+	public void test100() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2890,7 +2890,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"1");
 	}
-	public void test101() {
+	public void test101() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2931,7 +2931,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"1");
 	}
-	public void test102() {
+	public void test102() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -2970,7 +2970,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"1");
 	}
 	// Narrowing char
-	public void test103() {
+	public void test103() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3001,7 +3001,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"49");
 	}
-	public void test104() {
+	public void test104() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3029,7 +3029,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"49");
 	}
-	public void test105() {
+	public void test105() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3061,7 +3061,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"49");
 	}
-	public void test106() {
+	public void test106() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3093,7 +3093,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	}
 
 	// Narrowing short
-	public void test107() {
+	public void test107() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3124,7 +3124,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"1");
 	}
-	public void test108() {
+	public void test108() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3152,7 +3152,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"1");
 	}
-	public void test109() {
+	public void test109() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3184,7 +3184,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"49\n" +
 				"1");
 	}
-	public void test110() {
+	public void test110() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3216,7 +3216,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	}
 
 	// 5.1.4 Widening and Narrowing Primitive Conversion
-	public void test111() {
+	public void test111() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3238,7 +3238,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 				"1");
 	}
-	public void test112() {
+	public void test112() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3258,7 +3258,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 				"1");
 	}
-	public void test113() {
+	public void test113() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3281,7 +3281,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test114() {
+	public void test114() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3303,7 +3303,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test115() {
+	public void test115() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3325,7 +3325,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 				"true");
 	}
-	public void test116() {
+	public void test116() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3345,7 +3345,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 				"true");
 	}
-	public void test117() {
+	public void test117() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3368,7 +3368,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"true");
 	}
-	public void test118() {
+	public void test118() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3391,7 +3391,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"true");
 	}
 
-	public void test119() {
+	public void test119() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3413,7 +3413,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test120() {
+	public void test120() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3433,7 +3433,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test121() {
+	public void test121() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3456,7 +3456,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test122() {
+	public void test122() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3478,7 +3478,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test123() {
+	public void test123() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3500,7 +3500,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test124() {
+	public void test124() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3520,7 +3520,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test125() {
+	public void test125() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3543,7 +3543,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test126() {
+	public void test126() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3565,7 +3565,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test127() {
+	public void test127() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3587,7 +3587,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test128() {
+	public void test128() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3607,7 +3607,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test129() {
+	public void test129() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3630,7 +3630,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test130() {
+	public void test130() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3652,7 +3652,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-	public void test131() {
+	public void test131() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3674,7 +3674,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test132() {
+	public void test132() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3694,7 +3694,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test133() {
+	public void test133() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3717,7 +3717,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test134() {
+	public void test134() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3739,7 +3739,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test135() {
+	public void test135() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3761,7 +3761,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test136() {
+	public void test136() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3781,7 +3781,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test137() {
+	public void test137() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3804,7 +3804,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test138() {
+	public void test138() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3826,7 +3826,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49");
 	}
-	public void test139() {
+	public void test139() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3848,7 +3848,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49.0");
 	}
-	public void test140() {
+	public void test140() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3868,7 +3868,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49.0");
 	}
-	public void test141() {
+	public void test141() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3891,7 +3891,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49.0");
 	}
-	public void test142() {
+	public void test142() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3913,7 +3913,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49.0");
 	}
-	public void test143() {
+	public void test143() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3935,7 +3935,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49.0");
 	}
-	public void test144() {
+	public void test144() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3955,7 +3955,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49.0");
 	}
-	public void test145() {
+	public void test145() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -3978,7 +3978,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"49.0");
 	}
-	public void test146() {
+	public void test146() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4001,7 +4001,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"49.0");
 	}
 	// boxing and widening reference conversion
-	public void test147() {
+	public void test147() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4022,7 +4022,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void test148() {
+	public void test148() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4043,7 +4043,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void test149() {
+	public void test149() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4064,7 +4064,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void test150() {
+	public void test150() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4085,7 +4085,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void test151() {
+	public void test151() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4121,7 +4121,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"true\n" +
 			"true");
 	}
-	public void test152() {
+	public void test152() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -4146,7 +4146,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"Incompatible conditional operand types boolean and Number\n" +
 			"----------\n");
 	}
-	public void test153() {
+	public void test153() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4190,7 +4190,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1\n" +
 			"1");
 	}
-	public void test154() {
+	public void test154() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4226,7 +4226,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1\n" +
 			"1");
 	}
-	public void test155() {
+	public void test155() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4270,7 +4270,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"49\n" +
 			"49");
 	}
-	public void test156() {
+	public void test156() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4314,7 +4314,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"49\n" +
 			"49");
 	}
-	public void test157() {
+	public void test157() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4358,7 +4358,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"49.0\n" +
 			"49.0");
 	}
-	public void test158() {
+	public void test158() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4404,7 +4404,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	}
 
 	// reference - unboxing
-	public void test159() {
+	public void test159() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4426,7 +4426,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"true");
 	}
 
-	public void test160() {
+	public void test160() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4447,7 +4447,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"true");
 	}
 
-	public void test161() {
+	public void test161() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4471,7 +4471,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"true");
 	}
 
-	public void test162() {
+	public void test162() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4494,7 +4494,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"true");
 	}
 
-	public void test163() {
+	public void test163() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4516,7 +4516,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void test164() {
+	public void test164() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4537,7 +4537,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void test165() {
+	public void test165() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4561,7 +4561,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void test166() {
+	public void test166() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -4584,7 +4584,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-    public void test167() {
+    public void test167() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4606,7 +4606,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test168() {
+    public void test168() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4627,7 +4627,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test169() {
+    public void test169() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4651,7 +4651,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test170() {
+    public void test170() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4673,7 +4673,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test171() {
+    public void test171() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4695,7 +4695,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test172() {
+    public void test172() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4716,7 +4716,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test173() {
+    public void test173() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4740,7 +4740,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test174() {
+    public void test174() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4762,7 +4762,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test175() {
+    public void test175() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4784,7 +4784,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test176() {
+    public void test176() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4805,7 +4805,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test177() {
+    public void test177() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4830,7 +4830,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
     }
 
 	// test from spec
-    public void test178() {
+    public void test178() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4852,7 +4852,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test179() {
+    public void test179() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4874,7 +4874,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test180() {
+    public void test180() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4895,7 +4895,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test181() {
+    public void test181() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4919,7 +4919,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test182() {
+    public void test182() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4942,7 +4942,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test183() {
+    public void test183() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4964,7 +4964,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test184() {
+    public void test184() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -4985,7 +4985,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test185() {
+    public void test185() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5009,7 +5009,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test186() {
+    public void test186() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5031,7 +5031,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test187() {
+    public void test187() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5053,7 +5053,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test188() {
+    public void test188() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5074,7 +5074,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test189() {
+    public void test189() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5098,7 +5098,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test190() {
+    public void test190() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5122,7 +5122,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
     }
 
     // reference - unboxing plus widening primitive
-	public void test191() {
+	public void test191() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -5144,7 +5144,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void test192() {
+	public void test192() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -5165,7 +5165,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void test193() {
+	public void test193() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -5189,7 +5189,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void test194() {
+	public void test194() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -5212,7 +5212,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-    public void test195() {
+    public void test195() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5234,7 +5234,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test196() {
+    public void test196() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5255,7 +5255,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test197() {
+    public void test197() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5279,7 +5279,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test198() {
+    public void test198() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5301,7 +5301,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test199() {
+    public void test199() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5323,7 +5323,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test200() {
+    public void test200() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5344,7 +5344,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test201() {
+    public void test201() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5368,7 +5368,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test202() {
+    public void test202() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5390,7 +5390,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test203() {
+    public void test203() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5412,7 +5412,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test204() {
+    public void test204() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5433,7 +5433,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test205() {
+    public void test205() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5457,7 +5457,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test206() {
+    public void test206() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5479,7 +5479,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test207() {
+    public void test207() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5501,7 +5501,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test208() {
+    public void test208() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5522,7 +5522,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test209() {
+    public void test209() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5546,7 +5546,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test210() {
+    public void test210() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5568,7 +5568,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test212() {
+    public void test212() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5588,7 +5588,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test213() {
+    public void test213() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5612,7 +5612,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test214() {
+    public void test214() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5634,7 +5634,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test215() {
+    public void test215() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5656,7 +5656,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test216() {
+    public void test216() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5677,7 +5677,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test217() {
+    public void test217() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5700,7 +5700,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test218() {
+    public void test218() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5722,7 +5722,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test219() {
+    public void test219() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5744,7 +5744,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test220() {
+    public void test220() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5765,7 +5765,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test221() {
+    public void test221() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5788,7 +5788,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test222() {
+    public void test222() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5810,7 +5810,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test223() {
+    public void test223() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5832,7 +5832,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test224() {
+    public void test224() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5852,7 +5852,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test225() {
+    public void test225() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5875,7 +5875,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test226() {
+    public void test226() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5898,7 +5898,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test227() {
+    public void test227() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5920,7 +5920,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test228() {
+    public void test228() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5940,7 +5940,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test229() {
+    public void test229() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5963,7 +5963,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test230() {
+    public void test230() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -5985,7 +5985,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test231() {
+    public void test231() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6006,7 +6006,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test232() {
+    public void test232() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6027,7 +6027,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1");
     }
 
-    public void test233() {
+    public void test233() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6050,7 +6050,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test234() {
+    public void test234() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6072,7 +6072,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test235() {
+    public void test235() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6093,7 +6093,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test236() {
+    public void test236() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6113,7 +6113,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test237() {
+    public void test237() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6136,7 +6136,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test238() {
+    public void test238() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6158,7 +6158,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test239() {
+    public void test239() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6179,7 +6179,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test240() {
+    public void test240() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6199,7 +6199,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test241() {
+    public void test241() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6222,7 +6222,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test242() {
+    public void test242() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6244,7 +6244,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test243() {
+    public void test243() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6265,7 +6265,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test244() {
+    public void test244() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6285,7 +6285,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test245() {
+    public void test245() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6308,7 +6308,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test246() {
+    public void test246() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6330,7 +6330,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1");
     }
-    public void test247() {
+    public void test247() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6351,7 +6351,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test248() {
+    public void test248() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6371,7 +6371,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test249() {
+    public void test249() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6394,7 +6394,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test250() {
+    public void test250() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6416,7 +6416,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test251() {
+    public void test251() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6438,7 +6438,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             "1.0");
     }
 
-    public void test252() {
+    public void test252() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6458,7 +6458,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test253() {
+    public void test253() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6481,7 +6481,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test254() {
+    public void test254() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
                 """
@@ -6503,7 +6503,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
             },
             "1.0");
     }
-    public void test255() {
+    public void test255() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  	   runConformTest(new String[] {
  		        "X.java",
  		            """
@@ -6524,7 +6524,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
  		        },
  		        "1.0");
  		}
-	public void test256() {
+	public void test256() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    runConformTest(new String[] {
 	        "X.java",
 	            """
@@ -6545,7 +6545,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	        "1.0");
 	}
 
-	public void test257() {
+	public void test257() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    runConformTest(new String[] {
 	        "X.java",
 	            """
@@ -6569,7 +6569,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	        "1.0");
 	}
 
-	public void test258() {
+	public void test258() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    runConformTest(new String[] {
 	        "X.java",
 	            """
@@ -6591,7 +6591,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	        },
 	        "1.0");
 	}
-	public void test259() {
+	public void test259() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    runConformTest(new String[] {
 	        "X.java",
 	            """
@@ -6612,7 +6612,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	        },
 	        "1.0");
 	}
-	public void test260() {
+	public void test260() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    runConformTest(new String[] {
 	        "X.java",
 	            """
@@ -6632,7 +6632,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	        },
 	        "1.0");
 	}
-	 public void test261() {
+	 public void test261() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	     runConformTest(new String[] {
 	         "X.java",
 	             """
@@ -6655,7 +6655,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	         },
 	         "1.0");
 	 }
-	 public void test262() {
+	 public void test262() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	     runConformTest(new String[] {
 	         "X.java",
 	             """
@@ -6677,7 +6677,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 	         },
 	         "1.0");
 	 }
-		public void test263() {
+		public void test263() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		    runConformTest(new String[] {
 		        "X.java",
 		            """
@@ -6698,7 +6698,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		        },
 		        "1.0");
 		}
-		public void test264() {
+		public void test264() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		    runConformTest(new String[] {
 		        "X.java",
 		            """
@@ -6718,7 +6718,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		        },
 		        "1.0");
 		}
-		 public void test265() {
+		 public void test265() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		     runConformTest(new String[] {
 		         "X.java",
 		             """
@@ -6741,7 +6741,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		         },
 		         "1.0");
 		 }
-		 public void test266() {
+		 public void test266() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		     runConformTest(new String[] {
 		         "X.java",
 		             """
@@ -6763,7 +6763,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		         },
 		         "1.0");
 		 }
-		 public void test267() {
+		 public void test267() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		     runConformTest(new String[] {
 		         "X.java",
 		             """
@@ -6783,7 +6783,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		         },
 		         "1");
 		 }
-	public void testIssue2928_001() {
+	public void testIssue2928_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 		    "X.java",
 		    """
@@ -6805,7 +6805,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		"true");
 	}
 
-	public void testIssue2928_002() {
+	public void testIssue2928_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 		    "X.java",
 		    """
@@ -6826,7 +6826,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		    },
 		"true");
 	}
-	public void testIssue2928_003() {
+	public void testIssue2928_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 		    "X.java",
 		    """
@@ -6847,7 +6847,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		    },
 		"false");
 	}
-	public void testIssue2928_004() {
+	public void testIssue2928_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 		    "X.java",
 		    """
@@ -6867,7 +6867,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		    },
 		"false");
 	}
-   public void testNonPrim001() {
+   public void testNonPrim001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -6888,7 +6888,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"true");
 	}
-   public void testGuardedPattern_001() {
+   public void testGuardedPattern_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -6910,7 +6910,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"true");
 	}
 
-   public void testEnhancedPrimitiveSwitch_001() {
+   public void testEnhancedPrimitiveSwitch_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -6947,7 +6947,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-   public void testByteToFloat_001() {
+   public void testByteToFloat_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -6968,7 +6968,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1.0");
 	}
 
-   public void testByteToFloat_002() {
+   public void testByteToFloat_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -6988,7 +6988,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"2.0");
 	}
-   public void testEnhancedPrimitiveSwitchNPE_001() {
+   public void testEnhancedPrimitiveSwitchNPE_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -7012,7 +7012,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-   public void testIssue2936_001() {
+   public void testIssue2936_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -7034,7 +7034,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"1");
 	}
-   public void testIssue2936_002() {
+   public void testIssue2936_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -7053,7 +7053,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1.0\n" +
 			"100.0");
 	}
-   public void testIssue2937_1() {
+   public void testIssue2937_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	   runConformTest(new String[] {
 				"X.java",
 				"""
@@ -7073,7 +7073,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"2");
    }
-   public void testIssue2937_2() {
+   public void testIssue2937_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	   runConformTest(new String[] {
 				"X.java",
 				"""
@@ -7094,7 +7094,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"2");
    }
    // test from spec
-	public void testSpec001() {
+	public void testSpec001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -7122,7 +7122,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"Switch case cannot have both unconditional pattern and default label\n" +
 			"----------\n");
 	}
-	public void testSpec002() {
+	public void testSpec002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -7151,7 +7151,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"Switch case cannot have both unconditional pattern and default label\n" +
 			"----------\n");
 	}
-	public void testSpec003() {
+	public void testSpec003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -7179,7 +7179,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"JsonNumber[d=30.0]");
 	}
-	public void testSpec004() {
+	public void testSpec004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -7214,7 +7214,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"30");
 	}
-	public void testSpec005() {
+	public void testSpec005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -7248,7 +7248,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"double:30.0");
 	}
-	public void testSpec006() {
+	public void testSpec006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -7287,7 +7287,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3181
 	// VerifyError during conversion between T extends Long and double
-	public void testGH3181() {
+	public void testGH3181() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -7313,7 +7313,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3129
 	// VerifyError with instanceof record patterns with conversion from double to Long
-	public void testGH3129() {
+	public void testGH3129() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -7334,7 +7334,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		"43.0");
 	}
 
-	public void testIssuePrimitivesWithNull() {
+	public void testIssuePrimitivesWithNull() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -7368,7 +7368,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3336
 	// [Enhanced Switch][Primitive Patterns] Bogus error: Case constants in a switch on 'Long' must have type 'long'
-	public void testIssue3336() {
+	public void testIssue3336() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -7389,7 +7389,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"Default");
 	}
-	public void testIssue3505() {
+	public void testIssue3505() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -7415,7 +7415,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void testIssue3535_001() {
+	public void testIssue3535_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -7448,7 +7448,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"3");
 	}
-	public void testIssue3535_002() {
+	public void testIssue3535_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -7481,7 +7481,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			},
 			"2");
 	}
-	public void testIssue3536() {
+	public void testIssue3536() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -7502,7 +7502,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 
-	public void testSwitchPrimitiveboolean_01() throws IOException, ClassFormatException {
+	public void testSwitchPrimitiveboolean_01() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "X.java",
 				"""
 				public class X {
@@ -7527,7 +7527,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
 
-	public void testSwitchPrimitiveboolean_02() throws IOException, ClassFormatException {
+	public void testSwitchPrimitiveboolean_02() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "X.java",
 				"""
 				public class X {
@@ -7552,7 +7552,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		"		#50 1.0\n";
 		verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
-	public void testSwitchPrimitiveboolean_03() throws IOException, ClassFormatException {
+	public void testSwitchPrimitiveboolean_03() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "X.java",
 				"""
 				public class X {
@@ -7577,7 +7577,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
 
-	public void testSwitchPrimitiveboolean_04() throws IOException, ClassFormatException {
+	public void testSwitchPrimitiveboolean_04() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "X.java",
 				"""
 				public class X {
@@ -7601,7 +7601,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 		"		#31 10.0\n";
 		verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
-	public void testDominanceIssue4979_001() {
+	public void testDominanceIssue4979_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -7631,7 +7631,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testDominanceIssue4979_002() {
+	public void testDominanceIssue4979_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -7660,7 +7660,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 			"This case label is dominated by one of the preceding case labels\n" +
 			"----------\n");
 	}
-	public void testDominanceIssue4979_003() {
+	public void testDominanceIssue4979_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -7684,7 +7684,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"A byte"
 			);
 	}
-	public void testDominanceIssue4979_004() {
+	public void testDominanceIssue4979_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -7715,7 +7715,7 @@ public class PrimitiveInPatternsTest extends AbstractRegressionTest9 {
 				"----------\n"
 			);
 	}
-	public void testDominanceIssue4979_005() {
+	public void testDominanceIssue4979_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""

@@ -88,7 +88,7 @@ public abstract class AbstractRegressionTest extends AbstractCompilerTest implem
 
 	static final String[] env = System.getenv().entrySet().stream()
 		.filter(e -> !"JAVA_TOOL_OPTIONS".equals(e.getKey()) && !"_JAVA_OPTIONS".equals(e.getKey()))
-		.map(e -> e.getKey() + "=" + e.getValue())
+		.map(e -> e.getKey() + "=" + e.getValue()) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		.toArray(String[]::new);
 
 	protected static long PREVIEW_FEATURE_CLASS_FILE_CONST = ClassFileConstants.JDK25;
@@ -96,8 +96,8 @@ public abstract class AbstractRegressionTest extends AbstractCompilerTest implem
 
 	// statistics for run.javac mode:
 	static int numRunJavacTests = 0;
-	static Set<JavacTestOptions.Excuse> javacBugs = new HashSet<>();
-	static Set<JavacTestOptions.Excuse> ecjBugs = new HashSet<>();
+	static Set<JavacTestOptions.Excuse> javacBugs = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	static Set<JavacTestOptions.Excuse> ecjBugs = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 	protected class Runner {
 		boolean shouldFlushOutputDirectory = true;
@@ -132,7 +132,7 @@ public abstract class AbstractRegressionTest extends AbstractCompilerTest implem
 			// TODO Auto-generated constructor stub
 		}
 
-		protected void runConformTest() {
+		protected void runConformTest() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			runTest(this.shouldFlushOutputDirectory,
 					this.testFiles,
 					this.dependantFiles != null ? this.dependantFiles : new String[] {},
@@ -157,7 +157,7 @@ public abstract class AbstractRegressionTest extends AbstractCompilerTest implem
 					this.skipJavac ? JavacTestOptions.SKIP : this.javacTestOptions);
 		}
 
-		public void runNegativeTest() {
+		public void runNegativeTest() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			runTest(this.shouldFlushOutputDirectory,
 					this.testFiles,
 					this.dependantFiles != null ? this.dependantFiles : new String[] {},
@@ -182,7 +182,7 @@ public abstract class AbstractRegressionTest extends AbstractCompilerTest implem
 					this.skipJavac ? JavacTestOptions.SKIP : this.javacTestOptions);
 		}
 
-		protected void runWarningTest() {
+		protected void runWarningTest() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			runTest(this.shouldFlushOutputDirectory,
 					this.testFiles,
 					this.dependantFiles != null ? this.dependantFiles : new String[] {},
@@ -225,7 +225,7 @@ static class JavacCompiler {
 	}
 	JavacCompiler(String rootDirectoryPath, String rawVersion) throws IOException, InterruptedException {
 		this.rootDirectoryPath = rootDirectoryPath;
-		this.javacPathName = new File(rootDirectoryPath + File.separator
+		this.javacPathName = new File(rootDirectoryPath + File.separator //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "bin" + File.separator + JAVAC_NAME).toPath().normalize().toAbsolutePath().toString();
 		// WORK don't need JAVAC_NAME any more; suppress this as we work towards code cleanup
 		if (rawVersion == null) {
@@ -241,7 +241,7 @@ static class JavacCompiler {
 	protected void usePathOption(String option) {
 		this.classpath = option;
 	}
-	static String getVersion(String javacPathName) throws IOException, InterruptedException {
+	static String getVersion(String javacPathName) throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Process fetchVersionProcess = null;
 		try {
 			fetchVersionProcess = Runtime.getRuntime().exec(new String[] {javacPathName, "-version"}, env, null);
@@ -270,7 +270,7 @@ static class JavacCompiler {
 			}
 		}
 	}
-	static String getBuild(String javaPathName) throws IOException, InterruptedException {
+	static String getBuild(String javaPathName) throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Process fetchVersionProcess = null;
 		try {
 			fetchVersionProcess = Runtime.getRuntime().exec(new String[] {javaPathName , "-version"}, env, null);
@@ -300,7 +300,7 @@ static class JavacCompiler {
 			}
 		}
 	}
-	static String versionFromRawVersion(String rawVersion, String javacPathName) {
+	static String versionFromRawVersion(String rawVersion, String javacPathName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (rawVersion.indexOf("1.4") != -1 ||
 				(javacPathName != null &&
 				javacPathName.indexOf("1.4") != -1)
@@ -354,14 +354,14 @@ static class JavacCompiler {
 		} else if(rawVersion.startsWith("27")) {
 			return JavaCore.VERSION_27;
 		} else {
-			throw new RuntimeException("unknown javac version: " + rawVersion);
+			throw new RuntimeException("unknown javac version: " + rawVersion); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	// projects known raw versions to minors; minors should grow with time, so
 	// that before and after relationships be easy to implement upon compilers
 	// of the same version; two latest digits are used for variants into levels
 	// denoted by the two first digits
-	static int minorFromRawVersion (String version, String rawVersion) {
+	static int minorFromRawVersion (String version, String rawVersion) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (version == JavaCore.VERSION_1_8) {
 			if ("1.8.0-ea".equals(rawVersion) || ("1.8.0".equals(rawVersion))) {
 				return 0000;
@@ -623,41 +623,41 @@ static class JavacCompiler {
 					return 0000;
 			}
 		}
-		throw new RuntimeException("unknown raw javac version: " + rawVersion);
+		throw new RuntimeException("unknown raw javac version: " + rawVersion); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// returns 0L if everything went fine; else the lower word contains the
 	// exit value and the upper word is non-zero iff the error log has contents
 	long compile(File directory, String options, String[] sourceFileNames, StringBuilder log) throws IOException, InterruptedException {
 		return compile(directory, options, sourceFileNames, log, true);
 	}
-	long compile(File directory, String options, String[] sourceFileNames, StringBuilder log, boolean extendCommandLine) throws IOException, InterruptedException {
+	long compile(File directory, String options, String[] sourceFileNames, StringBuilder log, boolean extendCommandLine) throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Process compileProcess = null;
 		long result = 0L;
 		// WORK classpath should depend on the compiler, not on the default runtime
 		try {
-			if (!directory.exists()) {
-				directory.mkdir();
+			if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				directory.mkdir(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
-			StringBuilder cmdLine = new StringBuilder(this.javacPathName);
-			cmdLine.append(this.classpath);
-			cmdLine.append(". ");
-			cmdLine.append(options);
+			StringBuilder cmdLine = new StringBuilder(this.javacPathName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			cmdLine.append(this.classpath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			cmdLine.append(". "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			cmdLine.append(options); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (extendCommandLine) {
-				for (int i = 0; i < sourceFileNames.length; i ++) {
-					cmdLine.append(' ');
-					cmdLine.append(sourceFileNames[i]);
+				for (int i = 0; i < sourceFileNames.length; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					cmdLine.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					cmdLine.append(sourceFileNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 			String cmdLineAsString;
 			// WORK improve double-quotes management on Linux
 			if ("Linux".equals(System.getProperty("os.name"))) {
-				cmdLineAsString = cmdLine.toString().replaceAll("\"", "");
+				cmdLineAsString = cmdLine.toString().replaceAll("\"", ""); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			} else {
 				cmdLineAsString = cmdLine.toString();
 			}
-			compileProcess = Runtime.getRuntime().exec(cmdLineAsString.split("\\s+"), env, directory);
+			compileProcess = Runtime.getRuntime().exec(cmdLineAsString.split("\\s+"), env, directory); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			Logger errorLogger = new Logger(compileProcess.getErrorStream(),
-					"ERROR", log == null ? new StringBuilder() : log);
+					"ERROR", log == null ? new StringBuilder() : log); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			errorLogger.start();
 			int compilerResult = compileProcess.waitFor();
 			result |= compilerResult; // caveat: may never terminate under specific conditions
@@ -681,7 +681,7 @@ static class JavaRuntime {
 	String version; // not intended to be modified - one of JavaCore.VERSION_1_*
 	String rawVersion; // not intended to be modified - more complete version name
 	int minor;
-	private static HashMap runtimes = new HashMap();
+	private static HashMap runtimes = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	static JavaRuntime runtimeFor(JavacCompiler compiler) throws IOException, InterruptedException {
 		JavaRuntime cached = (JavaRuntime) runtimes.get(compiler.rawVersion);
 		if (cached == null) {
@@ -704,30 +704,30 @@ static class JavaRuntime {
 	}
 	private JavaRuntime(String rootDirectoryPath, String version, String rawVersion, int minor) throws IOException, InterruptedException {
 		this.rootDirectoryPath = rootDirectoryPath;
-		this.javaPathName = new File(this.rootDirectoryPath + File.separator
+		this.javaPathName = new File(this.rootDirectoryPath + File.separator //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "bin" + File.separator + JAVA_NAME).toPath().normalize().toAbsolutePath().toString();
 		this.version = version;
 		this.rawVersion = rawVersion;
 		this.minor = minor;
 	}
 	// returns 0 if everything went fine
-	int execute(File directory, String options, String className, StringBuilder stdout, StringBuilder stderr) throws IOException, InterruptedException {
+	int execute(File directory, String options, String className, StringBuilder stdout, StringBuilder stderr) throws IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Process executionProcess = null;
 		try {
-			StringBuilder cmdLine = new StringBuilder(this.javaPathName);
+			StringBuilder cmdLine = new StringBuilder(this.javaPathName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			if (options.contains("-cp "))
-				cmdLine.append(' '); // i.e., -cp will be appended below, just ensure separation from javaPathname
+				cmdLine.append(' '); // i.e., -cp will be appended below, just ensure separation from javaPathname //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			else
-				cmdLine.append(" -classpath . "); // default classpath
-			cmdLine.append(options);
-			cmdLine.append(' ');
-			cmdLine.append(className);
-			executionProcess = Runtime.getRuntime().exec(cmdLine.toString().split("\\s+"), env, directory);
+				cmdLine.append(" -classpath . "); // default classpath //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			cmdLine.append(options); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			cmdLine.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			cmdLine.append(className); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			executionProcess = Runtime.getRuntime().exec(cmdLine.toString().split("\\s+"), env, directory); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			Logger outputLogger = new Logger(executionProcess.getInputStream(),
-					"RUNTIME OUTPUT", stdout == null ? new StringBuilder() : stdout);
+					"RUNTIME OUTPUT", stdout == null ? new StringBuilder() : stdout); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			outputLogger.start();
 			Logger errorLogger = new Logger(executionProcess.getErrorStream(),
-					"RUNTIME ERROR", stderr == null ? new StringBuilder() : stderr);
+					"RUNTIME ERROR", stderr == null ? new StringBuilder() : stderr); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			errorLogger.start();
 			int result = executionProcess.waitFor(); // caveat: may never terminate under specific conditions
 			outputLogger.join(); // make sure we get the whole output
@@ -752,17 +752,17 @@ protected static class JavacTestOptions {
 	static JavacTestOptions forRelease(String release) {
 		JavacTestOptions options = new JavacTestOptions(Long.parseLong(release));
 		if (isJRE9Plus)
-			options.setCompilerOptions("--release "+release);
+			options.setCompilerOptions("--release "+release); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
-			options.setCompilerOptions("--source 1."+release+" --target 1."+release);
+			options.setCompilerOptions("--source 1."+release+" --target 1."+release); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return options;
 	}
 	@java.lang.SuppressWarnings("synthetic-access")
 	static JavacTestOptions forRelease(String release, String additionalOptions) {
 		JavacTestOptions options = new JavacTestOptions(Long.parseLong(release));
-		String result = isJRE9Plus ? "--release "+release : "--source 1."+release+" --target 1."+release;
+		String result = isJRE9Plus ? "--release "+release : "--source 1."+release+" --target 1."+release; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (additionalOptions != null)
-			result = result + " " + additionalOptions;
+			result = result + " " + additionalOptions; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		options.setCompilerOptions(result);
 		return options;
 	}
@@ -770,28 +770,28 @@ protected static class JavacTestOptions {
 	static JavacTestOptions forReleaseWithPreview(String release) {
 		JavacTestOptions options = new JavacTestOptions(Long.parseLong(release));
 		if (isJRE9Plus)
-			options.setCompilerOptions("--release "+release+" --enable-preview -Xlint:-preview");
+			options.setCompilerOptions("--release "+release+" --enable-preview -Xlint:-preview"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
-			throw new IllegalArgumentException("preview not supported at release "+release);
+			throw new IllegalArgumentException("preview not supported at release "+release); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return options;
 	}
 	@java.lang.SuppressWarnings("synthetic-access")
 	static JavacTestOptions forReleaseWithPreview(String release, String additionalOptions) {
 		JavacTestOptions options = new JavacTestOptions(Long.parseLong(release));
 		if (isJRE9Plus) {
-			String result = "--release "+release+" --enable-preview -Xlint:-preview";
+			String result = "--release "+release+" --enable-preview -Xlint:-preview"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (additionalOptions != null)
-				result = result + " " + additionalOptions;
+				result = result + " " + additionalOptions; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			options.setCompilerOptions(result);
 
 		}
 		else
-			throw new IllegalArgumentException("preview not supported at release "+release);
+			throw new IllegalArgumentException("preview not supported at release "+release); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return options;
 	}
 	public static class SuppressWarnings extends JavacTestOptions {
 		public SuppressWarnings(String token) {
-			setCompilerOptions("-Xlint:-"+token);
+			setCompilerOptions("-Xlint:-"+token); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	// TODO (maxime) enable selective javac output dir manipulations between
@@ -1099,7 +1099,7 @@ protected static class JavacTestOptions {
 			this(mismatchType, pivotCompliance, pivotMinor);
 			this.isIntermittent = intermittent;
 		}
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Excuse excuseFor(JavacCompiler compiler) {
 			if (this.minorsFixed != null) {
 				if (compiler.compliance == ClassFileConstants.JDK1_8) {
@@ -1284,7 +1284,7 @@ protected static class JavacTestOptions {
 		}
 		@Override
 		String getCompilerOptions() {
-			return super.getCompilerOptions() + this.extraJavacOptions;
+			return super.getCompilerOptions() + this.extraJavacOptions; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public static class JavacBug8221413 extends JavacHasABug {
@@ -1295,7 +1295,7 @@ protected static class JavacTestOptions {
 		}
 		@Override
 		String getCompilerOptions() {
-			return super.getCompilerOptions() + this.extraJavacOptions;
+			return super.getCompilerOptions() + this.extraJavacOptions; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public static class JavacBug8226510 extends JavacHasABug {
@@ -1306,7 +1306,7 @@ protected static class JavacTestOptions {
 		}
 		@Override
 		String getCompilerOptions() {
-			return super.getCompilerOptions() + this.extraJavacOptions;
+			return super.getCompilerOptions() + this.extraJavacOptions; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public static class JavacBugExtraJavacOptionsPlusMismatch extends JavacHasABug {
@@ -1317,7 +1317,7 @@ protected static class JavacTestOptions {
 		}
 		@Override
 		String getCompilerOptions() {
-			return super.getCompilerOptions() + this.extraJavacOptions;
+			return super.getCompilerOptions() + this.extraJavacOptions; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public static class JavacBug8341408 extends JavacBugExtraJavacOptionsPlusMismatch {
@@ -1340,7 +1340,7 @@ protected static class JavacTestOptions {
 		Logger(InputStream inputStream, String type) {
 			this.inputStream = inputStream;
 			this.type = type;
-			this.buffer = new StringBuilder();
+			this.buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		}
 		Logger(InputStream inputStream, String type, StringBuilder buffer) {
 			this.inputStream = inputStream;
@@ -1353,8 +1353,8 @@ protected static class JavacTestOptions {
 			try {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(this.inputStream));
 				String line = null;
-				while ((line = reader.readLine()) != null) {
-					this.buffer./*append(this.type).append("->").*/append(line).append("\n");
+				while ((line = reader.readLine()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					this.buffer./*append(this.type).append("->").*/append(line).append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				reader.close();
 			} catch (IOException e) {
@@ -1363,7 +1363,7 @@ protected static class JavacTestOptions {
 		}
 	}
 	protected static int[] DIFF_COUNTERS = new int[3];
-	protected static final String EVAL_DIRECTORY = Util.getOutputDirectory()  + File.separator + "eval";
+	protected static final String EVAL_DIRECTORY = Util.getOutputDirectory()  + File.separator + "eval"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	public static int INDENT = 2;
 	protected static final String JAVA_NAME =
 		File.pathSeparatorChar == ':' ? "java" : "java.exe";
@@ -1371,7 +1371,7 @@ protected static class JavacTestOptions {
 		File.pathSeparatorChar == ':' ? "javac" : "javac.exe";
 
 	protected static String JAVAC_OUTPUT_DIR_NAME =
-		Util.getOutputDirectory() + File.separator + "javac";
+		Util.getOutputDirectory() + File.separator + "javac"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	static File JAVAC_OUTPUT_DIR;
 	protected static String javacCommandLineHeader;
 	protected static PrintWriter javacFullLog;
@@ -1392,8 +1392,8 @@ protected static class JavacTestOptions {
 	// list of paths for to-be-tested JDK root directories
 	protected static List<JavacCompiler> javacCompilers = null;
 
-	public static final String OUTPUT_DIR = Util.getOutputDirectory() + File.separator + "regression";
-	public static final String LIB_DIR = Util.getOutputDirectory() + File.separator + "lib";
+	public static final String OUTPUT_DIR = Util.getOutputDirectory() + File.separator + "regression"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	public static final String LIB_DIR = Util.getOutputDirectory() + File.separator + "lib"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	public final static String PACKAGE_INFO_NAME = new String(TypeConstants.PACKAGE_INFO_NAME);
 	public final static String MODULE_INFO_NAME = new String(TypeConstants.MODULE_INFO_NAME);
@@ -1401,7 +1401,7 @@ protected static class JavacTestOptions {
 	public static boolean SHIFT = false;
 	public static String PREVIEW_ALLOWED_LEVEL = JavaCore.latestSupportedJavaVersion();
 
-	protected static final String SOURCE_DIRECTORY = Util.getOutputDirectory()  + File.separator + "source";
+	protected static final String SOURCE_DIRECTORY = Util.getOutputDirectory()  + File.separator + "source"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	protected String[] classpaths;
 	protected boolean createdVerifier;
@@ -1415,7 +1415,7 @@ protected static class JavacTestOptions {
 	/* argument 'inheritedDepth' is not exposed in original API, therefore these helpers are copied below with this arg added */
 	protected static void buildMinimalComplianceTestSuite(int minimalCompliance, int inheritedDepth, TestSuite suite, Class<?> evaluationTestClass) {
 		int complianceLevels = getPossibleComplianceLevels();
-		for (int[] map : complianceTestLevelMapping) {
+		for (int[] map : complianceTestLevelMapping) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((complianceLevels & map[0]) != 0) {
 				long complianceLevelForJavaVersion = ClassFileConstants.getComplianceLevelForJavaVersion(map[1]);
 				checkCompliance(evaluationTestClass, minimalCompliance, suite, complianceLevels, inheritedDepth, map[0], map[1], getVersionString(complianceLevelForJavaVersion));
@@ -1427,13 +1427,13 @@ protected static class JavacTestOptions {
 		int lev = complianceLevels & abstractCompilerTestCompliance;
 		if (lev != 0) {
 			if (lev < minimalCompliance) {
-				System.err.println("Cannot run "+evaluationTestClass.getName()+" at compliance " + release + "!");
+				System.err.println("Cannot run "+evaluationTestClass.getName()+" at compliance " + release + "!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
 				suite.addTest(buildUniqueComplianceTestSuite(evaluationTestClass, ClassFileConstants.getComplianceLevelForJavaVersion(classFileConstantsVersion), inheritedDepth));
 			}
 		}
 	}
-	public static Test buildUniqueComplianceTestSuite(Class<?> evaluationTestClass, long uniqueCompliance, int inheritedDepth) {
+	public static Test buildUniqueComplianceTestSuite(Class<?> evaluationTestClass, long uniqueCompliance, int inheritedDepth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long highestLevel = highestComplianceLevels();
 		if (highestLevel < uniqueCompliance) {
 			String complianceString;
@@ -1453,12 +1453,12 @@ protected static class JavacTestOptions {
 
 			}
 
-			System.err.println("Cannot run "+evaluationTestClass.getName()+" at compliance "+complianceString+"!");
+			System.err.println("Cannot run "+evaluationTestClass.getName()+" at compliance "+complianceString+"!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return new TestSuite();
 		}
 		TestSuite complianceSuite = new RegressionTestSetup(uniqueCompliance);
 		List<Test> tests = buildTestsList(evaluationTestClass, inheritedDepth);
-		for (int index=0, size=tests.size(); index<size; index++) {
+		for (int index=0, size=tests.size(); index<size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			complianceSuite.addTest(tests.get(index));
 		}
 		return complianceSuite;
@@ -1473,16 +1473,16 @@ protected static class JavacTestOptions {
 	protected void checkClassFile(String className, String source, String expectedOutput, int mode) throws ClassFormatException, IOException {
 		this.checkClassFile("", className, source, expectedOutput, mode);
 	}
-	protected void checkClassFile(String directoryName, String className, String disassembledClassName, String source, String expectedOutput,
+	protected void checkClassFile(String directoryName, String className, String disassembledClassName, String source, String expectedOutput, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int mode, boolean suppressConsole) throws ClassFormatException, IOException
 	{
 		compileAndDeploy(source, directoryName, className, suppressConsole);
 		try {
 			File directory = new File(EVAL_DIRECTORY, directoryName);
-			if (!directory.exists()) {
-				assertTrue(".class file not generated properly in " + directory, false);
+			if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				assertTrue(".class file not generated properly in " + directory, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-			File f = new File(directory, disassembledClassName + ".class");
+			File f = new File(directory, disassembledClassName + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 			String result = disassembler.disassemble(classFileBytes, "\n", mode);
@@ -1494,7 +1494,7 @@ protected static class JavacTestOptions {
 				assertEquals("Wrong contents", expectedOutput, result);
 			}
 			try {
-				ClassFileReader.read(Files.readAllBytes(f.toPath()), className + ".class", true);
+				ClassFileReader.read(Files.readAllBytes(f.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch (Exception e) {
 				throw new AssertionError(e);
 			}
@@ -1507,17 +1507,17 @@ protected static class JavacTestOptions {
 		this.checkClassFile(directoryName, className, className, source, expectedOutput, mode, false);
 	}
 
-	protected ClassFileReader getInternalClassFile(String directoryName, String className, String disassembledClassName, String source) throws ClassFormatException, IOException {
+	protected ClassFileReader getInternalClassFile(String directoryName, String className, String disassembledClassName, String source) throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		compileAndDeploy(source, directoryName, className, true);
 		try {
 			File directory = new File(EVAL_DIRECTORY, directoryName);
-			if (!directory.exists()) {
-				assertTrue(".class file not generated properly in " + directory, false);
+			if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				assertTrue(".class file not generated properly in " + directory, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-			File f = new File(directory, disassembledClassName + ".class");
+			File f = new File(directory, disassembledClassName + ".class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			ClassFileReader classFileReader = null;
 			try {
-				classFileReader = ClassFileReader.read(Files.readAllBytes(f.toPath()), className + ".class", true);
+				classFileReader = ClassFileReader.read(Files.readAllBytes(f.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch (Exception e) {
 				throw new AssertionError(e);
 			}
@@ -1530,9 +1530,9 @@ protected static class JavacTestOptions {
 	protected void checkDisassembledClassFile(String fileName, String className, String expectedOutput) throws Exception {
 		this.checkDisassembledClassFile(fileName, className, expectedOutput, ClassFileBytesDisassembler.DETAILED);
 	}
-	protected void checkDisassembledClassFile(String fileName, String className, String expectedOutput, int mode) throws Exception {
+	protected void checkDisassembledClassFile(String fileName, String className, String expectedOutput, int mode) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File classFile = new File(fileName);
-		if (!classFile.exists()) {
+		if (!classFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			assertTrue(".class file doesn't exist", false);
 		}
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(classFile);
@@ -1549,16 +1549,16 @@ protected static class JavacTestOptions {
 		if (index != -1) {
 			int start = Math.max(0, index - 300);
 			int end = index + Messages.classformat_classformatexception.length();
-			fail("ClassFormatException swallowed in Disassembler:\n..." + result.substring(start, end));
+			fail("ClassFormatException swallowed in Disassembler:\n..." + result.substring(start, end)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
-		ClassFileReader.read(Files.readAllBytes(classFile.toPath()), className + ".class", true);
+		ClassFileReader.read(Files.readAllBytes(classFile.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
-	protected static void verifyClassFile(String expectedOutput, String unexpectedOutput, String classFileName, int mode)
+	protected static void verifyClassFile(String expectedOutput, String unexpectedOutput, String classFileName, int mode) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			throws IOException, ClassFormatException {
 		if (!classFileName.startsWith(OUTPUT_DIR))
-			classFileName = OUTPUT_DIR + File.separator + classFileName;
+			classFileName = OUTPUT_DIR + File.separator + classFileName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File f = new File(classFileName);
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
@@ -1589,26 +1589,26 @@ protected static class JavacTestOptions {
 		verifyClassFile(expectedOutput, null, classFileName, mode);
 	}
 
-	protected void compileAndDeploy(String source, String directoryName, String className, boolean suppressConsole) {
+	protected void compileAndDeploy(String source, String directoryName, String className, boolean suppressConsole) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File directory = new File(SOURCE_DIRECTORY);
-		if (!directory.exists()) {
-			if (!directory.mkdirs()) {
-				System.out.println("Could not create " + SOURCE_DIRECTORY);
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				System.out.println("Could not create " + SOURCE_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
 		if (directoryName != null && directoryName.length() != 0) {
 			directory = new File(SOURCE_DIRECTORY, directoryName);
-			if (!directory.exists()) {
-				if (!directory.mkdirs()) {
-					System.out.println("Could not create " + directory);
+			if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+					System.out.println("Could not create " + directory); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return;
 				}
 			}
 		}
-		String fileName = directory.getAbsolutePath() + File.separator + className + ".java";
+		String fileName = directory.getAbsolutePath() + File.separator + className + ".java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write(source);
 			writer.flush();
 			writer.close();
@@ -1616,25 +1616,25 @@ protected static class JavacTestOptions {
 			e.printStackTrace();
 			return;
 		}
-		StringBuilder buffer = new StringBuilder()
+		StringBuilder buffer = new StringBuilder() //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append("\"")
 			.append(fileName)
 			.append("\" -d \"")
 			.append(EVAL_DIRECTORY);
 		String processAnnot = this.enableAPT ? "" : "-proc:none";
 		if (this.complianceLevel == ClassFileConstants.JDK1_8) {
-			buffer.append("\" -1.8 " + processAnnot);
+			buffer.append("\" -1.8 " + processAnnot); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else if (this.complianceLevel == ClassFileConstants.JDK9) {
-			buffer.append("\" -9 " + processAnnot);
+			buffer.append("\" -9 " + processAnnot); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else if (this.complianceLevel == ClassFileConstants.JDK10) {
-			buffer.append("\" -10 " + processAnnot);
+			buffer.append("\" -10 " + processAnnot); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
 			int major = (int)(this.complianceLevel>>16);
-			buffer.append("\" -" + (major - ClassFileConstants.MAJOR_VERSION_0));
+			buffer.append("\" -" + (major - ClassFileConstants.MAJOR_VERSION_0)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (this.complianceLevel == ClassFileConstants.getLatestJDKLevel()  && this.enablePreview)
-			buffer.append(" --enable-preview ");
-		buffer
+			buffer.append(" --enable-preview "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -preserveAllLocals -proceedOnError -nowarn -g -classpath \"")
 			.append(Util.getJavaClassLibsAsString())
 			.append(SOURCE_DIRECTORY)
@@ -1660,15 +1660,15 @@ protected static class JavacTestOptions {
 	 * Also write test files to the console output.
 	 * Fail if exception is non null.
 	 */
-	protected void checkCompilerLog(String[] testFiles, Requestor requestor,
+	protected void checkCompilerLog(String[] testFiles, Requestor requestor, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] alternatePlatformIndependantExpectedLogs, Throwable exception) {
 		String computedProblemLog = Util.convertToIndependantLineDelimiter(requestor.problemLog.toString());
 		if (this.shouldSwallowCaptureId)
-			computedProblemLog = Pattern.compile("capture#(\\d+)").matcher(computedProblemLog).replaceAll("capture");
+			computedProblemLog = Pattern.compile("capture#(\\d+)").matcher(computedProblemLog).replaceAll("capture"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 		ProblemLog problemLog = new ProblemLog(computedProblemLog);
 		int i;
-		for (i = 0; i < alternatePlatformIndependantExpectedLogs.length; i++) {
+		for (i = 0; i < alternatePlatformIndependantExpectedLogs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (problemLog.sameAs(alternatePlatformIndependantExpectedLogs[i]))
 				return; // OK
 		}
@@ -1684,15 +1684,15 @@ protected static class JavacTestOptions {
 	 * Used for performing order-independent log comparisons.
 	 */
 	private static final class ProblemLog {
-		final Set<String> logEntry = new HashSet<>();
+		final Set<String> logEntry = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 		public ProblemLog(String log) {
-			String[] entries = log.split("----------\n");
-			Pattern pattern = Pattern.compile("\\A(\\d*\\. )");
+			String[] entries = log.split("----------\n"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+			Pattern pattern = Pattern.compile("\\A(\\d*\\. )"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
-			for (String entry : entries) {
-				Matcher matcher = pattern.matcher(entry);
-				if (matcher.find()) {
+			for (String entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				Matcher matcher = pattern.matcher(entry); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+				if (matcher.find()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					entry = entry.substring(matcher.end());
 				}
 				this.logEntry.add(entry);
@@ -1726,7 +1726,7 @@ protected static class JavacTestOptions {
 		System.out.println(message);
 		javacFullLog.println(message);
 	}
-	protected void executeClass(
+	protected void executeClass( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String sourceFile,
 			String expectedSuccessOutputString,
 			String[] classLib,
@@ -1768,12 +1768,12 @@ protected static class JavacTestOptions {
 	/*
 	 * Returns the references in the given .class file.
 	 */
-	protected String findReferences(String classFilePath) {
+	protected String findReferences(String classFilePath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// check that "new Z().init()" is bound to "AbstractB.init()"
-		final StringBuilder references = new StringBuilder(10);
+		final StringBuilder references = new StringBuilder(10); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		final SearchParticipant participant = new JavaSearchParticipant() {
 			final SearchParticipant searchParticipant = this;
-			public SearchDocument getDocument(final String documentPath) {
+			public SearchDocument getDocument(final String documentPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				return new SearchDocument(documentPath, this.searchParticipant) {
 					public byte[] getByteContents() {
 						try {
@@ -1797,10 +1797,10 @@ protected static class JavacTestOptions {
 		SearchDocument document = participant.getDocument(new File(classFilePath).getPath());
 		BinaryIndexer indexer = new BinaryIndexer(document) {
 			protected void addIndexEntry(char[] category, char[] key) {
-				references.append(category);
-				references.append('/');
-				references.append(key);
-				references.append('\n');
+				references.append(category); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				references.append('/'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				references.append(key); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				references.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		};
 		indexer.indexDocument();
@@ -1810,9 +1810,9 @@ protected static class JavacTestOptions {
 
 	protected ClassFileReader getClassFileReader(String fileName, String className) {
 		File classFile = new File(fileName);
-		assertTrue(".class file doesn't exist:" + fileName, classFile.exists());
+		assertTrue(".class file doesn't exist:" + fileName, classFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		try {
-			ClassFileReader reader = ClassFileReader.read(Files.readAllBytes(classFile.toPath()), className + ".class", true);
+			ClassFileReader reader = ClassFileReader.read(Files.readAllBytes(classFile.toPath()), className + ".class", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return reader;
 		} catch (org.eclipse.jdt.internal.compiler.classfmt.ClassFormatException e) {
 			throw new AssertionError(e);
@@ -1821,7 +1821,7 @@ protected static class JavacTestOptions {
 		}
 	}
 
-	protected INameEnvironment[] getClassLibs(boolean useDefaultClasspaths, Map<String, String> options) {
+	protected INameEnvironment[] getClassLibs(boolean useDefaultClasspaths, Map<String, String> options) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (options == null)
 			options = getCompilerOptions();
 		String encoding = getCompilerOptions().get(CompilerOptions.OPTION_Encoding);
@@ -1866,9 +1866,9 @@ protected static class JavacTestOptions {
 
 	protected void enableAllWarningsForIrritants(Map<String, String> options, IrritantSet irritants) {
 		int[] bits = irritants.getBits();
-		for (int i = 0; i < bits.length; i++) {
+		for (int i = 0; i < bits.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int bit = bits[i];
-			for (int b = 0; b < IrritantSet.GROUP_SHIFT; b++) {
+			for (int b = 0; b < IrritantSet.GROUP_SHIFT; b++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int single = bit & (1 << b);
 				if (single != 0) {
 					single |= (i<<IrritantSet.GROUP_SHIFT);
@@ -1892,8 +1892,8 @@ protected static class JavacTestOptions {
 		System.arraycopy(defaultLibs, 0, libs, 0, len);
 		Bundle[] bundles = Platform.getBundles("org.eclipse.jdt.annotation", "[2.0.0,3.0.0)");
 		File bundleFile = FileLocator.getBundleFileLocation(bundles[0]).get();
-		if (bundleFile.isDirectory())
-			libs[len] = bundleFile.getPath()+"/bin";
+		if (bundleFile.isDirectory()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			libs[len] = bundleFile.getPath()+"/bin"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
 			libs[len] = bundleFile.getPath();
 		return libs;
@@ -1949,7 +1949,7 @@ protected static class JavacTestOptions {
 		if (logTitle) {
 			logTestTitle();
 		}
-		for (int i = 0; i < testFiles.length; i += 2) {
+		for (int i = 0; i < testFiles.length; i += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			System.out.print(testFiles[i]);
 			System.out.println(" ["); //$NON-NLS-1$
 			String content = testFiles[i + 1];
@@ -1971,7 +1971,7 @@ protected static class JavacTestOptions {
 	 * Use test name for this sub-directory name (ie. test001, test002, etc...)
 	 */
 	protected void printFiles(String[] testFiles) {
-		for (int i=0, length=testFiles.length; i<length; i++) {
+		for (int i=0, length=testFiles.length; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			System.out.println(testFiles[i++]);
 			String content = testFiles[i];
 			if (content.length() > 10000) {
@@ -1983,7 +1983,7 @@ protected static class JavacTestOptions {
 		}
 		System.out.println("");
 	}
-	protected void	printJavacResultsSummary() {
+	protected void	printJavacResultsSummary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (shouldRunJavac()) {
 			Integer count = (Integer)TESTS_COUNTERS.get(CURRENT_CLASS_NAME);
 			if (count != null) {
@@ -1995,35 +1995,35 @@ protected static class JavacTestOptions {
 						dualPrintln("Results summary:");
 					}
 					if (DIFF_COUNTERS[0]!=0)
-						dualPrintln("	- "+DIFF_COUNTERS[0]+" test(s) where Javac found errors/warnings but Eclipse did not");
+						dualPrintln("	- "+DIFF_COUNTERS[0]+" test(s) where Javac found errors/warnings but Eclipse did not"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					if (DIFF_COUNTERS[1]!=0)
-						dualPrintln("	- "+DIFF_COUNTERS[1]+" test(s) where Eclipse found errors/warnings but Javac did not");
+						dualPrintln("	- "+DIFF_COUNTERS[1]+" test(s) where Eclipse found errors/warnings but Javac did not"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					if (DIFF_COUNTERS[2]!=0)
-						dualPrintln("	- "+DIFF_COUNTERS[2]+" test(s) where Eclipse and Javac did not have same output");
+						dualPrintln("	- "+DIFF_COUNTERS[2]+" test(s) where Eclipse and Javac did not have same output"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					System.out.println("\n");
 				}
 			}
-			dualPrintln("\n\nFull results sent to " + javacFullLogFileName);
+			dualPrintln("\n\nFull results sent to " + javacFullLogFileName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			javacFullLog.flush();
 		}
 	}
-	protected void removeTempClass(String className) {
+	protected void removeTempClass(String className) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File dir = new File(SOURCE_DIRECTORY);
-		String[] fileNames = dir.list();
+		String[] fileNames = dir.list(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (fileNames != null) {
-			for (int i = 0, max = fileNames.length; i < max; i++) {
+			for (int i = 0, max = fileNames.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (fileNames[i].indexOf(className) != -1) {
-					Util.delete(SOURCE_DIRECTORY + File.separator + fileNames[i]);
+					Util.delete(SOURCE_DIRECTORY + File.separator + fileNames[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
 
 		dir = new File(EVAL_DIRECTORY);
-		fileNames = dir.list();
+		fileNames = dir.list(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		if (fileNames != null) {
-			for (int i = 0, max = fileNames.length; i < max; i++) {
+			for (int i = 0, max = fileNames.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (fileNames[i].indexOf(className) != -1) {
-					Util.delete(EVAL_DIRECTORY + File.separator + fileNames[i]);
+					Util.delete(EVAL_DIRECTORY + File.separator + fileNames[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -2032,7 +2032,7 @@ protected static class JavacTestOptions {
 
 // WORK replace null logs (no test) by empty string in most situations (more
 //      complete coverage) and see what happens
-	protected void runConformTest(String[] testFiles) {
+	protected void runConformTest(String[] testFiles) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runTest(
 	 		// test directory preparation
 			true /* flush output directory */,
@@ -2057,7 +2057,7 @@ protected static class JavacTestOptions {
 
 	// WORK replace null logs (no test) by empty string in most situations (more
 	//  complete coverage) and see what happens
-	protected void runConformTest(String[] testFiles, ASTVisitor visitor) {
+	protected void runConformTest(String[] testFiles, ASTVisitor visitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runTest(
 	 		// test directory preparation
 			true /* flush output directory */,
@@ -2088,7 +2088,7 @@ protected static class JavacTestOptions {
 	protected void runConformTest(String[] testFiles, String expectedOutputString) {
 		runConformTest(false, JavacTestOptions.DEFAULT, testFiles, expectedOutputString);
 	}
-	protected void runConformTest(boolean skipJavac, JavacTestOptions javacTestOptions, String[] testFiles, String expectedOutputString) {
+	protected void runConformTest(boolean skipJavac, JavacTestOptions javacTestOptions, String[] testFiles, String expectedOutputString) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runTest(
 			// test directory preparation
 			true /* flush output directory */,
@@ -2111,7 +2111,7 @@ protected static class JavacTestOptions {
 			skipJavac ? JavacTestOptions.SKIP :
 				javacTestOptions != null ? javacTestOptions : JavacTestOptions.DEFAULT /* default javac test options */);
 	}
-	protected void runConformTest(String[] testFiles, Map<String, String> customOptions) {
+	protected void runConformTest(String[] testFiles, Map<String, String> customOptions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runTest(
 			// test directory preparation
 			true /* flush output directory */,
@@ -2136,7 +2136,7 @@ protected static class JavacTestOptions {
 	protected void runConformTest(String[] testFiles, String expectedOutput, Map<String, String> customOptions) {
 		runConformTest(testFiles, expectedOutput, customOptions, null);
 	}
-	protected void runConformTest(String[] testFiles, String expectedOutput, Map<String, String> customOptions, String[] vmArguments, Charset charset) {
+	protected void runConformTest(String[] testFiles, String expectedOutput, Map<String, String> customOptions, String[] vmArguments, Charset charset) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runTest(
 				// test directory preparation
 				true /* flush output directory */,
@@ -2159,7 +2159,7 @@ protected static class JavacTestOptions {
 				JavacTestOptions.DEFAULT /* default javac test options */,
 				charset);
 	}
-	protected void runConformTest(String[] testFiles, String expectedOutput, Map<String, String> customOptions, String[] vmArguments, JavacTestOptions javacOptions) {
+	protected void runConformTest(String[] testFiles, String expectedOutput, Map<String, String> customOptions, String[] vmArguments, JavacTestOptions javacOptions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runTest(
 			// test directory preparation
 			true /* flush output directory */,
@@ -2181,7 +2181,7 @@ protected static class JavacTestOptions {
 			// javac options
 			javacOptions);
 	}
-	protected void runConformTest(String[] testFiles, String expectedOutput, Map<String, String> customOptions, String[] vmArguments) {
+	protected void runConformTest(String[] testFiles, String expectedOutput, Map<String, String> customOptions, String[] vmArguments) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runTest(
 			// test directory preparation
 			true /* flush output directory */,
@@ -2203,7 +2203,7 @@ protected static class JavacTestOptions {
 			// javac options
 			JavacTestOptions.DEFAULT /* default javac test options */);
 	}
-	protected void runConformTest(
+	protected void runConformTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] testFiles,
 			String[] dependantFiles,
 			String expectedSuccessOutputString) {
@@ -2229,7 +2229,7 @@ protected static class JavacTestOptions {
 				Charset.defaultCharset());
 	}
 
-	protected void runConformTest(
+	protected void runConformTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles,
 		String expectedOutputString,
 		String[] classLibraries,
@@ -2257,7 +2257,7 @@ protected static class JavacTestOptions {
 			JavacTestOptions.DEFAULT /* default javac test options */);
 	}
 
-	protected void runConformTest(
+	protected void runConformTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles,
 		String expectedOutputString,
 		String[] classLibraries,
@@ -2339,7 +2339,7 @@ protected static class JavacTestOptions {
 
 	protected static void javacUsePathOption(String option) {
 		if (AbstractRegressionTest.javacCompilers != null) {
-			for (JavacCompiler compiler : AbstractRegressionTest.javacCompilers) {
+			for (JavacCompiler compiler : AbstractRegressionTest.javacCompilers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				compiler.usePathOption(option);
 			}
 		}
@@ -2368,7 +2368,7 @@ protected static class JavacTestOptions {
 	 * Note that enabling javac tests implies running into 1.5 compliance level
 	 * (or higher).
 	 */
-	protected void runJavac(
+	protected void runJavac( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] testFiles,
 			final String expectedProblemLog,
 			final String expectedSuccessOutputString,
@@ -2390,31 +2390,31 @@ protected static class JavacTestOptions {
 			writeFiles(testFiles);
 
 			// Prepare command line
-			StringBuilder cmdLine = new StringBuilder(javacCommandLineHeader);
+			StringBuilder cmdLine = new StringBuilder(javacCommandLineHeader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			// compute extra classpath
 			String[] classpath = Util.concatWithClassLibs(JAVAC_OUTPUT_DIR_NAME, false);
-			StringBuilder cp = new StringBuilder(" -classpath ");
+			StringBuilder cp = new StringBuilder(" -classpath "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			int length = classpath.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i > 0)
-				  cp.append(File.pathSeparatorChar);
+				  cp.append(File.pathSeparatorChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (classpath[i].indexOf(" ") != -1) {
-					cp.append("\"" + classpath[i] + "\"");
+					cp.append("\"" + classpath[i] + "\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					cp.append(classpath[i]);
+					cp.append(classpath[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			cmdLine.append(cp);
+			cmdLine.append(cp); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// add source files
-			for (int i = 0; i < testFiles.length; i += 2) {
+			for (int i = 0; i < testFiles.length; i += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// *.java is not enough (p1/X.java, p2/Y.java)
-				cmdLine.append(' ');
-				cmdLine.append(testFiles[i]);
+				cmdLine.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				cmdLine.append(testFiles[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 
 			// Launch process
 			compileProcess = Runtime.getRuntime().exec(
-				cmdLine.toString().split("\\s"), env, this.outputTestDirectory);
+				cmdLine.toString().split("\\s"), env, this.outputTestDirectory); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 			// Log errors
       Logger errorLogger = new Logger(compileProcess.getErrorStream(), "ERROR");
@@ -2436,7 +2436,7 @@ protected static class JavacTestOptions {
 				javacTestName = testName;
 				javacTestErrorFlag = false;
 				javacFullLog.println("-----------------------------------------------------------------");
-				javacFullLog.println(CURRENT_CLASS_NAME + " " + testName);
+				javacFullLog.println(CURRENT_CLASS_NAME + " " + testName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			if (exitValue != 0) {
 				javacTestErrorFlag = true;
@@ -2456,7 +2456,7 @@ protected static class JavacTestOptions {
 				if (exitValue != 0) {
 					// Javac found errors
 					System.out.println("----------------------------------------");
-					System.out.println(testName + " - Javac has found error(s) but Eclipse expects conform result:\n");
+					System.out.println(testName + " - Javac has found error(s) but Eclipse expects conform result:\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					javacFullLog.println("JAVAC_MISMATCH: Javac has found error(s) but Eclipse expects conform result");
 					System.out.println(errorLogger.buffer.toString());
 					printFiles(testFiles);
@@ -2466,7 +2466,7 @@ protected static class JavacTestOptions {
 					// Javac found no error - may have found warnings
 					if (errorLogger.buffer.length() > 0) {
 						System.out.println("----------------------------------------");
-						System.out.println(testName + " - Javac has found warning(s) but Eclipse expects conform result:\n");
+						System.out.println(testName + " - Javac has found warning(s) but Eclipse expects conform result:\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						javacFullLog.println("JAVAC_MISMATCH: Javac has found warning(s) but Eclipse expects conform result");
 						System.out.println(errorLogger.buffer.toString());
 						printFiles(testFiles);
@@ -2475,11 +2475,11 @@ protected static class JavacTestOptions {
 					if (expectedSuccessOutputString != null && !javacTestErrorFlag) {
 						// Neither Eclipse nor Javac found errors, and we have a runtime
 						// bench value
-						StringBuilder javaCmdLine = new StringBuilder(javaCommandLineHeader);
-						javaCmdLine.append(cp);
-						javaCmdLine.append(' ').append(testFiles[0].substring(0, testFiles[0].indexOf('.')));
+						StringBuilder javaCmdLine = new StringBuilder(javaCommandLineHeader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+						javaCmdLine.append(cp); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+						javaCmdLine.append(' ').append(testFiles[0].substring(0, testFiles[0].indexOf('.'))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							// assume executable class is name of first test file - PREMATURE check if this is also the case in other test fwk classes
-						execProcess = Runtime.getRuntime().exec(javaCmdLine.toString().split("\\s"), env, this.outputTestDirectory);
+						execProcess = Runtime.getRuntime().exec(javaCmdLine.toString().split("\\s"), env, this.outputTestDirectory); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 						Logger logger = new Logger(execProcess.getInputStream(), "");
 						// PREMATURE implement consistent error policy
 	     				logger.start();
@@ -2488,7 +2488,7 @@ protected static class JavacTestOptions {
 						String javaOutput = logger.buffer.toString().trim();
 						if (!expectedSuccessOutputString.equals(javaOutput)) {
 							System.out.println("----------------------------------------");
-							System.out.println(testName + " - Javac and Eclipse runtime output is not the same:");
+							System.out.println(testName + " - Javac and Eclipse runtime output is not the same:"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							javacFullLog.println("JAVAC_MISMATCH: Javac and Eclipse runtime output is not the same");
 							dualPrintln("eclipse:");
 							dualPrintln(expectedSuccessOutputString);
@@ -2505,7 +2505,7 @@ protected static class JavacTestOptions {
 				// Eclipse found errors or warnings
 				if (errorLogger.buffer.length() == 0) {
 					System.out.println("----------------------------------------");
-					System.out.println(testName + " - Eclipse has found error(s)/warning(s) but Javac did not find any:");
+					System.out.println(testName + " - Eclipse has found error(s)/warning(s) but Javac did not find any:"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					javacFullLog.println("JAVAC_MISMATCH: Eclipse has found error(s)/warning(s) but Javac did not find any");
 					dualPrintln("eclipse:");
 					dualPrintln(expectedProblemLog);
@@ -2513,7 +2513,7 @@ protected static class JavacTestOptions {
 					DIFF_COUNTERS[1]++;
 				} else if (expectedProblemLog.indexOf("ERROR") > 0 && exitValue == 0){
 					System.out.println("----------------------------------------");
-					System.out.println(testName + " - Eclipse has found error(s) but Javac only found warning(s):");
+					System.out.println(testName + " - Eclipse has found error(s) but Javac only found warning(s):"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					javacFullLog.println("JAVAC_MISMATCH: Eclipse has found error(s) but Javac only found warning(s)");
 					dualPrintln("eclipse:");
 					dualPrintln(expectedProblemLog);
@@ -2534,12 +2534,12 @@ protected static class JavacTestOptions {
 		catch (InterruptedException e1) {
 			if (compileProcess != null) compileProcess.destroy();
 			if (execProcess != null) execProcess.destroy();
-			System.out.println(testName+": OpenJDK javac compilation was aborted!");
+			System.out.println(testName+": OpenJDK javac compilation was aborted!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			javacFullLog.println("JAVAC_WARNING: OpenJDK javac compilation was aborted!");
 			e1.printStackTrace(javacFullLog);
 		}
 		catch (Throwable e) {
-			System.out.println(testName+": could not launch OpenJDK javac compilation!");
+			System.out.println(testName+": could not launch OpenJDK javac compilation!"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			e.printStackTrace();
 			javacFullLog.println("JAVAC_ERROR: could not launch OpenJDK javac compilation!");
 			e.printStackTrace(javacFullLog);
@@ -2552,23 +2552,23 @@ protected static class JavacTestOptions {
 		}
 	}
 	// WORK factorize all runJavac implementations, including overrides
-	protected boolean runJavac(String options, String[] testFileNames, String currentDirectoryPath) {
+	protected boolean runJavac(String options, String[] testFileNames, String currentDirectoryPath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Process compileProcess = null;
 		try {
 			// Prepare command line
-			StringBuilder cmdLine = new StringBuilder(javacCommandLineHeader);
-			cmdLine.append(' ');
-			cmdLine.append(options);
+			StringBuilder cmdLine = new StringBuilder(javacCommandLineHeader); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			cmdLine.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			cmdLine.append(options); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// add source files
-			for (int i = 0; i < testFileNames.length; i ++) {
+			for (int i = 0; i < testFileNames.length; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// *.java is not enough (p1/X.java, p2/Y.java)
-				cmdLine.append(' ');
-				cmdLine.append(testFileNames[i]);
+				cmdLine.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				cmdLine.append(testFileNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			// Launch process
 			File currentDirectory = new File(currentDirectoryPath);
 			compileProcess = Runtime.getRuntime().exec(
-				cmdLine.toString().split("\\s"), env, currentDirectory);
+				cmdLine.toString().split("\\s"), env, currentDirectory); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 			// Log errors
 			Logger errorLogger = new Logger(compileProcess.getErrorStream(), "ERROR");
@@ -2616,7 +2616,7 @@ protected static class JavacTestOptions {
  * (or higher).
  */
 // WORK unify use of output, error, log, etc...
-protected void runJavac(
+protected void runJavac( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles,
 		boolean expectingCompilerErrors,
 		String expectedCompilerLog,
@@ -2649,8 +2649,8 @@ protected void runJavac(
 		classLibraries = this.classpaths;
 	}
 	if (classLibraries != null) {
-		List<String> filteredLibs = new ArrayList<>();
-		for (String lib : classLibraries) {
+		List<String> filteredLibs = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (String lib : classLibraries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!lib.startsWith(jdkRootDirPath.toString())) // this can fail if jdkRootDirPath is a symlink
 				filteredLibs.add(lib);
 		}
@@ -2662,37 +2662,37 @@ protected void runJavac(
 	}
 	String testName = testName();
 	Iterator<JavacCompiler> compilers = javacCompilers.iterator();
-	while (compilers.hasNext()) {
+	while (compilers.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		JavacCompiler compiler = compilers.next();
 		if (!options.skip(compiler) && compiler.compliance == this.complianceLevel) {
 			// WORK this may exclude some compilers under some conditions (when
 			//      complianceLevel is not set); consider accepting the compiler
 			//      in such case and see what happens
 			JavacTestOptions.Excuse excuse = options.excuseFor(compiler);
-			StringBuilder compilerLog = new StringBuilder();
+			StringBuilder compilerLog = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			File javacOutputDirectory = null;
 			int mismatch = 0;
 			String sourceFileNames[] = null;
 			try {
 				// cleanup javac output dir if needed
- 				javacOutputDirectory = new File(JAVAC_OUTPUT_DIR_NAME +
+ 				javacOutputDirectory = new File(JAVAC_OUTPUT_DIR_NAME + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						File.separator + compiler.rawVersion); // need to change output directory per javac version
 				if (shouldFlushOutputDirectory) {
 					Util.delete(javacOutputDirectory);
 				} else {
 					deleteSourceFiles(javacOutputDirectory);
 				}
-				javacOutputDirectory.mkdirs();
+				javacOutputDirectory.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				// write test files
-				for (int i = 0, length = testFiles.length; i < length; ) {
+				for (int i = 0, length = testFiles.length; i < length; ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String fileName = testFiles[i++];
 					String contents = testFiles[i++];
 					fileName = expandFileNameForJavac(fileName);
 					File file = new File(javacOutputDirectory, fileName);
 					if (fileName.lastIndexOf('/') >= 0) {
 						File dir = file.getParentFile();
-						if (!dir.exists()) {
-							dir.mkdirs();
+						if (!dir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+							dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 						}
 					}
 					Util.writeToFile(contents, file.getPath());
@@ -2700,7 +2700,7 @@ protected void runJavac(
 				// compute source file names
 				int testFilesLength = testFiles.length;
 				sourceFileNames = new String[testFilesLength / 2];
-				for (int i = 0, j = 0; i < testFilesLength; i += 2, j++) {
+				for (int i = 0, j = 0; i < testFilesLength; i += 2, j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					sourceFileNames[j] = expandFileNameForJavac(testFiles[i]);
 				}
 
@@ -2756,16 +2756,16 @@ protected void runJavac(
 						!javacTestErrorFlag && mismatch == 0 && sourceFileNames != null &&
 						!className.endsWith(PACKAGE_INFO_NAME) && !className.endsWith(MODULE_INFO_NAME)) {
 					JavaRuntime runtime = JavaRuntime.fromCurrentVM();
-					StringBuilder stderr = new StringBuilder();
-					StringBuilder stdout = new StringBuilder();
+					StringBuilder stderr = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+					StringBuilder stdout = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 					String vmOptions = "";
 					if (vmArguments != null) {
 						int l = vmArguments.length;
 						if (l > 0) {
-							StringBuilder buffer = new StringBuilder(vmArguments[0]);
-							for (int i = 1; i < l; i++) {
-								buffer.append(' ');
-								buffer.append(vmArguments[i]);
+							StringBuilder buffer = new StringBuilder(vmArguments[0]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+							for (int i = 1; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+								buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+								buffer.append(vmArguments[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							}
 							vmOptions = buffer.toString();
 						}
@@ -2804,9 +2804,9 @@ protected void runJavac(
 }
 private void deleteSourceFiles(File directory) {
 	try {
-		if (!directory.exists())
+		if (!directory.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return;
-		Files.walk(directory.toPath())
+		Files.walk(directory.toPath()) //FLLDCIM: MARK — M24 M3FILE_STREAMS CALL
 			.filter(f -> f.toString().endsWith(SuffixConstants.SUFFIX_STRING_java))
 			.map(java.nio.file.Path::toFile)
 			.filter(File::isFile)
@@ -2815,7 +2815,7 @@ private void deleteSourceFiles(File directory) {
 		e.printStackTrace();
 	}
 }
-private boolean errorStringMatch(String expectedErrorStringStart, String actualError) {
+private boolean errorStringMatch(String expectedErrorStringStart, String actualError) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	/*
 	 * From TestVerifier.checkBuffers():
 	 * This is an opportunistic heuristic for error strings comparison:
@@ -2841,7 +2841,7 @@ private boolean errorStringMatch(String expectedErrorStringStart, String actualE
 protected String expandFileNameForJavac(String fileName) {
 	return fileName;
 }
-void handleMismatch(JavacCompiler compiler, String testName, String[] testFiles, String expectedCompilerLog,
+void handleMismatch(JavacCompiler compiler, String testName, String[] testFiles, String expectedCompilerLog, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String expectedOutputString, String expectedErrorString, StringBuilder compilerLog, String output, String err,
 		JavacTestOptions.Excuse excuse, int mismatch) {
 	if (mismatch != 0) {
@@ -2853,58 +2853,58 @@ void handleMismatch(JavacCompiler compiler, String testName, String[] testFiles,
 			logTestFiles(true, testFiles);
 			switch (mismatch) {
 				case JavacTestOptions.MismatchType.EclipseErrorsJavacNone:
-					assertEquals(testName + " - Eclipse found error(s) but Javac did not find any",
+					assertEquals(testName + " - Eclipse found error(s) but Javac did not find any", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							"", expectedCompilerLog.toString());
 					break;
 				case JavacTestOptions.MismatchType.EclipseErrorsJavacWarnings:
-					assertEquals(testName + " - Eclipse found error(s) but Javac only found warning(s)",
+					assertEquals(testName + " - Eclipse found error(s) but Javac only found warning(s)", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							expectedCompilerLog.toString(),	compilerLog.toString());
 					break;
 				case JavacTestOptions.MismatchType.JavacErrorsEclipseNone:
-					assertEquals(testName + " - Javac found error(s) but Eclipse did not find any",
+					assertEquals(testName + " - Javac found error(s) but Eclipse did not find any", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							"", compilerLog.toString());
 					break;
 				case JavacTestOptions.MismatchType.JavacErrorsEclipseWarnings:
-					assertEquals(testName + " - Javac found error(s) but Eclipse only found warning(s)",
+					assertEquals(testName + " - Javac found error(s) but Eclipse only found warning(s)", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							expectedCompilerLog.toString(),	compilerLog.toString());
 					break;
 				case JavacTestOptions.MismatchType.EclipseWarningsJavacNone:
-					assertEquals(testName + " - Eclipse found warning(s) but Javac did not find any",
+					assertEquals(testName + " - Eclipse found warning(s) but Javac did not find any", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							"", expectedCompilerLog.toString());
 					break;
 				case JavacTestOptions.MismatchType.JavacWarningsEclipseNone:
-					assertEquals(testName + " - Javac found warning(s) but Eclipse did not find any",
+					assertEquals(testName + " - Javac found warning(s) but Eclipse did not find any", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							"", compilerLog.toString());
 					break;
 				case JavacTestOptions.MismatchType.StandardOutputMismatch:
-					assertEquals(testName + " - Eclipse/Javac standard output mismatch",
+					assertEquals(testName + " - Eclipse/Javac standard output mismatch", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							expectedOutputString, output);
 					break;
 				case JavacTestOptions.MismatchType.ErrorOutputMismatch:
-					assertEquals(testName + " - Eclipse/Javac standard error mismatch",
+					assertEquals(testName + " - Eclipse/Javac standard error mismatch", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							expectedErrorString, err);
 					break;
 				case JavacTestOptions.MismatchType.JavacAborted:
 				case JavacTestOptions.MismatchType.JavacNotLaunched:
-					fail(testName + " - Javac failure");
+					fail(testName + " - Javac failure"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					break;
 				case JavacTestOptions.MismatchType.JavaAborted:
 				case JavacTestOptions.MismatchType.JavaNotLaunched:
-					fail(testName + " - Java failure");
+					fail(testName + " - Java failure"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					break;
 				case JavacTestOptions.MismatchType.CompileErrorMismatch:
-					fail(testName + " Javac failure did not match \"" + expectedCompilerLog +'\"');
+					fail(testName + " Javac failure did not match \"" + expectedCompilerLog +'\"'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					break;
 				default:
-					throw new RuntimeException("unexpected mismatch value: " + mismatch);
+					throw new RuntimeException("unexpected mismatch value: " + mismatch); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 	if (excuse != null) {
 		if (excuse.isIntermittent)
-			System.err.println(testName + ": unused execuse (intermittent bug) "+excuse + " for compiler " + compiler);
+			System.err.println(testName + ": unused execuse (intermittent bug) "+excuse + " for compiler " + compiler); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
-			fail(testName + ": unused excuse " + excuse + " for compiler " + compiler);
+			fail(testName + ": unused excuse " + excuse + " for compiler " + compiler); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 
@@ -2913,10 +2913,10 @@ private String adjustErrorOutput(String error, String className) {
 	// from a stack trace written directly by a dying JVM (during javac testing), adjust if needed:
 	String excPrefix = "Exception in thread \"main\" ";
 	if (error.startsWith(excPrefix))
-		return error.substring(excPrefix.length())+'\n';
-	excPrefix = "Error: LinkageError occurred while loading main class "+className+"\n\t";
+		return error.substring(excPrefix.length())+'\n'; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	excPrefix = "Error: LinkageError occurred while loading main class "+className+"\n\t"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (error.startsWith(excPrefix))
-		return error.substring(excPrefix.length())+'\n';
+		return error.substring(excPrefix.length())+'\n'; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return error;
 }
 
@@ -2937,7 +2937,7 @@ protected void runNegativeTest(String[] testFiles, String expectedCompilerLog) {
 //	},
 //// compiler results
 //"" /* expected compiler log */);
-protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOptions, String[] testFiles, String expectedCompilerLog) {
+protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOptions, String[] testFiles, String expectedCompilerLog) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
  		// test directory preparation
 		true /* flush output directory */,
@@ -2969,7 +2969,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 protected void runNegativeTest(String[] testFiles, String expectedCompilerLog, boolean performStatementRecovery) {
 	runNegativeTest(false/*skipJavac*/, null, testFiles, expectedCompilerLog, performStatementRecovery);
 }
-protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOptions, String[] testFiles, String expectedCompilerLog, boolean performStatementRecovery) {
+protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOptions, String[] testFiles, String expectedCompilerLog, boolean performStatementRecovery) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
  		// test directory preparation
 		true /* flush output directory */,
@@ -3006,7 +3006,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 		boolean shouldFlushOutputDirectory) {
 		runNegativeTest(false, null, testFiles, expectedProblemLog, classLib, shouldFlushOutputDirectory);
 	}
-	protected void runNegativeTest(
+	protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			boolean skipJavac,
 			JavacTestOptions javacTestOptions,
 			String[] testFiles,
@@ -3047,7 +3047,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 			Map customOptions) {
 		runNegativeTest(testFiles, expectedCompilerLog, classLibraries, shouldFlushOutputDirectory, null, customOptions);
 	}
-	protected void runNegativeTest(
+	protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles,
 		String expectedCompilerLog,
 		String[] classLibraries,
@@ -3080,7 +3080,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 			// javac options
 			JavacTestOptions.DEFAULT /* default javac test options */);
 	}
-	protected void runNegativeTest(
+	protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			boolean skipJavac,
 			JavacTestOptions javacTestOptions,
 			String[] testFiles,
@@ -3127,7 +3127,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 					shouldFlushOutputDirectory, customOptions, expectedErrorString,
 					JavacTestOptions.DEFAULT);
 		}
-	protected void runNegativeTest(
+	protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] testFiles,
 			String expectedCompilerLog,
 			String[] classLibraries,
@@ -3161,7 +3161,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 				// javac options
 				javacTestOptions /* default javac test options */);
 		}
-	protected void runNegativeTest(
+	protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles,
 		String expectedProblemLog,
 		String[] classLibraries,
@@ -3201,7 +3201,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 	 * Log contains all problems (warnings+errors)
 	 */
 	// WORK potential candidate for elimination (19 calls)
-	protected void runNegativeTest(
+	protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles,
 		String expectedCompilerLog,
 		String[] classLibraries,
@@ -3240,7 +3240,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 					JavacTestOptions.SKIP :
 					JavacTestOptions.DEFAULT /* javac test options */);
 	}
-	protected void runNegativeTest(
+	protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] testFiles,
 			String expectedCompilerLog,
 			String[] classLibraries,
@@ -3280,7 +3280,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 						JavacTestOptions.SKIP :
 						 javacOptions/* javac test options */);
 		}
-	protected void runTest(
+	protected void runTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] testFiles,
 			boolean expectingCompilerErrors,
 			String expectedCompilerLog,
@@ -3319,7 +3319,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 	}
 
 	// WORK get this out
-	protected void runTest(
+	protected void runTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] testFiles,
 			boolean expectingCompilerErrors,
 			String expectedCompilerLog,
@@ -3353,7 +3353,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 			// javac options
 			javacTestOptions /* javac test options */);
 	}
-	protected void runTest(
+	protected void runTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			// test directory preparation
 			boolean shouldFlushOutputDirectory,
 			String[] testFiles,
@@ -3394,7 +3394,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 			javacTestOptions,
 			Charset.defaultCharset());
 	}
-	private void runTest(
+	private void runTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			// test directory preparation
 			boolean shouldFlushOutputDirectory,
 			String[] testFiles,
@@ -3437,7 +3437,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 			charset);
 	}
 	/** Call this if the compiler randomly produces different error logs. */
-	protected void runNegativeTestMultiResult(String[] testFiles, Map options, String[] alternateCompilerErrorLogs) {
+	protected void runNegativeTestMultiResult(String[] testFiles, Map options, String[] alternateCompilerErrorLogs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runTest(
 			false,
 			testFiles,
@@ -3463,7 +3463,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 			JavacTestOptions.DEFAULT,
 			Charset.defaultCharset());
 	}
-	private void runTest(
+	private void runTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			// test directory preparation
 			boolean shouldFlushOutputDirectory,
 			String[] testFiles,
@@ -3580,7 +3580,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 // - check the callees statistics for wrapper methods and tune them accordingly
 //   (aka, suppress low profile ones).
 // WORK log test files in all failure cases (ez cut and paste)
-	private void runTest(
+	private void runTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			// test directory preparation
 			boolean shouldFlushOutputDirectory,
 			String[] testFiles,
@@ -3621,7 +3621,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 						customRequestor,
 						false, /* show category */
 						false /* show warning token*/);
-		requestor.outputPath = OUTPUT_DIR.endsWith(File.separator) ? OUTPUT_DIR : OUTPUT_DIR + File.separator;
+		requestor.outputPath = OUTPUT_DIR.endsWith(File.separator) ? OUTPUT_DIR : OUTPUT_DIR + File.separator; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				// WORK should not have to test a constant?
 
 		Map<String, String> options = getCompilerOptions();
@@ -3666,7 +3666,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 				alternatePlatformIndepentLogs = new String[] {Util.convertToIndependantLineDelimiter(expectedCompilerLog)};
 			} else if (alternateCompilerLogs != null) {
 				alternatePlatformIndepentLogs = new String[alternateCompilerLogs.length];
-				for (int i = 0; i < alternateCompilerLogs.length; i++)
+				for (int i = 0; i < alternateCompilerLogs.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					alternatePlatformIndepentLogs[i] = Util.convertToIndependantLineDelimiter(alternateCompilerLogs[i]);
 			}
 			if (alternatePlatformIndepentLogs != null) {
@@ -3715,11 +3715,11 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 					System.out.println(getClass().getName() + '#' + getName());
 					String execErrorString = this.verifier.getExecutionError();
 					if (execErrorString != null && execErrorString.length() > 0) {
-						System.out.println("[ERR]:"+execErrorString); //$NON-NLS-1$
+						System.out.println("[ERR]:"+execErrorString); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					String execOutputString = this.verifier.getExecutionOutput();
 					if (execOutputString != null && execOutputString.length() > 0) {
-						System.out.println("[OUT]:"+execOutputString); //$NON-NLS-1$
+						System.out.println("[OUT]:"+execOutputString); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					logTestFiles(false, testFiles);
 					assertEquals(this.verifier.failureReason, expectedErrorString == null ? "" : expectedErrorString, execErrorString);
@@ -3816,7 +3816,7 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 //		JavacTestOptions.SKIP /* skip javac tests */);
 //		JavacTestOptions.DEFAULT /* default javac test options */);
 //		javacTestOptions /* javac test options */);
-public void runConformTest(
+public void runConformTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// test directory preparation
 	String[] testFiles,
 	// javac options
@@ -3871,7 +3871,7 @@ runTest(
 //		JavacTestOptions.SKIP /* skip javac tests */);
 //		JavacTestOptions.DEFAULT /* default javac test options */);
 //		javacTestOptions /* javac test options */);
-protected void runConformTest(
+protected void runConformTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// test directory preparation
 		boolean shouldFlushOutputDirectory,
 		String[] testFiles,
@@ -3938,7 +3938,7 @@ protected void runConformTest(
 //		JavacTestOptions.SKIP /* skip javac tests */);
 //		JavacTestOptions.DEFAULT /* default javac test options */);
 //		javacTestOptions /* javac test options */);
-protected void runConformTest(
+protected void runConformTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// test directory preparation
 		boolean shouldFlushOutputDirectory,
 		String[] testFiles,
@@ -3984,7 +3984,7 @@ protected void runConformTest(
 //		JavacTestOptions.SKIP /* skip javac tests */);
 //		JavacTestOptions.DEFAULT /* default javac test options */);
 //		javacTestOptions /* javac test options */);
-protected void runNegativeTest(
+protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// test directory preparation
 		String[] testFiles,
 		// compiler results
@@ -4023,7 +4023,7 @@ protected void runNegativeTest(
 //JavacTestOptions.SKIP /* skip javac tests */);
 //JavacTestOptions.DEFAULT /* default javac test options */);
 //javacTestOptions /* javac test options */);
-protected void runNegativeTest(
+protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 // test directory preparation
 String[] testFiles,
 String[] dependentFiles,
@@ -4085,7 +4085,7 @@ JavacTestOptions javacTestOptions) {
 //		JavacTestOptions.SKIP /* skip javac tests */);
 //		JavacTestOptions.DEFAULT /* default javac test options */);
 //		javacTestOptions /* javac test options */);
-protected void runNegativeTest(
+protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// test directory preparation
 		boolean shouldFlushOutputDirectory,
 		String[] testFiles,
@@ -4154,7 +4154,7 @@ protected void runNegativeTest(
 //    JavacTestOptions.SKIP /* skip javac tests */);
 //    JavacTestOptions.DEFAULT /* default javac test options */);
 //    javacTestOptions /* javac test options */);
-protected void runNegativeTest(
+protected void runNegativeTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// test directory preparation
 	boolean shouldFlushOutputDirectory,
 	String[] testFiles,
@@ -4208,7 +4208,7 @@ protected void runNegativeTest(
 		}
 	}
 
-	private void setupJavac() throws Exception {
+	private void setupJavac() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// WORK make all needed inits once and for all
 		if (isFirst()) {
 			if (javacFullLog == null) {
@@ -4223,43 +4223,43 @@ protected void runNegativeTest(
 					jdkRootDirPath = new Path(jdkRootDirectory);
 				}
 
-				StringBuilder cmdLineHeader = new StringBuilder(jdkRootDirPath.
+				StringBuilder cmdLineHeader = new StringBuilder(jdkRootDirPath. //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 						append("bin").append(JAVA_NAME).toString()); // PREMATURE replace JAVA_NAME and JAVAC_NAME with locals? depends on potential reuse
 				javaCommandLineHeader = cmdLineHeader.toString();
-				cmdLineHeader = new StringBuilder(jdkRootDirPath.
+				cmdLineHeader = new StringBuilder(jdkRootDirPath. //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 						append("bin").append(JAVAC_NAME).toString());
 				String version = JavacCompiler.getVersion(cmdLineHeader.toString());
-				cmdLineHeader.append(" -classpath . ");
+				cmdLineHeader.append(" -classpath . "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				  // start with the current directory which contains the source files
-				cmdLineHeader.append(" -d ");
-				cmdLineHeader.append(JAVAC_OUTPUT_DIR_NAME.indexOf(" ") != -1 ? "\"" + JAVAC_OUTPUT_DIR_NAME + "\"" : JAVAC_OUTPUT_DIR_NAME);
+				cmdLineHeader.append(" -d "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				cmdLineHeader.append(JAVAC_OUTPUT_DIR_NAME.indexOf(" ") != -1 ? "\"" + JAVAC_OUTPUT_DIR_NAME + "\"" : JAVAC_OUTPUT_DIR_NAME); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				String firstSupportedVersion = CompilerOptions.getFirstSupportedJavaVersion();
-				cmdLineHeader.append(" -source " + firstSupportedVersion + " -deprecation -Xlint "); // enable recommended warnings
+				cmdLineHeader.append(" -source " + firstSupportedVersion + " -deprecation -Xlint "); // enable recommended warnings //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				// WORK new javac system does not do that... reconsider
 				// REVIEW consider enabling all warnings instead? Philippe does not see
 				//        this as ez to use (too many changes in logs)
 				javacCommandLineHeader = cmdLineHeader.toString();
-				new File(Util.getOutputDirectory()).mkdirs();
+				new File(Util.getOutputDirectory()).mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				// TODO maxime check why this happens to miss in some cases
 				// WORK if we keep a full log, it should not mix javac versions...
-				javacFullLogFileName = Util.getOutputDirectory() +	File.separatorChar +
+				javacFullLogFileName = Util.getOutputDirectory() +	File.separatorChar + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		        							version.replace(' ', '_') + "_" +
 		        					    (new SimpleDateFormat("yyyyMMdd_HHmmss")).format(new Date()) +
 		        					    ".txt";
 				javacFullLog =
-				  	new PrintWriter(new FileOutputStream(javacFullLogFileName)); // static that is initialized once, closed at process end
+				  	new PrintWriter(new FileOutputStream(javacFullLogFileName)); // static that is initialized once, closed at process end //FLLDCIM: MARK — M31 M3FILE_IO NEW
 				javacFullLog.println(version); // so that the contents is self sufficient
 				System.out.println("***************************************************************************");
-				System.out.println("* OpenJDK javac compiler "+JavacCompiler.getBuild(javaCommandLineHeader)+" output archived into file:");
-				System.out.println("* " + javacFullLogFileName);
+				System.out.println("* OpenJDK javac compiler "+JavacCompiler.getBuild(javaCommandLineHeader)+" output archived into file:"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				System.out.println("* " + javacFullLogFileName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				System.out.println("***************************************************************************");
-				javacCompilers = new ArrayList<>();
+				javacCompilers = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				String jdkRoots = System.getProperty("jdk.roots");
 				if (jdkRoots == null) {
 					javacCompilers.add(new JavacCompiler(jdkRootDirPath.toString()));
 				} else {
 					StringTokenizer tokenizer = new StringTokenizer(jdkRoots, File.pathSeparator);
-					while (tokenizer.hasMoreTokens()) {
+					while (tokenizer.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						javacCompilers.add(new JavacCompiler(tokenizer.nextToken()));
 					}
 				}
@@ -4268,7 +4268,7 @@ protected void runNegativeTest(
 			CURRENT_CLASS_NAME = getClass().getName();
 			dualPrintln("***************************************************************************");
 			System.out.print("* Comparison with OpenJDK javac compiler for class ");
-			dualPrintln(CURRENT_CLASS_NAME.substring(CURRENT_CLASS_NAME.lastIndexOf('.')+1) +
+			dualPrintln(CURRENT_CLASS_NAME.substring(CURRENT_CLASS_NAME.lastIndexOf('.')+1) + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" (" + TESTS_COUNTERS.get(CURRENT_CLASS_NAME) + " tests)");
 			System.out.println("***************************************************************************");
 			DIFF_COUNTERS[0] = 0;
@@ -4282,23 +4282,23 @@ protected void runNegativeTest(
 		this.verifier.shutDown();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void tearDown() throws Exception {
 		if (this.createdVerifier) {
 			stop();
 		}
 		// clean up output dir
 		File outputDir = new File(OUTPUT_DIR);
-		if (outputDir.exists()) {
+		if (outputDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(outputDir);
 		}
 		File libDir = new File(LIB_DIR);
-		if (libDir.exists()) {
+		if (libDir.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			Util.flushDirectoryContent(libDir);
 		}
 		super.tearDown();
 		if (shouldRunJavac()) {
-			if (JAVAC_OUTPUT_DIR.exists()) {
+			if (JAVAC_OUTPUT_DIR.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 				Util.flushDirectoryContent(JAVAC_OUTPUT_DIR);
 			}
 			printJavacResultsSummary();
@@ -4337,19 +4337,19 @@ protected void runNegativeTest(
 
 	public static void printRunJavacStats() {
 		if (RUN_JAVAC || RUN_JAVAC_OPT_IN) {
-			System.out.println("Num tests with run.javac enabled: "+numRunJavacTests);
-			System.out.println("Num tests triggering a javac bug: "+javacBugs.size());
+			System.out.println("Num tests with run.javac enabled: "+numRunJavacTests); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("Num tests triggering a javac bug: "+javacBugs.size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			printBugConstants(javacBugs, JavacTestOptions.JavacHasABug.class);
-			System.out.println("Num tests triggering an ecj bug : "+ecjBugs.size());
+			System.out.println("Num tests triggering an ecj bug : "+ecjBugs.size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			printBugConstants(ecjBugs, JavacTestOptions.EclipseHasABug.class);
 		}
 	}
 
-	private static void printBugConstants(Set<JavacTestOptions.Excuse> bugs, Class<? extends JavacTestOptions.Excuse> clazz) {
-		List<String> bugNames = new ArrayList<>();
-		bugs: for (JavacTestOptions.Excuse bug : bugs) {
-			for (Class<?> aClazz : new Class<?>[] { clazz, JavacTestOptions.Excuse.class }) {
-				for (Field field : aClazz.getDeclaredFields()) {
+	private static void printBugConstants(Set<JavacTestOptions.Excuse> bugs, Class<? extends JavacTestOptions.Excuse> clazz) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<String> bugNames = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		bugs: for (JavacTestOptions.Excuse bug : bugs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (Class<?> aClazz : new Class<?>[] { clazz, JavacTestOptions.Excuse.class }) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				for (Field field : aClazz.getDeclaredFields()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if ((field.getModifiers() & Modifier.STATIC) != 0) {
 						try {
 							if (bug == field.get(null)) {
@@ -4362,8 +4362,8 @@ protected void runNegativeTest(
 					}
 				}
 			}
-			bugNames.add("\tunknown excuse "+bug);
+			bugNames.add("\tunknown excuse "+bug); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		bugNames.stream().sorted().forEach(s -> System.out.println("\t"+s));
+		bugNames.stream().sorted().forEach(s -> System.out.println("\t"+s)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

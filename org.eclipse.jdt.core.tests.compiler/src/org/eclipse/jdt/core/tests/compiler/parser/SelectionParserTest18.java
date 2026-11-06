@@ -30,7 +30,7 @@ public SelectionParserTest18(String testName) {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424110, [1.8][hovering] Hover, F3 does not work for method reference in method invocation
-public void test424110() throws JavaModelException {
+public void test424110() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"public class X {\n" +
 			"	static F f = X::m; // [1] Works\n" +
@@ -84,7 +84,7 @@ public void test424110() throws JavaModelException {
 			testName);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424110, [1.8][hovering] Hover, F3 does not work for method reference in method invocation
-public void test424110a() throws JavaModelException {
+public void test424110a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"public class X {\n" +
 			"	int i = fun(X::m); // [2] Does not work\n" +
@@ -134,7 +134,7 @@ public void test424110a() throws JavaModelException {
 			testName);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430572, [1.8] CCE on hovering over 'super' in lambda expression
-public void test430572() throws JavaModelException {
+public void test430572() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"@FunctionalInterface\n" +
 			"interface FI {\n" +
@@ -180,7 +180,7 @@ public void test430572() throws JavaModelException {
 			testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=476693
-public void test476693() throws JavaModelException {
+public void test476693() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import static java.util.stream.Collectors.toList;\n" +
 			"import java.util.List;\n" +
@@ -252,7 +252,7 @@ public void test476693() throws JavaModelException {
 			expectedReplacedSource,
 			testName);
 }
-public void test495912() {
+public void test495912() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"package xy;\n" +
 			"public class Test {\n" +
@@ -311,7 +311,7 @@ public void test495912() {
 			expectedReplacedSource,
 			testName);
 }
-public void test495912a() {
+public void test495912a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"package xy;\n" +
 			"public class Test {\n" +
@@ -373,7 +373,7 @@ public void test495912a() {
 			expectedReplacedSource,
 			testName);
 }
-public void test495912b() {
+public void test495912b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"package xy;\n" +
 			"import org.eclipse.e4.ui.internal.workbench.PartServiceImpl;\n" +
@@ -455,7 +455,7 @@ public void test495912b() {
 			expectedReplacedSource,
 			testName);
 }
-public void testBug486264_selectionOnLambda_expectLambdaMethod() {
+public void testBug486264_selectionOnLambda_expectLambdaMethod() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"package xy;\n" +
 			"import java.util.stream.*;\n" +

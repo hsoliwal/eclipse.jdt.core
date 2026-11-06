@@ -25,7 +25,7 @@ public Deprecated18Test(String name) {
 public static Test suite() {
 	return buildMinimalComplianceTestSuite(testClass(), F_1_8);
 }
-public void test412555() {
+public void test412555() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -58,7 +58,7 @@ public void test412555() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1370
 // Deprecation warnings are not suppressed in lambdas of deprecated methods
-public void testGH1370() {
+public void testGH1370() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.ERROR);
 	this.runNegativeTest(

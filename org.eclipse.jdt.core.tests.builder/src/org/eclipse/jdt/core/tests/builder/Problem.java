@@ -108,14 +108,14 @@ public int getSeverity() {
 // ignore locations since the builder no longer finds exact Java elements
 //		return "Problem : " + message + " [ resource : <" + resourcePath + "> location <"+ location + "> ]";
 		return
-			"Problem : "
+			"Problem : " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ this.message
 			+ " [ resource : <"
 			+ this.resourcePath
 			+ ">"
-			+ (" range : <" + this.start + "," + this.end + ">")
-			+ (" category : <" + this.categoryId + ">")
-			+ (" severity : <" + this.severity + ">")
+			+ (" range : <" + this.start + "," + this.end + ">") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			+ (" category : <" + this.categoryId + ">") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			+ (" severity : <" + this.severity + ">") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "]";
 	}
 
@@ -126,7 +126,7 @@ public int getSeverity() {
 		return false;
 	}
 
-	public int compareTo(Object o) {
+	public int compareTo(Object o) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(o instanceof Problem){
 			Problem problem = (Problem) o;
 			/* Replace initial implementation with toString() comparison otherwise the problems order may change

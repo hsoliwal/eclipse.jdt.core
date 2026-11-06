@@ -39,22 +39,22 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 		return AST.JLS8;
 	}
 
-	public void testCastAnnotations() throws Exception {
+	public void testCastAnnotations() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("public class X {\n");
-		buf.append("	String myObject = \"Foo\";\n");
-		buf.append("	public void foo() {\n");
-		buf.append("		String myString = (@Annot String) myObject;\n");
-		buf.append("		String myString1 = (@Annot1 @Annot String) myObject;\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("@java.lang.annotation.Target(value = {ElementType.TYPE_USE})\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("@java.lang.annotation.Target(value = {ElementType.TYPE_USE})\n");
-		buf.append("@interface Annot1 {}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	String myObject = \"Foo\";\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		String myString = (@Annot String) myObject;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		String myString1 = (@Annot1 @Annot String) myObject;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target(value = {ElementType.TYPE_USE})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target(value = {ElementType.TYPE_USE})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -86,46 +86,46 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.replace((ASTNode)annotations.get(0), markerAnnotation, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("public class X {\n");
-		buf.append("	String myObject = \"Foo\";\n");
-		buf.append("	public void foo() {\n");
-		buf.append("		String myString = (@Annot @Annot2 String) myObject;\n");
-		buf.append("		String myString1 = (@Annot2 String) myObject;\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("@java.lang.annotation.Target(value = {ElementType.TYPE_USE})\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("@java.lang.annotation.Target(value = {ElementType.TYPE_USE})\n");
-		buf.append("@interface Annot1 {}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	String myObject = \"Foo\";\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		String myString = (@Annot @Annot2 String) myObject;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		String myString1 = (@Annot2 String) myObject;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target(value = {ElementType.TYPE_USE})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target(value = {ElementType.TYPE_USE})\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testWildcardTypeArgumentAnnotations() throws Exception {
+	public void testWildcardTypeArgumentAnnotations() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Helper<T> {\n");
-		buf.append("	}\n");
-		buf.append("	public class Base {\n");
-		buf.append("	}\n");
-		buf.append("	public static void UnboundedWildcard1 (Helper<@Annot ?> x) {\n");
-		buf.append("	}\n");
-		buf.append("	public static void UnboundedWildcard2 (Helper<@Annot1 @Annot ?> x) {\n");
-		buf.append("	}\n");
-		buf.append("	public static void BoundedWildcard1 (Helper<@Annot ? extends Base> x) {\n");
-		buf.append("	}\n");
-		buf.append("	public static void BoundedWildcard2 (Helper<@Annot1 @Annot ? extends Base> x) {\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot1 {}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper<T> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Base {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void UnboundedWildcard1 (Helper<@Annot ?> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void UnboundedWildcard2 (Helper<@Annot1 @Annot ?> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void BoundedWildcard1 (Helper<@Annot ? extends Base> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void BoundedWildcard2 (Helper<@Annot1 @Annot ? extends Base> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -178,44 +178,44 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.replace((MarkerAnnotation) wildcardType2.annotations().get(0), markerAnnotation2, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf = new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Helper<T> {\n");
-		buf.append("	}\n");
-		buf.append("	public class Base {\n");
-		buf.append("	}\n");
-		buf.append("	public static void UnboundedWildcard1 (Helper<@Annot @Annot2 ?> x) {\n");
-		buf.append("	}\n");
-		buf.append("	public static void UnboundedWildcard2 (Helper<@Annot2 ?> x) {\n");
-		buf.append("	}\n");
-		buf.append("	public static void BoundedWildcard1 (Helper<@Annot @Annot2 ? extends Base> x) {\n");
-		buf.append("	}\n");
-		buf.append("	public static void BoundedWildcard2 (Helper<@Annot2 ? extends Base> x) {\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot1 {}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper<T> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Base {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void UnboundedWildcard1 (Helper<@Annot @Annot2 ?> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void UnboundedWildcard2 (Helper<@Annot2 ?> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void BoundedWildcard1 (Helper<@Annot @Annot2 ? extends Base> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void BoundedWildcard2 (Helper<@Annot2 ? extends Base> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testWildcardBoudAnnotation() throws Exception {
+	public void testWildcardBoudAnnotation() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		buf.append("public class X {\n");
-		buf.append("	public class Helper<T> {\n");
-		buf.append("	}\n");
-		buf.append("	public class Base {\n");
-		buf.append("	}\n");
-		buf.append("	public static void foo1 (Helper<? extends @Annot Base> x) {\n");
-		buf.append("	}\n");
-		buf.append("	public static void foo2 (Helper<? extends @Annot1 @Annot Base> x) {\n");
-		buf.append("	}\n");
-		buf.append("}\n");
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper<T> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Base {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void foo1 (Helper<? extends @Annot Base> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void foo2 (Helper<? extends @Annot1 @Annot Base> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -248,40 +248,40 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.replace((MarkerAnnotation) simpleType.annotations().get(0), markerAnnotation, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf = new StringBuilder();
-		buf.append("public class X {\n");
-		buf.append("	public class Helper<T> {\n");
-		buf.append("	}\n");
-		buf.append("	public class Base {\n");
-		buf.append("	}\n");
-		buf.append("	public static void foo1 (Helper<? extends @Annot @Annot2 Base> x) {\n");
-		buf.append("	}\n");
-		buf.append("	public static void foo2 (Helper<? extends @Annot2 Base> x) {\n");
-		buf.append("	}\n");
-		buf.append("}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper<T> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Base {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void foo1 (Helper<? extends @Annot @Annot2 Base> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public static void foo2 (Helper<? extends @Annot2 Base> x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testTypeParameterBoundAnnotations() throws Exception {
+	public void testTypeParameterBoundAnnotations() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Base {\n");
-		buf.append("	}\n");
-		buf.append("	public <X extends @Annot Base> void foo1 (X x) {\n");
-		buf.append("	}\n");
-		buf.append("	public <X extends @Annot1 @Annot Base> void foo2 (X x) {\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot1 {}\n");
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Base {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public <X extends @Annot Base> void foo1 (X x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public <X extends @Annot1 @Annot Base> void foo2 (X x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -308,45 +308,45 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.replace((MarkerAnnotation) simpleType.annotations().get(0), markerAnnotation, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf = new StringBuilder();
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Base {\n");
-		buf.append("	}\n");
-		buf.append("	public <X extends @Annot @Annot2 Base> void foo1 (X x) {\n");
-		buf.append("	}\n");
-		buf.append("	public <X extends @Annot2 Base> void foo2 (X x) {\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot1 {}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Base {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public <X extends @Annot @Annot2 Base> void foo1 (X x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public <X extends @Annot2 Base> void foo2 (X x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testTypeArgumentsParameterizedClassesAnnotations() throws Exception {
+	public void testTypeArgumentsParameterizedClassesAnnotations() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Helper <T1, T2> {\n");
-		buf.append("	}\n");
-		buf.append("	public void foo() {\n");
-		buf.append("		Helper<@Annot String, @Annot @Annot1 String> x;\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot1 {}\n");
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper <T1, T2> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		Helper<@Annot String, @Annot @Annot1 String> x;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -375,52 +375,52 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.remove((ASTNode) simpleType.annotations().get(0), null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf = new StringBuilder();
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Helper <T1, T2> {\n");
-		buf.append("	}\n");
-		buf.append("	public void foo() {\n");
-		buf.append("		Helper<@Annot3 @Annot2 String, String> x;\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot1 {}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper <T1, T2> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		Helper<@Annot3 @Annot2 String, String> x;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testTypeArgumentsMethodInvocation() throws Exception {
+	public void testTypeArgumentsMethodInvocation() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Bar {\n");
-		buf.append("	}\n");
-		buf.append("	\n");
-		buf.append("	public class Helper {\n");
-		buf.append("		public <T> void foo() {\n");
-		buf.append("		}\n");
-		buf.append("	}\n");
-		buf.append("	\n");
-		buf.append("	public void zoo() {\n");
-		buf.append("		Helper o = new Helper();\n");
-		buf.append("		o.<@Annot Bar>foo();\n");
-		buf.append("		o.<@Annot @Annot1 Bar>foo();\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot1 {}\n");
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Bar {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public <T> void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void zoo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		Helper o = new Helper();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		o.<@Annot Bar>foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		o.<@Annot @Annot1 Bar>foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -447,53 +447,53 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.replace((MarkerAnnotation)simpleType.annotations().get(0), markerAnnotation, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf = new StringBuilder();
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Bar {\n");
-		buf.append("	}\n");
-		buf.append("	\n");
-		buf.append("	public class Helper {\n");
-		buf.append("		public <T> void foo() {\n");
-		buf.append("		}\n");
-		buf.append("	}\n");
-		buf.append("	\n");
-		buf.append("	public void zoo() {\n");
-		buf.append("		Helper o = new Helper();\n");
-		buf.append("		o.<@Annot @Annot2 Bar>foo();\n");
-		buf.append("		o.<@Annot2 Bar>foo();\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot1 {}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Bar {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		public <T> void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void zoo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		Helper o = new Helper();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		o.<@Annot @Annot2 Bar>foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		o.<@Annot2 Bar>foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testClassInheritenceAnnotations() throws Exception {
+	public void testClassInheritenceAnnotations() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public interface Helper<T> {\n");
-		buf.append("	}\n");
-		buf.append("	public class Foo1<T> implements @Annot Helper<T> {\n");
-		buf.append("	}\n");
-		buf.append("	public class Foo2<T> implements @Annot @Annot1 Helper<T> {\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot1 {}\n");
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public interface Helper<T> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Foo1<T> implements @Annot Helper<T> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Foo2<T> implements @Annot @Annot1 Helper<T> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -520,49 +520,49 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.replace((MarkerAnnotation) simpleType.annotations().get(0), markerAnnotation, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf = new StringBuilder();
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public interface Helper<T> {\n");
-		buf.append("	}\n");
-		buf.append("	public class Foo1<T> implements @Annot @Annot2 Helper<T> {\n");
-		buf.append("	}\n");
-		buf.append("	public class Foo2<T> implements @Annot2 Helper<T> {\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot1 {}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public interface Helper<T> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Foo1<T> implements @Annot @Annot2 Helper<T> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Foo2<T> implements @Annot2 Helper<T> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testTypeTests() throws Exception {
+	public void testTypeTests() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Helper {\n");
-		buf.append("	}\n");
-		buf.append("	\n");
-		buf.append("	public void foo() {\n");
-		buf.append("	Helper a = new @Annot Helper();\n");
-		buf.append("	boolean x = true;\n");
-		buf.append("	x = a instanceof @Annot Helper;\n");
-		buf.append("	x = a instanceof @Annot @Annot1 Helper;\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot1 {}\n");
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	Helper a = new @Annot Helper();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	boolean x = true;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	x = a instanceof @Annot Helper;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	x = a instanceof @Annot @Annot1 Helper;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -592,48 +592,48 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.replace((MarkerAnnotation) simpleType.annotations().get(0), markerAnnotation, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf = new StringBuilder();
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Helper {\n");
-		buf.append("	}\n");
-		buf.append("	\n");
-		buf.append("	public void foo() {\n");
-		buf.append("	Helper a = new @Annot Helper();\n");
-		buf.append("	boolean x = true;\n");
-		buf.append("	x = a instanceof @Annot @Annot2 Helper;\n");
-		buf.append("	x = a instanceof @Annot2 Helper;\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot1 {}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	Helper a = new @Annot Helper();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	boolean x = true;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	x = a instanceof @Annot @Annot2 Helper;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	x = a instanceof @Annot2 Helper;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testConstructorInvocation() throws Exception {
+	public void testConstructorInvocation() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append(" \n");
-		buf.append("public class X {\n");
-		buf.append("	public class Helper {\n");
-		buf.append("	}	\n");
-		buf.append("	public void foo() {\n");
-		buf.append("		Helper obj = new @Annot Helper();\n");
-		buf.append("		obj = new @Annot @Annot1 Helper();\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot1 {}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}	\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		Helper obj = new @Annot Helper();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		obj = new @Annot @Annot1 Helper();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -664,43 +664,43 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.replace((MarkerAnnotation) simpleType.annotations().get(0), markerAnnotation, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf = new StringBuilder();
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append(" \n");
-		buf.append("public class X {\n");
-		buf.append("	public class Helper {\n");
-		buf.append("	}	\n");
-		buf.append("	public void foo() {\n");
-		buf.append("		Helper obj = new @Annot @Annot2 Helper();\n");
-		buf.append("		obj = new @Annot2 Helper();\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot1 {}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}	\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		Helper obj = new @Annot @Annot2 Helper();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		obj = new @Annot2 Helper();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testConstructorDeclaration() throws Exception {
+	public void testConstructorDeclaration() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	@Annot X () {\n");
-		buf.append("	}\n");
-		buf.append("	@Annot @Annot1 X (int x) {\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot1 {}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	@Annot X () {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	@Annot @Annot1 X (int x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -723,44 +723,44 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.replace((MarkerAnnotation) methodDeclaration.modifiers().get(0), markerAnnotation, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf = new StringBuilder();
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	@Annot\n");
-		buf.append("    @Annot2 X () {\n");
-		buf.append("	}\n");
-		buf.append("	@Annot2 X (int x) {\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n");
-		buf.append("@interface Annot1 {}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	@Annot\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("    @Annot2 X () {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	@Annot2 X (int x) {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE)\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testRewriteInsertAPIAnnotation() throws Exception {
+	public void testRewriteInsertAPIAnnotation() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Helper <T1, T2> {\n");
-		buf.append("	}\n");
-		buf.append("	public void foo() {\n");
-		buf.append("		Helper<@Annot @Annot1 String> x;\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot1 {}\n");
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper <T1, T2> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		Helper<@Annot @Annot1 String> x;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -794,35 +794,35 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.getListRewrite(simpleType, SimpleType.ANNOTATIONS_PROPERTY).insertBefore(markerAnnotation, (MarkerAnnotation) simpleType.annotations().get(1), null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf = new StringBuilder();
-		buf.append("import java.lang.annotation.ElementType;\n");
-		buf.append("\n");
-		buf.append("public class X {\n");
-		buf.append("	public class Helper <T1, T2> {\n");
-		buf.append("	}\n");
-		buf.append("	public void foo() {\n");
-		buf.append("		Helper<@Annot2 @Annot3 @Annot @Annot5 @Annot1 @Annot4 String> x;\n");
-		buf.append("	}\n");
-		buf.append("}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot {}\n");
-		buf.append("\n");
-		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n");
-		buf.append("@interface Annot1 {}\n");
+		buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("import java.lang.annotation.ElementType;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public class Helper <T1, T2> {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		Helper<@Annot2 @Annot3 @Annot @Annot5 @Annot1 @Annot4 String> x;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@java.lang.annotation.Target (ElementType.TYPE_USE) \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("@interface Annot1 {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testEmptyListInsertAnnotation() throws Exception {
+	public void testEmptyListInsertAnnotation() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class X {\n");
-		buf.append("	String myObject = \"Foo\";\n");
-		buf.append("	public void foo() {\n");
-		buf.append("		String myString = (String) myObject;\n");
-		buf.append("	}\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	String myObject = \"Foo\";\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		String myString = (String) myObject;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu);
@@ -841,14 +841,14 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 			rewrite.getListRewrite(simpleType, SimpleType.ANNOTATIONS_PROPERTY).insertLast(markerAnnotation, null);
 		}
 		String preview= evaluateRewrite(cu, rewrite);
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("public class X {\n");
-		buf.append("	String myObject = \"Foo\";\n");
-		buf.append("	public void foo() {\n");
-		buf.append("		String myString = (@Annot String) myObject;\n");
-		buf.append("	}\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	String myObject = \"Foo\";\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	public void foo() {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("		String myString = (@Annot String) myObject;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
@@ -858,7 +858,7 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 	 *
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=406469
 	 */
-	public void testNameQualifiedTypeAnnotations() throws Exception {
+	public void testNameQualifiedTypeAnnotations() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test406469.bug", false, null);
 		String contents = "package test406469.bug;\n" +
 				"import java.lang.annotation.*;\n" +
@@ -895,7 +895,7 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 				"class FileNotFoundException extends Exception{private static final long serialVersionUID=10002L;}\n" +
 				"class EOFException extends Exception{private static final long serialVersionUID=10003L;}\n" +
 				"class IOError extends Exception{private static final long serialVersionUID=10004L;}\n";
-		StringBuilder buf = new StringBuilder(contents);
+		StringBuilder buf = new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu, /* resolve */ true, false);
 		ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());
@@ -982,7 +982,7 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 	 *
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=407364
 	 */
-	public void testQualifiedTypeAnnotations() throws Exception {
+	public void testQualifiedTypeAnnotations() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test407364.bug", false, null);
 		String contents =  "package test0002;\n" +
 				 "import java.lang.annotation.Target;\n" +
@@ -1006,7 +1006,7 @@ public class ASTRewritingTypeAnnotationsTest extends ASTRewritingTest {
 				 "@Target (java.lang.annotation.ElementType.TYPE_USE)\n" +
 				 "@interface Marker2 {}\n";
 
-		StringBuilder buf = new StringBuilder(contents);
+		StringBuilder buf = new StringBuilder(contents); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 		CompilationUnit astRoot= createAST(cu, /* resolve */ true, false);
 		ASTRewrite rewrite= ASTRewrite.create(astRoot.getAST());

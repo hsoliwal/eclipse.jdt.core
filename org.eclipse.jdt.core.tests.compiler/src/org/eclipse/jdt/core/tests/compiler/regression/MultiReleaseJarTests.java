@@ -49,7 +49,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 	 * META-INF/versions/11/internal/Precedence.class     (returns {@link String})
 	 * </pre>
 	 */
-	private static String createMultiReleaseJar(boolean moduleDescriptorInRoot) throws IOException {
+	private static String createMultiReleaseJar(boolean moduleDescriptorInRoot) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File baseClasses = new File(LIB_DIR, "mrjar-base");
 		File moduleClasses = new File(LIB_DIR, "mrjar-module");
 		File version9Classes = new File(LIB_DIR, "mrjar-version9");
@@ -97,41 +97,41 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				version11Classes.getAbsolutePath(),
 				JavaCore.VERSION_11);
 
-		if (jarContent.exists()) {
+		if (jarContent.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			if (!Util.flushDirectoryContent(jarContent)) {
-				throw new IOException("Could not clear " + jarContent);
+				throw new IOException("Could not clear " + jarContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-		} else if (!jarContent.mkdirs()) {
-			throw new IOException("Could not create " + jarContent);
+		} else if (!jarContent.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			throw new IOException("Could not create " + jarContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.copy(baseClasses.getAbsolutePath(), jarContent.getAbsolutePath());
 		if (moduleDescriptorInRoot) {
 			Util.copy(moduleClasses.getAbsolutePath(), jarContent.getAbsolutePath());
 		}
-		File version9Content = new File(jarContent, "META-INF" + File.separator + "versions" + File.separator + "9");
-		if (!version9Content.mkdirs()) {
-			throw new IOException("Could not create " + version9Content);
+		File version9Content = new File(jarContent, "META-INF" + File.separator + "versions" + File.separator + "9"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		if (!version9Content.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			throw new IOException("Could not create " + version9Content); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.copy(version9Classes.getAbsolutePath(), version9Content.getAbsolutePath());
 		if (!moduleDescriptorInRoot) {
 			Util.copy(moduleClasses.getAbsolutePath(), version9Content.getAbsolutePath());
 		}
-		File version11Content = new File(jarContent, "META-INF" + File.separator + "versions" + File.separator + "11");
-		if (!version11Content.mkdirs()) {
-			throw new IOException("Could not create " + version11Content);
+		File version11Content = new File(jarContent, "META-INF" + File.separator + "versions" + File.separator + "11"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		if (!version11Content.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			throw new IOException("Could not create " + version11Content); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.copy(version11Classes.getAbsolutePath(), version11Content.getAbsolutePath());
 		Util.createFile(
-				new File(jarContent, "META-INF" + File.separator + "MANIFEST.MF").getAbsolutePath(),
+				new File(jarContent, "META-INF" + File.separator + "MANIFEST.MF").getAbsolutePath(), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Manifest-Version: 1.0\n" +
 				"Multi-Release: true\n");
 
-		String jarPath = LIB_DIR + File.separator + "slf4j-api-2.0.12.jar";
+		String jarPath = LIB_DIR + File.separator + "slf4j-api-2.0.12.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.zip(jarContent, jarPath);
 		return jarPath;
 	}
 
-	private static String createJarWithoutMultiReleaseHeader() throws IOException {
+	private static String createJarWithoutMultiReleaseHeader() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		File baseClasses = new File(LIB_DIR, "mrjar-base");
 		File version9Classes = new File(LIB_DIR, "mrjar-version9");
 		File jarContent = new File(LIB_DIR, "mrjar-content");
@@ -153,31 +153,31 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				version9Classes.getAbsolutePath(),
 				JavaCore.VERSION_9);
 
-		if (jarContent.exists()) {
+		if (jarContent.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			if (!Util.flushDirectoryContent(jarContent)) {
-				throw new IOException("Could not clear " + jarContent);
+				throw new IOException("Could not clear " + jarContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-		} else if (!jarContent.mkdirs()) {
-			throw new IOException("Could not create " + jarContent);
+		} else if (!jarContent.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			throw new IOException("Could not create " + jarContent); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.copy(baseClasses.getAbsolutePath(), jarContent.getAbsolutePath());
-		File version9Content = new File(jarContent, "META-INF" + File.separator + "versions" + File.separator + "9");
-		if (!version9Content.mkdirs()) {
-			throw new IOException("Could not create " + version9Content);
+		File version9Content = new File(jarContent, "META-INF" + File.separator + "versions" + File.separator + "9"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		if (!version9Content.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			throw new IOException("Could not create " + version9Content); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.copy(version9Classes.getAbsolutePath(), version9Content.getAbsolutePath());
 		Util.createFile(
-				new File(jarContent, "META-INF" + File.separator + "MANIFEST.MF").getAbsolutePath(),
+				new File(jarContent, "META-INF" + File.separator + "MANIFEST.MF").getAbsolutePath(), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Manifest-Version: 1.0\n" +
 				"Automatic-Module-Name: slf4j.api\n");
 
-		String jarPath = LIB_DIR + File.separator + "missing-multi-release-header.jar";
+		String jarPath = LIB_DIR + File.separator + "missing-multi-release-header.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.zip(jarContent, jarPath);
 		return jarPath;
 	}
 
-	public void test001() {
-		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar";
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String[] libs = new String[1];
 		libs[0] = path;
 		runNegativeTest(
@@ -187,7 +187,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				  "import p.q.r.MultiVersion2.Inner;\n" +
 				  "public class X {\n" +
 				  "}\n"},
-			"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" +
+			"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" -classpath " + path + " --release 8 ",
 			"",
 			"----------\n" +
@@ -205,8 +205,8 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 			false
 		   );
 	}
-	public void test002() {
-		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar";
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String[] libs = new String[1];
 		libs[0] = path;
 		runNegativeTest(
@@ -216,7 +216,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				  "import p.q.r.MultiVersion2.Inner;\n" +
 				  "public class X {\n" +
 				  "}\n"},
-			"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" +
+			"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" -classpath " + path + " --release 9 ",
 			"",
 			"----------\n" +
@@ -229,8 +229,8 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 			false
 		   );
 	}
-	public void test003() {
-		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar";
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String[] libs = new String[1];
 		libs[0] = path;
 		runConformTest(
@@ -241,15 +241,15 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				  "  Inner i = null;\n" +
 				  "  p.q.r.MultiVersion2.Inner i2 = null;\n" +
 				  "}\n"},
-			"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" +
+			"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" -classpath " + path + " --release 9 ",
 			"",
 			"",
 			false
 		   );
 	}
-	public void test004() {
-		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar";
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String[] libs = new String[1];
 		libs[0] = path;
 		runNegativeTest(
@@ -260,7 +260,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				  "public class X {\n" +
 				  "  Inner i = null;\n" +
 				  "}\n"},
-			"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" +
+			"\"" + OUTPUT_DIR +  File.separator + "src/X.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" -classpath " + path + " --release 9 ",
 			"",
 			"----------\n" +
@@ -273,22 +273,22 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 			false
 		   );
 	}
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Util.flushDirectoryContent(new File(OUTPUT_DIR));
-		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar";
+		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String[] libs = new String[1];
 		libs[0] = path;
-		File directory = new File(OUTPUT_DIR +  File.separator + "src" + File.separator + "MyModule" );
-		File out = new File(OUTPUT_DIR +  File.separator + "out" );
-		if (!directory.exists()) {
-			if (!directory.mkdirs()) {
-				System.out.println("Could not create " + directory.toString());
+		File directory = new File(OUTPUT_DIR +  File.separator + "src" + File.separator + "MyModule" ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File out = new File(OUTPUT_DIR +  File.separator + "out" ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				System.out.println("Could not create " + directory.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
-		if (!out.exists()) {
-			if (!out.mkdirs()) {
-				System.out.println("Could not create " + directory.toString());
+		if (!out.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!out.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				System.out.println("Could not create " + directory.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
@@ -303,7 +303,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				"public class X {\n" +
 				"  java.sql.Connection con = null;\n" +
 				"}\n"},
-			"  -d \"" + out.toString() + "\" " +
+			"  -d \"" + out.toString() + "\" " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" --module-source-path \"" + directory.toString() +  "\" " +
 			" \"" + OUTPUT_DIR +  File.separator + "src" + File.separator + "MyModule" + File.separator + "module-info.java\"" +
 			" \"" + OUTPUT_DIR +  File.separator + "src" + File.separator + "MyModule" + File.separator + "p" + File.separator + "X.java\" "  +
@@ -319,22 +319,22 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 			false
 		   );
 	}
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.isJRE10) return;
-		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar";
+		String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "multi.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String[] libs = new String[1];
 		libs[0] = path;
-		File directory = new File(OUTPUT_DIR +  File.separator + "src" + File.separator + "MyModule" );
-		File out = new File(OUTPUT_DIR +  File.separator + "out" );
-		if (!directory.exists()) {
-			if (!directory.mkdirs()) {
-				System.out.println("Could not create " + directory.toString());
+		File directory = new File(OUTPUT_DIR +  File.separator + "src" + File.separator + "MyModule" ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		File out = new File(OUTPUT_DIR +  File.separator + "out" ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		if (!directory.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				System.out.println("Could not create " + directory.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
-		if (!out.exists()) {
-			if (!directory.mkdirs()) {
-				System.out.println("Could not create " + directory.toString());
+		if (!out.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			if (!directory.mkdirs()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				System.out.println("Could not create " + directory.toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 		}
@@ -349,7 +349,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				"public class X {\n" +
 				"  java.sql.Connection con = null;\n" +
 				"}\n"},
-			"  -d \"" + out.toString() + "\" " +
+			"  -d \"" + out.toString() + "\" " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" --module-source-path \"" + directory.toString() +  "\" " +
 			" \"" + OUTPUT_DIR +  File.separator + "src" + File.separator + "MyModule" + File.separator + "module-info.java\"" +
 			" \"" + OUTPUT_DIR +  File.separator + "src" + File.separator + "MyModule" + File.separator + "p" + File.separator + "X.java\" "  +
@@ -360,7 +360,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 		   );
 	}
 
-	public void test007_moduleDescriptorFromLowerRelease() throws IOException {
+	public void test007_moduleDescriptorFromLowerRelease() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String path = createMultiReleaseJar();
 		runConformTest(
 			new String[] {
@@ -373,7 +373,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				"public class X {\n" +
 				"}\n"
 			},
-			" -d \"" + OUTPUT_DIR + File.separator + "out\"" +
+			" -d \"" + OUTPUT_DIR + File.separator + "out\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" \"" + OUTPUT_DIR + File.separator + "src" + File.separator + "module-info.java\"" +
 			" \"" + OUTPUT_DIR + File.separator + "src" + File.separator + "test" + File.separator + "X.java\"" +
 			" --module-path \"" + path + "\" --release 17 ",
@@ -392,7 +392,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				"  VersionedOnly value;\n" +
 				"}\n"
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src" + File.separator + "X.java\"" +
+			"\"" + OUTPUT_DIR + File.separator + "src" + File.separator + "X.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" -classpath \"" + path + "\" --release 17 ",
 			"",
 			"",
@@ -409,14 +409,14 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				"  String value = new Precedence().value();\n" +
 				"}\n"
 			},
-			"\"" + OUTPUT_DIR + File.separator + "src" + File.separator + "X.java\"" +
+			"\"" + OUTPUT_DIR + File.separator + "src" + File.separator + "X.java\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" -classpath \"" + path + "\" --release 17 ",
 			"",
 			"",
 			false);
 	}
 
-	public void test010_moduleDescriptorFallsBackToRoot() throws IOException {
+	public void test010_moduleDescriptorFallsBackToRoot() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String path = createMultiReleaseJar(true);
 		runConformTest(
 			new String[] {
@@ -429,7 +429,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				"public class X {\n" +
 				"}\n"
 			},
-			" -d \"" + OUTPUT_DIR + File.separator + "out\"" +
+			" -d \"" + OUTPUT_DIR + File.separator + "out\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" \"" + OUTPUT_DIR + File.separator + "src" + File.separator + "module-info.java\"" +
 			" \"" + OUTPUT_DIR + File.separator + "src" + File.separator + "test" + File.separator + "X.java\"" +
 			" --module-path \"" + path + "\" --release 17 ",
@@ -438,7 +438,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 			false);
 	}
 
-	public void test011_missingHeaderIgnoresVersionedModuleDescriptor() throws IOException {
+	public void test011_missingHeaderIgnoresVersionedModuleDescriptor() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String path = createJarWithoutMultiReleaseHeader();
 		runConformTest(
 			new String[] {
@@ -453,7 +453,7 @@ public class MultiReleaseJarTests extends AbstractBatchCompilerTest {
 				"  Root value;\n" +
 				"}\n"
 			},
-			" -d \"" + OUTPUT_DIR + File.separator + "out\"" +
+			" -d \"" + OUTPUT_DIR + File.separator + "out\"" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			" \"" + OUTPUT_DIR + File.separator + "src" + File.separator + "module-info.java\"" +
 			" \"" + OUTPUT_DIR + File.separator + "src" + File.separator + "test" + File.separator + "X.java\"" +
 			" --module-path \"" + path + "\" --release 9 ",

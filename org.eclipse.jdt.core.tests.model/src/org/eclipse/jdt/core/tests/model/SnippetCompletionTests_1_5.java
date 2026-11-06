@@ -51,7 +51,7 @@ protected void assertResults(String expected, String actual) {
 		throw c;
 	}
 }
-public void testCodeSnippetAssistForBug132665() throws JavaModelException {
+public void testCodeSnippetAssistForBug132665() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2();
 	IOrdinaryClassFile cf = getClassFile("SnippetCompletion", "class-folder", "bug132665", "Bug132665.class");
 	IType type = cf.getType();
@@ -66,12 +66,12 @@ public void testCodeSnippetAssistForBug132665() throws JavaModelException {
 	type.codeComplete(snippet.toCharArray(), -1, snippet.length(), typeNames, names, modifiers, false, requestor);
 
 	assertResults(
-		"foo1[METHOD_REF]{foo1(), Lbug132665.Bug132665<TT;>;, ()V, foo1, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
+		"foo1[METHOD_REF]{foo1(), Lbug132665.Bug132665<TT;>;, ()V, foo1, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"foo2[METHOD_REF]{foo2(), Lbug132665.Bug132665<TT;>;, ()Lbug132665.Bug132665<*>;, foo2, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"foo3[METHOD_REF]{foo3(), Lbug132665.Bug132665<TT;>;, ()V, foo3, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
 		requestor.getResults());
 }
-public void testCodeSnippetAssistForBug223878() throws JavaModelException {
+public void testCodeSnippetAssistForBug223878() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2();
 	IOrdinaryClassFile cf = getClassFile("SnippetCompletion", "class-folder", "bug223878", "Bug223878.class");
 	IType type = cf.getType();
@@ -86,7 +86,7 @@ public void testCodeSnippetAssistForBug223878() throws JavaModelException {
 	type.codeComplete(snippet.toCharArray(), -1, snippet.length(), typeNames, names, modifiers, false, requestor);
 
 	assertResults(
-		"foo1[METHOD_REF]{foo1(), Lbug223878.Bug223878<TT;>;, ()V, foo1, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
+		"foo1[METHOD_REF]{foo1(), Lbug223878.Bug223878<TT;>;, ()V, foo1, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"foo2[METHOD_REF]{foo2(), Lbug223878.Bug223878<TT;>;, (Lbug223878.Bug223878<*>;)V, foo2, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
 		"foo3[METHOD_REF]{foo3(), Lbug223878.Bug223878<TT;>;, ()V, foo3, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
 		requestor.getResults());

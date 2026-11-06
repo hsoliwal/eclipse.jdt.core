@@ -36,7 +36,7 @@ class ExecutableUtil {
 	 * @param executable must be a constructor, method or annotation element.
 	 * @return the formal type parameters of the executable.
 	 */
-	static Collection<TypeParameterDeclaration> getFormalTypeParameters(
+	static Collection<TypeParameterDeclaration> getFormalTypeParameters( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			EclipseDeclarationImpl executable,
 			BaseProcessorEnv env)
 	{
@@ -45,7 +45,7 @@ class ExecutableUtil {
 		if(executable == null || executable.kind() == MirrorKind.ANNOTATION_ELEMENT)
 			return Collections.emptyList();
 		if( executable.kind() != MirrorKind.METHOD && executable.kind() != MirrorKind.CONSTRUCTOR)
-			throw new IllegalArgumentException("Executable is not a method " +  //$NON-NLS-1$
+			throw new IllegalArgumentException("Executable is not a method " +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					executable.getClass().getName());
 
 		if( executable.isFromSource() ){
@@ -56,8 +56,8 @@ class ExecutableUtil {
 			if (methodAstNode == null)
 				return Collections.emptyList();
 	    	final List<TypeParameter> typeParams = methodAstNode.typeParameters();
-	    	final List<TypeParameterDeclaration> result = new ArrayList<>();
-	    	for(TypeParameter typeParam : typeParams){
+	    	final List<TypeParameterDeclaration> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	    	for(TypeParameter typeParam : typeParams){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    		final ITypeBinding typeBinding = typeParam.resolveBinding();
 	    		if( typeBinding == null ){
 	    			throw new UnsupportedOperationException("cannot create a type parameter declaration without a binding"); //$NON-NLS-1$
@@ -78,8 +78,8 @@ class ExecutableUtil {
 				final ITypeBinding[] typeParams = methodBinding.getTypeParameters();
 		        if( typeParams == null || typeParams.length == 0 )
 		            return Collections.emptyList();
-		        final List<TypeParameterDeclaration> result = new ArrayList<>();
-		        for( ITypeBinding typeVar : typeParams ){
+		        final List<TypeParameterDeclaration> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		        for( ITypeBinding typeVar : typeParams ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		            final TypeParameterDeclaration typeParamDecl =
 		            	(TypeParameterDeclaration)Factory.createDeclaration(typeVar, env);
 		            if( typeParamDecl != null )
@@ -94,7 +94,7 @@ class ExecutableUtil {
 	 * @param executable must be a constructor, method or annotation element.
 	 * @return the list formal parameters of the executable.
 	 */
-	static Collection<ParameterDeclaration> getParameters(
+	static Collection<ParameterDeclaration> getParameters( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final EclipseDeclarationImpl executable,
 			final BaseProcessorEnv env)
 	{
@@ -103,7 +103,7 @@ class ExecutableUtil {
 		if(executable == null || executable.kind() == MirrorKind.ANNOTATION_ELEMENT)
 			return Collections.emptyList();
 		if( executable.kind() != MirrorKind.METHOD && executable.kind() != MirrorKind.CONSTRUCTOR)
-			throw new IllegalArgumentException("Executable is not a method " +  //$NON-NLS-1$
+			throw new IllegalArgumentException("Executable is not a method " +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					executable.getClass().getName());
 
 		if( executable.isFromSource() ){
@@ -120,8 +120,8 @@ class ExecutableUtil {
 	    	final List<SingleVariableDeclaration> params = methodAstNode.parameters();
 	    	if( params == null || params.size() == 0 )
 	    		return Collections.emptyList();
-	    	final List<ParameterDeclaration> result = new ArrayList<>(params.size());
-	    	for( int i=0, size=params.size(); i<size; i++ ){
+	    	final List<ParameterDeclaration> result = new ArrayList<>(params.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	    	for( int i=0, size=params.size(); i<size; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    		final SingleVariableDeclaration varDecl = params.get(i);
 	    		final ParameterDeclaration param =
 	    			Factory.createParameterDeclaration(varDecl, executable.getResource(), env);
@@ -139,9 +139,9 @@ class ExecutableUtil {
 	        final ITypeBinding[] paramTypes = methodBinding.getParameterTypes();
 	        if( paramTypes == null || paramTypes.length == 0 )
 	            return Collections.emptyList();
-	        final List<ParameterDeclaration> result = new ArrayList<>(paramTypes.length);
+	        final List<ParameterDeclaration> result = new ArrayList<>(paramTypes.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
-	        for( int i=0; i<paramTypes.length; i++ ){
+	        for( int i=0; i<paramTypes.length; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            final ITypeBinding type = paramTypes[i];
 	            final ParameterDeclaration param = Factory.createParameterDeclaration(impl, i, type, env);
 	            result.add(param);
@@ -156,14 +156,14 @@ class ExecutableUtil {
 	 * @param executable must be a constructor, method or annotation element.
 	 * @return the list thrown types of the executable.
 	 */
-	static Collection<ReferenceType> getThrownTypes(
+	static Collection<ReferenceType> getThrownTypes( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final EclipseDeclarationImpl executable,
 			final BaseProcessorEnv env)
 	{
 		if(executable == null || executable.kind() == MirrorKind.ANNOTATION_ELEMENT)
 			return Collections.emptyList();
 		if( executable.kind() != MirrorKind.METHOD && executable.kind() != MirrorKind.CONSTRUCTOR)
-			throw new IllegalArgumentException("Executable is not a method " +  //$NON-NLS-1$
+			throw new IllegalArgumentException("Executable is not a method " +  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					executable.getClass().getName());
 		if( executable.isFromSource()){
 			// We always need to look into the ast to make sure the complete list of
@@ -179,8 +179,8 @@ class ExecutableUtil {
 	    	final List<Type> exceptions = methodAstNode.thrownExceptionTypes();
 	    	if(exceptions == null || exceptions.size() == 0 )
 	    		return Collections.emptyList();
-	    	final List<ReferenceType> results = new ArrayList<>(4);
-	    	for(Type exception : exceptions ){
+	    	final List<ReferenceType> results = new ArrayList<>(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	    	for(Type exception : exceptions ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    		final ITypeBinding eType = exception.resolveBinding();
 	    		final ReferenceType refType;
 	    		if( eType == null || eType.isRecovered() )
@@ -198,8 +198,8 @@ class ExecutableUtil {
 			final ExecutableDeclarationImpl impl = (ExecutableDeclarationImpl)executable;
 			final IMethodBinding methodBinding = impl.getDeclarationBinding();
 	        final ITypeBinding[] exceptions = methodBinding.getExceptionTypes();
-	        final List<ReferenceType> results = new ArrayList<>(4);
-	        for( ITypeBinding exception : exceptions ){
+	        final List<ReferenceType> results = new ArrayList<>(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	        for( ITypeBinding exception : exceptions ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            final TypeDeclaration mirrorDecl = Factory.createReferenceType(exception, env);
 	            if( mirrorDecl != null)
 	                results.add((ReferenceType)mirrorDecl);

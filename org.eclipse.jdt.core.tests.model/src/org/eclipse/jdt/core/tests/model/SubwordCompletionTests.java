@@ -55,7 +55,7 @@ private CompletionTestsRequestor2 createFilteredRequestor() {
 	requestor.setProposalFilter(javaTypeRef.negate());
 	return requestor;
 }
-public void testQualifiedNonStaticMethod() throws JavaModelException {
+public void testQualifiedNonStaticMethod() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -76,13 +76,13 @@ public void testQualifiedNonStaticMethod() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"addXListener[METHOD_REF]{addXListener(), Ltest.Test;, ()V, addXListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_STATIC + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"addXListener[METHOD_REF]{addXListener(), Ltest.Test;, ()V, addXListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_STATIC + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"addYListener[METHOD_REF]{addYListener(), Ltest.Test;, ()V, addYListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_STATIC + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
 			"addListener[METHOD_REF]{addListener(), Ltest.Test;, ()V, addListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_STATIC + R_NON_RESTRICTED + R_EXACT_NAME) + "}",
 			requestor.getResults());
 }
 
-public void testUnqualifiedNonStaticMethod() throws JavaModelException {
+public void testUnqualifiedNonStaticMethod() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -103,12 +103,12 @@ public void testUnqualifiedNonStaticMethod() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"addXListener[METHOD_REF]{addXListener(), Ltest.Test;, ()V, addXListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"addXListener[METHOD_REF]{addXListener(), Ltest.Test;, ()V, addXListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"addYListener[METHOD_REF]{addYListener(), Ltest.Test;, ()V, addYListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
 			"addListener[METHOD_REF]{addListener(), Ltest.Test;, ()V, addListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_EXACT_NAME) + "}",
 			requestor.getResults());
 }
-public void testQualifiedStaticMethod() throws JavaModelException {
+public void testQualifiedStaticMethod() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -129,11 +129,11 @@ public void testQualifiedStaticMethod() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"addYListener[METHOD_REF]{addYListener(), Ltest.Test;, ()V, addYListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING +  R_NON_RESTRICTED +  R_NON_INHERITED +R_SUBWORD) + "}\n" +
+			"addYListener[METHOD_REF]{addYListener(), Ltest.Test;, ()V, addYListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING +  R_NON_RESTRICTED +  R_NON_INHERITED +R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"addListener[METHOD_REF]{addListener(), Ltest.Test;, ()V, addListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING +  R_NON_RESTRICTED +  R_NON_INHERITED +R_EXACT_NAME) + "}",
 			requestor.getResults());
 }
-public void testUnqualifiedStaticMethod() throws JavaModelException {
+public void testUnqualifiedStaticMethod() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -154,12 +154,12 @@ public void testUnqualifiedStaticMethod() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"addXListener[METHOD_REF]{addXListener(), Ltest.Test;, ()V, addXListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"addXListener[METHOD_REF]{addXListener(), Ltest.Test;, ()V, addXListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"addYListener[METHOD_REF]{addYListener(), Ltest.Test;, ()V, addYListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED +  R_NON_RESTRICTED +  R_SUBWORD) + "}\n" +
 			"addListener[METHOD_REF]{addListener(), Ltest.Test;, ()V, addListener, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED +  R_NON_RESTRICTED +  R_EXACT_NAME) + "}",
 			requestor.getResults());
 }
-public void testQualifiedNonStaticField() throws JavaModelException {
+public void testQualifiedNonStaticField() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -180,13 +180,13 @@ public void testQualifiedNonStaticField() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"fOtherItems[FIELD_REF]{fOtherItems, Ltest.Test;, I, fOtherItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_STATIC + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"fOtherItems[FIELD_REF]{fOtherItems, Ltest.Test;, I, fOtherItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_STATIC + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"fItems[FIELD_REF]{fItems, Ltest.Test;, I, fItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" +
 			"fItemsCount[FIELD_REF]{fItemsCount, Ltest.Test;, J, fItemsCount, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 
-public void testUnqualifiedNonStaticField() throws JavaModelException {
+public void testUnqualifiedNonStaticField() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -207,12 +207,12 @@ public void testUnqualifiedNonStaticField() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"fOtherItems[FIELD_REF]{fOtherItems, Ltest.Test;, I, fOtherItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"fOtherItems[FIELD_REF]{fOtherItems, Ltest.Test;, I, fOtherItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"fItems[FIELD_REF]{fItems, Ltest.Test;, I, fItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"fItemsCount[FIELD_REF]{fItemsCount, Ltest.Test;, J, fItemsCount, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
-public void testQualifiedStaticField() throws JavaModelException {
+public void testQualifiedStaticField() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -233,11 +233,11 @@ public void testQualifiedStaticField() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"sOtherItems[FIELD_REF]{sOtherItems, Ltest.Test;, I, sOtherItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_NON_INHERITED + R_SUBWORD) + "}\n" +
+			"sOtherItems[FIELD_REF]{sOtherItems, Ltest.Test;, I, sOtherItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_NON_INHERITED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"sItems[FIELD_REF]{sItems, Ltest.Test;, I, sItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_NON_INHERITED) + "}",
 			requestor.getResults());
 }
-public void testUnqualifiedStaticField() throws JavaModelException {
+public void testUnqualifiedStaticField() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -258,12 +258,12 @@ public void testUnqualifiedStaticField() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"fSomeItemsCount[FIELD_REF]{fSomeItemsCount, Ltest.Test;, J, fSomeItemsCount, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"fSomeItemsCount[FIELD_REF]{fSomeItemsCount, Ltest.Test;, J, fSomeItemsCount, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"sOtherItems[FIELD_REF]{sOtherItems, Ltest.Test;, I, sOtherItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
 			"sItems[FIELD_REF]{sItems, Ltest.Test;, I, sItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
-public void testLocalVariable() throws JavaModelException {
+public void testLocalVariable() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -285,11 +285,11 @@ public void testLocalVariable() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"otherTemporaryItems[FIELD_REF]{otherTemporaryItems, Ltest.Test;, I, otherTemporaryItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"otherTemporaryItems[FIELD_REF]{otherTemporaryItems, Ltest.Test;, I, otherTemporaryItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"temporaryItem[LOCAL_VARIABLE_REF]{temporaryItem, null, I, temporaryItem, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}",
 			requestor.getResults());
 }
-public void testMethodParamVariable() throws JavaModelException {
+public void testMethodParamVariable() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -310,11 +310,11 @@ public void testMethodParamVariable() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"otherTemporaryItems[FIELD_REF]{otherTemporaryItems, Ltest.Test;, I, otherTemporaryItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"otherTemporaryItems[FIELD_REF]{otherTemporaryItems, Ltest.Test;, I, otherTemporaryItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"temporaryItems[LOCAL_VARIABLE_REF]{temporaryItems, null, I, temporaryItems, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}",
 			requestor.getResults());
 }
-public void testClassTypeInstantiation() throws JavaModelException {
+public void testClassTypeInstantiation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[1] = getWorkingCopy(
 			"/Completion/src/test/Foobar.java",
@@ -340,11 +340,11 @@ public void testClassTypeInstantiation() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"LinkedHashMap[TYPE_REF]{LinkedHashMap, test, Ltest.LinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"LinkedHashMap[TYPE_REF]{LinkedHashMap, test, Ltest.LinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"SpecificLinkedHashMap[TYPE_REF]{SpecificLinkedHashMap, test, Ltest.SpecificLinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}",
 			requestor.getResults());
 }
-public void testClassTypeFieldDeclaration() throws JavaModelException {
+public void testClassTypeFieldDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[1] = getWorkingCopy(
 			"/Completion/src/test/Foobar.java",
@@ -368,11 +368,11 @@ public void testClassTypeFieldDeclaration() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"LinkedHashMap[TYPE_REF]{LinkedHashMap, test, Ltest.LinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"LinkedHashMap[TYPE_REF]{LinkedHashMap, test, Ltest.LinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"SpecificLinkedHashMap[TYPE_REF]{SpecificLinkedHashMap, test, Ltest.SpecificLinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}",
 			requestor.getResults());
 }
-public void testClassTypeParamDeclaration() throws JavaModelException {
+public void testClassTypeParamDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[1] = getWorkingCopy(
 			"/Completion/src/test/Foobar.java",
@@ -396,11 +396,11 @@ public void testClassTypeParamDeclaration() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"LinkedHashMap[TYPE_REF]{LinkedHashMap, test, Ltest.LinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"LinkedHashMap[TYPE_REF]{LinkedHashMap, test, Ltest.LinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"SpecificLinkedHashMap[TYPE_REF]{SpecificLinkedHashMap, test, Ltest.SpecificLinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}",
 			requestor.getResults());
 }
-public void testClassTypeLocalVarDeclaration() throws JavaModelException {
+public void testClassTypeLocalVarDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[1] = getWorkingCopy(
 			"/Completion/src/test/Foobar.java",
@@ -426,11 +426,11 @@ public void testClassTypeLocalVarDeclaration() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"LinkedHashMap[TYPE_REF]{LinkedHashMap, test, Ltest.LinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"LinkedHashMap[TYPE_REF]{LinkedHashMap, test, Ltest.LinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"SpecificLinkedHashMap[TYPE_REF]{SpecificLinkedHashMap, test, Ltest.SpecificLinkedHashMap;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}",
 			requestor.getResults());
 }
-public void testClassTypeThrowsDeclaration() throws JavaModelException {
+public void testClassTypeThrowsDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[1] = getWorkingCopy(
 			"/Completion/src/test/Foobar.java",
@@ -455,11 +455,11 @@ public void testClassTypeThrowsDeclaration() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"EvenMoreSpecificFooBar[TYPE_REF]{EvenMoreSpecificFooBar, test, Ltest.EvenMoreSpecificFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" +
+			"EvenMoreSpecificFooBar[TYPE_REF]{EvenMoreSpecificFooBar, test, Ltest.EvenMoreSpecificFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"SpecificFooBar[TYPE_REF]{SpecificFooBar, test, Ltest.SpecificFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_SUBWORD) + "}",
 			requestor.getResults());
 }
-public void testClassTypeExtends() throws JavaModelException {
+public void testClassTypeExtends() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[1] = getWorkingCopy(
 			"/Completion/src/test/Foobar.java",
@@ -483,11 +483,11 @@ public void testClassTypeExtends() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"EvenMoreSpecificFooBar[TYPE_REF]{EvenMoreSpecificFooBar, test, Ltest.EvenMoreSpecificFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_CLASS + R_SUBWORD) + "}\n" +
+			"EvenMoreSpecificFooBar[TYPE_REF]{EvenMoreSpecificFooBar, test, Ltest.EvenMoreSpecificFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_CLASS + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"SpecificFooBar[TYPE_REF]{SpecificFooBar, test, Ltest.SpecificFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_CLASS + R_SUBWORD) + "}",
 			requestor.getResults());
 }
-public void testClassTypeImplements() throws JavaModelException {
+public void testClassTypeImplements() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[1] = getWorkingCopy(
 			"/Completion/src/test/Foobar.java",
@@ -512,11 +512,11 @@ public void testClassTypeImplements() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"FooBar[TYPE_REF]{FooBar, test, Ltest.FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_INTERFACE + R_SUBWORD) + "}\n" +
+			"FooBar[TYPE_REF]{FooBar, test, Ltest.FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_INTERFACE + R_SUBWORD) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"FooBarExtension[TYPE_REF]{FooBarExtension, test, Ltest.FooBarExtension;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_INTERFACE + R_SUBWORD) + "}",
 			requestor.getResults());
 }
-public void testInnerClassTypeInstantiation() throws JavaModelException {
+public void testInnerClassTypeInstantiation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -536,10 +536,10 @@ public void testInnerClassTypeInstantiation() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testInnerClassTypeFieldDeclaration() throws JavaModelException {
+public void testInnerClassTypeFieldDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -556,10 +556,10 @@ public void testInnerClassTypeFieldDeclaration() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testInnerClassTypeParamDeclaration() throws JavaModelException {
+public void testInnerClassTypeParamDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -576,10 +576,10 @@ public void testInnerClassTypeParamDeclaration() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testInnerClassTypeLocalVarDeclaration() throws JavaModelException {
+public void testInnerClassTypeLocalVarDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -598,10 +598,10 @@ public void testInnerClassTypeLocalVarDeclaration() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testInnerClassTypeThrowsDeclaration() throws JavaModelException {
+public void testInnerClassTypeThrowsDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -618,10 +618,10 @@ public void testInnerClassTypeThrowsDeclaration() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testInnerClassTypeExtends() throws JavaModelException {
+public void testInnerClassTypeExtends() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -638,10 +638,10 @@ public void testInnerClassTypeExtends() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testInnerClassTypeImplements() throws JavaModelException {
+public void testInnerClassTypeImplements() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -658,10 +658,10 @@ public void testInnerClassTypeImplements() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testStaticNestedClassTypeInstantiation() throws JavaModelException {
+public void testStaticNestedClassTypeInstantiation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -680,10 +680,10 @@ public void testStaticNestedClassTypeInstantiation() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testStaticNestedClassTypeFieldDeclaration() throws JavaModelException {
+public void testStaticNestedClassTypeFieldDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -700,10 +700,10 @@ public void testStaticNestedClassTypeFieldDeclaration() throws JavaModelExceptio
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testStaticNestedClassTypeParamDeclaration() throws JavaModelException {
+public void testStaticNestedClassTypeParamDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -720,10 +720,10 @@ public void testStaticNestedClassTypeParamDeclaration() throws JavaModelExceptio
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testStaticNestedClassTypeLocalVarDeclaration() throws JavaModelException {
+public void testStaticNestedClassTypeLocalVarDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -742,10 +742,10 @@ public void testStaticNestedClassTypeLocalVarDeclaration() throws JavaModelExcep
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testStaticNestedClassTypeThrowsDeclaration() throws JavaModelException {
+public void testStaticNestedClassTypeThrowsDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -762,10 +762,10 @@ public void testStaticNestedClassTypeThrowsDeclaration() throws JavaModelExcepti
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testStaticNestedClassTypeExtends() throws JavaModelException {
+public void testStaticNestedClassTypeExtends() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -782,10 +782,10 @@ public void testStaticNestedClassTypeExtends() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testStaticNestedClassTypeImplements() throws JavaModelException {
+public void testStaticNestedClassTypeImplements() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -802,10 +802,10 @@ public void testStaticNestedClassTypeImplements() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"Test.FooBar[TYPE_REF]{FooBar, test, Ltest.Test$FooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testLocalClassTypeInstantiation() throws JavaModelException {
+public void testLocalClassTypeInstantiation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -824,10 +824,10 @@ public void testLocalClassTypeInstantiation() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"FooBar[TYPE_REF]{FooBar, test, LFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"FooBar[TYPE_REF]{FooBar, test, LFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testLocalClassTypeLocalVarDeclaration() throws JavaModelException {
+public void testLocalClassTypeLocalVarDeclaration() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -846,10 +846,10 @@ public void testLocalClassTypeLocalVarDeclaration() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"FooBar[TYPE_REF]{FooBar, test, LFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"FooBar[TYPE_REF]{FooBar, test, LFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testLocalClassTypeExtends() throws JavaModelException {
+public void testLocalClassTypeExtends() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -868,10 +868,10 @@ public void testLocalClassTypeExtends() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"FooBar[TYPE_REF]{FooBar, test, LFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}",
+			"FooBar[TYPE_REF]{FooBar, test, LFooBar;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED + R_SUBWORD) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testDontPreventInsertionOfExactMatch() throws JavaModelException {
+public void testDontPreventInsertionOfExactMatch() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test.java",
@@ -889,7 +889,7 @@ public void testDontPreventInsertionOfExactMatch() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED ) +  "}\n" +
+			"toString[METHOD_REF]{toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED ) +  "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"put[METHOD_REF]{, Ljava.util.Map<Ljava.lang.String;Ljava.lang.String;>;, (Ljava.lang.String;Ljava.lang.String;)Ljava.lang.String;, put, (key, value), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_NAME + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED ) + "}",
 			requestor.getResults());
 }

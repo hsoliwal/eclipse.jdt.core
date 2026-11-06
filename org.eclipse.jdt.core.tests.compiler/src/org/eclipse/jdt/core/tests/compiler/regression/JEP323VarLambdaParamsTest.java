@@ -114,7 +114,7 @@ public void testBug534787_positive_004() throws IOException {
 			},
 			"SUCCESS 10");
 }
-public void testBug534787_negative_001() throws IOException {
+public void testBug534787_negative_001() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -149,7 +149,7 @@ public void testBug534787_negative_001() throws IOException {
 			"Syntax error, insert \")\" to complete Expression\n" +
 			"----------\n");
 }
-public void testBug534787_negative_002() throws IOException {
+public void testBug534787_negative_002() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -170,7 +170,7 @@ public void testBug534787_negative_002() throws IOException {
 			"\'var\' cannot be mixed with non-var parameters\n" +
 			"----------\n");
 }
-public void testBug534787_negative_003() throws IOException {
+public void testBug534787_negative_003() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -191,7 +191,7 @@ public void testBug534787_negative_003() throws IOException {
 			"'var' cannot be mixed with non-var parameters\n" +
 			"----------\n");
 }
-public void testBug534787_negative_004() throws IOException {
+public void testBug534787_negative_004() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -212,7 +212,7 @@ public void testBug534787_negative_004() throws IOException {
 			"'var' is not allowed as an element type of an array\n" +
 			"----------\n");
 }
-public void testBug534787_negative_005() throws IOException {
+public void testBug534787_negative_005() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -239,7 +239,7 @@ public void testBug534787_negative_005() throws IOException {
 			"----------\n");
 }
 
-public void testBug534787_negative_006() throws IOException {
+public void testBug534787_negative_006() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -298,7 +298,7 @@ public void testBug536159_03() throws IOException {
 			+ "}"
 	});
 }
-public void testBug536159_04() throws IOException {
+public void testBug536159_04() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String[] {
 			"X.java",
 			"public class X<T> {\n"
@@ -317,7 +317,7 @@ public void testBug536159_04() throws IOException {
 			"'var' is not allowed as an element type of an array\n" +
 			"----------\n");
 }
-public void testBug541532_01() throws IOException {
+public void testBug541532_01() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String[] {
 			"X.java",
 			"import java.util.Arrays;\n" +
@@ -344,7 +344,7 @@ public void testBug541532_01() throws IOException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4159
 // [LVTI/var] ECJ allows type arguments to be specified with the reserved type name var
-public void testIssue4159() throws IOException {
+public void testIssue4159() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -368,7 +368,7 @@ public void testIssue4159() throws IOException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4593
 // Type-use annotations on var lambda parameter should be rejected
-public void testIssue4593() throws IOException {
+public void testIssue4593() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String[] {
 			"X.java",
 			"""

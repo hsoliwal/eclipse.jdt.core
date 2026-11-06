@@ -81,7 +81,7 @@ public class MultiReleaseTests extends BuilderTests {
 		expectingOnlySpecificProblemFor(src9, new Problem("", "Target release for src9 (9) is lower or equal to the project's default release (11).", src9, 0, 1, -1, IMarker.SEVERITY_ERROR, "JDT"));
 	}
 
-	public void testMultiReleaseCompileWithMultipleFolders() throws JavaModelException, IOException {
+	public void testMultiReleaseCompileWithMultipleFolders() throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = whenSetupMRRpoject();
 		IClasspathAttribute[] extraAttributes = new IClasspathAttribute[] {
 				JavaCore.newClasspathAttribute(IClasspathAttribute.RELEASE, org.eclipse.jdt.core.JavaCore.VERSION_9) };
@@ -100,7 +100,7 @@ public class MultiReleaseTests extends BuilderTests {
 		assertJavaVersion(projectPath.append("bin/META-INF/versions/9/p/Release9Type.class"), ClassFileConstants.MAJOR_VERSION_9);
 	}
 
-	public void testMultiReleaseWithMultipleReleaseFolders() throws JavaModelException, IOException {
+	public void testMultiReleaseWithMultipleReleaseFolders() throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = whenSetupMRRpoject();
 		IPath defaultP = env.getPackageFragmentRootPath(projectPath, DEFAULT_SRC_FOLDER);
 		IPath j9P = env.getPackageFragmentRootPath(projectPath, JAVA9_SRC_FOLDER);
@@ -231,7 +231,7 @@ public class MultiReleaseTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testMultiReleaseCompileWithDisabledTargetOption() throws JavaModelException, IOException {
+	public void testMultiReleaseCompileWithDisabledTargetOption() throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = whenSetupMRRpoject();
 		env.setProjectOption(projectPath, "org.eclipse.jdt.core.compiler.release", "disabled");
 		IPath src9 = env.getPackageFragmentRootPath(projectPath, JAVA9_SRC_FOLDER);
@@ -296,7 +296,7 @@ public class MultiReleaseTests extends BuilderTests {
 		expectingOnlySpecificProblemFor(release9Src2, new Problem("", "The type MultiReleaseType is already defined", release9Src2.append("p/MultiReleaseType.java"), 24, 40, CategorizedProblem.CAT_TYPE, IMarker.SEVERITY_ERROR));
 	}
 
-	public void testMultiReleaseCompileInterDependency() throws JavaModelException, IOException {
+	public void testMultiReleaseCompileInterDependency() throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectMr = whenSetupMRRpoject();
 		IPath projectPlain = env.addProject("P2", CompilerOptions.VERSION_1_8);
 		env.removePackageFragmentRoot(projectPlain, "");
@@ -320,7 +320,7 @@ public class MultiReleaseTests extends BuilderTests {
 
 	}
 
-	public void testMultiReleaseWithModularProjectAndReleaseEnabled() throws JavaModelException, IOException {
+	public void testMultiReleaseWithModularProjectAndReleaseEnabled() throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = createMRProject(CompilerOptions.VERSION_9);
 		IClasspathAttribute[] extraAttributes = new IClasspathAttribute[] {
 				JavaCore.newClasspathAttribute(IClasspathAttribute.RELEASE, org.eclipse.jdt.core.JavaCore.VERSION_11) };
@@ -349,7 +349,7 @@ public class MultiReleaseTests extends BuilderTests {
 	 * module-info.java for compilation, not a shared module from the project.
 	 * See issue https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4268
 	 */
-	public void testMultiReleaseModuleInfoPerRelease() throws JavaModelException, IOException {
+	public void testMultiReleaseModuleInfoPerRelease() throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Create modular project with Java 11 as base
 		IPath projectPath = createMRProject(CompilerOptions.VERSION_11);
 		IPath defaultSrc = env.getPackageFragmentRootPath(projectPath, DEFAULT_SRC_FOLDER);
@@ -451,7 +451,7 @@ public class MultiReleaseTests extends BuilderTests {
 		return projectPath;
 	}
 
-	protected IPath createMRProject(String compliance) throws JavaModelException {
+	protected IPath createMRProject(String compliance) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P", compliance);
 		env.removePackageFragmentRoot(projectPath, "");
 		env.setProjectOption(projectPath, "org.eclipse.jdt.core.compiler.release", "enabled");
@@ -479,7 +479,7 @@ public class MultiReleaseTests extends BuilderTests {
 	}
 
 	private void assertJavaVersion(IPath clazz, int javaVersion) throws IOException, FileNotFoundException {
-		assertEquals("Wrong java version for "+clazz, javaVersion, getMajorVersionOfClass(clazz));
+		assertEquals("Wrong java version for "+clazz, javaVersion, getMajorVersionOfClass(clazz)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private int getMajorVersionOfClass(IPath clazz) throws IOException, FileNotFoundException {
@@ -487,7 +487,7 @@ public class MultiReleaseTests extends BuilderTests {
 		File classFile = env.getWorkspaceRootPath().append(clazz).toFile();
 		assertNotNull(classFile);
 		IClassFileReader reader;
-		try (FileInputStream stream = new FileInputStream(classFile)) {
+		try (FileInputStream stream = new FileInputStream(classFile)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			reader = ToolFactory.createDefaultClassFileReader(stream, IClassFileReader.ALL);
 		}
 		return reader.getMajorVersion();

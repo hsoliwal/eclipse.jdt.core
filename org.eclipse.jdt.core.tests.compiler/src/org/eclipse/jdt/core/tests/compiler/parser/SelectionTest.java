@@ -29,7 +29,7 @@ public SelectionTest(String testName) {
 /*
  * Select superclass
  */
-public void test01() {
+public void test01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -67,7 +67,7 @@ public void test01() {
 /*
  * Select superinterface
  */
-public void test02() {
+public void test02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;													\n" +
@@ -108,7 +108,7 @@ public void test02() {
 /*
  * Select qualified superclass
  */
-public void test03() {
+public void test03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X extends java.io.IOException {	\n" +
@@ -143,7 +143,7 @@ public void test03() {
 /*
  * Select package from qualified superclass
  */
-public void test04() {
+public void test04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X extends java.io.IOException {	\n" +
@@ -178,7 +178,7 @@ public void test04() {
 /*
  * Select message send
  */
-public void test05() {
+public void test05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X extends java.io.IOException {	\n" +
@@ -217,7 +217,7 @@ public void test05() {
 /*
  * Select message send with recovery before
  */
-public void test06() {
+public void test06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X extends 						\n" +
@@ -256,7 +256,7 @@ public void test06() {
 /*
  * Select message send with sibling method
  */
-public void test07() {
+public void test07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X extends 						\n" +
@@ -301,7 +301,7 @@ public void test07() {
 /*
  * Select field reference
  */
-public void test08() {
+public void test08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 						\n" +
@@ -343,7 +343,7 @@ public void test08() {
 /*
  * Select field reference with syntax errors
  */
-public void test09() {
+public void test09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X 		 						\n" +
@@ -385,7 +385,7 @@ public void test09() {
 /*
  * Select field reference inside message receiver
  */
-public void test10() {
+public void test10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 					\n" +
@@ -427,7 +427,7 @@ public void test10() {
 /*
  * Select allocation
  */
-public void test11() {
+public void test11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 					\n" +
@@ -471,7 +471,7 @@ public void test11() {
 /*
  * Select qualified allocation
  */
-public void test12() {
+public void test12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 					\n" +
@@ -524,7 +524,7 @@ public void test12() {
 /*
  * Select qualified name reference receiver
  */
-public void test13() {
+public void test13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 					\n" +
@@ -565,7 +565,7 @@ public void test13() {
 /*
  * Select qualified name reference
  */
-public void test14() {
+public void test14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 					\n" +
@@ -606,7 +606,7 @@ public void test14() {
 /*
  * Select variable type with modifier
  */
-public void test15() {
+public void test15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 					\n" +
@@ -647,7 +647,7 @@ public void test15() {
 /*
  * Select variable type
  */
-public void test16() {
+public void test16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 					\n" +
@@ -688,7 +688,7 @@ public void test16() {
 /*
  * Select name
  */
-public void test17() {
+public void test17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 					\n" +
@@ -730,7 +730,7 @@ public void test17() {
 /*
  * Select anonymous type
  */
-public void test18() {
+public void test18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 					\n" +
@@ -777,7 +777,7 @@ public void test18() {
 /*
  * Select cast type
  */
-public void test19() {
+public void test19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 					\n" +
@@ -820,7 +820,7 @@ public void test19() {
 /*
  * Select package
  */
-public void test20() {
+public void test20() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"package x.y.other;					\n" +
@@ -863,7 +863,7 @@ public void test20() {
 /*
  * Select import
  */
-public void test21() {
+public void test21() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import x.y.Other;					\n" +
@@ -906,7 +906,7 @@ public void test21() {
 /*
  * Select import on demand
  */
-public void test22() {
+public void test22() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import x.y.other.*;					\n" +
@@ -949,7 +949,7 @@ public void test22() {
 /*
  * Select array initializer type
  */
-public void test23() {
+public void test23() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {		 					\n" +
@@ -991,7 +991,7 @@ public void test23() {
 /*
  * Select nested type superclass with syntax error behind
  */
-public void test24() {
+public void test24() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class G {					\n" +
@@ -1047,7 +1047,7 @@ public void test24() {
 /*
  * Select super
  */
-public void test25() {
+public void test25() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class G {					\n" +
@@ -1090,7 +1090,7 @@ public void test25() {
 /*
  * Select qualified super
  */
-public void test26() {
+public void test26() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class G {						\n" +
@@ -1140,7 +1140,7 @@ public void test26() {
 /*
  * Select super constructor call
  */
-public void test27() {
+public void test27() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class G {					\n" +
@@ -1181,7 +1181,7 @@ public void test27() {
 /*
  * Select qualified super constructor call
  */
-public void test28() {
+public void test28() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class G {						\n" +
@@ -1236,7 +1236,7 @@ public void test28() {
 /*
  * Select qualified super constructor call with arguments
  */
-public void test29() {
+public void test29() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class G {								\n" +
@@ -1291,7 +1291,7 @@ public void test29() {
 /*
  * Select super constructor call with arguments
  */
-public void test30() {
+public void test30() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class G {					\n" +
@@ -1332,7 +1332,7 @@ public void test30() {
 /*
  * Regression test for 1FVQ0LK
  */
-public void test31() {
+public void test31() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {							\n" +
@@ -1377,7 +1377,7 @@ public void test31() {
 /*
  * Regression test for 1FWT4AJ: ITPCOM:WIN98 - SelectionParser produces duplicate type declaration
  */
-public void test32() {
+public void test32() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"package search;												\n"+
@@ -1427,7 +1427,7 @@ public void test32() {
 /*
  * Regression test for 1G4CLZM: ITPJUI:WINNT - 'Import Selection' - Set not found
  */
-public void test33() {
+public void test33() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"	import java.util.AbstractMap;				\n"+
@@ -1474,7 +1474,7 @@ public void test33() {
 /*
  * Regression test for 1GB99S3: ITPJUI:WINNT - SH: NPE in editor while getting hover help
  */
-public void test34() {
+public void test34() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {							\n"+
@@ -1520,7 +1520,7 @@ public void test34() {
 /*
  * Select this constructor call
  */
-public void test35() {
+public void test35() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class G {					\n" +
@@ -1566,7 +1566,7 @@ public void test35() {
 /*
  * Select qualified this constructor call
  */
-public void test36() {
+public void test36() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class G {						\n" +
@@ -1621,7 +1621,7 @@ public void test36() {
 /*
  * Select qualified this constructor call with arguments
  */
-public void test37() {
+public void test37() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class G {								\n" +
@@ -1676,7 +1676,7 @@ public void test37() {
 /*
  * Select this constructor call with arguments
  */
-public void test38() {
+public void test38() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class G {					\n" +
@@ -1717,7 +1717,7 @@ public void test38() {
 /*
  * bugs 3293 search does not work in inner class (1GEUQHJ)
  */
-public void test39() {
+public void test39() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -1764,7 +1764,7 @@ public void test39() {
 /*
  * bugs 3229 OpenOnSelection - strange behaviour of code resolve (1GAVL08)
  */
-public void test40() {
+public void test40() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -1801,7 +1801,7 @@ public void test40() {
 /*
  * bugs 11475 selection on local name.
  */
-public void test41() {
+public void test41() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -1842,7 +1842,7 @@ public void test41() {
 /*
  * bugs 11475 selection on argument name.
  */
-public void test42() {
+public void test42() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -1881,7 +1881,7 @@ public void test42() {
 /*
  * bugs 11475 selection on argument name inside catch statement.
  */
-public void test43() {
+public void test43() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -1923,7 +1923,7 @@ public void test43() {
 /*
  * bugs 15430
  */
-public void test44() {
+public void test44() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -1960,7 +1960,7 @@ public void test44() {
 /*
  * bugs 14468
  */
-public void test45() {
+public void test45() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -2005,7 +2005,7 @@ public void test45() {
 /*
  * bugs 14468
  */
-public void test46() {
+public void test46() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -2046,7 +2046,7 @@ public void test46() {
 /*
  * bugs 14468
  */
-public void test47() {
+public void test47() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -2087,7 +2087,7 @@ public void test47() {
 /*
  * bugs 14468
  */
-public void test48() {
+public void test48() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -2124,7 +2124,7 @@ public void test48() {
 /*
  * bugs 28064
  */
-public void test49() {
+public void test49() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -2163,7 +2163,7 @@ public void test49() {
 /*
  * bugs https://bugs.eclipse.org/bugs/show_bug.cgi?id=52422
  */
-public void test50() {
+public void test50() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -2216,7 +2216,7 @@ public void test50() {
 /*
  * bugs https://bugs.eclipse.org/bugs/show_bug.cgi?id=52422
  */
-public void test51() {
+public void test51() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -2277,7 +2277,7 @@ public void test51() {
 /*
  * bugs https://bugs.eclipse.org/bugs/show_bug.cgi?id=52422
  */
-public void test52() {
+public void test52() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -2336,7 +2336,7 @@ public void test52() {
 		expectedReplacedSource,
 		testName);
 }
-public void test53() {
+public void test53() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -2376,7 +2376,7 @@ public void test53() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84001
-public void test54() {
+public void test54() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -2415,7 +2415,7 @@ public void test54() {
 		testName);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84001
-public void test55() {
+public void test55() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X {                \n" +
@@ -2454,7 +2454,7 @@ public void test55() {
 		testName);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=291040
-public void _test56() {
+public void _test56() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 			"class X {\n" +
@@ -2520,7 +2520,7 @@ public void _test56() {
  * doesn't result in a bad selection when nested in a method invocation.
  * See: https://github.com/eclipse-jdt/eclipse.jdt.core/issues/848
  */
-public void testInstanceOfFieldGh848() {
+public void testInstanceOfFieldGh848() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {                     \n" +
 		"    public Object o = new Object();\n" +

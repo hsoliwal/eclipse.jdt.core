@@ -45,7 +45,7 @@ public class ClasspathDirectory extends ClasspathLocation {
 final boolean isOnModulePath;
 IContainer binaryFolder; // includes .class files for a single directory
 boolean isOutputFolder;
-final Map<String, String[]> directoryCache = new HashMap<>();
+final Map<String, String[]> directoryCache = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 String[] missingPackageHolder = new String[1];
 
 ClasspathDirectory(IContainer binaryFolder, boolean isOutputFolder, AccessRuleSet accessRuleSet,
@@ -71,12 +71,12 @@ public void cleanup() {
 	this.directoryCache.clear();
 }
 
-IModule initializeModule() {
+IModule initializeModule() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IResource[] members = null;
 	try {
 		members = this.binaryFolder.members();
 		if (members != null) {
-			for (IResource m : members) {
+			for (IResource m : members) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String name = m.getName();
 				// Note: Look only inside the default package.
 				if (m.getType() == IResource.FILE && org.eclipse.jdt.internal.compiler.util.Util.isClassFileName(name)) {
@@ -101,7 +101,7 @@ IModule initializeModule() {
 	return null;
 }
 /** Lists all java-like files and also sub-directories (for recursive tests). */
-String[] directoryList(String qualifiedPackageName) {
+String[] directoryList(String qualifiedPackageName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] dirList = this.directoryCache.get(qualifiedPackageName);
 	if (dirList == this.missingPackageHolder) return null; // package exists in another classpath directory or jar
 	if (dirList != null) return dirList;
@@ -112,7 +112,7 @@ String[] directoryList(String qualifiedPackageName) {
 			IResource[] members = binaryContainer.members();
 			dirList = new String[members.length];
 			int index = 0;
-			for (IResource m : members) {
+			for (IResource m : members) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String name = m.getName();
 				if (m.getType() == IResource.FOLDER || // include folders so we recognize empty parent packages
 						(m.getType() == IResource.FILE && org.eclipse.jdt.internal.compiler.util.Util.isClassFileName(name))) {
@@ -135,7 +135,7 @@ boolean doesFileExist(String fileName, String qualifiedPackageName, String quali
 	String[] dirList = directoryList(qualifiedPackageName);
 	if (dirList == null) return false; // most common case
 
-	for (int i = dirList.length; --i >= 0;)
+	for (int i = dirList.length; --i >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (fileName.equals(dirList[i]))
 			return true;
 	return false;
@@ -155,7 +155,7 @@ public boolean equals(Object o) {
 
 	return this.binaryFolder.equals(dir.binaryFolder) && areAllModuleOptionsEqual(dir);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public NameEnvironmentAnswer findClass(String binaryFileName, String qualifiedPackageName, String moduleName, String qualifiedBinaryFileName, boolean asBinaryOnly, Predicate<String> moduleNameFilter) {
 	if (!doesFileExist(binaryFileName, qualifiedPackageName, qualifiedBinaryFileName)) return null; // most common case
 
@@ -199,7 +199,7 @@ public boolean isOutputFolder() {
 	return this.isOutputFolder;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean isPackage(String qualifiedPackageName, String moduleName) {
 	if (moduleName != null) {
 		if (this.module == null || !moduleName.equals(String.valueOf(this.module.name())))
@@ -208,15 +208,15 @@ public boolean isPackage(String qualifiedPackageName, String moduleName) {
 	String[] list = directoryList(qualifiedPackageName);
 	if (list != null) {
 		// 1. search files here:
-		for (String entry : list) {
+		for (String entry : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String entryLC = entry.toLowerCase();
 			if (entryLC.endsWith(SuffixConstants.SUFFIX_STRING_class) || entryLC.endsWith(SuffixConstants.SUFFIX_STRING_java))
 				return true;
 		}
 		// 2. recurse into sub directories
-		for (String entry : list) {
+		for (String entry : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (entry.indexOf('.') == -1) { // no plain files without '.' are returned by directoryList()
-				if (isPackage(qualifiedPackageName+'/'+entry, null/*already checked*/))
+				if (isPackage(qualifiedPackageName+'/'+entry, null/*already checked*/)) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return true;
 			}
 		}
@@ -227,7 +227,7 @@ public boolean isPackage(String qualifiedPackageName, String moduleName) {
 public boolean hasCompilationUnit(String qualifiedPackageName, String moduleName) {
 	String[] dirList = directoryList(qualifiedPackageName);
 	if (dirList != null) {
-		for (String entry : dirList) {
+		for (String entry : dirList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String entryLC = entry.toLowerCase();
 			if (entryLC.endsWith(SuffixConstants.SUFFIX_STRING_class) || entryLC.endsWith(SuffixConstants.SUFFIX_STRING_java))
 				return true;
@@ -243,10 +243,10 @@ public void reset() {
 
 @Override
 public String toString() {
-	String start = "Binary classpath directory " + this.binaryFolder.getFullPath().toString(); //$NON-NLS-1$
+	String start = "Binary classpath directory " + this.binaryFolder.getFullPath().toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	if (this.accessRuleSet == null)
 		return start;
-	return start + " with " + this.accessRuleSet; //$NON-NLS-1$
+	return start + " with " + this.accessRuleSet; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 @Override
@@ -262,7 +262,7 @@ public NameEnvironmentAnswer findClass(String typeName, String qualifiedPackageN
 
 @Override
 public char[][] listPackages() {
-	Set<String> packageNames = new HashSet<>();
+	Set<String> packageNames = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	IPath basePath = this.binaryFolder.getFullPath();
 	try {
 		this.binaryFolder.accept(r -> {
@@ -273,13 +273,13 @@ public char[][] listPackages() {
 			return true;
 		});
 	} catch (CoreException e) {
-		Util.log(e, "Failed to scan packages of "+this.binaryFolder); //$NON-NLS-1$
+		Util.log(e, "Failed to scan packages of "+this.binaryFolder); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	return packageNames.stream().map(String::toCharArray).toArray(char[][]::new);
 }
 @Override
 protected IBinaryType decorateWithExternalAnnotations(IBinaryType reader, String fileNameWithoutExtension) {
-	String qualifiedFileName = fileNameWithoutExtension + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX;
+	String qualifiedFileName = fileNameWithoutExtension + ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IFile file = this.binaryFolder.getFile(new Path(qualifiedFileName));
 	if (file.exists()) {
 		try {

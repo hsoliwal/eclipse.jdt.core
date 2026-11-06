@@ -93,8 +93,8 @@ public class ModelUtilTests extends TestCase
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "model");
 		BatchTestUtils.copyResources("targets/model", targetFolder);
 
-		List<String> options = new ArrayList<>();
-		options.add("-A" + processorClass);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + processorClass); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		BatchTestUtils.compileTree(compiler, options, targetFolder);
 
 		// If it succeeded, the processor will have set this property to "succeeded";

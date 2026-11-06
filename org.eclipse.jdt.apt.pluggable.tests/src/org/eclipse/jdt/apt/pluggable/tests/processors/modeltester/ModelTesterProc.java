@@ -114,10 +114,10 @@ public class ModelTesterProc extends AbstractProcessor {
 	 * Perform a round of processing: for a given annotation instance, determine what test method it
 	 * specifies, and invoke that method, passing in the annotated element.
 	 */
-	private void round(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+	private void round(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeElement modelTesterAnno = annotations.iterator().next();
 		Set<? extends Element> annotatedEls = roundEnv.getElementsAnnotatedWith(modelTesterAnno);
-		for (Element annotatedEl : annotatedEls) {
+		for (Element annotatedEl : annotatedEls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ModelTestTrigger modelTesterMirror = annotatedEl.getAnnotation(ModelTestTrigger.class);
 			String testMethodName = modelTesterMirror.test();
 			String arg0 = modelTesterMirror.arg0();
@@ -134,7 +134,7 @@ public class ModelTesterProc extends AbstractProcessor {
 					// IllegalStateException probably means test method called ProcessorTestStatus.fail()
 					String msg = (t instanceof IllegalStateException) ?
 							t.getMessage() :
-							t.getClass().getSimpleName() + " invoking test method " +
+							t.getClass().getSimpleName() + " invoking test method " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							testMethodName + " - see console for details";
 					ProcessorTestStatus.fail(msg);
 				}
@@ -146,16 +146,16 @@ public class ModelTesterProc extends AbstractProcessor {
 	 * Check the types of some fields (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=248163)
 	 * @see #TEST_FIELD_TYPE_SOURCE
 	 */
-	public void testFieldType(RoundEnvironment roundEnv, Element e, String arg0, String arg1)
+	public void testFieldType(RoundEnvironment roundEnv, Element e, String arg0, String arg1) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			throws Exception
 	{
-		Map<String, VariableElement> fields = new HashMap<>();
+		Map<String, VariableElement> fields = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		Iterable<? extends Element> elements;
 		// With this line uncommented, test would pass:
 		// elements = e.getEnclosedElements();
 		// With this line uncommented, test would fail:
 		elements = roundEnv.getElementsAnnotatedWith(LookAt.class);
-		for (VariableElement field : ElementFilter.fieldsIn(elements)) {
+		for (VariableElement field : ElementFilter.fieldsIn(elements)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			fields.put(field.getSimpleName().toString(), field);
 		}
 
@@ -164,12 +164,12 @@ public class ModelTesterProc extends AbstractProcessor {
 			ProcessorTestStatus.fail("Field _fInt was not found");
 		}
 		if (fInt.getKind() != ElementKind.FIELD) {
-			ProcessorTestStatus.fail("ElementKind of field _fInt was " + fInt.getKind() +
+			ProcessorTestStatus.fail("ElementKind of field _fInt was " + fInt.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected FIELD");
 		}
 		TypeMirror fIntType = fInt.asType();
 		if (fIntType.getKind() != TypeKind.INT) {
-			ProcessorTestStatus.fail("Field _fInt asType returned type kind of " + fIntType.getKind() +
+			ProcessorTestStatus.fail("Field _fInt asType returned type kind of " + fIntType.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected INT");
 		}
 
@@ -178,12 +178,12 @@ public class ModelTesterProc extends AbstractProcessor {
 			ProcessorTestStatus.fail("Field _fString was not found");
 		}
 		if (fString.getKind() != ElementKind.FIELD) {
-			ProcessorTestStatus.fail("ElementKind of field _fString was " + fString.getKind() +
+			ProcessorTestStatus.fail("ElementKind of field _fString was " + fString.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected FIELD");
 		}
 		TypeMirror fStringType = fString.asType();
 		if (fStringType.getKind() != TypeKind.DECLARED) {
-			ProcessorTestStatus.fail("Field _fString asType returned type kind of " + fStringType.getKind() +
+			ProcessorTestStatus.fail("Field _fString asType returned type kind of " + fStringType.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected DECLARED");
 		}
 		VariableElement fFoo = fields.get("_fFoo");
@@ -191,12 +191,12 @@ public class ModelTesterProc extends AbstractProcessor {
 			ProcessorTestStatus.fail("Field _fFoo was not found");
 		}
 		if (fFoo.getKind() != ElementKind.FIELD) {
-			ProcessorTestStatus.fail("ElementKind of field _fFoo was " + fFoo.getKind() +
+			ProcessorTestStatus.fail("ElementKind of field _fFoo was " + fFoo.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected FIELD");
 		}
 		TypeMirror fFooType = fFoo.asType();
 		if (fFooType.getKind() != TypeKind.DECLARED) {
-			ProcessorTestStatus.fail("Field _fFoo asType returned type kind of " + fFooType.getKind() +
+			ProcessorTestStatus.fail("Field _fFoo asType returned type kind of " + fFooType.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected DECLARED");
 		}
 	}
@@ -205,16 +205,16 @@ public class ModelTesterProc extends AbstractProcessor {
 	 * Check the types of some fields (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=248163)
 	 * @see #TEST_METHOD_TYPE_SOURCE
 	 */
-	public void testMethodType(RoundEnvironment roundEnv, Element e, String arg0, String arg1)
+	public void testMethodType(RoundEnvironment roundEnv, Element e, String arg0, String arg1) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			throws Exception
 	{
-		Map<String, ExecutableElement> methods = new HashMap<>();
+		Map<String, ExecutableElement> methods = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		Iterable<? extends Element> elements;
 		// With this line uncommented, test would pass:
 		// elements = e.getEnclosedElements();
 		// With this line uncommented, test would fail:
 		elements = roundEnv.getElementsAnnotatedWith(LookAt.class);
-		for (ExecutableElement method : ElementFilter.methodsIn(elements)) {
+		for (ExecutableElement method : ElementFilter.methodsIn(elements)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			methods.put(method.getSimpleName().toString(), method);
 		}
 
@@ -223,12 +223,12 @@ public class ModelTesterProc extends AbstractProcessor {
 			ProcessorTestStatus.fail("Method self() was not found");
 		}
 		if (mSelf.getKind() != ElementKind.METHOD) {
-			ProcessorTestStatus.fail("ElementKind of method self() was " + mSelf.getKind() +
+			ProcessorTestStatus.fail("ElementKind of method self() was " + mSelf.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected METHOD");
 		}
 		TypeMirror mSelfType = mSelf.getReturnType();
 		if (mSelfType.getKind() != TypeKind.DECLARED) {
-			ProcessorTestStatus.fail("Method self() asType returned type kind of " + mSelfType.getKind() +
+			ProcessorTestStatus.fail("Method self() asType returned type kind of " + mSelfType.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected DECLARED");
 		}
 	}

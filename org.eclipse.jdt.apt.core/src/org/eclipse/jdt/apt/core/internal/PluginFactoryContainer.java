@@ -55,7 +55,7 @@ public class PluginFactoryContainer extends FactoryContainer
 	@Override
 	protected Map<String, String> loadFactoryNames() {
 		// The list is populated when factory plugins are loaded.
-		return new LinkedHashMap<>();
+		return new LinkedHashMap<>(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 	}
 
 	@Override

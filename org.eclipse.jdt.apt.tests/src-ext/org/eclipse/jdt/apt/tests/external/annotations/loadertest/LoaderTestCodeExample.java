@@ -20,7 +20,7 @@ package org.eclipse.jdt.apt.tests.external.annotations.loadertest;
 public class LoaderTestCodeExample {
 	public static final String CODE_PACKAGE = "loadertestpackage";
 	public static final String CODE_CLASS_NAME = "LoaderTestClass";
-	public static final String CODE_FULL_NAME = CODE_PACKAGE + "." + CODE_CLASS_NAME;
+	public static final String CODE_FULL_NAME = CODE_PACKAGE + "." + CODE_CLASS_NAME; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	public static final String CODE =
 		"package loadertestpackage;\n" +

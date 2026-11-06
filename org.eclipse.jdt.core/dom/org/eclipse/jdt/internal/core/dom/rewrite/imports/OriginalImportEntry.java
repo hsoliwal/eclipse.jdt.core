@@ -58,7 +58,7 @@ class OriginalImportEntry extends ImportEntry {
 			IRegion declarationAndComments) {
 		super(importName);
 
-		this.comments = Collections.unmodifiableList(new ArrayList<>(comments));
+		this.comments = Collections.unmodifiableList(new ArrayList<>(comments)); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		this.precedingLineDelimiters = precedingLeadingDelimiters;
 		this.leadingDelimiter = leadingWhitespace;
 		this.declarationAndComments = declarationAndComments;
@@ -66,7 +66,7 @@ class OriginalImportEntry extends ImportEntry {
 
 	@Override
 	public String toString() {
-		return String.format("OriginalImportEntry(%s)", this.importName); //$NON-NLS-1$
+		return String.format("OriginalImportEntry(%s)", this.importName); //$NON-NLS-1$ //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 	}
 
 	@Override

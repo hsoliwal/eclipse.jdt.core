@@ -122,7 +122,7 @@ protected MatchLocatorParser(ProblemReporter problemReporter, MatchLocator locat
 	}
 	this.patternFineGrain = this.patternLocator.fineGrain();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void checkComment() {
 	super.checkComment();
 	if (this.javadocParser.checkDocComment && this.javadoc != null && this.patternFineGrain == 0 /* there's no fine grain concerning Javadoc*/) {
@@ -130,7 +130,7 @@ public void checkComment() {
 		// Search for pattern locator matches in javadoc comment parameters @param tags
 		JavadocSingleNameReference[] paramReferences = this.javadoc.paramReferences;
 		if (paramReferences != null) {
-			for (JavadocSingleNameReference paramReference : paramReferences) {
+			for (JavadocSingleNameReference paramReference : paramReferences) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.patternLocator.match(paramReference, this.nodeSet);
 			}
 		}
@@ -138,7 +138,7 @@ public void checkComment() {
 		// Search for pattern locator matches in javadoc comment type parameters @param tags
 		JavadocSingleTypeReference[] paramTypeParameters = this.javadoc.paramTypeParameters;
 		if (paramTypeParameters != null) {
-			for (JavadocSingleTypeReference paramTypeParameter : paramTypeParameters) {
+			for (JavadocSingleTypeReference paramTypeParameter : paramTypeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.patternLocator.match(paramTypeParameter, this.nodeSet);
 			}
 		}
@@ -146,7 +146,7 @@ public void checkComment() {
 		// Search for pattern locator matches in javadoc comment @throws/@exception tags
 		TypeReference[] thrownExceptions = this.javadoc.exceptionReferences;
 		if (thrownExceptions != null) {
-			for (TypeReference thrownException : thrownExceptions) {
+			for (TypeReference thrownException : thrownExceptions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.patternLocator.match(thrownException, this.nodeSet);
 			}
 		}
@@ -154,7 +154,7 @@ public void checkComment() {
 		// Search for pattern locator matches in javadoc comment @see tags
 		Expression[] references = this.javadoc.seeReferences;
 		if (references != null) {
-			for (Expression reference : references) {
+			for (Expression reference : references) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (reference instanceof JavadocModuleReference) {
 					JavadocModuleReference modRef = (JavadocModuleReference)reference;
 					if (modRef.typeReference != null) {
@@ -185,7 +185,7 @@ public void checkComment() {
 						this.patternLocator.match(typeRef, this.nodeSet);
 					}
 					if (messageSend.arguments != null) {
-						for (Expression arg : messageSend.arguments) {
+						for (Expression arg : messageSend.arguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							JavadocArgumentExpression argument = (JavadocArgumentExpression) arg;
 							if (argument.argument != null && argument.argument.type != null) {
 								this.patternLocator.match(argument.argument.type, this.nodeSet);
@@ -199,7 +199,7 @@ public void checkComment() {
 						this.patternLocator.match(constructor.type, this.nodeSet);
 					}
 					if (constructor.arguments != null) {
-						for (Expression arg : constructor.arguments) {
+						for (Expression arg : constructor.arguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							this.patternLocator.match(arg, this.nodeSet);
 							JavadocArgumentExpression argument = (JavadocArgumentExpression) arg;
 							if (argument.argument != null && argument.argument.type != null) {
@@ -255,7 +255,7 @@ protected void consumeCastExpressionLL1WithBounds() {
 	if ((this.patternFineGrain & IJavaSearchConstants.CAST_TYPE_REFERENCE) != 0) {
 		CastExpression castExpression = (CastExpression) this.expressionStack[this.expressionPtr];
 		TypeReference[] typeReferences = ((IntersectionCastTypeReference) castExpression.type).typeReferences;
-		for (TypeReference typeReference : typeReferences)
+		for (TypeReference typeReference : typeReferences) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.patternLocator.match(typeReference, this.nodeSet);
 	}
 }
@@ -406,7 +406,7 @@ protected void consumeInstanceOfExpressionWithName() {
 	matchPatternVariable();
 }
 
-private void matchPatternVariable() {
+private void matchPatternVariable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.patternFineGrain == 0) {
 		Expression expr = this.expressionStack[this.expressionPtr];
 		LocalDeclaration elementVariable = null;
@@ -493,7 +493,7 @@ protected void consumeMethodHeaderRightParen() {
 		Argument[] arguments = methodDeclaration.arguments;
 		if (arguments != null) {
 			int argLength = arguments.length;
-			for (int i=0; i<argLength; i++) {
+			for (int i=0; i<argLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.patternLocator.match(arguments[i].type, this.nodeSet);
 			}
 		}
@@ -508,7 +508,7 @@ protected void consumeMethodHeaderThrowsClause() {
 		TypeReference[] thrownExceptions = methodDeclaration.thrownExceptions;
 		if (thrownExceptions != null) {
 			int thrownLength = thrownExceptions.length;
-			for (int i=0; i<thrownLength; i++) {
+			for (int i=0; i<thrownLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.patternLocator.match(thrownExceptions[i], this.nodeSet);
 			}
 		}
@@ -629,7 +629,7 @@ protected void consumeProvidesStatement() {
 	super.consumeProvidesStatement();
 	ProvidesStatement ref = (ProvidesStatement) this.astStack[this.astPtr];
 	TypeReference[] impls = ref.implementations;
-	for (TypeReference impl : impls) {
+	for (TypeReference impl : impls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		this.patternLocator.match(impl, this.nodeSet);
 	}
 }
@@ -643,7 +643,7 @@ protected void consumePrimaryNoNewArrayWithName() {
 	this.intPtr--;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeReferenceExpression(ReferenceExpression referenceExpression) {
 	super.consumeReferenceExpression(referenceExpression);
 	if (this.patternFineGrain == 0) {
@@ -701,7 +701,7 @@ protected void consumeStatementCatch() {
 		LocalDeclaration localDeclaration = (LocalDeclaration) this.astStack[this.astPtr-1];
 		if (localDeclaration.type instanceof UnionTypeReference) {
 			TypeReference[] refs = ((UnionTypeReference)localDeclaration.type).typeReferences;
-			for (TypeReference ref : refs) {
+			for (TypeReference ref : refs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.patternLocator.match(ref, this.nodeSet);
 			}
 		} else {
@@ -714,7 +714,7 @@ protected void consumeStatementCatch() {
 protected void consumeTypeArgumentList1() {
 	super.consumeTypeArgumentList1();
 	if ((this.patternFineGrain & IJavaSearchConstants.TYPE_ARGUMENT_TYPE_REFERENCE) != 0) {
-		for (int i=this.genericsPtr-this.genericsLengthStack[this.genericsLengthPtr]+1; i<=this.genericsPtr; i++) {
+		for (int i=this.genericsPtr-this.genericsLengthStack[this.genericsLengthPtr]+1; i<=this.genericsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference typeReference = (TypeReference)this.genericsStack[i];
 			if (!(typeReference instanceof Wildcard)) {
 				this.patternLocator.match(typeReference, this.nodeSet);
@@ -727,7 +727,7 @@ protected void consumeTypeArgumentList1() {
 protected void consumeTypeArgumentList2() {
 	super.consumeTypeArgumentList2();
 	if ((this.patternFineGrain & IJavaSearchConstants.TYPE_ARGUMENT_TYPE_REFERENCE) != 0) {
-		for (int i=this.genericsPtr-this.genericsLengthStack[this.genericsLengthPtr]+1; i<=this.genericsPtr; i++) {
+		for (int i=this.genericsPtr-this.genericsLengthStack[this.genericsLengthPtr]+1; i<=this.genericsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference typeReference = (TypeReference)this.genericsStack[i];
 			if (!(typeReference instanceof Wildcard)) {
 				this.patternLocator.match(typeReference, this.nodeSet);
@@ -740,7 +740,7 @@ protected void consumeTypeArgumentList2() {
 protected void consumeTypeArgumentList3() {
 	super.consumeTypeArgumentList3();
 	if ((this.patternFineGrain & IJavaSearchConstants.TYPE_ARGUMENT_TYPE_REFERENCE) != 0) {
-		for (int i=this.genericsPtr-this.genericsLengthStack[this.genericsLengthPtr]+1; i<=this.genericsPtr; i++) {
+		for (int i=this.genericsPtr-this.genericsLengthStack[this.genericsLengthPtr]+1; i<=this.genericsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference typeReference = (TypeReference)this.genericsStack[i];
 			if (!(typeReference instanceof Wildcard)) {
 				this.patternLocator.match(typeReference, this.nodeSet);
@@ -749,7 +749,7 @@ protected void consumeTypeArgumentList3() {
 	}
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeTypeArgumentReferenceType1() {
 	super.consumeTypeArgumentReferenceType1();
 	if ((this.patternFineGrain & IJavaSearchConstants.TYPE_ARGUMENT_TYPE_REFERENCE) != 0) {
@@ -764,7 +764,7 @@ protected void consumeTypeArgumentReferenceType1() {
 	            typeArguments = allTypeArguments[allTypeArguments.length-1];
             }
 			if (typeArguments != null) {
-	            for (TypeReference typeArgument : typeArguments) {
+	            for (TypeReference typeArgument : typeArguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            	if (!(typeArgument instanceof Wildcard)) {
 						this.patternLocator.match(typeArgument, this.nodeSet);
 	            	}
@@ -774,7 +774,7 @@ protected void consumeTypeArgumentReferenceType1() {
 	}
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeTypeArgumentReferenceType2() {
 	super.consumeTypeArgumentReferenceType2();
 	if ((this.patternFineGrain & IJavaSearchConstants.TYPE_ARGUMENT_TYPE_REFERENCE) != 0) {
@@ -789,7 +789,7 @@ protected void consumeTypeArgumentReferenceType2() {
 	            typeArguments = allTypeArguments[allTypeArguments.length-1];
             }
 			if (typeArguments != null) {
-	            for (TypeReference typeArgument : typeArguments) {
+	            for (TypeReference typeArgument : typeArguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            	if (!(typeArgument instanceof Wildcard)) {
 						this.patternLocator.match(typeArgument, this.nodeSet);
 	            	}
@@ -955,7 +955,7 @@ protected void consumePermittedTypes() {
 	super.consumePermittedTypes();
 	if ((this.patternFineGrain & IJavaSearchConstants.PERMITTYPE_TYPE_REFERENCE) != 0) {
 		TypeDeclaration td = (TypeDeclaration) this.astStack[this.astPtr];
-		for (TypeReference pt : td.permittedTypes) {
+		for (TypeReference pt : td.permittedTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.patternLocator.match(pt, this.nodeSet);
 		}
 	}
@@ -994,7 +994,7 @@ protected NameReference getUnspecifiedReference(boolean rejectTypeAnnotations) {
 	}
 	return nameRef;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected NameReference getUnspecifiedReferenceOptimized() {
 	NameReference nameRef = super.getUnspecifiedReferenceOptimized();
 	if (this.patternFineGrain == 0) {
@@ -1024,7 +1024,7 @@ public void parseBodies(CompilationUnitDeclaration unit) {
 	TypeDeclaration[] types = unit.types;
 	if (types == null) return;
 
-	for (TypeDeclaration type : types) {
+	for (TypeDeclaration type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		this.patternLocator.match(type, this.nodeSet);
 		this.parseBodies(type, unit);
 	}
@@ -1034,10 +1034,10 @@ public void parseBodies(CompilationUnitDeclaration unit) {
  * @param type TypeDeclaration
  * @param unit CompilationUnitDeclaration
  */
-protected void parseBodies(TypeDeclaration type, CompilationUnitDeclaration unit) {
+protected void parseBodies(TypeDeclaration type, CompilationUnitDeclaration unit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	FieldDeclaration[] fields = type.fields;
 	if (fields != null) {
-		for (FieldDeclaration field : fields) {
+		for (FieldDeclaration field : fields) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (field instanceof Initializer)
 				this.parse((Initializer) field, type, unit);
 			field.traverse(this.localDeclarationVisitor, null);
@@ -1046,7 +1046,7 @@ protected void parseBodies(TypeDeclaration type, CompilationUnitDeclaration unit
 
 	AbstractMethodDeclaration[] methods = type.methods;
 	if (methods != null) {
-		for (AbstractMethodDeclaration method : methods) {
+		for (AbstractMethodDeclaration method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (method.sourceStart >= type.bodyStart) { // if not synthetic
 				if (method instanceof MethodDeclaration) {
 					MethodDeclaration methodDeclaration = (MethodDeclaration) method;
@@ -1066,7 +1066,7 @@ protected void parseBodies(TypeDeclaration type, CompilationUnitDeclaration unit
 
 	TypeDeclaration[] memberTypes = type.memberTypes;
 	if (memberTypes != null) {
-		for (TypeDeclaration memberType : memberTypes) {
+		for (TypeDeclaration memberType : memberTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.parseBodies(memberType, unit);
 			memberType.traverse(this.localDeclarationVisitor, (ClassScope) null);
 		}

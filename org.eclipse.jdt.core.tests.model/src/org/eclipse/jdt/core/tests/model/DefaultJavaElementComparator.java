@@ -152,7 +152,7 @@ class DefaultJavaElementComparator implements Comparator {
 	 *
 	 * @since 2.1
 	 */
-	private int getCategory(BodyDeclaration node) {
+	private int getCategory(BodyDeclaration node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(node.getNodeType()) {
 			case ASTNode.METHOD_DECLARATION :
 				MethodDeclaration methodDeclaration = (MethodDeclaration) node;
@@ -206,7 +206,7 @@ class DefaultJavaElementComparator implements Comparator {
 	 * by their original relative positions.
 	 * </p>
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public int compare(Object o1, Object o2) {
 		if (!(o1 instanceof BodyDeclaration) && !(o2 instanceof BodyDeclaration)) {
 			throw new ClassCastException();
@@ -235,19 +235,19 @@ class DefaultJavaElementComparator implements Comparator {
 		return sourceStart1 - sourceStart2;
 	}
 
-	private String buildSignature(BodyDeclaration node) {
+	private String buildSignature(BodyDeclaration node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(node.getNodeType()) {
 			case ASTNode.METHOD_DECLARATION :
 				MethodDeclaration methodDeclaration = (MethodDeclaration) node;
-				StringBuilder buffer = new StringBuilder();
-				buffer.append(methodDeclaration.getName().getIdentifier());
+				StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(methodDeclaration.getName().getIdentifier()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				final List parameters = methodDeclaration.parameters();
 				int length1 = parameters.size();
-				for (int i = 0; i < length1; i++) {
+				for (int i = 0; i < length1; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					SingleVariableDeclaration parameter = (SingleVariableDeclaration) parameters.get(i);
-					buffer.append(parameter.getName().getIdentifier());
+					buffer.append(parameter.getName().getIdentifier()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					Type type = parameter.getType();
-					buffer.append(buildSignature(type));
+					buffer.append(buildSignature(type)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				return String.valueOf(buffer);
 			case ASTNode.ANNOTATION_TYPE_MEMBER_DECLARATION :
@@ -270,18 +270,18 @@ class DefaultJavaElementComparator implements Comparator {
 		return null;
 	}
 
-	private String buildSignature(Type type) {
+	private String buildSignature(Type type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(type.getNodeType()) {
 			case ASTNode.PRIMITIVE_TYPE :
 				PrimitiveType.Code code = ((PrimitiveType) type).getPrimitiveTypeCode();
 				return code.toString();
 			case ASTNode.ARRAY_TYPE :
 				ArrayType arrayType = (ArrayType) type;
-				StringBuilder buffer = new StringBuilder();
-				buffer.append(buildSignature(arrayType.getElementType()));
+				StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+				buffer.append(buildSignature(arrayType.getElementType())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				int dimensions = arrayType.getDimensions();
-				for (int j = 0; j < dimensions; j++) {
-					buffer.append("[]"); //$NON-NLS-1$
+				for (int j = 0; j < dimensions; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append("[]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				return buffer.toString();
 			case ASTNode.SIMPLE_TYPE :
@@ -296,6 +296,6 @@ class DefaultJavaElementComparator implements Comparator {
 			return ((SimpleName) name).getIdentifier();
 		}
 		QualifiedName qualifiedName = (QualifiedName) name;
-		return buildSignature(qualifiedName.getQualifier()) + "." + buildSignature(qualifiedName.getName()); //$NON-NLS-1$
+		return buildSignature(qualifiedName.getQualifier()) + "." + buildSignature(qualifiedName.getName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

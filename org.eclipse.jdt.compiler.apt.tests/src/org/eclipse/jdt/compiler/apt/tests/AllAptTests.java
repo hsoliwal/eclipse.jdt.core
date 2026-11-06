@@ -24,7 +24,7 @@ import junit.framework.TestSuite;
  */
 public class AllAptTests extends TestCase {
 	// run all tests
-	public static Test suite() {
+	public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestSuite suite = new TestSuite();
 		suite.addTestSuite(FileManagerTests.class);
 		suite.addTestSuite(BatchDispatchTests.class);

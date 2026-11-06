@@ -64,7 +64,7 @@ public boolean ignoreOptionalProblems() {
 }
 @Override
 public String toString() {
-	return "CompilationUnit[" + new String(this.fFileName) + "]";  //$NON-NLS-2$ //$NON-NLS-1$
+	return "CompilationUnit[" + new String(this.fFileName) + "]";  //$NON-NLS-2$ //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 @Override
 public char[] getModuleName() {

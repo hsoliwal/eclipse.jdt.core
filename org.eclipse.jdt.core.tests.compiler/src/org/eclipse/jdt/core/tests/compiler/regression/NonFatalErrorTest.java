@@ -39,7 +39,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 		return NonFatalErrorTest.class;
 	}
 
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_FatalOptionalError, CompilerOptions.DISABLED);
 		customOptions.put(CompilerOptions.OPTION_ReportUnusedImport, CompilerOptions.ERROR);
@@ -73,7 +73,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 	}
 
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_FatalOptionalError, CompilerOptions.ENABLED);
 		customOptions.put(CompilerOptions.OPTION_ReportUnusedImport, CompilerOptions.ERROR);
@@ -108,7 +108,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 	}
 
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_FatalOptionalError, CompilerOptions.DISABLED);
 		customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
@@ -140,7 +140,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 	}
 
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_FatalOptionalError, CompilerOptions.DISABLED);
 		customOptions.put(CompilerOptions.OPTION_ReportUndocumentedEmptyBlock, CompilerOptions.ERROR);
@@ -174,7 +174,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 	}
 
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_FatalOptionalError, CompilerOptions.ENABLED);
 		customOptions.put(CompilerOptions.OPTION_ReportUndocumentedEmptyBlock, CompilerOptions.ERROR);
@@ -210,7 +210,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=319626
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_FatalOptionalError, CompilerOptions.DISABLED);
 		customOptions.put(CompilerOptions.OPTION_ReportUndocumentedEmptyBlock, CompilerOptions.ERROR);
@@ -261,7 +261,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 			// javac options
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 	}
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_FatalOptionalError,
 				CompilerOptions.ENABLED);
@@ -295,7 +295,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 				// compiler results
 				null /* do not check error string */);
 	}
-	public void testImportUnresolved() {
+	public void testImportUnresolved() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String,String> options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_UNUSED_IMPORT, JavaCore.ERROR);
 		runNegativeTest(
@@ -324,7 +324,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 			"",
 			JavacTestOptions.SKIP);
 	}
-	public void testImportUnresolved_fatal() {
+	public void testImportUnresolved_fatal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String,String> options = getCompilerOptions();
 		try {
 			options.put(JavaCore.COMPILER_PB_UNUSED_IMPORT, JavaCore.ERROR);
@@ -371,7 +371,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 			options.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.WARNING);
 		}
 	}
-	public void testPackageConflict() {
+	public void testPackageConflict() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String,String> options = getCompilerOptions();
 		try {
 			options.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.IGNORE);
@@ -413,7 +413,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 			options.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.WARNING);
 		}
 	}
-	public void testImportVariousProblems() {
+	public void testImportVariousProblems() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String,String> options = getCompilerOptions();
 		try {
 			options.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.IGNORE);
@@ -475,7 +475,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 			options.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.WARNING);
 		}
 	}
-	public void testImportStaticProblems() {
+	public void testImportStaticProblems() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String,String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.IGNORE);
 		runNegativeTest(
@@ -548,7 +548,7 @@ public class NonFatalErrorTest extends AbstractRegressionTest {
 				"}\n"
 			});
 	}
-	public void testDuplicateImports3() {
+	public void testDuplicateImports3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"Test.java",

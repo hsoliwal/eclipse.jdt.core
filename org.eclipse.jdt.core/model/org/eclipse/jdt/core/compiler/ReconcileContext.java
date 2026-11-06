@@ -290,7 +290,7 @@ public void resetAST() {
  */
 public void putProblems(String markerType, CategorizedProblem[] problems) {
 	if (this.operation.problems == null)
-		this.operation.problems = new HashMap<>();
+		this.operation.problems = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	this.operation.problems.put(markerType, problems);
 }
 

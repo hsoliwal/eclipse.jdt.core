@@ -71,7 +71,7 @@ public int resolveLevel(ASTNode node) {
 
 	return resolveLevel(((TypeDeclaration) node).binding);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int resolveLevel(Binding binding) {
 	if (binding == null) return INACCURATE_MATCH;
 	if (!(binding instanceof TypeBinding)) return IMPOSSIBLE_MATCH;
@@ -134,12 +134,12 @@ protected int resolveLevelForType(char[] simpleNamePattern, char[] qualification
 		return resolveLevelForType(simpleNamePattern, fullQualificationPattern, type);
 	return IMPOSSIBLE_MATCH;
 }
-private HashSet<String> getModuleGraph(String mName, TypeDeclarationPattern typePattern, HashSet<String> mGraph) {
+private HashSet<String> getModuleGraph(String mName, TypeDeclarationPattern typePattern, HashSet<String> mGraph) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	mGraph.add(mName);
 	SearchPattern modulePattern = SearchPattern.createPattern(mName,
 			IJavaSearchConstants.MODULE, IJavaSearchConstants.DECLARATIONS, typePattern.getMatchRule());
 	if (modulePattern == null) return mGraph;
-	final HashSet<String> tmpGraph = new HashSet<>();
+	final HashSet<String> tmpGraph = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	final SearchParticipant participant = new JavaSearchParticipant() {
 		@Override
 		public void locateMatches(SearchDocument[] indexMatches, SearchPattern mPattern,
@@ -152,11 +152,11 @@ private HashSet<String> getModuleGraph(String mName, TypeDeclarationPattern type
 		}
 		private void addRequiredModules(MatchLocator matchLocator) {
 			if (matchLocator.matchBinding == null) return;
-			for (Binding b :matchLocator.matchBinding.values()) {
+			for (Binding b :matchLocator.matchBinding.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (b instanceof ModuleBinding &&  ((ModuleBinding) b).moduleName != null) {
 					ModuleBinding m = (ModuleBinding) b;
 					tmpGraph.add(new String(m.moduleName));
-					for (ModuleBinding r : m.getAllRequiredModules()) {
+					for (ModuleBinding r : m.getAllRequiredModules()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						char[] name = r.moduleName;
 						if (name == null || CharOperation.equals(name, CharOperation.NO_CHAR)) continue;
 						tmpGraph.add(new String(name));
@@ -184,7 +184,7 @@ private HashSet<String> getModuleGraph(String mName, TypeDeclarationPattern type
 	mGraph.addAll(tmpGraph);
 	return mGraph;
 }
-protected char[][] getModuleList(TypeDeclarationPattern typePattern) {
+protected char[][] getModuleList(TypeDeclarationPattern typePattern) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!typePattern.moduleGraph)
 		return typePattern.moduleNames;
 	if (typePattern.moduleGraphElements != null) // already computed
@@ -193,22 +193,22 @@ protected char[][] getModuleList(TypeDeclarationPattern typePattern) {
 	// compute (lazy)
 	List<String> moduleList = Arrays.asList(CharOperation.toStrings(typePattern.moduleNames));
 	int sz = moduleList.size();
-	HashSet<String> mGraph = new HashSet<>();
-	for (int i = 0; i < sz; ++i) {
+	HashSet<String> mGraph = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	for (int i = 0; i < sz; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		mGraph = getModuleGraph(moduleList.get(i), typePattern, mGraph);
 	}
 	sz = mGraph.size();
 	if (sz > 0) {
 		String[] ar = mGraph.toArray(new String[0]);
 		char[][] tmp = new char[sz][];
-		for (int i = 0; i < sz; ++i) {
+		for (int i = 0; i < sz; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			tmp[i] = ar[i].toCharArray();
 		}
 		typePattern.moduleGraphElements = tmp;
 	}
 	return typePattern.moduleGraphElements;
 }
-private int matchModule(TypeDeclarationPattern typePattern, TypeBinding type) {
+private int matchModule(TypeDeclarationPattern typePattern, TypeBinding type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!(type instanceof ReferenceBinding))
 		return INACCURATE_MATCH; // a safety net, should not come here for error free code.
 	ReferenceBinding reference = (ReferenceBinding) type;
@@ -219,20 +219,20 @@ private int matchModule(TypeDeclarationPattern typePattern, TypeBinding type) {
 
 	if (typePattern.modulePatterns == null) {// use 'normal' matching
 		char[][] moduleList = getModuleList(typePattern);
-		for (char[] m : moduleList) { // match any in the list
+		for (char[] m : moduleList) { // match any in the list //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int ret = matchNameValue(m, module.moduleName);
 			if (ret != IMPOSSIBLE_MATCH) return ret;
 		}
 	} else {// use pattern matching
-		for (Pattern p : typePattern.modulePatterns) {
-			Matcher matcher = p.matcher(bindModName);
-			if (matcher.matches()) return ACCURATE_MATCH;
+		for (Pattern p : typePattern.modulePatterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			Matcher matcher = p.matcher(bindModName); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+			if (matcher.matches()) return ACCURATE_MATCH; //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		}
 	}
 	return IMPOSSIBLE_MATCH;
 }
 @Override
 public String toString() {
-	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$
+	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

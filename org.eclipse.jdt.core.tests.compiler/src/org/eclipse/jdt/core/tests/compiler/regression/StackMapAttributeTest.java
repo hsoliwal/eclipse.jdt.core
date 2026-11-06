@@ -47,7 +47,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	public static Test suite() {
 		return buildMinimalComplianceTestSuite(testClass(), FIRST_SUPPORTED_JAVA_VERSION);
 	}
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -81,7 +81,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -183,7 +183,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				assertEquals("Wrong contents", expectedOutput, actualOutput);
 			}
 	}
-	public void test002() throws Exception {
+	public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -221,7 +221,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -337,7 +337,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				assertEquals("Wrong contents", expectedOutput, actualOutput);
 			}
 	}
-	public void test003() throws Exception {
+	public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -368,7 +368,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -446,7 +446,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			}
 	}
 
-	public void test004() throws Exception {
+	public void test004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -476,7 +476,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -524,7 +524,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				assertEquals("Wrong contents", expectedOutput, actualOutput);
 			}
 	}
-	public void test005() throws Exception {
+	public void test005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -554,7 +554,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -655,7 +655,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			}
 	}
 
-	public void test006() throws Exception {
+	public void test006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -680,7 +680,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -736,7 +736,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			}
 	}
 
-	public void test007() throws Exception {
+	public void test007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -753,7 +753,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -795,7 +795,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=141252
-	public void test008() throws Exception {
+	public void test008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -814,7 +814,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"zero");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -889,7 +889,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			}
 	}
 
-	public void test009() throws Exception {
+	public void test009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -912,7 +912,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"PASSEDDONE0");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -1009,7 +1009,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			}
 	}
 
-	public void test010() throws Exception {
+	public void test010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -1028,7 +1028,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"class [I");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -1082,7 +1082,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			}
 	}
 
-	public void test011() throws Exception {
+	public void test011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -1120,7 +1120,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"1222222222");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -1217,7 +1217,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			}
 	}
 
-	public void test012() throws Exception {
+	public void test012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -1258,7 +1258,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"333332323232323");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -1358,7 +1358,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			}
 	}
 
-	public void test013() throws Exception {
+	public void test013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
             		"X.java",
@@ -1380,7 +1380,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
                  classFileBytes,
@@ -1438,7 +1438,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test014() throws Exception {
+	public void test014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
             		"X.java",
@@ -1455,7 +1455,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
                  classFileBytes,
@@ -1507,7 +1507,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test015() throws Exception {
+	public void test015() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
             		"X.java",
@@ -1542,7 +1542,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
                  classFileBytes,
@@ -1620,7 +1620,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test016() throws Exception {
+	public void test016() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
             		"X.java",
@@ -1653,7 +1653,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
                  classFileBytes,
@@ -1726,7 +1726,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test017() throws Exception {
+	public void test017() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
             		"X.java",
@@ -1748,7 +1748,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"1");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
                  classFileBytes,
@@ -1791,7 +1791,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void test018() {
+	public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
             		"X.java",
@@ -1874,7 +1874,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"SUCCESS");
 	}
 
-	public void test019() {
+	public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
         		"X.java",
@@ -1935,7 +1935,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"SUCCESS");
 	}
 	// 155423
-	public void test021() throws Exception {
+	public void test021() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
         		"X.java",
@@ -1951,7 +1951,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
                  classFileBytes,
@@ -1984,7 +1984,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// 157247
-	public void test022() {
+	public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
         		"X.java",
@@ -2027,7 +2027,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"SUCCESS");
 	}
 
-	public void test024() {
+	public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
         		"X.java",
@@ -2069,7 +2069,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=169596
-	public void test025() {
+	public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 	        new String[] {
 	    		"X.java",
@@ -2088,7 +2088,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=169017
-	public void test026() {
+	public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2181,7 +2181,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=169017
-	public void test027() {
+	public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2328,7 +2328,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=169017
-	public void test028() {
+	public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2373,7 +2373,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 		"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=171472
-	public void test029() {
+	public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2404,7 +2404,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 		"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=171472
-	public void test030() {
+	public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2522,7 +2522,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 		"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=168665
-	public void test031() {
+	public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2577,7 +2577,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=184102
-	public void test033() {
+	public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2598,7 +2598,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=184102
-	public void test034() {
+	public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2619,7 +2619,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// add more bytecode coverage: fneg, lneg, dneg, dstore_0, f2l, fstore_0, fstore_2, lstore_0 and saload
-	public void test035() {
+	public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2663,7 +2663,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// fix verify error
-	public void test036() {
+	public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2692,10 +2692,10 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=236336
-	public void test037() {
+	public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		StringBuilder fileContent = new StringBuilder();
-		fileContent.append(//
+		StringBuilder fileContent = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		fileContent.append(// //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"public class X {\n" +
 				"	public static void main(String[] args) {\n" +
 				"		System.out.print(\"SUCCESS\");\n" +
@@ -2726,13 +2726,13 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"						}\n" +
 				"				}\n" +
 				"				break;\n");
-		for (int i= 0; i < 1130; i++) {
-			fileContent.append(
-				"				case " + i + " :\n" +
+		for (int i= 0; i < 1130; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			fileContent.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				"				case " + i + " :\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"					System.out.println(methodName + i);\n" +
 				"				break;\n");
 		}
-		fileContent.append(
+		fileContent.append( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				"			}\n" +
 				"		} catch(Exception e) {\n" +
 				"			e.printStackTrace();\n" +
@@ -2768,7 +2768,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=237931
-	public void test039() {
+	public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2789,7 +2789,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=251539
-	public void test040() throws Exception {
+	public void test040() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"I.java",
@@ -2825,7 +2825,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			},
 		"");
 		String expectedOutput =
-			"  // Method descriptor #23 ()Ljava/lang/Object;\n" +
+			"  // Method descriptor #23 ()Ljava/lang/Object;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  // Stack: 1, Locals: 2\n" +
 			"  private java.lang.Object bar();\n" +
 			"     0  aload_0 [this]\n" +
@@ -2850,10 +2850,10 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"        [pc: 5, pc: 16] local: o index: 1 type: java.lang.Object\n" +
 			"      Stack map table: number of frames 1\n" +
 			"        [pc: 14, append: {java.lang.Object}]\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=251539
-	public void test041() throws Exception {
+	public void test041() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"I.java",
@@ -2893,7 +2893,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 		"");
 
 		String expectedOutput =
-			"  // Method descriptor #29 ()Ljava/lang/Object;\n" +
+			"  // Method descriptor #29 ()Ljava/lang/Object;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"  // Stack: 1, Locals: 2\n" +
 			"  private java.lang.Object bar();\n" +
 			"     0  aload_0 [this]\n" +
@@ -2918,10 +2918,10 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"        [pc: 5, pc: 16] local: o index: 1 type: java.lang.Object\n" +
 			"      Stack map table: number of frames 1\n" +
 			"        [pc: 14, append: {java.lang.Object}]\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=260031
-	public void test042() throws Exception {
+	public void test042() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2953,11 +2953,11 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"      Stack map table: number of frames 2\n" +
 			"        [pc: 10, same_locals_1_stack_item, stack: {java.lang.Class}]\n" +
 			"        [pc: 11, full, stack: {java.lang.Class, int}, locals: {java.lang.String[]}]\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=279183
-	public void test043() throws Exception {
+	public void test043() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3030,11 +3030,11 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"        [pc: 19, full, stack: {}, locals: {int, int, int}]\n" +
 			"        [pc: 25, same]\n" +
 			"        [pc: 34, full, stack: {}, locals: {int, _, int}]\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=279183
-	public void test044() throws Exception {
+	public void test044() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3101,10 +3101,10 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"        [pc: 14, same]\n" +
 			"        [pc: 16, full, stack: {}, locals: {int, int, int}]\n" +
 			"        [pc: 25, full, stack: {}, locals: {int, _, int}]\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=279183
-	public void test045() throws Exception {
+	public void test045() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3157,10 +3157,10 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"        [pc: 0, same]\n" +
 			"        [pc: 22, append: {int}]\n" +
 			"        [pc: 30, same]\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// 298250
-	public void test046() {
+	public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_UNUSED_PRIVATE_MEMBER, JavaCore.IGNORE);
 		this.runNegativeTest(
@@ -3197,7 +3197,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			customOptions);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=324848
-	public void test047() {
+	public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3224,7 +3224,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=351653
-	public void test048() {
+	public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3244,7 +3244,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=351653
-	public void test049() {
+	public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3319,7 +3319,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"true");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=352145
-	public void test050() {
+	public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3372,7 +3372,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"SUCCESS");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=352145
-	public void test051() {
+	public void test051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3421,7 +3421,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"SUCCESS");
 	}
 	// 352665
-	public void test053() {
+	public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customOptions = getCompilerOptions();
 		customOptions.put(JavaCore.COMPILER_PB_UNUSED_PRIVATE_MEMBER, JavaCore.IGNORE);
 		customOptions.put(JavaCore.COMPILER_PB_SYNTHETIC_ACCESS_EMULATION, JavaCore.IGNORE);
@@ -3453,7 +3453,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			customOptions);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=354052
-	public void test054() throws Exception {
+	public void test054() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3478,7 +3478,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=359495
-	public void testBug359495a() throws Exception {
+	public void testBug359495a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -3505,7 +3505,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -3581,7 +3581,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=359495
-	public void testBug359495b() throws Exception {
+	public void testBug359495b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -3609,7 +3609,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -3681,7 +3681,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=362591
-	public void test055() throws Exception {
+	public void test055() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -3698,7 +3698,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"4");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -3764,7 +3764,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=366999
-	public void test056() throws Exception {
+	public void test056() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -3806,7 +3806,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test057() throws Exception {
+	public void test057() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -3829,7 +3829,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test058() throws Exception {
+	public void test058() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -3851,7 +3851,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test059() throws Exception {
+	public void test059() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3892,7 +3892,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 						"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test060() throws Exception {
+	public void test060() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -3914,7 +3914,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test061() throws Exception {
+	public void test061() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3947,7 +3947,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 					"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test062() throws Exception {
+	public void test062() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3970,7 +3970,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test063() throws Exception {
+	public void test063() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4012,7 +4012,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test064() throws Exception {
+	public void test064() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -4035,7 +4035,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test065() throws Exception {
+	public void test065() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4076,7 +4076,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 					"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test066() throws Exception {
+	public void test066() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -4098,7 +4098,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test067() throws Exception {
+	public void test067() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -4131,7 +4131,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 					"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test068() throws Exception {
+	public void test068() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4154,7 +4154,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			"SUCCESS");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test069() throws Exception {
+	public void test069() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -4196,7 +4196,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=367023
-	public void test070() throws Exception {
+	public void test070() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -4291,7 +4291,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=380313
 	// Verify the generated code does not have same branch target for the 2 return statements
-	public void testBug380313() throws Exception {
+	public void testBug380313() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -4325,7 +4325,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -4335,7 +4335,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			String xBarCall = isMinimumCompliant(ClassFileConstants.JDK11) ?
 					"invokevirtual X.bar() : int [18]\n" : "invokespecial X.bar() : int [18]\n";
 			String expectedOutput =
-					"  // Method descriptor #6 ()V\n" +
+					"  // Method descriptor #6 ()V\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"  // Stack: 2, Locals: 4\n" +
 					"  public void foo() throws java.lang.Exception;\n" +
 					"     0  iconst_1\n" +
@@ -4411,7 +4411,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=380313
 	// Verify the generated code does not have same branch target for the 2 return statements
-	public void testBug380313b() throws Exception {
+	public void testBug380313b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -4446,17 +4446,17 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
 					"\n",
 					ClassFileBytesDisassembler.DETAILED);
 
-			String xBarCall = (isMinimumCompliant(ClassFileConstants.JDK11) ?
+			String xBarCall = (isMinimumCompliant(ClassFileConstants.JDK11) ? //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"invokevirtual" : "invokespecial") + " X.bar() : int [28]\n";
 			String expectedOutput =
-					"  // Method descriptor #6 ()V\n" +
+					"  // Method descriptor #6 ()V\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"  // Stack: 3, Locals: 6\n" +
 					"  public void foo() throws java.lang.Exception;\n" +
 					"      0  iconst_1\n" +
@@ -4588,7 +4588,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=380927
 	// Verify the reduced range of locals.
-	public void testBug380927() throws Exception {
+	public void testBug380927() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -4617,7 +4617,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"SUCCESS");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -4662,7 +4662,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// from https://bugs.eclipse.org/bugs/show_bug.cgi?id=385593#c1
-	public void test385593_1() throws Exception {
+	public void test385593_1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"stackmap/StackMapTableFormatError.java",
@@ -4698,7 +4698,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			});
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR+File.separator+"stackmap"+File.separator+"StackMapTableFormatError.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR+File.separator+"stackmap"+File.separator+"StackMapTableFormatError.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
 				classFileBytes,
@@ -4759,7 +4759,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// from https://bugs.eclipse.org/bugs/show_bug.cgi?id=385593#c11
-	public void test385593_2() throws Exception {
+	public void test385593_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"snippet/X.java",
@@ -4805,7 +4805,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			});
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR+File.separator+"snippet"+File.separator+"X.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR+File.separator+"snippet"+File.separator+"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
 				classFileBytes,
@@ -4831,7 +4831,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 		}
 	}
 	// from https://bugs.eclipse.org/bugs/show_bug.cgi?id=394718
-	public void test394718() throws Exception {
+	public void test394718() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 					"X.java",
@@ -4870,7 +4870,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/412203
-	public void testBug412203_a() throws Exception {
+	public void testBug412203_a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_ANNOTATION_NULL_ANALYSIS, JavaCore.ENABLED);
 		options.put(JavaCore.COMPILER_PB_NULL_REFERENCE, JavaCore.ERROR);
@@ -4944,7 +4944,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				true/*skipJavac*/);
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X2.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X2.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -5027,7 +5027,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 
 	// https://bugs.eclipse.org/412203
 	// yet simplified version - using FieldReference
-	public void testBug412203_b() throws Exception {
+	public void testBug412203_b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_ANNOTATION_NULL_ANALYSIS, JavaCore.ENABLED);
 		options.put(JavaCore.COMPILER_PB_NULL_REFERENCE, JavaCore.ERROR);
@@ -5066,7 +5066,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				true/*skipJavac*/);
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X2.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X2.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -5144,7 +5144,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 
 	// https://bugs.eclipse.org/412203
 	// yet simplified version - using SingleNameReference
-	public void testBug412203_c() throws Exception {
+	public void testBug412203_c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_ANNOTATION_NULL_ANALYSIS, JavaCore.ENABLED);
 		options.put(JavaCore.COMPILER_PB_NULL_REFERENCE, JavaCore.ERROR);
@@ -5183,7 +5183,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				true/*skipJavac*/);
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X2.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X2.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -5258,7 +5258,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				assertEquals("Wrong contents", expectedOutput, actualOutput);
 			}
 	}
-	public void testBug5409021() throws Exception {
+	public void testBug5409021() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -5292,7 +5292,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 				"DONE");
 
 			ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+			byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			String actualOutput =
 				disassembler.disassemble(
 					classFileBytes,
@@ -5376,7 +5376,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			}
 	}
 
-	public void test551368() {
+	public void test551368() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
         		"X.java",
@@ -5422,7 +5422,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
             },
 			"SUCCESS");
 	}
-	public void test551368_2() {
+	public void test551368_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
         		"X.java",
@@ -5450,7 +5450,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
             },
 			"SUCCESS");
 	}
-	public void test551368_3() {
+	public void test551368_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
         		"X.java",
@@ -5483,7 +5483,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
             },
 			"SUCCESS");
 	}
-	public void test558844() {
+	public void test558844() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
             new String[] {
         		"X.java",
@@ -5514,7 +5514,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
             },
 			"1-1");
 	}
-	public void test562854() {
+	public void test562854() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"bug/Bug.java",
@@ -5546,7 +5546,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 			},
 			"pkg.Derived2");
 	}
-	public void test562854_2() {
+	public void test562854_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"bug/Bug.java",
@@ -5597,7 +5597,7 @@ public class StackMapAttributeTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=5478
 	// Regression test for VerifyError "Inconsistent stackmap frames" for !(x && false)
-	public void testIssue5478_full() {
+	public void testIssue5478_full() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"Repro.java",

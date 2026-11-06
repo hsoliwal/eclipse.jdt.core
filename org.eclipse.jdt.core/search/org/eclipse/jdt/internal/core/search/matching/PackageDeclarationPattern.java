@@ -31,12 +31,12 @@ public EntryResult[] queryIn(Index index) {
 }
 @Override
 protected StringBuilder print(StringBuilder output) {
-	output.append("PackageDeclarationPattern: <"); //$NON-NLS-1$
+	output.append("PackageDeclarationPattern: <"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.pkgName != null)
-		output.append(this.pkgName);
+		output.append(this.pkgName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else
-		output.append("*"); //$NON-NLS-1$
-	output.append(">"); //$NON-NLS-1$
+		output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	output.append(">"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.print(output);
 }
 }

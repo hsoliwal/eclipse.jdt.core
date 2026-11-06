@@ -64,7 +64,7 @@ synchronized char[] add(char[] name) {
 	int length = this.names.length;
 	int index = CharOperation.hashCode(name) % length;
 	char[] current;
-	while ((current = this.names[index]) != null) {
+	while ((current = this.names[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (CharOperation.equals(current, name)) return current;
 		if (++index == length) index = 0;
 	}
@@ -78,7 +78,7 @@ synchronized char[] add(char[] name) {
 synchronized void rehash() {
 	PackageNameSet newSet = new PackageNameSet(this.elementSize * 2); // double the number of expected elements
 	char[] current;
-	for (int i = this.names.length; --i >= 0;)
+	for (int i = this.names.length; --i >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if ((current = this.names[i]) != null)
 			newSet.add(current);
 
@@ -94,12 +94,12 @@ synchronized void rehash() {
  * or for secondary types
  *		key = typeName / packageName / enclosingTypeName / modifiers / 'S'
  */
-public static char[] createIndexKey(int modifiers, char[] typeName, char[] packageName, char[][] enclosingTypeNames, boolean secondary) { //, char typeSuffix) {
+public static char[] createIndexKey(int modifiers, char[] typeName, char[] packageName, char[][] enclosingTypeNames, boolean secondary) { //, char typeSuffix) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int typeNameLength = typeName == null ? 0 : typeName.length;
 	int packageLength = packageName == null ? 0 : packageName.length;
 	int enclosingNamesLength = 0;
 	if (enclosingTypeNames != null) {
-		for (int i = 0, length = enclosingTypeNames.length; i < length;) {
+		for (int i = 0, length = enclosingTypeNames.length; i < length;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			enclosingNamesLength += enclosingTypeNames[i].length;
 			if (++i < length)
 				enclosingNamesLength++; // for the '.' separator
@@ -121,7 +121,7 @@ public static char[] createIndexKey(int modifiers, char[] typeName, char[] packa
 	}
 	result[pos++] = SEPARATOR;
 	if (enclosingTypeNames != null && enclosingNamesLength > 0) {
-		for (int i = 0, length = enclosingTypeNames.length; i < length;) {
+		for (int i = 0, length = enclosingTypeNames.length; i < length;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] enclosingName = enclosingTypeNames[i];
 			int itsLength = enclosingName.length;
 			System.arraycopy(enclosingName, 0, result, pos, itsLength);
@@ -140,7 +140,7 @@ public static char[] createIndexKey(int modifiers, char[] typeName, char[] packa
 	return result;
 }
 
-public TypeDeclarationPattern(
+public TypeDeclarationPattern( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] moduleNames,
 		char[] pkg,
 		char[][] enclosingTypeNames,
@@ -156,7 +156,7 @@ public TypeDeclarationPattern(
 		} else {
 			int length = enclosingTypeNames.length;
 			this.enclosingTypeNames = new char[length][];
-			for (int i = 0; i < length; i++)
+			for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.enclosingTypeNames[i] = CharOperation.toLowerCase(enclosingTypeNames[i]);
 		}
 		this.simpleName = (this.isCaseSensitive || this.isCamelCase) ? simpleName : CharOperation.toLowerCase(simpleName);
@@ -177,20 +177,20 @@ public TypeDeclarationPattern(
 TypeDeclarationPattern(int matchRule) {
 	super(TYPE_DECL_PATTERN, matchRule);
 }
-protected void addModuleNames(char[] modNames) {
+protected void addModuleNames(char[] modNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (modNames == null) {
 		return;
 	}
 	final String explicit_unnamed = new String(IJavaSearchConstants.ALL_UNNAMED);
-	String[] names = new String(modNames).split(String.valueOf(CharOperation.COMMA_SEPARATOR));
+	String[] names = new String(modNames).split(String.valueOf(CharOperation.COMMA_SEPARATOR)); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	int len = names.length;
-	for (int i = 0; i < len; ++i) {
+	for (int i = 0; i < len; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		names[i] = names[i].trim();
 		if (explicit_unnamed.equals(names[i]))
 			names[i] = ""; //$NON-NLS-1$
 	}
 	this.moduleNames = new char[len][];
-	for (int i = 0; i < len; ++i) {
+	for (int i = 0; i < len; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String s = names[i];
 		this.moduleNames[i] = s != null ? s.toCharArray() : CharOperation.NO_CHAR;
 	}
@@ -204,7 +204,7 @@ protected void addModuleNames(char[] modNames) {
  * or for secondary types as:
  * 	simpleTypeName / packageName / enclosingTypeName / modifiers / S
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void decodeIndexKey(char[] key) {
 	int slash = CharOperation.indexOf(SEPARATOR, key, 0);
 	this.simpleName = CharOperation.subarray(key, 0, slash);
@@ -239,7 +239,7 @@ public void decodeIndexKey(char[] key) {
 		}
 	}
 }
-protected void decodeModifiers() {
+protected void decodeModifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Extract suffix from modifiers instead of index key
 	switch (this.modifiers & (ClassFileConstants.AccInterface|ClassFileConstants.AccEnum|ClassFileConstants.AccAnnotation)) {
@@ -266,7 +266,7 @@ public SearchPattern getBlankPattern() {
 public char[][] getIndexCategories() {
 	return CATEGORIES;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean matchesDecodedKey(SearchPattern decodedPattern) {
 	TypeDeclarationPattern pattern = (TypeDeclarationPattern) decodedPattern;
 
@@ -297,7 +297,7 @@ public boolean matchesDecodedKey(SearchPattern decodedPattern) {
 	}
 	return true;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public EntryResult[] queryIn(Index index) throws IOException {
 	char[] key = this.simpleName; // can be null
 	int matchRule = getMatchRule();
@@ -352,54 +352,54 @@ public EntryResult[] queryIn(Index index) throws IOException {
 
 	return index.query(getIndexCategories(), key, matchRule); // match rule is irrelevant when the key is null
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected StringBuilder print(StringBuilder output) {
 	switch (this.typeSuffix){
 		case CLASS_SUFFIX :
-			output.append("ClassDeclarationPattern: pkg<"); //$NON-NLS-1$
+			output.append("ClassDeclarationPattern: pkg<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case CLASS_AND_INTERFACE_SUFFIX:
-			output.append("ClassAndInterfaceDeclarationPattern: pkg<"); //$NON-NLS-1$
+			output.append("ClassAndInterfaceDeclarationPattern: pkg<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case CLASS_AND_ENUM_SUFFIX :
-			output.append("ClassAndEnumDeclarationPattern: pkg<"); //$NON-NLS-1$
+			output.append("ClassAndEnumDeclarationPattern: pkg<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case INTERFACE_SUFFIX :
-			output.append("InterfaceDeclarationPattern: pkg<"); //$NON-NLS-1$
+			output.append("InterfaceDeclarationPattern: pkg<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case INTERFACE_AND_ANNOTATION_SUFFIX:
-			output.append("InterfaceAndAnnotationDeclarationPattern: pkg<"); //$NON-NLS-1$
+			output.append("InterfaceAndAnnotationDeclarationPattern: pkg<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case ENUM_SUFFIX :
-			output.append("EnumDeclarationPattern: pkg<"); //$NON-NLS-1$
+			output.append("EnumDeclarationPattern: pkg<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case ANNOTATION_TYPE_SUFFIX :
-			output.append("AnnotationTypeDeclarationPattern: pkg<"); //$NON-NLS-1$
+			output.append("AnnotationTypeDeclarationPattern: pkg<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		default :
-			output.append("TypeDeclarationPattern: pkg<"); //$NON-NLS-1$
+			output.append("TypeDeclarationPattern: pkg<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 	}
 	if (this.pkg != null)
-		output.append(this.pkg);
+		output.append(this.pkg); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else
-		output.append("*"); //$NON-NLS-1$
-	output.append(">, enclosing<"); //$NON-NLS-1$
+		output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	output.append(">, enclosing<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.enclosingTypeNames != null) {
-		for (int i = 0; i < this.enclosingTypeNames.length; i++){
-			output.append(this.enclosingTypeNames[i]);
+		for (int i = 0; i < this.enclosingTypeNames.length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			output.append(this.enclosingTypeNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (i < this.enclosingTypeNames.length - 1)
-				output.append('.');
+				output.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	} else {
-		output.append("*"); //$NON-NLS-1$
+		output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	output.append(">, type<"); //$NON-NLS-1$
+	output.append(">, type<"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.simpleName != null)
-		output.append(this.simpleName);
+		output.append(this.simpleName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else
-		output.append("*"); //$NON-NLS-1$
-	output.append(">"); //$NON-NLS-1$
+		output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	output.append(">"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.print(output);
 }
 }

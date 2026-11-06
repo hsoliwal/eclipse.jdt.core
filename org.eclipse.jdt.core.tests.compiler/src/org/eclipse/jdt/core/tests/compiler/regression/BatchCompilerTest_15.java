@@ -44,17 +44,17 @@ public class BatchCompilerTest_15 extends AbstractBatchCompilerTest {
 	public BatchCompilerTest_15(String name) {
 		super(name);
 	}
-	public void testBug564047_001(){
+	public void testBug564047_001(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!AbstractBatchCompilerTest.isJREVersionEqualTo(CompilerOptions.VERSION_15))
 			return; // preview test - relevant only at level 15
 
 		String currentWorkingDirectoryPath = System.getProperty("user.dir");
 		if (currentWorkingDirectoryPath == null) {
-			System.err.println("BatchCompilerTest#testBug564047_001 could not access the current working directory " + currentWorkingDirectoryPath);
-		} else if (!new File(currentWorkingDirectoryPath).isDirectory()) {
-			System.err.println("BatchCompilerTest#testBug564047_001 current working directory is not a directory " + currentWorkingDirectoryPath);
+			System.err.println("BatchCompilerTest#testBug564047_001 could not access the current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		} else if (!new File(currentWorkingDirectoryPath).isDirectory()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			System.err.println("BatchCompilerTest#testBug564047_001 current working directory is not a directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar";
+			String lib1Path = currentWorkingDirectoryPath + File.separator + "lib1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			try {
 			Util.createJar(
 					new String[] {
@@ -78,7 +78,7 @@ public class BatchCompilerTest_15 extends AbstractBatchCompilerTest {
 						"  }\n" +
 						"}",
 					},
-			        "\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+			        "\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ " -cp " + lib1Path  // relative
 					+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 			        + " --release 15 --enable-preview -g -preserveAllLocals"
@@ -99,9 +99,9 @@ public class BatchCompilerTest_15 extends AbstractBatchCompilerTest {
 			        "2 problems (2 errors)\n",
 			        true);
 			} catch (IOException e) {
-				System.err.println("BatchCompilerTest#testBug563430_001 could not write to current working directory " + currentWorkingDirectoryPath);
+				System.err.println("BatchCompilerTest#testBug563430_001 could not write to current working directory " + currentWorkingDirectoryPath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} finally {
-				new File(lib1Path).delete();
+				new File(lib1Path).delete(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			}
 		}
 	}

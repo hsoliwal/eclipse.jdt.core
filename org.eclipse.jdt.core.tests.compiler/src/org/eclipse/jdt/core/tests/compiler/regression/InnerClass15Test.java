@@ -36,7 +36,7 @@ protected Map<String, String> getCompilerOptions() {
 	return options;
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=312989
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"X.java",
 		"class X {\n" +
@@ -63,7 +63,7 @@ public void test001() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=312989
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"X.java",
 		"class X<X> {\n" +
@@ -93,7 +93,7 @@ public void test002() {
 // note javac reports an error for this test, but that is
 // incorrect, compare and contrast javac behavior with
 // test004.
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"Y.java",
 		"class Y {\n" +
@@ -121,7 +121,7 @@ public void test003() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=312989
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"Y.java",
 		"class Y {\n" +
@@ -144,7 +144,7 @@ public void test004() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319885
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p1/GreenBox.java",
 		"package p1;\n" +
@@ -167,7 +167,7 @@ public void test005() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319885
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p1/BrownBox.java",
 		"package p1;\n" +
@@ -190,7 +190,7 @@ public void test006() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319885
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p1/BrownBox.java",
 		"package p1;\n" +
@@ -213,7 +213,7 @@ public void test007() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319885
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p1/BrownBox.java",
 		"package p1;\n" +
@@ -242,7 +242,7 @@ public void test008() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319885
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p1/GreenBox.java",
 		"package p1;\n" +
@@ -271,7 +271,7 @@ public void test009() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319885
-public void test0010() {
+public void test0010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p1/GreenBox.java",
 		"package p1;\n" +
@@ -302,7 +302,7 @@ public void test0010() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319885
-public void test0011() {
+public void test0011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p1/GreenBox.java",
 		"package p1;\n" +
@@ -333,7 +333,7 @@ public void test0011() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319885
-public void test0012() {
+public void test0012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"p1/GreenBox.java",
 		"package p1;\n" +
@@ -364,7 +364,7 @@ public void test0012() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319885
-public void test0013() {
+public void test0013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"cycle/X.java",
 		"package cycle;\n" +
@@ -384,7 +384,7 @@ public void test0013() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=319885
-public void test0014() {
+public void test0014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 		"cycle/X.java",
 		"package cycle;\n" +
@@ -427,7 +427,7 @@ public void test0014() {
 	"Cycle detected: a cycle exists in the type hierarchy between C and X\n" +
 	"----------\n");
 }
-public void testBug520874a() {
+public void testBug520874a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9)
 		return; // Limit the new tests to newer levels
 	this.runNegativeTest(new String[] {
@@ -459,7 +459,7 @@ public void testBug520874a() {
 			"Cycle detected: a cycle exists in the type hierarchy between C and A\n" +
 			"----------\n");
 }
-public void testBug520874b() {
+public void testBug520874b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK9)
 		return; // Limit the new tests to newer levels
 	this.runNegativeTest(new String[] {
@@ -491,7 +491,7 @@ public void testBug520874b() {
 			"Cycle detected: a cycle exists in the type hierarchy between A and C\n" +
 			"----------\n");
 }
-public void testBug520874c() {
+public void testBug520874c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"cycle/X.java",
 			"package cycle;\n" +
@@ -521,7 +521,7 @@ public void testBug520874c() {
 			"Cycle detected: a cycle exists in the type hierarchy between A and C\n" +
 			"----------\n");
 }
-public void testBug520874d() {
+public void testBug520874d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"cycle/X.java",
 			"package cycle;\n" +
@@ -551,7 +551,7 @@ public void testBug520874d() {
 			"Cycle detected: a cycle exists in the type hierarchy between A and C\n" +
 			"----------\n");
 }
-public void testBug520874e() {
+public void testBug520874e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"cycle/X.java",
 			"package cycle;\n" +
@@ -580,7 +580,7 @@ public void testBug520874e() {
 			"Cycle detected: a cycle exists in the type hierarchy between A and C\n" +
 			"----------\n");
 }
-public void testBug520874f() {
+public void testBug520874f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"cycle/X.java",
 			"package cycle;\n" +
@@ -609,7 +609,7 @@ public void testBug520874f() {
 			"Cycle detected: a cycle exists in the type hierarchy between A and C\n" +
 			"----------\n");
 }
-public void testBug520874g() {
+public void testBug520874g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"cycle/X.java",
 			"package cycle;\n" +
@@ -638,7 +638,7 @@ public void testBug520874g() {
 			"Cycle detected: a cycle exists in the type hierarchy between A and C\n" +
 			"----------\n");
 }
-public void testBug520874h() {
+public void testBug520874h() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"cycle/X.java",
 			"package cycle;\n" +
@@ -667,7 +667,7 @@ public void testBug520874h() {
 			"Cycle detected: a cycle exists in the type hierarchy between A and C\n" +
 			"----------\n");
 }
-public void testBug520874i() {
+public void testBug520874i() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"cycle/X.java",
 			"package cycle;\n" +
@@ -696,7 +696,7 @@ public void testBug520874i() {
 		"Cycle detected: a cycle exists in the type hierarchy between A and C\n" +
 		"----------\n");
 }
-public void testBug526681() {
+public void testBug526681() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"p/A.java",
@@ -723,7 +723,7 @@ public void testBug526681() {
 		"Cycle detected: a cycle exists in the type hierarchy between B and A\n" +
 		"----------\n");
 }
-public void testBug527731() {
+public void testBug527731() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"OuterClass.java",
@@ -745,7 +745,7 @@ public void testBug527731() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3842
 // ECJ allows (unreachable) inner classes to access non effectively final outer locals
-public void testIssue3842() {
+public void testIssue3842() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -789,7 +789,7 @@ public void testIssue3842() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3842
 // ECJ allows (unreachable) inner classes to access non effectively final outer locals
-public void testIssue3842_2() {
+public void testIssue3842_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -827,7 +827,7 @@ public void testIssue3842_2() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1069
 // Extending an inner interface can cause a bounds mismatch error
-public void testIssue1069() {
+public void testIssue1069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -850,7 +850,7 @@ public void testIssue1069() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1069
 // Extending an inner interface can cause a bounds mismatch error
-public void testIssue1069_reported() {
+public void testIssue1069_reported() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"org/dominokit/test/ParentInterface.java",
@@ -886,7 +886,7 @@ public void testIssue1069_reported() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5197
 // Compilation error with JDT but ok with JavaC
-public void testIssue5197() {
+public void testIssue5197() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"repro/AbstractTestIT.java",
@@ -951,7 +951,7 @@ public void testIssue5197() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4733
 // compile error when self-import references a nested class that is used as a type argument
-public void testIssue4733() {
+public void testIssue4733() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"demo/NestedGenericImport.java",
@@ -981,7 +981,7 @@ public void testIssue4733() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4889
 // Eclipse 4.39.0 RC1: Unable to resolve inner abstract class
-public void testIssue4889() {
+public void testIssue4889() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 				"eiab/DocumentsStore.java",

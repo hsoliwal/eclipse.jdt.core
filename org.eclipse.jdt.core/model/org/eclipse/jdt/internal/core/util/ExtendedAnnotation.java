@@ -80,7 +80,7 @@ public class ExtendedAnnotation extends ClassFileStruct implements IExtendedAnno
 	/**
 	 * Constructor for ExtendedAnnotation, builds an annotation from the supplied bytestream.
 	 */
-	public ExtendedAnnotation(
+	public ExtendedAnnotation( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			byte[] classFileBytes,
 			IConstantPool constantPool,
 			int offset) throws ClassFormatException {
@@ -100,7 +100,7 @@ public class ExtendedAnnotation extends ClassFileStruct implements IExtendedAnno
 			this.typePath = NO_TYPEPATH;
 		} else {
 			this.typePath = new int[typePathEntryCount][];
-			for (int i = 0; i < typePathEntryCount; i++) {
+			for (int i = 0; i < typePathEntryCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int[] typePathEntry = (this.typePath[i] = new int[2]);
 				typePathEntry[0] = u1At(classFileBytes, this.readOffset++, offset);
 				typePathEntry[1] = u1At(classFileBytes, this.readOffset++, offset);
@@ -125,7 +125,7 @@ public class ExtendedAnnotation extends ClassFileStruct implements IExtendedAnno
 		this.readOffset+=2;
 		if (length != 0) {
 			this.components = new IAnnotationComponent[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				AnnotationComponent component = new AnnotationComponent(classFileBytes, constantPool, offset + this.readOffset);
 				this.components[i] = component;
 				this.readOffset += component.sizeInBytes();
@@ -138,7 +138,7 @@ public class ExtendedAnnotation extends ClassFileStruct implements IExtendedAnno
 		}
 	}
 
-	private void readTargetInfo(
+	private void readTargetInfo( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int localTargetType,
 			byte[] classFileBytes,
 			IConstantPool constantPool,
@@ -185,7 +185,7 @@ public class ExtendedAnnotation extends ClassFileStruct implements IExtendedAnno
 				int tableLength = u2At(classFileBytes, this.readOffset, localOffset);
 				this.readOffset += 2;
 				this.localVariableTable = new LocalVariableReferenceInfo[tableLength];
-				for (int i = 0; i < tableLength; i++) {
+				for (int i = 0; i < tableLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					this.localVariableTable[i] = new LocalVariableReferenceInfo(classFileBytes, constantPool, this.readOffset + localOffset);
 					this.readOffset += 6;
 				}

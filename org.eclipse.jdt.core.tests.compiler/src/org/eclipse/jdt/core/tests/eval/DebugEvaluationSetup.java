@@ -43,7 +43,7 @@ public class DebugEvaluationSetup extends EvaluationSetup {
 		super(complianceLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void setUp() {
 		if (this.context == null) {
 			// Launch VM in evaluation mode
@@ -80,12 +80,12 @@ public class DebugEvaluationSetup extends EvaluationSetup {
 				// Start JDI connection
 				int attempts = 30;
 				Instant start = Instant.now();
-				for (int i = 0; i < attempts; i++) {
+				for (int i = 0; i < attempts; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					try {
 						VirtualMachineManager manager = org.eclipse.jdi.Bootstrap.virtualMachineManager();
 						List connectors = manager.attachingConnectors();
 						if (connectors.size() == 0) {
-							System.out.println(getName() + ": could not get attachingConnectors() from VM");
+							System.out.println(getName() + ": could not get attachingConnectors() from VM"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							break;
 						}
 						AttachingConnector connector = (AttachingConnector)connectors.get(0);
@@ -103,7 +103,7 @@ public class DebugEvaluationSetup extends EvaluationSetup {
 							argument.setValue("30000");
 						}
 						this.vm = connector.attach(args);
-						System.out.println(getName() + ": connected to VM using port " + debugPort);
+						System.out.println(getName() + ": connected to VM using port " + debugPort); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 						// workaround pb with some VMs
 						this.vm.resume();
@@ -112,7 +112,7 @@ public class DebugEvaluationSetup extends EvaluationSetup {
 					} catch (IllegalConnectorArgumentsException | IOException e) {
 						e.printStackTrace(System.out);
 						try {
-							System.out.println(getName() + ": could not contact the VM at " + launcher.getTargetAddress() + ":" + debugPort + ". Retrying...");
+							System.out.println(getName() + ": could not contact the VM at " + launcher.getTargetAddress() + ":" + debugPort + ". Retrying..."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							Thread.sleep(1000);
 						} catch (InterruptedException e2) {
 							e2.printStackTrace(System.out);
@@ -121,7 +121,7 @@ public class DebugEvaluationSetup extends EvaluationSetup {
 				}
 				if (this.vm == null) {
 					Duration duration = Duration.between(start, Instant.now());
-					System.out.println(getName() + ": could NOT contact the VM at " + launcher.getTargetAddress() + ":"
+					System.out.println(getName() + ": could NOT contact the VM at " + launcher.getTargetAddress() + ":" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							+ debugPort + ". Stop trying after " + attempts + " attempts, took " + duration.getSeconds()
 							+ " seconds");
 					if (this.launchedVM != null) {
@@ -130,7 +130,7 @@ public class DebugEvaluationSetup extends EvaluationSetup {
 							if (!this.launchedVM.isRunning()) {
 								InputStream in = this.launchedVM.getErrorStream();
 								int read;
-								do {
+								do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									read = in.read();
 									if (read != -1)
 										System.out.print((char)read);
@@ -146,7 +146,7 @@ public class DebugEvaluationSetup extends EvaluationSetup {
 								this.target.disconnect(); // Close the socket first so that the OS resource has a chance to be freed.
 							}
 							int retry = 0;
-							while (this.launchedVM.isRunning() && (++retry < 20)) {
+							while (this.launchedVM.isRunning() && (++retry < 20)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								try {
 									Thread.sleep(retry * 100);
 								} catch (InterruptedException e) {
@@ -160,7 +160,7 @@ public class DebugEvaluationSetup extends EvaluationSetup {
 							e.printStackTrace(System.out);
 						}
 					}
-					System.out.println(getName() + ": could not contact the VM at port " + debugPort);
+					System.out.println(getName() + ": could not contact the VM at port " + debugPort); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					return;
 				}
 
@@ -174,15 +174,15 @@ public class DebugEvaluationSetup extends EvaluationSetup {
 				// Increased to 60 s for https://bugs.eclipse.org/bugs/show_bug.cgi?id=547417
 				this.target.connect(evalServer, 60000);
 
-				assertTrue(getName() + ": failed to connect VM server", this.target.isConnected());
+				assertTrue(getName() + ": failed to connect VM server", this.target.isConnected()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-				System.out.println(getName() + ": connected to target using port " + debugPort);
+				System.out.println(getName() + ": connected to target using port " + debugPort); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 				// Create name environment
 				this.env = new FileSystem(Util.getJavaClassLibs(), new String[0], null);
 			} catch (IOException e1) {
 				e1.printStackTrace(System.out);
-				throw new Error(getName() + ": Failed to open socket", e1);
+				throw new Error(getName() + ": Failed to open socket", e1); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		super.setUp();

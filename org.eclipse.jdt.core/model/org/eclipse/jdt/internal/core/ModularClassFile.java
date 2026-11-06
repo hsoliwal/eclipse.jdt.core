@@ -135,7 +135,7 @@ public class ModularClassFile extends AbstractClassFile implements IModularClass
 	 * @exception JavaModelException when the IFile resource or JAR is not available
 	 * or when this class file is not present in the JAR
 	 */
-	public IBinaryModule getBinaryModuleInfo() throws JavaModelException {
+	public IBinaryModule getBinaryModuleInfo() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IBinaryModule info = getJarBinaryModuleInfo();
 			if (info == null) {
@@ -159,7 +159,7 @@ public class ModularClassFile extends AbstractClassFile implements IModularClass
 		}
 	}
 
-	private IBinaryModule getJarBinaryModuleInfo() throws CoreException, IOException, ClassFormatException {
+	private IBinaryModule getJarBinaryModuleInfo() throws CoreException, IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		BinaryModuleDescriptor descriptor = BinaryModuleFactory.createDescriptor(this);
 
 		if (descriptor == null) {
@@ -174,7 +174,7 @@ public class ModularClassFile extends AbstractClassFile implements IModularClass
 				String entryName = jarRoot.getClassFilePath(Util.concatWith(pkg.names, getElementName(), '/'));
 				byte[] contents = getClassFileContent(jarRoot, entryName);
 				if (contents != null) {
-					String fileName = root.getHandleIdentifier() + IDependent.JAR_FILE_ENTRY_SEPARATOR + entryName;
+					String fileName = root.getHandleIdentifier() + IDependent.JAR_FILE_ENTRY_SEPARATOR + entryName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					ClassFileReader classFileReader = new ClassFileReader(contents, fileName.toCharArray(), false);
 					return classFileReader.getModuleDeclaration();
 				}
@@ -194,7 +194,7 @@ public class ModularClassFile extends AbstractClassFile implements IModularClass
 	@Override
 	public IJavaElement getElementAt(int position) throws JavaModelException {
 		IJavaElement parentElement = getParent();
-		while (parentElement.getElementType() != IJavaElement.PACKAGE_FRAGMENT_ROOT) {
+		while (parentElement.getElementType() != IJavaElement.PACKAGE_FRAGMENT_ROOT) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parentElement = parentElement.getParent();
 		}
 		PackageFragmentRoot root = (PackageFragmentRoot) parentElement;
@@ -262,7 +262,7 @@ public class ModularClassFile extends AbstractClassFile implements IModularClass
 	}
 
 	/** Loads the buffer via SourceMapper, and maps it in SourceMapper */
-	private IBuffer mapSource(SourceMapper mapper) throws JavaModelException {
+	private IBuffer mapSource(SourceMapper mapper) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] contents = mapper.findSource(getModule());
 		if (contents != null) {
 			// create buffer

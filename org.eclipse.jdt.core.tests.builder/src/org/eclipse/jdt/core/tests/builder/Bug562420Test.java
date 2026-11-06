@@ -30,7 +30,7 @@ public class Bug562420Test extends BuilderTests {
 	public static Test suite() {
 		return buildTestSuite(Bug562420Test.class);
 	}
-	public void testBuilderRegression() throws JavaModelException, Exception {
+	public void testBuilderRegression() throws JavaModelException, Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Bug562420Test", "9");
 		env.removePackageFragmentRoot(projectPath, "");
 		IPath src = env.addPackageFragmentRoot(projectPath, "src");

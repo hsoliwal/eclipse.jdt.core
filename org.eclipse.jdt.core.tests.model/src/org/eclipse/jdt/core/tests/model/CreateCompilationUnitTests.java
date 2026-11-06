@@ -54,7 +54,7 @@ public void tearDown() throws Exception {
  * of running the operation.
  * Ensure that the import container has been created correctly.
  */
-public void testCUAndImportContainer() throws JavaModelException {
+public void testCUAndImportContainer() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPackageFragment pkg = getPackage("/P/p");
 	ICompilationUnit cu= pkg.createCompilationUnit("HelloImports.java",
 		("package p;\n" +
@@ -86,7 +86,7 @@ public void testCUAndImportContainer() throws JavaModelException {
  * Ensures that a default compilation unit is created for a type if
  * it does not yet exist.
  */
-public void testDefaultCU() throws CoreException {
+public void testDefaultCU() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPackageFragment pkg = getPackage("/P/p");
 	ICompilationUnit cu= pkg.getCompilationUnit("Default.java");
 	IType type= cu.createType("public class Default {}", null, false, null);
@@ -145,10 +145,10 @@ public void testEmptyCU() {
  * Ensures that a compilation unit can be created even if a file already exists on the file system.
  * (regression test for bug 41611 CreateCompilationUnitOperation.executeOperation() should probably force creation more agressively)
  */
-public void testForce() throws JavaModelException, IOException {
+public void testForce() throws JavaModelException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPackageFragment pkg = getPackage("/P/p");
 	File folder = pkg.getResource().getLocation().toFile();
-	new File(folder, "X.java").createNewFile();
+	new File(folder, "X.java").createNewFile(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	ICompilationUnit cu = pkg.createCompilationUnit(
 		"X.java",
 		"package p;\n" +
@@ -193,7 +193,7 @@ public void testNullContents() {
 	try {
 		pkg.createCompilationUnit("HelloWorld.java", null, false, null);
 	} catch (JavaModelException jme) {
-		assertTrue("Incorrect JavaModelException thrown for creating a cu with null contents: " + jme, jme.getStatus().getCode() == IJavaModelStatusConstants.INVALID_CONTENTS);
+		assertTrue("Incorrect JavaModelException thrown for creating a cu with null contents: " + jme, jme.getStatus().getCode() == IJavaModelStatusConstants.INVALID_CONTENTS); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return;
 	}
 	assertTrue("No JavaModelException thrown for creating a cu with null contents", false);
@@ -204,7 +204,7 @@ public void testNullContents() {
  * Verifies that the proper change deltas are generated as a side effect
  * of running the operation.
  */
-public void testSimpleCreation() throws JavaModelException {
+public void testSimpleCreation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPackageFragment pkg = getPackage("/P/p");
 	ICompilationUnit cu= pkg.createCompilationUnit("HelloWorld.java",
 		("package p;\n" +
@@ -229,7 +229,7 @@ public void testSimpleCreation() throws JavaModelException {
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=233270 )
  */
 public void testSchedulingRule() throws Exception {
-	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){
+	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 		public void run(IProgressMonitor monitor) throws CoreException {
 			IPackageFragment pkg = getPackage("/P/p");
 			ICompilationUnit cu= pkg.createCompilationUnit("HelloWorld.java",

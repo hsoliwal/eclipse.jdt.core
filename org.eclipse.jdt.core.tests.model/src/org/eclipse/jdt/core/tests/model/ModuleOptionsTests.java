@@ -55,7 +55,7 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 		super.tearDownSuite();
 	}
 	// testing auto rebuild after change of limit-modules
-	public void testLimitModules3() throws CoreException, IOException {
+	public void testLimitModules3() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) return;
 		try {
 			IClasspathAttribute[] attributes = {
@@ -111,7 +111,7 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 			this.deleteProject("org.astro");
 		}
 	}
-	public void testAddExports() throws CoreException, IOException {
+	public void testAddExports() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) return;
 		try {
 			String[] sources = {
@@ -175,7 +175,7 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 		}
 	}
 
-	public void testAddExports_JRE() throws CoreException, IOException {
+	public void testAddExports_JRE() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) return;
 		try {
 			String[] sources = {
@@ -221,7 +221,7 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 			this.deleteProject("org.astro");
 		}
 	}
-	public void testAddExports_multi() throws CoreException, IOException {
+	public void testAddExports_multi() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) return;
 		try {
 			String[] sources = {
@@ -286,7 +286,7 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 			this.deleteProject("test");
 		}
 	}
-	public void testAddExports_classFolder() throws CoreException, IOException {
+	public void testAddExports_classFolder() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) return;
 		try {
 			String[] sources = {
@@ -352,7 +352,7 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 			this.deleteProject("test");
 		}
 	}
-	public void testAddReads() throws CoreException, IOException {
+	public void testAddReads() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) return;
 		String libPath = "externalLib/mod.one.jar";
 		try {
@@ -432,7 +432,7 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void testAddReads2() throws CoreException, IOException {
+	public void testAddReads2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) return;
 		String libPath = "externalLib/mod.one.jar";
 		try {
@@ -512,7 +512,7 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 			deleteProject("com.greetings");
 		}
 	}
-	public void _testPatchModule() throws CoreException, IOException {
+	public void _testPatchModule() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) return;
 		try {
 			String[] sources = {
@@ -576,7 +576,7 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 		}
 
 	}
-	public void testPatchModule() throws CoreException, IOException {
+	public void testPatchModule() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) return;
 		try {
 			IClasspathAttribute[] attributes = {
@@ -623,7 +623,7 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 			this.deleteProject("org.astro.patch");
 		}
 	}
-	public void testPatchModule2() throws CoreException, IOException {
+	public void testPatchModule2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE9) return;
 		try {
 			IClasspathAttribute[] attributes = {
@@ -666,11 +666,11 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 			this.deleteProject("org.astro.patch");
 		}
 	}
-	private void setCPAttributes(IJavaProject javaProject, IClasspathAttribute[] attributes, IClasspathEntry entryToReplace) throws JavaModelException {
+	private void setCPAttributes(IJavaProject javaProject, IClasspathAttribute[] attributes, IClasspathEntry entryToReplace) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IClasspathEntry[] oldClasspath= javaProject.getRawClasspath();
 		int nEntries= oldClasspath.length;
 		IClasspathEntry[] newEntries= Arrays.copyOf(oldClasspath, nEntries);
-		for (int i = 0; i < newEntries.length; i++) {
+		for (int i = 0; i < newEntries.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (newEntries[i].getPath().equals(entryToReplace.getPath())) {
 				switch(entryToReplace.getEntryKind()) {
 				case IClasspathEntry.CPE_PROJECT:
@@ -692,7 +692,7 @@ public class ModuleOptionsTests extends ModifyingResourceTests {
 		IClasspathEntry[] oldClasspath= javaProject.getRawClasspath();
 		int nEntries= oldClasspath.length;
 		IClasspathEntry[] newEntries= Arrays.copyOf(oldClasspath, nEntries);
-		for (int i = 0; i < newEntries.length; i++) {
+		for (int i = 0; i < newEntries.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (newEntries[i].getPath().equals(getJRE9Path())) {
 				newEntries[i] = JavaCore.newLibraryEntry(getJRE9Path(), newEntries[i].getSourceAttachmentPath(), null, null, attributes, false);
 				break;

@@ -26,7 +26,7 @@ import org.eclipse.jdt.internal.core.util.Messages;
  * 		main type are renamed.
  * </ul>
  */
-public class RenameResourceElementsOperation extends MoveResourceElementsOperation {
+public class RenameResourceElementsOperation extends MoveResourceElementsOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 /**
  * When executed, this operation will rename the specified elements with the given names in the
  * corresponding destinations.

@@ -71,12 +71,12 @@ public class SimpleType extends AnnotatableType {
 	private static final List PROPERTY_DESCRIPTORS_8_0;
 
 	static {
-		List propertyList = new ArrayList(2);
+		List propertyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SimpleType.class, propertyList);
 		addProperty(NAME_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(3);
+		propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SimpleType.class, propertyList);
 		addProperty(ANNOTATIONS_PROPERTY, propertyList);
 		addProperty(NAME_PROPERTY, propertyList);

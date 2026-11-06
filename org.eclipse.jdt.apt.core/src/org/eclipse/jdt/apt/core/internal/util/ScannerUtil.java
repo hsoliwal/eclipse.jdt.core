@@ -38,7 +38,7 @@ public class ScannerUtil {
 	/**
 	 * scan the source code to see if there are any annotation tokens
 	 */
-	public static boolean hasAnnotationInstance( IFile f ) {
+	public static boolean hasAnnotationInstance( IFile f ) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		InputStreamReader reader = null;
 		InputStream input = null;
@@ -80,7 +80,7 @@ public class ScannerUtil {
 	}
 
 
-	public static boolean hasAnnotationInstance( char[] source ) {
+	public static boolean hasAnnotationInstance( char[] source ) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			if ( source == null )
 				return false;
@@ -88,7 +88,7 @@ public class ScannerUtil {
 				false, false, false, JavaCore.VERSION_1_5 );
 			scanner.setSource( source );
 			int token = scanner.getNextToken();
-			while ( token != ITerminalSymbols.TokenNameEOF ) {
+			while ( token != ITerminalSymbols.TokenNameEOF ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				token = scanner.getNextToken();
 				if ( token == ITerminalSymbols.TokenNameAT )
 				{
@@ -111,7 +111,7 @@ public class ScannerUtil {
 		}
 		catch( Exception e )
 		{
-			AptPlugin.log(e, "Failure scanning source: \n" + new String(source)); //$NON-NLS-1$
+			AptPlugin.log(e, "Failure scanning source: \n" + new String(source)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// TODO:  deal with this exception
 			return false;
 		}

@@ -94,13 +94,13 @@ static class JavaCoreJavadocAnalyzer {
 	}
 	private boolean analyzed;
 	private String optionID, defaultValue;
-	private void analyze() {
+	private void analyze() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.analyzed) {
 			this.analyzed = true;
 			BufferedReader javadocReader = new BufferedReader(new StringReader(this.javadoc));
 			String line;
 			try {
-				while ((line = javadocReader.readLine()) != null) {
+				while ((line = javadocReader.readLine()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					int start = line.indexOf(OPTION_BEGIN);
 					if (start > -1) {
 						int end = line.indexOf(END, start);
@@ -134,7 +134,7 @@ static class JavaCoreJavadocAnalyzer {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=202490
 // checks that option ids and option default values match between the code and
 // the javadoc
-public void testJavaCoreAPI() throws CoreException, IllegalArgumentException, IllegalAccessException, IOException {
+public void testJavaCoreAPI() throws CoreException, IllegalArgumentException, IllegalAccessException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Makes sure the
 	JavaRuntime.getVMInstallTypes();
@@ -146,9 +146,9 @@ public void testJavaCoreAPI() throws CoreException, IllegalArgumentException, Il
 	assertNotNull("JavaCore.java not found, skipping APIDocumentationTests#test001", sourceChars);
 
 	// load field values in a map
-	LinkedHashMap<String, String> realOptionIDs = new LinkedHashMap();
+	LinkedHashMap<String, String> realOptionIDs = new LinkedHashMap(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 	Field[] fields = javaCoreClass.getDeclaredFields();
-	for (int i = 0, l = fields.length; i < l; i++) {
+	for (int i = 0, l = fields.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Field field = fields[i];
 		int modifiers = field.getModifiers();
 		if (Modifier.isPublic(modifiers) &&
@@ -170,9 +170,9 @@ public void testJavaCoreAPI() throws CoreException, IllegalArgumentException, Il
 	realOptionIDs.remove("DEFAULT_JAVA_FORMATTER");
 
 	// build cross-index
-	LinkedHashMap<String, String> realOptionNames = new LinkedHashMap();
+	LinkedHashMap<String, String> realOptionNames = new LinkedHashMap(); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 	Iterator<Map.Entry<String, String>> optionIDs = realOptionIDs.entrySet().iterator();
-	while (optionIDs.hasNext()) {
+	while (optionIDs.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Map.Entry<String, String> optionID = optionIDs.next();
 		realOptionNames.put(optionID.getValue(), optionID.getKey());
 	}
@@ -198,7 +198,7 @@ public void testJavaCoreAPI() throws CoreException, IllegalArgumentException, Il
 	final Hashtable javadocDefaultValues = new Hashtable();
 	final Hashtable deprecatedFields = new Hashtable();
 	rootNode.accept(new ASTVisitor() {
-		public boolean visit(FieldDeclaration node) {
+		public boolean visit(FieldDeclaration node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String key = ((VariableDeclarationFragment) node.fragments().get(0)).getName().getIdentifier();
 			Javadoc javadoc = node.getJavadoc();
 			if (javadoc != null) {
@@ -221,8 +221,8 @@ public void testJavaCoreAPI() throws CoreException, IllegalArgumentException, Il
 	Iterator check = realOptionIDs.entrySet().iterator();
 	String key, value;
 	String expected = "", actual = "";
-	List<String> errors = new ArrayList<>();
-	while (check.hasNext()) {
+	List<String> errors = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	while (check.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Map.Entry entry = (Map.Entry) check.next();
 		key = (String) entry.getKey();
 		value = (String) entry.getValue();
@@ -230,28 +230,28 @@ public void testJavaCoreAPI() throws CoreException, IllegalArgumentException, Il
 			if (!value.equals(javadocOptionIDs.get(key))) {
 				expected = value;
 				actual = (String) javadocOptionIDs.get(key);
-				String errMessage = "option ID mismatch for " + key + ", real: " + expected + ", javadoc: " + actual;
+				String errMessage = "option ID mismatch for " + key + ", real: " + expected + ", javadoc: " + actual; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				System.out.println(errMessage);
 				errors.add(errMessage);
 			}
 		}
 	}
 	check = javadocOptionIDs.entrySet().iterator();
-	while (check.hasNext()) {
+	while (check.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Map.Entry entry = (Map.Entry) check.next();
 		key = (String) entry.getKey();
 		value = (String) entry.getValue();
 		if (!value.equals(realOptionIDs.get(key))) {
 			expected = value;
 			actual = realOptionIDs.get(key);
-			String errMessage = "option ID mismatch, javadoc " + expected + ", real " + actual;
+			String errMessage = "option ID mismatch, javadoc " + expected + ", real " + actual; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			System.out.println(errMessage);
 			errors.add(errMessage);
 		}
 	}
 	// checking default values
 	check = realDefaultValues.entrySet().iterator();
-	while (check.hasNext()) {
+	while (check.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Map.Entry entry = (Map.Entry) check.next();
 		key = (String) entry.getKey();
 		value = (String) entry.getValue();
@@ -261,14 +261,14 @@ public void testJavaCoreAPI() throws CoreException, IllegalArgumentException, Il
 					!"org.eclipse.jdt.core.encoding".equals(key)) {
 				expected = value;
 				actual = (String) javadocDefaultValues.get(key);
-				String errMessage = "default value mismatch for " + key + ", real: " + expected + ", javadoc: " + actual;
+				String errMessage = "default value mismatch for " + key + ", real: " + expected + ", javadoc: " + actual; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				System.out.println(errMessage);
 				errors.add(errMessage);
 			}
 		}
 	}
 	check = javadocDefaultValues.entrySet().iterator();
-	while (check.hasNext()) {
+	while (check.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Map.Entry entry = (Map.Entry) check.next();
 		key = (String) entry.getKey();
 		value = (String) entry.getValue();
@@ -276,7 +276,7 @@ public void testJavaCoreAPI() throws CoreException, IllegalArgumentException, Il
 				!"org.eclipse.jdt.core.compiler.problem.booleanMethodThrowingException".equals(key)) { // will remove once bug 216571 is fixed
 			expected = value;
 			actual = realDefaultValues.get(key);
-			String errMessage = "default value mismatch for " + key + ", javadoc " + expected +	", real " + actual;
+			String errMessage = "default value mismatch for " + key + ", javadoc " + expected +	", real " + actual; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			System.out.println(errMessage);
 			errors.add(errMessage);
 		}
@@ -290,17 +290,17 @@ protected void tearDown() throws Exception {
 	super.tearDown();
 }
 
-private char[] getJavaCoreClassSource() throws IOException, ZipException {
+private char[] getJavaCoreClassSource() throws IOException, ZipException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// fetch JavaCore source file
 	// 1. attempt: workspace relative location in project org.eclipse.jdt.core:
 	Bundle bundle = org.eclipse.jdt.core.tests.Activator.getInstance().getBundle();
 	URL url = bundle.getEntry("/");
 	IPath path = new Path(FileLocator.toFileURL(url).getPath());
 	path = path.removeLastSegments(1).append(ORG_ECLIPSE_JDT_CORE);
-	String stringPath = path.toString() + "/model/" + PATH_JAVA_CORE_JAVA;
+	String stringPath = path.toString() + "/model/" + PATH_JAVA_CORE_JAVA; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	File javaCoreSourceFile = new File(stringPath);
 	char[] sourceChars = null;
-	if (javaCoreSourceFile.exists()) {
+	if (javaCoreSourceFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		sourceChars = Util.getFileCharContent(javaCoreSourceFile, null);
 	} else {
 		// 2. attempt: locate org.eclipse.jdt.core.source jar next to org.eclipse.jdt.core jar:
@@ -311,9 +311,9 @@ private char[] getJavaCoreClassSource() throws IOException, ZipException {
 		location = location.replace(ORG_ECLIPSE_JDT_CORE, ORG_ECLIPSE_JDT_CORE_SOURCE);
 		if (location.endsWith(".jar")) {
 			File jarFile = new File(location);
-			try (ZipFile zipFile = new ZipFile(jarFile)) {
+			try (ZipFile zipFile = new ZipFile(jarFile)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 				ZipEntry entry = zipFile.getEntry(PATH_JAVA_CORE_JAVA);
-				try (InputStream inputStream = zipFile.getInputStream(entry)) {
+				try (InputStream inputStream = zipFile.getInputStream(entry)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 					sourceChars = Util.getInputStreamAsCharArray(inputStream, null);
 				}
 			}

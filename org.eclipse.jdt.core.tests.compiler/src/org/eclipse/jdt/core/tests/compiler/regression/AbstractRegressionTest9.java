@@ -37,8 +37,8 @@ public class AbstractRegressionTest9 extends AbstractRegressionTest {
 		super(name);
 	}
 
-	protected Map<String,IModule> moduleMap = new HashMap<>(); // by name
-	protected Map<String,String> file2module = new HashMap<>();
+	protected Map<String,IModule> moduleMap = new HashMap<>(); // by name //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	protected Map<String,String> file2module = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	@Override
 	protected void tearDown() throws Exception {
@@ -52,20 +52,20 @@ public class AbstractRegressionTest9 extends AbstractRegressionTest {
 	protected INameEnvironment getNameEnvironment(final String[] testFiles, String[] classPaths, Map<String, String> options) {
 		this.classpaths = classPaths == null ? getDefaultClassPaths() : classPaths;
 		INameEnvironment[] classLibs = getClassLibs(classPaths == null, options);
-		for (INameEnvironment nameEnvironment : classLibs) {
+		for (INameEnvironment nameEnvironment : classLibs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((FileSystem) nameEnvironment).scanForModules(createParser());
 		}
 		return new InMemoryNameEnvironment9(testFiles, this.moduleMap, classLibs);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected CompilationUnit[] getCompilationUnits(String[] testFiles) {
-		Map<String,char[]> moduleFiles= new HashMap<>(); // filename -> modulename
+		Map<String,char[]> moduleFiles= new HashMap<>(); // filename -> modulename //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 		CompilationUnit[] compilationUnits = Util.compilationUnits(testFiles);
 
 		// scan for all module-info.java:
-		for (int i = 0; i < testFiles.length; i+=2) {
+		for (int i = 0; i < testFiles.length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IModule module = extractModuleDesc(testFiles[i], testFiles[i+1], compilationUnits[i/2]);
 			if (module != null) {
 				this.moduleMap.put(String.valueOf(module.name()), module);
@@ -73,7 +73,7 @@ public class AbstractRegressionTest9 extends AbstractRegressionTest {
 			}
 		}
 		// record module information in CUs:
-		for (int i = 0; i < compilationUnits.length; i++) {
+		for (int i = 0; i < compilationUnits.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] fileName = compilationUnits[i].getFileName();
 			String fileNameString = String.valueOf(compilationUnits[i].getFileName());
 			if (CharOperation.endsWith(fileName, TypeConstants.MODULE_INFO_FILE_NAME)) {
@@ -96,7 +96,7 @@ public class AbstractRegressionTest9 extends AbstractRegressionTest {
 	protected String expandFileNameForJavac(String fileName) {
 		String fileNameAsKey = fileName.replace(File.separator, "/");
 		if (this.file2module != null && this.file2module.containsKey(fileNameAsKey)) {
-			fileName = new String(this.file2module.get(fileNameAsKey))+File.separator+fileName;
+			fileName = new String(this.file2module.get(fileNameAsKey))+File.separator+fileName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return fileName;
 	}
@@ -115,7 +115,7 @@ public class AbstractRegressionTest9 extends AbstractRegressionTest {
 	}
 
 	public Parser createParser() {
-		Map<String,String> opts = new HashMap<>();
+		Map<String,String> opts = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		opts.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_9);
 		return new Parser(
 				new ProblemReporter(getErrorHandlingPolicy(), new CompilerOptions(opts), getProblemFactory()),
@@ -126,7 +126,7 @@ public class AbstractRegressionTest9 extends AbstractRegressionTest {
 
 	/** Use in tests to associate the CU in given files to the module of the given name. */
 	public void associateToModule(String moduleName, String... fileNames) {
-		for (String fileName : fileNames)
+		for (String fileName : fileNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.file2module.put(fileName, moduleName);
 	}
 

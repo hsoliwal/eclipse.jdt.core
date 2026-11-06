@@ -55,12 +55,12 @@ public final class ModuleModifier extends ASTNode {
 		private static final Map KEYWORDS;
 
 		static {
-			KEYWORDS = new HashMap(2);
+			KEYWORDS = new HashMap(2); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			ModuleModifierKeyword[] ops = {
 					STATIC_KEYWORD,
 					TRANSITIVE_KEYWORD,
 				};
-			for (ModuleModifierKeyword op : ops) {
+			for (ModuleModifierKeyword op : ops) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				KEYWORDS.put(op.toString(), op);
 			}
 		}
@@ -79,7 +79,7 @@ public final class ModuleModifier extends ASTNode {
 		 * @see #toFlagValue()
 		 */
 		public static ModuleModifierKeyword fromFlagValue(int flagValue) {
-			for (Object o : KEYWORDS.values()) {
+			for (Object o : KEYWORDS.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ModuleModifierKeyword k = (ModuleModifierKeyword) o;
 				if (k.toFlagValue() == flagValue) {
 					return k;
@@ -187,7 +187,7 @@ public final class ModuleModifier extends ASTNode {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List properyList = new ArrayList(2);
+		List properyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(ModuleModifier.class, properyList);
 		addProperty(KEYWORD_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(properyList);

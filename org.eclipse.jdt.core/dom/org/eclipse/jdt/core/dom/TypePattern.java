@@ -60,12 +60,12 @@ public class TypePattern extends Pattern {
 	private static final List PROPERTY_DESCRIPTORS_2_0;
 
 	static {
-		List properyList = new ArrayList(3);
+		List properyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TypePattern.class, properyList);
 		addProperty(PATTERN_VARIABLE_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(properyList);
 
-		properyList = new ArrayList(3);
+		properyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TypePattern.class, properyList);
 		addProperty(PATTERN_VARIABLE_PROPERTY2, properyList);
 		PROPERTY_DESCRIPTORS_2_0 = reapPropertyList(properyList);

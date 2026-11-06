@@ -21,7 +21,7 @@ import org.eclipse.jdt.core.JavaModelException;
 /*
  * Abstract class for operations that change the classpath
  */
-public abstract class ChangeClasspathOperation extends JavaModelOperation {
+public abstract class ChangeClasspathOperation extends JavaModelOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 
 	protected boolean canChangeResources;
 
@@ -43,7 +43,7 @@ public abstract class ChangeClasspathOperation extends JavaModelOperation {
 	 * - update project references
 	 * - create resolved classpath markers
 	 */
-	protected void classpathChanged(ClasspathChange change, boolean refreshExternalFolder) throws JavaModelException {
+	protected void classpathChanged(ClasspathChange change, boolean refreshExternalFolder) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// reset the project's caches early since some clients rely on the project's caches being up-to-date when run inside an IWorkspaceRunnable
 		// (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=212769#c5 )
 		JavaProject project = change.project;

@@ -53,7 +53,7 @@ protected void setUp() throws Exception {
 	super.setUp();
 }
 
-public void testSimpleSubTypeHierarchy() throws CoreException {
+public void testSimpleSubTypeHierarchy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String newContents =
 		"package x.y;\n" +
 		"public class A extends B {\n" +
@@ -73,7 +73,7 @@ public void testSimpleSubTypeHierarchy() throws CoreException {
 		ITypeHierarchy h = type.newTypeHierarchy(new ICompilationUnit[] {this.copy}, null);
 
 		assertHierarchyEquals(
-			"Focus: B [in B.java [in x.y [in src [in P]]]]\n" +
+			"Focus: B [in B.java [in x.y [in src [in P]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 			"Sub types:\n" +
@@ -85,7 +85,7 @@ public void testSimpleSubTypeHierarchy() throws CoreException {
 		}
 	}
 }
-public void testSimpleSuperTypeHierarchy() throws CoreException {
+public void testSimpleSuperTypeHierarchy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String newContents =
 		"package x.y;\n" +
 		"public class A {\n" +
@@ -107,7 +107,7 @@ public void testSimpleSuperTypeHierarchy() throws CoreException {
 		ITypeHierarchy h = type.newSupertypeHierarchy(new ICompilationUnit[] {this.copy}, null);
 
 		assertHierarchyEquals(
-			"Focus: C [in C.java [in x.y [in src [in P]]]]\n" +
+			"Focus: C [in C.java [in x.y [in src [in P]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"  B [in [Working copy] A.java [in x.y [in src [in P]]]]\n" +
 			"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -121,7 +121,7 @@ public void testSimpleSuperTypeHierarchy() throws CoreException {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=228845
 //make sure uncommitted changes to primary working copy shows up in hierarchy
-public void test228845() throws CoreException {
+public void test228845() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String newContents =
 		"package x.y;\n" +
 		"public class A extends B {\n" +
@@ -145,7 +145,7 @@ public void test228845() throws CoreException {
 		ITypeHierarchy h = type.newTypeHierarchy(null);  // no working copies explicitly passed, should still honor primary working copies.
 
 		assertHierarchyEquals(
-			"Focus: B [in B.java [in x.y [in src [in P]]]]\n" +
+			"Focus: B [in B.java [in x.y [in src [in P]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 			"Sub types:\n" +
@@ -162,7 +162,7 @@ public void test228845() throws CoreException {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=228845
 //make sure uncommitted changes to primary working copy shows up in hierarchy
 //created out of a BinaryType.
-public void test228845b() throws CoreException, IOException {
+public void test228845b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	addLibrary(getJavaProject("P"), "myLib.jar", "myLibsrc.zip", new String[] {
 			"my/pkg/X.java",
@@ -200,7 +200,7 @@ public void test228845b() throws CoreException, IOException {
 		ITypeHierarchy h = typ.newTypeHierarchy(null);
 
 		assertHierarchyEquals(
-			"Focus: X [in X.class [in my.pkg [in myLib.jar [in P]]]]\n" +
+			"Focus: X [in X.class [in my.pkg [in myLib.jar [in P]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 			"Sub types:\n" +
@@ -218,7 +218,7 @@ public void test228845b() throws CoreException, IOException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=228845
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400905
 // Fix for 228845 does not seem to work for anonymous/local/functional types.
-public void test400905() throws CoreException {
+public void test400905() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String newContents =
 		"package x.y;\n" +
 		"public class A {\n" +
@@ -245,7 +245,7 @@ public void test400905() throws CoreException {
 		ITypeHierarchy h = type.newTypeHierarchy(null);  // no working copies explicitly passed, should still honor primary working copies.
 
 		assertHierarchyEquals(
-				"Focus: B [in B.java [in x.y [in src [in P]]]]\n" +
+				"Focus: B [in B.java [in x.y [in src [in P]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Super types:\n" +
 				"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 				"Sub types:\n" +
@@ -261,7 +261,7 @@ public void test400905() throws CoreException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=228845
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400905
 // Fix for 228845 does not seem to work for anonymous/local/functional types.
-public void test400905a() throws CoreException {
+public void test400905a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String newContents =
 		"package x.y;\n" +
 		"public class A {\n" +
@@ -288,7 +288,7 @@ public void test400905a() throws CoreException {
 		ITypeHierarchy h = type.newTypeHierarchy(null);  // no working copies explicitly passed, should still honor primary working copies.
 
 		assertHierarchyEquals(
-				"Focus: B [in B.java [in x.y [in src [in P]]]]\n" +
+				"Focus: B [in B.java [in x.y [in src [in P]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Super types:\n" +
 				"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 				"Sub types:\n" +
@@ -304,7 +304,7 @@ public void test400905a() throws CoreException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=228845
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400905
 // Fix for 228845 does not seem to work for anonymous/local/functional types.
-public void test400905b() throws CoreException, IOException {
+public void test400905b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("P");
 	String oldCompliance = javaProject.getOption(JavaCore.COMPILER_COMPLIANCE, true);
 	String oldSource = javaProject.getOption(JavaCore.COMPILER_SOURCE, true);
@@ -368,7 +368,7 @@ public void test400905b() throws CoreException, IOException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429435, [1.8][search]Hierarchy search for lambda expressions do not show all the lambda expressions
-public void test429435() throws CoreException, IOException {
+public void test429435() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("P");
 	String oldCompliance = javaProject.getOption(JavaCore.COMPILER_COMPLIANCE, true);
 	String oldSource = javaProject.getOption(JavaCore.COMPILER_SOURCE, true);
@@ -438,7 +438,7 @@ public void test429435() throws CoreException, IOException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429537, [1.8][hierarchy]NPE in hierarchy resolution
-public void test429537() throws CoreException, IOException {
+public void test429537() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject("P");
 	String oldCompliance = javaProject.getOption(JavaCore.COMPILER_COMPLIANCE, true);
 	String oldSource = javaProject.getOption(JavaCore.COMPILER_SOURCE, true);
@@ -492,7 +492,7 @@ public void test429537() throws CoreException, IOException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=442534, Eclipse's Run button does not work.
-public void test442534() throws CoreException, IOException {
+public void test442534() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject project = null;
 	try {
@@ -535,7 +535,7 @@ public void test442534() throws CoreException, IOException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=450442,  [1.8] NPE at HandleFactory.createElement on hover
-public void test450442() throws CoreException, IOException {
+public void test450442() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject project = null;
 	try {
@@ -584,7 +584,7 @@ public void test450442() throws CoreException, IOException {
 
 		ITypeHierarchy h = project.findType("Claxx").newSupertypeHierarchy(null);
 		assertHierarchyEquals(
-				"Focus: Claxx [in Claxx.java [in <default> [in src [in Bug450442]]]]\n" +
+				"Focus: Claxx [in Claxx.java [in <default> [in src [in Bug450442]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Super types:\n" +
 				"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 				"Sub types:\n",

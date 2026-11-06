@@ -48,7 +48,7 @@ import org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding;
 import org.eclipse.jdt.internal.compiler.lookup.TypeBinding;
 
 public class CompletionOnQualifiedAllocationExpression extends QualifiedAllocationExpression implements CompletionNode {
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public TypeBinding resolveType(BlockScope scope) {
 	this.argumentTypes = Binding.NO_PARAMETERS;
 	boolean hasMissingType = false;
@@ -56,7 +56,7 @@ public TypeBinding resolveType(BlockScope scope) {
 		int argsLength = this.arguments.length;
 		int length = this.arguments.length;
 		this.argumentTypes = new TypeBinding[length];
-		for (int a = argsLength; --a >= 0;) {
+		for (int a = argsLength; --a >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				this.argumentTypes[a] = this.arguments[a].resolveType(scope);
 			} catch (CompletionNodeFound cnf) {
@@ -103,9 +103,9 @@ public TypeBinding resolveType(BlockScope scope) {
 @Override
 public StringBuilder printExpression(int indent, StringBuilder output) {
 	if (this.enclosingInstance == null)
-		output.append("<CompleteOnAllocationExpression:" );  //$NON-NLS-1$
+		output.append("<CompleteOnAllocationExpression:" );  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else
-		output.append("<CompleteOnQualifiedAllocationExpression:");  //$NON-NLS-1$
+		output.append("<CompleteOnQualifiedAllocationExpression:");  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.printExpression(indent, output).append('>');
 }
 }

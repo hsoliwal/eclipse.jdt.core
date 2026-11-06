@@ -24,7 +24,7 @@ import org.eclipse.jdt.core.tests.junit.extension.TestCase;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class RunJavaSearchTests extends junit.framework.TestCase {
 
-	public final static List TEST_CLASSES = new ArrayList();
+	public final static List TEST_CLASSES = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	static {
 		// All test suites put in this list should use the same tests projects
 		// (eg. JavaSearch and JavaSearch15)
@@ -52,14 +52,14 @@ public class RunJavaSearchTests extends junit.framework.TestCase {
 		super(name);
 	}
 
-	public static Test suite() {
+	public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestSuite ts = new TestSuite(RunJavaSearchTests.class.getName());
 
 		// Store test classes with same "JavaSearch"project
-		AbstractJavaSearchTests.JAVA_SEARCH_SUITES = new ArrayList(TEST_CLASSES);
+		AbstractJavaSearchTests.JAVA_SEARCH_SUITES = new ArrayList(TEST_CLASSES); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		// Get all classes
-		List allClasses = new ArrayList(TEST_CLASSES);
+		List allClasses = new ArrayList(TEST_CLASSES); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		allClasses.add(JavaSearchBugsTests.class);
 		allClasses.add(JavaSearchBugsTests2.class);
 		allClasses.add(JavaSearchBugs8Tests.class);
@@ -94,7 +94,7 @@ public class RunJavaSearchTests extends junit.framework.TestCase {
 		TestCase.RUN_ONLY_ID = null;
 
 		// Add all tests suite of tests
-		for (int i = 0, size = allClasses.size(); i < size; i++) {
+		for (int i = 0, size = allClasses.size(); i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Class testClass = (Class) allClasses.get(i);
 
 			// call the suite() method and add the resulting suite to the suite

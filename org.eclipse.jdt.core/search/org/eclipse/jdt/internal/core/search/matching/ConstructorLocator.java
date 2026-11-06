@@ -122,7 +122,7 @@ public int match(TypeDeclaration node, MatchingNodeSet nodeSet) {
 }
 //public int match(TypeReference node, MatchingNodeSet nodeSet) - SKIP IT
 
-protected int matchConstructor(MethodBinding constructor) {
+protected int matchConstructor(MethodBinding constructor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!constructor.isConstructor()) return IMPOSSIBLE_MATCH;
 
 	// declaring type, simple name has already been matched by matchIndexEntry()
@@ -134,7 +134,7 @@ protected int matchConstructor(MethodBinding constructor) {
 	if (parameterCount > -1) {
 		if (constructor.parameters == null) return INACCURATE_MATCH;
 		if (parameterCount != constructor.parameters.length) return IMPOSSIBLE_MATCH;
-		for (int i = 0; i < parameterCount; i++) {
+		for (int i = 0; i < parameterCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// TODO (frederic) use this call to refine accuracy on parameter types
 //			int newLevel = resolveLevelForType(this.pattern.parameterSimpleNames[i], this.pattern.parameterQualifications[i], this.pattern.parametersTypeArguments[i], 0, constructor.parameters[i]);
 			int newLevel = resolveLevelForType(this.pattern.parameterSimpleNames[i], this.pattern.parameterQualifications[i], constructor.parameters[i]);
@@ -175,7 +175,7 @@ protected int matchLevelForReferences(ConstructorDeclaration constructor) {
 	}
 	return this.pattern.mustResolve ? POSSIBLE_MATCH : ACCURATE_MATCH;
 }
-protected int matchLevelForDeclarations(ConstructorDeclaration constructor) {
+protected int matchLevelForDeclarations(ConstructorDeclaration constructor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// constructor name is stored in selector field
 	if (this.pattern.declaringSimpleName != null && !matchesName(this.pattern.declaringSimpleName, constructor.selector))
 		return IMPOSSIBLE_MATCH;
@@ -205,7 +205,7 @@ boolean matchParametersCount(ASTNode node, Expression[] args) {
 	}
 	return true;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void matchReportReference(ASTNode reference, IJavaElement element, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
 
 	MethodBinding constructorBinding = null;
@@ -290,7 +290,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, Bin
 	}
 	locator.report(this.match);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public SearchMatch newDeclarationMatch(ASTNode reference, IJavaElement element, Binding binding, int accuracy, int length, MatchLocator locator) {
 	this.match = null;
 	int offset = reference.sourceStart;
@@ -299,7 +299,7 @@ public SearchMatch newDeclarationMatch(ASTNode reference, IJavaElement element, 
 			TypeDeclaration type = (TypeDeclaration) reference;
 			AbstractMethodDeclaration[] methods = type.methods;
 			if (methods != null) {
-				for (AbstractMethodDeclaration method : methods) {
+				for (AbstractMethodDeclaration method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					boolean synthetic = method.isDefaultConstructor() && method.sourceStart < type.bodyStart;
 					this.match = locator.newMethodReferenceMatch(element, binding, accuracy, offset, length, method.isConstructor(), synthetic, method);
 				}
@@ -317,7 +317,7 @@ public SearchMatch newDeclarationMatch(ASTNode reference, IJavaElement element, 
 	// super implementation...
     return locator.newDeclarationMatch(element, binding, accuracy, reference.sourceStart, length);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int resolveLevel(ASTNode node) {
 	if (this.pattern.findReferences) {
 		if (node instanceof AllocationExpression)
@@ -374,7 +374,7 @@ public int resolveLevel(Binding binding) {
 	}
 	return level;
 }
-protected int resolveLevel(ConstructorDeclaration constructor, boolean checkDeclarations) {
+protected int resolveLevel(ConstructorDeclaration constructor, boolean checkDeclarations) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int referencesLevel = IMPOSSIBLE_MATCH;
 	if (this.pattern.findReferences) {
 		ExplicitConstructorCall constructorCall = constructor.constructorCall;
@@ -399,7 +399,7 @@ protected int resolveLevel(TypeDeclaration type) {
 	// find default constructor
 	AbstractMethodDeclaration[] methods = type.methods;
 	if (methods != null) {
-		for (AbstractMethodDeclaration method : methods) {
+		for (AbstractMethodDeclaration method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (method.isDefaultConstructor() && method.sourceStart < type.bodyStart) // if synthetic
 				return resolveLevel((ConstructorDeclaration) method, false);
 		}
@@ -408,6 +408,6 @@ protected int resolveLevel(TypeDeclaration type) {
 }
 @Override
 public String toString() {
-	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$
+	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

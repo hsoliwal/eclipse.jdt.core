@@ -57,7 +57,7 @@ public class BinaryTypeFactory {
 	 * Returns a descriptor for the given class within the given package fragment, or null if the fragment doesn't have
 	 * a location on the filesystem.
 	 */
-	private static BinaryTypeDescriptor createDescriptor(PackageFragment pkg, ClassFile classFile) {
+	private static BinaryTypeDescriptor createDescriptor(PackageFragment pkg, ClassFile classFile) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		PackageFragmentRoot root = (PackageFragmentRoot) pkg.getParent();
 		IPath location = getLocationForElement(root);
 		if (location == null) {
@@ -69,7 +69,7 @@ public class BinaryTypeFactory {
 		if (overridePath != entryName) {
 			String versionPath = overridePath.substring(0, overridePath.indexOf(entryName));
 			entryName = overridePath;
-			name = versionPath + name;
+			name = versionPath + name; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		char[] fieldDescriptor = CharArrayUtils.concat(new char[] { 'L' },
 				name.toCharArray(), new char[] { ';' });
@@ -78,7 +78,7 @@ public class BinaryTypeFactory {
 
 		if (root instanceof JarPackageFragmentRoot) {
 			// The old version returned this, but it doesn't conform to the spec on IBinaryType.getFileName():
-			indexPath = root.getHandleIdentifier() + IDependent.JAR_FILE_ENTRY_SEPARATOR + entryName;
+			indexPath = root.getHandleIdentifier() + IDependent.JAR_FILE_ENTRY_SEPARATOR + entryName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// Version that conforms to the JavaDoc spec on IBinaryType.getFileName() -- note that this breaks
 			// InlineMethodTests in the JDT UI project. Need to investigate why before using it.
 			//indexPath = workspacePath.toString() + IDependent.JAR_FILE_ENTRY_SEPARATOR + entryName;
@@ -130,7 +130,7 @@ public class BinaryTypeFactory {
 	 * @throws JavaModelException if unable to read the class file due to a transient failure
 	 * @throws FileNotFoundException if the file does not exist
 	 */
-	public static ClassFileReader rawReadTypeTestForExists(BinaryTypeDescriptor descriptor, boolean fullyInitialize,
+	public static ClassFileReader rawReadTypeTestForExists(BinaryTypeDescriptor descriptor, boolean fullyInitialize, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			boolean useInvalidArchiveCache) throws JavaModelException, ClassFormatException, FileNotFoundException {
 		if (descriptor == null) {
 			return null;

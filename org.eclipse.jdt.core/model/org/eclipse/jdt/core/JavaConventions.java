@@ -48,8 +48,8 @@ import org.eclipse.jdt.internal.core.util.Messages;
 public final class JavaConventions {
 
 	private static final char DOT= '.';
-    private static final Pattern DOT_DOT = Pattern.compile("(\\.)(\\1)+"); //$NON-NLS-1$
-    private static final Pattern PREFIX_JAVA = Pattern.compile("java$"); //$NON-NLS-1$
+    private static final Pattern DOT_DOT = Pattern.compile("(\\.)(\\1)+"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+    private static final Pattern PREFIX_JAVA = Pattern.compile("java$"); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 	private static final Scanner SCANNER = new Scanner(false /*comment*/, true /*whitespace*/, false /*nls*/, CompilerOptions.getFirstSupportedJdkLevel() /*sourceLevel*/, null/*taskTag*/, null/*taskPriorities*/, true /*taskCaseSensitive*/);
 	private static Map<String, Set<String>> restrictedIdentifiersMap, restrictedIdentifierPreviewMap;
 	private static List<String> javaVersions;
@@ -58,26 +58,26 @@ public final class JavaConventions {
 	private static String RECORD_ID = "record"; //$NON-NLS-1$
 
 	static {
-		javaVersions= new ArrayList<>();
+		javaVersions= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		javaVersions.add(0, CompilerOptions.VERSION_10);
 		javaVersions.add(1, CompilerOptions.VERSION_11);
 		javaVersions.add(2, CompilerOptions.VERSION_12);
 		javaVersions.add(3, CompilerOptions.VERSION_13);
 		javaVersions.add(4, CompilerOptions.VERSION_14);
 
-		restrictedIdentifiersMap= new HashMap<>();
+		restrictedIdentifiersMap= new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		//restricted identifier for Java10 and above
-		Set<String> set= new HashSet<>();
+		Set<String> set= new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		set.add(new String(VAR_ID));
 		restrictedIdentifiersMap.put(CompilerOptions.VERSION_10, set);
 		//restricted identifier for Java14 and above
-		set= new HashSet<>();
+		set= new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		set.add(new String(YIELD_ID));
 		restrictedIdentifiersMap.put(CompilerOptions.VERSION_14, set);
 
-		restrictedIdentifierPreviewMap= new HashMap<>();
+		restrictedIdentifierPreviewMap= new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		//restricted identifier for Java10 and above
-		set= new HashSet<>();
+		set= new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		set.add(new String(RECORD_ID));
 		restrictedIdentifierPreviewMap.put(CompilerOptions.VERSION_14, set);
 
@@ -119,7 +119,7 @@ public final class JavaConventions {
 	 * escapes) from the given id and for the given source and compliance levels and preview enabled flag.
 	 * Returns <code>null</code> if the id was not valid
 	 */
-	private static synchronized char[] scannedIdentifier(String id, String sourceLevel, String complianceLevel, String previewEnabled, boolean allowRestrictedKeyWords) {
+	private static synchronized char[] scannedIdentifier(String id, String sourceLevel, String complianceLevel, String previewEnabled, boolean allowRestrictedKeyWords) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (id == null) {
 			return null;
 		}
@@ -149,13 +149,13 @@ public final class JavaConventions {
 		}
 	}
 
-	private static char[] scanForRestrictedKeyWords(char[] id,  String sourceLevel, String complianceLevel, boolean previewEnabled, boolean allowRestrictedKeyWords) {
+	private static char[] scanForRestrictedKeyWords(char[] id,  String sourceLevel, String complianceLevel, boolean previewEnabled, boolean allowRestrictedKeyWords) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (allowRestrictedKeyWords) {
 			return id;
 		}
 		int index= javaVersions.indexOf(sourceLevel);
 		String searchId= new String(id);
-		for (int i=index; i>=0; i--) {
+		for (int i=index; i>=0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String level= javaVersions.get(i);
 			if (level != null) {
 				Set<String> rIds= restrictedIdentifiersMap.get(level);
@@ -215,7 +215,7 @@ public final class JavaConventions {
 	 *		object indicating what is wrong with the name
 	 * @since 3.3
 	 */
-	public static IStatus validateCompilationUnitName(String name, String sourceLevel, String complianceLevel) {
+	public static IStatus validateCompilationUnitName(String name, String sourceLevel, String complianceLevel) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (name == null) {
 			return new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, Messages.convention_unit_nullName, null);
 		}
@@ -287,7 +287,7 @@ public final class JavaConventions {
 	 *		object indicating what is wrong with the name
 	 * @since 3.3
 	 */
-	public static IStatus validateClassFileName(String name, String sourceLevel, String complianceLevel) {
+	public static IStatus validateClassFileName(String name, String sourceLevel, String complianceLevel) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (name == null) {
 			return new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, Messages.convention_classFile_nullName, null);		}
 		if (!org.eclipse.jdt.internal.compiler.util.Util.isClassFileName(name)) {
@@ -510,7 +510,7 @@ public final class JavaConventions {
 		return internalValidateJavaTypeName(name, sourceLevel, complianceLevel, previewEnabled);
 	}
 
-	private static IStatus internalValidateJavaTypeName(String name, String sourceLevel, String complianceLevel, String previewEnabled) {
+	private static IStatus internalValidateJavaTypeName(String name, String sourceLevel, String complianceLevel, String previewEnabled) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (name == null) {
 			return new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, Messages.convention_type_nullName, null);
 		}
@@ -627,7 +627,7 @@ public final class JavaConventions {
 	 *		object indicating what is wrong with the name
 	 * @since 3.3
 	 */
-	public static IStatus validatePackageName(String name, String sourceLevel, String complianceLevel) {
+	public static IStatus validatePackageName(String name, String sourceLevel, String complianceLevel) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (name == null) {
 			return new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, Messages.convention_package_nullName, null);
@@ -642,14 +642,14 @@ public final class JavaConventions {
 		if (CharOperation.isWhitespace(name.charAt(0)) || CharOperation.isWhitespace(name.charAt(name.length() - 1))) {
 			return new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, Messages.convention_package_nameWithBlanks, null);
 		}
-		if (DOT_DOT.matcher(name).find()) {
+		if (DOT_DOT.matcher(name).find()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			return new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, Messages.convention_package_consecutiveDotsName, null);
 		}
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		StringTokenizer st = new StringTokenizer(name, "."); //$NON-NLS-1$
 		boolean firstToken = true;
 		IStatus warningStatus = null;
-		while (st.hasMoreTokens()) {
+		while (st.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String typeName = st.nextToken();
 			typeName = typeName.trim(); // grammar allows spaces
 			char[] scannedID = scannedIdentifier(typeName, sourceLevel, complianceLevel);
@@ -690,7 +690,7 @@ public final class JavaConventions {
 	 *		object indicating what is wrong with the name
 	 * @since 3.14
 	 */
-	public static IStatus validateModuleName(String name, String sourceLevel, String complianceLevel) {
+	public static IStatus validateModuleName(String name, String sourceLevel, String complianceLevel) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (name == null) {
 			return new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, Messages.convention_module_nullName, null);
@@ -706,21 +706,21 @@ public final class JavaConventions {
 		if (CharOperation.isWhitespace(name.charAt(0)) || CharOperation.isWhitespace(name.charAt(name.length() - 1))) {
 			return new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, Messages.convention_module_nameWithBlanks, null);
 		}
-		if (DOT_DOT.matcher(name).find()) {
+		if (DOT_DOT.matcher(name).find()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 			return new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, Messages.convention_module_consecutiveDotsName, null);
 		}
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		StringTokenizer st = new StringTokenizer(name, "."); //$NON-NLS-1$
 		boolean firstToken = true;
 		IStatus warningStatus = null;
-		while (st.hasMoreTokens()) {
+		while (st.hasMoreTokens()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String segment = st.nextToken();
 			segment = segment.trim(); // grammar allows spaces
 			char[] scannedID = scannedIdentifier(segment, sourceLevel, complianceLevel);
 			if (scannedID == null) {
 				return new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, Messages.bind(Messages.convention_illegalIdentifier, segment), null);
 			}
-			if (firstToken && PREFIX_JAVA.matcher(segment).find()) {
+			if (firstToken && PREFIX_JAVA.matcher(segment).find()) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				warningStatus = new Status(IStatus.WARNING, JavaCore.PLUGIN_ID, -1, Messages.bind(Messages.convention_module_javaName), null);
 			}
 			IStatus status = workspace.validateName(new String(scannedID), IResource.FOLDER);

@@ -92,7 +92,7 @@ public static final int ALL_CONTAINER =
 public static final int RAW_MASK = SearchPattern.R_EQUIVALENT_MATCH | SearchPattern.R_ERASURE_MATCH;
 public static final int RULE_MASK = RAW_MASK; // no other values for the while...
 
-public static PatternLocator patternLocator(SearchPattern pattern) {
+public static PatternLocator patternLocator(SearchPattern pattern) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (pattern.kind) {
 		case IIndexConstants.PKG_REF_PATTERN :
 			return new PackageReferenceLocator((PackageReferencePattern) pattern);
@@ -314,7 +314,7 @@ protected boolean matchesName(char[] pattern, char[] name) {
  * 	</li>
  * </ul>
  */
-protected int matchNameValue(char[] pattern, char[] name) {
+protected int matchNameValue(char[] pattern, char[] name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (pattern == null) return ACCURATE_MATCH; // null is as if it was "*"
 	if (name == null) return IMPOSSIBLE_MATCH; // cannot match null name
 	if (name.length == 0) { // empty name
@@ -352,7 +352,7 @@ protected int matchNameValue(char[] pattern, char[] name) {
 			break;
 
 		case SearchPattern.R_REGEXP_MATCH :
-			if (Pattern.matches(new String(pattern), new String(name))) {
+			if (Pattern.matches(new String(pattern), new String(name))) { //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				return POSSIBLE_MATCH;
 			}
 			break;
@@ -378,7 +378,7 @@ protected int matchNameValue(char[] pattern, char[] name) {
 /**
  * Returns whether the given type reference matches the given pattern.
  */
-protected boolean matchesTypeReference(char[] pattern, TypeReference type) {
+protected boolean matchesTypeReference(char[] pattern, TypeReference type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (pattern == null) return true; // null is as if it was "*"
 	if (type == null) return true; // treat as an inexact match
 
@@ -389,7 +389,7 @@ protected boolean matchesTypeReference(char[] pattern, TypeReference type) {
 		int length = simpleName.length;
 		char[] result = new char[length + dimensions];
 		System.arraycopy(simpleName, 0, result, 0, length);
-		for (int i = length, l = result.length; i < l;) {
+		for (int i = length, l = result.length; i < l;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i++] = '[';
 			result[i++] = ']';
 		}
@@ -433,7 +433,7 @@ protected void matchReportImportRef(ImportReference importRef, Binding binding, 
 /**
  * Reports the match of the given reference.
  */
-protected void matchReportReference(ASTNode reference, IJavaElement element, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
+protected void matchReportReference(ASTNode reference, IJavaElement element, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.match = null;
 	int referenceType = referenceType();
 	int offset = reference.sourceStart;
@@ -507,7 +507,7 @@ protected void updateMatch(ParameterizedTypeBinding parameterizedBinding, char[]
 		updateMatch(parameterizedBinding, patternTypeArguments, false, 0, locator);
 	}
 }
-protected void updateMatch(ParameterizedTypeBinding parameterizedBinding, char[][][] patternTypeArguments, boolean patternHasTypeParameters, int depth, MatchLocator locator) {
+protected void updateMatch(ParameterizedTypeBinding parameterizedBinding, char[][][] patternTypeArguments, boolean patternHasTypeParameters, int depth, MatchLocator locator) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Only possible if locator has an unit scope.
 	if (locator.unitScope == null) return;
 
@@ -527,7 +527,7 @@ protected void updateMatch(ParameterizedTypeBinding parameterizedBinding, char[]
 			TypeVariableBinding[] typeVariables = parameterizedBinding.genericType().typeVariables();
 			int length = argumentsBindings.length;
 			if (length == typeVariables.length) {
-				for (int i=0; i<length; i++) {
+				for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (TypeBinding.notEquals(argumentsBindings[i], typeVariables[i])) {
 						needUpdate = true;
 						break;
@@ -555,7 +555,7 @@ protected void updateMatch(ParameterizedTypeBinding parameterizedBinding, char[]
  * Try to resolve pattern and look for compatibility with type arguments
  * to set match rule.
  */
-protected void updateMatch(TypeBinding[] argumentsBinding, MatchLocator locator, char[][] patternArguments, boolean hasTypeParameters) {
+protected void updateMatch(TypeBinding[] argumentsBinding, MatchLocator locator, char[][] patternArguments, boolean hasTypeParameters) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Only possible if locator has an unit scope.
 	if (locator.unitScope == null) return;
 
@@ -601,7 +601,7 @@ protected void updateMatch(TypeBinding[] argumentsBinding, MatchLocator locator,
 
 	// Compare binding for each type argument only if pattern is not erasure only and at first level
 	if (!hasTypeParameters && !this.match.isRaw() && (this.match.isEquivalent() || this.match.isExact())) {
-		for (int i=0; i<typeArgumentsLength; i++) {
+		for (int i=0; i<typeArgumentsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// Get parameterized type argument binding
 			TypeBinding argumentBinding = argumentsBinding[i];
 			if (argumentBinding instanceof CaptureBinding) {
@@ -768,7 +768,7 @@ public int resolveLevel(Binding binding) {
  * Returns INACCURATE_MATCH if resolve failed.
  * Returns IMPOSSIBLE_MATCH if it doesn't.
  */
-protected int resolveLevelForType(char[] simpleNamePattern, char[] qualificationPattern, TypeBinding binding) {
+protected int resolveLevelForType(char[] simpleNamePattern, char[] qualificationPattern, TypeBinding binding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 //	return resolveLevelForType(qualifiedPattern(simpleNamePattern, qualificationPattern), type);
 	char[] qualifiedPattern = getQualifiedPattern(simpleNamePattern, qualificationPattern);
 	int level = resolveLevelForType(qualifiedPattern, binding);
@@ -822,7 +822,7 @@ protected int resolveLevelForType(char[] simpleNamePattern, char[] qualification
  * Returns INACCURATE_MATCH if resolve failed.
  * Returns IMPOSSIBLE_MATCH if it doesn't.
  */
-protected int resolveLevelForType(char[] qualifiedPattern, TypeBinding type) {
+protected int resolveLevelForType(char[] qualifiedPattern, TypeBinding type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (qualifiedPattern == null) return ACCURATE_MATCH;
 	if (type == null || !type.isValidBinding()) return INACCURATE_MATCH;
 
@@ -834,7 +834,7 @@ protected int resolveLevelForType(char[] qualifiedPattern, TypeBinding type) {
 		int result = IMPOSSIBLE_MATCH, prev = IMPOSSIBLE_MATCH;
 		IntersectionTypeBinding18 i18 = (IntersectionTypeBinding18) type.leafComponentType();
 		int dimensions = type.dimensions();
-		for (ReferenceBinding ref : i18.intersectingTypes) {
+		for (ReferenceBinding ref : i18.intersectingTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeBinding intersectingType = dimensions == 0 ? ref : ((ArrayBinding) type).environment().createArrayType(ref, dimensions);
 			result = resolveLevelForType(qualifiedPattern, intersectingType);
 			if (result == ACCURATE_MATCH) return result;
@@ -857,7 +857,7 @@ protected int resolveLevelForType(char[] qualifiedPattern, TypeBinding type) {
 /* (non-Javadoc)
  * Resolve level for type with a given binding with all pattern information.
  */
-protected int resolveLevelForType (char[] simpleNamePattern,
+protected int resolveLevelForType (char[] simpleNamePattern, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 									char[] qualificationPattern,
 									char[][][] patternTypeArguments,
 									int depth,
@@ -916,7 +916,7 @@ protected int resolveLevelForType (char[] simpleNamePattern,
 		if (paramTypeBinding.arguments.length != length) return IMPOSSIBLE_MATCH;
 
 		// verify each pattern type parameter
-		nextTypeArgument: for (int i= 0; i<length; i++) {
+		nextTypeArgument: for (int i= 0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] patternTypeArgument = patternTypeArguments[depth][i];
 			TypeBinding argTypeBinding = paramTypeBinding.arguments[i];
 			// get corresponding pattern wildcard
@@ -968,7 +968,7 @@ protected int resolveLevelForType (char[] simpleNamePattern,
 
 				// Look for bound name in type argument superclasses
 				boundBinding = boundBinding.superclass();
-				while (boundBinding != null) {
+				while (boundBinding != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (CharOperation.equals(patternTypeArgument, boundBinding.shortReadableName(), this.isCaseSensitive) ||
 						CharOperation.equals(patternTypeArgument, boundBinding.readableName(), this.isCaseSensitive)) {
 						// found name in hierarchy => match
@@ -1000,7 +1000,7 @@ protected int resolveLevelForType (char[] simpleNamePattern,
 			TypeBinding leafTypeBinding = argTypeBinding.leafComponentType();
 			if (leafTypeBinding.isBaseType()) return impossible;
 			ReferenceBinding refBinding = ((ReferenceBinding) leafTypeBinding).superclass();
-			while (refBinding != null) {
+			while (refBinding != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (CharOperation.equals(patternTypeArgument, refBinding.shortReadableName(), this.isCaseSensitive) ||
 					CharOperation.equals(patternTypeArgument, refBinding.readableName(), this.isCaseSensitive)) {
 					// found name in hierarchy => match

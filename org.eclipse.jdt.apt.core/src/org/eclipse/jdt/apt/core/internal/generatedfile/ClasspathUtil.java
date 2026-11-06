@@ -46,7 +46,7 @@ public class ClasspathUtil {
 		IClasspathEntry searchingFor =
 			JavaCore.newSourceEntry(folder.getFullPath());
 		IPath searchingForPath = searchingFor.getPath();
-		for (int i = 0; i < cp.length; i++)
+		for (int i = 0; i < cp.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		{
 			if (cp[i].getPath().equals( searchingForPath ))
 				return cp[i];
@@ -70,7 +70,7 @@ public class ClasspathUtil {
 	{
 		if( cp == null )
 			cp = jp.getRawClasspath();
-		for (int i = 0; i < cp.length; i++)
+		for (int i = 0; i < cp.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		{
 			if (cp[i].getPath().equals( path ))
 			{
@@ -83,7 +83,7 @@ public class ClasspathUtil {
 	/**
 	 * removes a classpath entry from the project
 	 */
-	public static void removeFromProjectClasspath( IJavaProject jp, IFolder folder, IProgressMonitor progressMonitor )
+	public static void removeFromProjectClasspath( IJavaProject jp, IFolder folder, IProgressMonitor progressMonitor ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws JavaModelException
 	{
 		IClasspathEntry[] cp = jp.getRawClasspath();
@@ -97,7 +97,7 @@ public class ClasspathUtil {
 			// multiple entries, and clean up any exclusion entries to the
 			// folder being removed.
 			int j = 0;
-			for ( int i=0; i<cp.length; i++ )
+			for ( int i=0; i<cp.length; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			{
 				if (! cp[i].getPath().equals( workspaceRelativePath ) )
 				{
@@ -105,7 +105,7 @@ public class ClasspathUtil {
 					// see if we added the generated source dir as an exclusion pattern to some other entry
 					IPath[] oldExclusions = cp[i].getExclusionPatterns();
 					int m = 0;
-					for ( int k = 0; k < oldExclusions.length; k++ )
+					for ( int k = 0; k < oldExclusions.length; k++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					{
 						if ( !oldExclusions[k].equals( projectRelativePath ) )
 						{
@@ -137,7 +137,7 @@ public class ClasspathUtil {
 			jp.setRawClasspath( newCp, progressMonitor );
 
 			if( AptPlugin.DEBUG ){
-				AptPlugin.trace("removed " + workspaceRelativePath + " from classpath"); //$NON-NLS-1$ //$NON-NLS-2$
+				AptPlugin.trace("removed " + workspaceRelativePath + " from classpath"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -145,7 +145,7 @@ public class ClasspathUtil {
 	/**
 	 * returns true if we updated the classpath, false otherwise
 	 */
-	public static boolean updateProjectClasspath( IJavaProject jp, IFolder folder, IProgressMonitor progressMonitor, boolean isTestCode, IPath specificOutputLocation )
+	public static boolean updateProjectClasspath( IJavaProject jp, IFolder folder, IProgressMonitor progressMonitor, boolean isTestCode, IPath specificOutputLocation ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws JavaModelException
 	{
 		IClasspathEntry[] cp = jp.getRawClasspath();
@@ -155,8 +155,8 @@ public class ClasspathUtil {
 		if (!found)
 		{
 			// update exclusion patterns
-			ArrayList<IPath> exclusions = new ArrayList<>();
-			for ( int i = 0; i< cp.length; i++ )
+			ArrayList<IPath> exclusions = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for ( int i = 0; i< cp.length; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			{
 				if ( cp[i].getPath().isPrefixOf( path ) )
 				{
@@ -168,7 +168,7 @@ public class ClasspathUtil {
 
 					// don't add if exclusion pattern already contains src dir
 					boolean add = true;
-					for ( int j = 0; j < oldExclusions.length; j++ )
+					for ( int j = 0; j < oldExclusions.length; j++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if ( oldExclusions[j].equals( projectRelativePath ) )
 							add = false;
 
@@ -215,7 +215,7 @@ public class ClasspathUtil {
 	}
 
 	public static IPath findTestOutputLocation(IClasspathEntry[] cp) {
-		for (IClasspathEntry entry : cp) {
+		for (IClasspathEntry entry : cp) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(entry.getEntryKind()==IClasspathEntry.CPE_SOURCE && entry.isTest()) {
 				IPath outputLocation = entry.getOutputLocation();
 				if(outputLocation != null) {

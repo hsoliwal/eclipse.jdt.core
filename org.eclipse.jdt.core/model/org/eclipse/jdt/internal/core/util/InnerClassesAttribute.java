@@ -40,7 +40,7 @@ public class InnerClassesAttribute extends ClassFileAttribute implements IInnerC
 		if (length != 0) {
 			int readOffset = 8;
 			this.entries = new IInnerClassesAttributeEntry[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.entries[i] = new InnerClassesAttributeEntry(classFileBytes, constantPool, offset + readOffset);
 				readOffset += 8;
 			}

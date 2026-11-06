@@ -51,7 +51,7 @@ public class AssertionTest extends AbstractRegressionTest {
 			"----------\n");
 	}
 
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(new String[] {
 			"A4.java",
 			"public class A4 { \n"
@@ -86,7 +86,7 @@ public class AssertionTest extends AbstractRegressionTest {
 		true, // flush previous output dir content
 		new String[] {"-da"});
 	}
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(new String[] {
 			"A4.java",
 			"public class A4 { \n"
@@ -108,7 +108,7 @@ public class AssertionTest extends AbstractRegressionTest {
 		true, // flush previous output dir content
 		new String[] {"-ea"});
 	}
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(new String[] {
 			"A4.java",
 			"public class A4 { \n"
@@ -131,7 +131,7 @@ public class AssertionTest extends AbstractRegressionTest {
 		true, // flush previous output dir content
 		new String[] {"-ea"});
 	}
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(new String[] {
 			"A4.java",
 			"public class A4 { \n"
@@ -150,7 +150,7 @@ public class AssertionTest extends AbstractRegressionTest {
 		"unbound cannot be resolved to a variable\n" +
 		"----------\n");
 	}
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(new String[] {
 			"A4.java",
 			"public class A4 { \n"
@@ -178,7 +178,7 @@ public class AssertionTest extends AbstractRegressionTest {
 		true, // flush previous output dir content
 		new String[] {"-ea"});
 	}
-	public void test008() {
+	public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(new String[] {
 			"A4.java",
 			"public class A4 { \n"
@@ -201,7 +201,7 @@ public class AssertionTest extends AbstractRegressionTest {
 		true, // do not flush previous output dir content
 		new String[] {"-ea"});
 	}
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(new String[] {
 			"A4.java",
 			"public class A4 { \n"
@@ -225,7 +225,7 @@ public class AssertionTest extends AbstractRegressionTest {
 		new String[] {"-ea"});
 	}
 	// http://dev.eclipse.org/bugs/show_bug.cgi?id=22334
-	public void test010() {
+	public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(new String[] {
 			"X.java",
 			"public class X { \n" +
@@ -255,7 +255,7 @@ public class AssertionTest extends AbstractRegressionTest {
 	/**
 	 * http://dev.eclipse.org/bugs/show_bug.cgi?id=28750
 	 */
-	public void test011() {
+	public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"AssertTest.java",
@@ -277,7 +277,7 @@ public class AssertionTest extends AbstractRegressionTest {
 	/**
 	 * http://dev.eclipse.org/bugs/show_bug.cgi?id=57743
 	 */
-	public void test012() {
+	public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -299,7 +299,7 @@ public class AssertionTest extends AbstractRegressionTest {
 	/**
 	 * http://dev.eclipse.org/bugs/show_bug.cgi?id=157389
 	 */
-	public void test013() {
+	public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -324,7 +324,7 @@ public class AssertionTest extends AbstractRegressionTest {
 	/**
 	 * http://dev.eclipse.org/bugs/show_bug.cgi?id=163600
 	 */
-	public void test014() {
+	public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -360,7 +360,7 @@ public class AssertionTest extends AbstractRegressionTest {
 	/**
 	 * http://dev.eclipse.org/bugs/show_bug.cgi?id=163600
 	 */
-	public void test015() {
+	public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -404,7 +404,7 @@ public class AssertionTest extends AbstractRegressionTest {
 	/**
 	 * http://dev.eclipse.org/bugs/show_bug.cgi?id=163600
 	 */
-	public void test016() {
+	public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -446,7 +446,7 @@ public class AssertionTest extends AbstractRegressionTest {
 			new String[] {"-da"});
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=255008
-	public void test017() {
+	public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] { /* test files */
 				"X.java",
@@ -513,7 +513,7 @@ public class AssertionTest extends AbstractRegressionTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=328361
-	public void test018() {
+	public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(new String[] {
 			"X.java",
 			"public class X {\n" +
@@ -552,7 +552,7 @@ public class AssertionTest extends AbstractRegressionTest {
 		"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=328361
-	public void test020() throws Exception {
+	public void test020() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 					"X.java",
@@ -572,7 +572,7 @@ public class AssertionTest extends AbstractRegressionTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=328361
-	public void test021() throws Exception {
+	public void test021() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -595,7 +595,7 @@ public class AssertionTest extends AbstractRegressionTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=328361
-	public void test022() throws Exception {
+	public void test022() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -637,7 +637,7 @@ public class AssertionTest extends AbstractRegressionTest {
 				"	}\n" +
 				"}\n"}, "Hello");
 	}
-	public void testVoidAssertion() {
+	public void testVoidAssertion() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -667,7 +667,7 @@ public class AssertionTest extends AbstractRegressionTest {
 			""");
 	}
 
-	public void testAssertionWithCustomException() {
+	public void testAssertionWithCustomException() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"X.java",
@@ -694,7 +694,7 @@ public class AssertionTest extends AbstractRegressionTest {
 		runner.runConformTest();
 	}
 
-	public void testVoidSynchronized() {
+	public void testVoidSynchronized() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""

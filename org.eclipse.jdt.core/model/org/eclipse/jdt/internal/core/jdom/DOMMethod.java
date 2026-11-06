@@ -264,7 +264,7 @@ public void addException(String name) throws IllegalArgumentException {
 /**
  * @see IDOMMethod#addParameter(String, String)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void addParameter(String type, String name) throws IllegalArgumentException {
 	if (type == null) {
 		throw new IllegalArgumentException(Messages.dom_nullTypeParameter);
@@ -300,7 +300,7 @@ protected void appendMemberBodyContents(CharArrayBuffer buffer) {
 /**
  * @see DOMMember#appendMemberDeclarationContents(CharArrayBuffer)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void appendMemberDeclarationContents(CharArrayBuffer buffer) {
 
 	if (isConstructor()) {
@@ -435,7 +435,7 @@ protected char[] generateFlags() {
 }/**
  * @see IDOMNode#getJavaElement
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IJavaElement getJavaElement(IJavaElement parent) throws IllegalArgumentException {
 	if (parent.getElementType() == IJavaElement.TYPE) {
 		// translate parameter types to signatures
@@ -443,7 +443,7 @@ public IJavaElement getJavaElement(IJavaElement parent) throws IllegalArgumentEx
 		if (this.fParameterTypes != null) {
 			sigs= new String[this.fParameterTypes.length];
 			int i;
-			for (i= 0; i < this.fParameterTypes.length; i++) {
+			for (i= 0; i < this.fParameterTypes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				sigs[i]= Signature.createTypeSignature(this.fParameterTypes[i].toCharArray(), false);
 			}
 		}
@@ -554,7 +554,7 @@ protected boolean isReturnTypeAltered() {
  * <p>Two methods have equal signatures if there names are the same
  * and their parameter types are the same.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean isSignatureEqual(IDOMNode node) {
 	boolean ok= node.getNodeType() == getNodeType();
 	if (ok) {
@@ -586,7 +586,7 @@ public boolean isSignatureEqual(IDOMNode node) {
 				return false;
 			}
 			int i;
-			for (i= 0; i < types.length; i++) {
+			for (i= 0; i < types.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!this.fParameterTypes[i].equals(types[i])) {
 					return false;
 				}
@@ -625,7 +625,7 @@ public void setBody(String body) {
 	this.fBody= body;
 	setHasBody(body != null);
 	if (!hasBody()) {
-		this.fBody= ";" + Util.getLineSeparator(body, null); //$NON-NLS-1$
+		this.fBody= ";" + Util.getLineSeparator(body, null); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 /**
@@ -655,7 +655,7 @@ public void setExceptions(String[] names) {
 		this.fExceptions= names;
 		CharArrayBuffer buffer = new CharArrayBuffer();
 		char[] comma = new char[] {',', ' '};
-		for (int i = 0, length = names.length; i < length; i++) {
+		for (int i = 0, length = names.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i > 0)
 				buffer.append(comma);
 			buffer.append(names[i]);
@@ -678,7 +678,7 @@ public void setName(String name) {
 /**
  * @see IDOMMethod#setParameters(String[], String[])
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setParameters(String[] types, String[] names) throws IllegalArgumentException {
 	becomeDetailed();
 	if (types== null || names == null) {
@@ -699,7 +699,7 @@ public void setParameters(String[] types, String[] names) throws IllegalArgument
 		CharArrayBuffer parametersBuffer = new CharArrayBuffer();
 		parametersBuffer.append("("); //$NON-NLS-1$
 		char[] comma = new char[] {',', ' '};
-		for (int i = 0; i < names.length; i++) {
+		for (int i = 0; i < names.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (i > 0) {
 				parametersBuffer.append(comma);
 			}
@@ -765,7 +765,7 @@ public String toString() {
 	if (isConstructor()) {
 		return "CONSTRUCTOR"; //$NON-NLS-1$
 	} else {
-		return "METHOD: " + getName(); //$NON-NLS-1$
+		return "METHOD: " + getName(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 

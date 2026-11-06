@@ -31,9 +31,9 @@ class CompletionEngineProviderDiscovery {
 	private static String lastId;
 	private static IConfigurationElement lastExtension;
 
-	private static final Map<String, ICompletionEngineProvider> ENGINE_PROVIDER_CACHE = new HashMap<>();
+	private static final Map<String, ICompletionEngineProvider> ENGINE_PROVIDER_CACHE = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
-	public static ICompletionEngineProvider getInstance() {
+	public static ICompletionEngineProvider getInstance() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String id = System.getProperty(SELECTED_SYSPROP);
 		IConfigurationElement configElement = getConfigurationElement(id);
 		lastId = id;
@@ -50,7 +50,7 @@ class CompletionEngineProviderDiscovery {
 				}
 			} catch (CoreException e) {
 				if (!setErrorLogged()) {
-					ILog.get().error("Could not instantiate ICompletionEngineProvider: '" + id + "' with class: " + configElement.getAttribute("class"), e); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					ILog.get().error("Could not instantiate ICompletionEngineProvider: '" + id + "' with class: " + configElement.getAttribute("class"), e); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -62,7 +62,7 @@ class CompletionEngineProviderDiscovery {
 	 * @param id
 	 * @return The extension element with the given id or <code>null</null> if not found
 	 */
-	private static IConfigurationElement getConfigurationElement(String id) {
+	private static IConfigurationElement getConfigurationElement(String id) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (id == null || id.isBlank()) {
 			return null;
 		}
@@ -72,9 +72,9 @@ class CompletionEngineProviderDiscovery {
 		IExtensionPoint extension = Platform.getExtensionRegistry().getExtensionPoint(JavaCore.PLUGIN_ID, CODE_ASSIST_PROVIDER_EXTPOINT_ID);
 		if (extension != null) {
 			IExtension[] extensions = extension.getExtensions();
-			for (IExtension ext : extensions) {
+			for (IExtension ext : extensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IConfigurationElement[] configElements = ext.getConfigurationElements();
-				for (final IConfigurationElement configElement : configElements) {
+				for (final IConfigurationElement configElement : configElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String elementId = configElement.getAttribute("id"); //$NON-NLS-1$
 					if (id.equals(elementId) && "resolver".equals(configElement.getName())) { //$NON-NLS-1$
 						return configElement;

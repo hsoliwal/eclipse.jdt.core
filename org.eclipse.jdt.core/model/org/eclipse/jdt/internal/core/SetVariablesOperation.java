@@ -26,7 +26,7 @@ import org.eclipse.jdt.core.IJavaModel;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaModelException;
 
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"rawtypes", "unchecked"}) //FLLDCIM: MARK — T09  IMPLEMENTS
 public class SetVariablesOperation extends ChangeClasspathOperation {
 
 	String[] variableNames;
@@ -43,7 +43,7 @@ public class SetVariablesOperation extends ChangeClasspathOperation {
 		this.updatePreferences = updatePreferences;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void executeOperation() throws JavaModelException {
 		checkCanceled();
 		try {
@@ -58,12 +58,12 @@ public class SetVariablesOperation extends ChangeClasspathOperation {
 			int varLength = this.variableNames.length;
 
 			// gather classpath information for updating
-			final HashMap affectedProjectClasspaths = new HashMap(5);
+			final HashMap affectedProjectClasspaths = new HashMap(5); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			IJavaModel model = getJavaModel();
 
 			// filter out unmodified variables
 			int discardCount = 0;
-			for (int i = 0; i < varLength; i++){
+			for (int i = 0; i < varLength; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String variableName = this.variableNames[i];
 				IPath oldPath = manager.variableGet(variableName); // if reentering will provide previous session value
 				if (oldPath == JavaModelManager.VARIABLE_INITIALIZATION_IN_PROGRESS) {
@@ -79,7 +79,7 @@ public class SetVariablesOperation extends ChangeClasspathOperation {
 				int changedLength = varLength - discardCount;
 				String[] changedVariableNames = new String[changedLength];
 				IPath[] changedVariablePaths = new IPath[changedLength];
-				for (int i = 0, index = 0; i < varLength; i++){
+				for (int i = 0, index = 0; i < varLength; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (this.variableNames[i] != null){
 						changedVariableNames[index] = this.variableNames[i];
 						changedVariablePaths[index] = this.variablePaths[i];
@@ -97,14 +97,14 @@ public class SetVariablesOperation extends ChangeClasspathOperation {
 			IJavaProject[] projects = model.getJavaProjects();
 
 			nextProject:
-			for (IJavaProject p : projects) {
+			for (IJavaProject p : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JavaProject project = (JavaProject) p;
 
 				// check to see if any of the modified variables is present on the classpath
 				IClasspathEntry[] classpath = project.getRawClasspath();
-				for (IClasspathEntry entry : classpath) {
+				for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
-					for (int k = 0; k < varLength; k++){
+					for (int k = 0; k < varLength; k++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 						String variableName = this.variableNames[k];
 						if (entry.getEntryKind() ==  IClasspathEntry.CPE_VARIABLE){
@@ -126,7 +126,7 @@ public class SetVariablesOperation extends ChangeClasspathOperation {
 			}
 
 			// update variables
-			for (int i = 0; i < varLength; i++){
+			for (int i = 0; i < varLength; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				manager.variablePut(this.variableNames[i], this.variablePaths[i]);
 				if (this.updatePreferences)
 					manager.variablePreferencesPut(this.variableNames[i], this.variablePaths[i]);
@@ -138,7 +138,7 @@ public class SetVariablesOperation extends ChangeClasspathOperation {
 				try {
 					// propagate classpath change
 					Iterator projectsToUpdate = affectedProjectClasspaths.keySet().iterator();
-					while (projectsToUpdate.hasNext()) {
+					while (projectsToUpdate.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 
 						if (this.progressMonitor != null && this.progressMonitor.isCanceled()) return;
 
@@ -175,21 +175,21 @@ public class SetVariablesOperation extends ChangeClasspathOperation {
 
 	private void verbose_failure(String[] dbgVariableNames, CoreException e) {
 		trace(
-			"CPVariable SET  - FAILED DUE TO EXCEPTION\n" + //$NON-NLS-1$
+			"CPVariable SET  - FAILED DUE TO EXCEPTION\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	variables: " + org.eclipse.jdt.internal.compiler.util.Util.toString(dbgVariableNames), e); //$NON-NLS-1$
 	}
 
 	private void verbose_update_project(String[] dbgVariableNames,
 			JavaProject affectedProject) {
 		trace(
-			"CPVariable SET  - updating affected project due to setting variables\n" + //$NON-NLS-1$
+			"CPVariable SET  - updating affected project due to setting variables\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + affectedProject.getElementName() + '\n' + //$NON-NLS-1$
 			"	variables: " + org.eclipse.jdt.internal.compiler.util.Util.toString(dbgVariableNames)); //$NON-NLS-1$
 	}
 
 	private void verbose_set_variables() {
 		trace(
-			"CPVariable SET  - setting variables\n" + //$NON-NLS-1$
+			"CPVariable SET  - setting variables\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	variables: " + org.eclipse.jdt.internal.compiler.util.Util.toString(this.variableNames) + '\n' +//$NON-NLS-1$
 			"	values: " + org.eclipse.jdt.internal.compiler.util.Util.toString(this.variablePaths)); //$NON-NLS-1$
 	}

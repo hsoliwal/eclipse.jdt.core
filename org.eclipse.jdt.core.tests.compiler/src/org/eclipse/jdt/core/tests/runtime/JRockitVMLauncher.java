@@ -38,13 +38,13 @@ public JRockitVMLauncher() {
  * Builds the actual boot class path that is going to be passed to the VM.
  */
 protected String buildBootClassPath() {
-	StringBuilder bootPathString = new StringBuilder();
+	StringBuilder bootPathString = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 	// Add boot class path directory if needed
 	if (this.evalTargetPath != null && TARGET_HAS_FILE_SYSTEM) {
-		bootPathString.append(this.evalTargetPath);
-		bootPathString.append(File.separatorChar);
-		bootPathString.append(BOOT_CLASSPATH_DIRECTORY);
+		bootPathString.append(this.evalTargetPath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append(File.separatorChar); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		bootPathString.append(BOOT_CLASSPATH_DIRECTORY); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	return bootPathString.toString();
@@ -58,20 +58,20 @@ public String getBatchFileName() {
 /**
  * @see LocalVMLauncher#getCommandLine
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String[] getCommandLine() {
-	List<String> commandLine = new ArrayList<>();
+	List<String> commandLine = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	// VM binary
 	if (System.getProperty("java.vm.version").startsWith("1.4.2")) {
 		commandLine.add(
-			this.vmPath +
+			this.vmPath + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			(this.vmPath.endsWith(File.separator) ? "" : File.separator) +
 			"bin" +
 			File.separator +
 			"java");
 	} else {
-		String vmLocation = this.vmPath +
+		String vmLocation = this.vmPath + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			(this.vmPath.endsWith(File.separator) ? "" : File.separator) +
 			"bin" +
 			File.separator +
@@ -80,9 +80,9 @@ public String[] getCommandLine() {
 		if (osName.indexOf("win32") != -1) {
 			vmLocation += ".exe";
 		}
-		if (!new File(vmLocation).exists()) {
+		if (!new File(vmLocation).exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			vmLocation =
-				this.vmPath +
+				this.vmPath + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				(this.vmPath.endsWith(File.separator) ? "" : File.separator) +
 				"bin" +
 				File.separator +
@@ -93,7 +93,7 @@ public String[] getCommandLine() {
 
 	// VM arguments
 	if (this.vmArguments != null) {
-		for (int i = 0; i < this.vmArguments.length; i++) {
+		for (int i = 0; i < this.vmArguments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			commandLine.add(this.vmArguments[i]);
 		}
 	}
@@ -103,7 +103,7 @@ public String[] getCommandLine() {
 		commandLine.add("-Xdebug");
 		commandLine.add("-Xnoagent");
 		commandLine.add(
-			"-Xrunjdwp:transport=dt_socket,address=" +
+			"-Xrunjdwp:transport=dt_socket,address=" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.debugPort +
 			",server=y,suspend=n");
 	}
@@ -112,7 +112,7 @@ public String[] getCommandLine() {
 	// we don't set the bootclasspath as for StandardVMLauncher as this breaks the debug mode of JRockit
 	// we would get: [JRockit] ERROR:  failed to set up MAPI gc reporting
 	commandLine.add("-classpath");
-	String classpath = buildBootClassPath() + File.pathSeparator + buildClassPath();
+	String classpath = buildBootClassPath() + File.pathSeparator + buildClassPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	System.out.println(classpath);
 	commandLine.add(classpath);
 
@@ -127,9 +127,9 @@ public String[] getCommandLine() {
 		commandLine.add(Integer.toString(this.evalPort));
 		if (TARGET_HAS_FILE_SYSTEM) {
 			commandLine.add(CODESNIPPET_CLASSPATH_ARG);
-			commandLine.add(this.evalTargetPath + File.separator + REGULAR_CLASSPATH_DIRECTORY);
+			commandLine.add(this.evalTargetPath + File.separator + REGULAR_CLASSPATH_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			commandLine.add(CODESNIPPET_BOOTPATH_ARG);
-			commandLine.add(this.evalTargetPath + File.separator + BOOT_CLASSPATH_DIRECTORY);
+			commandLine.add(this.evalTargetPath + File.separator + BOOT_CLASSPATH_DIRECTORY); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -140,7 +140,7 @@ public String[] getCommandLine() {
 
 	// program arguments
 	if (this.programArguments != null) {
-		for (int i=0;i<this.programArguments.length;i++) {
+		for (int i=0;i<this.programArguments.length;i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			commandLine.add(this.programArguments[i]);
 		}
 	}
@@ -156,10 +156,10 @@ public String[] getCommandLine() {
 	}
 
 	// check for spaces in result
-	for (int i = 0; i < result.length; i++) {
+	for (int i = 0; i < result.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String argument = result[i];
 		if (argument.indexOf(' ') != -1) {
-			result[i] = "\"" + argument + "\"";
+			result[i] = "\"" + argument + "\""; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -174,12 +174,12 @@ public String[] getCommandLine() {
 public void setBatchFileName(String batchFileName) {
 	this.batchFileName = batchFileName;
 }
-protected void writeBatchFile(String fileName, List<String> commandLine) {
+protected void writeBatchFile(String fileName, List<String> commandLine) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	FileOutputStream output = null;
 	try {
-		output = new FileOutputStream(fileName);
+		output = new FileOutputStream(fileName); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 		PrintWriter out= new PrintWriter(output);
-		for (String string : commandLine) {
+		for (String string : commandLine) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			out.print(string);
 			out.print(" ");
 		}

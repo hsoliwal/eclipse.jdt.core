@@ -67,10 +67,10 @@ public int read() throws IOException {
 		throw e;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int read(byte b[]) throws IOException {
 	// Make sure the byte array is initialized (value of 0 is used in the workaround below)
-	for (int i=0;i<b.length;i++)
+	for (int i=0;i<b.length;i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		b[i]=0;
 
 	int read;
@@ -81,7 +81,7 @@ public int read(byte b[]) throws IOException {
 			// Workaround problem with implementation of Process.getInputStream()
 			// (see PR 1PRW670: LFRE:WINNT - Program hangs running in LeapFrog)
 			read= 0;
-			while (read < b.length && b[read] != 0) {
+			while (read < b.length && b[read] != 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				read++;
 			}
 		} else
@@ -90,10 +90,10 @@ public int read(byte b[]) throws IOException {
 
 	return read;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int read(byte b[], int off, int len) throws IOException {
 	// Make sure the byte array is initialized (value of 0 is used in the workaround below)
-	for (int i = off; i < len; i++)
+	for (int i = off; i < len; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		b[i] = 0;
 
 	int read;
@@ -104,7 +104,7 @@ public int read(byte b[], int off, int len) throws IOException {
 			// Workaround problem with implementation of Process.getInputStream()
 			// (see PR 1PRW670: LFRE:WINNT - Program hangs running in LeapFrog)
 			read = 0;
-			while (off + read < len && b[off + read] != 0) {
+			while (off + read < len && b[off + read] != 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				read++;
 			}
 		} else

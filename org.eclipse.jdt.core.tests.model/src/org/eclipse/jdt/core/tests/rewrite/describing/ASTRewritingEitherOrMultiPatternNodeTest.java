@@ -43,7 +43,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	}
 	//@SuppressWarnings({ })
 	//replacing : by ->
-	public void test0001() throws Exception {
+	public void test0001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String code = """
 					public class X {
@@ -68,7 +68,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 		{
 			SwitchStatement switchStatement = (SwitchStatement) blockStatements.get(1);
 			assertTrue("Number of statements not 4", switchStatement.statements().size() == 4);
-			for (int i = 0, l = switchStatement.statements().size(); i < l; ++i) {
+			for (int i = 0, l = switchStatement.statements().size(); i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Statement stmt = (Statement) switchStatement.statements().get(i);
 				if (stmt instanceof SwitchCase) {
 					SwitchCase switchCase = (SwitchCase) stmt;
@@ -93,7 +93,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	}
 
 	//removing guard
-	public void test0002() throws Exception {
+	public void test0002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String code = """
 				public class X {
@@ -123,7 +123,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 
 			SwitchCase caseStatement= (SwitchCase)statements.get(0);
 			List<Expression> firstCaseExpression = caseStatement.expressions();
-			for (Expression expression : firstCaseExpression) {
+			for (Expression expression : firstCaseExpression) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (expression instanceof GuardedPattern) {
 					GuardedPattern guardedPattern = (GuardedPattern) expression;
 					EitherOrMultiPattern newPattern = (EitherOrMultiPattern) guardedPattern.getPattern();
@@ -146,7 +146,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 		assertEqualString(preview, ASTConvertedCode);
 	}
 	//generated the entire AST from scratch
-	public void test0003() throws Exception {
+	public void test0003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		AST ast = AST.newAST(AST.JLS22, true);
         CompilationUnit compilationUnit = ast.newCompilationUnit();
         PackageDeclaration packageDeclaration = ast.newPackageDeclaration();
@@ -434,7 +434,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	 * Insert two TypePatterns at the beginning
 	 * Insert non-consecutive nodes
 	 */
-	public void test0004_a() throws Exception {
+	public void test0004_a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -585,7 +585,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	 * Insert TypePattern and RecordPattern
 	 * Insert multiple RecordPattern at the end
 	 */
-	public void test0004_b() throws Exception {
+	public void test0004_b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -749,7 +749,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	 * Delete one TypePattern at the end
 	 * Delete one TypePatterns at the beginning
 	 */
-	public void test0005_a() throws Exception {
+	public void test0005_a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -836,7 +836,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	 * Following test cases will be handled in this test
 	 * Delete multiple(3) TypePatterns at the beginning
 	 */
-	public void test0005_b() throws Exception {
+	public void test0005_b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -901,7 +901,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	/*
 	 * Delete multiple(2) TypePatterns at the end
 	 */
-	public void test0005_c() throws Exception {
+	public void test0005_c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -965,7 +965,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	/*
 	 * Delete a RecordPattern
 	 */
-	public void test0005_d() throws Exception {
+	public void test0005_d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -1027,7 +1027,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	/*
 	 * Delete multiple RecordPatterns
 	 */
-	public void test0005_e() throws Exception {
+	public void test0005_e() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -1090,7 +1090,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	/*
 	 * delete a combination of type patterns and record patterns
 	 */
-	public void test0005_f() throws Exception {
+	public void test0005_f() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -1153,7 +1153,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	/*
 	 * Delete non-consecutive nodes
 	 */
-	public void test0005_g() throws Exception {
+	public void test0005_g() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -1216,7 +1216,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	/*
 	 * Delete a node in the middle
 	 */
-	public void test0005_h() throws Exception {
+	public void test0005_h() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -1284,7 +1284,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	 * Replace a multiple nodes at middle(one TypePattern and one RecordPattern
 	 * Replace a multiple nodes at end
 	 */
-	public void test0006_a() throws Exception {
+	public void test0006_a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -1537,7 +1537,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	}
 
 	//https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2623
-	public void test0007_a() throws Exception {
+	public void test0007_a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -1591,7 +1591,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	}
 
 	//https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2623
-	public void test0007_b() throws Exception {
+	public void test0007_b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -1649,7 +1649,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	}
 
 	//Pos(int x1, int y1) -> Pos _
-	public void testNaiveASTFlattnerSync_a() throws Exception {
+	public void testNaiveASTFlattnerSync_a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -1705,7 +1705,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	}
 
 	//Pos(int x1, int y1) -> _
-	public void testNaiveASTFlattnerSync_b() throws Exception {
+	public void testNaiveASTFlattnerSync_b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -1759,7 +1759,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	}
 
 	//Pos _ to Pos(String x1, String y1)
-	public void testNaiveASTFlattnerSync_c() throws Exception {
+	public void testNaiveASTFlattnerSync_c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;
@@ -1827,7 +1827,7 @@ public class ASTRewritingEitherOrMultiPatternNodeTest extends ASTRewritingTest {
 	}
 
 	//_ to Pos(String x, String y)
-	public void testNaiveASTFlattnerSync_d() throws Exception {
+	public void testNaiveASTFlattnerSync_d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
 		String baseCode = """
 				package x;

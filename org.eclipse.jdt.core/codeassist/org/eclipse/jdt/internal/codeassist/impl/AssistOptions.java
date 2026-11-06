@@ -100,7 +100,7 @@ public class AssistOptions {
 		set(settings);
 	}
 
-	public void set(Map<String, String> optionsMap) {
+	public void set(Map<String, String> optionsMap) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String value;
 		if ((value = optionsMap.get(OPTION_PerformVisibilityCheck)) != null) {
 			if (ENABLED.equals(value)) {
@@ -239,7 +239,7 @@ public class AssistOptions {
 		int length = result.length;
 
 		int resultCount = 0;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(result[i].length != 0) {
 				result[resultCount++] = result[i];
 			}

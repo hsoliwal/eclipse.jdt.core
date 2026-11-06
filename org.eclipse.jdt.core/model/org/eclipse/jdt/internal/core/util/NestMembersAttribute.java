@@ -38,7 +38,7 @@ public class NestMembersAttribute extends ClassFileAttribute implements INestMem
 		if (length != 0) {
 			int readOffset = 8;
 			this.entries = new INestMemberAttributeEntry[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.entries[i] = new NestMembersAttributeEntry(classFileBytes, constantPool, offset + readOffset);
 				readOffset += 2;
 			}

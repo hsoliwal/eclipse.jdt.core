@@ -166,15 +166,15 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 		// CONVERSION TO/FROM INDIVIDUAL ELEMENTS
 		public static Map<FactoryContainer, Attributes> pathMapFromList(List<FactoryPathEntry> list) {
 			Map<FactoryContainer, FactoryPath.Attributes> map =
-				new LinkedHashMap<>(list.size());
-			for (FactoryPathEntry fpe : list) {
+				new LinkedHashMap<>(list.size()); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
+			for (FactoryPathEntry fpe : list) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				map.put(fpe._fc, fpe._attr);
 			}
 			return map;
 		}
 		public static List<FactoryPathEntry> pathListFromMap(Map<FactoryContainer, Attributes> map) {
-			List<FactoryPathEntry> list = new ArrayList<>(map.size());
-			for (Map.Entry<FactoryContainer, Attributes> entry : map.entrySet()) {
+			List<FactoryPathEntry> list = new ArrayList<>(map.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (Map.Entry<FactoryContainer, Attributes> entry : map.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				FactoryPathEntry fpe = new FactoryPathEntry(entry.getKey(), entry.getValue());
 				list.add(fpe);
 			}
@@ -249,7 +249,7 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 	 * hopefully the list is not so huge that it's a problem.
 	 */
 	private void updateFactoryPathEntries() {
-		for (FactoryPathEntry fpe : getListContents()) {
+		for (FactoryPathEntry fpe : getListContents()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			boolean checked = fFactoryPathList.isChecked(fpe);
 			if (checked != fpe._attr.isEnabled()) {
 				fpe._attr.setEnabled(checked);
@@ -262,7 +262,7 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 	 * Most buttons are handled by code in CheckedListDialogField;
 	 * this method is for the rest, e.g., Add External Jar.
 	 */
-	public void customButtonPressed(int index) {
+	public void customButtonPressed(int index) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		FactoryPathEntry[] newEntries = null;
 		switch (index) {
 		case IDX_ADDJAR: // add jars in project
@@ -299,7 +299,7 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 	private boolean canRemove() {
 		List<FactoryPathEntry> selected= getSelectedListContents();
 		boolean containsPlugin= false;
-		for (FactoryPathEntry fpe : selected) {
+		for (FactoryPathEntry fpe : selected) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (fpe._fc.getType() == FactoryContainer.FactoryType.PLUGIN) {
 				containsPlugin = true;
 				break;
@@ -334,7 +334,7 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 	 * and it is an editable item (not a plugin).
 	 * @param field a listbox of FactoryContainers.
 	 */
-	private void editSelectedItem() {
+	private void editSelectedItem() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List<FactoryPathEntry> selected= getSelectedListContents();
 		if (selected.size() != 1) {
 			return;
@@ -362,7 +362,7 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 	/* (non-Javadoc)
 	 * @see org.eclipse.jdt.apt.ui.internal.preferences.BaseConfigurationBlock#createContents(org.eclipse.swt.widgets.Composite)
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected Control createContents(Composite parent) {
 		setShell(parent.getShell());
 
@@ -436,7 +436,7 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 	 * before being added to the list.
 	 * @param entries can be null.
 	 */
-	private void addEntries(FactoryPathEntry[] entries) {
+	private void addEntries(FactoryPathEntry[] entries) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (null == entries) {
 			return;
 		}
@@ -449,7 +449,7 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 		}
 		try {
 			fSettingListContents = true;
-			for (int i = 0; i < entries.length; ++i) {
+			for (int i = 0; i < entries.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				fFactoryPathList.addElement(entries[i], insertAt + i);
 				fFactoryPathList.setChecked(entries[i], entries[i]._attr.isEnabled());
 			}
@@ -466,14 +466,14 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 	 * original.
 	 * @param fpeList can be null.
 	 */
-	private void setListContents(List<FactoryPathEntry> fpeList) {
+	private void setListContents(List<FactoryPathEntry> fpeList) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			fSettingListContents = true;
 			fFactoryPathList.removeAllElements();
 			if (fpeList == null) {
 				return;
 			}
-			for (FactoryPathEntry originalFpe : fpeList) {
+			for (FactoryPathEntry originalFpe : fpeList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// clone, because we may later want to compare with the original.
 				FactoryPathEntry fpe = new FactoryPathEntry(originalFpe._fc, new Attributes(originalFpe._attr));
 				fFactoryPathList.addElement(fpe);
@@ -496,14 +496,14 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 	 * editing an existing item).
 	 * @return an array, possibly empty (but never null)
 	 */
-	private IPath[] getExistingPaths(FactoryContainer.FactoryType type, FactoryContainer ignore) {
+	private IPath[] getExistingPaths(FactoryContainer.FactoryType type, FactoryContainer ignore) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (type == FactoryContainer.FactoryType.PLUGIN) {
 			throw new IllegalArgumentException();
 		}
 		List<FactoryPathEntry> all = getListContents();
 		// find out how many entries there are of this type
 		int countType = 0;
-		for (FactoryPathEntry fpe : all) {
+		for (FactoryPathEntry fpe : all) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FactoryContainer fc = fpe._fc;
 			if (fc.getType() == type && fc != ignore) {
 				++countType;
@@ -512,7 +512,7 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 		// create an array of paths, one per entry of this type
 		IPath[] some = new IPath[countType];
 		int i = 0;
-		for (FactoryPathEntry fpe : all) {
+		for (FactoryPathEntry fpe : all) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FactoryContainer fc = fpe._fc;
 			if (fc.getType() == type && fc != ignore) {
 				some[i++] = new Path(fc.getId());
@@ -551,7 +551,7 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 	 * @param original null, or an existing list entry to be edited
 	 * @return a list of additional factory path entries to be added
 	 */
-	private FactoryPathEntry[] openJarFileDialog(FactoryPathEntry original) {
+	private FactoryPathEntry[] openJarFileDialog(FactoryPathEntry original) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (fJProj == null) {
 			return null;
 		}
@@ -562,8 +562,8 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 			if (results == null) {
 				return null;
 			}
-			ArrayList<FactoryPathEntry> res= new ArrayList<>();
-			for (int i= 0; i < results.length; i++) {
+			ArrayList<FactoryPathEntry> res= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i= 0; i < results.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IResource resource= root.findMember(results[i]);
 				if (resource instanceof IFile) {
 					FactoryContainer fc = FactoryPathUtil.newWkspJarFactoryContainer(results[i]);
@@ -601,14 +601,14 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 	 * @param original null, or an existing list entry to be edited
 	 * @return a list of additional factory path entries to be added
 	 */
-	private FactoryPathEntry[] openExtJarFileDialog(FactoryPathEntry original) {
+	private FactoryPathEntry[] openExtJarFileDialog(FactoryPathEntry original) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (original == null) {
 			IPath[] selected= BuildPathDialogAccess.chooseExternalJAREntries(getShell());
 			if (selected == null) {
 				return null;
 			}
-			ArrayList<FactoryPathEntry> res= new ArrayList<>();
-			for (int i= 0; i < selected.length; i++) {
+			ArrayList<FactoryPathEntry> res= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i= 0; i < selected.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				FactoryContainer fc = FactoryPathUtil.newExtJarFactoryContainer(selected[i].toFile());
 				// assume defaults of enabled=true, runInAptMode=false
 				FactoryPath.Attributes attr = new FactoryPath.Attributes(true, false);
@@ -637,14 +637,14 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 	 * @param original null, or an existing list entry to be edited
 	 * @return a list of additional factory path entries to be added
 	 */
-	private FactoryPathEntry[] openVariableSelectionDialog(FactoryPathEntry original) {
+	private FactoryPathEntry[] openVariableSelectionDialog(FactoryPathEntry original) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (original == null) {
 			IPath[] selected= BuildPathDialogAccess.chooseVariableEntries(getShell(), new IPath[0]);
 			if (selected == null) {
 				return null;
 			}
-			ArrayList<FactoryPathEntry> res= new ArrayList<>();
-			for (int i= 0; i < selected.length; i++) {
+			ArrayList<FactoryPathEntry> res= new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (int i= 0; i < selected.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				FactoryContainer fc= FactoryPathUtil.newVarJarFactoryContainer(selected[i]);
 				// assume defaults of enabled=true, runInAptMode=false
 				FactoryPath.Attributes attr = new FactoryPath.Attributes(true, false);
@@ -684,7 +684,7 @@ public class FactoryPathConfigurationBlock extends BaseConfigurationBlock {
 		// TODO: validate that all the specified factory containers exist?
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void saveSettings() {
 		FactoryPath fp;
 		if ((fJProj != null) && !fBlockControl.isEnabled()) {

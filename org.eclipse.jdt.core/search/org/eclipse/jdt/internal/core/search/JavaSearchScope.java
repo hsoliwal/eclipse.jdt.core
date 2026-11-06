@@ -47,7 +47,7 @@ public class JavaSearchScope extends AbstractJavaSearchScope {
 	/**
 	 * The paths of the resources in this search scope (or the classpath entries' paths if the resources are projects)
 	 */
-	private ArrayList<String> projectPaths = new ArrayList<>(); // container paths projects
+	private ArrayList<String> projectPaths = new ArrayList<>(); // container paths projects //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	private int[] projectIndexes; // Indexes of projects in list
 	private String[] containerPaths; // path to the container (e.g. /P/src, /P/lib.jar, c:\temp\mylib.jar)
 	private String[] relativePaths; // path relative to the container (e.g. x/y/Z.class, x/y, (empty))
@@ -75,7 +75,7 @@ private JavaSearchScope(int size, boolean excludeTestCode) {
 
 private void addEnclosingProjectOrJar(IPath path) {
 	int length = this.enclosingProjectsAndJars.length;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.enclosingProjectsAndJars[i].equals(path)) return;
 	}
 	System.arraycopy(
@@ -92,7 +92,7 @@ private void addEnclosingProjectOrJar(IPath path) {
  * @see #add(JavaProject, IPath, int, Set, Set, IClasspathEntry)
  */
 public void add(JavaProject project, int includeMask, Set<JavaProject>  projectsToBeAdded) throws JavaModelException {
-	add(project, null, includeMask, projectsToBeAdded, new HashSet<>(2), null);
+	add(project, null, includeMask, projectsToBeAdded, new HashSet<>(2), null); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 }
 /**
  * Add a path to current java search scope or all project fragment roots if null.
@@ -106,7 +106,7 @@ public void add(JavaProject project, int includeMask, Set<JavaProject>  projects
  * @param referringEntry Project raw entry in referring project classpath
  * @throws JavaModelException May happen while getting java model info
  */
-void add(JavaProject javaProject, IPath pathToAdd, int includeMask, Set<JavaProject> projectsToBeAdded, Set<IProject> visitedProjects, IClasspathEntry referringEntry) throws JavaModelException {
+void add(JavaProject javaProject, IPath pathToAdd, int includeMask, Set<JavaProject> projectsToBeAdded, Set<IProject> visitedProjects, IClasspathEntry referringEntry) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IProject project = javaProject.getProject();
 	if (!project.isAccessible() || !visitedProjects.add(project)) return;
 
@@ -117,7 +117,7 @@ void add(JavaProject javaProject, IPath pathToAdd, int includeMask, Set<JavaProj
 	IClasspathEntry[] entries = javaProject.getResolvedClasspath();
 	IJavaModel model = javaProject.getJavaModel();
 	JavaModelManager.PerProjectInfo perProjectInfo = javaProject.getPerProjectInfo();
-	for (int i = 0, length = entries.length; i < length; i++) {
+	for (int i = 0, length = entries.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IClasspathEntry entry = entries[i];
 		if (this.excludeTestCode && entry.isTest()) {
 			continue;
@@ -210,7 +210,7 @@ void add(JavaProject javaProject, IPath pathToAdd, int includeMask, Set<JavaProj
  * @param element The element we want to add to current java search scope
  * @throws JavaModelException May happen if some Java Model info are not available
  */
-public void add(IJavaElement element) throws JavaModelException {
+public void add(IJavaElement element) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath containerPath = null;
 	String containerPathToString = null;
 	PackageFragmentRoot root = null;
@@ -220,7 +220,7 @@ public void add(IJavaElement element) throws JavaModelException {
 			// a workspace sope should be used
 			break;
 		case IJavaElement.JAVA_PROJECT:
-			add((JavaProject)element, null, includeMask, new HashSet<>(2), new HashSet<>(2), null);
+			add((JavaProject)element, null, includeMask, new HashSet<>(2), new HashSet<>(2), null); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			break;
 		case IJavaElement.PACKAGE_FRAGMENT_ROOT:
 			root = (PackageFragmentRoot)element;
@@ -263,7 +263,7 @@ public void add(IJavaElement element) throws JavaModelException {
 			// remember sub-cu (or sub-class file) java elements
 			if (element instanceof IMember) {
 				if (this.elements == null) {
-					this.elements = new HashSet<>();
+					this.elements = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				}
 				this.elements.add(element);
 			}
@@ -289,7 +289,7 @@ public void add(IJavaElement element) throws JavaModelException {
  * Adds the given path to this search scope. Remember if subfolders need to be included
  * and associated access restriction as well.
  */
-private void add(String projectPath, String relativePath, String containerPath, boolean isPackage, AccessRuleSet access) {
+private void add(String projectPath, String relativePath, String containerPath, boolean isPackage, AccessRuleSet access) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// normalize containerPath and relativePath
 	containerPath = normalize(containerPath);
 	containerPath = convertInternalToExternalPath(containerPath);
@@ -297,7 +297,7 @@ private void add(String projectPath, String relativePath, String containerPath, 
 	int length = this.containerPaths.length;
 	int index = (containerPath.hashCode() & 0x7FFFFFFF) % length;
 	String currentRelativePath, currentContainerPath;
-	while ((currentRelativePath = this.relativePaths[index]) != null && (currentContainerPath = this.containerPaths[index]) != null) {
+	while ((currentRelativePath = this.relativePaths[index]) != null && (currentContainerPath = this.containerPaths[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (currentRelativePath.equals(relativePath) && currentContainerPath.equals(containerPath))
 			return;
 		if (++index == length) {
@@ -362,11 +362,11 @@ private int indexOf(String fullPath) {
 	// cannot guess the index of the container path
 	// fallback to sequentially looking at all known paths
 	fullPath = convertInternalToExternalPath(fullPath);
-	for (int i = 0, length = this.relativePaths.length; i < length; i++) {
+	for (int i = 0, length = this.relativePaths.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String currentRelativePath = this.relativePaths[i];
 		if (currentRelativePath == null) continue;
 		String currentContainerPath = this.containerPaths[i];
-		String currentFullPath = currentRelativePath.length() == 0 ? currentContainerPath : (currentContainerPath + '/' + currentRelativePath);
+		String currentFullPath = currentRelativePath.length() == 0 ? currentContainerPath : (currentContainerPath + '/' + currentRelativePath); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (encloses(currentFullPath, fullPath, i))
 			return i;
 	}
@@ -387,13 +387,13 @@ private int indexOf(String fullPath) {
  *   3. X.java
  *   4. (empty)
  */
-private int indexOf(String containerPath, String relativePath) {
+private int indexOf(String containerPath, String relativePath) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	containerPath = convertInternalToExternalPath(containerPath);
 	int length = this.containerPaths.length;
 	// use the hash to get faster comparison
     int index = (containerPath.hashCode()& 0x7FFFFFFF) % length;
 	String currentContainerPath;
-	while ((currentContainerPath = this.containerPaths[index]) != null) {
+	while ((currentContainerPath = this.containerPaths[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (currentContainerPath.equals(containerPath)) {
 			String currentRelativePath = this.relativePaths[index];
 			if (encloses(currentRelativePath, relativePath, index))
@@ -432,9 +432,9 @@ private String convertInternalToExternalPath(String given) {
 /*
  * Returns whether the enclosing path encloses the given path (or is equal to it)
  */
-private boolean encloses(String enclosingPath, String path, int index) {
+private boolean encloses(String enclosingPath, String path, int index) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (path.indexOf(JAR_FILE_ENTRY_SEPARATOR) != -1) {
-		String message = "Unexpected symbol '" + JAR_FILE_ENTRY_SEPARATOR + "' in path \"" + path + "\".";  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		String message = "Unexpected symbol '" + JAR_FILE_ENTRY_SEPARATOR + "' in path \"" + path + "\".";  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Status warning = new Status(IStatus.WARNING, JavaCore.PLUGIN_ID, IStatus.ERROR, message, new IllegalArgumentException());
 		Util.log(warning);
 	}
@@ -468,11 +468,11 @@ private boolean encloses(String enclosingPath, String path, int index) {
 	return false;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean encloses(IJavaElement element) {
 	if (this.elements != null) {
 		IJavaElement searchedElement = element;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.elements.contains(searchedElement)) {
 				return true;
 			}
@@ -496,7 +496,7 @@ public boolean encloses(IJavaElement element) {
 public IPath[] enclosingProjectsAndJars() {
 	return this.enclosingProjectsAndJars;
 }
-private IPath getPath(IJavaElement element, boolean relativeToRoot) {
+private IPath getPath(IJavaElement element, boolean relativeToRoot) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	switch (element.getElementType()) {
 		case IJavaElement.JAVA_MODEL:
 			return Path.EMPTY;
@@ -517,7 +517,7 @@ private IPath getPath(IJavaElement element, boolean relativeToRoot) {
 	}
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public AccessRuleSet getAccessRuleSet(String relativePath, String containerPath) {
 	int index;
 	// check if there is a module in the relative path, if so remove it
@@ -545,7 +545,7 @@ protected void initialize(int size) {
 		extraRoom++;
 	this.relativePaths = new String[extraRoom];
 	this.containerPaths = new String[extraRoom];
-	this.projectPaths = new ArrayList<>();
+	this.projectPaths = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	this.projectIndexes = new int[extraRoom];
 	this.isPkgPath = new boolean[extraRoom];
 	this.pathRestrictions = null; // null to optimize case where no access rules are used
@@ -559,19 +559,19 @@ protected void initialize(int size) {
 private String normalize(String path) {
 	int pathLength = path.length();
 	int index = pathLength-1;
-	while (index >= 0 && path.charAt(index) == '/')
+	while (index >= 0 && path.charAt(index) == '/') //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		index--;
 	if (index != pathLength-1)
 		return path.substring(0, index + 1);
 	return path;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void processDelta(IJavaElementDelta delta, int eventType) {
 	switch (delta.getKind()) {
 		case IJavaElementDelta.CHANGED:
 			IJavaElementDelta[] children = delta.getAffectedChildren();
-			for (IJavaElementDelta child : children) {
+			for (IJavaElementDelta child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				processDelta(child, eventType);
 			}
 			break;
@@ -592,7 +592,7 @@ public void processDelta(IJavaElementDelta delta, int eventType) {
 					default:
 						return;
 				}
-				for (int i = 0; i < this.pathsCount; i++) {
+				for (int i = 0; i < this.pathsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (this.relativePaths[i].equals(path)) {
 						this.relativePaths[i] = null;
 						rehash();
@@ -607,7 +607,7 @@ public void processDelta(IJavaElementDelta delta, int eventType) {
 /**
  * @see AbstractJavaSearchScope#packageFragmentRoot(String, int, String)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IPackageFragmentRoot packageFragmentRoot(String resourcePathString, int jarSeparatorIndex, String jarPath) {
 	int index = -1;
 	boolean isJarFile = jarSeparatorIndex != -1;
@@ -635,7 +635,7 @@ public IPackageFragmentRoot packageFragmentRoot(String resourcePathString, int j
 					return project.getPackageFragmentRoot(resource);
 				return project.getPackageFragmentRoot(jarPath);
 			}
-			Object target = JavaModel.getWorkspaceTarget(new Path(this.containerPaths[index]+'/'+this.relativePaths[index]));
+			Object target = JavaModel.getWorkspaceTarget(new Path(this.containerPaths[index]+'/'+this.relativePaths[index])); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (target == null) {
 				Path path = new Path(resourcePathString);
 				if(ExternalFoldersManager.isInternalPathForExternalFolder(path)) {
@@ -654,11 +654,11 @@ public IPackageFragmentRoot packageFragmentRoot(String resourcePathString, int j
 	return null;
 }
 
-private void rehash() {
+private void rehash() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	JavaSearchScope newScope = new JavaSearchScope(this.pathsCount * 2, this.excludeTestCode);		// double the number of expected elements
 	newScope.projectPaths.ensureCapacity(this.projectPaths.size());
 	String currentPath;
-	for (int i=0, length=this.relativePaths.length; i<length; i++)
+	for (int i=0, length=this.relativePaths.length; i<length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if ((currentPath = this.relativePaths[i]) != null) {
 			int idx = this.projectIndexes[i];
 			String projectPath = idx == -1 ? null : (String)this.projectPaths.get(idx);
@@ -674,24 +674,24 @@ private void rehash() {
 	this.threshold = newScope.threshold;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String toString() {
-	StringBuilder result = new StringBuilder("JavaSearchScope on "); //$NON-NLS-1$
+	StringBuilder result = new StringBuilder("JavaSearchScope on "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	if (this.elements != null) {
-		result.append("["); //$NON-NLS-1$
-		for (IJavaElement element : this.elements) {
-			result.append("\n\t"); //$NON-NLS-1$
-			result.append(((JavaElement) element).toStringWithAncestors());
+		result.append("["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (IJavaElement element : this.elements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			result.append("\n\t"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			result.append(((JavaElement) element).toStringWithAncestors()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		result.append("\n]"); //$NON-NLS-1$
+		result.append("\n]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
 		if (this.pathsCount == 0) {
-			result.append("[empty scope]"); //$NON-NLS-1$
+			result.append("[empty scope]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			result.append("["); //$NON-NLS-1$
+			result.append("["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			String[] paths = new String[this.relativePaths.length];
 			int index = 0;
-			for (int i = 0; i < this.relativePaths.length; i++) {
+			for (int i = 0; i < this.relativePaths.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String path = this.relativePaths[i];
 				if (path == null) continue;
 				String containerPath;
@@ -702,18 +702,18 @@ public String toString() {
 					containerPath = this.containerPaths[i];
 				}
 				if (path.length() > 0) {
-					paths[index++] = containerPath + '/' + path;
+					paths[index++] = containerPath + '/' + path; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				} else {
 					paths[index++] = containerPath;
 				}
 			}
 			System.arraycopy(paths, 0, paths = new String[index], 0, index);
 			Util.sort(paths);
-			for (int i = 0; i < index; i++) {
-				result.append("\n\t"); //$NON-NLS-1$
-				result.append(paths[i]);
+			for (int i = 0; i < index; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				result.append("\n\t"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				result.append(paths[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			result.append("\n]"); //$NON-NLS-1$
+			result.append("\n]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	return result.toString();

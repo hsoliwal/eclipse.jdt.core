@@ -44,7 +44,7 @@ public class ModuleUpdater {
 
 	private final JavaProject javaProoject;
 
-	private final Map<String,UpdatesByKind> moduleUpdates = new HashMap<>();
+	private final Map<String,UpdatesByKind> moduleUpdates = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	public ModuleUpdater(JavaProject javaProject) {
 		this.javaProoject = javaProject;
@@ -55,12 +55,12 @@ public class ModuleUpdater {
 	 * and collects the resulting module updates.
 	 * @param entry a classpath entry of the current project.
 	 */
-	public void computeModuleUpdates(IClasspathEntry entry) throws JavaModelException {
-		for (IClasspathAttribute attribute : entry.getExtraAttributes()) {
+	public void computeModuleUpdates(IClasspathEntry entry) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		for (IClasspathAttribute attribute : entry.getExtraAttributes()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String attributeName = attribute.getName();
 			String values = attribute.getValue(); // the attributes considered here may have multiple values separated by ':'
 			if (attributeName.equals(IClasspathAttribute.ADD_EXPORTS)) {
-				for (String value : values.split(":")) { // format: <source-module>/<package>=<target-module>(,<target-module>)* //$NON-NLS-1$
+				for (String value : values.split(":")) { // format: <source-module>/<package>=<target-module>(,<target-module>)* //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					int slash = value.indexOf('/');
 					int equals = value.indexOf('=');
 					if (slash != -1 && equals != -1) {
@@ -69,18 +69,18 @@ public class ModuleUpdater {
 						char[][] targets = CharOperation.splitOn(',', value.substring(equals+1).toCharArray());
 						addModuleUpdate(modName, new IUpdatableModule.AddExports(packName, targets), UpdateKind.PACKAGE);
 					} else {
-						Util.log(IStatus.WARNING, "Invalid argument to add-exports: "+value); //$NON-NLS-1$
+						Util.log(IStatus.WARNING, "Invalid argument to add-exports: "+value); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			} else if (attributeName.equals(IClasspathAttribute.ADD_READS)) {
-				for (String value : values.split(":")) { // format: <source-module>=<target-module> //$NON-NLS-1$
+				for (String value : values.split(":")) { // format: <source-module>=<target-module> //$NON-NLS-1$ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 					int equals = value.indexOf('=');
 					if (equals != -1) {
 						String srcMod = value.substring(0, equals);
 						char[] targetMod = value.substring(equals+1).toCharArray();
 						addModuleUpdate(srcMod, new IUpdatableModule.AddReads(targetMod), UpdateKind.MODULE);
 					} else {
-						Util.log(IStatus.WARNING, "Invalid argument to add-reads: "+value); //$NON-NLS-1$
+						Util.log(IStatus.WARNING, "Invalid argument to add-reads: "+value); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			} else if (attributeName.equals(IClasspathAttribute.MODULE_MAIN_CLASS)) {
@@ -108,14 +108,14 @@ public class ModuleUpdater {
 		if (name != ModuleBinding.UNNAMED) { // can't update the unnamed module
 			UpdatesByKind updates = this.moduleUpdates.get(String.valueOf(name));
 			if (updates != null) {
-				for (Consumer<IUpdatableModule> update : updates.getList(kind, false))
+				for (Consumer<IUpdatableModule> update : updates.getList(kind, false)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					update.accept(compilerModule);
 			}
 		}
 	}
 
 	private static boolean containsNonModularDependency(IClasspathEntry[] entries) {
-		for (IClasspathEntry e : entries) {
+		for (IClasspathEntry e : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (e.getEntryKind() != IClasspathEntry.CPE_SOURCE && !((ClasspathEntry) e).isModular())
 				return true;
 		}
@@ -125,12 +125,12 @@ public class ModuleUpdater {
 	// Bug 520713: allow test code to access code on the classpath
 	public void addReadUnnamedForNonEmptyClasspath(JavaProject project, IClasspathEntry[] expandedClasspath)
 			throws JavaModelException {
-		for (String moduleName : determineModulesOfProjectsWithNonEmptyClasspath(project, expandedClasspath)) {
+		for (String moduleName : determineModulesOfProjectsWithNonEmptyClasspath(project, expandedClasspath)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			addModuleUpdate(moduleName, new IUpdatableModule.AddReads(ModuleBinding.ALL_UNNAMED), UpdateKind.MODULE);
 		}
 	}
 
-	public static Set<String> determineModulesOfProjectsWithNonEmptyClasspath(JavaProject project,
+	public static Set<String> determineModulesOfProjectsWithNonEmptyClasspath(JavaProject project, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IClasspathEntry[] expandedClasspath) throws JavaModelException {
 		LinkedHashSet<String> list = new LinkedHashSet<>();
 		if (containsNonModularDependency(expandedClasspath)) {
@@ -139,7 +139,7 @@ public class ModuleUpdater {
 				list.add(moduleDescription.getElementName());
 			}
 		}
-		for (IClasspathEntry e1 : expandedClasspath) {
+		for (IClasspathEntry e1 : expandedClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (e1.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
 				Object target = JavaModel.getTarget(e1, true);
 				if (target instanceof IProject) {

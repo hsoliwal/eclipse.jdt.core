@@ -44,7 +44,7 @@ public class DeduplicationUtilTest extends TestCase {
 		assertDeduplicationObject(() -> List.of("bNeverUsedBefore"));
 	}
 
-	private void assertDeduplicationString(char[] stringTemplate) {
+	private void assertDeduplicationString(char[] stringTemplate) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// do not change order of weak/strong test,
 		{ // test weak behaviour:
 			String a = new String(stringTemplate);
@@ -68,7 +68,7 @@ public class DeduplicationUtilTest extends TestCase {
 		}
 	}
 
-	private void assertDeduplicationCharArray(String charArrayTemplate) {
+	private void assertDeduplicationCharArray(String charArrayTemplate) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		{ // weak
 			char[] a = charArrayTemplate.toCharArray();
 			char[] b = charArrayTemplate.toCharArray();
@@ -91,7 +91,7 @@ public class DeduplicationUtilTest extends TestCase {
 		}
 	}
 
-	private void assertDeduplicationObject(Supplier<Object> supplier) {
+	private void assertDeduplicationObject(Supplier<Object> supplier) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		{ // weak
 			Object a = supplier.get();
 			Object b = supplier.get();
@@ -110,7 +110,7 @@ public class DeduplicationUtilTest extends TestCase {
 			Object actual = DeduplicationUtil.internObject(a);
 
 			// It is impossible to rely on GC to run immediately, so loop few times
-			for (int i = 0; i < 42; i++) {
+			for (int i = 0; i < 42; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(actual != a) {
 					forceGc();
 					actual = DeduplicationUtil.internObject(a);
@@ -133,14 +133,14 @@ public class DeduplicationUtilTest extends TestCase {
 		}
 	}
 
-	private void assertDeduplicationList(Supplier<List<String>> supplier) {
+	private void assertDeduplicationList(Supplier<List<String>> supplier) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		{ // weak
 			List<String> a = supplier.get();
 			List<String> b = supplier.get();
 			assertNotSame(a, b);
 			assertEquals(a, b);
 			List<String> expected = DeduplicationUtil.intern(b);
-			for (int i = 0; i < a.size(); i++) {
+			for (int i = 0; i < a.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertSame(b.get(i), expected.get(i));
 			}
 			b = null;
@@ -154,7 +154,7 @@ public class DeduplicationUtilTest extends TestCase {
 			List<String> actual = DeduplicationUtil.intern(a);
 
 			// It is impossible to rely on GC to run immediately, so loop few times
-			for (int i = 0; i < 42; i++) {
+			for (int i = 0; i < 42; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(actual != a) {
 					forceGc();
 					actual = DeduplicationUtil.intern(a);
@@ -162,7 +162,7 @@ public class DeduplicationUtilTest extends TestCase {
 					break;
 				}
 			}
-			for (int i = 0; i < a.size(); i++) {
+			for (int i = 0; i < a.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertSame(a.get(i), actual.get(i));
 			}
 		}

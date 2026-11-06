@@ -41,7 +41,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 	/**
 	 * ContentAssist for Module Javadoc support is available for java 15 and above Modular projects
 	 */
-	public void test566060_001() throws Exception {
+	public void test566060_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJavaProject("Completion15_0", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		try {
 			project1.open(null);
@@ -101,7 +101,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 			unit.codeComplete(cursorLocation, requestor);
 
 			int PACKAGE_RELEVANCE = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED;
-			String expected = "p1 - testM/[PACKAGE_REF]{testM/p1, p1 - testM/, null, null, " + PACKAGE_RELEVANCE + "}\n" +
+			String expected = "p1 - testM/[PACKAGE_REF]{testM/p1, p1 - testM/, null, null, " + PACKAGE_RELEVANCE + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							"p3 - testM/[PACKAGE_REF]{testM/p3, p3 - testM/, null, null, " + PACKAGE_RELEVANCE + "}" ;
 			assertResults(expected,	requestor.getResults());
 		} finally {
@@ -112,7 +112,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 	/**
 	 * ContentAssist for Module Javadoc support is available for java 15 and above Modular projects
 	 */
-	public void test566060_002() throws Exception {
+	public void test566060_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJavaProject("Completion15_1", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		IJavaProject project2 = createJavaProject("Completion15_2", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		try {
@@ -186,7 +186,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 			unit.codeComplete(cursorLocation, requestor);
 
 			int PACKAGE_RELEVANCE = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED;
-			String expected = "p1 - testM/[PACKAGE_REF]{testM/p1, p1 - testM/, null, null, " + PACKAGE_RELEVANCE + "}";
+			String expected = "p1 - testM/[PACKAGE_REF]{testM/p1, p1 - testM/, null, null, " + PACKAGE_RELEVANCE + "}"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertResults(expected,	requestor.getResults());
 		} finally {
 			deleteProject(project1);
@@ -197,7 +197,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 	/**
 	 * ContentAssist for Module Javadoc support is available for java 15 and above Modular projects for jre modules
 	 */
-	public void test566060_003() throws Exception {
+	public void test566060_003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJavaProject("Completion15_0", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		try {
 			project1.open(null);
@@ -236,7 +236,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 			unit.codeComplete(cursorLocation, requestor);
 
 			int PACKAGE_RELEVANCE = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED;
-			String expected = "java.io - java.base/[PACKAGE_REF]{java.base/java.io, java.io - java.base/, null, null, " + PACKAGE_RELEVANCE + "}\n" +
+			String expected = "java.io - java.base/[PACKAGE_REF]{java.base/java.io, java.io - java.base/, null, null, " + PACKAGE_RELEVANCE + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"java.lang - java.base/[PACKAGE_REF]{java.base/java.lang, java.lang - java.base/, null, null, " + PACKAGE_RELEVANCE + "}\n" +
 					"java.lang.annotation - java.base/[PACKAGE_REF]{java.base/java.lang.annotation, java.lang.annotation - java.base/, null, null, " + PACKAGE_RELEVANCE + "}\n" +
 					"java.lang.invoke - java.base/[PACKAGE_REF]{java.base/java.lang.invoke, java.lang.invoke - java.base/, null, null, " + PACKAGE_RELEVANCE + "}\n" +
@@ -250,7 +250,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 	/**
 	 * ContentAssist for Module Javadoc support is available for java 15 and above non-modular projects for default modules provided by jre.
 	 */
-	public void test566060_004() throws Exception {
+	public void test566060_004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJavaProject("Completion15_0", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		try {
 			project1.open(null);
@@ -282,7 +282,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 			unit.codeComplete(cursorLocation, requestor);
 
 			int PACKAGE_RELEVANCE = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED;
-			String expected = "java.io - java.base/[PACKAGE_REF]{java.base/java.io, java.io - java.base/, null, null, " + PACKAGE_RELEVANCE + "}\n" +
+			String expected = "java.io - java.base/[PACKAGE_REF]{java.base/java.io, java.io - java.base/, null, null, " + PACKAGE_RELEVANCE + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"java.lang - java.base/[PACKAGE_REF]{java.base/java.lang, java.lang - java.base/, null, null, " + PACKAGE_RELEVANCE + "}\n" +
 					"java.lang.annotation - java.base/[PACKAGE_REF]{java.base/java.lang.annotation, java.lang.annotation - java.base/, null, null, " + PACKAGE_RELEVANCE + "}\n" +
 					"java.lang.invoke - java.base/[PACKAGE_REF]{java.base/java.lang.invoke, java.lang.invoke - java.base/, null, null, " + PACKAGE_RELEVANCE + "}\n" +
@@ -296,7 +296,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 	/**
 	 * Negative case. Module Javadoc support is not available for java 14 and below modular projects.
 	 */
-	public void test566060_005() throws Exception {
+	public void test566060_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJavaProject("Completion14_0", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "14");
 		try {
 			project1.open(null);
@@ -365,7 +365,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 	/**
 	 * Negative case. Module Javadoc support is not available for java 14 and below non-modular projects.
 	 */
-	public void test566060_006() throws Exception {
+	public void test566060_006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJavaProject("Completion14_2", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "14");
 		try {
 			project1.open(null);
@@ -406,7 +406,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 	/**
 	 * ContentAssist for Module Javadoc support is available for java 15 and above Modular projects
 	 */
-	public void test566060_007() throws Exception {
+	public void test566060_007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJavaProject("Completion15_1", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		IJavaProject project2 = createJavaProject("Completion15_2", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		try {
@@ -480,7 +480,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 			unit.codeComplete(cursorLocation, requestor);
 
 			int MODULE_RELEVANCE = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED;
-			String expected = "[MODULE_REF]{testM/, testM, null, null, " + MODULE_RELEVANCE + "}\n"
+			String expected = "[MODULE_REF]{testM/, testM, null, null, " + MODULE_RELEVANCE + "}\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							+ "[MODULE_REF]{testQ/, testQ, null, null, " + MODULE_RELEVANCE + "}";
 			assertResults(expected,	requestor.getResults());
 		} finally {
@@ -492,7 +492,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 	/**
 	 * ContentAssist for Module Javadoc support is available for java 15 and above Modular projects
 	 */
-	public void test566060_008() throws Exception {
+	public void test566060_008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJavaProject("Completion15_1", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		IJavaProject project2 = createJavaProject("Completion15_2", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		try {
@@ -566,7 +566,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 			unit.codeComplete(cursorLocation, requestor);
 
 			int MODULE_RELEVANCE = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED+ R_QUALIFIED;
-			String expected = "[MODULE_REF]{testM.partial.mod/, testM.partial.mod, null, null, " + MODULE_RELEVANCE + "}";
+			String expected = "[MODULE_REF]{testM.partial.mod/, testM.partial.mod, null, null, " + MODULE_RELEVANCE + "}"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertResults(expected,	requestor.getResults());
 		} finally {
 			deleteProject(project1);
@@ -577,7 +577,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 	/**
 	 * ContentAssist for Module Javadoc support is available for java 15 and above Modular projects
 	 */
-	public void test566060_009() throws Exception {
+	public void test566060_009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJavaProject("Completion15_0", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		try {
 			project1.open(null);
@@ -637,7 +637,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 			unit.codeComplete(cursorLocation, requestor);
 
 			int PACKAGE_RELEVANCE = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED;
-			String expected = "p1 - testM/[PACKAGE_REF]{testM/p1, p1 - testM/, null, null, " + PACKAGE_RELEVANCE + "}\n" +
+			String expected = "p1 - testM/[PACKAGE_REF]{testM/p1, p1 - testM/, null, null, " + PACKAGE_RELEVANCE + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							"p3 - testM/[PACKAGE_REF]{testM/p3, p3 - testM/, null, null, " + PACKAGE_RELEVANCE + "}" ;
 			assertResults(expected,	requestor.getResults());
 		} finally {
@@ -648,7 +648,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 	/**
 	 * ContentAssist for Module Javadoc support is available for java 15 and above Modular projects
 	 */
-	public void test566060_010() throws Exception {
+	public void test566060_010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJavaProject("Completion15_0", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		try {
 			project1.open(null);
@@ -707,7 +707,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 			unit.codeComplete(cursorLocation, requestor);
 
 			int PACKAGE_RELEVANCE = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED;
-			String expected = "p3 - testM/[PACKAGE_REF]{testM/p3, p3 - testM/, null, null, " + PACKAGE_RELEVANCE + "}" ;
+			String expected = "p3 - testM/[PACKAGE_REF]{testM/p3, p3 - testM/, null, null, " + PACKAGE_RELEVANCE + "}" ; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertResults(expected,	requestor.getResults());
 		} finally {
 			deleteProject(project1);
@@ -717,7 +717,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 	/**
 	 * ContentAssist for Module Javadoc support is available for java 15 and above Modular projects
 	 */
-	public void test566060_011() throws Exception {
+	public void test566060_011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject project1 = createJavaProject("Completion15_1", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		IJavaProject project2 = createJavaProject("Completion15_2", new String[] {"src"}, new String[] {"JCL14_LIB"}, "bin", "15");
 		try {
@@ -795,7 +795,7 @@ public class JavadocModuleCompletionTests15 extends AbstractJavaModelCompletionT
 			int CONSTRUCTOR_RELEVANCE = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED;
 			int DEFAULT_RELEVANCE = RelevanceConstants.R_DEFAULT + RelevanceConstants.R_RESOLVED + RelevanceConstants.R_INTERESTING +
 					RelevanceConstants.R_NON_STATIC + RelevanceConstants.R_NON_RESTRICTED + RelevanceConstants.R_CASE;
-			String expected= "ABC[METHOD_REF<CONSTRUCTOR>]{ABC(), Lp1.ABC;, ()V, ABC, "+CONSTRUCTOR_RELEVANCE+"}\n" +
+			String expected= "ABC[METHOD_REF<CONSTRUCTOR>]{ABC(), Lp1.ABC;, ()V, ABC, "+CONSTRUCTOR_RELEVANCE+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, "+DEFAULT_RELEVANCE+"}\n" +
 							"equals[METHOD_REF]{equals(Object), Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, "+DEFAULT_RELEVANCE+"}\n" +
 							"finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, finalize, "+DEFAULT_RELEVANCE+"}\n" +

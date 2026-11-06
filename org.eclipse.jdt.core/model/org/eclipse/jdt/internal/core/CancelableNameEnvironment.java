@@ -36,7 +36,7 @@ public class CancelableNameEnvironment extends SearchableEnvironment implements 
 	private void checkCanceled() {
 		if (this.monitor != null && this.monitor.isCanceled()) {
 			if (NameLookup.VERBOSE)
-				System.out.println(Thread.currentThread() + " CANCELLING LOOKUP "); //$NON-NLS-1$
+				System.out.println(Thread.currentThread() + " CANCELLING LOOKUP "); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			throw new AbortCompilation(true/*silent*/, new OperationCanceledException());
 		}
 	}

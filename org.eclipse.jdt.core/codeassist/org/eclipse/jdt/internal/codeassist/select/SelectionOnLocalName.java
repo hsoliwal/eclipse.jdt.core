@@ -26,7 +26,7 @@ public class SelectionOnLocalName extends LocalDeclaration{
 		super(name, sourceStart, sourceEnd);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void resolve(BlockScope scope) {
 
 		super.resolve(scope);
@@ -49,19 +49,19 @@ public class SelectionOnLocalName extends LocalDeclaration{
 	@Override
 	public StringBuilder printAsExpression(int indent, StringBuilder output) {
 		printIndent(indent, output);
-		output.append("<SelectionOnLocalName:"); //$NON-NLS-1$
+		output.append("<SelectionOnLocalName:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		printModifiers(this.modifiers, output);
 		 this.type.print(0, output).append(' ').append(this.name);
 		if (this.initialization != null) {
-			output.append(" = "); //$NON-NLS-1$
+			output.append(" = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			this.initialization.printExpression(0, output);
 		}
-		return output.append('>');
+		return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	@Override
 	public StringBuilder printStatement(int indent, StringBuilder output) {
 		printAsExpression(indent, output);
-		return output.append(';');
+		return output.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }

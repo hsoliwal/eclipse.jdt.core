@@ -234,7 +234,7 @@ class CompilationUnitResolver extends Compiler {
 	 * Add the initial set of compilation units into the loop
 	 *  ->  build compilation unit declarations, their bindings and record their results.
 	 */
-	protected void beginToCompile(org.eclipse.jdt.internal.compiler.env.ICompilationUnit[] sourceUnits, String[] bindingKeys) {
+	protected void beginToCompile(org.eclipse.jdt.internal.compiler.env.ICompilationUnit[] sourceUnits, String[] bindingKeys) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int sourceLength = sourceUnits.length;
 		int keyLength = bindingKeys.length;
 		int maxUnits = sourceLength + keyLength;
@@ -244,7 +244,7 @@ class CompilationUnitResolver extends Compiler {
 
 		// walks the source units
 		this.requestedSources = new HashtableOfObject();
-		for (int i = 0; i < sourceLength; i++) {
+		for (int i = 0; i < sourceLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			org.eclipse.jdt.internal.compiler.env.ICompilationUnit sourceUnit = sourceUnits[i];
 			CompilationUnitDeclaration parsedUnit;
 			CompilationResult unitResult =
@@ -280,7 +280,7 @@ class CompilationUnitResolver extends Compiler {
 
 		// walk the binding keys
 		this.requestedKeys = new HashtableOfObject();
-		for (int i = 0; i < keyLength; i++) {
+		for (int i = 0; i < keyLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BindingKeyResolver resolver = new BindingKeyResolver(bindingKeys[i], this, this.lookupEnvironment);
 			resolver.parse(true/*pause after fully qualified name*/);
 			// If it doesn't have a type name, then it is either an array type, package or base type, which will definitely not have a compilation unit.
@@ -294,7 +294,7 @@ class CompilationUnitResolver extends Compiler {
 				else if (existing instanceof ArrayList)
 					((ArrayList) existing).add(resolver);
 				else {
-					ArrayList list = new ArrayList();
+					ArrayList list = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 					list.add(existing);
 					list.add(resolver);
 					this.requestedKeys.put(fileName, list);
@@ -339,7 +339,7 @@ class CompilationUnitResolver extends Compiler {
 		return convert(compilationUnitDeclaration, source,apiLevel, options, needToResolveBindings, owner, bindingTables,
 				flags, monitor, fromJavaProject, null);
 	}
-	public static CompilationUnit convert(
+	public static CompilationUnit convert( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			CompilationUnitDeclaration compilationUnitDeclaration,
 			char[] source,
 			int apiLevel,
@@ -405,8 +405,8 @@ class CompilationUnitResolver extends Compiler {
 		}
 		return location.toOSString();
 	}
-	private static ArrayList<String> getSourceClassPaths(IJavaProject project) {
-		ArrayList<String> srcClassPath = new ArrayList<>();
+	private static ArrayList<String> getSourceClassPaths(IJavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		ArrayList<String> srcClassPath = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if(project == null)
 			return srcClassPath;
 		if(project.getProject() == null)
@@ -420,7 +420,7 @@ class CompilationUnitResolver extends Compiler {
 		if(resolvedClasspath == null)
 			return srcClassPath;
 
-		for (IClasspathEntry entry : resolvedClasspath) {
+		for (IClasspathEntry entry : resolvedClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		    if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 		    	if(entry instanceof ClasspathEntry) {
 		    		IPath path = ((ClasspathEntry)entry).getPath();
@@ -444,7 +444,7 @@ class CompilationUnitResolver extends Compiler {
 	/*
 	 *  Low-level API performing the actual compilation
 	 */
-	protected static IErrorHandlingPolicy getHandlingPolicy() {
+	protected static IErrorHandlingPolicy getHandlingPolicy() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// passes the initial set of files to the batch oracle (to avoid finding more than once the same units when case insensitive match)
 		return new IErrorHandlingPolicy() {
@@ -515,7 +515,7 @@ class CompilationUnitResolver extends Compiler {
 		this.abortProblem = abortException.problem;
 	}
 
-	public static void parse(ICompilationUnit[] compilationUnits, ASTRequestor astRequestor, int apiLevel, Map options, int flags, IProgressMonitor monitor) {
+	public static void parse(ICompilationUnit[] compilationUnits, ASTRequestor astRequestor, int apiLevel, Map options, int flags, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompilerOptions compilerOptions = new CompilerOptions(options);
 		compilerOptions.ignoreMethodBodies = (flags & ICompilationUnit.IGNORE_METHOD_BODIES) != 0;
 		Parser parser = new CommentRecorderParser(
@@ -526,7 +526,7 @@ class CompilationUnitResolver extends Compiler {
 			false);
 		int unitLength = compilationUnits.length;
 		SubMonitor subMonitor = SubMonitor.convert(monitor);
-		for (int i = 0; i < unitLength; i++) {
+		for (int i = 0; i < unitLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			subMonitor.setWorkRemaining(unitLength - i);
 			org.eclipse.jdt.internal.compiler.env.ICompilationUnit sourceUnit = (org.eclipse.jdt.internal.compiler.env.ICompilationUnit) compilationUnits[i];
 			CompilationResult compilationResult = new CompilationResult(sourceUnit, 0, 0,
@@ -543,7 +543,7 @@ class CompilationUnitResolver extends Compiler {
 			//real parse of the method....
 			org.eclipse.jdt.internal.compiler.ast.TypeDeclaration[] types = compilationUnitDeclaration.types;
 			if (types != null) {
-				for (TypeDeclaration type : types) {
+				for (TypeDeclaration type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					type.parseMethods(parser, compilationUnitDeclaration);
 				}
 			}
@@ -558,7 +558,7 @@ class CompilationUnitResolver extends Compiler {
 			astRequestor.acceptAST(compilationUnits[i], node);
 		}
 	}
-	public static void parse(
+	public static void parse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] sourceUnits,
 			String[] encodings,
 			FileASTRequestor astRequestor,
@@ -576,7 +576,7 @@ class CompilationUnitResolver extends Compiler {
 			false);
 		int unitLength = sourceUnits.length;
 		SubMonitor subMonitor = SubMonitor.convert(monitor, unitLength);
-		for (int i = 0; i < unitLength; i++) {
+		for (int i = 0; i < unitLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			SubMonitor iterationMonitor = subMonitor.split(1);
 			char[] contents = null;
 			String encoding = encodings != null ? encodings[i] : null;
@@ -605,7 +605,7 @@ class CompilationUnitResolver extends Compiler {
 			//real parse of the method....
 			org.eclipse.jdt.internal.compiler.ast.TypeDeclaration[] types = compilationUnitDeclaration.types;
 			if (types != null) {
-				for (TypeDeclaration type : types) {
+				for (TypeDeclaration type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					type.parseMethods(parser, compilationUnitDeclaration);
 				}
 			}
@@ -628,7 +628,7 @@ class CompilationUnitResolver extends Compiler {
 			int flags) {
 		return parse(sourceUnit, nodeSearcher, settings, flags, null);
 	}
-	public static CompilationUnitDeclaration parse(
+	public static CompilationUnitDeclaration parse( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			org.eclipse.jdt.internal.compiler.env.ICompilationUnit sourceUnit,
 			NodeSearcher nodeSearcher,
 			Map settings,
@@ -692,7 +692,7 @@ class CompilationUnitResolver extends Compiler {
 				//real parse of the method....
 				org.eclipse.jdt.internal.compiler.ast.TypeDeclaration[] types = compilationUnitDeclaration.types;
 				if (types != null) {
-					for (TypeDeclaration type : types) {
+					for (TypeDeclaration type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						type.parseMethods(parser, compilationUnitDeclaration);
 					}
 				}
@@ -700,7 +700,7 @@ class CompilationUnitResolver extends Compiler {
 		return compilationUnitDeclaration;
 	}
 
-	public static void resolve(
+	public static void resolve( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit[] compilationUnits,
 		String[] bindingKeys,
 		ASTRequestor requestor,
@@ -749,7 +749,7 @@ class CompilationUnitResolver extends Compiler {
 			}
 		}
 	}
-	public static void resolve(
+	public static void resolve( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] sourceUnits,
 			String[] encodings,
 			String[] bindingKeys,
@@ -794,7 +794,7 @@ class CompilationUnitResolver extends Compiler {
 				}
 			}
 		}
-	public static CompilationUnitDeclaration resolve(
+	public static CompilationUnitDeclaration resolve( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			org.eclipse.jdt.internal.compiler.env.ICompilationUnit sourceUnit,
 			IJavaProject javaProject,
 			List classpaths,
@@ -912,15 +912,15 @@ class CompilationUnitResolver extends Compiler {
 	public void removeUnresolvedBindings(CompilationUnitDeclaration compilationUnitDeclaration) {
 		final org.eclipse.jdt.internal.compiler.ast.TypeDeclaration[] types = compilationUnitDeclaration.types;
 		if (types != null) {
-			for (TypeDeclaration type : types) {
+			for (TypeDeclaration type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				removeUnresolvedBindings(type);
 			}
 		}
 	}
-	private void removeUnresolvedBindings(org.eclipse.jdt.internal.compiler.ast.TypeDeclaration type) {
+	private void removeUnresolvedBindings(org.eclipse.jdt.internal.compiler.ast.TypeDeclaration type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final org.eclipse.jdt.internal.compiler.ast.TypeDeclaration[] memberTypes = type.memberTypes;
 		if (memberTypes != null) {
-			for (TypeDeclaration memberType : memberTypes) {
+			for (TypeDeclaration memberType : memberTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				removeUnresolvedBindings(memberType);
 			}
 		}
@@ -930,7 +930,7 @@ class CompilationUnitResolver extends Compiler {
 
 		final org.eclipse.jdt.internal.compiler.ast.FieldDeclaration[] fields = type.fields;
 		if (fields != null) {
-			for (int i = 0, max = fields.length; i < max; i++){
+			for (int i = 0, max = fields.length; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (fields[i].binding != null && (fields[i].binding.modifiers & ExtraCompilerModifiers.AccUnresolved) != 0) {
 					fields[i].binding = null;
 				}
@@ -939,7 +939,7 @@ class CompilationUnitResolver extends Compiler {
 
 		final AbstractMethodDeclaration[] methods = type.methods;
 		if (methods != null) {
-			for (int i = 0, max = methods.length; i < max; i++){
+			for (int i = 0, max = methods.length; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (methods[i].binding !=  null && (methods[i].binding.modifiers & ExtraCompilerModifiers.AccUnresolved) != 0) {
 					methods[i].binding = null;
 				}
@@ -947,7 +947,7 @@ class CompilationUnitResolver extends Compiler {
 		}
 	}
 
-	private void resolve(
+	private void resolve( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ICompilationUnit[] compilationUnits,
 			String[] bindingKeys,
 			ASTRequestor astRequestor,
@@ -966,12 +966,12 @@ class CompilationUnitResolver extends Compiler {
 			System.arraycopy(compilationUnits, 0, sourceUnits, 0, length);
 			beginToCompile(sourceUnits, bindingKeys);
 			// process all units (some more could be injected in the loop by the lookup environment)
-			for (int i = 0; i < this.totalUnits; i++) {
+			for (int i = 0; i < this.totalUnits; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (resolvedRequestedSourcesAndKeys(i)) {
 					// no need to keep resolving if no more ASTs and no more binding keys are needed
 					// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=114935
 					// cleanup remaining units
-					for (; i < this.totalUnits; i++) {
+					for (; i < this.totalUnits; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						this.unitsToProcess[i].cleanUp();
 						this.unitsToProcess[i] = null;
 					}
@@ -1006,7 +1006,7 @@ class CompilationUnitResolver extends Compiler {
 							// pass it to requestor
 							astRequestor.acceptAST(source, compilationUnit);
 						} catch (RuntimeException e) {
-							throw new RuntimeException("Error on " + source.getPath(), e); //$NON-NLS-1$
+							throw new RuntimeException("Error on " + source.getPath(), e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 						worked(1);
 
@@ -1022,7 +1022,7 @@ class CompilationUnitResolver extends Compiler {
 							worked(1);
 						} else if (key instanceof ArrayList) {
 							Iterator iterator = ((ArrayList) key).iterator();
-							while (iterator.hasNext()) {
+							while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								reportBinding(iterator.next(), astRequestor, owner, unit);
 								worked(1);
 							}
@@ -1042,7 +1042,7 @@ class CompilationUnitResolver extends Compiler {
 			// remaining binding keys
 			DefaultBindingResolver resolver = new DefaultBindingResolver(this.lookupEnvironment, owner, this.bindingTables, (flags & ICompilationUnit.ENABLE_BINDINGS_RECOVERY) != 0, true);
 			Object[] keys = this.requestedKeys.valueTable;
-			for (int j = 0, keysLength = keys.length; j < keysLength; j++) {
+			for (int j = 0, keysLength = keys.length; j < keysLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				BindingKeyResolver keyResolver = (BindingKeyResolver) keys[j];
 				if (keyResolver == null) continue;
 				Binding compilerBinding = keyResolver.getCompilerBinding();
@@ -1064,7 +1064,7 @@ class CompilationUnitResolver extends Compiler {
 		}
 	}
 
-	private void resolve(
+	private void resolve( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] sourceCompilationUnits,
 			String[] encodings,
 			String[] bindingKeys,
@@ -1081,7 +1081,7 @@ class CompilationUnitResolver extends Compiler {
 			int length = sourceCompilationUnits.length;
 			org.eclipse.jdt.internal.compiler.env.ICompilationUnit[] sourceUnits = new org.eclipse.jdt.internal.compiler.env.ICompilationUnit[length];
 			int count = 0;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[] contents = null;
 				String encoding = encodings != null ? encodings[i] : null;
 				String sourceUnitPath = sourceCompilationUnits[i];
@@ -1104,12 +1104,12 @@ class CompilationUnitResolver extends Compiler {
 			}
 			beginToCompile(sourceUnits, bindingKeys);
 			// process all units (some more could be injected in the loop by the lookup environment)
-			for (int i = 0; i < this.totalUnits; i++) {
+			for (int i = 0; i < this.totalUnits; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (resolvedRequestedSourcesAndKeys(i)) {
 					// no need to keep resolving if no more ASTs and no more binding keys are needed
 					// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=114935
 					// cleanup remaining units
-					for (; i < this.totalUnits; i++) {
+					for (; i < this.totalUnits; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						this.unitsToProcess[i].cleanUp();
 						this.unitsToProcess[i] = null;
 					}
@@ -1157,7 +1157,7 @@ class CompilationUnitResolver extends Compiler {
 							worked(1);
 						} else if (key instanceof ArrayList) {
 							Iterator iterator = ((ArrayList) key).iterator();
-							while (iterator.hasNext()) {
+							while (iterator.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								reportBinding(iterator.next(), astRequestor, unit);
 								worked(1);
 							}
@@ -1177,7 +1177,7 @@ class CompilationUnitResolver extends Compiler {
 			// remaining binding keys
 			DefaultBindingResolver resolver = new DefaultBindingResolver(this.lookupEnvironment, null, this.bindingTables, (flags & ICompilationUnit.ENABLE_BINDINGS_RECOVERY) != 0, true);
 			Object[] keys = this.requestedKeys.valueTable;
-			for (int j = 0, keysLength = keys.length; j < keysLength; j++) {
+			for (int j = 0, keysLength = keys.length; j < keysLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				BindingKeyResolver keyResolver = (BindingKeyResolver) keys[j];
 				if (keyResolver == null) continue;
 				Binding compilerBinding = keyResolver.getCompilerBinding();
@@ -1233,7 +1233,7 @@ class CompilationUnitResolver extends Compiler {
 		}
 	}
 
-	private CompilationUnitDeclaration resolve(
+	private CompilationUnitDeclaration resolve( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			CompilationUnitDeclaration unit,
 			org.eclipse.jdt.internal.compiler.env.ICompilationUnit sourceUnit,
 			NodeSearcher nodeSearcher,
@@ -1248,7 +1248,7 @@ class CompilationUnitResolver extends Compiler {
 				this.parseThreshold = 0; // will request a full parse
 				beginToCompile(new org.eclipse.jdt.internal.compiler.env.ICompilationUnit[] { sourceUnit });
 				// find the right unit from what was injected via accept(ICompilationUnit,..):
-				for (int i=0, max = this.totalUnits; i < max; i++) {
+				for (int i=0, max = this.totalUnits; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					CompilationUnitDeclaration currentCompilationUnitDeclaration = this.unitsToProcess[i];
 					if (currentCompilationUnitDeclaration != null
 							&& currentCompilationUnitDeclaration.compilationResult.compilationUnit == sourceUnit) {
@@ -1381,10 +1381,10 @@ class CompilationUnitResolver extends Compiler {
 			return false; // must process at least this many units before checking to see if all are done
 
 		Object[] sources = this.requestedSources.valueTable;
-		for (Object source : sources)
+		for (Object source : sources) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (source != null) return false;
 		Object[] keys = this.requestedKeys.valueTable;
-		for (Object key : keys)
+		for (Object key : keys) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (key != null) return false;
 		return true;
 	}
@@ -1409,7 +1409,7 @@ class CompilationUnitResolver extends Compiler {
 			generateCode);
 	}
 
-	public static CompilationUnit toCompilationUnit(org.eclipse.jdt.internal.compiler.env.ICompilationUnit sourceUnit, final boolean initialNeedsToResolveBinding, IJavaProject project, List<Classpath> classpaths, NodeSearcher nodeSearcher,
+	public static CompilationUnit toCompilationUnit(org.eclipse.jdt.internal.compiler.env.ICompilationUnit sourceUnit, final boolean initialNeedsToResolveBinding, IJavaProject project, List<Classpath> classpaths, NodeSearcher nodeSearcher, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			int apiLevel, Map<String, String> compilerOptions, WorkingCopyOwner parsedUnitWorkingCopyOwner, WorkingCopyOwner typeRootWorkingCopyOwner, int flags, IProgressMonitor monitor) {
 		// this -> astParser, pass as args
 		CompilationUnitDeclaration compilationUnitDeclaration = null;

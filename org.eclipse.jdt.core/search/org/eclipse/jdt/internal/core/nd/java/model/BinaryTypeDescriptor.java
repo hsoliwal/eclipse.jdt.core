@@ -57,10 +57,10 @@ public final class BinaryTypeDescriptor {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(this.workspacePath);
-		builder.append('|');
-		builder.append(this.fieldDescriptor);
+		StringBuilder builder = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		builder.append(this.workspacePath); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		builder.append('|'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		builder.append(this.fieldDescriptor); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return builder.toString();
 	}
 }

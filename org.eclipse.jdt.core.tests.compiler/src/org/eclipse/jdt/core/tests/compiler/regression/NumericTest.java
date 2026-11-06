@@ -25,7 +25,7 @@ public static Test suite() {
 	return buildAllCompliancesTestSuite(testClass());
 }
 
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"p/B.java",
 		"package p;\n" +
@@ -94,7 +94,7 @@ public void test004() {
 	"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232814
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 		"X.java",
 		"public class X {\n" +

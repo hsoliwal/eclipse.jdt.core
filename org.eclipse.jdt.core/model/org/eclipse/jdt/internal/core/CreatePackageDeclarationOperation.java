@@ -34,7 +34,7 @@ import org.eclipse.jdt.internal.core.util.Messages;
  *  <li>Package name
  * </ul>
  */
-public class CreatePackageDeclarationOperation extends CreateElementInCUOperation {
+public class CreatePackageDeclarationOperation extends CreateElementInCUOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 	/**
 	 * The name of the package declaration being created
 	 */
@@ -54,7 +54,7 @@ protected StructuralPropertyDescriptor getChildPropertyDescriptor(ASTNode parent
 protected ASTNode generateElementAST(ASTRewrite rewriter, ICompilationUnit cu) throws JavaModelException {
 	//look for an existing package declaration
 	IJavaElement[] children = getCompilationUnit().getChildren();
-	for (IJavaElement child : children) {
+	for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (child.getElementType() ==  IJavaElement.PACKAGE_DECLARATION && this.name.equals(child.getElementName())) {
 			//equivalent package declaration already exists
 			this.creationOccurred = false;

@@ -38,45 +38,45 @@ public class CharArrayMapperTest extends TestCase {
 	}
 	void testPutNew(CharArrayMapper<String> map, String keyString) {
 		int oldSize = map.size();
-		String value = "_" + keyString + "_";
+		String value = "_" + keyString + "_"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String previous = map.put(keyString.toCharArray(), value);
 		int newSize = map.size();
-		assertEquals("testPutNew1(" + keyString + ")", null, previous);
+		assertEquals("testPutNew1(" + keyString + ")", null, previous); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String vinside = map.get(keyString.toCharArray());
-		assertEquals("testPutNew2(" + keyString + ")", value, vinside);
-		assertEquals("testPutNew3(" + keyString + ")", oldSize+1, newSize);
-		assertEquals("testPutNew4(" + keyString + ")", map.keys().size(), newSize);
-		assertEquals("testPutNew5(" + keyString + ")", map.values().size(), newSize);
+		assertEquals("testPutNew2(" + keyString + ")", value, vinside); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("testPutNew3(" + keyString + ")", oldSize+1, newSize); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("testPutNew4(" + keyString + ")", map.keys().size(), newSize); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("testPutNew5(" + keyString + ")", map.values().size(), newSize); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	void testPutExisting(CharArrayMapper<String> map, String keyString) {
 		int oldSize = map.size();
-		String value = "_new_" + keyString + "_";
+		String value = "_new_" + keyString + "_"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String previous = map.get(keyString.toCharArray());
 		String returned = map.put(keyString.toCharArray(), value);
 		int newSize = map.size();
-		assertEquals("testPutExisting1(" + keyString + ")", previous, returned);
-		assertEquals("testPutNew3(" + keyString + ")", oldSize, newSize);
-		assertEquals("testPutNew4(" + keyString + ")", map.keys().size(), oldSize);
-		assertEquals("testPutNew5(" + keyString + ")", map.values().size(), oldSize);
+		assertEquals("testPutExisting1(" + keyString + ")", previous, returned); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("testPutNew3(" + keyString + ")", oldSize, newSize); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("testPutNew4(" + keyString + ")", map.keys().size(), oldSize); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("testPutNew5(" + keyString + ")", map.values().size(), oldSize); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		map.put(keyString.toCharArray(), previous); // restore
 	}
 
 	void testGetExisting(CharArrayMapper<String> map, String keyString) {
-		String value = "_" + keyString + "_";
+		String value = "_" + keyString + "_"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String vinside = map.get(keyString.toCharArray());
-		assertEquals("testGetExisting1(" + keyString + ")", value, vinside);
-		assertEquals("testGetExisting2(" + keyString + ")", true, map.values().contains(value));
-		assertEquals("testGetExisting3(" + keyString + ")", true,
+		assertEquals("testGetExisting1(" + keyString + ")", value, vinside); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("testGetExisting2(" + keyString + ")", true, map.values().contains(value)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("testGetExisting3(" + keyString + ")", true, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				map.keys().stream().anyMatch(k -> Arrays.equals(k, keyString.toCharArray())));
 	}
 
 	void testGetNonExisting(CharArrayMapper<String> map, String keyString) {
-		String value = "_" + keyString + "_";
+		String value = "_" + keyString + "_"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String vinside = map.get(keyString.toCharArray());
-		assertEquals("testGetNonExisting1(" + keyString + ")", null, vinside);
-		assertEquals("testGetNonExisting1(" + keyString + ")", false, map.values().contains(value));
-		assertEquals("testGetNonExisting1(" + keyString + ")", false,
+		assertEquals("testGetNonExisting1(" + keyString + ")", null, vinside); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("testGetNonExisting1(" + keyString + ")", false, map.values().contains(value)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		assertEquals("testGetNonExisting1(" + keyString + ")", false, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				map.keys().stream().anyMatch(k -> Arrays.equals(k, keyString.toCharArray())));
 	}
 
@@ -84,39 +84,39 @@ public class CharArrayMapperTest extends TestCase {
 	void testIntList(CharArrayMapper<String> map) {
 		assertEquals("empty", Collections.emptyList(), map.keys());
 		int N = 100;
-		for (int i = 0; i < N; i++) {
-			testPutNew(map, "" + i);
-			testPutExisting(map, "" + i);
-			testGetExisting(map, "" + i);
+		for (int i = 0; i < N; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			testPutNew(map, "" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			testPutExisting(map, "" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			testGetExisting(map, "" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (int i = 0; i < N; i++) {
-			testGetExisting(map, "" + i);
+		for (int i = 0; i < N; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			testGetExisting(map, "" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (int i = N + 1; i < N * 2; i++) {
-			testGetNonExisting(map, "" + i);
+		for (int i = N + 1; i < N * 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			testGetNonExisting(map, "" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	void testColliding(CharArrayMapper<String> map) {
+	void testColliding(CharArrayMapper<String> map) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertEquals("empty", Collections.emptyList(), map.keys());
-		for (int[] collision : hashCollisions) {
-			int h1 = Arrays.hashCode(("" + collision[0]).toCharArray());
-			int h2 = Arrays.hashCode(("" + collision[1]).toCharArray());
-			assertEquals("collision(" + collision[0] + "<->" + collision[1] + ")", h1, h2);
-			for (int i : collision) {
-				testPutNew(map, "" + i);
-				testPutExisting(map, "" + i);
-				testGetExisting(map, "" + i);
+		for (int[] collision : hashCollisions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			int h1 = Arrays.hashCode(("" + collision[0]).toCharArray()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			int h2 = Arrays.hashCode(("" + collision[1]).toCharArray()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			assertEquals("collision(" + collision[0] + "<->" + collision[1] + ")", h1, h2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			for (int i : collision) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				testPutNew(map, "" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				testPutExisting(map, "" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				testGetExisting(map, "" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
-		for (int[] collision : hashCollisions) {
-			for (int i : collision) {
-				testGetExisting(map, "" + i);
+		for (int[] collision : hashCollisions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int i : collision) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				testGetExisting(map, "" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		int N = 100;
-		for (int i = N + 1; i < N * 2; i++) {
-			testGetNonExisting(map, "" + i);
+		for (int i = N + 1; i < N * 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			testGetNonExisting(map, "" + i); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -248,14 +248,14 @@ public class CharArrayMapperTest extends TestCase {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		int N = 100000000;
-		HashMap<Integer, List<Integer>> hashCollisions_ = new HashMap<>();
-		for (int i = 0; i < N; i++) {
-			char[] key = ("" + i).toCharArray();
+		HashMap<Integer, List<Integer>> hashCollisions_ = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
+		for (int i = 0; i < N; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			char[] key = ("" + i).toCharArray(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			Integer hashCode = Arrays.hashCode(key);
-			List<Integer> l = hashCollisions_.computeIfAbsent(hashCode, h -> new ArrayList<>());
+			List<Integer> l = hashCollisions_.computeIfAbsent(hashCode, h -> new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 			l.add(i);
 			if (l.size() > 1) {
-				System.out.println(l.size() + " collissions:" + hashCode + "->" + l);
+				System.out.println(l.size() + " collissions:" + hashCode + "->" + l); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}

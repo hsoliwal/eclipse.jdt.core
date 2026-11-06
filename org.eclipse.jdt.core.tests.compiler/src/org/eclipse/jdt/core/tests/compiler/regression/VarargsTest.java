@@ -60,7 +60,7 @@ public class VarargsTest extends AbstractComparableTest {
 	protected String intersection(String... types) {
 		return String.join(" & ", types);
 	}
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -127,7 +127,7 @@ public class VarargsTest extends AbstractComparableTest {
 			null);
 	}
 
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -178,7 +178,7 @@ public class VarargsTest extends AbstractComparableTest {
 			null);
 	}
 
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -236,7 +236,7 @@ public class VarargsTest extends AbstractComparableTest {
 			null);
 	}
 
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -301,7 +301,7 @@ public class VarargsTest extends AbstractComparableTest {
 			null);
 	}
 
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -347,7 +347,7 @@ public class VarargsTest extends AbstractComparableTest {
 			null);
 	}
 
-	public void test006() { // 70056
+	public void test006() { // 70056 //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -367,7 +367,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"");
 	}
 
-	public void test007() { // array dimension test compatibility with Object
+	public void test007() { // array dimension test compatibility with Object //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -514,7 +514,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 
-	public void test008() {
+	public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -576,7 +576,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -627,7 +627,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"<212>");
 	}
 
-	public void test010() {
+	public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// according to spec this should find count(Object) since it should consider count(Object...) as count(Object[]) until all fixed arity methods are ruled out
 		this.runConformTest(
 			new String[] {
@@ -708,7 +708,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=83379
-	public void test011() {
+	public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			true,
 			new String[] {
@@ -777,7 +777,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"1");
 	}
 
-	public void test014() { // check behaviour of Scope.mostSpecificMethodBinding()
+	public void test014() { // check behaviour of Scope.mostSpecificMethodBinding() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -796,7 +796,7 @@ public class VarargsTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test015() { // check behaviour of Scope.mostSpecificMethodBinding()
+	public void test015() { // check behaviour of Scope.mostSpecificMethodBinding() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -820,7 +820,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=383780
-	public void test015_tolerate() throws Exception {
+	public void test015_tolerate() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		try {
 			System.setProperty("tolerateIllegalAmbiguousVarargsInvocation", "true");
@@ -849,7 +849,7 @@ public class VarargsTest extends AbstractComparableTest {
 		}
 	}
 
-	public void test016() { // check behaviour of Scope.mostSpecificMethodBinding()
+	public void test016() { // check behaviour of Scope.mostSpecificMethodBinding() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest( // but this call is ambiguous
 			new String[] {
 				"X.java",
@@ -878,7 +878,7 @@ public class VarargsTest extends AbstractComparableTest {
 		);
 	}
 
-	public void test017() { // check behaviour of Scope.mostSpecificMethodBinding()
+	public void test017() { // check behaviour of Scope.mostSpecificMethodBinding() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -932,7 +932,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=81590 - variation
-	public void test019() {
+	public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -954,7 +954,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=81590 - variation
-	public void test020() {
+	public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -994,7 +994,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=83032
-	public void test022() {
+	public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1078,7 +1078,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=87318
-	public void test026() {
+	public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1103,7 +1103,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=87900
-	public void test027() { // ensure AccVarargs does not collide
+	public void test027() { // ensure AccVarargs does not collide //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1136,7 +1136,7 @@ public class VarargsTest extends AbstractComparableTest {
 		);
 	}
 	// check no offending unnecessary varargs cast gets diagnosed
-	public void test028() {
+	public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1167,7 +1167,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=91467
-	public void test029() {
+	public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1206,7 +1206,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=99260
-	public void test030() {
+	public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1233,7 +1233,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"class java.awt.Point");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=102181
-	public void test031() {
+	public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1264,7 +1264,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"SUCCESS");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=102278
-	public void test032() {
+	public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"Functor.java",
@@ -1286,7 +1286,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"1");
 	}
  	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=102631
-	public void test033() {
+	public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			false /* skipJavac */,
 			null,
@@ -1355,7 +1355,7 @@ public class VarargsTest extends AbstractComparableTest {
 		);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=383780
-	public void test033_tolerate() {
+	public void test033_tolerate() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		try {
 			System.setProperty("tolerateIllegalAmbiguousVarargsInvocation", "true");
@@ -1441,7 +1441,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=110783
-	public void test037() {
+	public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"V.java",
@@ -1496,7 +1496,7 @@ public class VarargsTest extends AbstractComparableTest {
 			);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=105801
-	public void test038() {
+	public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1533,7 +1533,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=105801 - variation
-	public void test039() {
+	public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1562,7 +1562,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"[[1, 2]] (argument wrapped)SUCCESS");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=105801 - variation
-	public void test040() {
+	public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1584,7 +1584,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"[3, 4][5, 6]null");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=105801 - variation
-	public void test041() {
+	public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1622,7 +1622,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=105801 - variation
-	public void test042() {
+	public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1646,7 +1646,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"[[1, 2]] (argument wrapped)[[3, 4]] (argument wrapped)[[5, 6]] (argument wrapped)[null] (argument wrapped)");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=105801 - variation
-	public void test043() {
+	public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1681,7 +1681,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=105801 - variation
-	public void test044() {
+	public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1708,7 +1708,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"[3, 4][5, 6]nullSUCCESS");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=105801 - variation
-	public void test045() {
+	public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1747,7 +1747,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=133918
-	public void test046() {
+	public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1773,7 +1773,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=140168
-	public void test047() {
+	public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1809,7 +1809,7 @@ public class VarargsTest extends AbstractComparableTest {
 		);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=139931
-	public void test048() {
+	public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1846,7 +1846,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=141704
-	public void test049() {
+	public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"Y.java",
@@ -1875,7 +1875,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"121212");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=141800
-	public void test050() {
+	public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1914,7 +1914,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"12");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=159607
-	public void test052() {
+	public void test052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1952,7 +1952,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=159607 - variation
-	public void test053() {
+	public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1989,7 +1989,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"Zork cannot be resolved to a type\n" +
 				"----------\n");
 	}
-	public void test054() {
+	public void test054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2035,7 +2035,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"Type Integer[] of the last argument to method varargs(Object...) doesn't exactly match the vararg parameter type. Cast to Object[] to confirm the non-varargs invocation, or pass individual arguments of type Object for a varargs invocation.\n" +
 				"----------\n");
 	}
-	public void test055() {
+	public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -2053,7 +2053,7 @@ public class VarargsTest extends AbstractComparableTest {
 				},
 				"null length array: 0/[null] length array: 1/empty length array: 0/[a,b,c] length array: 3");
 	}
-	public void test056() {
+	public void test056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2083,7 +2083,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=163889
-	public void test057() {
+	public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2114,7 +2114,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=162171
-	public void test058() {
+	public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2159,7 +2159,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=170765
-	public void test059() {
+	public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2182,7 +2182,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"----------\n");
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=186181
-	public void test060() {
+	public void test060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -2207,7 +2207,7 @@ public class VarargsTest extends AbstractComparableTest {
 				null);
 
 		// make sure that this file contains the varargs attribute
-		IClassFileReader reader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL);
+		IClassFileReader reader = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "X.class", IClassFileReader.ALL); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IMethodInfo[] methodInfos = reader.getMethodInfos();
 		assertEquals("Wrong size", 2, methodInfos.length);
 		IMethodInfo methodInfo = null;
@@ -2244,7 +2244,7 @@ public class VarargsTest extends AbstractComparableTest {
 				null);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=223427
-	public void test061() {
+	public void test061() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String expectedOutput =
 				"----------\n" +
 				"1. WARNING in X.java (at line 5)\n" +
@@ -2279,7 +2279,7 @@ public class VarargsTest extends AbstractComparableTest {
 				expectedOutput);
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=328247
-	public void test062() throws Exception {
+	public void test062() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2304,10 +2304,10 @@ public class VarargsTest extends AbstractComparableTest {
 			"  // Method descriptor #10 (LX;Ljava/lang/Integer;[Ljava/lang/String;Ljava/lang/Float;)V\n" +
 			"  // Stack: 3, Locals: 5\n" +
 			"  X$1(X arg0, java.lang.Integer $anonymous0, java.lang.String... $anonymous1, java.lang.Float arg3);\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X$1.class", "X$1", expectedOutput);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X$1.class", "X$1", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	//safe varargs support
-	public void test063() throws Exception {
+	public void test063() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"Y.java",
@@ -2341,7 +2341,7 @@ public class VarargsTest extends AbstractComparableTest {
 			options,
 			null);
 	}
-	public void test064() throws Exception {
+	public void test064() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_UNCHECKED_TYPE_OPERATION, JavaCore.ERROR);
 		this.runConformTest(
@@ -2366,7 +2366,7 @@ public class VarargsTest extends AbstractComparableTest {
 			options,
 			null);
 	}
-	public void test065() throws Exception {
+	public void test065() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_UNCHECKED_TYPE_OPERATION, JavaCore.ERROR);
 		this.runConformTest(
@@ -2392,7 +2392,7 @@ public class VarargsTest extends AbstractComparableTest {
 			null);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=337093
-	public void test066() {
+	public void test066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_ReportMissingOverrideAnnotationForInterfaceMethodImplementation, CompilerOptions.DISABLED);
 		this.runNegativeTest(
@@ -2435,7 +2435,7 @@ public class VarargsTest extends AbstractComparableTest {
 				options);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=337799
-	public void test067() throws Exception {
+	public void test067() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_UNCHECKED_TYPE_OPERATION, JavaCore.ERROR);
 		this.runNegativeTest(
@@ -2494,7 +2494,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=337799
-	public void test067b() throws Exception {
+	public void test067b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_UNCHECKED_TYPE_OPERATION, JavaCore.ERROR);
 		this.runNegativeTest(
@@ -2518,7 +2518,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=337795 (make sure there is no warning if vararg parameter is reifiable)
-	public void test068() throws Exception {
+	public void test068() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_UNCHECKED_TYPE_OPERATION, JavaCore.ERROR);
 		this.runNegativeTest(
@@ -2546,7 +2546,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=337795 (make sure there is a warning if vararg parameter is not reifiable)
-	public void test068b() throws Exception {
+	public void test068b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_UNCHECKED_TYPE_OPERATION, JavaCore.ERROR);
 		this.runNegativeTest(
@@ -2589,7 +2589,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=337795
-	public void test068c() throws Exception {
+	public void test068c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_UNCHECKED_TYPE_OPERATION, JavaCore.ERROR);
 		this.runNegativeTest(
@@ -2626,7 +2626,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=337795
-	public void test068d() throws Exception {
+	public void test068d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_UNCHECKED_TYPE_OPERATION, JavaCore.ERROR);
 
@@ -2651,7 +2651,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"   }\n" +
 				"}\n"
 			},
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. WARNING in X.java (at line 7)\n" +
 			"	public static <T> List<T> asList2(T ... a) {\n" +
 			"	                                        ^\n" +
@@ -2664,7 +2664,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=337795 (test effect of SuppressWarnings (should suppress at declaration site, but not at call site)
-	public void test068e() throws Exception {
+	public void test068e() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		options.put(JavaCore.COMPILER_PB_UNCHECKED_TYPE_OPERATION, JavaCore.ERROR);
 		String[] bounds = new String[] { "Object","Serializable","Comparable<?>"};
@@ -2689,7 +2689,7 @@ public class VarargsTest extends AbstractComparableTest {
 				"   }\n" +
 				"}\n"
 			},
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. WARNING in X.java (at line 14)\n" +
 			"	classes = X.asList2(String.class, Boolean.class);\n" +
 			"	          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -2697,7 +2697,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=346042
-	public void test069() throws Exception {
+	public void test069() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/B.java",
@@ -2743,7 +2743,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=383780
-	public void test070_tolerate() throws Exception {
+	public void test070_tolerate() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		try {
 			System.setProperty("tolerateIllegalAmbiguousVarargsInvocation", "true");
@@ -2768,7 +2768,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=383780
-	public void test070_tolerate2() throws Exception {
+	public void test070_tolerate2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		try {
 			System.setProperty("tolerateIllegalAmbiguousVarargsInvocation", "true");
@@ -2817,7 +2817,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"Done");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=383780
-	public void test070a_tolerate() throws Exception {
+	public void test070a_tolerate() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map options = getCompilerOptions();
 		try {
 			System.setProperty("tolerateIllegalAmbiguousVarargsInvocation", "true");
@@ -2856,7 +2856,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=383780
-	public void test070b_tolerate() throws Exception {
+	public void test070b_tolerate() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] src = new String[] {
 				"X.java",
 				"public class X {\n" +
@@ -2878,7 +2878,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=346038
-	public void test070c() { // check behaviour of Scope.mostSpecificMethodBinding()
+	public void test070c() { // check behaviour of Scope.mostSpecificMethodBinding() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2910,7 +2910,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=346038
-	public void test070d() { // check behaviour of Scope.mostSpecificMethodBinding()
+	public void test070d() { // check behaviour of Scope.mostSpecificMethodBinding() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -2939,7 +2939,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=346039
-	public void test071() { // check behaviour of Scope.mostSpecificMethodBinding()
+	public void test071() { // check behaviour of Scope.mostSpecificMethodBinding() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2962,7 +2962,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"1");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=383780
-	public void test071_tolerate() throws Exception {
+	public void test071_tolerate() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] src =
 			new String[] {
 				"X.java",
@@ -2992,7 +2992,7 @@ public class VarargsTest extends AbstractComparableTest {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=364672
-	public void test072() {
+	public void test072() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3012,7 +3012,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=364672
-	public void test073() {
+	public void test073() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -3040,7 +3040,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=364672
-	public void test074() throws Exception {
+	public void test074() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"p1/B.java",
@@ -3068,7 +3068,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=382469
-	public void testBug382469() throws Exception {
+	public void testBug382469() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] src =
 			new String[] {
 				"X.java",
@@ -3105,7 +3105,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=386361
-	public void testBug386361() throws Exception {
+	public void testBug386361() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] src =
 			new String[] {
 				"X.java",
@@ -3136,7 +3136,7 @@ public class VarargsTest extends AbstractComparableTest {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426678, [1.8][compiler] Another issue with vararg type element accessibility
-	public void test426678() {
+	public void test426678() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -3164,7 +3164,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"----------\n"); // check and adjust,
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=436474, [codegen]Problem with varargs and List.toString
-	public void test436474() {
+	public void test436474() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"Scratch.java",
@@ -3185,7 +3185,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=437973, [1.8][compiler] Missing implementation of JLS 15.12.2.5 Third Bullet - Part 2
-	public void test437973() {
+	public void test437973() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -3275,7 +3275,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=437973, [1.8][compiler] Missing implementation of JLS 15.12.2.5 Third Bullet - Part 2
-	public void test437973a() {
+	public void test437973a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 		new String[] {
 			"X.java",
@@ -3309,7 +3309,7 @@ public class VarargsTest extends AbstractComparableTest {
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=437973, [1.8][compiler] Missing implementation of JLS 15.12.2.5 Third Bullet - Part 2
 	//The parameter of one method is not a subtype of the other.
-	public void test437973b() {
+	public void test437973b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3333,7 +3333,7 @@ public class VarargsTest extends AbstractComparableTest {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=437973, [1.8][compiler] Missing implementation of JLS 15.12.2.5 Third Bullet - Part 2
 	// Lambda functions
-	public void test437973c() {
+	public void test437973c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3357,7 +3357,7 @@ public class VarargsTest extends AbstractComparableTest {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=437973, [1.8][compiler] Missing implementation of JLS 15.12.2.5 Third Bullet - Part 2
 	// Original Test Case - Comment 0
-	public void test437973d() {
+	public void test437973d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 		new String[] {
 			"Junk16.java",
@@ -3399,7 +3399,7 @@ public class VarargsTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=470370, [1.8] Wrong varargs behaviour causes ArrayStoreException
-		public void test470370() {
+		public void test470370() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			runConformTest(
 			new String[] {
 				"TestVarargs.java",
@@ -3420,7 +3420,7 @@ public class VarargsTest extends AbstractComparableTest {
 			"");
 		}
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=488658
-		public void testBug488658_001() throws Exception {
+		public void testBug488658_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			if (this.complianceLevel < ClassFileConstants.JDK9) return;
 			this.runConformTest(
 				new String[] {

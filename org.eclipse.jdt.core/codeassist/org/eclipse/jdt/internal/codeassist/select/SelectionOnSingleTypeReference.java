@@ -62,7 +62,7 @@ protected TypeBinding getTypeBinding(Scope scope) {
 @Override
 public StringBuilder printExpression(int indent, StringBuilder output) {
 
-	return output.append("<SelectOnType:").append(this.token).append('>');//$NON-NLS-1$
+	return output.append("<SelectOnType:").append(this.token).append('>');//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 @Override
 public TypeBinding resolveTypeEnclosing(BlockScope scope, ReferenceBinding enclosingType) {

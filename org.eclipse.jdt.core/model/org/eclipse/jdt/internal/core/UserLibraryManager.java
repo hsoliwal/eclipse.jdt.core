@@ -34,7 +34,7 @@ import org.osgi.service.prefs.BackingStoreException;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class UserLibraryManager {
 
-	public final static String CP_USERLIBRARY_PREFERENCES_PREFIX = JavaCore.PLUGIN_ID+".userLibrary."; //$NON-NLS-1$
+	public final static String CP_USERLIBRARY_PREFERENCES_PREFIX = JavaCore.PLUGIN_ID+".userLibrary."; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	private final Map<String, UserLibrary> userLibraries = new ConcurrentHashMap<>();
 
@@ -54,7 +54,7 @@ public class UserLibraryManager {
 		return set.toArray(String[]::new);
 	}
 
-	public UserLibraryManager() {
+	public UserLibraryManager() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IEclipsePreferences instancePreferences = JavaModelManager.getJavaModelManager().getInstancePreferences();
 		String[] propertyNames;
 		try {
@@ -65,7 +65,7 @@ public class UserLibraryManager {
 		}
 
 		boolean preferencesNeedFlush = false;
-		for (String propertyName : propertyNames) {
+		for (String propertyName : propertyNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (propertyName.startsWith(CP_USERLIBRARY_PREFERENCES_PREFIX)) {
 				String propertyValue = instancePreferences.get(propertyName, null);
 				if (propertyValue != null) {
@@ -75,7 +75,7 @@ public class UserLibraryManager {
 					try {
 						library = UserLibrary.createFromString(reader);
 					} catch (IOException | ClasspathEntry.AssertionFailedException e) {
-						Util.log(e, "Exception while initializing user library " + libName); //$NON-NLS-1$
+						Util.log(e, "Exception while initializing user library " + libName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						instancePreferences.remove(propertyName);
 						preferencesNeedFlush = true;
 						continue;
@@ -93,15 +93,15 @@ public class UserLibraryManager {
 		}
 	}
 
-	public void updateUserLibrary(String libName, String encodedUserLibrary) {
+	public void updateUserLibrary(String libName, String encodedUserLibrary) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			// find affected projects
 			IPath containerPath = new Path(JavaCore.USER_LIBRARY_CONTAINER_ID).append(libName);
 			IJavaProject[] allJavaProjects = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot()).getJavaProjects();
-			ArrayList affectedProjects = new ArrayList();
-			for (IJavaProject javaProject : allJavaProjects) {
+			ArrayList affectedProjects = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+			for (IJavaProject javaProject : allJavaProjects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry[] entries= javaProject.getRawClasspath();
-				for (IClasspathEntry entry : entries) {
+				for (IClasspathEntry entry : entries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (entry.getEntryKind() == IClasspathEntry.CPE_CONTAINER) {
 						if (containerPath.equals(entry.getPath())) {
 							affectedProjects.add(javaProject);
@@ -132,15 +132,15 @@ public class UserLibraryManager {
 			IClasspathContainer[] containers = new IClasspathContainer[length];
 			if (userLibrary != null) {
 				UserLibraryClasspathContainer container = new UserLibraryClasspathContainer(libName);
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					containers[i] = container;
 				}
 			}
 			JavaCore.setClasspathContainer(containerPath, projects, containers, null);
 		} catch (JavaModelException e) {
-			Util.log(e, "Exception while setting user library '"+ libName +"'."); //$NON-NLS-1$ //$NON-NLS-2$
+			Util.log(e, "Exception while setting user library '"+ libName +"'."); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} catch (IOException | ClasspathEntry.AssertionFailedException ase) {
-			Util.log(ase, "Exception while decoding user library '"+ libName +"'."); //$NON-NLS-1$ //$NON-NLS-2$
+			Util.log(ase, "Exception while decoding user library '"+ libName +"'."); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 	}
@@ -148,32 +148,32 @@ public class UserLibraryManager {
 	public void removeUserLibrary(String libName)  {
 		synchronized (this.userLibraries) {
 			IEclipsePreferences instancePreferences = JavaModelManager.getJavaModelManager().getInstancePreferences();
-			String propertyName = CP_USERLIBRARY_PREFERENCES_PREFIX+libName;
+			String propertyName = CP_USERLIBRARY_PREFERENCES_PREFIX+libName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			instancePreferences.remove(propertyName);
 			try {
 				instancePreferences.flush();
 			} catch (BackingStoreException e) {
-				Util.log(e, "Exception while removing user library " + libName); //$NON-NLS-1$
+				Util.log(e, "Exception while removing user library " + libName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// this.userLibraries was updated during the PreferenceChangeEvent (see preferenceChange(...))
 	}
 
-	public void setUserLibrary(String libName, IClasspathEntry[] entries, boolean isSystemLibrary)  {
+	public void setUserLibrary(String libName, IClasspathEntry[] entries, boolean isSystemLibrary)  { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		synchronized (this.userLibraries) {
 			IEclipsePreferences instancePreferences = JavaModelManager.getJavaModelManager().getInstancePreferences();
-			String propertyName = CP_USERLIBRARY_PREFERENCES_PREFIX+libName;
+			String propertyName = CP_USERLIBRARY_PREFERENCES_PREFIX+libName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			try {
 				String propertyValue = UserLibrary.serialize(entries, isSystemLibrary);
 				instancePreferences.put(propertyName, propertyValue); // sends out a PreferenceChangeEvent (see preferenceChange(...))
 			} catch (IOException e) {
-				Util.log(e, "Exception while serializing user library " + libName); //$NON-NLS-1$
+				Util.log(e, "Exception while serializing user library " + libName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 			try {
 				instancePreferences.flush();
 			} catch (BackingStoreException e) {
-				Util.log(e, "Exception while saving user library " + libName); //$NON-NLS-1$
+				Util.log(e, "Exception while saving user library " + libName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		// this.userLibraries was updated during the PreferenceChangeEvent (see preferenceChange(...))

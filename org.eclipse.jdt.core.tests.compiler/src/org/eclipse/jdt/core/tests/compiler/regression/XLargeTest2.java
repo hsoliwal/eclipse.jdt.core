@@ -37,12 +37,12 @@ public class XLargeTest2 extends AbstractRegressionTest {
 	 * Check if we hit the 64Kb limit on generated table switch method code in
 	 * class files. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=542084
 	 */
-	public void testBug542084_error() {
+	public void testBug542084_error() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		int enumsCount = getEnumsCountForError();
-		StringBuilder lotOfEnums = new StringBuilder(enumsCount * 7);
-		for (int i = 0; i < enumsCount; i++) {
-			lotOfEnums.append("A").append(i).append(", ");
+		StringBuilder lotOfEnums = new StringBuilder(enumsCount * 7); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < enumsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			lotOfEnums.append("A").append(i).append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		String expectedCompilerLog;
@@ -69,7 +69,7 @@ public class XLargeTest2 extends AbstractRegressionTest {
 		runNegativeTest(
 				new String[] {
 					"X.java",
-					"public class X {\n" +
+					"public class X {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"    enum Y {\n" +
 						 lotOfEnums.toString() +
 					"    }\n" +
@@ -96,7 +96,7 @@ public class XLargeTest2 extends AbstractRegressionTest {
 					"    }\n" +
 					"}"
 				},
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				expectedCompilerLog +
 				"----------\n");
 	}
@@ -105,11 +105,11 @@ public class XLargeTest2 extends AbstractRegressionTest {
 	 * Check if we don't hit the 64Kb limit on generated table switch method code in
 	 * class files. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=542084
 	 */
-	public void testBug542084_no_error() {
+	public void testBug542084_no_error() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int enumsCount = getEnumsCountForSuccess();
-		StringBuilder lotOfEnums = new StringBuilder(enumsCount * 7);
-		for (int i = 0; i < enumsCount; i++) {
-			lotOfEnums.append("A").append(i).append(", ");
+		StringBuilder lotOfEnums = new StringBuilder(enumsCount * 7); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < enumsCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			lotOfEnums.append("A").append(i).append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		// Javac can't compile such big enums
@@ -118,7 +118,7 @@ public class XLargeTest2 extends AbstractRegressionTest {
 				JavacTestOptions.SKIP,
 				new String[] {
 						"X.java",
-						"public class X {\n" +
+						"public class X {\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								"    enum Y {\n" +
 								lotOfEnums.toString() +
 								"    }\n" +
@@ -158,11 +158,11 @@ public class XLargeTest2 extends AbstractRegressionTest {
 		return 4300;
 	}
 
-	public void testBug550063() {
+	public void testBug550063() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"p001/bip.java",
-				"package p001;\n" +
+				"package p001;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"\n" +
 				getManyInterfaceDeclarations() +
 				"\n" +
@@ -178,11 +178,11 @@ public class XLargeTest2 extends AbstractRegressionTest {
 			});
 	}
 
-	public void testBug550063_b() {
+	public void testBug550063_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"p001/bip.java",
-				"package p001;\n" +
+				"package p001;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"\n" +
 				getManyInterfaceDeclarations() +
 				"\n" +
@@ -205,7 +205,7 @@ public class XLargeTest2 extends AbstractRegressionTest {
 			"----------\n");
 	}
 
-	private String getManyInterfaceDeclarations() {
+	private String getManyInterfaceDeclarations() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return 	"interface brj {}\n" +
 				"interface brk {}\n" +
 				"interface cem {}\n" +
@@ -404,16 +404,16 @@ public class XLargeTest2 extends AbstractRegressionTest {
 				"interface gxc {}\n";
 	}
 	public void testBug550480() {
-		StringBuilder source = new StringBuilder();
-		source.append("package p;\n");
+		StringBuilder source = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		source.append("package p;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String[] names = new String[571];
-		for (int i = 0; i < 571; i++) {
-			names[i] = "I"+i;
-			source.append("interface ").append(names[i]).append(" {}\n");
+		for (int i = 0; i < 571; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			names[i] = "I"+i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			source.append("interface ").append(names[i]).append(" {}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		source.append("public abstract class hft implements ");
-		source.append(String.join(", ", names));
-		source.append("\n{\n}\n");
+		source.append("public abstract class hft implements "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		source.append(String.join(", ", names)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		source.append("\n{\n}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformTest(
 			new String[] {
 				"p/hft.java",
@@ -425,7 +425,7 @@ public class XLargeTest2 extends AbstractRegressionTest {
 	 * Test that using many generic type arguments doesn't result in a compiler hang.
 	 * See: https://github.com/eclipse-jdt/eclipse.jdt.core/issues/177
 	 */
-	public void testManyGenericsHangGh177() {
+	public void testManyGenericsHangGh177() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"C0.java",

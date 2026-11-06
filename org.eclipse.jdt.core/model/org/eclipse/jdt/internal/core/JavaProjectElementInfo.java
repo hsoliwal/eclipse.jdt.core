@@ -85,7 +85,7 @@ class JavaProjectElementInfo extends OpenableElementInfo {
 	 * (e.g. for {"a", "b", "c"}, adds {"a", "b", "c"}, {"a", "b"}, and {"a"})
 	 */
 	static void addSuperPackageNames(String[] pkgName, HashtableOfArrayToObject packageFragments) {
-		for (int i = pkgName.length-1; i > 0; i--) {
+		for (int i = pkgName.length-1; i > 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (packageFragments.getKey(pkgName, i) == null) {
 				System.arraycopy(pkgName, 0, pkgName = new String[i], 0, i);
 				packageFragments.put(pkgName, NO_ROOTS);
@@ -103,7 +103,7 @@ class JavaProjectElementInfo extends OpenableElementInfo {
 	/**
 	 * Compute the non-java resources contained in this java project.
 	 */
-	private Object[] computeNonJavaResources(JavaProject project) {
+	private Object[] computeNonJavaResources(JavaProject project) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// determine if src == project and/or if bin == project
 		IPath projectPath = project.getProject().getFullPath();
@@ -135,7 +135,7 @@ class JavaProjectElementInfo extends OpenableElementInfo {
 				String sourceLevel = project.getOption(JavaCore.COMPILER_SOURCE, true);
 				String complianceLevel = project.getOption(JavaCore.COMPILER_COMPLIANCE, true);
 				IClasspathEntry[] classpath = project.getResolvedClasspath();
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IResource res = members[i];
 					switch (res.getType()) {
 						case IResource.FILE :
@@ -206,10 +206,10 @@ class JavaProjectElementInfo extends OpenableElementInfo {
 		return resources;
 	}
 
-	ProjectCache getProjectCache(JavaProject project, boolean excludeTestCode) {
+	ProjectCache getProjectCache(JavaProject project, boolean excludeTestCode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProjectCache cache = excludeTestCode ? this.mainProjectCache : this.projectCache;
 		if (cache != null) {
-			for (IPackageFragmentRoot root : cache.allPkgFragmentRootsCache) {
+			for (IPackageFragmentRoot root : cache.allPkgFragmentRootsCache) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaProject rootProject = root.getJavaProject();
 				if (rootProject != project && !rootProject.exists()) {
 					cache = null; // force rebuilding
@@ -219,7 +219,7 @@ class JavaProjectElementInfo extends OpenableElementInfo {
 		}
 		if (cache == null) {
 			IPackageFragmentRoot[] roots;
-			Map<IPackageFragmentRoot, IClasspathEntry> reverseMap = new HashMap<>(3);
+			Map<IPackageFragmentRoot, IClasspathEntry> reverseMap = new HashMap<>(3); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			try {
 				roots = project.getAllPackageFragmentRoots(reverseMap, excludeTestCode);
 			} catch (JavaModelException e) {
@@ -229,10 +229,10 @@ class JavaProjectElementInfo extends OpenableElementInfo {
 			}
 
 			Map<IPath, RootInfo> rootInfos = JavaModelManager.getJavaModelManager().deltaState.roots;
-			HashMap<IPackageFragmentRoot, HashSetOfArray> pkgFragmentsCaches = new HashMap<>();
+			HashMap<IPackageFragmentRoot, HashSetOfArray> pkgFragmentsCaches = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			int length = roots.length;
 			JavaModelManager  manager = JavaModelManager.getJavaModelManager();
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPackageFragmentRoot root = roots[i];
 				DeltaProcessor.RootInfo rootInfo = rootInfos.get(root.getPath());
 				if (rootInfo == null || rootInfo.project.equals(project)) {
@@ -280,7 +280,7 @@ class JavaProjectElementInfo extends OpenableElementInfo {
 			// root doesn't exist: ignore
 			return;
 		}
-		for (IJavaElement frag : frags) {
+		for (IJavaElement frag : frags) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (frag instanceof PackageFragment) fragmentsCache.add(((PackageFragment) frag).names);
 		}
 	}
@@ -290,7 +290,7 @@ class JavaProjectElementInfo extends OpenableElementInfo {
 	 */
 	private boolean isClasspathEntryOrOutputLocation(IPath path, IPath location, IClasspathEntry[] resolvedClasspath, IPath projectOutput) {
 		if (projectOutput.equals(path)) return true;
-		for (IClasspathEntry entry : resolvedClasspath) {
+		for (IClasspathEntry entry : resolvedClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath entryPath;
 			if ((entryPath = entry.getPath()).equals(path) || entryPath.equals(location)) {
 				return true;
@@ -308,7 +308,7 @@ class JavaProjectElementInfo extends OpenableElementInfo {
 	 * The given project is assumed to be the handle of this info.
 	 * This name lookup first looks in the given working copies.
 	 */
-	NameLookup newNameLookup(JavaProject project, ICompilationUnit[] workingCopies, boolean excludeTestCode) {
+	NameLookup newNameLookup(JavaProject project, ICompilationUnit[] workingCopies, boolean excludeTestCode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProjectCache cache = getProjectCache(project, excludeTestCode);
 		HashtableOfArrayToObject allPkgFragmentsCache = cache.allPkgFragmentsCache;
 		if (allPkgFragmentsCache == null) {
@@ -316,7 +316,7 @@ class JavaProjectElementInfo extends OpenableElementInfo {
 			IPackageFragmentRoot[] allRoots = cache.allPkgFragmentRootsCache;
 			int length = allRoots.length;
 			allPkgFragmentsCache = new HashtableOfArrayToObject();
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPackageFragmentRoot root = allRoots[i];
 				DeltaProcessor.RootInfo rootInfo = rootInfos.get(root.getPath());
 				JavaProject rootProject = rootInfo == null ? project : rootInfo.project;
@@ -340,7 +340,7 @@ class JavaProjectElementInfo extends OpenableElementInfo {
 					initializePackageNames(root, fragmentsCache);
 				}
 				Object[][] set = fragmentsCache.set;
-				for (Object[] element : set) {
+				for (Object[] element : set) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String[] pkgName = (String[]) element;
 					if (pkgName == null)
 						continue;

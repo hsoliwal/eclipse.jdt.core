@@ -54,7 +54,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 
 	void setUnit(String name, String source) throws JavaModelException {
 		this.workingCopies = new ICompilationUnit[1];
-		this.workingCopies[0] = getWorkingCopy("/Tests/"+name, source);
+		this.workingCopies[0] = getWorkingCopy("/Tests/"+name, source); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	void assertElementEquals(String message, String expected) {
@@ -157,7 +157,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test07() throws JavaModelException {
+	public void test07() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	/**\n" +
@@ -192,7 +192,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test08() throws JavaModelException {
+	public void test08() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	/**\n" +
@@ -227,7 +227,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test09() throws JavaModelException {
+	public void test09() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("test/junit/Test.java",
 			"package test.junit;\n" +
 			"public class Test {\n" +
@@ -268,7 +268,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test10() throws JavaModelException {
+	public void test10() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("test/junit/Test.java",
 			"package test.junit;\n" +
 			"public class Test {\n" +
@@ -308,7 +308,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test11() throws JavaModelException {
+	public void test11() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	/**\n" +
@@ -328,7 +328,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test12() throws JavaModelException {
+	public void test12() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	/**\n" +
@@ -348,7 +348,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test13() throws JavaModelException {
+	public void test13() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	/**\n" +
@@ -368,7 +368,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test14() throws JavaModelException {
+	public void test14() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/**\n" +
 			" * Javadoc of {@link Test}\n" +
@@ -412,7 +412,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test15() throws JavaModelException {
+	public void test15() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/**\n" +
 			" * Javadoc of {@link Test}\n" +
@@ -472,7 +472,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test16() throws JavaModelException {
+	public void test16() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/**\n" +
 			" * Javadoc of {@link Test}\n" +
@@ -499,7 +499,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test17() throws JavaModelException {
+	public void test17() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/**\n" +
 			" * @see Test.Field#foo\n" +
@@ -546,7 +546,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test18() throws JavaModelException {
+	public void test18() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/**\n" +
 			" * @see Test.Method#foo()\n" +
@@ -593,7 +593,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test19() throws JavaModelException {
+	public void test19() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"/**\n" +
 			" * @see Test.Other\n" +
@@ -625,7 +625,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test20() throws JavaModelException {
+	public void test20() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -659,7 +659,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test21() throws JavaModelException {
+	public void test21() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -693,7 +693,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test22() throws JavaModelException {
+	public void test22() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -716,7 +716,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test23() throws JavaModelException {
+	public void test23() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -752,7 +752,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test24() throws JavaModelException {
+	public void test24() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -788,7 +788,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test25() throws JavaModelException {
+	public void test25() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	void bar() {\n" +
@@ -813,7 +813,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 
-	public void test26() throws JavaModelException {
+	public void test26() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("Test.java",
 			"public class Test {\n" +
 			"	static int field;\n" +
@@ -840,7 +840,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 	 * Bug 86380: [1.5][search][annot] Add support to find references inside annotations on a package declaration
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=86380"
 	 */
-	public void testBug86380() throws CoreException {
+	public void testBug86380() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[2];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b86380/package-info.java",
@@ -884,7 +884,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 	 * Bug 90266: [select] Code select returns null when there's a string including a slash on same line
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=90266"
 	 */
-	public void testBug90266_String() throws JavaModelException {
+	public void testBug90266_String() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("b90266/Test.java",
 			"package b90266;\n" +
 			"public class Test {\n" +
@@ -902,7 +902,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug90266_Char() throws JavaModelException {
+	public void testBug90266_Char() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("b90266/Test.java",
 			"package b90266;\n" +
 			"public class Test {\n" +
@@ -949,7 +949,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 	 * test Ensure that no exception is thrown while selecting method in javadoc comment
 	 * @see "http://bugs.eclipse.org/bugs/show_bug.cgi?id=165794"
 	 */
-	public void testBug165794() throws JavaModelException {
+	public void testBug165794() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setUnit("b165794/Test.java",
 			"package b165794;\n" +
 			"/**\n" +
@@ -990,7 +990,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 	 * Bug 171802: [javadoc][select] F3 does not work on method which have deprecated type as argument
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=171802"
 	 */
-	public void testBug171802() throws CoreException {
+	public void testBug171802() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[2];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b171802/Y.java",
@@ -1032,7 +1032,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 	 * bug191322: [javadoc] @see or @link reference to method without signature fails to resolve to base class method
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=191322"
 	 */
-	public void testBug191322a() throws CoreException {
+	public void testBug191322a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1055,7 +1055,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug191322b() throws CoreException {
+	public void testBug191322b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1079,7 +1079,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug191322c() throws CoreException {
+	public void testBug191322c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1101,7 +1101,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug191322d() throws CoreException {
+	public void testBug191322d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1125,7 +1125,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug191322e() throws CoreException {
+	public void testBug191322e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1147,7 +1147,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug191322f() throws CoreException {
+	public void testBug191322f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1170,7 +1170,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug191322g() throws CoreException {
+	public void testBug191322g() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1193,7 +1193,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug191322h() throws CoreException {
+	public void testBug191322h() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1216,7 +1216,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug191322i() throws CoreException {
+	public void testBug191322i() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1238,7 +1238,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug191322j1() throws CoreException {
+	public void testBug191322j1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1264,7 +1264,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug191322j2() throws CoreException {
+	public void testBug191322j2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1290,7 +1290,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 			elements
 		);
 	}
-	public void testBug191322j3() throws CoreException {
+	public void testBug191322j3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b191322/X.java",
@@ -1320,7 +1320,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 	// To verify that inheritDoc tag is recognized as a valid selection and
 	// pressing F3 on it navigates to the overriden method with the javadoc according to spec
 	// as documented in org.eclipse.jdt.internal.codeassist.SelectionEngine.InheritDocVisitor
-	public void testBug171019() throws CoreException {
+	public void testBug171019() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b171019/X.java",
@@ -1355,7 +1355,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 	// To verify that inheritDoc tag is recognized as a valid selection and
 	// pressing F3 on it navigates to the overriden method with the javadoc according to spec
 	// as documented in org.eclipse.jdt.internal.codeassist.SelectionEngine.InheritDocVisitor
-	public void testBug171019b() throws CoreException {
+	public void testBug171019b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b171019/X.java",
@@ -1393,7 +1393,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 	// To verify that inheritDoc tag is recognized as a valid selection and
 	// pressing F3 on it navigates to the overriden method with the javadoc according to spec
 	// as documented in org.eclipse.jdt.internal.codeassist.SelectionEngine.InheritDocVisitor
-	public void testBug171019c() throws CoreException {
+	public void testBug171019c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b171019/X.java",
@@ -1434,7 +1434,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 	// To verify that inheritDoc tag is recognized as a valid selection and
 	// pressing F3 on it navigates to the overriden method with the javadoc according to spec
 	// as documented in org.eclipse.jdt.internal.codeassist.SelectionEngine.InheritDocVisitor
-	public void testBug171019d() throws CoreException {
+	public void testBug171019d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b171019/X.java",
@@ -1472,7 +1472,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 	// To verify that inheritDoc tag is recognized as a valid selection and
 	// pressing F3 on it navigates to the overriden method with the javadoc according to spec
 	// as documented in org.eclipse.jdt.internal.codeassist.SelectionEngine.InheritDocVisitor
-	public void testBug171019e() throws CoreException {
+	public void testBug171019e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b171019/X.java",
@@ -1507,7 +1507,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 	// as documented in org.eclipse.jdt.internal.codeassist.SelectionEngine.InheritDocVisitor
 	// Here the inheritDoc should work when it occurs inside another valid block tag viz.
 	// @param, @throws, @exception, @return
-	public void testBug171019f() throws CoreException {
+	public void testBug171019f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.wcOwner = new WorkingCopyOwner() {};
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/Tests/b171019/X.java",
@@ -1543,7 +1543,7 @@ public class SelectionJavadocModelTests extends AbstractJavaModelTests {
 		);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=400767
-	public void testBug400767() throws Exception {
+	public void testBug400767() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String content = "package test;\n"
 				+ "import b400767.ETest;\n"
 				+ "public class Bug {\n"

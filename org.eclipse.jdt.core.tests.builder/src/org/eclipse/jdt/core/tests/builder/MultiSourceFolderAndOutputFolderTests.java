@@ -49,7 +49,7 @@ public class MultiSourceFolderAndOutputFolderTests extends BuilderTests {
 		expectingNoPresenceOf(projectPath.append("bin/X.class")); //$NON-NLS-1$
 	}
 
-	public void test0002() throws JavaModelException {
+	public void test0002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath src1 = env.addPackageFragmentRoot(projectPath, "src1", null, "bin1"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -75,7 +75,7 @@ public class MultiSourceFolderAndOutputFolderTests extends BuilderTests {
 		expectingNoPresenceOf(projectPath.append("bin1/p/Y.class")); //$NON-NLS-1$
 	}
 
-	public void test0003() {
+	public void test0003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 			env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -97,7 +97,7 @@ public class MultiSourceFolderAndOutputFolderTests extends BuilderTests {
 		}
 	}
 
-	public void test0004() {
+	public void test0004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 			env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -130,7 +130,7 @@ public class MultiSourceFolderAndOutputFolderTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void test0006() throws JavaModelException {
+	public void test0006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath srcF1 = env.addPackageFragmentRoot(projectPath, "src/f1", null, null); //$NON-NLS-1$
@@ -151,7 +151,7 @@ public class MultiSourceFolderAndOutputFolderTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void test0007() throws JavaModelException {
+	public void test0007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath srcF1 = env.addPackageFragmentRoot(projectPath, "src/f1", null, null); //$NON-NLS-1$
@@ -172,7 +172,7 @@ public class MultiSourceFolderAndOutputFolderTests extends BuilderTests {
 		expectingOnlyProblemsFor(xPath);
 	}
 
-	public void test0008() throws JavaModelException {
+	public void test0008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		IPath srcF1 = env.addPackageFragmentRoot(projectPath, "src/f1", null, null); //$NON-NLS-1$
@@ -204,7 +204,7 @@ public class MultiSourceFolderAndOutputFolderTests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void test0009() throws JavaModelException {
+	public void test0009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -226,7 +226,7 @@ public class MultiSourceFolderAndOutputFolderTests extends BuilderTests {
 		expectingNoPresenceOf(projectPath.append("bin2").append("bin")); //$NON-NLS-1$ //$NON-NLS-2$
 		expectingNoPresenceOf(projectPath.append("bin").append("bin2")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
-	public void test0010() throws JavaModelException {
+	public void test0010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -255,7 +255,7 @@ public class MultiSourceFolderAndOutputFolderTests extends BuilderTests {
 		expectingNoPresenceOf(projectPath.append("bin2").append("bin")); //$NON-NLS-1$ //$NON-NLS-2$
 		expectingNoPresenceOf(projectPath.append("bin").append("bin2")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
-	public void test0011() throws JavaModelException {
+	public void test0011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P"); //$NON-NLS-1$
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -288,7 +288,7 @@ public class MultiSourceFolderAndOutputFolderTests extends BuilderTests {
 	/*
 	 * Regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=119161
 	 */
-	public void test0012() throws JavaModelException {
+	public void test0012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("P");
 		env.removePackageFragmentRoot(projectPath, "");
 		IPath src = env.addPackageFragmentRoot(projectPath, "", new IPath[] {new Path("p1/p2/p3/X.java"), new Path("Y.java")}, null, "");

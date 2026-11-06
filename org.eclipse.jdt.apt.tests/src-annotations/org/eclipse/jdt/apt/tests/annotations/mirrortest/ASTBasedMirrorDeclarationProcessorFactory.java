@@ -42,10 +42,10 @@ public class ASTBasedMirrorDeclarationProcessorFactory
 		public ASTBasedMirrorDeclarationProcessor(AnnotationProcessorEnvironment env){
 			super(env);
 		}
-		public void process() {
+		public void process() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final Collection<TypeDeclaration> typeDecls = _env.getTypeDeclarations();
 			boolean done = false;
-			for( TypeDeclaration typeDecl : typeDecls ){
+			for( TypeDeclaration typeDecl : typeDecls ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(typeDecl instanceof ClassDeclaration ){
 					examineClass( (ClassDeclaration)typeDecl );
 					if( typeDecl.getQualifiedName().equals("test.Foo") )
@@ -62,7 +62,7 @@ public class ASTBasedMirrorDeclarationProcessorFactory
 			}
 		}
 
-		private void examineClass(ClassDeclaration typeDecl ){
+		private void examineClass(ClassDeclaration typeDecl ){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 			assertNonNull(typeDecl, "missing type declaration");
 			if( typeDecl != null ){
@@ -70,7 +70,7 @@ public class ASTBasedMirrorDeclarationProcessorFactory
 				if(typename.equals("Foo")){
 					final Collection<? extends MethodDeclaration> methods = typeDecl.getMethods();
 					assertEqual(2, methods.size(), "number of methods do not match ");
-					for(MethodDeclaration method : methods ){
+					for(MethodDeclaration method : methods ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						final String name = method.getSimpleName();
 						if( name.equals("getType") ){
 							final String methodString = method.toString();
@@ -90,7 +90,7 @@ public class ASTBasedMirrorDeclarationProcessorFactory
 					final Collection<ConstructorDeclaration> constructors =
 						typeDecl.getConstructors();
 					assertEqual(1, constructors.size(), "number of constructors do not match");
-					for( ConstructorDeclaration constructor : constructors ){
+					for( ConstructorDeclaration constructor : constructors ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						final String constructorString = constructor.toString();
 						final String expectedString = "Foo(UnknownType type)";
 						assertEqual(expectedString, constructorString, "signature mismatch");
@@ -98,7 +98,7 @@ public class ASTBasedMirrorDeclarationProcessorFactory
 					final Collection<FieldDeclaration> fields =
 						typeDecl.getFields();
 					assertEqual(2, fields.size(), "number of fields do not match");
-					for( FieldDeclaration field : fields ){
+					for( FieldDeclaration field : fields ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						final String name = field.getSimpleName();
 						if( "field0".equals(name) || "field1".equals(name) ){
 							continue;
@@ -114,7 +114,7 @@ public class ASTBasedMirrorDeclarationProcessorFactory
 					final Collection<ConstructorDeclaration> constructors =
 						typeDecl.getConstructors();
 					assertEqual(1, constructors.size(), "number of constructors do not match");
-					for( ConstructorDeclaration constructor : constructors ){
+					for( ConstructorDeclaration constructor : constructors ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						final String constructorString = constructor.toString();
 						final String expectedString = "Inner()";
 						assertEqual(expectedString, constructorString, "signature mismatch");

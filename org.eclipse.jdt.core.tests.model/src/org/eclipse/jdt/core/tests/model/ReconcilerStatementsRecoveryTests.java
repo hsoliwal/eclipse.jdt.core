@@ -80,11 +80,11 @@ protected void assertProblems(String message, String expected) {
 	assertProblems(message, expected, this.problemRequestor);
 }
 // Expect no error as soon as indexing is finished
-protected void assertNoProblem(char[] source, ICompilationUnit unit) throws InterruptedException, JavaModelException {
+protected void assertNoProblem(char[] source, ICompilationUnit unit) throws InterruptedException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IndexManager indexManager = JavaModelManager.getIndexManager();
 	if (this.problemRequestor.problemCount > 0) {
 		// If errors then wait for indexes to finish
-		while (indexManager.awaitingJobsCount() > 0) {
+		while (indexManager.awaitingJobsCount() > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			waitUntilIndexesReady();
 		}
 		// Reconcile again to see if error goes away
@@ -133,7 +133,7 @@ public void setUp() throws Exception {
 	this.problemRequestor.initialize(this.workingCopy.getSource().toCharArray());
 	startDeltas();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 	super.setUpSuite();
 
@@ -231,7 +231,7 @@ public void tearDownSuite() throws Exception {
 /*
  * No ast and no statements recovery
  */
-public void testStatementsRecovery01() throws CoreException {
+public void testStatementsRecovery01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Introduce syntax error
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -261,7 +261,7 @@ public void testStatementsRecovery01() throws CoreException {
 /*
  * Ast and no statements recovery
  */
-public void testStatementsRecovery02() throws CoreException {
+public void testStatementsRecovery02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Introduce syntax error
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -291,7 +291,7 @@ public void testStatementsRecovery02() throws CoreException {
 /*
  * No ast, statements recovery
  */
-public void testStatementsRecovery03() throws CoreException {
+public void testStatementsRecovery03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Introduce syntax error
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -326,7 +326,7 @@ public void testStatementsRecovery03() throws CoreException {
 /*
  * Ast, statements recovery
  */
-public void testStatementsRecovery04() throws CoreException {
+public void testStatementsRecovery04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Introduce syntax error
 	setWorkingCopyContents(
 		"package p1;\n" +

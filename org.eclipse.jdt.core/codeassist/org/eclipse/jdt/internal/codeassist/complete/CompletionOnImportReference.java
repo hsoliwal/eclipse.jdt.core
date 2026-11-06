@@ -45,10 +45,10 @@ public CompletionOnImportReference(char[][] tokens , long[] positions, int modif
 public StringBuilder print(int indent, StringBuilder output, boolean withOnDemand) {
 
 	printIndent(indent, output).append("<CompleteOnImport:"); //$NON-NLS-1$
-	for (int i = 0; i < this.tokens.length; i++) {
-		if (i > 0) output.append('.');
-		output.append(this.tokens[i]);
+	for (int i = 0; i < this.tokens.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		if (i > 0) output.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(this.tokens[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	return output.append('>');
+	return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 }

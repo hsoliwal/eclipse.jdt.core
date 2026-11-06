@@ -31,13 +31,13 @@ public class LineCommentEndOffsets {
 		this.offsets= null; // create on demand
 	}
 
-	private int[] getOffsets() {
+	private int[] getOffsets() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.offsets == null) {
 			if (this.commentList != null) {
 				int nComments= this.commentList.size();
 				// count the number of line comments
 				int count= 0;
-				for (int i= 0; i < nComments; i++) {
+				for (int i= 0; i < nComments; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Object curr= this.commentList.get(i);
 					if (curr instanceof LineComment) {
 						count++;
@@ -45,7 +45,7 @@ public class LineCommentEndOffsets {
 				}
 				// fill the offset table
 				this.offsets= new int[count];
-				for (int i= 0, k= 0; i < nComments; i++) {
+				for (int i= 0, k= 0; i < nComments; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Object curr= this.commentList.get(i);
 					if (curr instanceof LineComment) {
 						LineComment comment= (LineComment) curr;

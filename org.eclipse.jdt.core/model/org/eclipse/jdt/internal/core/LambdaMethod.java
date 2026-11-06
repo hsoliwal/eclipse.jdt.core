@@ -84,15 +84,15 @@ public class LambdaMethod extends SourceMethod {
 		return this.elementInfo;
 	}
 
-	public void getHandleMemento(StringBuilder buff, boolean serializeParent) {
+	public void getHandleMemento(StringBuilder buff, boolean serializeParent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (serializeParent) {
 			((LambdaExpression) getParent()).getHandleMemento(buff, true, false);
 		}
 		appendEscapedDelimiter(buff, getHandleMementoDelimiter());
 		escapeMementoName(buff, getElementName());
-		buff.append(JEM_COUNT);
-		buff.append(this.parameterTypes.length);
-		for (int i = 0, length = this.parameterTypes.length; i < length; i++) {
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.parameterTypes.length); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0, length = this.parameterTypes.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			appendEscapedDelimiter(buff, JEM_STRING);
 			escapeMementoName(buff, this.parameterTypes[i]);
 			appendEscapedDelimiter(buff, JEM_STRING);
@@ -103,7 +103,7 @@ public class LambdaMethod extends SourceMethod {
 		appendEscapedDelimiter(buff, JEM_STRING);
 		escapeMementoName(buff, this.key);
 		ILocalVariable[] arguments = this.elementInfo.arguments;
-		for (ILocalVariable argument : arguments) {
+		for (ILocalVariable argument : arguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			LocalVariable local = (LocalVariable) argument;
 			local.getHandleMemento(buff, false);
 		}

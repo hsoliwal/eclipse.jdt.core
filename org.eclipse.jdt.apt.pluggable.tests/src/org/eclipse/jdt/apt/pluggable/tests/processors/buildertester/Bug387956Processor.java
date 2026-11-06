@@ -33,18 +33,18 @@ public class Bug387956Processor extends AbstractProcessor {
 
 	RoundEnvironment roundEnv = null;
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 
-		for (TypeElement annotation : annotations) {
+		for (TypeElement annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Set<? extends Element> annotatedElements = roundEnv.getElementsAnnotatedWith(annotation);
-			for (Element annotatedElement : annotatedElements) {
+			for (Element annotatedElement : annotatedElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Filer filer = processingEnv.getFiler();
-				String generatedClassSimpleName = "Generated" + annotatedElement.getSimpleName().toString();
+				String generatedClassSimpleName = "Generated" + annotatedElement.getSimpleName().toString(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				try {
-					JavaFileObject file = filer.createSourceFile("generated/" + generatedClassSimpleName, annotatedElement);
+					JavaFileObject file = filer.createSourceFile("generated/" + generatedClassSimpleName, annotatedElement); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					file.openWriter() //
-							.append("package generated;\n" //
+							.append("package generated;\n" // //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									+ "\n" //
 									+ "public class " + generatedClassSimpleName + " {\n" //
 									+ "\n" //
@@ -52,7 +52,7 @@ public class Bug387956Processor extends AbstractProcessor {
 							.close();
 				} catch (IOException e) {
 					Messager messager = processingEnv.getMessager();
-					messager.printMessage(Diagnostic.Kind.ERROR, "IOException: " + e);
+					messager.printMessage(Diagnostic.Kind.ERROR, "IOException: " + e); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}

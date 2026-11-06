@@ -37,93 +37,93 @@ public static Test suite() {
 }
 private static void compare(String focus, ITypeHierarchy stored, ITypeHierarchy loaded){
 	if(stored instanceof RegionBasedTypeHierarchy) {
-		assertTrue("["+focus+"] hierarchies are not the same", loaded instanceof RegionBasedTypeHierarchy);
+		assertTrue("["+focus+"] hierarchies are not the same", loaded instanceof RegionBasedTypeHierarchy); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		compareRegionBasedTypeHierarchy(focus, (RegionBasedTypeHierarchy)stored,(RegionBasedTypeHierarchy)loaded);
 	} else if(stored instanceof TypeHierarchy) {
-		assertTrue("["+focus+"] hierarchies are not the same", loaded instanceof TypeHierarchy);
+		assertTrue("["+focus+"] hierarchies are not the same", loaded instanceof TypeHierarchy); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		compareTypeHierarchy(focus, (TypeHierarchy)stored,(TypeHierarchy)loaded);
 	}
 }
 private static void compareRegionBasedTypeHierarchy(String focus, RegionBasedTypeHierarchy stored, RegionBasedTypeHierarchy loaded){
 	compareTypeHierarchy(focus, stored, loaded);
 }
-private static void compareTypeHierarchy(String focus, TypeHierarchy stored, TypeHierarchy loaded){
+private static void compareTypeHierarchy(String focus, TypeHierarchy stored, TypeHierarchy loaded){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//System.out.println(stored.toString());
 
 	IType type1 = stored.getType();
 	IType type2 = loaded.getType();
-	assertEquals("["+focus+"] focus are not the same", type1, type2);
+	assertEquals("["+focus+"] focus are not the same", type1, type2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	IType[] allTypes1 = stored.getAllTypes();
 	IType[] allTypes2 = loaded.getAllTypes();
-	compare("["+focus+"] all types are not the same", allTypes1, allTypes2);
+	compare("["+focus+"] all types are not the same", allTypes1, allTypes2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	IType[] allClasses1 = stored.getAllClasses();
 	IType[] allClasses2 = loaded.getAllClasses();
-	compare("["+focus+"] all classes are not the same", allClasses1, allClasses2);
+	compare("["+focus+"] all classes are not the same", allClasses1, allClasses2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	IType[] allInterfaces1 = stored.getAllInterfaces();
 	IType[] allInterfaces2 = loaded.getAllInterfaces();
-	compare("["+focus+"] all interfaces are not the same", allInterfaces1, allInterfaces2);
+	compare("["+focus+"] all interfaces are not the same", allInterfaces1, allInterfaces2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	IType[] rootClasses1 = stored.getRootClasses();
 	IType[] rootClasses2 = loaded.getRootClasses();
-	compare("["+focus+"] all roots are not the same", rootClasses1, rootClasses2);
+	compare("["+focus+"] all roots are not the same", rootClasses1, rootClasses2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	IType[] rootInterfaces1 = stored.getRootInterfaces();
 	IType[] rootInterfaces2 = loaded.getRootInterfaces();
-	compare("["+focus+"] all roots are not the same", rootInterfaces1, rootInterfaces2);
+	compare("["+focus+"] all roots are not the same", rootInterfaces1, rootInterfaces2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	Object[] missingTypes1 = stored.missingTypes.toArray();
 	Object[] missingTypes2 = loaded.missingTypes.toArray();
-	compare("["+focus+"] all missing types are not the same", missingTypes1, missingTypes2);
+	compare("["+focus+"] all missing types are not the same", missingTypes1, missingTypes2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
-	for (int i = 0; i < allTypes1.length; i++) {
+	for (int i = 0; i < allTypes1.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IType aType = allTypes1[i];
 
 		int cachedFlags1 = stored.getCachedFlags(aType);
 		int cachedFlags2 = loaded.getCachedFlags(aType);
-		assertEquals("["+focus+"] flags are not the same for "+aType.getFullyQualifiedName(), cachedFlags1, cachedFlags2);
+		assertEquals("["+focus+"] flags are not the same for "+aType.getFullyQualifiedName(), cachedFlags1, cachedFlags2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		IType superclass1 = stored.getSuperclass(aType);
 		IType superclass2 = loaded.getSuperclass(aType);
-		assertEquals("["+focus+"] superclass are not the same for "+aType.getFullyQualifiedName(), superclass1, superclass2);
+		assertEquals("["+focus+"] superclass are not the same for "+aType.getFullyQualifiedName(), superclass1, superclass2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		IType[] superInterfaces1 = stored.getSuperInterfaces(aType);
 		IType[] superInterfaces2 = loaded.getSuperInterfaces(aType);
-		compare("["+focus+"] all super interfaces are not the same for "+aType.getFullyQualifiedName(), superInterfaces1, superInterfaces2);
+		compare("["+focus+"] all super interfaces are not the same for "+aType.getFullyQualifiedName(), superInterfaces1, superInterfaces2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		IType[] superTypes1 = stored.getSupertypes(aType);
 		IType[] superTypes2 = loaded.getSupertypes(aType);
-		compare("["+focus+"] all super types are not the same for "+aType.getFullyQualifiedName(), superTypes1, superTypes2);
+		compare("["+focus+"] all super types are not the same for "+aType.getFullyQualifiedName(), superTypes1, superTypes2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		IType[] subclasses1 = stored.getSubclasses(aType);
 		IType[] subclasses2 = loaded.getSubclasses(aType);
-		compare("["+focus+"] all subclasses are not the same for "+aType.getFullyQualifiedName(), subclasses1, subclasses2);
+		compare("["+focus+"] all subclasses are not the same for "+aType.getFullyQualifiedName(), subclasses1, subclasses2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		IType[] subtypes1 = stored.getSubtypes(aType);
 		IType[] subtypes2 = loaded.getSubtypes(aType);
-		compare("["+focus+"] all subtypes are not the same for "+aType.getFullyQualifiedName(), subtypes1, subtypes2);
+		compare("["+focus+"] all subtypes are not the same for "+aType.getFullyQualifiedName(), subtypes1, subtypes2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		IType[] extendingInterfaces1 = stored.getExtendingInterfaces(aType);
 		IType[] extendingInterfaces2 = loaded.getExtendingInterfaces(aType);
-		compare("["+focus+"] all extending interfaces are not the same for "+aType.getFullyQualifiedName(), extendingInterfaces1, extendingInterfaces2);
+		compare("["+focus+"] all extending interfaces are not the same for "+aType.getFullyQualifiedName(), extendingInterfaces1, extendingInterfaces2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		IType[] implementingClasses1 = stored.getImplementingClasses(aType);
 		IType[] implementingClasses2 = loaded.getImplementingClasses(aType);
-		compare("["+focus+"] all implemeting classes are not the same for "+aType.getFullyQualifiedName(), implementingClasses1, implementingClasses2);
+		compare("["+focus+"] all implemeting classes are not the same for "+aType.getFullyQualifiedName(), implementingClasses1, implementingClasses2); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	}
 }
-private static void compare(String msg, Object[] types1, Object[] types2) {
+private static void compare(String msg, Object[] types1, Object[] types2) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(types1 == null) {
 		assertTrue(msg, types2 == null);
 	} else {
 		assertTrue(msg, types2 != null);
 		assertTrue(msg, types1.length == types2.length);
-		for (int i = 0; i < types1.length; i++) {
+		for (int i = 0; i < types1.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			boolean found = false;
-			for (int j = 0; j < types2.length; j++) {
+			for (int j = 0; j < types2.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(types1[i] == null && types1[j] == null) {
 					found = true;
 				} else if(types1[i] != null && types1[i].equals(types2[j])) {

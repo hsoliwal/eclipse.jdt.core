@@ -35,7 +35,7 @@ public class DefaultContainerInitializer implements ContainerInitializer.ITestIn
 		public IClasspathEntry[] getClasspathEntries() {
 			int length = this.libPaths.length;
 			IClasspathEntry[] entries = new IClasspathEntry[length];
-			for (int j = 0; j < length; j++) {
+			for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			    IPath path = new Path(new String(this.libPaths[j]));
 			    if (path.segmentCount() == 1 && path.getDevice() == null) {
 			        entries[j] = JavaCore.newProjectEntry(path);
@@ -63,8 +63,8 @@ public class DefaultContainerInitializer implements ContainerInitializer.ITestIn
 	 * values is [<project name>, <lib path>[,<lib path>]* ]*
 	 */
 	public DefaultContainerInitializer(String[] values) {
-		this.containerValues = new HashMap();
-		for (int i = 0; i < values.length; i+=2) {
+		this.containerValues = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (int i = 0; i < values.length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			final String projectName = values[i];
 			final char[][] libPaths = CharOperation.splitOn(',', values[i+1].toCharArray());
 			this.containerValues.put(

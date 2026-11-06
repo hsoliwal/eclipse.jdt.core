@@ -39,7 +39,7 @@ public static Test suite() {
 	return buildModelTestSuite(CompletionTests3.class);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=338398
-public void testBug338398a() throws CoreException {
+public void testBug338398a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[2];
@@ -68,13 +68,13 @@ public void testBug338398a() throws CoreException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-				"assertNotNull[METHOD_REF]{assertNotNull(), Lb.B;, (Ljava.lang.Object;)V, assertNotNull, (object), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+				"assertNotNull[METHOD_REF]{assertNotNull(), Lb.B;, (Ljava.lang.Object;)V, assertNotNull, (object), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void _testBug338398b() throws CoreException {
+public void _testBug338398b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[2];
@@ -100,7 +100,7 @@ public void _testBug338398b() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void _testBug338398c() throws CoreException {
+public void _testBug338398c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[2];
@@ -126,7 +126,7 @@ public void _testBug338398c() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug504095() throws CoreException {
+public void testBug504095() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[2];
@@ -149,13 +149,13 @@ public void testBug504095() throws CoreException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-				"member[LOCAL_VARIABLE_REF]{member, null, LField;, member, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+				"member[LOCAL_VARIABLE_REF]{member, null, LField;, member, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testBug425035a() throws CoreException {
+public void testBug425035a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -196,7 +196,7 @@ public void testBug425035a() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035b() throws CoreException {
+public void testBug425035b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -236,7 +236,7 @@ public void testBug425035b() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035c() throws CoreException {
+public void testBug425035c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -277,7 +277,7 @@ public void testBug425035c() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035d() throws CoreException {
+public void testBug425035d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -317,7 +317,7 @@ public void testBug425035d() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035e() throws CoreException {
+public void testBug425035e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -357,7 +357,7 @@ public void testBug425035e() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035f() throws CoreException {
+public void testBug425035f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -398,7 +398,7 @@ public void testBug425035f() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035_method_a() throws CoreException {
+public void testBug425035_method_a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -442,7 +442,7 @@ public void testBug425035_method_a() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035_method_b() throws CoreException {
+public void testBug425035_method_b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -485,7 +485,7 @@ public void testBug425035_method_b() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035_method_c() throws CoreException {
+public void testBug425035_method_c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -529,7 +529,7 @@ public void testBug425035_method_c() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035_method_c2() throws CoreException {
+public void testBug425035_method_c2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -561,7 +561,7 @@ public void testBug425035_method_c2() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035_method_d() throws CoreException {
+public void testBug425035_method_d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -604,7 +604,7 @@ public void testBug425035_method_d() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035_method_e() throws CoreException {
+public void testBug425035_method_e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -647,7 +647,7 @@ public void testBug425035_method_e() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug425035_method_f() throws CoreException {
+public void testBug425035_method_f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[3];
@@ -691,7 +691,7 @@ public void testBug425035_method_f() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug547256() throws CoreException {
+public void testBug547256() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[1];
@@ -724,7 +724,7 @@ public void testBug547256() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug574215() throws CoreException {
+public void testBug574215() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[1];
@@ -771,7 +771,7 @@ public void testBug574215() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug574215_field() throws CoreException {
+public void testBug574215_field() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[1];
@@ -819,7 +819,7 @@ public void testBug574215_field() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug574215_type_not_field() throws CoreException {
+public void testBug574215_type_not_field() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[1];
@@ -845,7 +845,7 @@ public void testBug574215_type_not_field() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug574215_withToken() throws CoreException {
+public void testBug574215_withToken() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[1];
@@ -882,7 +882,7 @@ public void testBug574215_withToken() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug574338() throws CoreException {
+public void testBug574338() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[1];
@@ -911,7 +911,7 @@ public void testBug574338() throws CoreException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED;
 		assertEquals(
-				"Snippet[TYPE_REF]{Snippet, , LSnippet;, null, null, null, null, replace[101, 101], token[101, 101], "+relevance+"}\n" +
+				"Snippet[TYPE_REF]{Snippet, , LSnippet;, null, null, null, null, replace[101, 101], token[101, 101], "+relevance+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"c[LOCAL_VARIABLE_REF]{c, null, LList<Ljava.lang.String;>;, null, null, c, null, replace[101, 101], token[101, 101], "+relevance+"}\n" +
 				"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, null, null, clone, null, replace[101, 101], token[101, 101], "+relevance+"}\n" +
 				"equals[METHOD_REF]{equals(), Ljava.lang.Object;, (Ljava.lang.Object;)Z, null, null, equals, (obj), replace[101, 101], token[101, 101], "+relevance+"}\n" +
@@ -932,7 +932,7 @@ public void testBug574338() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug574338_from574215c14() throws CoreException {
+public void testBug574338_from574215c14() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[2];
@@ -954,14 +954,14 @@ public void testBug574338_from574215c14() throws CoreException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-				"for[KEYWORD]{for, null, null, for, null, 49}\n" +
+				"for[KEYWORD]{for, null, null, for, null, 49}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"fooo[LOCAL_VARIABLE_REF]{fooo, null, Ljava.lang.String;, fooo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testBug574704() throws Exception {
+public void testBug574704() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[2];
@@ -986,7 +986,7 @@ public void testBug574704() throws Exception {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED;
 		assertResults(
-				"Cast[TYPE_REF]{Cast, , LCast;, null, null, "+relevance+"}\n" +
+				"Cast[TYPE_REF]{Cast, , LCast;, null, null, "+relevance+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, " + relevance + "}\n" +
 				"equals[METHOD_REF]{equals(), Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, (obj), " + relevance + "}\n" +
 				"field[FIELD_REF]{field, LCast;, Ljava.lang.Object;, field, null, " + relevance + "}\n" +
@@ -1006,7 +1006,7 @@ public void testBug574704() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug574704_withPrefix() throws Exception {
+public void testBug574704_withPrefix() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[2];
@@ -1032,7 +1032,7 @@ public void testBug574704_withPrefix() throws Exception {
 		int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED;
 		int relevanceNoCase = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY;
 		assertResults(
-				"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+relevanceNoCase+"}\n" +
+				"Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+relevanceNoCase+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"oArg[LOCAL_VARIABLE_REF]{oArg, null, Ljava.lang.Object;, oArg, null, "+relevance+"}\n" +
 				"oField[FIELD_REF]{oField, LCast;, Ljava.lang.Object;, oField, null, " + relevance + "}",
 				requestor.getResults());
@@ -1040,7 +1040,7 @@ public void testBug574704_withPrefix() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug574803() throws Exception {
+public void testBug574803() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[2];
@@ -1065,7 +1065,7 @@ public void testBug574803() throws Exception {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED;
 		assertResults(
-				"X[TYPE_REF]{X, , LX;, null, null, " + relevance + "}\n" +
+				"X[TYPE_REF]{X, , LX;, null, null, " + relevance + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"field[LOCAL_VARIABLE_REF]{field, null, LField;, field, null, " + relevance + "}\n" +
 				"fillAttributes[METHOD_REF]{fillAttributes(), LX;, (Ljava.lang.Object;)V, fillAttributes, (object), " + relevance + "}\n" +
 				"object[LOCAL_VARIABLE_REF]{object, null, Ljava.lang.Object;, object, null, " + relevance + "}",
@@ -1074,7 +1074,7 @@ public void testBug574803() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug575032() throws Exception {
+public void testBug575032() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[1];
@@ -1110,7 +1110,7 @@ public void testBug575032() throws Exception {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_CASE + R_NON_STATIC + R_NON_RESTRICTED;
 		assertResults(
-			"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+relevance+"}\n" +
+			"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, "+relevance+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"equals[METHOD_REF]{equals(), Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, (obj), "+relevance+"}\n" +
 			"finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, finalize, null, "+relevance+"}\n" +
 			"get[METHOD_REF]{get(), LAtomicInteger;, ()I, get, null, "+relevance+"}\n" +
@@ -1128,7 +1128,7 @@ public void testBug575032() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug575032b() throws Exception {
+public void testBug575032b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[1];
@@ -1165,13 +1165,13 @@ public void testBug575032b() throws Exception {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_CASE + R_NON_STATIC + R_NON_RESTRICTED;
 		assertResults(
-			"set[METHOD_REF]{set(), LAtomicInteger;, (I)V, set, (i), "+relevance+"}",
+			"set[METHOD_REF]{set(), LAtomicInteger;, (I)V, set, (i), "+relevance+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testBug574979() throws Exception {
+public void testBug574979() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		this.workingCopies = new ICompilationUnit[1];
@@ -1192,13 +1192,13 @@ public void testBug574979() throws Exception {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY;
 		assertResults(
-			"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+relevance+"}",
+			"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+relevance+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testBug575397a() throws Exception {
+public void testBug575397a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL11_LIB"}, "bin", "11");
 		this.workingCopies = new ICompilationUnit[1];
@@ -1229,7 +1229,7 @@ public void testBug575397a() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug575397b() throws Exception {
+public void testBug575397b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL11_LIB"}, "bin", "11");
 		this.workingCopies = new ICompilationUnit[1];
@@ -1260,7 +1260,7 @@ public void testBug575397b() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug575397c() throws Exception {
+public void testBug575397c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL11_LIB"}, "bin", "11");
 		this.workingCopies = new ICompilationUnit[1];
@@ -1296,7 +1296,7 @@ public void testBug575397c() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug575631_comment0() throws Exception {
+public void testBug575631_comment0() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL11_LIB"}, "bin", "11");
 		this.workingCopies = new ICompilationUnit[1];
@@ -1329,7 +1329,7 @@ public void testBug575631_comment0() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug575631_comment1a() throws Exception {
+public void testBug575631_comment1a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL11_LIB"}, "bin", "11");
 		this.workingCopies = new ICompilationUnit[1];
@@ -1363,7 +1363,7 @@ public void testBug575631_comment1a() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug575631_comment1b() throws Exception {
+public void testBug575631_comment1b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL11_LIB"}, "bin", "11");
 		this.workingCopies = new ICompilationUnit[1];
@@ -1399,7 +1399,7 @@ public void testBug575631_comment1b() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug575631_comment3() throws Exception {
+public void testBug575631_comment3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL11_LIB"}, "bin", "11");
 		this.workingCopies = new ICompilationUnit[1];
@@ -1444,7 +1444,7 @@ public void testBug575631_comment3() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug575631_comment3b() throws Exception {
+public void testBug575631_comment3b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// method invocation inside lambda in field initializer
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL11_LIB"}, "bin", "11");
@@ -1488,7 +1488,7 @@ public void testBug575631_comment3b() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug575631_comment3c() throws Exception {
+public void testBug575631_comment3c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// variable declaration in lambda in field initializer
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL11_LIB"}, "bin", "11");
@@ -1522,7 +1522,7 @@ public void testBug575631_comment3c() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testBug575631_comment3d() throws Exception {
+public void testBug575631_comment3d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// first of two arguments in method invocation in lambda in field initializer
 	// overloads should be selected by the existing second argument
 	// no separating ',' yet.
@@ -1553,7 +1553,7 @@ public void testBug575631_comment3d() throws Exception {
 		deleteProject("P");
 	}
 }
-public void testGH1440() throws Exception {
+public void testGH1440() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[]{"JCL11_LIB"}, "bin", "11");
 		this.workingCopies = new ICompilationUnit[3];
@@ -1606,7 +1606,7 @@ public void testGH1440() throws Exception {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5392
 // Code completion no longer working since I20260904-0846
-public void testIssue5392() throws Exception {
+public void testIssue5392() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL25_LIB"}, "bin", "25");
 		this.workingCopies = new ICompilationUnit[1];

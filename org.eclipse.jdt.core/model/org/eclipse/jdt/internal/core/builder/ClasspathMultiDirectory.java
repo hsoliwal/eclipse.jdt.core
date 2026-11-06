@@ -71,7 +71,7 @@ protected boolean isExcluded(IResource resource) {
 			return Util.isExcluded(resource, this.inclusionPatterns, this.exclusionPatterns);
 	return false;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 String[] directoryList(String qualifiedPackageName) {
 	String[] dirList = this.directoryCache.get(qualifiedPackageName);
 	if (dirList == this.missingPackageHolder) return null; // package exists in another classpath directory or jar
@@ -85,7 +85,7 @@ String[] directoryList(String qualifiedPackageName) {
 			int index = 0;
 			boolean foundClass = false;
 			if (members.length > 0) {
-				for (IResource m : members) {
+				for (IResource m : members) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String name = m.getName();
 					boolean isClass = m.getType() == IResource.FILE && org.eclipse.jdt.internal.compiler.util.Util.isClassFileName(name);
 					if (m.getType() == IResource.FOLDER || isClass) {
@@ -102,7 +102,7 @@ String[] directoryList(String qualifiedPackageName) {
 					if (members.length > 0) {
 						dirList = new String[members.length];
 						index = 0;
-						for (IResource m : members) {
+						for (IResource m : members) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							String name = m.getName();
 							if (m.getType() == IResource.FOLDER
 									|| (m.getType() == IResource.FILE && org.eclipse.jdt.internal.compiler.util.Util.isJavaFileName(name))) {
@@ -127,7 +127,7 @@ String[] directoryList(String qualifiedPackageName) {
 
 @Override
 public String toString() {
-	return "Source classpath directory " + this.sourceFolder.getFullPath().toString() + //$NON-NLS-1$
+	return "Source classpath directory " + this.sourceFolder.getFullPath().toString() + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		" with " + super.toString(); //$NON-NLS-1$
 }
 

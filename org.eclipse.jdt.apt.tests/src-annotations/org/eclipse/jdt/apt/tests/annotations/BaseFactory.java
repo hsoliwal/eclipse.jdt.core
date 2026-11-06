@@ -37,7 +37,7 @@ public abstract class BaseFactory implements AnnotationProcessorFactory {
 	 * no extra annotations are supported.
 	 */
 	public BaseFactory(String anno, String... otherAnnos) {
-		_supportedAnnotations = new ArrayList<>(1 + otherAnnos.length);
+		_supportedAnnotations = new ArrayList<>(1 + otherAnnos.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		_supportedAnnotations.add(anno);
 		_supportedAnnotations.addAll(Arrays.asList(otherAnnos));
 	}

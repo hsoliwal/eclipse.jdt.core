@@ -31,7 +31,7 @@ public class Java50Tests extends BuilderTests {
 		return buildTestSuite(Java50Tests.class);
 	}
 
-	public void testAnnotation() throws JavaModelException {
+	public void testAnnotation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "");
@@ -86,7 +86,7 @@ public class Java50Tests extends BuilderTests {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=214237, dupe of
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=205235
-	public void testHierarchyCycleInstanceof() throws JavaModelException {
+	public void testHierarchyCycleInstanceof() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "");
@@ -113,7 +113,7 @@ public class Java50Tests extends BuilderTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=231293
-	public void testMissingRequiredBinaries() throws JavaModelException {
+	public void testMissingRequiredBinaries() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath p1 = env.addProject("P1", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		IPath p2 = env.addProject("P2"); //$NON-NLS-1$
@@ -168,7 +168,7 @@ public class Java50Tests extends BuilderTests {
 			});
 	}
 
-	public void testParameterizedMemberType() throws JavaModelException {
+	public void testParameterizedMemberType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "");
@@ -233,7 +233,7 @@ public class Java50Tests extends BuilderTests {
 		expectingNoProblems();
 	}
 
-	public void testParameterizedType1() throws JavaModelException {
+	public void testParameterizedType1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "");
@@ -274,7 +274,7 @@ public class Java50Tests extends BuilderTests {
 		);
 	}
 
-	public void testParameterizedType2() throws JavaModelException {
+	public void testParameterizedType2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "");
@@ -316,7 +316,7 @@ public class Java50Tests extends BuilderTests {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=294057
 	// NOTE: This test was broken and was fixed by https://github.com/eclipse-jdt/eclipse.jdt.core/pull/5257
-	public void testHierarchyNonCycle() throws JavaModelException {
+	public void testHierarchyNonCycle() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "");
@@ -345,7 +345,7 @@ public class Java50Tests extends BuilderTests {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=294057 (variation)
 	// NOTE: This test was broken and was fixed by https://github.com/eclipse-jdt/eclipse.jdt.core/pull/5257
-	public void testHierarchyNonCycle2() throws JavaModelException {
+	public void testHierarchyNonCycle2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", CompilerOptions.getFirstSupportedJavaVersion());
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "");

@@ -38,7 +38,7 @@ public static Test suite() {
 	// Get all superclass tests
 	TestSuite suite = new Suite(FormatterCommentsClearBlankLinesTests.class.getName());
 	List tests = buildTestsList(FormatterCommentsClearBlankLinesTests.class, 1, 0/* do not sort*/);
-	for (int index=0, size=tests.size(); index<size; index++) {
+	for (int index=0, size=tests.size(); index<size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		suite.addTest((Test)tests.get(index));
 	}
 	return suite;

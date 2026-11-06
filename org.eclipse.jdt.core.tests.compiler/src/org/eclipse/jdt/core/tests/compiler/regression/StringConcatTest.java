@@ -36,7 +36,7 @@ public class StringConcatTest extends AbstractComparableTest {
 
 	private String getClassFileContents( String classFileName, int mode) throws IOException,
 	ClassFormatException {
-		File f = new File(OUTPUT_DIR + File.separator + classFileName);
+		File f = new File(OUTPUT_DIR + File.separator + classFileName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 		String result = disassembler.disassemble(classFileBytes, "\n", mode);
@@ -65,7 +65,7 @@ public class StringConcatTest extends AbstractComparableTest {
 		verifyOutput(result, expectedOutput, positive);
 	}
 
-	public void test001() throws IOException, ClassFormatException {
+	public void test001() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -125,7 +125,7 @@ public class StringConcatTest extends AbstractComparableTest {
 		verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM, true);
 	}
 	// Test string concat for a simple BinaryExpression
-	public void test002() throws IOException, ClassFormatException {
+	public void test002() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -156,7 +156,7 @@ public class StringConcatTest extends AbstractComparableTest {
 		verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM, true);
 	}
 	// Test binary expression whose first operand is a field and therefore already loaded into the stack
-	public void test003() throws IOException, ClassFormatException {
+	public void test003() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -221,7 +221,7 @@ public class StringConcatTest extends AbstractComparableTest {
 		verifyClassFile(expectedOutput, "X.class", ClassFileBytesDisassembler.SYSTEM, true);
 	}
 	// Test a binary expression (with string concat) whose one operand is not a string type
-	public void test004() throws IOException, ClassFormatException {
+	public void test004() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -252,7 +252,7 @@ public class StringConcatTest extends AbstractComparableTest {
 	}
 
 	// Test for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1201
-	public void test005() throws Exception {
+	public void test005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",

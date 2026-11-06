@@ -43,7 +43,7 @@ public class LineNumberAttribute
 		if (length != 0) {
 			this.lineNumberTable = new int[length][2];
 			int readOffset = 8;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.lineNumberTable[i][0] = u2At(classFileBytes, readOffset, offset);
 				this.lineNumberTable[i][1] = u2At(classFileBytes, readOffset + 2, offset);
 				readOffset += 4;

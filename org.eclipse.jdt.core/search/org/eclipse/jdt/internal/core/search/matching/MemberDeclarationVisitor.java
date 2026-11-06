@@ -56,7 +56,7 @@ class MemberDeclarationVisitor extends ASTVisitor {
 	int[] ptrs;
 	private final boolean typeInHierarchy;
 
-public MemberDeclarationVisitor(IJavaElement element, ASTNode[] nodes, MatchingNodeSet set, MatchLocator locator, boolean typeInHierarchy) {
+public MemberDeclarationVisitor(IJavaElement element, ASTNode[] nodes, MatchingNodeSet set, MatchLocator locator, boolean typeInHierarchy) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.enclosingElement = element;
 	this.typeInHierarchy = typeInHierarchy;
 	this.nodeSet = set;
@@ -109,7 +109,7 @@ IJavaElement getLocalElement(int idx) {
 	}
 	return null;
 }
-IJavaElement[] getOtherElements(int idx) {
+IJavaElement[] getOtherElements(int idx) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.nodesCount == 1) {
 		if (this.otherElements != null) {
 			int length = this.otherElements.length;
@@ -133,7 +133,7 @@ private int matchNode(ASTNode reference) {
 		if (this.matchingNode == reference) return 0;
 	} else {
 	    int length = this.matchingNodes.length;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.matchingNodes[i] == reference)  { // == is intentional
 				return i;
 			}
@@ -147,7 +147,7 @@ private int matchNode(ASTNode reference) {
  * Note that for performance reason, matching node and associated handles are
  * not stored in array when there's only one reference to identify.
  */
-private void storeHandle(int idx) {
+private void storeHandle(int idx) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.localDeclaration == null) return;
 	IJavaElement handle = this.locator.createHandle(this.localDeclaration, this.enclosingElement);
     if (this.nodesCount == 1) {
@@ -307,7 +307,7 @@ int getInTypeOccurrenceCountForBinaryAnonymousType(TypeDeclaration typeDeclarati
 	}
 	return ret;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public boolean visit(TypeDeclaration typeDeclaration, BlockScope unused) {
 	try {
 		char[] simpleName;

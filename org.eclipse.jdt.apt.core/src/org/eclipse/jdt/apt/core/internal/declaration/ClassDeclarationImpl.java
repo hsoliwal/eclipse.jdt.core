@@ -48,14 +48,14 @@ public class ClassDeclarationImpl extends TypeDeclarationImpl implements ClassDe
         visitor.visitClassDeclaration(this);
     }
 
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	private void getASTConstructor(
     		final AbstractTypeDeclaration typeDecl,
     		final List<ConstructorDeclaration> results){
 
     	final List bodyDecls = typeDecl.bodyDeclarations();
     	IFile file = null;
-    	for( int i=0, len=bodyDecls.size(); i<len; i++ ){
+    	for( int i=0, len=bodyDecls.size(); i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     		final BodyDeclaration bodyDecl = (BodyDeclaration)bodyDecls.get(i);
     		if( bodyDecl.getNodeType() == ASTNode.METHOD_DECLARATION ){
     			final org.eclipse.jdt.core.dom.MethodDeclaration methodDecl =
@@ -77,10 +77,10 @@ public class ClassDeclarationImpl extends TypeDeclarationImpl implements ClassDe
     	}
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Collection<ConstructorDeclaration> getConstructors()
     {
-    	final List<ConstructorDeclaration> results = new ArrayList<>();
+    	final List<ConstructorDeclaration> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
     	if( isFromSource() ){
     		// need to consult the ast since methods with broken signature
     		// do not appear in bindings.
@@ -100,7 +100,7 @@ public class ClassDeclarationImpl extends TypeDeclarationImpl implements ClassDe
     				break;
     			default:
     				// the ast node for a type binding should be a AbstractTypeDeclaration.
-    				throw new IllegalStateException("expecting a AbstractTypeDeclaration but got "  //$NON-NLS-1$
+    				throw new IllegalStateException("expecting a AbstractTypeDeclaration but got "  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     						+ node.getClass().getName() );
     			}
     		}
@@ -109,7 +109,7 @@ public class ClassDeclarationImpl extends TypeDeclarationImpl implements ClassDe
     	// build the binding based method for source type.
 
         final IMethodBinding[] methods = getDeclarationBinding().getDeclaredMethods();
-        for( IMethodBinding method : methods ){
+        for( IMethodBinding method : methods ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             if( method.isSynthetic() ) continue;
             if( method.isConstructor() ){
                 Declaration mirrorDecl = Factory.createDeclaration(method, _env);

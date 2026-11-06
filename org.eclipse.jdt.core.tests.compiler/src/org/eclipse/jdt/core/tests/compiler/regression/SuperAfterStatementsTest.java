@@ -68,7 +68,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	protected INameEnvironment getNameEnvironment(final String[] testFiles, String[] classPaths, Map<String, String> options) {
 		this.classpaths = classPaths == null ? getDefaultClassPaths() : classPaths;
 		INameEnvironment[] classLibs = getClassLibs(false, options);
-		for (INameEnvironment nameEnvironment : classLibs) {
+		for (INameEnvironment nameEnvironment : classLibs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((FileSystem) nameEnvironment).scanForModules(createParser());
 		}
 		return new InMemoryNameEnvironment9(testFiles, this.moduleMap, classLibs);
@@ -98,7 +98,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			this.customOptions = getCompilerOptions();
 		}
 	}
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -129,7 +129,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"The method Zork() is undefined for the type X\n" +
 			"----------\n");
 	}
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -156,7 +156,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			},
 			"100");
 	}
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -183,7 +183,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			},
 			"100");
 	}
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -221,7 +221,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"100\n" +
 			"1");
 	}
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -256,7 +256,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"1");
 	}
 	// any unqualified this expression is disallowed in a pre-construction context:
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -290,7 +290,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 	// any field access, method invocation, or method reference
 	// qualified by super is disallowed in a pre-construction context:
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -313,7 +313,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"----------\n"
 		);
 	}
-	public void test007b() {
+	public void test007b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// not a problem in outer early construction context
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
@@ -341,7 +341,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.expectedOutputString = "1";
 		runner.runConformTest();
 	}
-	public void test007c() {
+	public void test007c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// but no access to outer this from local class
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
@@ -370,7 +370,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 				""";
 		runner.runNegativeTest();
 	}
-	public void test007d() {
+	public void test007d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// early construction context of far outer, while inners happily use 'this'
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
@@ -404,7 +404,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runConformTest();
 	}
 	// an illegal access does not need to contain a this or super keyword:
-	public void test008() {
+	public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -430,7 +430,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"Cannot invoke method hashCode() in an early construction context\n" +
 			"----------\n");
 	}
-	public void test008_OK() {
+	public void test008_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// early construction context of outer
 		runConformTest(new String[] {
 			"A.java",
@@ -458,7 +458,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 	//an expression involving this does not refer to the current instance but,
 	// rather, to the enclosing instance of an inner class:
-	public void test009_NOK() {
+	public void test009_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"B.java",
 				"""
@@ -480,7 +480,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"Cannot read field c in an early construction context\n" +
 			"----------\n");
 	}
-	public void test009_OK() {
+	public void test009_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"B.java",
 				"""
@@ -507,7 +507,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	 * Inner (which, in this case, has the type Outer), not the instance of Inner
 	 * that is being constructed
 	 */
-	public void test010() {
+	public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -533,7 +533,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	 * with an enclosing instance of Outer, but the instance of Outer that would be provided is
 	 * still under construction and therefore inaccessible.
 	 */
-	public void test011() {
+	public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -553,7 +553,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"Cannot instantiate class Outer.Inner in an early construction context of class Outer\n" +
 			"----------\n");
 	}
-	public void test011_inherited() {
+	public void test011_inherited() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -577,7 +577,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void test011_nested() {
+	public void test011_nested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"Outer.java",
 				"""
@@ -606,7 +606,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	 * anonymous classes cannot have the newly created object as the implicit enclosing
 	 * instance
 	 */
-	public void test012() {
+	public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -631,7 +631,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	 * an interface instead of a class, then it would have no enclosing instance and
 	 * hence there would be no compile-time error.
 	 */
-	public void test013() {
+	public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -654,7 +654,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	 * an interface instead of a class, then it would have no enclosing instance and
 	 * hence there would be no compile-time error.
 	 */
-	public void test014() {
+	public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -677,7 +677,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	 * an interface instead of a class, then it would have no enclosing instance and
 	 * hence there would be no compile-time error.
 	 */
-	public void test015() {
+	public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -698,7 +698,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	/* Here the enclosing instance of the class instance creation expression is not
 	 * the newly created U object but, rather, the lexically enclosing O instance.
 	 */
-	public void test016() {
+	public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -722,7 +722,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	 * if it does not include an expression (i.e. return; is allowed,
 	 * but return e; is not).
 	 */
-	public void test017() {
+	public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -749,7 +749,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	/* It is a compile-time error if a return statement that includes an expression
 	 *  appears in the epilogue of a constructor body.
 	 */
-	public void test018() {
+	public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -780,7 +780,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 	/* It is a compile-time error if a return statement appears in the prologue of a constructor body.
 	 */
-	public void test019() {
+	public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -811,7 +811,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 	/* It is a compile-time error if a return statement appears in the prologue of a constructor body.
 	 */
-	public void test020() {
+	public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -840,7 +840,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 	/* Throwing an exception in a prologue of a constructor body is permitted.
 	 */
-	public void test021() {
+	public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -867,7 +867,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 	/* Throwing an exception in a prologue of a constructor body is permitted.
 	 */
-	public void test022() {
+	public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -898,7 +898,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	/* Unlike in a static context, code in a pre-construction context may refer to the type
 	 * of the instance under construction, as long as it does not access the instance itself:
 	 */
-	public void test023() {
+	public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -922,7 +922,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			},
 			"hello");
 	}
-	public void test024() {
+	public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -956,7 +956,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 	/* Its an error of this is used in super(this) - no change for this error
 	 */
-	public void test025() {
+	public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -985,7 +985,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	/**
 	 *
 	 */
-	public void test026() {
+	public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -1016,7 +1016,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"Cannot use 'super' in an early construction context\n" +
 			"----------\n");
 	}
-	public void test027() {
+	public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -1049,7 +1049,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"Cannot read field a in an early construction context\n" +
 			"----------\n");
 	}
-	public void test028() {
+	public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -1079,7 +1079,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"Cannot use 'J.super' in an early construction context\n" +
 			"----------\n");
 	}
-	public void test029() {
+	public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -1109,7 +1109,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"Cannot use 'J.super' in an early construction context\n" +
 			"----------\n");
 	}
-	public void test030() {
+	public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1131,7 +1131,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			},
 			"true");
 	}
-	public void test032() {
+	public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1157,7 +1157,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"0"
 		);
 	}
-	public void test033() {
+	public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -1187,7 +1187,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		"----------\n"
 			);
 	}
-	public void test034() {
+	public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -1226,7 +1226,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		"----------\n"
 			);
 	}
-	public void test035() {
+	public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -1260,7 +1260,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		"----------\n"
 			);
 	}
-	public void test036() {
+	public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 				"""
@@ -1288,7 +1288,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			);
 	}
 	// regression test for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2373
-	public void test037() {
+	public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1321,7 +1321,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"true"
 		);
 	}
-	public void test038() {
+	public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1368,7 +1368,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"true"
 		);
 	}
-	public void test039() {
+	public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -1415,7 +1415,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"true"
 		);
 	}
-	public void test040() {
+	public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions.put(CompilerOptions.OPTION_Source, "24");
 		runner.customOptions.put(CompilerOptions.OPTION_Compliance, "24");
@@ -1451,7 +1451,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			""";
 		runner.runNegativeTest();
 	}
-	public void testGH2467() {
+	public void testGH2467() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"Test3.java",
@@ -1477,7 +1477,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 				""";
 		runner.runNegativeTest();
 	}
-	public void testOuterConstruction_1() {
+	public void testOuterConstruction_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"Test.java",
@@ -1510,7 +1510,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 
-	public void testOuterConstruction_2() {
+	public void testOuterConstruction_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"Test.java",
@@ -1535,7 +1535,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.expectedOutputString = "Test$Inner";
 		runner.runConformTest();
 	}
-	public void testFieldAssignedInSuperArgument_OK() {
+	public void testFieldAssignedInSuperArgument_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"Test.java",
@@ -1571,7 +1571,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.expectedOutputString = "3456";
 		runner.runConformTest();
 	}
-	public void testFieldAssignedInSuperArgument_NOK_superclass() {
+	public void testFieldAssignedInSuperArgument_NOK_superclass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"Test.java",
@@ -1629,7 +1629,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 				""";
 		runner.runNegativeTest();
 	}
-	public void testFieldAssignedInSuperArgument_NOK_hasInitializer() {
+	public void testFieldAssignedInSuperArgument_NOK_hasInitializer() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"Test.java",
@@ -1687,7 +1687,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 				""";
 		runner.runNegativeTest();
 	}
-	public void testFieldAssignedInSuperArgument_notEnabled() {
+	public void testFieldAssignedInSuperArgument_notEnabled() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions.put(CompilerOptions.OPTION_Source, "24");
 		runner.customOptions.put(CompilerOptions.OPTION_Compliance, "24");
@@ -1743,7 +1743,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			""";
 		runner.runNegativeTest();
 	}
-	public void testFieldCompoundAssignedInSuperArgument() {
+	public void testFieldCompoundAssignedInSuperArgument() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"Test.java",
@@ -1795,7 +1795,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 				""";
 		runner.runNegativeTest();
 	}
-	public void testFieldReadInSuperArgument() {
+	public void testFieldReadInSuperArgument() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"Test.java",
@@ -1847,7 +1847,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 				""";
 		runner.runNegativeTest();
 	}
-	public void testBug564263() {
+	public void testBug564263() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"Test.java",
@@ -1880,7 +1880,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.expectedOutputString = "OK";
 		runner.runConformTest();
 	}
-	public void testComplexNesting_OK() {
+	public void testComplexNesting_OK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"C1.java",
@@ -1918,7 +1918,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.expectedOutputString = "f3f1";
 		runner.runConformTest();
 	}
-	public void testComplexNesting_NOK() {
+	public void testComplexNesting_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"C1.java",
@@ -1959,7 +1959,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 
-	public void testDuplicateCalls() {
+	public void testDuplicateCalls() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// but no access to outer this from local class
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
@@ -1983,7 +1983,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 
-	public void testGH2464() {
+	public void testGH2464() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"Test.java",
@@ -2023,7 +2023,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 
-	public void testGH2468() {
+	public void testGH2468() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"TestFlow.java",
@@ -2055,7 +2055,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 
-	public void testGH666() {
+	public void testGH666() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"TestFlow.java",
@@ -2081,7 +2081,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 
-	public void testGH3094() {
+	public void testGH3094() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -2110,7 +2110,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runConformTest();
 	}
 
-	public void testGH3094_2() {
+	public void testGH3094_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -2139,7 +2139,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runConformTest();
 	}
 
-	public void testGH3094_3() {
+	public void testGH3094_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -2180,7 +2180,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 
-	public void testGH3132() {
+	public void testGH3132() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -2204,7 +2204,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runConformTest();
 	}
 
-	public void testGH3132_2() {
+	public void testGH3132_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 				"X.java",
@@ -2229,7 +2229,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runConformTest();
 	}
 
-	public void testGH3153() {
+	public void testGH3153() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -2249,7 +2249,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"");
 	}
 
-	public void testLocalAccesToOuter () {
+	public void testLocalAccesToOuter () { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"Outer.java",
 			"""
@@ -2279,7 +2279,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"m");
 	}
 
-	public void testCtorRef_staticContext () {
+	public void testCtorRef_staticContext () { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"Outer.java",
 			"""
@@ -2326,7 +2326,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			""");
 	}
 
-	public void testCtorRef_nonStatic () {
+	public void testCtorRef_nonStatic () { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"Outer.java",
 			"""
@@ -2361,7 +2361,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"g");
 	}
 
-	public void testGH3188() {
+	public void testGH3188() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"EarlyLocalCtorRef.java",
 			"""
@@ -2381,7 +2381,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"");
 	}
 
-	public void testGH3194_reopen() {
+	public void testGH3194_reopen() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -2407,7 +2407,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		});
 	}
 
-	public void testGH3116() {
+	public void testGH3116() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"X.java",
@@ -2430,7 +2430,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runConformTest();
 	}
 
-	public void testGH3115() {
+	public void testGH3115() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
 			"X.java",
@@ -2455,7 +2455,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=406614, [1.8][compiler] Missing and incorrect errors for lambda in explicit constructor call.
 	// Variant for early construction context
-	public void test406614() {
+	public void test406614() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -2534,7 +2534,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=406614, [1.8][compiler] Missing and incorrect errors for lambda in explicit constructor call.
 	// Variant for early construction context - this time a lambda in early construction of a member accesses the outer this - OK.
-	public void test406614_member() throws IOException, ClassFormatException {
+	public void test406614_member() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -2577,7 +2577,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		verifyClassFile("version 25 : 69.0", "X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
 
-	public void testFieldAssignment_OK() throws Exception {
+	public void testFieldAssignment_OK() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2600,7 +2600,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		"OK");
 	}
 
-	public void testFieldAssignmentNotAlways_NOK() throws Exception {
+	public void testFieldAssignmentNotAlways_NOK() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2628,7 +2628,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		""");
 	}
 
-	public void testFieldAssignmentInLambda_NOK() throws Exception {
+	public void testFieldAssignmentInLambda_NOK() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2658,7 +2658,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		""");
 	}
 
-	public void testFieldAssignmentInLocal_NOK() throws Exception {
+	public void testFieldAssignmentInLocal_NOK() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2700,7 +2700,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		""");
 	}
 	// test case from https://bugs.openjdk.org/browse/JDK-8322882
-	public void testJDK8322882() throws Exception {
+	public void testJDK8322882() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"TestUseTree2.java",
@@ -2735,7 +2735,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testGH3654() throws Exception {
+	public void testGH3654() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// from https://bugs.openjdk.org/browse/JDK-8334252
 		runConformTest(new String[] {
 				"LambdaOuterCapture.java",
@@ -2760,7 +2760,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 				"""},
 				"");
 	}
-	public void testGH3655() {
+	public void testGH3655() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"Test1.java",
 			"""
@@ -2784,7 +2784,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			},
 			"3");
 	}
-	public void testGH3653() {
+	public void testGH3653() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"Outer.java",
 			"""
@@ -2822,7 +2822,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			},
 			"Hello");
 	}
-	public void testGH3652() {
+	public void testGH3652() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"Outer.java",
 			"""
@@ -2872,7 +2872,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		},
 		"Outer$Inner1$1.m() Outer.g()");
 	}
-	public void testGH3687a() {
+	public void testGH3687a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -2903,7 +2903,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			----------
 			""");
 	}
-	public void testGH3687b() {
+	public void testGH3687b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -2930,7 +2930,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			},
 			"10");
 	}
-	public void testGH3700() {
+	public void testGH3700() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// test case from https://bugs.openjdk.org/browse/JDK-8333313
 		runConformTest(new String[] {
 				"Main.java",
@@ -2969,7 +2969,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		"1");
 	}
 
-	public void testGH3748a() {
+	public void testGH3748a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3001,7 +3001,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"----------\n");
 	}
 
-	public void testGH3748b() {
+	public void testGH3748b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3032,7 +3032,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"The final field fin2 may already have been assigned\n" +
 			"----------\n");
 	}
-	public void testGH3687c() {
+	public void testGH3687c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3067,7 +3067,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 				"Cannot instantiate local class \'Parent\' in a static context\n" +
 				"----------\n");
 	}
-	public void testGH3687d() {
+	public void testGH3687d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3105,7 +3105,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"Cannot instantiate local class \'Parent\' in a static context\n" +
 			"----------\n");
 	}
-	public void testGH3687e() {
+	public void testGH3687e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3135,7 +3135,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 				"Cannot instantiate local class \'SuperClass\' in a static context\n" +
 				"----------\n");
 	}
-	public void testGH3753() {
+	public void testGH3753() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"""
@@ -3175,7 +3175,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		"----------\n");
 	}
 
-	public void testGH3844() {
+	public void testGH3844() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"SubClass.java",
 			"""
@@ -3199,7 +3199,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"init");
 	}
 
-	public void testJDK8346380() {
+	public void testJDK8346380() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"O.java",
 			"""
@@ -3224,7 +3224,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			""");
 	}
 
-	public void testGH4193() {
+	public void testGH4193() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"C.java",
 				"""
@@ -3261,7 +3261,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 				"""
 		});
 	}
-	public void testGH4193_neg() {
+	public void testGH4193_neg() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"C.java",
 				"""
@@ -3318,7 +3318,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		----------
 		""");
 	}
-	public void testGH4449a() {
+	public void testGH4449a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -3348,7 +3348,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		----------
 		""");
 	}
-	public void testGH4449b() {
+	public void testGH4449b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -3378,7 +3378,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		----------
 		""");
 	}
-	public void testGH4449c() {
+	public void testGH4449c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -3408,7 +3408,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		----------
 		""");
 	}
-	public void testGH4449d() {
+	public void testGH4449d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -3477,7 +3477,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4585
 	// [25] ECJ reports a bogus "The final field t may already have been assigned" error
-	public void testIssue4585() {
+	public void testIssue4585() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -3500,7 +3500,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		});
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4696
-	public void testIssue4696a() {
+	public void testIssue4696a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    runConformTest(new String[] {
 	        "EcjBugRepro.java",
 	        """
@@ -3543,7 +3543,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
         "Constructor 2: Added item. Size: 1\n" +
         "Success: Map size is 1");
 	}
-	public void testIssue4696b() {
+	public void testIssue4696b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    runConformTest(new String[] {
 	        "Problem.java",
 	        """
@@ -3576,7 +3576,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	        "counter=1\n" +
 	        "1");
 	}
-	public void testIssue4720() {
+	public void testIssue4720() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"Test.java",
 			"""
@@ -3605,7 +3605,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			""");
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4700
-	public void testIssue4700() {
+	public void testIssue4700() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    runConformTest(new String[] {
         	"Test.java",
         	"""
@@ -3626,7 +3626,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
         	"""
 	    });
 	}
-	public void testIssue4700b() {
+	public void testIssue4700b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"Test.java",
 			"""
@@ -3662,7 +3662,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5353
 	// Flexible recursive constructors tolerated at compile time lead to StackOverflowError at runtime.
-	public void testIssue5353() {
+	public void testIssue5353() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -3701,7 +3701,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5352
 	// Unused flexible constructor not complained about
-	public void testIssue5352() {
+	public void testIssue5352() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// but no access to outer this from local class
 		Runner runner = new Runner();
 		runner.testFiles = new String[] {
@@ -3750,7 +3750,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/pull/5371#issuecomment-5579445496
-	public void test5371Comment_5579445496() {
+	public void test5371Comment_5579445496() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions.put(CompilerOptions.OPTION_Source, "24");
 		runner.customOptions.put(CompilerOptions.OPTION_Compliance, "24");
@@ -3798,7 +3798,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/pull/5374#issuecomment-5585179647
-	public void testIssue5374() {
+	public void testIssue5374() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -3824,7 +3824,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5378
 	// ECJ fails to complain about a flexible constructor failing to initialize a blank final variable.
-	public void testIssue5378() {
+	public void testIssue5378() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -3858,7 +3858,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/pull/5383#issuecomment-5608172836
-	public void testIssue5383_issuecomment_5608172836() {
+	public void testIssue5383_issuecomment_5608172836() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -3887,7 +3887,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/pull/5383#issuecomment-5608408274
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5396
 	// [flexible-constructors] java.lang.VerifyError: Constructor must call super() or this() before return
-	public void testIssue5396() { // testIssue5383Comment5608408274() {
+	public void testIssue5396() { // testIssue5383Comment5608408274() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -3909,7 +3909,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 			"good");
 	}
 
-	public void testAnonymousClassInFieldInit() {
+	public void testAnonymousClassInFieldInit() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"TokenManager.java",
 			"""
@@ -3988,7 +3988,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5400
 	// [Flexible constructors] VerifyError: Bad type on operand stack
-	public void testIssue5400() {
+	public void testIssue5400() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -4023,7 +4023,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5404
     // [Flexible constructors] Incorrect diagnostic: The final field x may already have been assigned
-    public void testIssue5404() {
+    public void testIssue5404() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
             """
@@ -4061,7 +4061,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5404
     // [Flexible constructors] Incorrect diagnostic: The final field x may already have been assigned
-    public void testIssue5404_b() {
+    public void testIssue5404_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runNegativeTest(new String[] {
             "X.java",
             """
@@ -4111,7 +4111,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
     }
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/pull/5383/#discussion_r4014770952
-	public void testIssue5383_discussion_r4014770952() {
+	public void testIssue5383_discussion_r4014770952() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 			"X.java",
 			"""
@@ -4147,7 +4147,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 
 	// test nullity preservation across constructor chaining
-	public void testNullWarningsAcrossConstructorCalls() {
+	public void testNullWarningsAcrossConstructorCalls() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.ERROR);
 		runner.customOptions.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.WARNING);
@@ -4225,7 +4225,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 	}
 
     // https://github.com/eclipse-jdt/eclipse.jdt.core/pull/5382#issuecomment-5713823868
-    public void testIssue5382Comment_5713823868() {
+    public void testIssue5382Comment_5713823868() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
             """
@@ -4260,7 +4260,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
         "OK!");
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/pull/5382#issuecomment-5723018357
-    public void testIssue5382Comment_5723018357() {
+    public void testIssue5382Comment_5723018357() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
             """
@@ -4298,7 +4298,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
         "OK!");
     }
 
-	public void testDiscardInitializationInfo() {
+	public void testDiscardInitializationInfo() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Runner runner = new Runner();
 		runner.customOptions.put(CompilerOptions.OPTION_IncludeNullInfoFromAsserts, CompilerOptions.ENABLED);
 		runner.expectedJavacOutputString = null;
@@ -4349,7 +4349,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 
-	public void testInstanceFieldsFlowInfoMergedWith() {
+	public void testInstanceFieldsFlowInfoMergedWith() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 			"""
@@ -4384,7 +4384,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5410
     // Missing dead code warning
-    public void testIssue5410() {
+    public void testIssue5410() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         Runner runner = new Runner();
         runner.customOptions.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.ERROR);
         runner.testFiles = new String[] {
@@ -4416,7 +4416,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5410
     // Missing dead code warning
-    public void testIssue5410_2() {
+    public void testIssue5410_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         Runner runner = new Runner();
         runner.customOptions.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.ERROR);
         runner.testFiles = new String[] {
@@ -4454,7 +4454,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5454
     // [Flexible constructors] Initializer block local aliases prologue local leading to incorrect output
-    public void testIssue5454() {
+    public void testIssue5454() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
        runConformTest(new String[] {
            "X.java",
            """
@@ -4480,7 +4480,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5532
     // [Flexible constructors] Instantiation of local class inside constructor prologue is problematic
-    public void testIssue5532() {
+    public void testIssue5532() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
             """
@@ -4510,7 +4510,7 @@ public class SuperAfterStatementsTest extends AbstractRegressionTest9 {
 
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5532
     // [Flexible constructors] Instantiation of local class inside constructor prologue is problematic
-    public void testIssue5532_2() {
+    public void testIssue5532_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         runConformTest(new String[] {
             "X.java",
             """

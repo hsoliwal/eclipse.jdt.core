@@ -185,13 +185,13 @@ public final class JavaCore extends Plugin {
 	 * The identifier for the Java builder
 	 * (value <code>"org.eclipse.jdt.core.javabuilder"</code>).
 	 */
-	public static final String BUILDER_ID = PLUGIN_ID + ".javabuilder" ; //$NON-NLS-1$
+	public static final String BUILDER_ID = PLUGIN_ID + ".javabuilder" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * The identifier for the Java model
 	 * (value <code>"org.eclipse.jdt.core.javamodel"</code>).
 	 */
-	public static final String MODEL_ID = PLUGIN_ID + ".javamodel" ; //$NON-NLS-1$
+	public static final String MODEL_ID = PLUGIN_ID + ".javamodel" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * The identifier for the Java nature
@@ -201,7 +201,7 @@ public final class JavaCore extends Plugin {
 	 *
 	 * @see org.eclipse.core.resources.IProject#hasNature(java.lang.String)
 	 */
-	public static final String NATURE_ID = PLUGIN_ID + ".javanature" ; //$NON-NLS-1$
+	public static final String NATURE_ID = PLUGIN_ID + ".javanature" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Name of the handle id attribute in a Java marker.
@@ -234,7 +234,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_LOCAL_VARIABLE_ATTR = PLUGIN_ID + ".compiler.debug.localVariable"; //$NON-NLS-1$
+	public static final String COMPILER_LOCAL_VARIABLE_ATTR = PLUGIN_ID + ".compiler.debug.localVariable"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Generating Line Number Debug Attribute.
 	 * <p>When generated, this attribute will enable source code highlighting in debugger
@@ -246,7 +246,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_LINE_NUMBER_ATTR = PLUGIN_ID + ".compiler.debug.lineNumber"; //$NON-NLS-1$
+	public static final String COMPILER_LINE_NUMBER_ATTR = PLUGIN_ID + ".compiler.debug.lineNumber"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Generating Source Debug Attribute.
 	 * <p>When generated, this attribute will enable the debugger to present the
@@ -258,7 +258,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_SOURCE_FILE_ATTR = PLUGIN_ID + ".compiler.debug.sourceFile"; //$NON-NLS-1$
+	public static final String COMPILER_SOURCE_FILE_ATTR = PLUGIN_ID + ".compiler.debug.sourceFile"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Preserving Unused Local Variables.
 	 * <p>Unless requested to preserve unused local variables (that is, never read), the
@@ -270,7 +270,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_CODEGEN_UNUSED_LOCAL = PLUGIN_ID + ".compiler.codegen.unusedLocal"; //$NON-NLS-1$
+	public static final String COMPILER_CODEGEN_UNUSED_LOCAL = PLUGIN_ID + ".compiler.codegen.unusedLocal"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Generating Method Parameters Attribute.
 	 * <p>When generated, this attribute will enable information about the formal parameters of a method
@@ -284,7 +284,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.10
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_CODEGEN_METHOD_PARAMETERS_ATTR = PLUGIN_ID + ".compiler.codegen.methodParameters"; //$NON-NLS-1$
+	public static final String COMPILER_CODEGEN_METHOD_PARAMETERS_ATTR = PLUGIN_ID + ".compiler.codegen.methodParameters"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Defining Target Java Platform.
 	 * <p>For binary compatibility reasons, .class files are tagged with a minimal required VM version.</p>
@@ -300,7 +300,7 @@ public final class JavaCore extends Plugin {
 	 * @see #COMPILER_SOURCE
 	 * @see #setComplianceOptions(String, Map)
 	 */
-	public static final String COMPILER_CODEGEN_TARGET_PLATFORM = PLUGIN_ID + ".compiler.codegen.targetPlatform"; //$NON-NLS-1$
+	public static final String COMPILER_CODEGEN_TARGET_PLATFORM = PLUGIN_ID + ".compiler.codegen.targetPlatform"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Inline JSR Bytecode Instruction.
 	 * <p>When enabled, the compiler will no longer generate JSR instructions, but will rather inline the corresponding
@@ -318,7 +318,7 @@ public final class JavaCore extends Plugin {
 	 * @deprecated this option is implicitly enabled and can't be switched off anymore
 	 */
 	@Deprecated
-	public static final String COMPILER_CODEGEN_INLINE_JSR_BYTECODE = PLUGIN_ID + ".compiler.codegen.inlineJsrBytecode"; //$NON-NLS-1$
+	public static final String COMPILER_CODEGEN_INLINE_JSR_BYTECODE = PLUGIN_ID + ".compiler.codegen.inlineJsrBytecode"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Javadoc Comment Support.
 	 * <p>When this support is disabled, the compiler will ignore all javadoc problems options settings
@@ -332,17 +332,17 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_DOC_COMMENT_SUPPORT = PLUGIN_ID + ".compiler.doc.comment.support"; //$NON-NLS-1$
+	public static final String COMPILER_DOC_COMMENT_SUPPORT = PLUGIN_ID + ".compiler.doc.comment.support"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @deprecated Discontinued since turning off would violate language specs.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String COMPILER_PB_UNREACHABLE_CODE = PLUGIN_ID + ".compiler.problem.unreachableCode"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNREACHABLE_CODE = PLUGIN_ID + ".compiler.problem.unreachableCode"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @deprecated Discontinued since turning off would violate language specs.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String COMPILER_PB_INVALID_IMPORT = PLUGIN_ID + ".compiler.problem.invalidImport"; //$NON-NLS-1$
+	public static final String COMPILER_PB_INVALID_IMPORT = PLUGIN_ID + ".compiler.problem.invalidImport"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Attempt to Override Package Visible Method.
 	 * <p>A package visible method, which is any method that is not explicitly
@@ -359,7 +359,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_OVERRIDING_PACKAGE_DEFAULT_METHOD = PLUGIN_ID + ".compiler.problem.overridingPackageDefaultMethod"; //$NON-NLS-1$
+	public static final String COMPILER_PB_OVERRIDING_PACKAGE_DEFAULT_METHOD = PLUGIN_ID + ".compiler.problem.overridingPackageDefaultMethod"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Method With Constructor Name.
 	 * <p>Naming a method with a constructor name is generally considered poor
@@ -372,7 +372,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_METHOD_WITH_CONSTRUCTOR_NAME = PLUGIN_ID + ".compiler.problem.methodWithConstructorName"; //$NON-NLS-1$
+	public static final String COMPILER_PB_METHOD_WITH_CONSTRUCTOR_NAME = PLUGIN_ID + ".compiler.problem.methodWithConstructorName"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Deprecation.
 	 * <p>When enabled, the compiler will signal use of deprecated API either as an
@@ -384,7 +384,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_DEPRECATION = PLUGIN_ID + ".compiler.problem.deprecation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_DEPRECATION = PLUGIN_ID + ".compiler.problem.deprecation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Terminal Deprecation.
 	 * <p>When enabled, the compiler will signal use of terminally deprecated API either as an
@@ -397,7 +397,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.14
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_TERMINAL_DEPRECATION = PLUGIN_ID + ".compiler.problem.terminalDeprecation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_TERMINAL_DEPRECATION = PLUGIN_ID + ".compiler.problem.terminalDeprecation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Deprecation Inside Deprecated Code.
 	 * <p>When enabled, the compiler will signal use of deprecated API inside deprecated code.</p>
@@ -410,7 +410,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_DEPRECATION_IN_DEPRECATED_CODE = PLUGIN_ID + ".compiler.problem.deprecationInDeprecatedCode"; //$NON-NLS-1$
+	public static final String COMPILER_PB_DEPRECATION_IN_DEPRECATED_CODE = PLUGIN_ID + ".compiler.problem.deprecationInDeprecatedCode"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Deprecation When Overriding Deprecated Method.
 	 * <p>When enabled, the compiler will signal the declaration of a method overriding a deprecated one.</p>
@@ -459,7 +459,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_HIDDEN_CATCH_BLOCK = PLUGIN_ID + ".compiler.problem.hiddenCatchBlock"; //$NON-NLS-1$
+	public static final String COMPILER_PB_HIDDEN_CATCH_BLOCK = PLUGIN_ID + ".compiler.problem.hiddenCatchBlock"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unused Local.
 	 * <p>When enabled, the compiler will issue an error or a warning for unused local
@@ -471,7 +471,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_LOCAL = PLUGIN_ID + ".compiler.problem.unusedLocal"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_LOCAL = PLUGIN_ID + ".compiler.problem.unusedLocal"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unused Lambda Parameter.
 	 * <p>When enabled, the compiler will issue an error or a warning for unused lambda
@@ -484,7 +484,7 @@ public final class JavaCore extends Plugin {
 	 * @category CompilerOptionID
 	 * @since 3.40
 	 */
-	public static final String COMPILER_PB_UNUSED_LAMBDA_PARAMETER = PLUGIN_ID + ".compiler.problem.unusedLambdaParameter"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_LAMBDA_PARAMETER = PLUGIN_ID + ".compiler.problem.unusedLambdaParameter"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unused Parameter.
 	 * <p>When enabled, the compiler will issue an error or a warning for unused method
@@ -496,7 +496,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_PARAMETER = PLUGIN_ID + ".compiler.problem.unusedParameter"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_PARAMETER = PLUGIN_ID + ".compiler.problem.unusedParameter"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unused Exception Parameter.
 	 * <p>When enabled, the compiler will issue an error or a warning for unused exception
@@ -509,7 +509,7 @@ public final class JavaCore extends Plugin {
 	 * @category CompilerOptionID
 	 * @since 3.11
 	 */
-	public static final String COMPILER_PB_UNUSED_EXCEPTION_PARAMETER = PLUGIN_ID + ".compiler.problem.unusedExceptionParameter"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_EXCEPTION_PARAMETER = PLUGIN_ID + ".compiler.problem.unusedExceptionParameter"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unused Parameter if Implementing Abstract Method.
 	 * <p>When enabled, the compiler will signal unused parameters in abstract method implementations.</p>
@@ -522,7 +522,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_PARAMETER_WHEN_IMPLEMENTING_ABSTRACT = PLUGIN_ID + ".compiler.problem.unusedParameterWhenImplementingAbstract"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_PARAMETER_WHEN_IMPLEMENTING_ABSTRACT = PLUGIN_ID + ".compiler.problem.unusedParameterWhenImplementingAbstract"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unused Parameter if Overriding Concrete Method.
 	 * <p>When enabled, the compiler will signal unused parameters in methods overriding concrete ones.</p>
@@ -535,7 +535,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_PARAMETER_WHEN_OVERRIDING_CONCRETE = PLUGIN_ID + ".compiler.problem.unusedParameterWhenOverridingConcrete"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_PARAMETER_WHEN_OVERRIDING_CONCRETE = PLUGIN_ID + ".compiler.problem.unusedParameterWhenOverridingConcrete"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Consider Reference in Doc Comment for Unused Parameter Check.
 	 * <p>When enabled, the compiler will consider doc comment references to parameters (i.e. <code>@param</code> clauses) for the unused
@@ -551,7 +551,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.3
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_PARAMETER_INCLUDE_DOC_COMMENT_REFERENCE = PLUGIN_ID + ".compiler.problem.unusedParameterIncludeDocCommentReference"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_PARAMETER_INCLUDE_DOC_COMMENT_REFERENCE = PLUGIN_ID + ".compiler.problem.unusedParameterIncludeDocCommentReference"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unused Import.
 	 * <p>When enabled, the compiler will issue an error or a warning for unused import
@@ -564,7 +564,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_IMPORT = PLUGIN_ID + ".compiler.problem.unusedImport"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_IMPORT = PLUGIN_ID + ".compiler.problem.unusedImport"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Presence of Type Arguments for a Non-Generic Method Invocation.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever type arguments are encountered for a
@@ -578,7 +578,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.4
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_TYPE_ARGUMENTS_FOR_METHOD_INVOCATION = PLUGIN_ID + ".compiler.problem.unusedTypeArgumentsForMethodInvocation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_TYPE_ARGUMENTS_FOR_METHOD_INVOCATION = PLUGIN_ID + ".compiler.problem.unusedTypeArgumentsForMethodInvocation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Synthetic Access Emulation.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever it emulates
@@ -591,7 +591,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_SYNTHETIC_ACCESS_EMULATION = PLUGIN_ID + ".compiler.problem.syntheticAccessEmulation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_SYNTHETIC_ACCESS_EMULATION = PLUGIN_ID + ".compiler.problem.syntheticAccessEmulation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Reporting Unused Type Parameter.
@@ -605,7 +605,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.9
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_TYPE_PARAMETER = PLUGIN_ID + ".compiler.problem.unusedTypeParameter"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_TYPE_PARAMETER = PLUGIN_ID + ".compiler.problem.unusedTypeParameter"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Reporting Non-Externalized String Literal.
@@ -619,7 +619,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_NON_NLS_STRING_LITERAL = PLUGIN_ID + ".compiler.problem.nonExternalizedStringLiteral"; //$NON-NLS-1$
+	public static final String COMPILER_PB_NON_NLS_STRING_LITERAL = PLUGIN_ID + ".compiler.problem.nonExternalizedStringLiteral"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Usage of <code>'assert'</code> Identifier.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever <code>'assert'</code> is
@@ -632,7 +632,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_ASSERT_IDENTIFIER = PLUGIN_ID + ".compiler.problem.assertIdentifier"; //$NON-NLS-1$
+	public static final String COMPILER_PB_ASSERT_IDENTIFIER = PLUGIN_ID + ".compiler.problem.assertIdentifier"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Usage of <code>'enum'</code> Identifier.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever <code>'enum'</code> is
@@ -645,7 +645,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_ENUM_IDENTIFIER = PLUGIN_ID + ".compiler.problem.enumIdentifier"; //$NON-NLS-1$
+	public static final String COMPILER_PB_ENUM_IDENTIFIER = PLUGIN_ID + ".compiler.problem.enumIdentifier"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Non-Static Reference to a Static Member.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a static field
@@ -659,7 +659,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_STATIC_ACCESS_RECEIVER = PLUGIN_ID + ".compiler.problem.staticAccessReceiver"; //$NON-NLS-1$
+	public static final String COMPILER_PB_STATIC_ACCESS_RECEIVER = PLUGIN_ID + ".compiler.problem.staticAccessReceiver"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Indirect Reference to a Static Member.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a static field
@@ -673,7 +673,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_INDIRECT_STATIC_ACCESS = PLUGIN_ID + ".compiler.problem.indirectStaticAccess"; //$NON-NLS-1$
+	public static final String COMPILER_PB_INDIRECT_STATIC_ACCESS = PLUGIN_ID + ".compiler.problem.indirectStaticAccess"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Assignment with no Effect.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever an assignment
@@ -686,7 +686,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_NO_EFFECT_ASSIGNMENT = PLUGIN_ID + ".compiler.problem.noEffectAssignment"; //$NON-NLS-1$
+	public static final String COMPILER_PB_NO_EFFECT_ASSIGNMENT = PLUGIN_ID + ".compiler.problem.noEffectAssignment"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Interface Method not Compatible with non-Inherited Methods.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever an interface
@@ -705,7 +705,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_INCOMPATIBLE_NON_INHERITED_INTERFACE_METHOD = PLUGIN_ID + ".compiler.problem.incompatibleNonInheritedInterfaceMethod"; //$NON-NLS-1$
+	public static final String COMPILER_PB_INCOMPATIBLE_NON_INHERITED_INTERFACE_METHOD = PLUGIN_ID + ".compiler.problem.incompatibleNonInheritedInterfaceMethod"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unused Private Members.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a private
@@ -718,7 +718,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_PRIVATE_MEMBER = PLUGIN_ID + ".compiler.problem.unusedPrivateMember"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_PRIVATE_MEMBER = PLUGIN_ID + ".compiler.problem.unusedPrivateMember"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Local Variable Declaration Hiding another Variable.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a local variable
@@ -731,7 +731,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_LOCAL_VARIABLE_HIDING = PLUGIN_ID + ".compiler.problem.localVariableHiding"; //$NON-NLS-1$
+	public static final String COMPILER_PB_LOCAL_VARIABLE_HIDING = PLUGIN_ID + ".compiler.problem.localVariableHiding"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Special Parameter Hiding another Field.
 	 * <p>When enabled, the compiler will signal cases where a constructor or setter method parameter declaration
@@ -745,7 +745,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_SPECIAL_PARAMETER_HIDING_FIELD = PLUGIN_ID + ".compiler.problem.specialParameterHidingField"; //$NON-NLS-1$
+	public static final String COMPILER_PB_SPECIAL_PARAMETER_HIDING_FIELD = PLUGIN_ID + ".compiler.problem.specialParameterHidingField"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Field Declaration Hiding another Variable.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a field
@@ -758,7 +758,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_FIELD_HIDING = PLUGIN_ID + ".compiler.problem.fieldHiding"; //$NON-NLS-1$
+	public static final String COMPILER_PB_FIELD_HIDING = PLUGIN_ID + ".compiler.problem.fieldHiding"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Type Declaration Hiding another Type.
 	 * <p>When enabled, the compiler will issue an error or a warning in situations where a type parameter
@@ -772,7 +772,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_TYPE_PARAMETER_HIDING = PLUGIN_ID + ".compiler.problem.typeParameterHiding"; //$NON-NLS-1$
+	public static final String COMPILER_PB_TYPE_PARAMETER_HIDING = PLUGIN_ID + ".compiler.problem.typeParameterHiding"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Possible Accidental Boolean Assignment.
 	 * <p>When enabled, the compiler will issue an error or a warning if a boolean assignment is acting as the condition
@@ -785,7 +785,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_POSSIBLE_ACCIDENTAL_BOOLEAN_ASSIGNMENT = PLUGIN_ID + ".compiler.problem.possibleAccidentalBooleanAssignment"; //$NON-NLS-1$
+	public static final String COMPILER_PB_POSSIBLE_ACCIDENTAL_BOOLEAN_ASSIGNMENT = PLUGIN_ID + ".compiler.problem.possibleAccidentalBooleanAssignment"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Switch Fall-Through Case.
 	 * <p>When enabled, the compiler will issue an error or a warning if a case may be
@@ -798,7 +798,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.2
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_FALLTHROUGH_CASE = PLUGIN_ID + ".compiler.problem.fallthroughCase"; //$NON-NLS-1$
+	public static final String COMPILER_PB_FALLTHROUGH_CASE = PLUGIN_ID + ".compiler.problem.fallthroughCase"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Empty Statements and Unnecessary Semicolons.
 	 * <p>When enabled, the compiler will issue an error or a warning if an empty statement or a
@@ -811,7 +811,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_EMPTY_STATEMENT = PLUGIN_ID + ".compiler.problem.emptyStatement"; //$NON-NLS-1$
+	public static final String COMPILER_PB_EMPTY_STATEMENT = PLUGIN_ID + ".compiler.problem.emptyStatement"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID.
 	 * <dl>
@@ -823,7 +823,7 @@ public final class JavaCore extends Plugin {
 	 * @category CompilerOptionID
 	 * @deprecated - this option has no effect
 	 */
-	public static final String COMPILER_PB_BOOLEAN_METHOD_THROWING_EXCEPTION = PLUGIN_ID + ".compiler.problem.booleanMethodThrowingException"; //$NON-NLS-1$
+	public static final String COMPILER_PB_BOOLEAN_METHOD_THROWING_EXCEPTION = PLUGIN_ID + ".compiler.problem.booleanMethodThrowingException"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unnecessary Type Check.
 	 * <p>When enabled, the compiler will issue an error or a warning when a cast or an <code>instanceof</code> operation
@@ -836,7 +836,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNNECESSARY_TYPE_CHECK = PLUGIN_ID + ".compiler.problem.unnecessaryTypeCheck"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNNECESSARY_TYPE_CHECK = PLUGIN_ID + ".compiler.problem.unnecessaryTypeCheck"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unnecessary Else.
 	 * <p>When enabled, the compiler will issue an error or a warning when a statement is unnecessarily
@@ -849,7 +849,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNNECESSARY_ELSE = PLUGIN_ID + ".compiler.problem.unnecessaryElse"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNNECESSARY_ELSE = PLUGIN_ID + ".compiler.problem.unnecessaryElse"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Undocumented Empty Block.
 	 * <p>When enabled, the compiler will issue an error or a warning when an empty block is detected and it is not
@@ -862,7 +862,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNDOCUMENTED_EMPTY_BLOCK = PLUGIN_ID + ".compiler.problem.undocumentedEmptyBlock"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNDOCUMENTED_EMPTY_BLOCK = PLUGIN_ID + ".compiler.problem.undocumentedEmptyBlock"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Finally Blocks Not Completing Normally.
 	 * <p>When enabled, the compiler will issue an error or a warning when a finally block does not complete normally.</p>
@@ -874,7 +874,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_FINALLY_BLOCK_NOT_COMPLETING = PLUGIN_ID + ".compiler.problem.finallyBlockNotCompletingNormally"; //$NON-NLS-1$
+	public static final String COMPILER_PB_FINALLY_BLOCK_NOT_COMPLETING = PLUGIN_ID + ".compiler.problem.finallyBlockNotCompletingNormally"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unused Declared Thrown Exception.
 	 * <p>When enabled, the compiler will issue an error or a warning when a
@@ -893,7 +893,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_DECLARED_THROWN_EXCEPTION = PLUGIN_ID + ".compiler.problem.unusedDeclaredThrownException"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_DECLARED_THROWN_EXCEPTION = PLUGIN_ID + ".compiler.problem.unusedDeclaredThrownException"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unused Declared Thrown Exception in Overriding Method.
 	 * <p>When disabled, the compiler will report unused declared thrown
@@ -911,7 +911,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_DECLARED_THROWN_EXCEPTION_WHEN_OVERRIDING = PLUGIN_ID + ".compiler.problem.unusedDeclaredThrownExceptionWhenOverriding"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_DECLARED_THROWN_EXCEPTION_WHEN_OVERRIDING = PLUGIN_ID + ".compiler.problem.unusedDeclaredThrownExceptionWhenOverriding"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Consider Reference in Doc Comment for Unused Declared Thrown Exception Check.
 	 * <p>When enabled, the compiler will consider doc comment references to
@@ -932,7 +932,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.4
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_DECLARED_THROWN_EXCEPTION_INCLUDE_DOC_COMMENT_REFERENCE = PLUGIN_ID + ".compiler.problem.unusedDeclaredThrownExceptionIncludeDocCommentReference"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_DECLARED_THROWN_EXCEPTION_INCLUDE_DOC_COMMENT_REFERENCE = PLUGIN_ID + ".compiler.problem.unusedDeclaredThrownExceptionIncludeDocCommentReference"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unused Declared Thrown Exception Exempts Exception And Throwable.
 	 * <p>When enabled, the compiler will issue an error or a warning when a
@@ -958,7 +958,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.4
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_DECLARED_THROWN_EXCEPTION_EXEMPT_EXCEPTION_AND_THROWABLE = PLUGIN_ID + ".compiler.problem.unusedDeclaredThrownExceptionExemptExceptionAndThrowable"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_DECLARED_THROWN_EXCEPTION_EXEMPT_EXCEPTION_AND_THROWABLE = PLUGIN_ID + ".compiler.problem.unusedDeclaredThrownExceptionExemptExceptionAndThrowable"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unqualified Access to Field.
 	 * <p>When enabled, the compiler will issue an error or a warning when a field is access without any qualification.
@@ -971,13 +971,13 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNQUALIFIED_FIELD_ACCESS = PLUGIN_ID + ".compiler.problem.unqualifiedFieldAccess"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNQUALIFIED_FIELD_ACCESS = PLUGIN_ID + ".compiler.problem.unqualifiedFieldAccess"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @deprecated Use {@link #COMPILER_PB_UNCHECKED_TYPE_OPERATION} instead.
 	 * @since 3.1
 	 * @category DeprecatedOptionID
 	 */
-	public static final String COMPILER_PB_UNSAFE_TYPE_OPERATION = PLUGIN_ID + ".compiler.problem.uncheckedTypeOperation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNSAFE_TYPE_OPERATION = PLUGIN_ID + ".compiler.problem.uncheckedTypeOperation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unchecked Type Operation.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever an operation involves generic types, and potentially
@@ -990,7 +990,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNCHECKED_TYPE_OPERATION = PLUGIN_ID + ".compiler.problem.uncheckedTypeOperation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNCHECKED_TYPE_OPERATION = PLUGIN_ID + ".compiler.problem.uncheckedTypeOperation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Raw Type Reference.
 	 * <p>When enabled, the compiler will issue an error or a warning when detecting references to raw types. Raw types are
@@ -1004,7 +1004,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.2
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_RAW_TYPE_REFERENCE = PLUGIN_ID + ".compiler.problem.rawTypeReference"; //$NON-NLS-1$
+	public static final String COMPILER_PB_RAW_TYPE_REFERENCE = PLUGIN_ID + ".compiler.problem.rawTypeReference"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting of Unavoidable Generic Type Problems due to raw APIs.
 	 * <p> When enabled, the compiler will issue an error or warning even when it detects a generics-related type problem
@@ -1020,7 +1020,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.7
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNAVOIDABLE_GENERIC_TYPE_PROBLEMS = PLUGIN_ID + ".compiler.problem.unavoidableGenericTypeProblems"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNAVOIDABLE_GENERIC_TYPE_PROBLEMS = PLUGIN_ID + ".compiler.problem.unavoidableGenericTypeProblems"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Reporting final Bound for Type Parameter.
@@ -1034,7 +1034,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_FINAL_PARAMETER_BOUND = PLUGIN_ID + ".compiler.problem.finalParameterBound"; //$NON-NLS-1$
+	public static final String COMPILER_PB_FINAL_PARAMETER_BOUND = PLUGIN_ID + ".compiler.problem.finalParameterBound"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing Declaration of serialVersionUID Field on Serializable Class.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a serializable class is missing a local declaration
@@ -1047,7 +1047,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_SERIAL_VERSION = PLUGIN_ID + ".compiler.problem.missingSerialVersion"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_SERIAL_VERSION = PLUGIN_ID + ".compiler.problem.missingSerialVersion"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Varargs Argument Needing a Cast in Method/Constructor Invocation.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a varargs arguments should be cast
@@ -1061,7 +1061,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_VARARGS_ARGUMENT_NEED_CAST = PLUGIN_ID + ".compiler.problem.varargsArgumentNeedCast"; //$NON-NLS-1$
+	public static final String COMPILER_PB_VARARGS_ARGUMENT_NEED_CAST = PLUGIN_ID + ".compiler.problem.varargsArgumentNeedCast"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Boxing/Unboxing Conversion.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a boxing or an unboxing
@@ -1074,7 +1074,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_AUTOBOXING = PLUGIN_ID + ".compiler.problem.autoboxing"; //$NON-NLS-1$
+	public static final String COMPILER_PB_AUTOBOXING = PLUGIN_ID + ".compiler.problem.autoboxing"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Use of Annotation Type as Super Interface.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever an annotation type is used
@@ -1087,7 +1087,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_ANNOTATION_SUPER_INTERFACE = PLUGIN_ID + ".compiler.problem.annotationSuperInterface"; //$NON-NLS-1$
+	public static final String COMPILER_PB_ANNOTATION_SUPER_INTERFACE = PLUGIN_ID + ".compiler.problem.annotationSuperInterface"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing <code>@Override</code> Annotation.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever encountering a method
@@ -1100,7 +1100,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_OVERRIDE_ANNOTATION = PLUGIN_ID + ".compiler.problem.missingOverrideAnnotation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_OVERRIDE_ANNOTATION = PLUGIN_ID + ".compiler.problem.missingOverrideAnnotation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing <code>@Override</code> Annotation for interface method implementation.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever encountering a method
@@ -1115,7 +1115,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.6
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_OVERRIDE_ANNOTATION_FOR_INTERFACE_METHOD_IMPLEMENTATION = PLUGIN_ID + ".compiler.problem.missingOverrideAnnotationForInterfaceMethodImplementation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_OVERRIDE_ANNOTATION_FOR_INTERFACE_METHOD_IMPLEMENTATION = PLUGIN_ID + ".compiler.problem.missingOverrideAnnotationForInterfaceMethodImplementation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing <code>@Deprecated</code> Annotation.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever encountering a declaration
@@ -1128,7 +1128,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_DEPRECATED_ANNOTATION = PLUGIN_ID + ".compiler.problem.missingDeprecatedAnnotation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_DEPRECATED_ANNOTATION = PLUGIN_ID + ".compiler.problem.missingDeprecatedAnnotation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing HashCode Method.
 	 * <p>When enabled, the compiler will issue an error or a warning if a type
@@ -1141,7 +1141,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.5
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_HASHCODE_METHOD = PLUGIN_ID + ".compiler.problem.missingHashCodeMethod"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_HASHCODE_METHOD = PLUGIN_ID + ".compiler.problem.missingHashCodeMethod"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Dead Code.
 	 * <p>When enabled, the compiler will issue an error or a warning if some non fatal dead code is detected. For instance, <code>if (false) foo();</code>
@@ -1155,7 +1155,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.5
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_DEAD_CODE = PLUGIN_ID + ".compiler.problem.deadCode"; //$NON-NLS-1$
+	public static final String COMPILER_PB_DEAD_CODE = PLUGIN_ID + ".compiler.problem.deadCode"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Dead Code Inside Trivial If Statement.
 	 * <p>When enabled, the compiler will signal presence of dead code inside trivial IF statement, e.g. <code>if (DEBUG)...</code>.</p>
@@ -1168,7 +1168,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.5
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_DEAD_CODE_IN_TRIVIAL_IF_STATEMENT = PLUGIN_ID + ".compiler.problem.deadCodeInTrivialIfStatement"; //$NON-NLS-1$
+	public static final String COMPILER_PB_DEAD_CODE_IN_TRIVIAL_IF_STATEMENT = PLUGIN_ID + ".compiler.problem.deadCodeInTrivialIfStatement"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Incomplete Enum Switch.
 	 * <p>When enabled, the compiler will issue an error or a warning
@@ -1182,7 +1182,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_INCOMPLETE_ENUM_SWITCH = PLUGIN_ID + ".compiler.problem.incompleteEnumSwitch"; //$NON-NLS-1$
+	public static final String COMPILER_PB_INCOMPLETE_ENUM_SWITCH = PLUGIN_ID + ".compiler.problem.incompleteEnumSwitch"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing Enum Case In Switch Despite An Existing Default Case.
 	 * <p>This option further controls the option {@link #COMPILER_PB_INCOMPLETE_ENUM_SWITCH}:</p>
@@ -1200,7 +1200,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_ENUM_CASE_DESPITE_DEFAULT = PLUGIN_ID + ".compiler.problem.missingEnumCaseDespiteDefault"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_ENUM_CASE_DESPITE_DEFAULT = PLUGIN_ID + ".compiler.problem.missingEnumCaseDespiteDefault"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing Default Case In Switch.
 	 * <p>When enabled, the compiler will issue an error or a warning
@@ -1213,13 +1213,13 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_SWITCH_MISSING_DEFAULT_CASE = PLUGIN_ID + ".compiler.problem.missingDefaultCase"; //$NON-NLS-1$
+	public static final String COMPILER_PB_SWITCH_MISSING_DEFAULT_CASE = PLUGIN_ID + ".compiler.problem.missingDefaultCase"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @since 3.1
 	 * @deprecated Use {@link #COMPILER_PB_NULL_REFERENCE} instead.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String COMPILER_PB_INCONSISTENT_NULL_CHECK = PLUGIN_ID + ".compiler.problem.inconsistentNullCheck"; //$NON-NLS-1$
+	public static final String COMPILER_PB_INCONSISTENT_NULL_CHECK = PLUGIN_ID + ".compiler.problem.inconsistentNullCheck"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unreferenced Label.
 	 * <p>When enabled, the compiler will issue an error or a warning when encountering a labeled statement which label
@@ -1234,7 +1234,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.2
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_LABEL = PLUGIN_ID + ".compiler.problem.unusedLabel"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_LABEL = PLUGIN_ID + ".compiler.problem.unusedLabel"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Invalid Javadoc Comment.
 	 * <p>This is the generic control for the severity of Javadoc problems.
@@ -1247,7 +1247,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_INVALID_JAVADOC = PLUGIN_ID + ".compiler.problem.invalidJavadoc"; //$NON-NLS-1$
+	public static final String COMPILER_PB_INVALID_JAVADOC = PLUGIN_ID + ".compiler.problem.invalidJavadoc"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Invalid Javadoc Tags.
 	 * <p>When enabled, the compiler will signal unbound or unexpected reference tags in Javadoc.
@@ -1262,7 +1262,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_INVALID_JAVADOC_TAGS = PLUGIN_ID + ".compiler.problem.invalidJavadocTags"; //$NON-NLS-1$
+	public static final String COMPILER_PB_INVALID_JAVADOC_TAGS = PLUGIN_ID + ".compiler.problem.invalidJavadocTags"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Invalid Javadoc Tags with Deprecated References.
 	 * <p>Specify whether the compiler will report deprecated references used in Javadoc tags.</p>
@@ -1276,7 +1276,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_INVALID_JAVADOC_TAGS__DEPRECATED_REF = PLUGIN_ID + ".compiler.problem.invalidJavadocTagsDeprecatedRef"; //$NON-NLS-1$
+	public static final String COMPILER_PB_INVALID_JAVADOC_TAGS__DEPRECATED_REF = PLUGIN_ID + ".compiler.problem.invalidJavadocTagsDeprecatedRef"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Invalid Javadoc Tags with Not Visible References.
 	 * <p>Specify whether the compiler will report non-visible references used in Javadoc tags.</p>
@@ -1290,7 +1290,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_INVALID_JAVADOC_TAGS__NOT_VISIBLE_REF = PLUGIN_ID + ".compiler.problem.invalidJavadocTagsNotVisibleRef"; //$NON-NLS-1$
+	public static final String COMPILER_PB_INVALID_JAVADOC_TAGS__NOT_VISIBLE_REF = PLUGIN_ID + ".compiler.problem.invalidJavadocTagsNotVisibleRef"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Visibility Level For Invalid Javadoc Tags.
 	 * <p>Set the minimum visibility level for Javadoc tag problems. Below this level problems will be ignored.</p>
@@ -1302,7 +1302,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_INVALID_JAVADOC_TAGS_VISIBILITY = PLUGIN_ID + ".compiler.problem.invalidJavadocTagsVisibility"; //$NON-NLS-1$
+	public static final String COMPILER_PB_INVALID_JAVADOC_TAGS_VISIBILITY = PLUGIN_ID + ".compiler.problem.invalidJavadocTagsVisibility"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting missing tag description.
 	 * <p>When enabled, the compiler will report a warning or an error for any Javadoc tag missing a required description.</p>
@@ -1319,7 +1319,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.4
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_JAVADOC_TAG_DESCRIPTION = PLUGIN_ID + ".compiler.problem.missingJavadocTagDescription"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_JAVADOC_TAG_DESCRIPTION = PLUGIN_ID + ".compiler.problem.missingJavadocTagDescription"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing Javadoc Tags.
 	 * <p>This is the generic control for the severity of Javadoc missing tag problems.
@@ -1334,7 +1334,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_JAVADOC_TAGS = PLUGIN_ID + ".compiler.problem.missingJavadocTags"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_JAVADOC_TAGS = PLUGIN_ID + ".compiler.problem.missingJavadocTags"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Visibility Level For Missing Javadoc Tags.
 	 * <p>Set the minimum visibility level for Javadoc missing tag problems. Below this level problems will be ignored.</p>
@@ -1346,7 +1346,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_JAVADOC_TAGS_VISIBILITY = PLUGIN_ID + ".compiler.problem.missingJavadocTagsVisibility"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_JAVADOC_TAGS_VISIBILITY = PLUGIN_ID + ".compiler.problem.missingJavadocTagsVisibility"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing Javadoc Tags on Overriding Methods.
 	 * <p>Specify whether the compiler will verify overriding methods in order to report Javadoc missing tag problems.</p>
@@ -1358,7 +1358,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_JAVADOC_TAGS_OVERRIDING = PLUGIN_ID + ".compiler.problem.missingJavadocTagsOverriding"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_JAVADOC_TAGS_OVERRIDING = PLUGIN_ID + ".compiler.problem.missingJavadocTagsOverriding"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing Javadoc Tags for Method Type Parameters.
 	 * <p>Specify whether a missing <code>@param</code> for a type parameter in a method declaration should be reported.
@@ -1373,7 +1373,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.7
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_JAVADOC_TAGS_METHOD_TYPE_PARAMETERS = PLUGIN_ID + ".compiler.problem.missingJavadocTagsMethodTypeParameters"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_JAVADOC_TAGS_METHOD_TYPE_PARAMETERS = PLUGIN_ID + ".compiler.problem.missingJavadocTagsMethodTypeParameters"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing Javadoc Comments.
 	 * <p>This is the generic control for the severity of missing Javadoc comment problems.
@@ -1388,7 +1388,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_JAVADOC_COMMENTS = PLUGIN_ID + ".compiler.problem.missingJavadocComments"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_JAVADOC_COMMENTS = PLUGIN_ID + ".compiler.problem.missingJavadocComments"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Visibility Level For Missing Javadoc Comments.
 	 * <p>Set the minimum visibility level for missing Javadoc problems. Below this level problems will be ignored.</p>
@@ -1400,7 +1400,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_JAVADOC_COMMENTS_VISIBILITY = PLUGIN_ID + ".compiler.problem.missingJavadocCommentsVisibility"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_JAVADOC_COMMENTS_VISIBILITY = PLUGIN_ID + ".compiler.problem.missingJavadocCommentsVisibility"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing Javadoc Comments on Overriding Methods.
 	 * <p>Specify whether the compiler will verify overriding methods in order to report missing Javadoc comment problems.</p>
@@ -1412,7 +1412,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_JAVADOC_COMMENTS_OVERRIDING = PLUGIN_ID + ".compiler.problem.missingJavadocCommentsOverriding"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_JAVADOC_COMMENTS_OVERRIDING = PLUGIN_ID + ".compiler.problem.missingJavadocCommentsOverriding"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Usage of <code>char[]</code> Expressions in String Concatenations.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a <code>char[]</code> expression
@@ -1425,7 +1425,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_CHAR_ARRAY_IN_STRING_CONCATENATION = PLUGIN_ID + ".compiler.problem.noImplicitStringConversion"; //$NON-NLS-1$
+	public static final String COMPILER_PB_CHAR_ARRAY_IN_STRING_CONCATENATION = PLUGIN_ID + ".compiler.problem.noImplicitStringConversion"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Maximum Number of Problems Reported per Compilation Unit.
 	 * <p>Specify the maximum number of problems reported on each compilation unit.</p>
@@ -1437,7 +1437,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MAX_PER_UNIT = PLUGIN_ID + ".compiler.maxProblemPerUnit"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MAX_PER_UNIT = PLUGIN_ID + ".compiler.maxProblemPerUnit"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Treating Optional Error as Fatal.
 	 * <p>When enabled, optional errors (i.e. optional problems which severity is set to <code>"error"</code>) will be treated as standard
@@ -1453,7 +1453,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.2
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_FATAL_OPTIONAL_ERROR = PLUGIN_ID + ".compiler.problem.fatalOptionalError"; //$NON-NLS-1$
+	public static final String COMPILER_PB_FATAL_OPTIONAL_ERROR = PLUGIN_ID + ".compiler.problem.fatalOptionalError"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Parameter Assignment.
 	 * <p>When enabled, the compiler will issue an error or a warning if a parameter is
@@ -1466,7 +1466,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.2
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_PARAMETER_ASSIGNMENT = PLUGIN_ID + ".compiler.problem.parameterAssignment"; //$NON-NLS-1$
+	public static final String COMPILER_PB_PARAMETER_ASSIGNMENT = PLUGIN_ID + ".compiler.problem.parameterAssignment"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting a method that qualifies as static, but not declared static.
 	 * <p>When enabled, the compiler will issue an error or a warning if a method has
@@ -1479,7 +1479,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.7
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_STATIC_ON_METHOD = PLUGIN_ID + ".compiler.problem.reportMethodCanBeStatic"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_STATIC_ON_METHOD = PLUGIN_ID + ".compiler.problem.reportMethodCanBeStatic"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting a method that may qualify as static, but not declared static.
 	 * <p>When enabled, the compiler will issue an error or a warning if a method has
@@ -1493,7 +1493,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.7
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_POTENTIALLY_MISSING_STATIC_ON_METHOD = PLUGIN_ID + ".compiler.problem.reportMethodCanBePotentiallyStatic"; //$NON-NLS-1$
+	public static final String COMPILER_PB_POTENTIALLY_MISSING_STATIC_ON_METHOD = PLUGIN_ID + ".compiler.problem.reportMethodCanBePotentiallyStatic"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting a resource that is not closed properly.
 	 * <p>When enabled, the compiler will issue an error or a warning if
@@ -1508,7 +1508,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNCLOSED_CLOSEABLE = PLUGIN_ID + ".compiler.problem.unclosedCloseable"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNCLOSED_CLOSEABLE = PLUGIN_ID + ".compiler.problem.unclosedCloseable"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting a resource that may not be closed properly.
 	 * <p>When enabled, the compiler will issue an error or a warning if
@@ -1524,7 +1524,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE = PLUGIN_ID + ".compiler.problem.potentiallyUnclosedCloseable"; //$NON-NLS-1$
+	public static final String COMPILER_PB_POTENTIALLY_UNCLOSED_CLOSEABLE = PLUGIN_ID + ".compiler.problem.potentiallyUnclosedCloseable"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting a resource that is not managed by try-with-resources.
 	 * <p>When enabled, the compiler will issue an error or a warning if a local variable
@@ -1539,7 +1539,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_EXPLICITLY_CLOSED_AUTOCLOSEABLE = PLUGIN_ID + ".compiler.problem.explicitlyClosedAutoCloseable"; //$NON-NLS-1$
+	public static final String COMPILER_PB_EXPLICITLY_CLOSED_AUTOCLOSEABLE = PLUGIN_ID + ".compiler.problem.explicitlyClosedAutoCloseable"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Enable the use of specific annotations for more precise analysis of resource leaks.
@@ -1553,7 +1553,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.37
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_ANNOTATION_RESOURCE_ANALYSIS = PLUGIN_ID + ".compiler.annotation.resourceanalysis"; //$NON-NLS-1$
+	public static final String COMPILER_ANNOTATION_RESOURCE_ANALYSIS = PLUGIN_ID + ".compiler.annotation.resourceanalysis"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Name of annotation type for "owned" resource values.
@@ -1578,7 +1578,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.37
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_OWNING_ANNOTATION_NAME = PLUGIN_ID + ".compiler.annotation.owning"; //$NON-NLS-1$
+	public static final String COMPILER_OWNING_ANNOTATION_NAME = PLUGIN_ID + ".compiler.annotation.owning"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Name of annotation type for "not-owned" resource values.
@@ -1604,7 +1604,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.37
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_NOTOWNING_ANNOTATION_NAME = PLUGIN_ID + ".compiler.annotation.notowning"; //$NON-NLS-1$
+	public static final String COMPILER_NOTOWNING_ANNOTATION_NAME = PLUGIN_ID + ".compiler.annotation.notowning"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Reporting a resource that is not managed by recommended strategies.
@@ -1627,7 +1627,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.37
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_RECOMMENDED_RESOURCE_MANAGEMENT = PLUGIN_ID + ".compiler.problem.insufficientResourceAnalysis"; //$NON-NLS-1$
+	public static final String COMPILER_PB_RECOMMENDED_RESOURCE_MANAGEMENT = PLUGIN_ID + ".compiler.problem.insufficientResourceAnalysis"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Reporting when a method override incompatibly changes the owning contract.
@@ -1649,7 +1649,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.37
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_INCOMPATIBLE_OWNING_CONTRACT = PLUGIN_ID + ".compiler.problem.incompatibleOwningContract";  //$NON-NLS-1$
+	public static final String COMPILER_PB_INCOMPATIBLE_OWNING_CONTRACT = PLUGIN_ID + ".compiler.problem.incompatibleOwningContract";  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Reporting a method invocation providing an argument of an unlikely type.
@@ -1667,7 +1667,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.13
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNLIKELY_COLLECTION_METHOD_ARGUMENT_TYPE = PLUGIN_ID + ".compiler.problem.unlikelyCollectionMethodArgumentType"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNLIKELY_COLLECTION_METHOD_ARGUMENT_TYPE = PLUGIN_ID + ".compiler.problem.unlikelyCollectionMethodArgumentType"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Perform strict analysis against the expected type of collection methods.
@@ -1683,7 +1683,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.13
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNLIKELY_COLLECTION_METHOD_ARGUMENT_TYPE_STRICT = PLUGIN_ID + ".compiler.problem.unlikelyCollectionMethodArgumentTypeStrict"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNLIKELY_COLLECTION_METHOD_ARGUMENT_TYPE_STRICT = PLUGIN_ID + ".compiler.problem.unlikelyCollectionMethodArgumentTypeStrict"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Reporting a method invocation providing an argument of an unlikely type to method 'equals'.
@@ -1702,7 +1702,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.13
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNLIKELY_EQUALS_ARGUMENT_TYPE = PLUGIN_ID + ".compiler.problem.unlikelyEqualsArgumentType"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNLIKELY_EQUALS_ARGUMENT_TYPE = PLUGIN_ID + ".compiler.problem.unlikelyEqualsArgumentType"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Reporting when public API uses a non-API type.
@@ -1726,7 +1726,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.14
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_API_LEAKS = PLUGIN_ID + ".compiler.problem.APILeak"; //$NON-NLS-1$
+	public static final String COMPILER_PB_API_LEAKS = PLUGIN_ID + ".compiler.problem.APILeak"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Reporting when a module requires an auto module with an unstable name.
@@ -1746,7 +1746,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.14
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNSTABLE_AUTO_MODULE_NAME = PLUGIN_ID + ".compiler.problem.unstableAutoModuleName"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNSTABLE_AUTO_MODULE_NAME = PLUGIN_ID + ".compiler.problem.unstableAutoModuleName"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Reporting when a {@code @SuppressWarnings} annotation might be unused, but exact information is not available.
@@ -1769,7 +1769,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.20
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_SUPPRESS_WARNINGS_NOT_FULLY_ANALYSED = PLUGIN_ID + ".compiler.problem.suppressWarningsNotFullyAnalysed"; //$NON-NLS-1$
+	public static final String COMPILER_PB_SUPPRESS_WARNINGS_NOT_FULLY_ANALYSED = PLUGIN_ID + ".compiler.problem.suppressWarningsNotFullyAnalysed"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Annotation-based Null Analysis.
@@ -1791,7 +1791,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_ANNOTATION_NULL_ANALYSIS = PLUGIN_ID + ".compiler.annotation.nullanalysis"; //$NON-NLS-1$
+	public static final String COMPILER_ANNOTATION_NULL_ANALYSIS = PLUGIN_ID + ".compiler.annotation.nullanalysis"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Name of Annotation Type for Nullable Types.
 	 * <p>This option defines a fully qualified Java type name that the compiler may use
@@ -1817,7 +1817,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_NULLABLE_ANNOTATION_NAME = PLUGIN_ID + ".compiler.annotation.nullable"; //$NON-NLS-1$
+	public static final String COMPILER_NULLABLE_ANNOTATION_NAME = PLUGIN_ID + ".compiler.annotation.nullable"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Names of Secondary Annotation Types for Nullable Types.
 	 * <p>This option defines a comma-separated list of fully qualified Java type names
@@ -1840,7 +1840,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.12
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_NULLABLE_ANNOTATION_SECONDARY_NAMES = PLUGIN_ID + ".compiler.annotation.nullable.secondary"; //$NON-NLS-1$
+	public static final String COMPILER_NULLABLE_ANNOTATION_SECONDARY_NAMES = PLUGIN_ID + ".compiler.annotation.nullable.secondary"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Name of Annotation Type for Non-Null Types.
 	 * <p>This option defines a fully qualified Java type name that the compiler may use
@@ -1866,7 +1866,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_NONNULL_ANNOTATION_NAME = PLUGIN_ID + ".compiler.annotation.nonnull"; //$NON-NLS-1$
+	public static final String COMPILER_NONNULL_ANNOTATION_NAME = PLUGIN_ID + ".compiler.annotation.nonnull"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Names of Secondary Annotation Types for Non-Null Types.
 	 * <p>This option defines a comma-separated list of fully qualified Java type names
@@ -1889,7 +1889,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.12
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_NONNULL_ANNOTATION_SECONDARY_NAMES = PLUGIN_ID + ".compiler.annotation.nonnull.secondary"; //$NON-NLS-1$
+	public static final String COMPILER_NONNULL_ANNOTATION_SECONDARY_NAMES = PLUGIN_ID + ".compiler.annotation.nonnull.secondary"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Name of Annotation Type to specify a nullness default for unannotated types.
 	 * <p>This option defines a fully qualified Java type name that the compiler may use
@@ -1909,7 +1909,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_NONNULL_BY_DEFAULT_ANNOTATION_NAME = PLUGIN_ID + ".compiler.annotation.nonnullbydefault"; //$NON-NLS-1$
+	public static final String COMPILER_NONNULL_BY_DEFAULT_ANNOTATION_NAME = PLUGIN_ID + ".compiler.annotation.nonnullbydefault"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Names of Secondary Annotation Types to specify a nullness default for unannotated types.
 	 * <p>This option defines a comma-separated list of fully qualified Java type names
@@ -1929,7 +1929,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.12
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_NONNULL_BY_DEFAULT_ANNOTATION_SECONDARY_NAMES = PLUGIN_ID + ".compiler.annotation.nonnullbydefault.secondary"; //$NON-NLS-1$
+	public static final String COMPILER_NONNULL_BY_DEFAULT_ANNOTATION_SECONDARY_NAMES = PLUGIN_ID + ".compiler.annotation.nonnullbydefault.secondary"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting missing default nullness annotation.
 	 * <p>When enabled, the compiler will issue an error or a warning in the following cases:</p>
@@ -1947,7 +1947,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_NONNULL_BY_DEFAULT_ANNOTATION = PLUGIN_ID + ".compiler.annotation.missingNonNullByDefaultAnnotation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_NONNULL_BY_DEFAULT_ANNOTATION = PLUGIN_ID + ".compiler.annotation.missingNonNullByDefaultAnnotation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Read external annotations from all build path entries.
 	 * <p>This option controls where the compiler will look for external annotations for enhanced null analysis</p>
@@ -1961,7 +1961,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.27
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_JAVA_BUILD_EXTERNAL_ANNOTATIONS_FROM_ALL_LOCATIONS = PLUGIN_ID + ".builder.annotationPath.allLocations"; //$NON-NLS-1$
+	public static final String CORE_JAVA_BUILD_EXTERNAL_ANNOTATIONS_FROM_ALL_LOCATIONS = PLUGIN_ID + ".builder.annotationPath.allLocations"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Violations of Null Specifications.
 	 * <p>Depending on this option, the compiler will issue either an error or a warning
@@ -2001,7 +2001,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_NULL_SPECIFICATION_VIOLATION = PLUGIN_ID + ".compiler.problem.nullSpecViolation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_NULL_SPECIFICATION_VIOLATION = PLUGIN_ID + ".compiler.problem.nullSpecViolation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting conflicts between declared null annotation and inferred null value
 	 * <p>When enabled, the compiler will issue an error or a warning whenever one of the
@@ -2028,7 +2028,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_NULL_ANNOTATION_INFERENCE_CONFLICT = PLUGIN_ID + ".compiler.problem.nullAnnotationInferenceConflict"; //$NON-NLS-1$
+	public static final String COMPILER_PB_NULL_ANNOTATION_INFERENCE_CONFLICT = PLUGIN_ID + ".compiler.problem.nullAnnotationInferenceConflict"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting unchecked conversion from a type with unknown nullness to a null annotated type
 	 * <p>When enabled, the compiler will issue an error or a warning whenever one of the
@@ -2060,7 +2060,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_NULL_UNCHECKED_CONVERSION = PLUGIN_ID + ".compiler.problem.nullUncheckedConversion"; //$NON-NLS-1$
+	public static final String COMPILER_PB_NULL_UNCHECKED_CONVERSION = PLUGIN_ID + ".compiler.problem.nullUncheckedConversion"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting problems detected by pessimistic null analysis for free type variables.
 	 * <p>Unless set to <code>"ignore"</code>, type variables not affected by any explicit null annotation are pessimistically analyzed
@@ -2076,7 +2076,7 @@ public final class JavaCore extends Plugin {
 	 * <dt>Default:</dt><dd><code>"warning"</code></dd>
 	 * </dl>
 	 */
-	public static final String COMPILER_PB_PESSIMISTIC_NULL_ANALYSIS_FOR_FREE_TYPE_VARIABLES = PLUGIN_ID + ".compiler.problem.pessimisticNullAnalysisForFreeTypeVariables"; //$NON-NLS-1$
+	public static final String COMPILER_PB_PESSIMISTIC_NULL_ANALYSIS_FOR_FREE_TYPE_VARIABLES = PLUGIN_ID + ".compiler.problem.pessimisticNullAnalysisForFreeTypeVariables"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Redundant Null Annotations.
 	 * <p>When enabled, the compiler will issue an error or a warning when a non-null annotation
@@ -2094,7 +2094,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.8
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_REDUNDANT_NULL_ANNOTATION = PLUGIN_ID + ".compiler.problem.redundantNullAnnotation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_REDUNDANT_NULL_ANNOTATION = PLUGIN_ID + ".compiler.problem.redundantNullAnnotation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Perform syntactic null analysis for fields.
 	 * <p>When enabled, the compiler will detect certain syntactic constellations where a null
@@ -2108,7 +2108,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.9
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS = JavaCore.PLUGIN_ID+".compiler.problem.syntacticNullAnalysisForFields"; //$NON-NLS-1$
+	public static final String COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS = JavaCore.PLUGIN_ID+".compiler.problem.syntacticNullAnalysisForFields"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Inheritance of null annotations.
 	 * <p>When enabled, the compiler will check for each method without any explicit null annotations:
@@ -2128,7 +2128,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.9
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_INHERIT_NULL_ANNOTATIONS = JavaCore.PLUGIN_ID+".compiler.annotation.inheritNullAnnotations"; //$NON-NLS-1$
+	public static final String COMPILER_INHERIT_NULL_ANNOTATIONS = JavaCore.PLUGIN_ID+".compiler.annotation.inheritNullAnnotations"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Dropped Nonnull Parameter Annotations.
 	 * <p>When enabled, the compiler will issue an error or a warning against a parameter of
@@ -2153,7 +2153,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.9
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_NONNULL_PARAMETER_ANNOTATION_DROPPED = JavaCore.PLUGIN_ID+".compiler.problem.nonnullParameterAnnotationDropped"; //$NON-NLS-1$
+	public static final String COMPILER_PB_NONNULL_PARAMETER_ANNOTATION_DROPPED = JavaCore.PLUGIN_ID+".compiler.problem.nonnullParameterAnnotationDropped"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unsafe NonNull Interpretation Of Type Variables.
 	 * <p>When enabled, the compiler will issue an error or a warning against a method call
@@ -2177,7 +2177,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.12
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_NONNULL_TYPEVAR_FROM_LEGACY_INVOCATION = JavaCore.PLUGIN_ID+".compiler.problem.nonnullTypeVariableFromLegacyInvocation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_NONNULL_TYPEVAR_FROM_LEGACY_INVOCATION = JavaCore.PLUGIN_ID+".compiler.problem.nonnullTypeVariableFromLegacyInvocation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unsafe Conversion To Unannotated Type Argument.
 	 * <p>When enabled, the compiler will issue an error, warning or info when a value of a parameterized type
@@ -2193,7 +2193,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.21
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED = JavaCore.PLUGIN_ID+".compiler.problem.annotatedTypeArgumentToUnannotated"; //$NON-NLS-1$
+	public static final String COMPILER_PB_ANNOTATED_TYPE_ARGUMENT_TO_UNANNOTATED = JavaCore.PLUGIN_ID+".compiler.problem.annotatedTypeArgumentToUnannotated"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Setting Source Compatibility Mode.
 	 * <p>Specify whether which source level compatibility is used. From 1.4 on, <code>'assert'</code> is a keyword
@@ -2214,7 +2214,7 @@ public final class JavaCore extends Plugin {
 	 * @see #COMPILER_CODEGEN_TARGET_PLATFORM
 	 * @see #setComplianceOptions(String, Map)
 	 */
-	public static final String COMPILER_SOURCE = PLUGIN_ID + ".compiler.source"; //$NON-NLS-1$
+	public static final String COMPILER_SOURCE = PLUGIN_ID + ".compiler.source"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Setting Compliance Level.
 	 * <p>Select the compliance level for the compiler.
@@ -2232,7 +2232,7 @@ public final class JavaCore extends Plugin {
 	 * @see #COMPILER_CODEGEN_TARGET_PLATFORM
 	 * @see #setComplianceOptions(String, Map)
 	 */
-	public static final String COMPILER_COMPLIANCE = PLUGIN_ID + ".compiler.compliance"; //$NON-NLS-1$
+	public static final String COMPILER_COMPLIANCE = PLUGIN_ID + ".compiler.compliance"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Use system libraries from release.
 	 * <p>When enabled, the compiler will compile against the system libraries from release
@@ -2248,7 +2248,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.14
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_RELEASE = PLUGIN_ID + ".compiler.release"; //$NON-NLS-1$
+	public static final String COMPILER_RELEASE = PLUGIN_ID + ".compiler.release"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Defining the Automatic Task Priorities.
 	 * <p>In parallel with the Automatic Task Tags, this list defines the priorities (high, normal or low)
@@ -2265,7 +2265,7 @@ public final class JavaCore extends Plugin {
 	 * @category CompilerOptionID
 	 * @see #COMPILER_TASK_TAGS
 	 */
-	public static final String COMPILER_TASK_PRIORITIES = PLUGIN_ID + ".compiler.taskPriorities"; //$NON-NLS-1$
+	public static final String COMPILER_TASK_PRIORITIES = PLUGIN_ID + ".compiler.taskPriorities"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Defining the Automatic Task Tags.
 	 * <p>When the tag list is not empty, the compiler will issue a task marker whenever it encounters
@@ -2291,7 +2291,7 @@ public final class JavaCore extends Plugin {
 	 * @category CompilerOptionID
 	 * @see #COMPILER_TASK_PRIORITIES
 	 */
-	public static final String COMPILER_TASK_TAGS = PLUGIN_ID + ".compiler.taskTags"; //$NON-NLS-1$
+	public static final String COMPILER_TASK_TAGS = PLUGIN_ID + ".compiler.taskTags"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Determining whether task tags are case-sensitive.
 	 * <p>When enabled, task tags are considered in a case-sensitive way.</p>
@@ -2303,7 +2303,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_TASK_CASE_SENSITIVE = PLUGIN_ID + ".compiler.taskCaseSensitive"; //$NON-NLS-1$
+	public static final String COMPILER_TASK_CASE_SENSITIVE = PLUGIN_ID + ".compiler.taskCaseSensitive"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Forbidden Reference to Type with Restricted Access.
 	 * <p>When enabled, the compiler will issue an error or a warning when referring to a type that is non accessible, as defined according
@@ -2316,7 +2316,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_FORBIDDEN_REFERENCE = PLUGIN_ID + ".compiler.problem.forbiddenReference"; //$NON-NLS-1$
+	public static final String COMPILER_PB_FORBIDDEN_REFERENCE = PLUGIN_ID + ".compiler.problem.forbiddenReference"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Discouraged Reference to Type with Restricted Access.
 	 * <p>When enabled, the compiler will issue an error or a warning when referring to a type with discouraged access, as defined according
@@ -2329,7 +2329,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_DISCOURAGED_REFERENCE = PLUGIN_ID + ".compiler.problem.discouragedReference"; //$NON-NLS-1$
+	public static final String COMPILER_PB_DISCOURAGED_REFERENCE = PLUGIN_ID + ".compiler.problem.discouragedReference"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Determining Effect of <code>@SuppressWarnings</code>.
 	 * <p>When enabled, the <code>@SuppressWarnings</code> annotation can be used to suppress some compiler warnings.</p>
@@ -2342,7 +2342,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_SUPPRESS_WARNINGS = PLUGIN_ID + ".compiler.problem.suppressWarnings"; //$NON-NLS-1$
+	public static final String COMPILER_PB_SUPPRESS_WARNINGS = PLUGIN_ID + ".compiler.problem.suppressWarnings"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Raise null related errors or warnings arising because of assert statements.
 	 * <p>When enabled, the compiler will flag all null related errors or warnings that have been enabled by the user,
@@ -2357,7 +2357,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.7
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_INCLUDE_ASSERTS_IN_NULL_ANALYSIS = PLUGIN_ID + ".compiler.problem.includeNullInfoFromAsserts"; //$NON-NLS-1$
+	public static final String COMPILER_PB_INCLUDE_ASSERTS_IN_NULL_ANALYSIS = PLUGIN_ID + ".compiler.problem.includeNullInfoFromAsserts"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Further Determining the Effect of <code>@SuppressWarnings</code> if also
 	 * {@link #COMPILER_PB_SUPPRESS_WARNINGS} is enabled.
@@ -2372,7 +2372,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.6
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_SUPPRESS_OPTIONAL_ERRORS = PLUGIN_ID + ".compiler.problem.suppressOptionalErrors"; //$NON-NLS-1$
+	public static final String COMPILER_PB_SUPPRESS_OPTIONAL_ERRORS = PLUGIN_ID + ".compiler.problem.suppressOptionalErrors"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unhandled Warning Token for <code>@SuppressWarnings</code>.
 	 * <p>When enabled, the compiler will issue an error or a warning when encountering a token
@@ -2385,7 +2385,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNHANDLED_WARNING_TOKEN = PLUGIN_ID + ".compiler.problem.unhandledWarningToken"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNHANDLED_WARNING_TOKEN = PLUGIN_ID + ".compiler.problem.unhandledWarningToken"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Unnecessary <code>@SuppressWarnings</code>.
 	 * <p>When enabled, the compiler will issue an error or a warning when encountering <code>@SuppressWarnings</code> annotation
@@ -2400,7 +2400,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.4
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_WARNING_TOKEN = PLUGIN_ID + ".compiler.problem.unusedWarningToken"; //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_WARNING_TOKEN = PLUGIN_ID + ".compiler.problem.unusedWarningToken"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Null Dereference.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a
@@ -2416,7 +2416,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.2
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_NULL_REFERENCE = PLUGIN_ID + ".compiler.problem.nullReference"; //$NON-NLS-1$
+	public static final String COMPILER_PB_NULL_REFERENCE = PLUGIN_ID + ".compiler.problem.nullReference"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Potential Null Dereference.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a
@@ -2433,7 +2433,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.3
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_POTENTIAL_NULL_REFERENCE = PLUGIN_ID + ".compiler.problem.potentialNullReference"; //$NON-NLS-1$
+	public static final String COMPILER_PB_POTENTIAL_NULL_REFERENCE = PLUGIN_ID + ".compiler.problem.potentialNullReference"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Redundant Null Check.
 	 * <p>When enabled, the compiler will issue an error or a warning whenever a
@@ -2449,7 +2449,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.3
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_REDUNDANT_NULL_CHECK = PLUGIN_ID + ".compiler.problem.redundantNullCheck"; //$NON-NLS-1$
+	public static final String COMPILER_PB_REDUNDANT_NULL_CHECK = PLUGIN_ID + ".compiler.problem.redundantNullCheck"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Overriding method that doesn't call the super method invocation.
 	 * <p>When enabled, the compiler will issue an error or a warning if a method is overriding a method without calling
@@ -2462,7 +2462,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.3
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_OVERRIDING_METHOD_WITHOUT_SUPER_INVOCATION = PLUGIN_ID + ".compiler.problem.overridingMethodWithoutSuperInvocation"; //$NON-NLS-1$
+	public static final String COMPILER_PB_OVERRIDING_METHOD_WITHOUT_SUPER_INVOCATION = PLUGIN_ID + ".compiler.problem.overridingMethodWithoutSuperInvocation"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Redundant Superinterface.
 	 * <p>When enabled, the compiler will issue an error or a warning if a type
@@ -2476,7 +2476,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.4
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_REDUNDANT_SUPERINTERFACE = PLUGIN_ID + ".compiler.problem.redundantSuperinterface"; //$NON-NLS-1$
+	public static final String COMPILER_PB_REDUNDANT_SUPERINTERFACE = PLUGIN_ID + ".compiler.problem.redundantSuperinterface"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Comparison of Identical Expressions.
 	 * <p>When enabled, the compiler will issue an error or a warning if a comparison
@@ -2489,7 +2489,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.5
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_COMPARING_IDENTICAL = PLUGIN_ID + ".compiler.problem.comparingIdentical"; //$NON-NLS-1$
+	public static final String COMPILER_PB_COMPARING_IDENTICAL = PLUGIN_ID + ".compiler.problem.comparingIdentical"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Missing Synchronized Modifier On Inherited Method.
 	 * <p>When enabled, the compiler will issue an error or a warning if a method
@@ -2502,7 +2502,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.5
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_MISSING_SYNCHRONIZED_ON_INHERITED_METHOD = PLUGIN_ID + ".compiler.problem.missingSynchronizedOnInheritedMethod"; //$NON-NLS-1$
+	public static final String COMPILER_PB_MISSING_SYNCHRONIZED_ON_INHERITED_METHOD = PLUGIN_ID + ".compiler.problem.missingSynchronizedOnInheritedMethod"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Allocation of an Unused Object.
 	 * <p>When enabled, the compiler will issue an error or a warning if an object is allocated but never used,
@@ -2515,7 +2515,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.6
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_UNUSED_OBJECT_ALLOCATION = PLUGIN_ID + ".compiler.problem.unusedObjectAllocation";  //$NON-NLS-1$
+	public static final String COMPILER_PB_UNUSED_OBJECT_ALLOCATION = PLUGIN_ID + ".compiler.problem.unusedObjectAllocation";  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting redundant specification of type arguments in class instance creation expressions.
 	 * <p>When enabled, the compiler will issue an error or a warning if type arguments are used in a class instance creation,
@@ -2529,7 +2529,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.7.1
 	 * @category CompilerOptionID
 	 */
-	public static final String COMPILER_PB_REDUNDANT_TYPE_ARGUMENTS = PLUGIN_ID + ".compiler.problem.redundantSpecificationOfTypeArguments";  //$NON-NLS-1$
+	public static final String COMPILER_PB_REDUNDANT_TYPE_ARGUMENTS = PLUGIN_ID + ".compiler.problem.redundantSpecificationOfTypeArguments";  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Computing Project Build Order.
 	 * <p>Indicate whether JavaCore should enforce the project build order to be based on
@@ -2542,7 +2542,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_JAVA_BUILD_ORDER = PLUGIN_ID + ".computeJavaBuildOrder"; //$NON-NLS-1$
+	public static final String CORE_JAVA_BUILD_ORDER = PLUGIN_ID + ".computeJavaBuildOrder"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Specifying Filters for Resource Copying Control.
 	 * <p>Allow to specify some filters to control the resource copy process.</p>
@@ -2555,7 +2555,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.0
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_JAVA_BUILD_RESOURCE_COPY_FILTER = PLUGIN_ID + ".builder.resourceCopyExclusionFilter"; //$NON-NLS-1$
+	public static final String CORE_JAVA_BUILD_RESOURCE_COPY_FILTER = PLUGIN_ID + ".builder.resourceCopyExclusionFilter"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Reporting Duplicate Resources.
 	 * <p>Indicate the severity of the problem reported when more than one occurrence
@@ -2568,7 +2568,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_JAVA_BUILD_DUPLICATE_RESOURCE = PLUGIN_ID + ".builder.duplicateResourceTask"; //$NON-NLS-1$
+	public static final String CORE_JAVA_BUILD_DUPLICATE_RESOURCE = PLUGIN_ID + ".builder.duplicateResourceTask"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Cleaning Output Folder(s).
 	 * <p>Indicate whether the JavaBuilder is allowed to clean the output folders
@@ -2581,7 +2581,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_JAVA_BUILD_CLEAN_OUTPUT_FOLDER = PLUGIN_ID + ".builder.cleanOutputFolder"; //$NON-NLS-1$
+	public static final String CORE_JAVA_BUILD_CLEAN_OUTPUT_FOLDER = PLUGIN_ID + ".builder.cleanOutputFolder"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Recreate Modified class files in Output Folder.
 	 * <p>Indicate whether the JavaBuilder should check for any changes to .class files
@@ -2597,7 +2597,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.2
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_JAVA_BUILD_RECREATE_MODIFIED_CLASS_FILES_IN_OUTPUT_FOLDER = PLUGIN_ID + ".builder.recreateModifiedClassFileInOutputFolder"; //$NON-NLS-1$
+	public static final String CORE_JAVA_BUILD_RECREATE_MODIFIED_CLASS_FILES_IN_OUTPUT_FOLDER = PLUGIN_ID + ".builder.recreateModifiedClassFileInOutputFolder"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Reporting Incomplete Classpath.
 	 * <p>Indicate the severity of the problem reported when an entry on the classpath does not exist,
@@ -2610,7 +2610,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_INCOMPLETE_CLASSPATH = PLUGIN_ID + ".incompleteClasspath"; //$NON-NLS-1$
+	public static final String CORE_INCOMPLETE_CLASSPATH = PLUGIN_ID + ".incompleteClasspath"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Reporting Classpath Cycle.
 	 * <p>Indicate the severity of the problem reported when a project is involved in a cycle.</p>
@@ -2622,7 +2622,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_CIRCULAR_CLASSPATH = PLUGIN_ID + ".circularClasspath"; //$NON-NLS-1$
+	public static final String CORE_CIRCULAR_CLASSPATH = PLUGIN_ID + ".circularClasspath"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Reporting Incompatible JDK Level for Required Binaries.
 	 * <p>Indicate the severity of the problem reported when a project prerequisites another project
@@ -2635,7 +2635,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.0
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_INCOMPATIBLE_JDK_LEVEL = PLUGIN_ID + ".incompatibleJDKLevel"; //$NON-NLS-1$
+	public static final String CORE_INCOMPATIBLE_JDK_LEVEL = PLUGIN_ID + ".incompatibleJDKLevel"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Abort if Invalid Classpath.
 	 * <p>Allow to toggle the builder to abort if the classpath is invalid.</p>
@@ -2647,7 +2647,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.0
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_JAVA_BUILD_INVALID_CLASSPATH = PLUGIN_ID + ".builder.invalidClasspath"; //$NON-NLS-1$
+	public static final String CORE_JAVA_BUILD_INVALID_CLASSPATH = PLUGIN_ID + ".builder.invalidClasspath"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Default Source Encoding Format.
 	 * <p>Get the default encoding format of source files. This value is
@@ -2660,7 +2660,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.0
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_ENCODING = PLUGIN_ID + ".encoding"; //$NON-NLS-1$
+	public static final String CORE_ENCODING = PLUGIN_ID + ".encoding"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Enabling Usage of Classpath Exclusion Patterns.
 	 * <p>When disabled, no entry on a project classpath can be associated with
@@ -2673,7 +2673,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_ENABLE_CLASSPATH_EXCLUSION_PATTERNS = PLUGIN_ID + ".classpath.exclusionPatterns"; //$NON-NLS-1$
+	public static final String CORE_ENABLE_CLASSPATH_EXCLUSION_PATTERNS = PLUGIN_ID + ".classpath.exclusionPatterns"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Enabling Usage of Classpath Multiple Output Locations.
 	 * <p>When disabled, no entry on a project classpath can be associated with
@@ -2686,7 +2686,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CoreOptionID
 	 */
-	public static final String CORE_ENABLE_CLASSPATH_MULTIPLE_OUTPUT_LOCATIONS = PLUGIN_ID + ".classpath.multipleOutputLocations"; //$NON-NLS-1$
+	public static final String CORE_ENABLE_CLASSPATH_MULTIPLE_OUTPUT_LOCATIONS = PLUGIN_ID + ".classpath.multipleOutputLocations"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Reporting an output location overlapping another source location.
 	 * <p> Indicate the severity of the problem reported when a source entry's output location overlaps another
@@ -2699,7 +2699,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @since 3.6.4
 	 */
-	public static final String CORE_OUTPUT_LOCATION_OVERLAPPING_ANOTHER_SOURCE = PLUGIN_ID + ".classpath.outputOverlappingAnotherSource";  //$NON-NLS-1$
+	public static final String CORE_OUTPUT_LOCATION_OVERLAPPING_ANOTHER_SOURCE = PLUGIN_ID + ".classpath.outputOverlappingAnotherSource";  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Core option ID: Reporting if a project which has only main sources depends on a project with only test sources.
@@ -2713,7 +2713,7 @@ public final class JavaCore extends Plugin {
 	 * </dl>
 	 * @since 3.16
 	 */
-	public static final String CORE_MAIN_ONLY_PROJECT_HAS_TEST_ONLY_DEPENDENCY = PLUGIN_ID + ".classpath.mainOnlyProjectHasTestOnlyDependency";  //$NON-NLS-1$
+	public static final String CORE_MAIN_ONLY_PROJECT_HAS_TEST_ONLY_DEPENDENCY = PLUGIN_ID + ".classpath.mainOnlyProjectHasTestOnlyDependency";  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Enabling support for preview language features.
@@ -2727,7 +2727,7 @@ public final class JavaCore extends Plugin {
 	 * @category CompilerOptionID
 	 * @since 3.18
 	 */
-	public static final String COMPILER_PB_ENABLE_PREVIEW_FEATURES = PLUGIN_ID + ".compiler.problem.enablePreviewFeatures"; //$NON-NLS-1$
+	public static final String COMPILER_PB_ENABLE_PREVIEW_FEATURES = PLUGIN_ID + ".compiler.problem.enablePreviewFeatures"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Compiler option ID: Reporting Preview features.
 	 * <p>When enabled, the compiler will issue a warning when a preview feature is used.</p>
@@ -2739,7 +2739,7 @@ public final class JavaCore extends Plugin {
 	 * @category CompilerOptionID
 	 * @since 3.18
 	 */
-	public static final String COMPILER_PB_REPORT_PREVIEW_FEATURES = PLUGIN_ID + ".compiler.problem.reportPreviewFeatures"; //$NON-NLS-1$
+	public static final String COMPILER_PB_REPORT_PREVIEW_FEATURES = PLUGIN_ID + ".compiler.problem.reportPreviewFeatures"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Compiler option ID: Ignore unnamed module for split package.
@@ -2758,7 +2758,7 @@ public final class JavaCore extends Plugin {
 	 * @category CompilerOptionID
 	 * @since 3.32
 	 */
-	public static final String COMPILER_IGNORE_UNNAMED_MODULE_FOR_SPLIT_PACKAGE = PLUGIN_ID + ".compiler.ignoreUnnamedModuleForSplitPackage"; //$NON-NLS-1$"
+	public static final String COMPILER_IGNORE_UNNAMED_MODULE_FOR_SPLIT_PACKAGE = PLUGIN_ID + ".compiler.ignoreUnnamedModuleForSplitPackage"; //$NON-NLS-1$" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Core option ID: Set the timeout value for retrieving the method's parameter names from javadoc.
 	 * <p>Timeout in milliseconds to retrieve the method's parameter names from javadoc.</p>
@@ -2771,7 +2771,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.2
 	 * @category CoreOptionID
 	 */
-	public static final String TIMEOUT_FOR_PARAMETER_NAME_FROM_ATTACHED_JAVADOC = PLUGIN_ID + ".timeoutForParameterNameFromAttachedJavadoc"; //$NON-NLS-1$
+	public static final String TIMEOUT_FOR_PARAMETER_NAME_FROM_ATTACHED_JAVADOC = PLUGIN_ID + ".timeoutForParameterNameFromAttachedJavadoc"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Core option ID: The ID of the formatter to use in formatting operations.
@@ -2784,7 +2784,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.11
 	 * @category CoreOptionID
 	 */
-	public static final String JAVA_FORMATTER = PLUGIN_ID + ".javaFormatter"; //$NON-NLS-1$
+	public static final String JAVA_FORMATTER = PLUGIN_ID + ".javaFormatter"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * @since 2.0
@@ -2796,7 +2796,7 @@ public final class JavaCore extends Plugin {
 	 * {@link org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants#FORMATTER_BRACE_POSITION_FOR_TYPE_DECLARATION} instead.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String FORMATTER_NEWLINE_OPENING_BRACE = PLUGIN_ID + ".formatter.newline.openingBrace"; //$NON-NLS-1$
+	public static final String FORMATTER_NEWLINE_OPENING_BRACE = PLUGIN_ID + ".formatter.newline.openingBrace"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @since 2.0
 	 * @deprecated Use {@link org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants#FORMATTER_INSERT_NEW_LINE_BEFORE_CATCH_IN_TRY_STATEMENT},
@@ -2805,55 +2805,55 @@ public final class JavaCore extends Plugin {
 	 *  {@link org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants#FORMATTER_INSERT_NEW_LINE_BEFORE_WHILE_IN_DO_STATEMENT} instead.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String FORMATTER_NEWLINE_CONTROL = PLUGIN_ID + ".formatter.newline.controlStatement"; //$NON-NLS-1$
+	public static final String FORMATTER_NEWLINE_CONTROL = PLUGIN_ID + ".formatter.newline.controlStatement"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @since 2.0
 	 * @deprecated Use {@link org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants#FORMATTER_COMPACT_ELSE_IF} instead.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String FORMATTER_NEWLINE_ELSE_IF = PLUGIN_ID + ".formatter.newline.elseIf"; //$NON-NLS-1$
+	public static final String FORMATTER_NEWLINE_ELSE_IF = PLUGIN_ID + ".formatter.newline.elseIf"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @since 2.0
 	 * @deprecated Use {@link org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants#FORMATTER_INSERT_NEW_LINE_IN_EMPTY_BLOCK} instead.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String FORMATTER_NEWLINE_EMPTY_BLOCK = PLUGIN_ID + ".formatter.newline.emptyBlock"; //$NON-NLS-1$
+	public static final String FORMATTER_NEWLINE_EMPTY_BLOCK = PLUGIN_ID + ".formatter.newline.emptyBlock"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @since 2.0
 	 * @deprecated Use {@link org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants#FORMATTER_NUMBER_OF_EMPTY_LINES_TO_PRESERVE} instead.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String FORMATTER_CLEAR_BLANK_LINES = PLUGIN_ID + ".formatter.newline.clearAll"; //$NON-NLS-1$
+	public static final String FORMATTER_CLEAR_BLANK_LINES = PLUGIN_ID + ".formatter.newline.clearAll"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @since 2.0
 	 * @deprecated Use {@link org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants#FORMATTER_LINE_SPLIT} instead
 	 * @category DeprecatedOptionID
 	 */
-	public static final String FORMATTER_LINE_SPLIT = PLUGIN_ID + ".formatter.lineSplit"; //$NON-NLS-1$
+	public static final String FORMATTER_LINE_SPLIT = PLUGIN_ID + ".formatter.lineSplit"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @since 2.0
 	 * @deprecated Use {@link org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants#FORMATTER_INSERT_SPACE_BEFORE_ASSIGNMENT_OPERATOR} instead.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String FORMATTER_COMPACT_ASSIGNMENT = PLUGIN_ID + ".formatter.style.assignment"; //$NON-NLS-1$
+	public static final String FORMATTER_COMPACT_ASSIGNMENT = PLUGIN_ID + ".formatter.style.assignment"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @since 2.0
 	 * @deprecated Use {@link org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants#FORMATTER_TAB_CHAR} instead.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String FORMATTER_TAB_CHAR = PLUGIN_ID + ".formatter.tabulation.char"; //$NON-NLS-1$
+	public static final String FORMATTER_TAB_CHAR = PLUGIN_ID + ".formatter.tabulation.char"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @since 2.0
 	 * @deprecated Use {@link org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants#FORMATTER_TAB_SIZE} instead.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String FORMATTER_TAB_SIZE = PLUGIN_ID + ".formatter.tabulation.size"; //$NON-NLS-1$
+	public static final String FORMATTER_TAB_SIZE = PLUGIN_ID + ".formatter.tabulation.size"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * @since 2.1
 	 * @deprecated Use {@link org.eclipse.jdt.core.formatter.DefaultCodeFormatterConstants#FORMATTER_INSERT_SPACE_AFTER_CLOSING_PAREN_IN_CAST} instead.
 	 * @category DeprecatedOptionID
 	 */
-	public static final String FORMATTER_SPACE_CASTEXPRESSION = PLUGIN_ID + ".formatter.space.castexpression"; //$NON-NLS-1$
+	public static final String FORMATTER_SPACE_CASTEXPRESSION = PLUGIN_ID + ".formatter.space.castexpression"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Activate Visibility Sensitive Completion.
 	 * <p>When active, completion doesn't show that you can not see
@@ -2866,7 +2866,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.0
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_VISIBILITY_CHECK = PLUGIN_ID + ".codeComplete.visibilityCheck"; //$NON-NLS-1$
+	public static final String CODEASSIST_VISIBILITY_CHECK = PLUGIN_ID + ".codeComplete.visibilityCheck"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Activate Deprecation Sensitive Completion.
 	 * <p>When enabled, completion doesn't propose deprecated members and types.</p>
@@ -2878,7 +2878,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.2
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_DEPRECATION_CHECK = PLUGIN_ID + ".codeComplete.deprecationCheck"; //$NON-NLS-1$
+	public static final String CODEASSIST_DEPRECATION_CHECK = PLUGIN_ID + ".codeComplete.deprecationCheck"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Activate Camel Case Sensitive Completion.
 	 * <p>When enabled, completion shows proposals whose name match the CamelCase
@@ -2891,7 +2891,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.2
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_CAMEL_CASE_MATCH = PLUGIN_ID + ".codeComplete.camelCaseMatch"; //$NON-NLS-1$
+	public static final String CODEASSIST_CAMEL_CASE_MATCH = PLUGIN_ID + ".codeComplete.camelCaseMatch"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Activate Substring Code Completion.
 	 * <p>When enabled, completion shows proposals in which the pattern can
@@ -2903,7 +2903,7 @@ public final class JavaCore extends Plugin {
 	 * @deprecated - this option has no effect
 	 * @category DeprecatedOptionID
 	 */
-	public static final String CODEASSIST_SUBSTRING_MATCH = PLUGIN_ID + ".codeComplete.substringMatch"; //$NON-NLS-1$
+	public static final String CODEASSIST_SUBSTRING_MATCH = PLUGIN_ID + ".codeComplete.substringMatch"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Activate Subword Code Completion.
 	 * <p>When enabled, completion shows proposals in which the pattern can
@@ -2916,7 +2916,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.21
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_SUBWORD_MATCH = PLUGIN_ID + ".codeComplete.subwordMatch"; //$NON-NLS-1$
+	public static final String CODEASSIST_SUBWORD_MATCH = PLUGIN_ID + ".codeComplete.subwordMatch"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Automatic Qualification of Implicit Members.
 	 * <p>When active, completion automatically qualifies completion on implicit
@@ -2929,7 +2929,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.0
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_IMPLICIT_QUALIFICATION = PLUGIN_ID + ".codeComplete.forceImplicitQualification"; //$NON-NLS-1$
+	public static final String CODEASSIST_IMPLICIT_QUALIFICATION = PLUGIN_ID + ".codeComplete.forceImplicitQualification"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Define the Prefixes for Field Name.
 	 * <p>When the prefixes is non empty, completion for field name will begin with
@@ -2942,7 +2942,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_FIELD_PREFIXES = PLUGIN_ID + ".codeComplete.fieldPrefixes"; //$NON-NLS-1$
+	public static final String CODEASSIST_FIELD_PREFIXES = PLUGIN_ID + ".codeComplete.fieldPrefixes"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Define the Prefixes for Static Field Name.
 	 * <p>When the prefixes is non empty, completion for static field name will begin with
@@ -2955,7 +2955,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_STATIC_FIELD_PREFIXES = PLUGIN_ID + ".codeComplete.staticFieldPrefixes"; //$NON-NLS-1$
+	public static final String CODEASSIST_STATIC_FIELD_PREFIXES = PLUGIN_ID + ".codeComplete.staticFieldPrefixes"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Define the Prefixes for Static Final Field Name.
 	 * <p>When the prefixes is non empty, completion for static final field name will begin with
@@ -2968,7 +2968,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.5
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_STATIC_FINAL_FIELD_PREFIXES = PLUGIN_ID + ".codeComplete.staticFinalFieldPrefixes"; //$NON-NLS-1$
+	public static final String CODEASSIST_STATIC_FINAL_FIELD_PREFIXES = PLUGIN_ID + ".codeComplete.staticFinalFieldPrefixes"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Define the Prefixes for Local Variable Name.
 	 * <p>When the prefixes is non empty, completion for local variable name will begin with
@@ -2981,7 +2981,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_LOCAL_PREFIXES = PLUGIN_ID + ".codeComplete.localPrefixes"; //$NON-NLS-1$
+	public static final String CODEASSIST_LOCAL_PREFIXES = PLUGIN_ID + ".codeComplete.localPrefixes"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Define the Prefixes for Argument Name.
 	 * <p>When the prefixes is non empty, completion for argument name will begin with
@@ -2994,7 +2994,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_ARGUMENT_PREFIXES = PLUGIN_ID + ".codeComplete.argumentPrefixes"; //$NON-NLS-1$
+	public static final String CODEASSIST_ARGUMENT_PREFIXES = PLUGIN_ID + ".codeComplete.argumentPrefixes"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Define the Suffixes for Field Name.
 	 * <p>When the suffixes is non empty, completion for field name will end with
@@ -3007,7 +3007,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_FIELD_SUFFIXES = PLUGIN_ID + ".codeComplete.fieldSuffixes"; //$NON-NLS-1$
+	public static final String CODEASSIST_FIELD_SUFFIXES = PLUGIN_ID + ".codeComplete.fieldSuffixes"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Define the Suffixes for Static Field Name.
 	 * <p>When the suffixes is non empty, completion for static field name will end with
@@ -3020,7 +3020,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_STATIC_FIELD_SUFFIXES = PLUGIN_ID + ".codeComplete.staticFieldSuffixes"; //$NON-NLS-1$
+	public static final String CODEASSIST_STATIC_FIELD_SUFFIXES = PLUGIN_ID + ".codeComplete.staticFieldSuffixes"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Define the Suffixes for Static Final Field Name.
 	 * <p>When the suffixes is non empty, completion for static final field name will end with
@@ -3033,7 +3033,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.5
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_STATIC_FINAL_FIELD_SUFFIXES = PLUGIN_ID + ".codeComplete.staticFinalFieldSuffixes"; //$NON-NLS-1$
+	public static final String CODEASSIST_STATIC_FINAL_FIELD_SUFFIXES = PLUGIN_ID + ".codeComplete.staticFinalFieldSuffixes"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Define the Suffixes for Local Variable Name.
 	 * <p>When the suffixes is non empty, completion for local variable name will end with
@@ -3046,7 +3046,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_LOCAL_SUFFIXES = PLUGIN_ID + ".codeComplete.localSuffixes"; //$NON-NLS-1$
+	public static final String CODEASSIST_LOCAL_SUFFIXES = PLUGIN_ID + ".codeComplete.localSuffixes"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Define the Suffixes for Argument Name.
 	 * <p>When the suffixes is non empty, completion for argument name will end with
@@ -3059,7 +3059,7 @@ public final class JavaCore extends Plugin {
 	 * @since 2.1
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_ARGUMENT_SUFFIXES = PLUGIN_ID + ".codeComplete.argumentSuffixes"; //$NON-NLS-1$
+	public static final String CODEASSIST_ARGUMENT_SUFFIXES = PLUGIN_ID + ".codeComplete.argumentSuffixes"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Activate Forbidden Reference Sensitive Completion.
 	 * <p>When enabled, completion doesn't propose elements which match a
@@ -3072,7 +3072,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_FORBIDDEN_REFERENCE_CHECK= PLUGIN_ID + ".codeComplete.forbiddenReferenceCheck"; //$NON-NLS-1$
+	public static final String CODEASSIST_FORBIDDEN_REFERENCE_CHECK= PLUGIN_ID + ".codeComplete.forbiddenReferenceCheck"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Activate Discouraged Reference Sensitive Completion.
 	 * <p>When enabled, completion doesn't propose elements which match a
@@ -3085,7 +3085,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.1
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_DISCOURAGED_REFERENCE_CHECK= PLUGIN_ID + ".codeComplete.discouragedReferenceCheck"; //$NON-NLS-1$
+	public static final String CODEASSIST_DISCOURAGED_REFERENCE_CHECK= PLUGIN_ID + ".codeComplete.discouragedReferenceCheck"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/**
 	 * Code assist option ID: Activate Suggestion of Static Import.
 	 * <p>When enabled, completion proposals can contain static import
@@ -3098,7 +3098,7 @@ public final class JavaCore extends Plugin {
 	 * @since 3.3
 	 * @category CodeAssistOptionID
 	 */
-	public static final String CODEASSIST_SUGGEST_STATIC_IMPORTS= PLUGIN_ID + ".codeComplete.suggestStaticImports"; //$NON-NLS-1$
+	public static final String CODEASSIST_SUGGEST_STATIC_IMPORTS= PLUGIN_ID + ".codeComplete.suggestStaticImports"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	// end configurable option IDs }
 	// Begin configurable option values {
 	/**
@@ -3577,7 +3577,7 @@ public final class JavaCore extends Plugin {
 	 * @see #getJavaLikeExtensions()
 	 * @since 3.2
 	 */
-	public static final String JAVA_SOURCE_CONTENT_TYPE = JavaCore.PLUGIN_ID+".javaSource" ; //$NON-NLS-1$
+	public static final String JAVA_SOURCE_CONTENT_TYPE = JavaCore.PLUGIN_ID+".javaSource" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Value of the content-type for Java-derived source files (e.g. Kotlin). Use this value to retrieve the Java content type
@@ -3587,7 +3587,7 @@ public final class JavaCore extends Plugin {
 	 * @see #getJavaDerivedExtensions()
 	 * @since 3.45
 	 */
-	public static final String JAVA_DERIVED_SOURCE_CONTENT_TYPE = JavaCore.PLUGIN_ID+".javaDerivedSource" ; //$NON-NLS-1$
+	public static final String JAVA_DERIVED_SOURCE_CONTENT_TYPE = JavaCore.PLUGIN_ID+".javaDerivedSource" ; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * The ID of the Eclipse built-in formatter.
@@ -3596,7 +3596,7 @@ public final class JavaCore extends Plugin {
 	 * @see #JAVA_FORMATTER_EXTENSION_POINT_ID
 	 * @since 3.11
 	 */
-	public static final String DEFAULT_JAVA_FORMATTER = PLUGIN_ID + ".defaultJavaFormatter"; //$NON-NLS-1$
+	public static final String DEFAULT_JAVA_FORMATTER = PLUGIN_ID + ".defaultJavaFormatter"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Name of the extension point for contributing a source code formatter
@@ -3636,7 +3636,7 @@ public final class JavaCore extends Plugin {
 	 * @see ElementChangedEvent
 	 */
 	public static void addElementChangedListener(IElementChangedListener listener) {
-		addElementChangedListener(listener, ElementChangedEvent.POST_CHANGE | ElementChangedEvent.POST_RECONCILE);
+		addElementChangedListener(listener, ElementChangedEvent.POST_CHANGE | ElementChangedEvent.POST_RECONCILE); //FLLDCIM: MARK — T31 JAVA_ELEMENT_DELTA_ADAPTER CALL
 	}
 
 	/**
@@ -3686,11 +3686,11 @@ public final class JavaCore extends Plugin {
 			attributes.put(ATT_HANDLE_ID, element.getHandleIdentifier());
 	}
 
-	private static void addNonJavaResources(Object[] nonJavaResources,
+	private static void addNonJavaResources(Object[] nonJavaResources, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IContainer container,
 			int rootPathSegmentCounts,
 			ArrayList collector) {
-		for (Object nonJavaResource : nonJavaResources) {
+		for (Object nonJavaResource : nonJavaResources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (nonJavaResource instanceof IFile) {
 				IFile file = (IFile) nonJavaResource;
 				IPath path = file.getFullPath().removeFirstSegments(rootPathSegmentCounts);
@@ -4057,16 +4057,16 @@ public final class JavaCore extends Plugin {
 		return initializer;
 	}
 
-	private static ClasspathContainerInitializer computeClasspathContainerInitializer(String containerID) {
+	private static ClasspathContainerInitializer computeClasspathContainerInitializer(String containerID) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Plugin jdtCorePlugin = JavaCore.getPlugin();
 		if (jdtCorePlugin == null) return null;
 
 		IExtensionPoint extension = Platform.getExtensionRegistry().getExtensionPoint(JavaCore.PLUGIN_ID, JavaModelManager.CPCONTAINER_INITIALIZER_EXTPOINT_ID);
 		if (extension != null) {
 			IExtension[] extensions =  extension.getExtensions();
-			for (IExtension ext : extensions) {
+			for (IExtension ext : extensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IConfigurationElement [] configElements = ext.getConfigurationElements();
-				for (IConfigurationElement configurationElement : configElements) {
+				for (IConfigurationElement configurationElement : configElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String initializerID = configurationElement.getAttribute("id"); //$NON-NLS-1$
 					if (initializerID != null && initializerID.equals(containerID)){
 						if (JavaModelManager.CP_RESOLVE_VERBOSE_ADVANCED)
@@ -4091,7 +4091,7 @@ public final class JavaCore extends Plugin {
 
 	private static void verbose_failed_to_instanciate_container_initializer(String containerID, IConfigurationElement configurationElement, CoreException e) {
 		trace(
-			"CPContainer INIT - failed to instanciate initializer\n" + //$NON-NLS-1$
+			"CPContainer INIT - failed to instanciate initializer\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	container ID: " + containerID + '\n' + //$NON-NLS-1$
 			"	class: " + configurationElement.getAttribute("class"), //$NON-NLS-1$ //$NON-NLS-2$
 			e);
@@ -4099,7 +4099,7 @@ public final class JavaCore extends Plugin {
 
 	private static void verbose_found_container_initializer(String containerID, IConfigurationElement configurationElement) {
 		trace(
-			"CPContainer INIT - found initializer\n" + //$NON-NLS-1$
+			"CPContainer INIT - found initializer\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	container ID: " + containerID + '\n' + //$NON-NLS-1$
 			"	class: " + configurationElement.getAttribute("class")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -4123,7 +4123,7 @@ public final class JavaCore extends Plugin {
 	 * @return the path, or <code>null</code> if none
 	 * @see #setClasspathVariable(String, IPath)
 	 */
-	public static IPath getClasspathVariable(final String variableName) {
+	public static IPath getClasspathVariable(final String variableName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	    JavaModelManager manager = JavaModelManager.getJavaModelManager();
 		IPath variablePath = manager.variableGet(variableName);
@@ -4173,20 +4173,20 @@ public final class JavaCore extends Plugin {
 
 	private static void verbose_no_variable_initializer_found(String variableName) {
 		trace(
-			"CPVariable INIT - no initializer found\n" + //$NON-NLS-1$
+			"CPVariable INIT - no initializer found\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	variable: " + variableName); //$NON-NLS-1$
 	}
 
 	private static void verbose_variable_value_after_initialization(String variableName, IPath variablePath) {
 		trace(
-			"CPVariable INIT - after initialization\n" + //$NON-NLS-1$
+			"CPVariable INIT - after initialization\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	variable: " + variableName +'\n' + //$NON-NLS-1$
 			"	variable path: " + variablePath); //$NON-NLS-1$
 	}
 
 	private static void verbose_triggering_variable_initialization(String variableName, ClasspathVariableInitializer initializer) {
 		trace(
-			"CPVariable INIT - triggering initialization\n" + //$NON-NLS-1$
+			"CPVariable INIT - triggering initialization\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	variable: " + variableName + '\n' + //$NON-NLS-1$
 			"	initializer: " + initializer); //$NON-NLS-1$
 	}
@@ -4203,7 +4203,7 @@ public final class JavaCore extends Plugin {
 	 * @return A string if the classpath variable is deprecated, <code>null</code> otherwise.
 	 * @since 3.3
 	 */
-	public static String getClasspathVariableDeprecationMessage(String variableName) {
+	public static String getClasspathVariableDeprecationMessage(String variableName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    JavaModelManager manager = JavaModelManager.getJavaModelManager();
 
 		// Returns the stored deprecation message
@@ -4225,9 +4225,9 @@ public final class JavaCore extends Plugin {
 		IExtensionPoint extension = Platform.getExtensionRegistry().getExtensionPoint(JavaCore.PLUGIN_ID, JavaModelManager.CPVARIABLE_INITIALIZER_EXTPOINT_ID);
 		if (extension != null) {
 			IExtension[] extensions =  extension.getExtensions();
-			for (IExtension ext : extensions) {
+			for (IExtension ext : extensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IConfigurationElement [] configElements = ext.getConfigurationElements();
-				for (IConfigurationElement configElement : configElements) {
+				for (IConfigurationElement configElement : configElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String varAttribute = configElement.getAttribute("variable"); //$NON-NLS-1$
 					if (variableName.equals(varAttribute)) {
 						String deprecatedAttribute = configElement.getAttribute("deprecated"); //$NON-NLS-1$
@@ -4251,7 +4251,7 @@ public final class JavaCore extends Plugin {
 	 * none was found.
 	 * @since 2.1
  	 */
-	public static ClasspathVariableInitializer getClasspathVariableInitializer(String variable){
+	public static ClasspathVariableInitializer getClasspathVariableInitializer(String variable){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		Plugin jdtCorePlugin = JavaCore.getPlugin();
 		if (jdtCorePlugin == null) return null;
@@ -4259,9 +4259,9 @@ public final class JavaCore extends Plugin {
 		IExtensionPoint extension = Platform.getExtensionRegistry().getExtensionPoint(JavaCore.PLUGIN_ID, JavaModelManager.CPVARIABLE_INITIALIZER_EXTPOINT_ID);
 		if (extension != null) {
 			IExtension[] extensions =  extension.getExtensions();
-			for (IExtension ext : extensions) {
+			for (IExtension ext : extensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IConfigurationElement [] configElements = ext.getConfigurationElements();
-				for (IConfigurationElement configElement : configElements) {
+				for (IConfigurationElement configElement : configElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					try {
 						String varAttribute = configElement.getAttribute("variable"); //$NON-NLS-1$
 						if (variable.equals(varAttribute)) {
@@ -4295,7 +4295,7 @@ public final class JavaCore extends Plugin {
 
 	private static void verbose_failed_to_instanciate_variable_initializer(String variable, IConfigurationElement configElement, CoreException e) {
 		trace(
-			"CPContainer INIT - failed to instanciate initializer\n" + //$NON-NLS-1$
+			"CPContainer INIT - failed to instanciate initializer\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	variable: " + variable + '\n' + //$NON-NLS-1$
 			"	class: " + configElement.getAttribute("class"), //$NON-NLS-1$ //$NON-NLS-2$
 			e);
@@ -4303,7 +4303,7 @@ public final class JavaCore extends Plugin {
 
 	private static void verbose_found_variable_initializer(String variable, IConfigurationElement configElement) {
 		trace(
-			"CPVariable INIT - found initializer\n" + //$NON-NLS-1$
+			"CPVariable INIT - found initializer\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	variable: " + variable + '\n' + //$NON-NLS-1$
 			"	class: " + configElement.getAttribute("class")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -4387,12 +4387,12 @@ public final class JavaCore extends Plugin {
 	 * @exception IllegalArgumentException if the given region is <code>null</code>
 	 * @since 3.3
 	 */
-	public static IResource[] getGeneratedResources(IRegion region, boolean includesNonJavaResources) {
+	public static IResource[] getGeneratedResources(IRegion region, boolean includesNonJavaResources) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (region == null) throw new IllegalArgumentException("region cannot be null"); //$NON-NLS-1$
 		IJavaElement[] elements = region.getElements();
-		HashMap projectsStates = new HashMap();
-		ArrayList collector = new ArrayList();
-		for (IJavaElement element : elements) {
+		HashMap projectsStates = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		ArrayList collector = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (IJavaElement element : elements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaProject javaProject = element.getJavaProject();
 			IProject project = javaProject.getProject();
 			State state = null;
@@ -4415,11 +4415,11 @@ public final class JavaCore extends Plugin {
 				}
 				if (roots == null) continue;
 				IRegion region2 = JavaCore.newRegion();
-				for (IPackageFragmentRoot root : roots) {
+				for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					region2.add(root);
 				}
 				IResource[] res = getGeneratedResources(region2, includesNonJavaResources);
-				for (IResource re : res) {
+				for (IResource re : res) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					collector.add(re);
 				}
 				continue;
@@ -4431,7 +4431,7 @@ public final class JavaCore extends Plugin {
 				// ignore
 			}
 			IJavaElement root = element;
-			while (root != null && root.getElementType() != IJavaElement.PACKAGE_FRAGMENT_ROOT) {
+			while (root != null && root.getElementType() != IJavaElement.PACKAGE_FRAGMENT_ROOT) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				root = root.getParent();
 			}
 			if (root == null) continue;
@@ -4466,7 +4466,7 @@ public final class JavaCore extends Plugin {
 						// ignore
 					}
 					if (compilationUnits == null) continue;
-					for (ICompilationUnit compilationUnit : compilationUnits) {
+					for (ICompilationUnit compilationUnit : compilationUnits) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						getGeneratedResource(compilationUnit, container, state, rootPathSegmentCounts, collector);
 					}
 					if (includesNonJavaResources) {
@@ -4493,7 +4493,7 @@ public final class JavaCore extends Plugin {
 						// ignore
 					}
 					if (children == null) continue;
-					for (IJavaElement child : children) {
+					for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						fragment = (IPackageFragment) child;
 						ICompilationUnit[] units = null;
 						try {
@@ -4502,7 +4502,7 @@ public final class JavaCore extends Plugin {
 							// ignore
 						}
 						if (units == null) continue;
-						for (ICompilationUnit unit2 : units) {
+						for (ICompilationUnit unit2 : units) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							getGeneratedResource(unit2, container, state, rootPathSegmentCounts, collector);
 						}
 						if (includesNonJavaResources) {
@@ -4530,7 +4530,7 @@ public final class JavaCore extends Plugin {
 		return NO_GENERATED_RESOURCES;
 	}
 
-	private static void getGeneratedResource(ICompilationUnit unit,
+	private static void getGeneratedResource(ICompilationUnit unit, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IContainer container,
 			State state,
 			int rootPathSegmentCounts,
@@ -4539,8 +4539,8 @@ public final class JavaCore extends Plugin {
 		char[][] typeNames = state.getDefinedTypeNamesFor(resource.getProjectRelativePath().toString());
 		if (typeNames != null) {
 			IPath path = unit.getPath().removeFirstSegments(rootPathSegmentCounts).removeLastSegments(1);
-			for (char[] typeName : typeNames) {
-				IPath localPath = path.append(new String(typeName) + ".class"); //$NON-NLS-1$
+			for (char[] typeName : typeNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				IPath localPath = path.append(new String(typeName) + ".class"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				IResource member = container.findMember(localPath);
 				if (member != null && member.exists()) {
 					collector.add(member);
@@ -4548,7 +4548,7 @@ public final class JavaCore extends Plugin {
 			}
 		} else {
 			IPath path = unit.getPath().removeFirstSegments(rootPathSegmentCounts).removeLastSegments(1);
-			path = path.append(Util.getNameWithoutJavaLikeExtension(unit.getElementName()) + ".class"); //$NON-NLS-1$
+			path = path.append(Util.getNameWithoutJavaLikeExtension(unit.getElementName()) + ".class"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IResource member = container.findMember(path);
 			if (member != null && member.exists()) {
 				collector.add(member);
@@ -4812,7 +4812,7 @@ public final class JavaCore extends Plugin {
 	 * 		the status of the exception indicates the reason of the failure
 	 * @since 3.1
 	 */
-	public static void initializeAfterLoad(IProgressMonitor monitor) throws CoreException {
+	public static void initializeAfterLoad(IProgressMonitor monitor) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SubMonitor mainMonitor = SubMonitor.convert(monitor, Messages.javamodel_initialization, 100);
 		mainMonitor.subTask(Messages.javamodel_configuring_classpath_containers);
 
@@ -4825,7 +4825,7 @@ public final class JavaCore extends Plugin {
 			if (manager.forceBatchInitializations(true/*initAfterLoad*/)) { // if no other thread has started the batch container initializations
 				manager.getClasspathContainer(Path.EMPTY, null); // force the batch initialization
 			} else { // else wait for the batch initialization to finish
-				while (manager.batchContainerInitializations == JavaModelManager.BATCH_INITIALIZATION_IN_PROGRESS) {
+				while (manager.batchContainerInitializations == JavaModelManager.BATCH_INITIALIZATION_IN_PROGRESS) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					subMonitor.subTask(manager.batchContainerInitializationsProgress.subTaskName);
 					subMonitor.split(manager.batchContainerInitializationsProgress.getWorked());
 					synchronized(manager) {
@@ -4845,9 +4845,9 @@ public final class JavaCore extends Plugin {
 		// and recreate links for external folders if needed
 		mainMonitor.subTask(Messages.javamodel_resetting_source_attachment_properties);
 		final IJavaProject[] projects = manager.getJavaModel().getJavaProjects();
-		HashSet visitedPaths = new HashSet();
+		HashSet visitedPaths = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		ExternalFoldersManager externalFoldersManager = JavaModelManager.getExternalManager();
-		for (IJavaProject project : projects) {
+		for (IJavaProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JavaProject javaProject = (JavaProject) project;
 			IClasspathEntry[] classpath;
 			try {
@@ -4857,7 +4857,7 @@ public final class JavaCore extends Plugin {
 				continue;
 			}
 			if (classpath != null) {
-				for (IClasspathEntry entry : classpath) {
+				for (IClasspathEntry entry : classpath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (entry.getSourceAttachmentPath() != null) {
 						IPath entryPath = entry.getPath();
 						if (visitedPaths.add(entryPath)) {
@@ -4922,13 +4922,13 @@ public final class JavaCore extends Plugin {
 			if (JavaBuilder.DEBUG) {
 				trace("Build state version number has changed"); //$NON-NLS-1$
 			}
-			IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
+			IWorkspaceRunnable runnable = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				@Override
 				public void run(IProgressMonitor progressMonitor2) throws CoreException {
-					for (IJavaProject project : projects) {
+					for (IJavaProject project : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						try {
 							if (JavaBuilder.DEBUG) {
-								trace("Touching " + project.getElementName()); //$NON-NLS-1$
+								trace("Touching " + project.getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 							new ClasspathValidation((JavaProject) project).validate(); // https://bugs.eclipse.org/bugs/show_bug.cgi?id=287164
 							project.getProject().touch(progressMonitor2);
@@ -4952,7 +4952,7 @@ public final class JavaCore extends Plugin {
 		}
 	}
 
-	private static void updateLegacyIndex(IProgressMonitor monitor) {
+	private static void updateLegacyIndex(IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SearchEngine engine = new SearchEngine();
 		IJavaSearchScope scope = SearchEngine.createWorkspaceScope();
 		try {
@@ -5019,7 +5019,7 @@ public final class JavaCore extends Plugin {
 	 * @return <code>true</code> if the marker references the element, false otherwise
 	 * @exception CoreException if the <code>IMarker.getAttribute</code> on the marker fails
 	 */
-	public static boolean isReferencedBy(IJavaElement element, IMarker marker) throws CoreException {
+	public static boolean isReferencedBy(IJavaElement element, IMarker marker) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// only match units or classfiles
 		if (element instanceof IMember){
@@ -5037,7 +5037,7 @@ public final class JavaCore extends Plugin {
 		if (markerHandleId == null) return false;
 
 		IJavaElement markerElement = JavaCore.create(markerHandleId);
-		while (true){
+		while (true){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (element.equals(markerElement)) return true; // external elements may still be equal with different handleIDs.
 
 			// cycle through enclosing types in case marker is associated with a classfile (15568)
@@ -5062,7 +5062,7 @@ public final class JavaCore extends Plugin {
 	 * @return <code>true</code> if the marker delta references the element
 	 * @exception CoreException if the  <code>IMarkerDelta.getAttribute</code> on the marker delta fails
 	 */
-	public static boolean isReferencedBy(IJavaElement element, IMarkerDelta markerDelta) throws CoreException {
+	public static boolean isReferencedBy(IJavaElement element, IMarkerDelta markerDelta) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// only match units or classfiles
 		if (element instanceof IMember){
@@ -5080,7 +5080,7 @@ public final class JavaCore extends Plugin {
 		if (markerDeltarHandleId == null) return false;
 
 		IJavaElement markerElement = JavaCore.create(markerDeltarHandleId);
-		while (true){
+		while (true){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (element.equals(markerElement)) return true; // external elements may still be equal with different handleIDs.
 
 			// cycle through enclosing types in case marker is associated with a classfile (15568)
@@ -5248,7 +5248,7 @@ public final class JavaCore extends Plugin {
 	 * @see JavaCore#newAccessRule(IPath, int)
 	 * @since 3.1
 	 */
-	public static IClasspathEntry newContainerEntry(
+	public static IClasspathEntry newContainerEntry( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IPath containerPath,
 			IAccessRule[] accessRules,
 			IClasspathAttribute[] extraAttributes,
@@ -5257,7 +5257,7 @@ public final class JavaCore extends Plugin {
 		if (containerPath == null) {
 			throw new ClasspathEntry.AssertionFailedException("Container path cannot be null"); //$NON-NLS-1$
 		} else if (containerPath.segmentCount() < 1) {
-			throw new ClasspathEntry.AssertionFailedException("Illegal classpath container path: \'" + containerPath.makeRelative().toString() + "\', must have at least one segment (containerID+hints)"); //$NON-NLS-1$//$NON-NLS-2$
+			throw new ClasspathEntry.AssertionFailedException("Illegal classpath container path: \'" + containerPath.makeRelative().toString() + "\', must have at least one segment (containerID+hints)"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (accessRules == null || accessRules.length == 0) {
 			accessRules = ClasspathEntry.NO_ACCESS_RULES;
@@ -5449,7 +5449,7 @@ public final class JavaCore extends Plugin {
 	 * @return a new library classpath entry
 	 * @since 3.1
 	 */
-	public static IClasspathEntry newLibraryEntry(
+	public static IClasspathEntry newLibraryEntry( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IPath path,
 			IPath sourceAttachmentPath,
 			IPath sourceAttachmentRootPath,
@@ -5465,12 +5465,12 @@ public final class JavaCore extends Plugin {
 			extraAttributes = ClasspathEntry.NO_EXTRA_ATTRIBUTES;
 		}
 		boolean hasDotDot = ClasspathEntry.hasDotDot(path);
-		if (!hasDotDot && !path.isAbsolute()) throw new ClasspathEntry.AssertionFailedException("Path for IClasspathEntry must be absolute: " + path); //$NON-NLS-1$
+		if (!hasDotDot && !path.isAbsolute()) throw new ClasspathEntry.AssertionFailedException("Path for IClasspathEntry must be absolute: " + path); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (sourceAttachmentPath != null) {
 			if (sourceAttachmentPath.isEmpty()) {
 				sourceAttachmentPath = null; // treat empty path as none
 			} else if (!sourceAttachmentPath.isAbsolute()) {
-				throw new ClasspathEntry.AssertionFailedException("Source attachment path '" //$NON-NLS-1$
+				throw new ClasspathEntry.AssertionFailedException("Source attachment path '" //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ sourceAttachmentPath
 						+ "' for IClasspathEntry must be absolute"); //$NON-NLS-1$
 			}
@@ -5581,7 +5581,7 @@ public final class JavaCore extends Plugin {
 	 * @return a new project classpath entry
 	 * @since 3.1
 	 */
-	public static IClasspathEntry newProjectEntry(
+	public static IClasspathEntry newProjectEntry( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IPath path,
 			IAccessRule[] accessRules,
 			boolean combineAccessRules,
@@ -5793,7 +5793,7 @@ public final class JavaCore extends Plugin {
 	 * @see IClasspathEntry#getOutputLocation()
 	 * @since 3.1
 	 */
-	public static IClasspathEntry newSourceEntry(IPath path, IPath[] inclusionPatterns, IPath[] exclusionPatterns, IPath specificOutputLocation, IClasspathAttribute[] extraAttributes) {
+	public static IClasspathEntry newSourceEntry(IPath path, IPath[] inclusionPatterns, IPath[] exclusionPatterns, IPath specificOutputLocation, IClasspathAttribute[] extraAttributes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (path == null) throw new ClasspathEntry.AssertionFailedException("Source path cannot be null"); //$NON-NLS-1$
 		if (!path.isAbsolute()) throw new ClasspathEntry.AssertionFailedException("Path for IClasspathEntry must be absolute"); //$NON-NLS-1$
@@ -5941,7 +5941,7 @@ public final class JavaCore extends Plugin {
 	 * @return a new variable classpath entry
 	 * @since 3.1
 	 */
-	public static IClasspathEntry newVariableEntry(
+	public static IClasspathEntry newVariableEntry( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IPath variablePath,
 			IPath variableSourceAttachmentPath,
 			IPath variableSourceAttachmentRootPath,
@@ -5951,7 +5951,7 @@ public final class JavaCore extends Plugin {
 
 		if (variablePath == null) throw new ClasspathEntry.AssertionFailedException("Variable path cannot be null"); //$NON-NLS-1$
 		if (variablePath.segmentCount() < 1) {
-			throw new ClasspathEntry.AssertionFailedException("Illegal classpath variable path: \'" + variablePath.makeRelative().toString() + "\', must have at least one segment"); //$NON-NLS-1$//$NON-NLS-2$
+			throw new ClasspathEntry.AssertionFailedException("Illegal classpath variable path: \'" + variablePath.makeRelative().toString() + "\', must have at least one segment"); //$NON-NLS-1$//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (accessRules == null || accessRules.length == 0) {
 			accessRules = ClasspathEntry.NO_ACCESS_RULES;
@@ -6044,7 +6044,7 @@ public final class JavaCore extends Plugin {
 			SetVariablesOperation operation = new SetVariablesOperation(new String[]{ variableName}, new IPath[]{ null }, true/*update preferences*/);
 			operation.runOperation(monitor);
 		} catch (JavaModelException e) {
-			Util.log(e, "Exception while removing variable " + variableName); //$NON-NLS-1$
+			Util.log(e, "Exception while removing variable " + variableName); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -6292,7 +6292,7 @@ public final class JavaCore extends Plugin {
 	 * @see IClasspathContainer
 	 * @since 2.0
 	 */
-	public static void setClasspathContainer(IPath containerPath, IJavaProject[] affectedProjects, IClasspathContainer[] respectiveContainers, IProgressMonitor monitor) throws JavaModelException {
+	public static void setClasspathContainer(IPath containerPath, IJavaProject[] affectedProjects, IClasspathContainer[] respectiveContainers, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (affectedProjects.length != respectiveContainers.length)
 			throw new ClasspathEntry.AssertionFailedException("Projects and containers collections should have the same size"); //$NON-NLS-1$
 		if (affectedProjects.length == 1) {
@@ -6429,7 +6429,7 @@ public final class JavaCore extends Plugin {
 	 * @param options the given options map
 	 * @since 3.3
 	 */
-	public static void setComplianceOptions(String compliance, Map options) {
+	public static void setComplianceOptions(String compliance, Map options) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long jdkLevel = CompilerOptions.versionToJdkLevel(compliance);
 		int major = (int) (jdkLevel >>> 16);
 		switch(major) {
@@ -6565,7 +6565,7 @@ public final class JavaCore extends Plugin {
 			case IJavaElement.PACKAGE_FRAGMENT_ROOT:
 				return ((PackageFragmentRoot) element).getAutomaticModuleDescription();
 			default:
-				throw new IllegalArgumentException("Illegal kind of java element: "+element.getElementType()); //$NON-NLS-1$
+				throw new IllegalArgumentException("Illegal kind of java element: "+element.getElementType()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -6634,13 +6634,13 @@ public final class JavaCore extends Plugin {
 	 * @return null if file is not a file, otherwise the module name.
 	 * @since 3.14
 	 */
-	public static String getModuleNameFromJar(File file) {
-		if (!file.isFile()) {
+	public static String getModuleNameFromJar(File file) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		if (!file.isFile()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return null;
 		}
 
 		char[] moduleName = null;
-		try (ZipFile zipFile = new ZipFile(file)) {
+		try (ZipFile zipFile = new ZipFile(file)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 			IModule module = null;
 			ClassFileReader reader = ClassFileReader.read(zipFile, IModule.MODULE_INFO_CLASS);
 			if (reader != null) {
@@ -6666,11 +6666,11 @@ public final class JavaCore extends Plugin {
 	 * @return set of module names.
 	 * @since 3.14
 	 */
-	public static Set<String> getRequiredModulesFromJar(File file) {
-		if (!file.isFile()) {
+	public static Set<String> getRequiredModulesFromJar(File file) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		if (!file.isFile()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			return Collections.emptySet();
 		}
-		try (ZipFile zipFile = new ZipFile(file)) {
+		try (ZipFile zipFile = new ZipFile(file)) { //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
 			IModule module = null;
 			ClassFileReader reader = ClassFileReader.read(zipFile, IModule.MODULE_INFO_CLASS);
 			if (reader != null) {

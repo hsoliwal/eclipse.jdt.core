@@ -30,7 +30,7 @@ import org.eclipse.jdt.internal.core.JavaModelManager.PerProjectInfo;
  *
  * @see IJavaProject
  */
-public class SetClasspathOperation extends ChangeClasspathOperation {
+public class SetClasspathOperation extends ChangeClasspathOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 
 	IClasspathEntry[] newRawClasspath;
 	IClasspathEntry[] referencedEntries;
@@ -102,17 +102,17 @@ public class SetClasspathOperation extends ChangeClasspathOperation {
 
 	@Override
 	public String toString(){
-		StringBuilder buffer = new StringBuilder(20);
-		buffer.append("SetClasspathOperation\n"); //$NON-NLS-1$
-		buffer.append(" - classpath : "); //$NON-NLS-1$
-		buffer.append("{"); //$NON-NLS-1$
-		for (int i = 0; i < this.newRawClasspath.length; i++) {
-			if (i > 0) buffer.append(","); //$NON-NLS-1$
+		StringBuilder buffer = new StringBuilder(20); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("SetClasspathOperation\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(" - classpath : "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("{"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i < this.newRawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			if (i > 0) buffer.append(","); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			IClasspathEntry element = this.newRawClasspath[i];
-			buffer.append(" ").append(element.toString()); //$NON-NLS-1$
+			buffer.append(" ").append(element.toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append("\n - output location : ");  //$NON-NLS-1$
-		buffer.append(this.newOutputLocation.toString());
+		buffer.append("\n - output location : ");  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.newOutputLocation.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 

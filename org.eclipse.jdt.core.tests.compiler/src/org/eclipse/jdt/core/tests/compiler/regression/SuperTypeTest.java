@@ -42,7 +42,7 @@ public class SuperTypeTest extends AbstractRegressionTest {
 	/**
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=136106
 	 */
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				/* org.eclipse.curiosity.A */
@@ -72,7 +72,7 @@ public class SuperTypeTest extends AbstractRegressionTest {
 		);
 	}
 // was Compliance_1_x#test001
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = new String[] {
 		"p1/Test.java",
 		"package p1; \n"+
@@ -99,7 +99,7 @@ public void test002() {
 }
 
 // was Compliance_1_x#test002
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = new String[] {
 		"p1/Test.java",
 		"package p1; \n"+
@@ -127,7 +127,7 @@ public void test003() {
 }
 
 // was Compliance_1_x#test003
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = new String[] {
 		"p1/Test.java",
 		"package p1; \n"+
@@ -153,7 +153,7 @@ public void test004() {
 }
 
 // was Compliance_1_x#test004
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/Test.java",
@@ -180,7 +180,7 @@ public void test005() {
 }
 
 // was Compliance_1_x#test005
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"p1/Test.java",
@@ -205,7 +205,7 @@ public void test006() {
 }
 
 // was Compliance_1_x#test006
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p1/Test.java",
@@ -252,7 +252,7 @@ public void test008() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=77918
 // raising an error
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantSuperinterface,  CompilerOptions.ERROR);
 	runNegativeTest(
@@ -280,7 +280,7 @@ public void test009() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=77918
 // raising an error - deeper hierarchy
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantSuperinterface, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -309,7 +309,7 @@ public void test010() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=77918
 // no error - deeper hierarchy
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantSuperinterface,  CompilerOptions.ERROR);
 	this.runConformTest(
@@ -330,7 +330,7 @@ public void test011() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=77918
 // error - extending interfaces
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantSuperinterface,  CompilerOptions.ERROR);
 	runNegativeTest(
@@ -357,7 +357,7 @@ public void test012() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=288749
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantSuperinterface,  CompilerOptions.ERROR);
 	runNegativeTest(
@@ -415,7 +415,7 @@ public void test013() {
 		JavacTestOptions.SKIP);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=288749
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantSuperinterface,  CompilerOptions.ERROR);
 	runNegativeTest(
@@ -442,7 +442,7 @@ public void test014() {
 		JavacTestOptions.SKIP);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=320911 (as is)
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantSuperinterface,  CompilerOptions.ERROR);
 	runNegativeTest(
@@ -480,7 +480,7 @@ public void test015() {
 		JavacTestOptions.SKIP);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=320911 (variation)
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantSuperinterface,  CompilerOptions.ERROR);
 	runNegativeTest(
@@ -520,7 +520,7 @@ public void test016() {
 		JavacTestOptions.SKIP);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=320911 (variation)
-public void test017() {
+public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantSuperinterface,  CompilerOptions.ERROR);
 	runNegativeTest(
@@ -563,7 +563,7 @@ public void test017() {
 		JavacTestOptions.SKIP);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=320911 (variation)
-public void test018() {
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportRedundantSuperinterface,  CompilerOptions.ERROR);
 	runNegativeTest(

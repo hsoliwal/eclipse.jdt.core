@@ -123,9 +123,9 @@ class DefaultBindingResolver extends BindingResolver {
 	 * Constructor for DefaultBindingResolver.
 	 */
 	DefaultBindingResolver(CompilationUnitScope scope, WorkingCopyOwner workingCopyOwner, BindingTables bindingTables, boolean isRecoveringBindings, boolean fromJavaProject) {
-		this.newAstToOldAst = new HashMap();
-		this.astNodesToBlockScope = new HashMap();
-		this.bindingsToAstNodes = new HashMap();
+		this.newAstToOldAst = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		this.astNodesToBlockScope = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		this.bindingsToAstNodes = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		this.bindingTables = bindingTables;
 		this.scope = scope;
 		this.workingCopyOwner = workingCopyOwner;
@@ -134,9 +134,9 @@ class DefaultBindingResolver extends BindingResolver {
 	}
 
 	DefaultBindingResolver(LookupEnvironment lookupEnvironment, WorkingCopyOwner workingCopyOwner, BindingTables bindingTables, boolean isRecoveringBindings, boolean fromJavaProject) {
-		this.newAstToOldAst = new HashMap();
-		this.astNodesToBlockScope = new HashMap();
-		this.bindingsToAstNodes = new HashMap();
+		this.newAstToOldAst = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		this.astNodesToBlockScope = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		this.bindingsToAstNodes = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		this.bindingTables = bindingTables;
 		this.scope = new CompilationUnitScope(new CompilationUnitDeclaration(null, null, -1), lookupEnvironment);
 		this.workingCopyOwner = workingCopyOwner;
@@ -173,7 +173,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return (ASTNode) this.bindingsToAstNodes.get(binding);
 	}
 
-	IBinding getBinding(org.eclipse.jdt.internal.compiler.lookup.Binding binding) {
+	IBinding getBinding(org.eclipse.jdt.internal.compiler.lookup.Binding binding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (binding.kind()) {
 			case Binding.PACKAGE:
 				return getPackageBinding((org.eclipse.jdt.internal.compiler.lookup.PackageBinding) binding);
@@ -218,7 +218,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return getMethodOrLambdaBinding(methodBinding, null, null);
 	}
 
-	private synchronized IMethodBinding getMethodOrLambdaBinding(org.eclipse.jdt.internal.compiler.lookup.MethodBinding methodBinding,
+	private synchronized IMethodBinding getMethodOrLambdaBinding(org.eclipse.jdt.internal.compiler.lookup.MethodBinding methodBinding, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 													org.eclipse.jdt.internal.compiler.lookup.MethodBinding descriptor,
 													IBinding enclosingBinding)
 	{
@@ -294,7 +294,7 @@ class DefaultBindingResolver extends BindingResolver {
 		int value = 0;
 		org.eclipse.jdt.internal.compiler.ast.Annotation[][] typeAnnotations = typeReference.annotations;
 		int length = typeReference.tokens.length;
-		for (int i = 0; i < length; ++i) {
+		for (int i = 0; i < length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (value != 0 || (typeArguments != null && typeArguments[i] != null) ||
 				(typeAnnotations != null && typeAnnotations[i] != null )) {
 				value++;
@@ -330,7 +330,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return internalGetTypeBinding(referenceBinding, null);
 	}
 
-	private synchronized ITypeBinding internalGetTypeBinding(org.eclipse.jdt.internal.compiler.lookup.TypeBinding referenceBinding, IBinding declaringMember) {
+	private synchronized ITypeBinding internalGetTypeBinding(org.eclipse.jdt.internal.compiler.lookup.TypeBinding referenceBinding, IBinding declaringMember) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// may also create an TypeBinding.AnonymousTypeBinding
 		if (referenceBinding == null) {
 			return null;
@@ -389,7 +389,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return new RecoveredTypeBinding(this, recoveredTypeBinding, dimensions);
 	}
 
-	synchronized IVariableBinding getVariableBinding(org.eclipse.jdt.internal.compiler.lookup.VariableBinding variableBinding, VariableDeclaration variableDeclaration) {
+	synchronized IVariableBinding getVariableBinding(org.eclipse.jdt.internal.compiler.lookup.VariableBinding variableBinding, VariableDeclaration variableDeclaration) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isRecoveringBindings) {
 			if (variableBinding != null) {
 				if (variableBinding.isValidBinding()) {
@@ -440,7 +440,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return this.workingCopyOwner;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized IVariableBinding getVariableBinding(org.eclipse.jdt.internal.compiler.lookup.VariableBinding variableBinding) {
 		if (variableBinding != null) {
 			if (variableBinding.isValidBinding()) {
@@ -594,7 +594,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Object resolveConstantExpressionValue(Expression expression) {
 		org.eclipse.jdt.internal.compiler.ast.ASTNode node = (org.eclipse.jdt.internal.compiler.ast.ASTNode) this.newAstToOldAst.get(expression);
 		if(node instanceof org.eclipse.jdt.internal.compiler.ast.FieldDeclaration) {
@@ -667,7 +667,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized ITypeBinding resolveExpressionType(Expression expression) {
 		try {
 			switch(expression.getNodeType()) {
@@ -783,7 +783,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized IBinding resolveImport(ImportDeclaration importDeclaration) {
 		if (this.scope == null) return null;
 		try {
@@ -862,12 +862,12 @@ class DefaultBindingResolver extends BindingResolver {
 	private IVariableBinding[] getSyntheticOuterLocalVariables(org.eclipse.jdt.internal.compiler.ast.LambdaExpression lambdaExpression) {
 		IVariableBinding[] syntheticOuterLocals = new IVariableBinding[lambdaExpression.outerLocalVariables.length];
 		int i  = 0;
-		for (SyntheticArgumentBinding sab : lambdaExpression.outerLocalVariables) {
+		for (SyntheticArgumentBinding sab : lambdaExpression.outerLocalVariables) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			syntheticOuterLocals[i++] = getVariableBinding(sab);
 		}
 		return syntheticOuterLocals;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized IMethodBinding resolveMethod(LambdaExpression lambda) {
 		Object oldNode = this.newAstToOldAst.get(lambda);
 		if (oldNode instanceof org.eclipse.jdt.internal.compiler.ast.LambdaExpression) {
@@ -894,13 +894,13 @@ class DefaultBindingResolver extends BindingResolver {
 		return null;
 	}
 
-	private IBinding getDeclaringMember(org.eclipse.jdt.internal.compiler.ast.ASTNode node, Scope currentScope) {
+	private IBinding getDeclaringMember(org.eclipse.jdt.internal.compiler.ast.ASTNode node, Scope currentScope) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		MethodScope methodScope = currentScope != null ? currentScope.methodScope() : null;
 		if (methodScope != null) {
 			if (methodScope.isInsideInitializer()) {
 				org.eclipse.jdt.internal.compiler.ast.TypeDeclaration enclosingType = methodScope.referenceType();
 				if (enclosingType.fields != null) {
-					for (FieldDeclaration field : enclosingType.fields) {
+					for (FieldDeclaration field : enclosingType.fields) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (field.declarationSourceStart <= node.sourceStart && node.sourceEnd <= field.declarationSourceEnd) {
 							if (field instanceof org.eclipse.jdt.internal.compiler.ast.Initializer)
 								return getMethodBinding(((org.eclipse.jdt.internal.compiler.ast.Initializer) field).getMethodBinding());
@@ -989,7 +989,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return null;
 	}
 
-	synchronized ITypeBinding resolveTypeBindingForName(Name name) {
+	synchronized ITypeBinding resolveTypeBindingForName(Name name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		org.eclipse.jdt.internal.compiler.ast.ASTNode node = (org.eclipse.jdt.internal.compiler.ast.ASTNode) this.newAstToOldAst.get(name);
 		int index = name.index;
 		if (node instanceof QualifiedNameReference) {
@@ -1215,7 +1215,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized IBinding resolveName(Name name) {
 		org.eclipse.jdt.internal.compiler.ast.ASTNode node = (org.eclipse.jdt.internal.compiler.ast.ASTNode) this.newAstToOldAst.get(name);
 		int index = name.index;
@@ -1510,7 +1510,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized IPackageBinding resolvePackage(PackageDeclaration pkg) {
 		if (this.scope == null) return null;
 		try {
@@ -1574,7 +1574,7 @@ class DefaultBindingResolver extends BindingResolver {
 	 * @see BindingResolver#resolveModule(ModuleDeclaration)
 	 * @since 3.14
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IModuleBinding resolveModule(ModuleDeclaration module) {
 		Object oldNode = this.newAstToOldAst.get(module);
 		if (oldNode instanceof org.eclipse.jdt.internal.compiler.ast.ModuleDeclaration) {
@@ -1625,7 +1625,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized ITypeBinding resolveType(AnonymousClassDeclaration type) {
 		org.eclipse.jdt.internal.compiler.ast.ASTNode node = (org.eclipse.jdt.internal.compiler.ast.ASTNode) this.newAstToOldAst.get(type);
 		if (node != null && (node.bits & org.eclipse.jdt.internal.compiler.ast.ASTNode.IsAnonymousType) != 0) {
@@ -1685,7 +1685,7 @@ class DefaultBindingResolver extends BindingResolver {
 
 
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized ITypeBinding resolveType(Type type) {
 		// retrieve the old ast node
 		org.eclipse.jdt.internal.compiler.ast.ASTNode node = (org.eclipse.jdt.internal.compiler.ast.ASTNode) this.newAstToOldAst.get(type);
@@ -1729,7 +1729,7 @@ class DefaultBindingResolver extends BindingResolver {
 				final int numberOfTypeArgumentsNotNull = getTypeCount(typeReference);
 				if (index != numberOfTypeArgumentsNotNull) {
 					int  i = numberOfTypeArgumentsNotNull;
-					while (i != index) {
+					while (i != index) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						typeBinding = typeBinding.enclosingType();
 						i --;
 					}
@@ -1784,18 +1784,18 @@ class DefaultBindingResolver extends BindingResolver {
 		return null;
 	}
 
-	private org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] getTypeAnnotations(int dimensions, ArrayBinding arrayBinding, boolean isVarargs) {
+	private org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] getTypeAnnotations(int dimensions, ArrayBinding arrayBinding, boolean isVarargs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding [] oldies = arrayBinding.getTypeAnnotations();
 		org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] newbies = Binding.NO_ANNOTATIONS;
 		// Skip past extended dimensions encoded ahead of base dimensions. Dimension for variable argument array comes after the base dimensions.
 		int extendedDimensions = arrayBinding.dimensions - dimensions - (isVarargs ? 1 : 0);
 		int i, length;
-		for (i = 0, length = oldies == null ? 0 : oldies.length; i < length && extendedDimensions > 0 ; i++) {
+		for (i = 0, length = oldies == null ? 0 : oldies.length; i < length && extendedDimensions > 0 ; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (oldies[i] == null)
 				extendedDimensions--;
 		}
 		int cells = 0;
-		for (int j = i; j < length && dimensions > 0 ; j++) {
+		for (int j = i; j < length && dimensions > 0 ; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (oldies[j] == null)
 				dimensions--;
 			cells ++;
@@ -1805,7 +1805,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return newbies;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized ITypeBinding resolveType(TypeDeclaration type) {
 		final Object node = this.newAstToOldAst.get(type);
 		if (node instanceof org.eclipse.jdt.internal.compiler.ast.TypeDeclaration) {
@@ -1881,7 +1881,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized IVariableBinding resolveVariable(VariableDeclaration variable) {
 		final Object node = this.newAstToOldAst.get(variable);
 		if (node instanceof AbstractVariableDeclaration) {
@@ -1909,7 +1909,7 @@ class DefaultBindingResolver extends BindingResolver {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	synchronized ITypeBinding resolveWellKnownType(String name) {
 		if (this.scope == null) return null;
 		ITypeBinding typeBinding = null;
@@ -2008,7 +2008,7 @@ class DefaultBindingResolver extends BindingResolver {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ITypeBinding resolveArrayType(ITypeBinding typeBinding, int dimensions) {
 		if (typeBinding instanceof RecoveredTypeBinding) throw new IllegalArgumentException("Cannot be called on a recovered type binding"); //$NON-NLS-1$
 		ITypeBinding leafComponentType = typeBinding;
@@ -2035,14 +2035,14 @@ class DefaultBindingResolver extends BindingResolver {
 		}
 	}
 
-	private org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] insertAnnotations(
+	private org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] insertAnnotations( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 							org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] annots, int dimensions) {
 		if (dimensions == 0 || annots == null || annots.length == 0) {
 			return annots;
 		}
 		int index = 0;
 		if (dimensions < 0) {
-			for (org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding annot : annots) {
+			for (org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding annot : annots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				index++;
 				if (annot == null) {
 					if(++dimensions == 0) break;

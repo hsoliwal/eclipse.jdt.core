@@ -69,21 +69,21 @@ private void sortUnit(int apiLevel, ICompilationUnit unit, String expectedResult
 	this.sortUnit(apiLevel, unit, expectedResult, testPositions, new DefaultJavaElementComparator(1,2,3,4,5,6,7,8,9));
 }
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 private void oldAPISortUnit(ICompilationUnit unit, String expectedResult, boolean testPositions, Comparator comparator) throws CoreException {
 	String initialSource = unit.getSource();
 	int[] positions = null;
 	int[] initialPositions = null;
-	ArrayList arrayList = new ArrayList();
+	ArrayList arrayList = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	if (testPositions) {
-		for (int i = 0; i < initialSource.length(); i++) {
+		for (int i = 0; i < initialSource.length(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!Character.isWhitespace(initialSource.charAt(i))) {
 				arrayList.add(Integer.valueOf(i));
 			}
 		}
 		final int length = arrayList.size();
 		positions = new int[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			positions[i] = ((Integer) arrayList.get(i)).intValue();
 		}
 		initialPositions = new int[length];
@@ -95,36 +95,36 @@ private void oldAPISortUnit(ICompilationUnit unit, String expectedResult, boolea
 	assertEquals("Different output", expectedResult, sortedSource); //$NON-NLS-1$
 	final int expectedResultLength = expectedResult.length();
 	if (testPositions) {
-		for (int i = 0, max = positions.length; i < max; i++) {
+		for (int i = 0, max = positions.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char mappedChar = ' ';
 			char initial = initialSource.charAt(initialPositions[i]);
 			try {
 				mappedChar = expectedResult.charAt(positions[i]);
 				if (mappedChar != initial) {
-					System.out.println("wrong mapped positions: " + initialPositions[i] + " <-> " + positions[i] + ": expected " + initial + " but was " + mappedChar); //$NON-NLS-1$ //$NON-NLS-2$
-					assertEquals("wrong mapped positions: " + initialPositions[i] + " <-> " + positions[i], initial, mappedChar); //$NON-NLS-1$ //$NON-NLS-2$
+					System.out.println("wrong mapped positions: " + initialPositions[i] + " <-> " + positions[i] + ": expected " + initial + " but was " + mappedChar); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					assertEquals("wrong mapped positions: " + initialPositions[i] + " <-> " + positions[i], initial, mappedChar); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			} catch(StringIndexOutOfBoundsException e) {
-				System.out.println("Out of bounds : (length = " + expectedResultLength + ") " + positions[i]);
+				System.out.println("Out of bounds : (length = " + expectedResultLength + ") " + positions[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 }
-private void sortUnit(int apiLevel, ICompilationUnit unit, String expectedResult, boolean testPositions, Comparator comparator) throws CoreException {
+private void sortUnit(int apiLevel, ICompilationUnit unit, String expectedResult, boolean testPositions, Comparator comparator) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String initialSource = unit.getSource();
 	int[] positions = null;
 	int[] initialPositions = null;
-	ArrayList arrayList = new ArrayList();
+	ArrayList arrayList = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	if (testPositions) {
-		for (int i = 0; i < initialSource.length(); i++) {
+		for (int i = 0; i < initialSource.length(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!Character.isWhitespace(initialSource.charAt(i))) {
 				arrayList.add(Integer.valueOf(i));
 			}
 		}
 		final int length = arrayList.size();
 		positions = new int[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			positions[i] = ((Integer) arrayList.get(i)).intValue();
 		}
 		initialPositions = new int[length];
@@ -136,17 +136,17 @@ private void sortUnit(int apiLevel, ICompilationUnit unit, String expectedResult
 	assertEquals("Different output", expectedResult, sortedSource); //$NON-NLS-1$
 	final int expectedResultLength = expectedResult.length();
 	if (testPositions) {
-		for (int i = 0, max = positions.length; i < max; i++) {
+		for (int i = 0, max = positions.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char mappedChar = ' ';
 			char initial = initialSource.charAt(initialPositions[i]);
 			try {
 				mappedChar = expectedResult.charAt(positions[i]);
 				if (mappedChar != initial) {
-					System.out.println("wrong mapped positions: " + initialPositions[i] + " <-> " + positions[i] + ": expected " + initial + " but was " + mappedChar); //$NON-NLS-1$ //$NON-NLS-2$
-					assertEquals("wrong mapped positions: " + initialPositions[i] + " <-> " + positions[i], initial, mappedChar); //$NON-NLS-1$ //$NON-NLS-2$
+					System.out.println("wrong mapped positions: " + initialPositions[i] + " <-> " + positions[i] + ": expected " + initial + " but was " + mappedChar); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					assertEquals("wrong mapped positions: " + initialPositions[i] + " <-> " + positions[i], initial, mappedChar); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			} catch(StringIndexOutOfBoundsException e) {
-				System.out.println("Out of bounds : (length = " + expectedResultLength + ") " + positions[i]);
+				System.out.println("Out of bounds : (length = " + expectedResultLength + ") " + positions[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
@@ -154,9 +154,9 @@ private void sortUnit(int apiLevel, ICompilationUnit unit, String expectedResult
 void debug(ICompilationUnit unit, String id) throws JavaModelException {
 	String source = unit.getBuffer().getContents();
 	if (DEBUG) {
-		System.out.println("========================== " + id + " =============================="); //$NON-NLS-1$ //$NON-NLS-2$
+		System.out.println("========================== " + id + " =============================="); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		System.out.println(source);
-		System.out.println("========================== " + id + " =============================="); //$NON-NLS-1$ //$NON-NLS-2$
+		System.out.println("========================== " + id + " =============================="); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 
@@ -171,7 +171,7 @@ public void tearDownSuite() throws Exception {
 /**
  * Calls methods that do nothing to ensure code coverage
  */
-public void test001() throws CoreException {
+public void test001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/X.java", //$NON-NLS-1$
@@ -266,7 +266,7 @@ public void test001() throws CoreException {
 		deleteFile("/P/src/p/X.java"); //$NON-NLS-1$
 	}
 }
-public void test002() throws CoreException {
+public void test002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/X.java", //$NON-NLS-1$
@@ -335,7 +335,7 @@ public void test002() throws CoreException {
 /**
  * Calls methods that do nothing to ensure code coverage
  */
-public void test003() throws CoreException {
+public void test003() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/X.java", //$NON-NLS-1$
@@ -433,7 +433,7 @@ public void test003() throws CoreException {
 /**
  * Calls methods that do nothing to ensure code coverage
  */
-public void test004() throws CoreException {
+public void test004() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/X.java", //$NON-NLS-1$
@@ -513,7 +513,7 @@ public void test004() throws CoreException {
 		deleteFile("/P/src/p/X.java"); //$NON-NLS-1$
 	}
 }
-public void test005() throws CoreException {
+public void test005() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/X.java", //$NON-NLS-1$
@@ -541,7 +541,7 @@ public void test005() throws CoreException {
 		deleteFile("/P/src/p/X.java"); //$NON-NLS-1$
 	}
 }
-public void test006() throws CoreException {
+public void test006() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/X.java", //$NON-NLS-1$
@@ -573,7 +573,7 @@ public void test006() throws CoreException {
 		deleteFile("/P/src/p/X.java"); //$NON-NLS-1$
 	}
 }
-public void test007() throws CoreException {
+public void test007() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/X.java", //$NON-NLS-1$
@@ -606,7 +606,7 @@ public void test007() throws CoreException {
 	}
 }
 
-public void test008() throws CoreException {
+public void test008() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/X.java", //$NON-NLS-1$
@@ -641,7 +641,7 @@ public void test008() throws CoreException {
 /**
  * Calls methods that do nothing to ensure code coverage
  */
-public void test009() throws CoreException {
+public void test009() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/X.java", //$NON-NLS-1$
@@ -740,7 +740,7 @@ public void test009() throws CoreException {
 		deleteFile("/P/src/p/X.java"); //$NON-NLS-1$
 	}
 }
-public void test010() throws CoreException {
+public void test010() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/SuperReference.java", //$NON-NLS-1$
@@ -830,7 +830,7 @@ public void test010() throws CoreException {
 		deleteFile("/P/src/SuperReference.java"); //$NON-NLS-1$
 	}
 }
-public void test011() throws CoreException {
+public void test011() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/BaseTypes.java", //$NON-NLS-1$
@@ -888,7 +888,7 @@ public void test011() throws CoreException {
 		deleteFile("/P/src/p/BaseTypes.java"); //$NON-NLS-1$
 	}
 }
-public void test012() throws CoreException {
+public void test012() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/X.java", //$NON-NLS-1$
@@ -935,7 +935,7 @@ public void test012() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=40954
-public void test013() throws CoreException {
+public void test013() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/p/X.java", //$NON-NLS-1$
@@ -970,7 +970,7 @@ public void test013() throws CoreException {
 /**
  * Preserve comments
  */
-public void test014() throws CoreException {
+public void test014() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -996,7 +996,7 @@ public void test014() throws CoreException {
 /**
  * Preserve comments
  */
-public void test015() throws CoreException {
+public void test015() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1026,7 +1026,7 @@ public void test015() throws CoreException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=66216
  */
-public void test016() throws CoreException {
+public void test016() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1110,7 +1110,7 @@ public void test016() throws CoreException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=66216
  */
-public void test017() throws CoreException {
+public void test017() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1191,7 +1191,7 @@ public void test017() throws CoreException {
 		deleteFile("/P/src/X.java");
 	}
 }
-public void test018() throws CoreException {
+public void test018() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1235,7 +1235,7 @@ public void test019() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=80036
-public void test020() throws CoreException {
+public void test020() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1265,7 +1265,7 @@ public void test020() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=80036
-public void test021() throws CoreException {
+public void test021() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1311,7 +1311,7 @@ public void test021() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=80036
-public void test022() throws CoreException {
+public void test022() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/BuildUtilities.java",
@@ -1657,7 +1657,7 @@ public void test022() throws CoreException {
 	}
 }
 // Sorting annotation type declaration
-public void test023() throws CoreException {
+public void test023() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1683,7 +1683,7 @@ public void test023() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=81329
-public void test024() throws CoreException {
+public void test024() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1717,7 +1717,7 @@ public void test024() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=81329
-public void test025() throws CoreException {
+public void test025() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1769,7 +1769,7 @@ public void test025() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=95388
-public void test026() throws CoreException {
+public void test026() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1805,7 +1805,7 @@ public void test026() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=96583
-public void test027() throws CoreException {
+public void test027() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1849,7 +1849,7 @@ public void test027() throws CoreException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=101453
-public void test028() throws CoreException {
+public void test028() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -1891,7 +1891,7 @@ public void test028() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=101885
-@SuppressWarnings("deprecation")
+@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void test029() throws CoreException {
 	try {
 		this.createFile(
@@ -1918,7 +1918,7 @@ public void test029() throws CoreException {
 		deleteFile("/P/src/X.java");
 	}
 }
-@SuppressWarnings("deprecation")
+@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void testBug543073_001() throws CoreException {
 	try {
 		this.createFile(
@@ -1945,7 +1945,7 @@ public void testBug543073_001() throws CoreException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=113722
-public void test030() throws CoreException {
+public void test030() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/I.java",
@@ -1975,7 +1975,7 @@ public void test030() throws CoreException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=113722
-public void test031() throws CoreException {
+public void test031() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/I.java",
@@ -2005,7 +2005,7 @@ public void test031() throws CoreException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=113722
-public void test032() throws CoreException {
+public void test032() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createFile(
 			"/P/src/X.java",
@@ -2027,7 +2027,7 @@ public void test032() throws CoreException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=171066
-public void test033() throws CoreException {
+public void test033() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit unit = null;
 
 	try {
@@ -2087,7 +2087,7 @@ public void test033() throws CoreException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=171066
-public void test034() throws CoreException {
+public void test034() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit unit = null;
 	try {
 		this.createFile(
@@ -2127,7 +2127,7 @@ public void test034() throws CoreException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=446255
-public void testBug446255() throws CoreException {
+public void testBug446255() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String fileName = "/P/src/BuildUtilities.java";
 	try {
 		this.createFile(

@@ -109,7 +109,7 @@ public void testCreatePackageFragment4() throws JavaModelException {
  * (regression test for 95288 [model] CreatePackageFragmentOperation runs with wrong ISchedulingRule)
  */
 public void testCreatePackageFragment5() throws CoreException {
-	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){
+	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 		public void run(IProgressMonitor monitor) throws CoreException {
 			IPackageFragmentRoot root= getPackageFragmentRoot("P", "");
 			IPackageFragment frag= root.createPackageFragment("p", false, monitor);
@@ -134,7 +134,7 @@ public void testDuplicatePackageFragment() throws JavaModelException {
 /**
  * Ensures that a package fragment cannot be created with an invalid parameters.
  */
-public void testInvalidPackageFragment() throws CoreException {
+public void testInvalidPackageFragment() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFile("/P/p/other", "");
 	IPackageFragmentRoot root = getPackageFragmentRoot("P", "");
 	try {

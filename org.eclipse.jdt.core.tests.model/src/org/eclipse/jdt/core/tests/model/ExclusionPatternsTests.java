@@ -67,7 +67,7 @@ protected void tearDown() throws Exception {
  * Ensure that adding an exclusion on a compilation unit
  * makes it disappear from the children of its package and it is added to the non-java resources.
  */
-public void testAddExclusionOnCompilationUnit() throws CoreException {
+public void testAddExclusionOnCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p");
 	createFile(
 		"/P/src/p/A.java",
@@ -102,7 +102,7 @@ public void testAddExclusionOnCompilationUnit() throws CoreException {
  * makes it appear as a non-java resources.
  * (regression test for bug 29374 Excluded folder on project not returned by Java Model)
  */
-public void testAddExclusionOnFolderUnderProject() throws CoreException {
+public void testAddExclusionOnFolderUnderProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject javaProject = createJavaProject("P1", new String[] {""}, "");
 		createFolder("/P1/doc");
@@ -139,7 +139,7 @@ public void testAddExclusionOnFolderUnderProject() throws CoreException {
  * makes it disappear from the children of its package fragment root
  * and it is added to the non-java resources.
  */
-public void testAddExclusionOnPackage() throws CoreException {
+public void testAddExclusionOnPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p");
 
 	clearDeltas();
@@ -167,7 +167,7 @@ public void testAddExclusionOnPackage() throws CoreException {
  * Ensure that adding an exclusion on a primary working copy
  * makes it disappear from the children of its package and it is added to the non-java resources.
  */
-public void testAddExclusionOnPrimaryWorkingCopy() throws CoreException {
+public void testAddExclusionOnPrimaryWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p");
 	createFile(
 		"/P/src/p/A.java",
@@ -211,7 +211,7 @@ public void testAddExclusionOnPrimaryWorkingCopy() throws CoreException {
  * Ensure that adding a file to a folder that is excluded reports the correct delta.
  * (regression test for bug 29621 Wrong Delta When Adding to Filtered Folder)
  */
-public void testAddToExcludedFolder() throws CoreException {
+public void testAddToExcludedFolder() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/icons");
 
 	// exclude folder and its contents
@@ -239,7 +239,7 @@ public void testAddToExcludedFolder() throws CoreException {
  * Ensure that creating an excluded compilation unit
  * doesn't make it appear as a child of its package but it is a non-java resource.
  */
-public void testCreateExcludedCompilationUnit() throws CoreException {
+public void testCreateExcludedCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 	IPackageFragment pkg = getPackage("/P/src/p");
@@ -275,7 +275,7 @@ public void testCreateExcludedCompilationUnit() throws CoreException {
  * Ensure that crearing an excluded package
  * doesn't make it appear as a child of its package fragment root but it is a non-java resource.
  */
-public void testCreateExcludedPackage() throws CoreException {
+public void testCreateExcludedPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p/"});
 	IPackageFragmentRoot root = getPackageFragmentRoot("/P/src");
 
@@ -303,7 +303,7 @@ public void testCreateExcludedPackage() throws CoreException {
  * Ensure that creating an excluded package doesn't make it appear as a child of its package fragment root but it is a non-java resource.
  * (regression test for bug 65637 [model] Excluded package still in Java model)
  */
-public void testCreateExcludedPackage2() throws CoreException {
+public void testCreateExcludedPackage2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "org/*|org/eclipse/*"});
 
 	// Trigger population of cache to check if it is properly invalidated by the delta processor.
@@ -337,7 +337,7 @@ public void testCreateExcludedPackage2() throws CoreException {
  * have the correct delta, Java elements and non-Java resources.
  * (regression test for 67789 Java element delta from refresh contains excluded package)
  */
-public void testCreateExcludedAndIncludedPackages() throws CoreException {
+public void testCreateExcludedAndIncludedPackages() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p1/p2/"});
 	IPackageFragmentRoot root = getPackageFragmentRoot("/P/src");
 
@@ -366,7 +366,7 @@ public void testCreateExcludedAndIncludedPackages() throws CoreException {
  * Ensure that creating a file that corresponds to an excluded compilation unit
  * doesn't make it appear as a child of its package but it is a non-java resource.
  */
-public void testCreateResourceExcludedCompilationUnit() throws CoreException {
+public void testCreateResourceExcludedCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 
@@ -401,7 +401,7 @@ public void testCreateResourceExcludedCompilationUnit() throws CoreException {
  * Ensure that creating a folder that corresponds to an excluded package
  * doesn't make it appear as a child of its package fragment root but it is a non-java resource.
  */
-public void testCreateResourceExcludedPackage() throws CoreException {
+public void testCreateResourceExcludedPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p/"});
 
 	clearDeltas();
@@ -502,7 +502,7 @@ public void testNestedSourceFolder1() throws CoreException {
  * Ensures that adding a .java file in a nested source folder reports
  * a delta on the nested source folder and not on the outer one.
  */
-public void testNestedSourceFolder2() throws CoreException {
+public void testNestedSourceFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src1", "src2/**", "/P/src1/src2", ""});
 	createFolder("/P/src1/src2");
 
@@ -600,7 +600,7 @@ public void testNestedSourceFolder6() throws CoreException {
  * Ensure that renaming an excluded compilation unit so that it is not excluded any longer
  * makes it appears as a child of its package and it is removed from the non-java resources.
  */
-public void testRenameExcludedCompilationUnit() throws CoreException {
+public void testRenameExcludedCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 	IFile file = createFile(
@@ -638,7 +638,7 @@ public void testRenameExcludedCompilationUnit() throws CoreException {
  * makes it appears as a child of its package fragment root
  * and it is removed from the non-java resources.
  */
-public void testRenameExcludedPackage() throws CoreException {
+public void testRenameExcludedPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p/"});
 	IPackageFragmentRoot root = getPackageFragmentRoot("/P/src");
 	IPackageFragment pkg = root.createPackageFragment("p", false, null);
@@ -669,7 +669,7 @@ public void testRenameExcludedPackage() throws CoreException {
  * Ensure that renaming a file that corresponds to an excluded compilation unit so that it is not excluded any longer
  * makes it appears as a child of its package and it is removed from the non-java resources.
  */
-public void testRenameResourceExcludedCompilationUnit() throws CoreException {
+public void testRenameResourceExcludedCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 	IFile file = createFile(
@@ -705,7 +705,7 @@ public void testRenameResourceExcludedCompilationUnit() throws CoreException {
 /*
  * Ensure search doesn't find matches in an excluded compilation unit.
  */
-public void testSearchWithExcludedCompilationUnit1() throws CoreException {
+public void testSearchWithExcludedCompilationUnit1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "**/A.java"});
 	createFolder("/P/src/p");
 	createFile(
@@ -730,7 +730,7 @@ public void testSearchWithExcludedCompilationUnit1() throws CoreException {
 /*
  * Ensure search find matches in a compilation unit that was excluded but that is not any longer.
  */
-public void testSearchWithExcludedCompilationUnit2() throws CoreException {
+public void testSearchWithExcludedCompilationUnit2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "A.java"});
 	createFolder("/P/src/p");
 	createFile(
@@ -758,7 +758,7 @@ public void testSearchWithExcludedCompilationUnit2() throws CoreException {
  * have the correct delta, Java elements and non-Java resources.
  * (regression test for 67789 Java element delta from refresh contains excluded package)
  */
-public void testRemoveExcludedAndIncludedPackages() throws CoreException {
+public void testRemoveExcludedAndIncludedPackages() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p1/p2/"});
 	IPackageFragmentRoot root = getPackageFragmentRoot("/P/src");
 	createFolder("/P/src/p1/p2");
@@ -790,7 +790,7 @@ public void testRemoveExcludedAndIncludedPackages() throws CoreException {
  * makes it appears as a child of its package fragment root
  * and it is removed from the non-java resources.
  */
-public void testRenameResourceExcludedPackage() throws CoreException {
+public void testRenameResourceExcludedPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p/"});
 	IFolder folder = createFolder("/P/src/p");
 
@@ -821,9 +821,9 @@ public void testRenameResourceExcludedPackage() throws CoreException {
  * Ensure that a potential match in the output folder is not indexed.
  * (regression test for bug 32041 Multiple output folders fooling Java Model)
  */
-public void testSearchPotentialMatchInOutput() throws CoreException {
+public void testSearchPotentialMatchInOutput() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
-		JavaCore.run(new IWorkspaceRunnable() {
+		JavaCore.run(new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				IJavaProject javaProject = createJavaProject("P2", new String[] {}, "bin");
 				javaProject.setRawClasspath(createClasspath(new String[] {"/P2", "src/", "/P2/src", ""}, false/*no inclusion*/, true/*exclusion*/), null);
@@ -852,7 +852,7 @@ public void testSearchPotentialMatchInOutput() throws CoreException {
  * Ensure that removing the exclusion on a compilation unit
  * makes it appears as a child of its package and it is removed from the non-java resources.
  */
-public void testRemoveExclusionOnCompilationUnit() throws CoreException {
+public void testRemoveExclusionOnCompilationUnit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "A.java"});
 	createFolder("/P/src/p");
 	createFile(
@@ -888,7 +888,7 @@ public void testRemoveExclusionOnCompilationUnit() throws CoreException {
  * makes it appears as a child of its package fragment root
  * and it is removed from the non-java resources.
  */
-public void testRemoveExclusionOnPackage() throws CoreException {
+public void testRemoveExclusionOnPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setClasspath(new String[] {"/P/src", "p"});
 	createFolder("/P/src/p");
 

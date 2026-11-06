@@ -66,7 +66,7 @@ public class Bug341298Processor extends AbstractProcessor {
 		StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
 
 		List<String> options = opts.entrySet().stream().filter(e -> !e.getKey().equals("phase"))
-				.flatMap(e -> Arrays.asList("-" + e.getKey(), e.getValue()).stream()).collect(toList());
+				.flatMap(e -> Arrays.asList("-" + e.getKey(), e.getValue()).stream()).collect(toList()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		Iterable<? extends JavaFileObject> objects = fileManager
 				.getJavaFileObjectsFromFiles(Arrays.asList(new File(sourceFile.toUri())));

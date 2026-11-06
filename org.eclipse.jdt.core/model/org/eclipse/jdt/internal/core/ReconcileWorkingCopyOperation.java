@@ -60,7 +60,7 @@ import org.eclipse.jdt.internal.core.util.Util;
  * <li>notifies compilation participants of the reconcile allowing them to participate in this operation and report problems</li>
  * </ul>
  */
-public class ReconcileWorkingCopyOperation extends JavaModelOperation {
+public class ReconcileWorkingCopyOperation extends JavaModelOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 	public static boolean PERF = false;
 
 	public int astLevel;
@@ -83,7 +83,7 @@ public class ReconcileWorkingCopyOperation extends JavaModelOperation {
 	 * @exception JavaModelException if setting the source
 	 * 	of the original compilation unit fails
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void executeOperation() throws JavaModelException {
 		checkCanceled();
 		try {
@@ -143,11 +143,11 @@ public class ReconcileWorkingCopyOperation extends JavaModelOperation {
 	private void reportProblems(CompilationUnit workingCopy, IProblemRequestor problemRequestor) {
 		try {
 			problemRequestor.beginReporting();
-			for (CategorizedProblem[] categorizedProblems : this.problems.values()) {
+			for (CategorizedProblem[] categorizedProblems : this.problems.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (categorizedProblems == null) continue;
-				for (CategorizedProblem problem : categorizedProblems) {
+				for (CategorizedProblem problem : categorizedProblems) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (JavaModelManager.VERBOSE){
-						JavaModelManager.trace("PROBLEM FOUND while reconciling : " + problem.getMessage());//$NON-NLS-1$
+						JavaModelManager.trace("PROBLEM FOUND while reconciling : " + problem.getMessage());//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					if (this.progressMonitor != null && this.progressMonitor.isCanceled()) break;
 					problemRequestor.acceptProblem(problem);
@@ -174,11 +174,11 @@ public class ReconcileWorkingCopyOperation extends JavaModelOperation {
 	 * Makes the given working copy consistent, computes the delta and computes an AST if needed.
 	 * Returns the AST.
 	 */
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public org.eclipse.jdt.core.dom.CompilationUnit makeConsistent(CompilationUnit workingCopy) throws JavaModelException {
 		if (!workingCopy.isConsistent()) {
 			// make working copy consistent
-			if (this.problems == null) this.problems = new HashMap<>();
+			if (this.problems == null) this.problems = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			this.resolveBindings = this.requestorIsActive;
 			this.ast = workingCopy.makeConsistent(this.astLevel, this.resolveBindings, this.reconcileFlags, this.problems, this.progressMonitor);
 			this.deltaBuilder.buildDeltas();
@@ -197,7 +197,7 @@ public class ReconcileWorkingCopyOperation extends JavaModelOperation {
 					&& (this.reconcileFlags & ICompilationUnit.FORCE_PROBLEM_DETECTION) != 0) {
 				this.resolveBindings = this.requestorIsActive;
 				if (this.problems == null) {
-					this.problems = new HashMap<>();
+					this.problems = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				}
 				Map<String, String> options = workingCopy.getJavaProject().getOptions(true);
 				if (CompilationUnit.DOM_BASED_OPERATIONS) {
@@ -211,13 +211,13 @@ public class ReconcileWorkingCopyOperation extends JavaModelOperation {
 						if ((this.reconcileFlags & ICompilationUnit.FORCE_PROBLEM_DETECTION) != 0 && newAST != null) {
 							newAST.getAST().resolveWellKnownType(PrimitiveType.BOOLEAN.toString()); //trigger resolution and analysis
 						}
-						Map<String, List<CategorizedProblem>> groupedProblems = new HashMap<>();
-						for (IProblem problem : newAST.getProblems()) {
+						Map<String, List<CategorizedProblem>> groupedProblems = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+						for (IProblem problem : newAST.getProblems()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (problem instanceof CategorizedProblem categorizedProblem) {
-								groupedProblems.computeIfAbsent(categorizedProblem.getMarkerType(), key -> new ArrayList<>()).add(categorizedProblem);
+								groupedProblems.computeIfAbsent(categorizedProblem.getMarkerType(), key -> new ArrayList<>()).add(categorizedProblem); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 							}
 						}
-						for (Entry<String, List<CategorizedProblem>> entry : groupedProblems.entrySet()) {
+						for (Entry<String, List<CategorizedProblem>> entry : groupedProblems.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							this.problems.put(entry.getKey(), entry.getValue().toArray(CategorizedProblem[]::new));
 						}
 						if (this.astLevel != ICompilationUnit.NO_AST) {
@@ -227,7 +227,7 @@ public class ReconcileWorkingCopyOperation extends JavaModelOperation {
 						var problem = ex.problem;
 						if (problem == null && ex.exception instanceof IOException ioEx) {
 							String path = source.getPath().toString();
-							String exceptionTrace = ioEx.getClass().getName() + ':' + ioEx.getMessage();
+							String exceptionTrace = ioEx.getClass().getName() + ':' + ioEx.getMessage(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							problem = new DefaultProblemFactory().createProblem(
 									path.toCharArray(),
 									IProblem.CannotReadSource,
@@ -291,13 +291,13 @@ public class ReconcileWorkingCopyOperation extends JavaModelOperation {
 		return this.ast;
 	}
 
-	private void notifyParticipants(final CompilationUnit workingCopy) {
+	private void notifyParticipants(final CompilationUnit workingCopy) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject javaProject = getWorkingCopy().getJavaProject();
 		CompilationParticipant[] participants = JavaModelManager.getJavaModelManager().compilationParticipants.getCompilationParticipants(javaProject);
 		if (participants == null) return;
 
 		final ReconcileContext context = new ReconcileContext(this, workingCopy);
-		for (final CompilationParticipant participant : participants) {
+		for (final CompilationParticipant participant : participants) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			SafeRunner.run(new ISafeRunnable() {
 				@Override
 				public void handleException(Throwable exception) {

@@ -20,7 +20,7 @@ import org.eclipse.jdt.internal.compiler.problem.DefaultProblemFactory;
 
 public class ProblemFactory extends DefaultProblemFactory {
 
-static Map<Locale, ProblemFactory> factories = new HashMap<>();
+static Map<Locale, ProblemFactory> factories = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 private ProblemFactory(Locale locale) {
 	super(locale);

@@ -40,7 +40,7 @@ public void renameNegative(IJavaElement[] elements ,String[] renamings, boolean 
 		//rename
 	 	getJavaModel().rename(elements, new IJavaElement[]{elements[0].getParent()}, renamings, force, null);
 	} catch (JavaModelException jme) {
-		assertTrue("Code not correct for JavaModelException: "  + jme, jme.getStatus().getCode() == failureCode);
+		assertTrue("Code not correct for JavaModelException: "  + jme, jme.getStatus().getCode() == failureCode); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return;
 	}
 	assertTrue("The rename should have failed for multiple renaming", false);
@@ -55,10 +55,10 @@ public void renameNegative(IJavaElement element, String rename, boolean force, i
 		//rename
 		getJavaModel().rename(new IJavaElement[] {element}, new IJavaElement[] {element.getParent()}, new String[] {rename}, force, null);
 	} catch (JavaModelException jme) {
-		assertTrue("Code not correct for JavaModelException: " + jme, jme.getStatus().getCode() == failureCode);
+		assertTrue("Code not correct for JavaModelException: " + jme, jme.getStatus().getCode() == failureCode); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return;
 	}
-	assertTrue("The rename should have failed for: " + element, false);
+	assertTrue("The rename should have failed for: " + element, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return;
 }
 /**
@@ -90,11 +90,11 @@ public void renamePositive(IJavaElement[] elements, IJavaElement[] destinations,
  * forcing. The operation should succeed, so any exceptions
  * encountered are thrown.
  */
-public void renamePositive(IJavaElement[] elements, IJavaElement[] destinations, String[] names, boolean force, boolean originalShouldExist, IProgressMonitor monitor) throws JavaModelException {
+public void renamePositive(IJavaElement[] elements, IJavaElement[] destinations, String[] names, boolean force, boolean originalShouldExist, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// if forcing, ensure that a name collision exists
 	int i;
 	if (force) {
-		for (i = 0; i < elements.length; i++) {
+		for (i = 0; i < elements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaElement e = elements[i];
 			IJavaElement collision = generateHandle(e, names[i], e.getParent());
 			assertTrue("Collision does not exist", collision.exists());
@@ -103,7 +103,7 @@ public void renamePositive(IJavaElement[] elements, IJavaElement[] destinations,
 
 	// rename
 	getJavaModel().rename(elements, destinations, names, force, monitor);
-	for (i = 0; i < elements.length; i++) {
+	for (i = 0; i < elements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// generate the new element	handle
 		IJavaElement e = elements[i];
 		IJavaElement renamed = generateHandle(e, names[i], e.getParent());
@@ -139,7 +139,7 @@ public void renamePositive(IJavaElement element, String rename, boolean force) t
 /**
  * Setup for the next test.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUp() throws Exception {
 	super.setUp();
 
@@ -164,7 +164,7 @@ public void setUp() throws Exception {
 
 	startDeltas();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 	super.setUpSuite();
 
@@ -268,7 +268,7 @@ public void testRenameCompilationUnitResultingInCollision() throws CoreException
  * Verifies that the proper change deltas are generated as a side effect
  * of running the operation.
  */
-public void testRenameCompilationUnitsCheckingDeltas() throws CoreException{
+public void testRenameCompilationUnitsCheckingDeltas() throws CoreException{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/Y.java",
 		"public class Y {\n" +
@@ -322,7 +322,7 @@ public void testRenameConstructor() {
 	renameNegative(constructor, "newName", false, IJavaModelStatusConstants.NAME_COLLISION);
 }
 
-public void testRenameCU1() throws CoreException {
+public void testRenameCU1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.cu.rename("NewX.java", false, null);
 	assertTrue("Original CU should not exist", !this.cu.exists());
 
@@ -343,7 +343,7 @@ public void testRenameCU1() throws CoreException {
 		"			X.java[-]: {MOVED_TO(NewX.java [in <default> [in src [in P]]])}"
 	);
 }
-public void testRenameCU2() throws CoreException {
+public void testRenameCU2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/Y.java",
 		"public class Y {\n" +
@@ -382,7 +382,7 @@ public void testRenameCU2() throws CoreException {
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=142990 )
  */
 public void testRenameCU3() throws Exception {
-	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){
+	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 		public void run(IProgressMonitor monitor) throws CoreException {
 			RenameTests.this.cu.rename("NewX.java", false, null);
 			assertTrue("Original CU should not exist", !RenameTests.this.cu.exists());
@@ -397,7 +397,7 @@ public void testRenameCU3() throws Exception {
 public void testRenameCU4() throws Exception {
 	createFolder("/P/src/p1");
 	createFile("/P/src/p1/X.java", "package p1; public class X {}");
-	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){
+	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 		public void run(IProgressMonitor monitor) throws CoreException {
 			ICompilationUnit x = getCompilationUnit("/P/src/p1/X.java");
 			x.rename("NewX.java", false, null);
@@ -430,7 +430,7 @@ public void testRenameEmptyPF() throws CoreException {
  * Ensures that renaming an enum also renames the constructors of this enum.
  * (regression test for bug 83593 Rename of enum type does not update constructor / throws ClassCastException)
  */
-public void testRenameEnum() throws CoreException {
+public void testRenameEnum() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P15", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 		createFile(
@@ -461,7 +461,7 @@ public void testRenameEnum() throws CoreException {
  * Ensures that renaming an enum that contain an enum constant with a body doesn't throw a ClassCastExeption.
  * (regression test for bug 83593 Rename of enum type does not update constructor / throws ClassCastException)
  */
-public void testRenameEnum2() throws CoreException {
+public void testRenameEnum2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P15", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 		createFile(
@@ -528,15 +528,15 @@ public void testRenameFieldFragment() throws Exception {
 /**
  * Ensures that fields can be renamed even if one of the renamings fails.
  */
-public void testRenameFieldsMultiStatus() throws CoreException {
+public void testRenameFieldsMultiStatus() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String addition = "multiStatus";
 	IType type = this.cu.getType("X");
 	IField[] iFields = type.getFields();
 	String[] newNames = new String[iFields.length];
 	int i;
-	for (i = 0; i < iFields.length; i++) {
+	for (i = 0; i < iFields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IField f = iFields[i];
-		newNames[i] = addition + f.getElementName();
+		newNames[i] = addition + f.getElementName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	newNames[1] = ";"; //invalid name
 
@@ -573,9 +573,9 @@ public void testRenameFieldsResultingInCollision() throws JavaModelException {
 	IField[] iFields = type.getFields();
 	String[] newNames = new String[iFields.length];
 	int i;
-	for (i = 0; i < iFields.length; i++) {
+	for (i = 0; i < iFields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IField f = iFields[i];
-		newNames[i] = addition + f.getElementName();
+		newNames[i] = addition + f.getElementName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	//set two fields to have the same new name
 	newNames[i-1]= newNames[i-2];
@@ -585,16 +585,16 @@ public void testRenameFieldsResultingInCollision() throws JavaModelException {
 /**
  * Ensures that renaming can be canceled.
  */
-public void testRenameFieldsWithCancel() throws CoreException {
+public void testRenameFieldsWithCancel() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean isCanceled = false;
 	String addition = "new1";
 	IType type = RenameTests.this.cu.getType("X");
 	IField[] iFields = type.getFields();
 	String[] newNames = new String[iFields.length];
 	int i;
-	for (i = 0; i < iFields.length; i++) {
+	for (i = 0; i < iFields.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IField f = iFields[i];
-		newNames[i] = addition + f.getElementName();
+		newNames[i] = addition + f.getElementName(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	try {
 		TestProgressMonitor monitor = TestProgressMonitor.getInstance();
@@ -619,7 +619,7 @@ public void testRenameInitializer() {
  * of renaming the main types, the types' enclosing compilation unit
  * are renamed as well.
  */
-public void testRenameMainTypes() throws CoreException {
+public void testRenameMainTypes() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/Y.java",
 		"public class Y {\n" +
@@ -665,7 +665,7 @@ public void testRenameMainTypes() throws CoreException {
  * are renamed as well.
  * @see "1FTKMBD: ITPJCORE:ALL - JM- Cannot rename parent and child with the same operation"
  */
-public void testRenameMainTypesAndAChild() throws CoreException {
+public void testRenameMainTypesAndAChild() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFile(
 		"/P/src/Y.java",
 		"public class Y {\n" +
@@ -686,7 +686,7 @@ public void testRenameMainTypesAndAChild() throws CoreException {
 		cu2.getType("Y")
 	};
 	IJavaElement[] destinations = new IJavaElement[elements.length];
-	for (int i = 0; i < elements.length; i++) {
+	for (int i = 0; i < elements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		destinations[i] = elements[i].getParent();
 	}
 
@@ -734,7 +734,7 @@ public void testRenameMethodsWithInvalidName() {
 	IMethod method = this.cu.getType("X").getMethod("foo", new String[] {"QString;"});
 	renameNegative(method, "%%someInvalidName", false, IJavaModelStatusConstants.INVALID_NAME);
 }
-public void testRenamePF() throws CoreException {
+public void testRenamePF() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/x/y/z");
 	this.createFile(
 		"/P/src/x/y/z/A.java",
@@ -774,7 +774,7 @@ public void testRenamePF() throws CoreException {
  * Ensures that renaming to a name containing spaces works
  * (regression test for bug 21957 'refactor rename' allows subpackage name to start with a space)
  */
-public void testRenamePF2() throws CoreException {
+public void testRenamePF2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/x/y/z");
 	this.createFile(
 		"/P/src/x/y/z/A.java",
@@ -815,7 +815,7 @@ public void testRenamePF2() throws CoreException {
  * finds the right type
  * (regression test for bug 83646 NPE renaming package)
  */
-public void testRenamePF3() throws CoreException {
+public void testRenamePF3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/x");
 	createFile(
 		"/P/src/x/A.java",
@@ -823,7 +823,7 @@ public void testRenamePF3() throws CoreException {
 		"public class A {\n" +
 		"}"
 	);
-	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){
+	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 		public void run(IProgressMonitor monitor) throws CoreException {
 			getPackage("/P/src/x").rename("x.y", false, null);
 			IType type = getJavaProject("P").findType("x.y.A");
@@ -835,7 +835,7 @@ public void testRenamePF3() throws CoreException {
 	};
 	getWorkspace().run(runnable, null);
 }
-public void testRenamePFWithSubPackages() throws CoreException {
+public void testRenamePFWithSubPackages() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/x/y/z");
 	this.createFile(
 		"/P/src/x/y/z/A.java",

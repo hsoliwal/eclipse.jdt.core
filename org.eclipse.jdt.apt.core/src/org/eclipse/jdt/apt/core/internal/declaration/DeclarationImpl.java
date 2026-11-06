@@ -58,11 +58,11 @@ public abstract class DeclarationImpl extends EclipseDeclarationImpl {
      */
     public abstract IBinding getDeclarationBinding();
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Collection<Modifier> getModifiers()
     {
         final int modBits = getDeclarationBinding().getModifiers();
-        final List<Modifier> mods = new ArrayList<>(4);
+        final List<Modifier> mods = new ArrayList<>(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
         if( org.eclipse.jdt.core.dom.Modifier.isAbstract(modBits) )
         	mods.add(Modifier.ABSTRACT);
         if( org.eclipse.jdt.core.dom.Modifier.isFinal(modBits) )

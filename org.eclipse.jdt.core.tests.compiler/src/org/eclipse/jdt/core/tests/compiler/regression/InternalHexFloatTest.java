@@ -50,8 +50,8 @@ public class InternalHexFloatTest extends AbstractRegressionTest {
 		return InternalHexFloatTest.class;
 	}
 
-	public void test001() {
-		List x = new ArrayList();
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List x = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		// various forms of zero
 		x.add(new DoubleTest("0x0p0", 0x0L));
@@ -153,7 +153,7 @@ public class InternalHexFloatTest extends AbstractRegressionTest {
 		x.add(new DoubleTest("0x0.1p-1072d", 0x7ff8000000000000L));
 		x.add(new DoubleTest("0x0.1p-1073d", 0x7ff8000000000000L));
 
-		for (Iterator it = x.iterator(); it.hasNext();) {
+		for (Iterator it = x.iterator(); it.hasNext();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			DoubleTest t = (DoubleTest) it.next();
 			String s = t.input;
 			long expectedBits = t.output;
@@ -175,16 +175,16 @@ public class InternalHexFloatTest extends AbstractRegressionTest {
 					if (Double.isNaN(Double.longBitsToDouble(expectedBits)) && libExpected == 0.0d) {
 						// this is ok - we return NaN where lib quietly underflows to 0
 					} else {
-						assertEquals("Test has wrong table value for " + s, libExpectedBits, expectedBits);
+						assertEquals("Test has wrong table value for " + s, libExpectedBits, expectedBits); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			}
-			assertEquals("Wrong double value for " + s, expectedBits, actualBits);
+			assertEquals("Wrong double value for " + s, expectedBits, actualBits); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	public void test002() {
-		List x = new ArrayList();
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List x = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		// various forms of zero
 		x.add(new FloatTest("0x0p0f", 0x0));
 		x.add(new FloatTest("0x0p0F", 0x0));
@@ -285,7 +285,7 @@ public class InternalHexFloatTest extends AbstractRegressionTest {
 		x.add(new FloatTest("0x0.1p-147f",   0x7fc00000));
 		x.add(new FloatTest("0x0.1p-148f",   0x7fc00000));
 
-		for (Iterator it = x.iterator(); it.hasNext();) {
+		for (Iterator it = x.iterator(); it.hasNext();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			FloatTest t = (FloatTest) it.next();
 			String s = t.input;
 			int expectedBits = t.output;
@@ -307,11 +307,11 @@ public class InternalHexFloatTest extends AbstractRegressionTest {
 					if (Float.isNaN(Float.intBitsToFloat(expectedBits)) && libExpected == 0.0f) {
 						// this is ok - we return NaN where lib quietly underflows to 0
 					} else {
-						assertEquals("Test has wrong table value for " + s, libExpectedBits, expectedBits);
+						assertEquals("Test has wrong table value for " + s, libExpectedBits, expectedBits); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			}
-			assertEquals("Wrong float value for " + s, expectedBits, actualBits);
+			assertEquals("Wrong float value for " + s, expectedBits, actualBits); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 

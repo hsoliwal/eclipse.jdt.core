@@ -67,7 +67,7 @@ public void tearDownSuite() throws Exception {
  * Ensures that all import declarations can be deleted, and the container
  * is reported as removed.
  */
-public void testDeleteAllImports() throws CoreException {
+public void testDeleteAllImports() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -97,7 +97,7 @@ public void testDeleteAllImports() throws CoreException {
 /**
  * Ensures that a binary method cannot be deleted.
  */
-public void testDeleteBinaryMethod() throws CoreException {
+public void testDeleteBinaryMethod() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {}, new String[] {"lib"}, "");
 
@@ -133,7 +133,7 @@ public void testDeleteBinaryMethod() throws CoreException {
 /**
  * Ensures that a binary type cannot be deleted.
  */
-public void testDeleteBinaryType() throws CoreException {
+public void testDeleteBinaryType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {}, new String[] {"lib"}, "");
 
@@ -167,7 +167,7 @@ public void testDeleteBinaryType() throws CoreException {
 /**
  * Should be able to delete a CU.
  */
-public void testDeleteCompilationUnit1() throws CoreException {
+public void testDeleteCompilationUnit1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -196,7 +196,7 @@ public void testDeleteCompilationUnit1() throws CoreException {
  * Ensure that if a CU is deleted from underneath us in the default
  * package of a nested root, it disappears from existence.
  */
-public void testDeleteCompilationUnit2() throws CoreException {
+public void testDeleteCompilationUnit2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IFile file = createFile(
 			"P/X.java",
@@ -224,7 +224,7 @@ public void testDeleteCompilationUnit2() throws CoreException {
  * After deleting a CU in an IWorkspaceRunnable, it should not exist.
  * (regression test for bug 9232 ICompilationUnit.delete() fails)
  */
-public void testDeleteCompilationUnit3() throws CoreException {
+public void testDeleteCompilationUnit3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -238,7 +238,7 @@ public void testDeleteCompilationUnit3() throws CoreException {
 
 		startDeltas();
 		ResourcesPlugin.getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					cu.delete(true, null);
 					assertTrue("Should be able to delete a CU", !cu.exists());
@@ -262,7 +262,7 @@ public void testDeleteCompilationUnit3() throws CoreException {
 /**
  * Should be able to delete a CU in a non-default package.
  */
-public void testDeleteCompilationUnit4() throws CoreException {
+public void testDeleteCompilationUnit4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("P/p");
 		IFile file = createFile(
@@ -294,7 +294,7 @@ public void testDeleteCompilationUnit4() throws CoreException {
  * Ensures that the primary type is not found after the file has been deleted
  * (regression test for 197157 Old compilation unit contents retrieved even after file is deleted)
  */
-public void testDeleteCompilationUnit5() throws CoreException {
+public void testDeleteCompilationUnit5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IPackageFragment pkg = getPackage("/P");
 		pkg.createCompilationUnit(
@@ -322,7 +322,7 @@ public void testDeleteCompilationUnit5() throws CoreException {
  * Ensures that a constructor can be deleted.
  * Verify that the correct change deltas are generated.
  */
-public void testDeleteConstructor() throws CoreException {
+public void testDeleteConstructor() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -354,7 +354,7 @@ public void testDeleteConstructor() throws CoreException {
 /**
  * Ensure that deleting an empty package fragment that has a sub-package is not possible.
  */
-public void testDeleteEmptyPackageFragment() throws CoreException {
+public void testDeleteEmptyPackageFragment() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("P/p1/p2");
 		IPackageFragment pkg = getPackage("P/p1");
@@ -376,7 +376,7 @@ public void testDeleteEmptyPackageFragment() throws CoreException {
 /**
  * Ensures that a field can be deleted.
  */
-public void testDeleteField1() throws CoreException { // was testDeleteField
+public void testDeleteField1() throws CoreException { // was testDeleteField //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -406,7 +406,7 @@ public void testDeleteField1() throws CoreException { // was testDeleteField
 /**
  * Ensures that deletion can be canceled.
  */
-public void testDeleteField2() throws CoreException { // was testDeleteFieldWithCancel
+public void testDeleteField2() throws CoreException { // was testDeleteFieldWithCancel //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -434,7 +434,7 @@ public void testDeleteField2() throws CoreException { // was testDeleteFieldWith
  * Ensures that a field can be deleted inside a scheduling rule that include the resource only.
  * (regression test for bug 73078 ISourceManipulation.delete() tries to run in WorkspaceRoot scheduling rule)
  */
-public void testDeleteField3() throws CoreException {
+public void testDeleteField3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IFile file = createFile(
 			"P/X.java",
@@ -447,7 +447,7 @@ public void testDeleteField3() throws CoreException {
 
 		startDeltas();
 		getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					assertDeletion(field);
 				}
@@ -473,7 +473,7 @@ public void testDeleteField3() throws CoreException {
  * Ensures that a field with initializer can be deleted.
  * (regression test for bug 112935 IField.delete is not deleting the value of the variable.)
  */
-public void testDeleteField4() throws CoreException {
+public void testDeleteField4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -496,7 +496,7 @@ public void testDeleteField4() throws CoreException {
 /**
  * Delete enum
  */
-public void testDeleteField5() throws CoreException {
+public void testDeleteField5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, null, "", CompilerOptions.getFirstSupportedJavaVersion());
 		createFile(
@@ -521,7 +521,7 @@ public void testDeleteField5() throws CoreException {
 /**
  * Ensures that an import declaration can be deleted.
  */
-public void testDeleteImportDeclaration() throws CoreException {
+public void testDeleteImportDeclaration() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -552,7 +552,7 @@ public void testDeleteImportDeclaration() throws CoreException {
 /**
  * Ensures that a method can be deleted.
  */
-public void testDeleteMethod() throws CoreException {
+public void testDeleteMethod() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -585,7 +585,7 @@ public void testDeleteMethod() throws CoreException {
  * compilation units can be deleted.
  * Verifies that the correct changed deltas are generated.
  */
-public void testDeleteMultipleMembersFromVariousCUs() throws CoreException {
+public void testDeleteMultipleMembersFromVariousCUs() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("P/a/b/c");
 		createFile(
@@ -676,7 +676,7 @@ public void testDeleteMultipleMembersFromVariousCUs() throws CoreException {
 /**
  * Ensures that a package declaration can be deleted from a compilation unit.
  */
-public void testDeletePackageDeclaration() throws CoreException {
+public void testDeletePackageDeclaration() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("P/a/b/c");
 		createFile(
@@ -703,7 +703,7 @@ public void testDeletePackageDeclaration() throws CoreException {
 		deleteFolder("P/a");
 	}
 }
-public void testDeletePackageFragment1() throws CoreException {
+public void testDeletePackageFragment1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("P/a/b/c");
 		createFile(
@@ -734,7 +734,7 @@ public void testDeletePackageFragment1() throws CoreException {
  * Ensures that deleting a default package doesn't remove the source folder.
  * (regression test for bug 38450 Delete: Removing default package removes source folder)
  */
-public void testDeletePackageFragment2() throws CoreException {
+public void testDeletePackageFragment2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {"src"}, "bin");
 		IFile file = createFile(
@@ -768,7 +768,7 @@ public void testDeletePackageFragment2() throws CoreException {
  * Ensures that deleting a default package where prj=src removes its compilation units is successful.
  * (regression test for bug 39926 deleting default package (not in source folder) does nothing)
  */
-public void testDeletePackageFragment3() throws CoreException {
+public void testDeletePackageFragment3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		IFile file = createFile(
@@ -802,7 +802,7 @@ public void testDeletePackageFragment3() throws CoreException {
  * Ensures that deleting a package that only contains a .class file is successful.
  * (regression test for bug 40606 Unable to discard empty package if containing .class files)
  */
-public void testDeletePackageFragment4() throws CoreException {
+public void testDeletePackageFragment4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		IFolder folder = createFolder("P1/p");
@@ -830,7 +830,7 @@ public void testDeletePackageFragment4() throws CoreException {
  * works.
  * (regression test for bug 78128 Error deleting project with jar file referenced by other project)
  */
-public void testDeleteProjectAfterUsingJar() throws CoreException, IOException {
+public void testDeleteProjectAfterUsingJar() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject javaProject = createJavaProject("P78128");
 		addLibrary(
@@ -857,7 +857,7 @@ public void testDeleteProjectAfterUsingJar() throws CoreException, IOException {
 /**
  * Ensures that a field can be deleted if it contains syntax errors
  */
-public void testDeleteSyntaxErrorField() throws CoreException {
+public void testDeleteSyntaxErrorField() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -887,7 +887,7 @@ public void testDeleteSyntaxErrorField() throws CoreException {
 /**
  * Ensures that a method can be deleted if it contains syntax errors
  */
-public void testDeleteSyntaxErrorInMethod1() throws CoreException {
+public void testDeleteSyntaxErrorInMethod1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -920,7 +920,7 @@ public void testDeleteSyntaxErrorInMethod1() throws CoreException {
 /**
  * Ensures that a method can be deleted if it contains syntax errors
  */
-public void testDeleteSyntaxErrorInMethod2() throws CoreException {
+public void testDeleteSyntaxErrorInMethod2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -950,7 +950,7 @@ public void testDeleteSyntaxErrorInMethod2() throws CoreException {
 /**
  * Ensures that a method can be deleted if it contains syntax errors
  */
-public void testDeleteSyntaxErrorInMethod3() throws CoreException {
+public void testDeleteSyntaxErrorInMethod3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -981,7 +981,7 @@ public void testDeleteSyntaxErrorInMethod3() throws CoreException {
 /**
  * Ensures that a type can be deleted if it contains syntax errors
  */
-public void testDeleteSyntaxErrorType() throws CoreException {
+public void testDeleteSyntaxErrorType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -1010,7 +1010,7 @@ public void testDeleteSyntaxErrorType() throws CoreException {
 /**
  * Ensures that a type can be deleted from a compilation unit.
  */
-public void testDeleteType1() throws CoreException{
+public void testDeleteType1() throws CoreException{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"P/X.java",
@@ -1039,7 +1039,7 @@ public void testDeleteType1() throws CoreException{
  * Delete a type in a default package that is nested
  * in a root folder that is not the project folder.
  */
-public void testDeleteType2() throws CoreException {
+public void testDeleteType2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {"src"}, "bin");
 		createFile(
@@ -1068,7 +1068,7 @@ public void testDeleteType2() throws CoreException {
 /**
  * Ensure that the correct exception is thrown for invalid input to the <code>DeleteOperation</code>
  */
-public void testDeleteWithInvalidInput() throws CoreException {
+public void testDeleteWithInvalidInput() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = null;
 	try {
 		createFile(

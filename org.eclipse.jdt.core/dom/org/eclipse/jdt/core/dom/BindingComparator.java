@@ -37,7 +37,7 @@ class BindingComparator {
 	/**
 	 * @return true if both parameters are equals, false otherwise
 	 */
-	static boolean isEqual(TypeVariableBinding[] bindings, TypeVariableBinding[] otherBindings) {
+	static boolean isEqual(TypeVariableBinding[] bindings, TypeVariableBinding[] otherBindings) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (bindings == null) {
 			return otherBindings == null;
 		}
@@ -49,7 +49,7 @@ class BindingComparator {
 		if (length != otherLength) {
 			return false;
 		}
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeVariableBinding typeVariableBinding = bindings[i];
 			TypeVariableBinding typeVariableBinding2 = otherBindings[i];
 			if (!isEqual(typeVariableBinding, typeVariableBinding2)) {
@@ -62,7 +62,7 @@ class BindingComparator {
 	/**
 	 * @return true if both parameters are equals, false otherwise
 	 */
-	static boolean isEqual(Binding declaringElement, Binding declaringElement2, HashSet visitedTypes) {
+	static boolean isEqual(Binding declaringElement, Binding declaringElement2, HashSet visitedTypes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (declaringElement instanceof org.eclipse.jdt.internal.compiler.lookup.TypeBinding) {
 			if (!(declaringElement2 instanceof org.eclipse.jdt.internal.compiler.lookup.TypeBinding)){
 				return false;
@@ -112,7 +112,7 @@ class BindingComparator {
 
 	static boolean isEqual(org.eclipse.jdt.internal.compiler.lookup.MethodBinding methodBinding,
 			org.eclipse.jdt.internal.compiler.lookup.MethodBinding methodBinding2) {
-		return isEqual(methodBinding, methodBinding2, new HashSet());
+		return isEqual(methodBinding, methodBinding2, new HashSet()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	}
 
 	static boolean isEqual(org.eclipse.jdt.internal.compiler.lookup.MethodBinding methodBinding,
@@ -150,7 +150,7 @@ class BindingComparator {
 	}
 
 	static boolean isEqual(FieldBinding fieldBinding, FieldBinding fieldBinding2) {
-		HashSet visitedTypes = new HashSet();
+		HashSet visitedTypes = new HashSet(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		return (fieldBinding.modifiers & ExtraCompilerModifiers.AccJustFlag) == (fieldBinding2.modifiers & ExtraCompilerModifiers.AccJustFlag)
 				&& CharOperation.equals(fieldBinding.name, fieldBinding2.name)
 				&& isEqual(fieldBinding.type, fieldBinding2.type, visitedTypes)
@@ -161,12 +161,12 @@ class BindingComparator {
 	 * @return true if both parameters are equals, false otherwise
 	 */
 	static boolean isEqual(org.eclipse.jdt.internal.compiler.lookup.TypeBinding[] bindings, org.eclipse.jdt.internal.compiler.lookup.TypeBinding[] otherBindings) {
-		return isEqual(bindings, otherBindings, new HashSet());
+		return isEqual(bindings, otherBindings, new HashSet()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	}
 	/**
 	 * @return true if both parameters are equals, false otherwise
 	 */
-	static boolean isEqual(org.eclipse.jdt.internal.compiler.lookup.TypeBinding[] bindings, org.eclipse.jdt.internal.compiler.lookup.TypeBinding[] otherBindings, HashSet visitedTypes) {
+	static boolean isEqual(org.eclipse.jdt.internal.compiler.lookup.TypeBinding[] bindings, org.eclipse.jdt.internal.compiler.lookup.TypeBinding[] otherBindings, HashSet visitedTypes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (bindings == null) {
 			return otherBindings == null;
 		}
@@ -178,14 +178,14 @@ class BindingComparator {
 		if (length != otherLength) {
 			return false;
 		}
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!isEqual(bindings[i], otherBindings[i], visitedTypes)) {
 				return false;
 			}
 		}
 		return true;
 	}
-	static boolean isEqual(org.eclipse.jdt.internal.compiler.lookup.TypeBinding typeBinding, org.eclipse.jdt.internal.compiler.lookup.TypeBinding typeBinding2, HashSet visitedTypes) {
+	static boolean isEqual(org.eclipse.jdt.internal.compiler.lookup.TypeBinding typeBinding, org.eclipse.jdt.internal.compiler.lookup.TypeBinding typeBinding2, HashSet visitedTypes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (org.eclipse.jdt.internal.compiler.lookup.TypeBinding.equalsEquals(typeBinding, typeBinding2))
 			return true;
 		if (typeBinding == null || typeBinding2 == null)
@@ -314,6 +314,6 @@ class BindingComparator {
 	 * @return true if both parameters are equals, false otherwise
 	 */
 	static boolean isEqual(org.eclipse.jdt.internal.compiler.lookup.TypeBinding typeBinding, org.eclipse.jdt.internal.compiler.lookup.TypeBinding typeBinding2) {
-		return isEqual(typeBinding, typeBinding2, new HashSet());
+		return isEqual(typeBinding, typeBinding2, new HashSet()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	}
 }

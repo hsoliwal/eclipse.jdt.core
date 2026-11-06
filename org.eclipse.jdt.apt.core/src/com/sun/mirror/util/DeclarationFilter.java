@@ -248,8 +248,8 @@ public class DeclarationFilter {
      * @return the declarations matched by this filter
      */
     public <D extends Declaration> Collection<D> filter(Collection<D> decls) {
-	ArrayList<D> res = new ArrayList<>(decls.size());
-	for (D d : decls) {
+	ArrayList<D> res = new ArrayList<>(decls.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (D d : decls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    if (matches(d)) {
 		res.add(d);
 	    }
@@ -273,8 +273,8 @@ public class DeclarationFilter {
      */
     public <D extends Declaration> Collection<D>
 	    filter(Collection<? extends Declaration> decls, Class<D> resType) {
-	ArrayList<D> res = new ArrayList<>(decls.size());
-	for (Declaration d : decls) {
+	ArrayList<D> res = new ArrayList<>(decls.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (Declaration d : decls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    if (resType.isInstance(d) && matches(d)) {
 		res.add(resType.cast(d));
 	    }

@@ -34,7 +34,7 @@ public static Test suite() {
 	return buildMinimalComplianceTestSuite(testClass(), F_15);
 }
 
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_15);
@@ -66,7 +66,7 @@ public void test001() {
 		"----------\n",
 		JAVAC_OPTIONS);
 }
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_15);
@@ -95,7 +95,7 @@ public void test002() {
 		"----------\n",
 		JAVAC_OPTIONS);
 }
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.WARNING);
 	customOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_15);
@@ -134,7 +134,7 @@ public void test003() {
 		"----------\n",
 		JAVAC_OPTIONS);
 }
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_15);
@@ -165,7 +165,7 @@ public void test004() {
 		"----------\n",
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.WARNING);
 	customOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_15);
@@ -192,7 +192,7 @@ public void test005() {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=237245
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportNonExternalizedStringLiteral, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_15);

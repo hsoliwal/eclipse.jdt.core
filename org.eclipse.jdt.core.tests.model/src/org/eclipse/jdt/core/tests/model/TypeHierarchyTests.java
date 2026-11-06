@@ -64,7 +64,7 @@ protected void setUp() throws Exception {
 	super.setUp();
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 	super.setUpSuite();
 
@@ -210,7 +210,7 @@ public void testAnonymousType01() throws JavaModelException {
 	IType type = typeA.getInitializer(1).getType("", 1);
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: <anonymous #1> [in <initializer #1> [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" +
+		"Focus: <anonymous #1> [in <initializer #1> [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  X [in X.java [in p7 [in src [in TypeHierarchy]]]]\n" +
 		"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -225,7 +225,7 @@ public void testAnonymousType02() throws JavaModelException {
 	IType type = typeA.getInitializer(2).getType("", 1);
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: <anonymous #1> [in <initializer #2> [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" +
+		"Focus: <anonymous #1> [in <initializer #2> [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  X [in X.java [in p7 [in src [in TypeHierarchy]]]]\n" +
 		"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -240,7 +240,7 @@ public void testAnonymousType03() throws JavaModelException {
 	IType type = typeA.getField("field1").getType("", 1);
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: <anonymous #1> [in field1 [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" +
+		"Focus: <anonymous #1> [in field1 [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  X [in X.java [in p7 [in src [in TypeHierarchy]]]]\n" +
 		"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -250,12 +250,12 @@ public void testAnonymousType03() throws JavaModelException {
 /*
  * Ensures that a hierarchy on an anonymous type in a field declaration is correct.
  */
-public void testAnonymousType04() throws JavaModelException {
+public void testAnonymousType04() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType typeA = getCompilationUnit("TypeHierarchy", "src", "p7", "A.java").getType("A");
 	IType type = typeA.getField("field2").getType("", 1);
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: <anonymous #1> [in field2 [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" +
+		"Focus: <anonymous #1> [in field2 [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  X [in X.java [in p7 [in src [in TypeHierarchy]]]]\n" +
 		"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -264,7 +264,7 @@ public void testAnonymousType04() throws JavaModelException {
 	type = typeA.getField("field2").getType("", 2);
 	hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: <anonymous #2> [in field2 [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" +
+		"Focus: <anonymous #2> [in field2 [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  X [in X.java [in p7 [in src [in TypeHierarchy]]]]\n" +
 		"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -279,7 +279,7 @@ public void testAnonymousType05() throws JavaModelException {
 	IType type = typeA.getMethod("foo", new String[] {}).getType("", 1);
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: <anonymous #1> [in foo() [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" +
+		"Focus: <anonymous #1> [in foo() [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  X [in X.java [in p7 [in src [in TypeHierarchy]]]]\n" +
 		"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -295,7 +295,7 @@ public void testAnonymousType06() throws JavaModelException {
 	IType type = typeA.getMethod("foo", new String[] {}).getType("", 1);
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: <anonymous #1> [in foo() [in X [in X.java [in p8 [in src [in TypeHierarchy]]]]]]\n" +
+		"Focus: <anonymous #1> [in foo() [in X [in X.java [in p8 [in src [in TypeHierarchy]]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  X [in X.java [in p8 [in src [in TypeHierarchy]]]]\n" +
 		"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -358,7 +358,7 @@ public void testAnonymousType10() throws CoreException {
 	IType type = cu.getType("X").getType("Member");
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: Member [in X [in X.java [in q7 [in src [in TypeHierarchy]]]]]\n" +
+		"Focus: Member [in X [in X.java [in q7 [in src [in TypeHierarchy]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 		"Sub types:\n" +
@@ -375,7 +375,7 @@ public void testAnonymousType11() throws CoreException {
 	IType type = getCompilationUnit("TypeHierarchy/src/q8/Y210070.java").getType("Y210070");
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: Y210070 [in Y210070.java [in q8 [in src [in TypeHierarchy]]]]\n" +
+		"Focus: Y210070 [in Y210070.java [in q8 [in src [in TypeHierarchy]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 		"Sub types:\n" +
@@ -391,7 +391,7 @@ public void testAnonymousType12() throws CoreException {
 	IType type = getCompilationUnit("TypeHierarchy/src/q8/A210070.java").getType("A210070");
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: A210070 [in A210070.java [in q8 [in src [in TypeHierarchy]]]]\n" +
+		"Focus: A210070 [in A210070.java [in q8 [in src [in TypeHierarchy]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 		"Sub types:\n" +
@@ -424,7 +424,7 @@ public void testBinaryInnerTypeGetSuperInterfaces() throws JavaModelException {
  * Ensures that the hierarchy lookup mechanism get the right binary if it is missplaced.
  * (regression test for bug 139279 Fup of bug 134110, got CCE changing an external jar contents and refreshing the project)
  */
-public void testBinaryInWrongPackage() throws CoreException {
+public void testBinaryInWrongPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB", "lib"}, "bin");
 		createFolder("/P/src/p");
@@ -455,7 +455,7 @@ public  void testBinarySubclass() throws JavaModelException {
 	IType type = getCompilationUnit("TypeHierarchy/src/p48459/p1/X48459.java").getType("X48459");
 	ITypeHierarchy h = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: X48459 [in X48459.java [in p48459.p1 [in src [in TypeHierarchy]]]]\n" +
+		"Focus: X48459 [in X48459.java [in p48459.p1 [in src [in TypeHierarchy]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 		"Sub types:\n" +
@@ -518,11 +518,11 @@ public void testBinaryTypeGetSuperInterfaces2() throws JavaModelException {
  * Ensures that a hierarchy can be constructed on a binary type in a jar that is hidden by another jar with the same type.
  * (regression test for bug
  */
-public void testBinaryTypeHiddenByOtherJar() throws CoreException, IOException {
+public void testBinaryTypeHiddenByOtherJar() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String externalJar1 = null;
 	String externalJar2 = null;
 	try {
-		externalJar1 = Util.getOutputDirectory() + File.separator + "test1.jar";
+		externalJar1 = Util.getOutputDirectory() + File.separator + "test1.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(
 			new String[] {
 				"p/X.java",
@@ -534,10 +534,10 @@ public void testBinaryTypeHiddenByOtherJar() throws CoreException, IOException {
 				"public class Y extends X {\n" +
 				"}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			externalJar1
 		);
-		externalJar2 = Util.getOutputDirectory() + File.separator + "test2.jar";
+		externalJar2 = Util.getOutputDirectory() + File.separator + "test2.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(
 			new String[] {
 				"p/X.java",
@@ -549,13 +549,13 @@ public void testBinaryTypeHiddenByOtherJar() throws CoreException, IOException {
 				"public class Y extends X {\n" +
 				"}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			externalJar2
 		);
 		IJavaProject project = createJavaProject("P", new String[] {}, new String[] {"JCL18_LIB", externalJar1, externalJar2}, "");
 		IType focus = project.getPackageFragmentRoot(externalJar2).getPackageFragment("p").getOrdinaryClassFile("Y.class").getType();
 		assertHierarchyEquals(
-			"Focus: Y [in Y.class [in p [in " + externalJar2 + "]]]\n" +
+			"Focus: Y [in Y.class [in p [in " + externalJar2 + "]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"  X [in X.class [in p [in " + externalJar1 + "]]]\n" +
 			"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -574,10 +574,10 @@ public void testBinaryTypeHiddenByOtherJar() throws CoreException, IOException {
  * Ensures that a hierarchy can be constructed on a binary type in a jar that has '.class' in its name.
  * (regression test for bug 157035 "Open Type Hierarchy" fails if subtype is anonymous or local class and location for this subtype contains ".class")
  */
-public void testBinaryTypeInDotClassJar() throws CoreException, IOException {
+public void testBinaryTypeInDotClassJar() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String externalJar = null;
 	try {
-		externalJar = Util.getOutputDirectory() + File.separator + "test.classic.jar";
+		externalJar = Util.getOutputDirectory() + File.separator + "test.classic.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Util.createJar(
 			new String[] {
 				"p/X.java",
@@ -593,13 +593,13 @@ public void testBinaryTypeInDotClassJar() throws CoreException, IOException {
 				" }\n" +
 				"}"
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			externalJar
 		);
 		IJavaProject project = createJavaProject("P", new String[] {}, new String[] {"JCL18_LIB", externalJar}, "");
 		IType focus = project.getPackageFragmentRoot(externalJar).getPackageFragment("p").getOrdinaryClassFile("X.class").getType();
 		assertHierarchyEquals(
-			"Focus: X [in X.class [in p [in " + externalJar + "]]]\n" +
+			"Focus: X [in X.class [in p [in " + externalJar + "]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 			"Sub types:\n" +
@@ -674,7 +674,7 @@ public void testCycle2() throws JavaModelException {
 /*
  * Ensures that creating a type hierarchy accross multiple project checks for cancellation regularly.
  */
-public void testEfficiencyMultipleProjects() throws CoreException {
+public void testEfficiencyMultipleProjects() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, "");
 		createJavaProject("P2", new String[] {""}, new String[] {"JCL18_LIB"}, new String[] {"/P1"}, "");
@@ -704,7 +704,7 @@ public void testEfficiencyMultipleProjects() throws CoreException {
  * Ensures that a hierarchy can be created with a potential subtype in an empty primary working copy
  * (regression test for bug 65677 Creating hierarchy failed. See log for details. 0)
  */
-public void testEmptyWorkingCopyPotentialSubtype() throws JavaModelException {
+public void testEmptyWorkingCopyPotentialSubtype() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     ICompilationUnit workingCopy = null;
     try {
         workingCopy = getCompilationUnit("/TypeHierarchy/src/q4/Y.java");
@@ -715,7 +715,7 @@ public void testEmptyWorkingCopyPotentialSubtype() throws JavaModelException {
         IType type = getCompilationUnit("/TypeHierarchy/src/q4/X.java").getType("X");
 		ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 		assertHierarchyEquals(
-			"Focus: X [in X.java [in q4 [in src [in TypeHierarchy]]]]\n" +
+			"Focus: X [in X.java [in q4 [in src [in TypeHierarchy]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 			"Sub types:\n",
@@ -728,7 +728,7 @@ public void testEmptyWorkingCopyPotentialSubtype() throws JavaModelException {
 /*
  * Ensures that subtypes are found in an external library folder
  */
-public void testExternalFolder() throws CoreException, IOException {
+public void testExternalFolder() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib");
 		Util.compile(
@@ -742,13 +742,13 @@ public void testExternalFolder() throws CoreException, IOException {
 				"public class Y extends X {\n" +
 				"}",
 			},
-			new HashMap(),
+			new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			getExternalResourcePath("externalLib"));
 		createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib")}, "");
 		IOrdinaryClassFile classFile = getClassFile("P", getExternalResourcePath("externalLib"), "p", "X.class");
 		ITypeHierarchy hierarchy = classFile.getType().newTypeHierarchy(null);
 		assertHierarchyEquals(
-			"Focus: X [in X.class [in p [in "+ getExternalPath() + "externalLib]]]\n" +
+			"Focus: X [in X.class [in p [in "+ getExternalPath() + "externalLib]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"Sub types:\n" +
 			"  Y [in Y.class [in p [in "+ getExternalPath() + "externalLib]]]\n",
@@ -761,7 +761,7 @@ public void testExternalFolder() throws CoreException, IOException {
 /*
  * Ensures that subtypes are found in an external ZIP archive
  */
-public void testZIPArchive() throws CoreException, IOException {
+public void testZIPArchive() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJar(
 			new String[] {
@@ -781,7 +781,7 @@ public void testZIPArchive() throws CoreException, IOException {
 		IOrdinaryClassFile classFile = getClassFile("P", getExternalResourcePath("externalLib.abc"), "p", "X.class");
 		ITypeHierarchy hierarchy = classFile.getType().newTypeHierarchy(null);
 		assertHierarchyEquals(
-			"Focus: X [in X.class [in p [in "+ getExternalPath() + "externalLib.abc]]]\n" +
+			"Focus: X [in X.class [in p [in "+ getExternalPath() + "externalLib.abc]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"Sub types:\n" +
 			"  Y [in Y.class [in p [in "+ getExternalPath() + "externalLib.abc]]]\n",
@@ -807,11 +807,11 @@ public void testFindObject() throws CoreException {
 /*
  * Ensures that a hierarchy on a type with local and anonymous types is correct.
  */
-public void testFocusWithLocalAndAnonymousTypes() throws JavaModelException {
+public void testFocusWithLocalAndAnonymousTypes() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getCompilationUnit("TypeHierarchy", "src", "p7", "X.java").getType("X");
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: X [in X.java [in p7 [in src [in TypeHierarchy]]]]\n" +
+		"Focus: X [in X.java [in p7 [in src [in TypeHierarchy]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 		"Sub types:\n" +
@@ -960,7 +960,7 @@ public void testGeneric08() throws JavaModelException {
  * Ensures that a hierarchy is where a type inherits conflicting paratemerized types is still correctly reported
  * (regression test for bug 136095 Type Hierarchy incomplete with illegally parameterized superinterfaces)
  */
-public void testGeneric09() throws CoreException {
+public void testGeneric09() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"/TypeHierarchy15/src/I1_136095.java",
@@ -999,7 +999,7 @@ public void testGeneric09() throws CoreException {
  * Ensures that a super type hierarchy is where the focus type implements a generic type with a qualified type parameter is correct
  * (regression test for bug 140340 [5.0][templates] foreach template does not work when an Iterable over a static inner class exists)
  */
-public void testGeneric10() throws CoreException {
+public void testGeneric10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"/TypeHierarchy15/src/Y_140340.java",
@@ -1034,7 +1034,7 @@ public void testGeneric10() throws CoreException {
  * Ensures that no cycle is created in a hierarchy with 2 types with same simple names and errors
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=215681 )
  */
-public void testGeneric11() throws CoreException {
+public void testGeneric11() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("/TypeHierarchy15/src/p215681");
 		createFile(
@@ -1068,7 +1068,7 @@ public void testGeneric11() throws CoreException {
  * Ensures that no cycle is created in a hierarchy with 2 types with same simple names and errors
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=215681 )
  */
-public void testGeneric12() throws CoreException {
+public void testGeneric12() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("/TypeHierarchy15/src/p215681");
 		createFile(
@@ -1187,8 +1187,8 @@ public void testGetAllSuperclasses() throws JavaModelException {
 public void testGetAllSuperclassesFromBinary() throws JavaModelException {
 	String fileName = "TypeHierarchy/lib53095/p53095/X53095.class";	//$NON-NLS-1$
 	IJavaElement javaElement = JavaCore.create(getFile(fileName));
-	assertNotNull("Problem to get class file \""+fileName+"\"", javaElement);
-	assertTrue("Invalid type for class file \""+fileName+"\"", javaElement instanceof IClassFile);
+	assertNotNull("Problem to get class file \""+fileName+"\"", javaElement); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	assertTrue("Invalid type for class file \""+fileName+"\"", javaElement instanceof IClassFile); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	IType type = ((IOrdinaryClassFile) javaElement).getType();
 	ITypeHierarchy hierarchy = type.newSupertypeHierarchy(null); // it works when we use newTypeHierarchy(null)
 	IType[] types = hierarchy.getAllSupertypes(type);
@@ -1330,7 +1330,7 @@ public void testGetCachedFlags() throws JavaModelException {
  * Ensures that the correct extending interfaces exist in the type
  * hierarchy.
  */
-public void testGetExtendingInterfaces() throws JavaModelException {
+public void testGetExtendingInterfaces() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getCompilationUnit("TypeHierarchy", "src", "p2", "I.java").getType("I");
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	IType[] types = hierarchy.getExtendingInterfaces(type);
@@ -1354,7 +1354,7 @@ public void testGetExtendingInterfaces() throws JavaModelException {
  * Ensures that the correct implementing interfaces exist in the type
  * hierarchy.
  */
-public void testGetImplementingClasses() throws JavaModelException {
+public void testGetImplementingClasses() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getCompilationUnit("TypeHierarchy", "src", "p2", "I.java").getType("I");
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	IType[] types = hierarchy.getImplementingClasses(type);
@@ -1434,7 +1434,7 @@ public void testGetSubclasses() throws JavaModelException {
  * Ensures that the correct number of subtypes exist in the type
  * hierarchy created on a region.
  */
-public void testGetSubtypes() throws JavaModelException {
+public void testGetSubtypes() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getClassFile("TypeHierarchy", "lib.jar", "binary", "X.class").getType();
 	IType[] types = this.typeHierarchy.getSubtypes(type);
 	this.assertTypesEqual(
@@ -1522,7 +1522,7 @@ public void testImplementBinaryInnerInterface() throws JavaModelException {
 	IType type = cf.getType();
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: Y [in Y.class [in p58440 [in test58440.jar [in TypeHierarchy]]]]\n" +
+		"Focus: Y [in Y.class [in p58440 [in test58440.jar [in TypeHierarchy]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Inner [in X$Inner.class [in p58440 [in test58440.jar [in TypeHierarchy]]]]\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -1541,7 +1541,7 @@ public void testInnerType1() throws JavaModelException {
 		assertTrue("IllegalArgumentException", false);
 	}
 	assertHierarchyEquals(
-		"Focus: Inner [in X [in X.java [in p5 [in src [in TypeHierarchy]]]]]\n" +
+		"Focus: Inner [in X [in X.java [in p5 [in src [in TypeHierarchy]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 		"Sub types:\n",
@@ -1562,7 +1562,7 @@ public void testInnerType2() throws JavaModelException {
 		assertTrue("IllegalArgumentException", false);
 	}
 	assertHierarchyEquals(
-		"Focus: Inner [in A [in A.java [in p6 [in src [in TypeHierarchy]]]]]\n" +
+		"Focus: Inner [in A [in A.java [in p6 [in src [in TypeHierarchy]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 		"Sub types:\n" +
@@ -1577,7 +1577,7 @@ public void testLocalType1() throws JavaModelException {
 	IType type = typeA.getInitializer(1).getType("Y1", 1);
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: Y1 [in <initializer #1> [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" +
+		"Focus: Y1 [in <initializer #1> [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  X [in X.java [in p7 [in src [in TypeHierarchy]]]]\n" +
 		"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -1593,7 +1593,7 @@ public void testLocalType2() throws JavaModelException {
 	IType type = typeA.getInitializer(2).getType("Y3", 1);
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: Y3 [in <initializer #2> [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" +
+		"Focus: Y3 [in <initializer #2> [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 		"Sub types:\n",
@@ -1607,7 +1607,7 @@ public void testLocalType3() throws JavaModelException {
 	IType type = typeA.getMethod("foo", new String[] {}).getType("Y2", 1);
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: Y2 [in foo() [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" +
+		"Focus: Y2 [in foo() [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Y1 [in foo() [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" +
 		"    X [in X.java [in p7 [in src [in TypeHierarchy]]]]\n" +
@@ -1624,7 +1624,7 @@ public void testLocalType4() throws JavaModelException {
 	IType type = typeA.getMethod("foo", new String[] {}).getType("Y1", 1);
 	ITypeHierarchy hierarchy = type.newSupertypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: Y1 [in foo() [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" +
+		"Focus: Y1 [in foo() [in A [in A.java [in p7 [in src [in TypeHierarchy]]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  X [in X.java [in p7 [in src [in TypeHierarchy]]]]\n" +
 		"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -1650,7 +1650,7 @@ public void testLocalType5() throws JavaModelException {
  * Ensures that a type hierarchy on a member type with subtypes in another project is correct
  * (regression test for bug 101019 RC3: Type Hierarchy does not find implementers/extenders of inner class/interface in other project)
  */
-public void testMemberTypeSubtypeDifferentProject() throws CoreException {
+public void testMemberTypeSubtypeDifferentProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		createFile(
@@ -1669,7 +1669,7 @@ public void testMemberTypeSubtypeDifferentProject() throws CoreException {
 		IType focus = getCompilationUnit("/P1/X.java").getType("X").getType("Member");
 		ITypeHierarchy hierarchy = focus.newTypeHierarchy(null/*no progress*/);
 		assertHierarchyEquals(
-			"Focus: Member [in X [in X.java [in <default> [in <project root> [in P1]]]]]\n" +
+			"Focus: Member [in X [in X.java [in <default> [in <project root> [in P1]]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 			"Sub types:\n" +
@@ -1692,7 +1692,7 @@ public void testMissingInterface() throws JavaModelException {
 		assertTrue("IllegalArgumentException", false);
 	}
 	assertHierarchyEquals(
-		"Focus: X [in X.java [in p4 [in src [in TypeHierarchy]]]]\n" +
+		"Focus: X [in X.java [in p4 [in src [in TypeHierarchy]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 		"Sub types:\n",
@@ -1703,7 +1703,7 @@ public void testMissingInterface() throws JavaModelException {
  * is correct.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=213249 )
  */
-public void testMissingBinarySuperclass1() throws Exception {
+public void testMissingBinarySuperclass1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[0], "bin");
 		addClassFolder(project, "lib", new String[] {
@@ -1738,7 +1738,7 @@ public void testMissingBinarySuperclass1() throws Exception {
  * is correct.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=213249 )
  */
-public void testMissingBinarySuperclass2() throws Exception {
+public void testMissingBinarySuperclass2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[0], "bin");
 		addClassFolder(project, "lib", new String[] {
@@ -1772,7 +1772,7 @@ public void testMissingBinarySuperclass2() throws Exception {
  * Ensures that a potential subtype in a dependent project doesn't appear in the hierarchy
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=169678 )
  */
-public void testPotentialSubtypeInDependentProject() throws Exception {
+public void testPotentialSubtypeInDependentProject() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, "");
 		createFolder("/P1/p1");
@@ -1805,7 +1805,7 @@ public void testPotentialSubtypeInDependentProject() throws Exception {
 		IType[] allTypes = hierarchy.getAllTypes();
 		assertSortedElementsEqual(
 			"Unexpected types in hierarchy",
-			"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
+			"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Y169678 [in X169678 [in X169678.java [in p1 [in <project root> [in P1]]]]]\n" +
 			"Z169678 [in Z169678.java [in p1 [in <project root> [in P1]]]]",
 			allTypes);
@@ -1833,7 +1833,7 @@ public void testPotentialSubtypeNotInClasspath() throws JavaModelException {
  * Ensures that progress is reported while waiting for indexing to finish
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=210094 )
  */
-public void testProgressWhileIndexing() throws CoreException, TimeOutException {
+public void testProgressWhileIndexing() throws CoreException, TimeOutException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean indexState = isIndexDisabledForTest();
 	final WaitingJob job = new WaitingJob();
 	try {
@@ -1917,7 +1917,7 @@ public void testRegion3() throws JavaModelException {
 		h.getAllTypes()
 	);
 }
-public void _testRegion4() throws CoreException {
+public void _testRegion4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = createJavaProject("P1");
 		IJavaProject p2 = createJavaProject("P2", new String[] {""}, new String[] {"JCL18_LIB"}, new String[] {"/P1"}, "");
@@ -1943,7 +1943,7 @@ public void _testRegion4() throws CoreException {
 		region.add(p3);
 		ITypeHierarchy hierarchy = JavaCore.newTypeHierarchy(region, null, null);
 		assertHierarchyEquals(
-			"Focus: <NONE>\n" +
+			"Focus: <NONE>\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types of root classes:\n" +
 			"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 			"Sub types of root classes:\n" +
@@ -1969,7 +1969,7 @@ public void _testRegion4() throws CoreException {
  * Ensures that a type hierarchy on a region that contains a type with a missing super class is correct
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=154865 )
  */
-public void testRegion5() throws Exception {
+public void testRegion5() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "");
 		createFolder("/P/p");
@@ -1992,7 +1992,7 @@ public void testRegion5() throws Exception {
 		region.add(pkg);
 		ITypeHierarchy h = pkg.getJavaProject().newTypeHierarchy(region, null);
 		assertHierarchyEquals(
-			"Focus: <NONE>\n" +
+			"Focus: <NONE>\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types of root classes:\n" +
 			"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 			"  Z [in Z.java [in p [in <project root> [in P]]]]\n" +
@@ -2016,7 +2016,7 @@ public void testRegion_Bug150289() throws JavaModelException {
 	assertEquals("Unexpected number of types in hierarchy", 0, h.getAllTypes().length);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=144976
-public void testResilienceToMissingBinaries() throws CoreException {
+public void testResilienceToMissingBinaries() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB", "/TypeHierarchy/test144976.jar"}, "bin");
 		createFolder("/P/src/tools/");
@@ -2063,7 +2063,7 @@ public void testResilienceToMissingBinaries() throws CoreException {
  * Ensures that the focus type is put as a non-resolved type
  * (regression test for bug 92357 ITypeHierarchy#getType() should return an unresolved handle)
  */
-public void testResolvedTypeAsFocus() throws CoreException {
+public void testResolvedTypeAsFocus() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 		String source =
@@ -2091,7 +2091,7 @@ public void testResolvedTypeAsFocus() throws CoreException {
  * Ensure that the order of roots is taken into account when a type is present in multiple roots.
  * (regression test for bug 139555 [hierarchy] Opening a class from Type hierarchy will give the wrong one if source and compiled are in defined in project)
  */
-public void testRootOrder() throws CoreException, IOException {
+public void testRootOrder() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {"abc"}, new String[] {"JCL18_LIB"}, "bin");
 		createFolder("/P/abc/p");
@@ -2116,7 +2116,7 @@ public void testRootOrder() throws CoreException, IOException {
 		IType type = getCompilationUnit("/P/abc/p/X.java").getType("X");
 		ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 		assertHierarchyEquals(
-			"Focus: X [in X.java [in p [in abc [in P]]]]\n" +
+			"Focus: X [in X.java [in p [in abc [in P]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 			"Sub types:\n" +
@@ -2180,7 +2180,7 @@ public void testSourceTypeGetSuperclass4() throws JavaModelException {
  * Ensures that the superclass can be retrieved when it is defined
  * in the same compilation unit.
  */
-public void testSourceRecordTypeGetSuperclass() throws JavaModelException {
+public void testSourceRecordTypeGetSuperclass() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16) {
 		System.err.println("Test "+getName()+" requires a JRE 15");
 		return;
@@ -2216,7 +2216,7 @@ public void testSourceTypeGetSuperInterfaces() throws JavaModelException {
 /**
  * Ensures that no subclasses exist in a super type hierarchy for the focus type.
  */
-public void testSupertypeHierarchyGetSubclasses() throws JavaModelException {
+public void testSupertypeHierarchyGetSubclasses() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getClassFile("TypeHierarchy", getExternalJCLPathString(), "java.lang", "Object.class").getType();
 	ITypeHierarchy hierarchy = type.newSupertypeHierarchy(null);
 	IType[] types = hierarchy.getSubclasses(type);
@@ -2237,7 +2237,7 @@ public void testSupertypeHierarchyGetSubclasses() throws JavaModelException {
 /**
  * Ensures that no subtypes exist in a super type hierarchy for the focus type.
  */
-public void testSupertypeHierarchyGetSubtypes() throws JavaModelException {
+public void testSupertypeHierarchyGetSubtypes() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = getClassFile("TypeHierarchy", getExternalJCLPathString(), "java.lang", "Object.class").getType();
 	ITypeHierarchy hierarchy = type.newSupertypeHierarchy(null);
 	IType[] types = hierarchy.getSubtypes(type);
@@ -2259,7 +2259,7 @@ public void testSupertypeHierarchyGetSubtypes() throws JavaModelException {
  * Ensures that a super type hierarchy can be created on a working copy.
  * (regression test for bug 3446 type hierarchy: incorrect behavior wrt working copies (1GLDHOA))
  */
-public void testSupertypeHierarchyOnWorkingCopy() throws JavaModelException {
+public void testSupertypeHierarchyOnWorkingCopy() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = this.getCompilationUnit("TypeHierarchy", "src", "wc", "X.java");
 	ICompilationUnit workingCopy = null;
 	try {
@@ -2297,7 +2297,7 @@ public void testSupertypeHierarchyOnWorkingCopy() throws JavaModelException {
  * Ensures that creating a hierarchy on a project with classpath problem doesn't throw a NPE
  * (regression test for bug 49809  NPE from MethodVerifier)
  */
-public void testSuperTypeHierarchyWithMissingBinary() throws JavaModelException {
+public void testSuperTypeHierarchyWithMissingBinary() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("TypeHierarchy");
 	IClasspathEntry[] originalClasspath = project.getRawClasspath();
 	try {
@@ -2327,7 +2327,7 @@ public void testVisibility1() throws JavaModelException {
 	IType type = getCompilationUnit("/TypeHierarchy/src/q6/Y.java").getType("Y");
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: Y [in Y.java [in q6 [in src [in TypeHierarchy]]]]\n" +
+		"Focus: Y [in Y.java [in q6 [in src [in TypeHierarchy]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  NonVisibleClass [in X.java [in q5 [in src [in TypeHierarchy]]]]\n" +
 		"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -2342,7 +2342,7 @@ public void testVisibility2() throws JavaModelException {
 	IType type = getCompilationUnit("/TypeHierarchy/src/q6/Z.java").getType("Z");
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 	assertHierarchyEquals(
-		"Focus: Z [in Z.java [in q6 [in src [in TypeHierarchy]]]]\n" +
+		"Focus: Z [in Z.java [in q6 [in src [in TypeHierarchy]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  NonVisibleInterface [in X.java [in q5 [in src [in TypeHierarchy]]]]\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -2361,7 +2361,7 @@ public void testBug186781() throws JavaModelException {
 	assertTrue("Type should exist!", type.exists());
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null); // when bug occurred a stack overflow happened here...
 	assertHierarchyEquals(
-		"Focus: X [in X.java [in q186871 [in src [in TypeHierarchy]]]]\n" +
+		"Focus: X [in X.java [in q186871 [in src [in TypeHierarchy]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Super [in X.java [in q186871 [in src [in TypeHierarchy]]]]\n" +
 		"    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
@@ -2375,7 +2375,7 @@ public void testBug186781() throws JavaModelException {
  * 	is not indexed on each search request while building the hierarchy
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=215841"
  */
-public void testBug215841() throws JavaModelException, CoreException, InterruptedException {
+public void testBug215841() throws JavaModelException, CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String linkedPath = "/TypeHierarchy/linked.jar";
 	class LocalProgressMonitor extends TestProgressMonitor {
 		int count = 0;
@@ -2417,7 +2417,7 @@ public void testBug215841() throws JavaModelException, CoreException, Interrupte
  * test that a nested method/anonymous sub type is included in the hierarchy when the number of annotations > 10
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=254738"
  */
-public void testBug254738() throws CoreException {
+public void testBug254738() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		createFolder("/P/src/abc");
@@ -2475,7 +2475,7 @@ public void testBug288698() throws JavaModelException {
 	assertTrue("Type should exist!", type.exists());
 	ITypeHierarchy hierarchy = type.newTypeHierarchy(null); // when bug occurred a StringIndexOutOfBoundsException was thrown here
 	assertHierarchyEquals(
-		"Focus: AbstractBugTest [in AbstractBugTest.java [in p288698 [in src288698.classbug [in TypeHierarchy]]]]\n" +
+		"Focus: AbstractBugTest [in AbstractBugTest.java [in p288698 [in src288698.classbug [in TypeHierarchy]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"Super types:\n" +
 		"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 		"Sub types:\n" +
@@ -2488,7 +2488,7 @@ public void testBug288698() throws JavaModelException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=329663"
  */
-public void _testBug329663() throws JavaModelException, CoreException {
+public void _testBug329663() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, new String[0], "");
 		IJavaProject p2 = createJavaProject("P2", new String[] {""}, new String[] {"JCL18_LIB"}, new String[] {"/P1"}, "");
@@ -2533,7 +2533,7 @@ public void _testBug329663() throws JavaModelException, CoreException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=329663"
  */
-public void _testBug329663a() throws JavaModelException, CoreException {
+public void _testBug329663a() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 try {
 	IJavaProject p1 = createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, new String[0], "");
 	IJavaProject p2 = createJavaProject("P2", new String[] {""}, new String[] {"JCL18_LIB"}, new String[] {"/P1"}, "");
@@ -2577,7 +2577,7 @@ finally{
 }
 // Bug 300576 - NPE Computing type hierarchy when compliance doesn't match libraries
 // test that a missing java.lang.Enum doesn't cause NPE
-public void testBug300576() throws CoreException {
+public void testBug300576() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject prj = null;
 	try {
 		prj = createJavaProject("Bug300576", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -2624,7 +2624,7 @@ public void testBug300576() throws CoreException {
 }
 // Bug 300576 - NPE Computing type hierarchy when compliance doesn't match libraries
 // test that a bogus java.lang.Enum (non-generic) doesn't cause NPE
-public void testBug300576b() throws CoreException {
+public void testBug300576b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject prj = null;
 	try {
 		prj = createJavaProject("Bug300576", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -2667,7 +2667,7 @@ public void testBug300576b() throws CoreException {
 	}
 }
 //Bug 393192 -- Incomplete type hierarchy with > 10 annotations
-public void testBug393192() throws CoreException {
+public void testBug393192() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject prj = null;
 	try {
 		prj = createJavaProject("Bug393192", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
@@ -2743,7 +2743,7 @@ public void testBug393192() throws CoreException {
 		IType a = getCompilationUnit("Bug393192", "src", "pullup", "A.java").getType("A");
 		ITypeHierarchy hierarchy = a.newTypeHierarchy(new NullProgressMonitor());
 		assertHierarchyEquals(
-				"Focus: A [in A.java [in pullup [in src [in Bug393192]]]]\n" +
+				"Focus: A [in A.java [in pullup [in src [in Bug393192]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Super types:\n" +
 				"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 				"Sub types:\n" +
@@ -2754,7 +2754,7 @@ public void testBug393192() throws CoreException {
 			deleteProject(prj);
 	}
 }
-public void testBug436155() throws CoreException, IOException {
+public void testBug436155() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin");
 		createFolder("/P/abc/p");
@@ -2786,7 +2786,7 @@ public void testBug436155() throws CoreException, IOException {
 		IType focus = (IType) elements[0];
 		ITypeHierarchy hierarchy = focus.newTypeHierarchy(null);
 		assertHierarchyEquals(
-				"Focus: Text [in Text.class [in p [in lib.jar [in P]]]]\n" +
+				"Focus: Text [in Text.class [in p [in lib.jar [in P]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Super types:\n" +
 				"  I2 [in I2.class [in p [in lib.jar [in P]]]]\n" +
 				"    I [in I.class [in p [in lib.jar [in P]]]]\n" +
@@ -2797,7 +2797,7 @@ public void testBug436155() throws CoreException, IOException {
 		deleteProject("P");
 	}
 }
-public void testBug436139() throws CoreException, IOException {
+public void testBug436139() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject prj = null;
 	try {
 		prj = createJavaProject("Bug436139", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
@@ -2857,27 +2857,27 @@ public void testBug436139() throws CoreException, IOException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=469668
-public void testBug469668() throws CoreException, IOException {
+public void testBug469668() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = null;
 	try {
 		project = createJavaProject("Bug469668", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8");
 		createFolder("/Bug469668/src/hierarchy");
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 1; i < 21; i++) {
-			String unitName = "I" + i;
-			String content = "package hierarchy;\n" +
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 1; i < 21; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			String unitName = "I" + i; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			String content = "package hierarchy;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public interface " + unitName + " " + buffer.toString() + " {}";
-			createFile("/Bug469668/src/hierarchy/" + unitName + ".java", content);
+			createFile("/Bug469668/src/hierarchy/" + unitName + ".java", content); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (i == 1) {
-				buffer.append(" extends ");
+				buffer.append(" extends "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			if (i > 1 && i < 20) buffer.append(", ");
-			buffer.append(unitName);
+			if (i > 1 && i < 20) buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(unitName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		IPackageFragmentRoot[] roots = project.getPackageFragmentRoots();
 		IRegion region = JavaCore.newRegion();
-		for (IPackageFragmentRoot root: roots) {
+		for (IPackageFragmentRoot root: roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(root.getRawClasspathEntry().getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 				region.add(root);
 			}
@@ -2893,7 +2893,7 @@ public void testBug469668() throws CoreException, IOException {
 		assertEquals("Incorrect number of entries for subtype", 15, subtypes.length);
 
 		int i20Count = 0;
-		for (IType t: subtypes) {
+		for (IType t: subtypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if("hierarchy.I20".equals(t.getFullyQualifiedName())) {
 				i20Count++;
 			}
@@ -2906,7 +2906,7 @@ public void testBug469668() throws CoreException, IOException {
 			deleteProject(project);
 	}
 }
-public void testBug462158() throws CoreException, IOException {
+public void testBug462158() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject prj = null;
 	try {
 		prj = createJavaProject("Bug462158", new String[] {"src"}, new String[] {"JCL18_FULL"}, "bin", "1.8", true);
@@ -2968,12 +2968,12 @@ public void testBug462158() throws CoreException, IOException {
 			deleteProject(prj);
 	}
 }
-public void testBug507954_0001() throws JavaModelException, CoreException {
+public void testBug507954_0001() throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = null;
 	try {
 		String projectName = "507954";
 		javaProject = createJavaProject(projectName, new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
-		String packA = "/" + projectName + "/src/a/";
+		String packA = "/" + projectName + "/src/a/"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packA);
 		String fileA = 				"package a;\n" +
 				"public abstract class A {\n"+
@@ -2981,9 +2981,9 @@ public void testBug507954_0001() throws JavaModelException, CoreException {
 				"  public void baz2() {\n" +
 				"    foo2();\n" +
 			"}";
-		createFile(packA + "A.java", fileA);
+		createFile(packA + "A.java", fileA); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFile(
-				packA + "B.java",
+				packA + "B.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package a;\n" +
 				"public class B {\n" +
 				"  public void a() {\n" +
@@ -2995,7 +2995,7 @@ public void testBug507954_0001() throws JavaModelException, CoreException {
 				"}"
 				);
 		createFile(
-				packA + "C.java",
+				packA + "C.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package a;\n" +
 				"public abstract class C {\n" +
 				"  protected abstract void foo1();\n" +
@@ -3004,7 +3004,7 @@ public void testBug507954_0001() throws JavaModelException, CoreException {
 				"  }\n" +
 				"}"
 				);
-		String packD = "/" + projectName + "/src/b/";
+		String packD = "/" + projectName + "/src/b/"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createFolder(packD);
 
 		String fileD = "package d;\n" +
@@ -3038,12 +3038,12 @@ public void testBug507954_0001() throws JavaModelException, CoreException {
 				"\n" +
 				"}\n";
 
-		createFile(packA + "D.java", fileD);
+		createFile(packA + "D.java", fileD); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String classA = "A";
 		int start = fileA.indexOf(classA);
 		this.workingCopies = new ICompilationUnit[1];
-		this.workingCopies[0] = getWorkingCopy(packA + "A.java", fileA);
+		this.workingCopies[0] = getWorkingCopy(packA + "A.java", fileA); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		IJavaElement[] elements = this.workingCopies[0].codeSelect(start, classA.length());
 		assertEquals("Incorrect elements", 1, elements.length);
@@ -3062,7 +3062,7 @@ public void testBug507954_0001() throws JavaModelException, CoreException {
 	}
 }
 
-public void testBug533949() throws CoreException {
+public void testBug533949() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	IJavaProject javaProject1 = null;
 	IJavaProject javaProject2 = null;
@@ -3070,7 +3070,7 @@ public void testBug533949() throws CoreException {
 		javaProject1 = createJava9Project("mod1");
 		String packA = "/mod1/src/a/";
 		createFolder(packA);
-		createFile(packA + "A.java",
+		createFile(packA + "A.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package a;\n" +
 				"public abstract class A {\n"+
 				"}\n");
@@ -3083,7 +3083,7 @@ public void testBug533949() throws CoreException {
 		addClasspathEntry(javaProject2, JavaCore.newProjectEntry(javaProject1.getPath()));
 		String packB = "/mod2/src/b/";
 		createFolder(packB);
-		createFile(packB + "B.java",
+		createFile(packB + "B.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"package b;\n" +
 				"public class B extends a.A {\n"+
 				"}\n");
@@ -3095,7 +3095,7 @@ public void testBug533949() throws CoreException {
 		waitUntilIndexesReady();
 
 		this.workingCopies = new ICompilationUnit[1];
-		this.workingCopies[0] = getWorkingCopy(packB + "B.java", true);
+		this.workingCopies[0] = getWorkingCopy(packB + "B.java", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		IType focus = javaProject2.findType("b.B");
 		ITypeHierarchy hierarchy = focus.newTypeHierarchy(this.workingCopies, null);
@@ -3107,7 +3107,7 @@ public void testBug533949() throws CoreException {
 				true);
 
 		this.workingCopies = new ICompilationUnit[1];
-		this.workingCopies[0] = getWorkingCopy(packA + "A.java", true);
+		this.workingCopies[0] = getWorkingCopy(packA + "A.java", true); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		focus = javaProject1.findType("a.A");
 		hierarchy = focus.newTypeHierarchy(this.workingCopies, null);
@@ -3122,14 +3122,14 @@ public void testBug533949() throws CoreException {
 	}
 }
 
-public void testBug541217() throws CoreException {
+public void testBug541217() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     if (!isJRE9) return;
     IJavaProject javaProject1 = null;
     try {
         javaProject1 = createJava9Project("mod1");
         String packA = "/mod1/src/a/";
         createFolder(packA);
-        createFile(packA + "A.java",
+        createFile(packA + "A.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                         "package a;\n" +
                         "public interface A extends java.sql.Driver{\n"+
                         "}\n");
@@ -3152,7 +3152,7 @@ public void testBug541217() throws CoreException {
         if (javaProject1 != null) deleteProject(javaProject1);
     }
 }
-public void testBug425111() throws Exception {
+public void testBug425111() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject1 = null;
 	try {
 		javaProject1 = createJavaProject("P1", new String[] {"src"}, new String[] {"JCL18_FULL", "/P1/lib.jar"},"bin", "1.8");
@@ -3307,7 +3307,7 @@ public void testBug425111() throws Exception {
 		if (javaProject1 != null) deleteProject(javaProject1);
 	}
 }
-public void testBug559210() throws CoreException {
+public void testBug559210() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB", "lib"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		createFolder("/P/src/java/io");
@@ -3356,7 +3356,7 @@ public void testBug559210() throws CoreException {
 		waitForAutoBuild();
 		ITypeHierarchy hierarchy = getCompilationUnit("/P/src/p/Storage.java").getTypes()[0].newSupertypeHierarchy(null);
 		assertHierarchyEquals(
-			"Focus: Storage [in Storage.java [in p [in src [in P]]]]\n" +
+			"Focus: Storage [in Storage.java [in p [in src [in P]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super types:\n" +
 			"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 			"Sub types:\n",
@@ -3370,7 +3370,7 @@ public void testBug559210() throws CoreException {
  * test Verify that StackOverflowException does no longer occur with the given test case
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=457813"
  */
-public void testBug457813() throws CoreException {
+public void testBug457813() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] { "src" }, new String[] { "JCL18_LIB", "/TypeHierarchy/test457813.jar" },
 				"bin");
@@ -3385,7 +3385,7 @@ public void testBug457813() throws CoreException {
 		assertTrue("Type should exist!", type.exists());
 		ITypeHierarchy hierarchy = type.newTypeHierarchy(null); // when bug occurred a stack overflow happened here...
 		assertHierarchyEquals(
-				"Focus: X [in X.java [in hierarchy [in src [in P]]]]\n" +
+				"Focus: X [in X.java [in hierarchy [in src [in P]]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Super types:\n" +
 				"  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]\n" +
 				"Sub types:\n",
@@ -3395,7 +3395,7 @@ public void testBug457813() throws CoreException {
 	}
 }
 
-public void testBug573450_001() throws CoreException {
+public void testBug573450_001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16) return;
 	try {
 		IJavaProject proj = createJava21Project("P");
@@ -3423,7 +3423,7 @@ public void testBug573450_001() throws CoreException {
 	}
 }
 
-public void testBug573450_002() throws CoreException {
+public void testBug573450_002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE16) return;
 	try {
 		IJavaProject proj = createJava21Project("P");
@@ -3451,7 +3451,7 @@ public void testBug573450_002() throws CoreException {
 	}
 }
 
-private void setupQualifierProject() throws Exception {
+private void setupQualifierProject() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject projectQ = createJavaProject("TypeHierarchyQ", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 	addClasspathEntry(projectQ, getJRTLibraryEntry());
 	addClasspathEntry(projectQ, JavaCore.newProjectEntry(getProject("TypeHierarchy15").getFullPath()));
@@ -3536,7 +3536,7 @@ private void deleteQualifierProject() throws CoreException {
 	deleteProject("TypeHierarchyR");
 }
 
-public void testIndexQualificationFQNReferences() throws Exception {
+public void testIndexQualificationFQNReferences() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setupQualifierProject();
 	waitUntilIndexesReady();
 	try {
@@ -3611,7 +3611,7 @@ public void testIndexQualificationInnerClassInheritence() throws Exception {
 		IType type = getJavaProject("TypeHierarchyQ").findType("p1.COuter.Inner");
 		ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 
-		assertHierarchyEquals("Focus: Inner [in COuter [in COuter.java [in p1 [in src [in TypeHierarchyQ]]]]]\n"
+		assertHierarchyEquals("Focus: Inner [in COuter [in COuter.java [in p1 [in src [in TypeHierarchyQ]]]]]\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "Super types:\n"
 				+ "  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString("1.8") + "]]]\n"
 				+ "Sub types:\n"
@@ -3622,7 +3622,7 @@ public void testIndexQualificationInnerClassInheritence() throws Exception {
 	}
 }
 
-public void testIndexQualificationBinaryNestedSubTypes() throws Exception {
+public void testIndexQualificationBinaryNestedSubTypes() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setupQualifierProject();
 	waitUntilIndexesReady();
 	try {
@@ -3630,7 +3630,7 @@ public void testIndexQualificationBinaryNestedSubTypes() throws Exception {
 		ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 
 		String jarPath = Paths.get(getSourceWorkspacePath(), "TypeHierarchy", "test57007.jar").toFile().getAbsolutePath();
-		assertHierarchyEquals("Focus: Future [in Future.class [in meta [in " + jarPath + "]]]\n"
+		assertHierarchyEquals("Focus: Future [in Future.class [in meta [in " + jarPath + "]]]\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "Super types:\n"
 				+ "  Object [in Object.class [in java.lang [in "+ getExternalJCLPathString("1.8") + "]]]\n"
 				+ "Sub types:\n"
@@ -3650,7 +3650,7 @@ public void testIndexQualificationBinaryNestedSubTypes() throws Exception {
 	}
 }
 
-public void testIndexQualificationBinaryNestedSubTypes_SearchForNestedSuperType() throws Exception {
+public void testIndexQualificationBinaryNestedSubTypes_SearchForNestedSuperType() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setupQualifierProject();
 	waitUntilIndexesReady();
 	try {
@@ -3658,7 +3658,7 @@ public void testIndexQualificationBinaryNestedSubTypes_SearchForNestedSuperType(
 		ITypeHierarchy hierarchy = type.newTypeHierarchy(null);
 
 		String jarPath = Paths.get(getSourceWorkspacePath(), "TypeHierarchy", "test57007.jar").toFile().getAbsolutePath();
-		assertHierarchyEquals("Focus: AsyncFuture [in Future$AsyncFuture.class [in meta [in " + jarPath + "]]]\n"
+		assertHierarchyEquals("Focus: AsyncFuture [in Future$AsyncFuture.class [in meta [in " + jarPath + "]]]\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "Super types:\n"
 				+ "  Future [in Future.class [in meta [in "+ jarPath + "]]]\n"
 				+ "    Object [in Object.class [in java.lang [in "+ getExternalJCLPathString("1.8") + "]]]\n"
@@ -3678,7 +3678,7 @@ public void testIndexQualificationBinaryNestedSubTypes_SearchForNestedSuperType(
  * bug GitHub 269: Wrong type hierarchy computed for types with cyclic static imports.
  * @see "https://github.com/eclipse-jdt/eclipse.jdt.core/issues/269"
  */
-public void testBugGh269() throws Exception {
+public void testBugGh269() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String testProjectName = "TypeHierarchyBugGh269";
 	IJavaProject projectQ = createJavaProject(testProjectName, new String[] {"src"}, new String[] {"JCL11_LIB"}, "bin", "11");
 	try {
@@ -3723,7 +3723,7 @@ public void testBugGh269() throws Exception {
 
 		ICompilationUnit compilationUnit = getCompilationUnit("/TypeHierarchyBugGh269/src/p269/internal/Gh269TestImplementation.java");
 		IJavaElement[] selectedTypes = compilationUnit.codeSelect(indexStart, length);
-		assertEquals("Expected only 1 type to be selected but got: " + Arrays.toString(selectedTypes), 1, selectedTypes.length);
+		assertEquals("Expected only 1 type to be selected but got: " + Arrays.toString(selectedTypes), 1, selectedTypes.length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IType type = (IType) selectedTypes[0];
 		assertTrue("Type should exist!", type.exists());
 		ITypeHierarchy hierarchy = type.newTypeHierarchy(new NullProgressMonitor());
@@ -3738,7 +3738,7 @@ public void testBugGh269() throws Exception {
 	}
 }
 
-public void testHierarchyOfCircular() throws CoreException {
+public void testHierarchyOfCircular() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final String PROJECT_NAME = "CircularDependency";
 	try {
 		createJavaProject(PROJECT_NAME, new String[] { "src" },

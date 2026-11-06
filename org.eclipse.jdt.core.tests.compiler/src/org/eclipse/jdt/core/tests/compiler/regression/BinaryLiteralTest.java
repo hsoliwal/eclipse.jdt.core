@@ -76,7 +76,7 @@ public class BinaryLiteralTest extends AbstractRegressionTest {
 			"Invalid binary literal number (only \'0\' and \'1\' are expected)\n" +
 			"----------\n");
 	}
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customedOptions = getCompilerOptions();
 		customedOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 		customedOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -95,7 +95,7 @@ public class BinaryLiteralTest extends AbstractRegressionTest {
 			true,
 			customedOptions);
 	}
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customedOptions = getCompilerOptions();
 		customedOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 		customedOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());
@@ -114,7 +114,7 @@ public class BinaryLiteralTest extends AbstractRegressionTest {
 			true,
 			customedOptions);
 	}
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map customedOptions = getCompilerOptions();
 		customedOptions.put(CompilerOptions.OPTION_Compliance, CompilerOptions.getFirstSupportedJavaVersion());
 		customedOptions.put(CompilerOptions.OPTION_Source, CompilerOptions.getFirstSupportedJavaVersion());

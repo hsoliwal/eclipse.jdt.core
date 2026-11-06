@@ -93,16 +93,16 @@ public class FullSourceWorkspaceTypeHierarchyTests extends FullSourceWorkspaceTe
 
 	protected JavaSearchResultCollector resultCollector;
 
-	public void testPerfAllTypes() throws CoreException {
+	public void testPerfAllTypes() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Type hierarchy", true); // put in fingerprint
 		ICompilationUnit unit = getCompilationUnit("org.eclipse.jdt.core", "org.eclipse.jdt.internal.compiler.ast", "ASTNode.java");
 		assertNotNull("ASTNode not found!", unit);
 
 		// Warm up
-		for (int i=0; i<WARMUP_COUNT; i++) {
+		for (int i=0; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IType[] types = unit.getType("ASTNode").newTypeHierarchy(null).getAllClasses();
 			if (i==0) {
-				System.out.println("  - "+INT_FORMAT.format(types.length)+" all classes found in hierarchy.");
+				System.out.println("  - "+INT_FORMAT.format(types.length)+" all classes found in hierarchy."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
@@ -110,7 +110,7 @@ public class FullSourceWorkspaceTypeHierarchyTests extends FullSourceWorkspaceTe
 		runGc();
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			runGc();
 			startMeasuring();
 			unit.getType("ASTNode").newTypeHierarchy(null).getAllClasses();
@@ -129,13 +129,13 @@ public class FullSourceWorkspaceTypeHierarchyTests extends FullSourceWorkspaceTe
 	 * the hierarchy.
 	 * (test for bug 108820 Index based type hierarchy should not consider interfaces in index when focus is a class)
 	 */
-	public void testPerfClassWithPotentialSubinterfaces() throws CoreException {
+	public void testPerfClassWithPotentialSubinterfaces() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit unit = getCompilationUnit("org.eclipse.text", "org.eclipse.jface.text.templates", "TemplateVariableResolver.java");
 		assertNotNull("TemplateVariableResolver not found!", unit);
 
 		// Warm up
 		IType type = unit.getType("TemplateVariableResolver");
-		for (int i=0; i<WARMUP_COUNT; i++) {
+		for (int i=0; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			type.newTypeHierarchy(null);
 		}
 
@@ -143,7 +143,7 @@ public class FullSourceWorkspaceTypeHierarchyTests extends FullSourceWorkspaceTe
 		runGc();
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			runGc();
 			startMeasuring();
 			type.newTypeHierarchy(null);
@@ -157,15 +157,15 @@ public class FullSourceWorkspaceTypeHierarchyTests extends FullSourceWorkspaceTe
 	}
 
 	// Test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=301438
-	public void testPerSuperTypes() throws CoreException {
+	public void testPerSuperTypes() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assertNotNull("Parser not found!", PARSER_WORKING_COPY);
 		setComment(Performance.EXPLAINS_DEGRADATION_COMMENT,
 				"Extra handling of type parameters even in case of 1.4 projects");
 		// Warm up
-		for (int i=0; i<10*WARMUP_COUNT; i++) { // More Warm up is required.
+		for (int i=0; i<10*WARMUP_COUNT; i++) { // More Warm up is required. //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IType[] types = PARSER_WORKING_COPY.getType("Parser").newSupertypeHierarchy(null).getAllClasses();
 			if (i==0) {
-				System.out.println("  - "+INT_FORMAT.format(types.length)+" classes found in hierarchy.");
+				System.out.println("  - "+INT_FORMAT.format(types.length)+" classes found in hierarchy."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
@@ -173,10 +173,10 @@ public class FullSourceWorkspaceTypeHierarchyTests extends FullSourceWorkspaceTe
 		runGc();
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			runGc();
 			startMeasuring();
-			for (int j =0; j < 20; j++) {
+			for (int j =0; j < 20; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				PARSER_WORKING_COPY.getType("Parser").newSupertypeHierarchy(null).getAllClasses();
 			}
 			stopMeasuring();

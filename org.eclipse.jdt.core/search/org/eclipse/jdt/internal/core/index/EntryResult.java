@@ -44,22 +44,22 @@ public void addDocumentTable(Object table) {
 public char[] getWord() {
 	return this.word;
 }
-public String[] getDocumentNames(Index index) throws java.io.IOException {
+public String[] getDocumentNames(Index index) throws java.io.IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.documentTables != null) {
 		int length = this.documentTables.length;
 		if (length == 1 && this.documentNames == null) { // have a single table
 			Object offset = this.documentTables[0];
 			int[] numbers = index.diskIndex.readDocumentNumbers(offset);
 			String[] names = new String[numbers.length];
-			for (int i = 0, l = numbers.length; i < l; i++)
+			for (int i = 0, l = numbers.length; i < l; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				names[i] = index.diskIndex.readDocumentName(numbers[i]);
 			return names;
 		}
 
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object offset = this.documentTables[i];
 			int[] numbers = index.diskIndex.readDocumentNumbers(offset);
-			for (int number : numbers)
+			for (int number : numbers) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				addDocumentName(index.diskIndex.readDocumentName(number));
 		}
 	}
@@ -70,7 +70,7 @@ public String[] getDocumentNames(Index index) throws java.io.IOException {
 	String[] names = new String[this.documentNames.elementSize];
 	int count = 0;
 	Object[] values = this.documentNames.values;
-	for (Object value : values)
+	for (Object value : values) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (value != null)
 			names[count++] = (String) value;
 	return names;

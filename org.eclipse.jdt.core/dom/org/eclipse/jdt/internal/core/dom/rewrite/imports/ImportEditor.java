@@ -85,10 +85,10 @@ final class ImportEditor {
 	 */
 	private static Map<ImportName, ImportEntry> mapPrecedingImports(Collection<? extends ImportEntry> importEntries) {
 		Map<ImportName, ImportEntry> precedingImports =
-				new IdentityHashMap<>(importEntries.size());
+				new IdentityHashMap<>(importEntries.size()); //FLLDCIM: MARK — M06 M3_IDENTITY_WEAK_LANES NEW
 
 		ImportEntry previousImport = null;
-		for (ImportEntry currentImport : importEntries) {
+		for (ImportEntry currentImport : importEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportName currentImportName = currentImport.importName;
 			precedingImports.put(currentImportName, previousImport);
 			previousImport = currentImport;
@@ -98,7 +98,7 @@ final class ImportEditor {
 	}
 
 	private static boolean containsFloatingComment(Iterable<ImportComment> comments) {
-		for (ImportComment comment : comments) {
+		for (ImportComment comment : comments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (comment.succeedingLineDelimiters > 1) {
 				return true;
 			}
@@ -137,7 +137,7 @@ final class ImportEditor {
 	 *            used to render each new import declaration (one not originally present in the
 	 *            compilation unit) as a string
 	 */
-	ImportEditor(
+	ImportEditor( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String lineDelimiter,
 			boolean fixAllLineDelimiters,
 			int lineDelimitersBetweenImportGroups,
@@ -174,7 +174,7 @@ final class ImportEditor {
 	 * Relocates leading and trailing comments of removed imports as determined by
 	 * {@link #commentReassigner}.
 	 */
-	TextEdit createTextEdit(Collection<ImportEntry> resultantImports) {
+	TextEdit createTextEdit(Collection<ImportEntry> resultantImports) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TextEdit edit = new MultiTextEdit();
 
 		IRegion surroundingRegion = this.rewriteSite.surroundingRegion;
@@ -232,7 +232,7 @@ final class ImportEditor {
 	/**
 	 * Concatenates the given number of line delimiters into a single string.
 	 */
-	private String createDelimiter(int numberOfLineDelimiters) {
+	private String createDelimiter(int numberOfLineDelimiters) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (numberOfLineDelimiters < 1) {
 			throw new IllegalArgumentException();
 		}
@@ -245,17 +245,17 @@ final class ImportEditor {
 			return this.twoLineDelimiters;
 		}
 
-		StringBuilder correctDelimiter = new StringBuilder();
-		for (int i = 0; i < numberOfLineDelimiters; i++) {
-			correctDelimiter.append(this.lineDelimiter);
+		StringBuilder correctDelimiter = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0; i < numberOfLineDelimiters; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			correctDelimiter.append(this.lineDelimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return correctDelimiter.toString();
 	}
 
-	private Collection<TextEdit> determineEditsForImports(
+	private Collection<TextEdit> determineEditsForImports( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			IRegion importsRegion,
 			Collection<ImportEntry> resultantImports) {
-		Collection<TextEdit> edits = new ArrayList<>();
+		Collection<TextEdit> edits = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		Map<ImportEntry, Collection<ImportComment>> commentReassignments =
 				this.commentReassigner.reassignComments(resultantImports);
@@ -268,8 +268,8 @@ final class ImportEditor {
 		edits.addAll(deleteRemainingText(importsRegion, edits));
 
 		// Omit the RangeMarkers used temporarily to mark the text of non-relocated imports.
-		Collection<TextEdit> editsWithoutRangeMarkers = new ArrayList<>(edits.size());
-		for (TextEdit edit : edits) {
+		Collection<TextEdit> editsWithoutRangeMarkers = new ArrayList<>(edits.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (TextEdit edit : edits) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!(edit instanceof RangeMarker)) {
 				editsWithoutRangeMarkers.add(edit);
 			}
@@ -281,17 +281,17 @@ final class ImportEditor {
 	/**
 	 * Creates TextEdits that place each resultant import in the correct (rewritten) position.
 	 */
-	private Collection<TextEdit> placeResultantImports(
+	private Collection<TextEdit> placeResultantImports( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			OriginalImportsCursor cursor,
 			Collection<ImportEntry> resultantImports,
 			Map<ImportEntry, Collection<ImportComment>> commentReassignments) {
-		Collection<TextEdit> edits = new ArrayList<>();
+		Collection<TextEdit> edits = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		ImportEntry lastResultantImport = null;
-		for (ImportEntry currentResultantImport : resultantImports) {
+		for (ImportEntry currentResultantImport : resultantImports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentResultantImport.isOriginal()) {
 				// Skip forward to this import's place in the original order.
-				while (cursor.currentOriginalImport != null
+				while (cursor.currentOriginalImport != null //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						&& cursor.currentOriginalImport != currentResultantImport) {
 					cursor.advance();
 				}
@@ -393,7 +393,7 @@ final class ImportEditor {
 	 * Returns a string containing the correct whitespace to place between the two imports, or
 	 * {@code null} if the current import's original leading whitespace should be preserved.
 	 */
-	private String determineNewDelimiter(
+	private String determineNewDelimiter( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ImportEntry lastImport,
 			ImportEntry currentImport,
 			Collection<ImportComment> reassignedComments) {
@@ -451,7 +451,7 @@ final class ImportEditor {
 	 * Determines whether the whitespace between two subsequent imports should be set to a standard
 	 * number of line delimiters.
 	 */
-	private boolean needsStandardDelimiter(
+	private boolean needsStandardDelimiter( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			ImportEntry lastImport,
 			ImportEntry currentImport,
 			boolean hasReassignedComments) {
@@ -477,15 +477,15 @@ final class ImportEditor {
 		return needsStandardDelimiter;
 	}
 
-	private Collection<TextEdit> relocateComments(Collection<ImportComment> reassignedComments, int insertPosition) {
+	private Collection<TextEdit> relocateComments(Collection<ImportComment> reassignedComments, int insertPosition) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (reassignedComments.isEmpty()) {
 			return Collections.emptyList();
 		}
 
-		Collection<TextEdit> edits = new ArrayList<>(reassignedComments.size() * 3);
+		Collection<TextEdit> edits = new ArrayList<>(reassignedComments.size() * 3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		ImportComment lastComment = null;
-		for (ImportComment currentComment : reassignedComments) {
+		for (ImportComment currentComment : reassignedComments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			MoveSourceEdit sourceEdit = new MoveSourceEdit(
 					currentComment.region.getOffset(), currentComment.region.getLength());
 			edits.add(sourceEdit);
@@ -508,9 +508,9 @@ final class ImportEditor {
 	/**
 	 * Creates TextEdits that delete text remaining between and after resultant imports.
 	 */
-	private static Collection<TextEdit> deleteRemainingText(IRegion importRegion, Collection<TextEdit> edits) {
-		List<TextEdit> sortedEdits = new ArrayList<>(edits);
-		Collections.sort(sortedEdits, new Comparator<TextEdit>() {
+	private static Collection<TextEdit> deleteRemainingText(IRegion importRegion, Collection<TextEdit> edits) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<TextEdit> sortedEdits = new ArrayList<>(edits); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		Collections.sort(sortedEdits, new Comparator<TextEdit>() { //FLLDCIM: MARK — M16 SORT_LANE CALL
 			@Override
 			public int compare(TextEdit o1, TextEdit o2) {
 				return o1.getOffset() - o2.getOffset();
@@ -519,8 +519,8 @@ final class ImportEditor {
 
 		int deletePosition = importRegion.getOffset();
 
-		Collection<TextEdit> deleteRemainingTextEdits = new ArrayList<>();
-		for (TextEdit edit : sortedEdits) {
+		Collection<TextEdit> deleteRemainingTextEdits = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (TextEdit edit : sortedEdits) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (edit.getOffset() > deletePosition) {
 				deleteRemainingTextEdits.add(new DeleteEdit(deletePosition, edit.getOffset() - deletePosition));
 			}

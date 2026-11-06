@@ -26,7 +26,7 @@ public class UseOfUnderscoreTest extends AbstractBatchCompilerTest {
 		super(name);
 	}
 
-	public void testReportsUnderscoreInstanceMemberAsError() {
+	public void testReportsUnderscoreInstanceMemberAsError() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompilerOptions options = new CompilerOptions(getCompilerOptions());
 
 		String message;
@@ -51,7 +51,7 @@ public class UseOfUnderscoreTest extends AbstractBatchCompilerTest {
 				}
 				""" },
 
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. " + errorLevel + " in A.java (at line 2)\n" +
 				"	int _ = 1;\n" +
 				"	    ^\n" +
@@ -59,7 +59,7 @@ public class UseOfUnderscoreTest extends AbstractBatchCompilerTest {
 				"----------\n");
 	}
 
-	public void testReportsUnicodeEscapeUnderscoreInstanceMemberAsError() {
+	public void testReportsUnicodeEscapeUnderscoreInstanceMemberAsError() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompilerOptions options = new CompilerOptions(getCompilerOptions());
 
 		String message;
@@ -83,7 +83,7 @@ public class UseOfUnderscoreTest extends AbstractBatchCompilerTest {
 					}
 				}
 				""" },
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. " + errorLevel + " in A.java (at line 2)\n" +
 				"	int \\u005F = 1;\n" +
 				"	    ^^^^^^\n" +
@@ -91,7 +91,7 @@ public class UseOfUnderscoreTest extends AbstractBatchCompilerTest {
 				"----------\n");
 	}
 
-	public void testReportsUnderscoreParameterAsError() {
+	public void testReportsUnderscoreParameterAsError() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompilerOptions options = new CompilerOptions(getCompilerOptions());
 
 		String message;
@@ -117,7 +117,7 @@ public class UseOfUnderscoreTest extends AbstractBatchCompilerTest {
 					}
 				}
 				""" },
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. " + errorLevel + " in A.java (at line 5)\n" +
 				"	public static void foo(int _) {\n" +
 				"	                           ^\n" +
@@ -125,7 +125,7 @@ public class UseOfUnderscoreTest extends AbstractBatchCompilerTest {
 				"----------\n");
 	}
 
-	public void testReportsUnderscoreParameterAsErrorUnicodeEscape() {
+	public void testReportsUnderscoreParameterAsErrorUnicodeEscape() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompilerOptions options = new CompilerOptions(getCompilerOptions());
 
 		String message;
@@ -151,7 +151,7 @@ public class UseOfUnderscoreTest extends AbstractBatchCompilerTest {
 					}
 				}
 				""" },
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. " + errorLevel + " in A.java (at line 5)\n" +
 				"	public static void foo(int \\u005F) {\n" +
 				"	                           ^^^^^^\n" +
@@ -159,7 +159,7 @@ public class UseOfUnderscoreTest extends AbstractBatchCompilerTest {
 				"----------\n");
 	}
 
-	public void testReportsUnderscoreLocalVariableAsErrorUnicodeEscape() {
+	public void testReportsUnderscoreLocalVariableAsErrorUnicodeEscape() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompilerOptions options = new CompilerOptions(getCompilerOptions());
 
 		String SOURCE_CODE = """

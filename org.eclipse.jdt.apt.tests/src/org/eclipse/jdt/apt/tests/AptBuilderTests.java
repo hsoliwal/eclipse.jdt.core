@@ -44,7 +44,7 @@ public class AptBuilderTests extends APTTestBase
 		return new TestSuite( AptBuilderTests.class );
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setUp() throws Exception
 	{
 		super.setUp();
@@ -68,13 +68,13 @@ public class AptBuilderTests extends APTTestBase
 
 	public static String getProjectName_ProjectRootAsSrcDir()
 	{
-		return AptBuilderTests.class.getName() + "NoSrcProject"; //$NON-NLS-1$
+		return AptBuilderTests.class.getName() + "NoSrcProject"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public IPath getSourcePath( String projectName )
 	{
 		if ( getProjectName_ProjectRootAsSrcDir().equals( projectName) )
-			return new Path( "/" + getProjectName_ProjectRootAsSrcDir() );
+			return new Path( "/" + getProjectName_ProjectRootAsSrcDir() ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		else
 		{
 			IProject project = env.getProject( projectName );
@@ -102,7 +102,7 @@ public class AptBuilderTests extends APTTestBase
 		_testGeneratedFileInBuilder1( getProjectName() );
 	}
 
-	private void _testGeneratedFileInBuilder0(String projectName){
+	private void _testGeneratedFileInBuilder0(String projectName){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = env.getProject( projectName );
 		IPath srcRoot = getSourcePath( projectName );
 
@@ -144,7 +144,7 @@ public class AptBuilderTests extends APTTestBase
 	 *  Difference:
 	 *   The method invocation is not fully qualified and an import is added.
 	 */
-	private void _testGeneratedFileInBuilder1( String projectName )
+	private void _testGeneratedFileInBuilder1( String projectName ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( projectName );
 		IPath srcRoot = getSourcePath( projectName );
@@ -168,7 +168,7 @@ public class AptBuilderTests extends APTTestBase
 	/**
 	 *  Try generating a bogus type name; expect exception
 	 */
-	public void testGeneratingIllegalTypeName()
+	public void testGeneratingIllegalTypeName() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String projectName = getProjectName();
 		clearProcessorResult(HelloWorldAnnotationProcessor.class);
@@ -210,7 +210,7 @@ public class AptBuilderTests extends APTTestBase
 	 *  Try running two processors on the same file, and look for interactions.
 	 *  Regression for https://bugs.eclipse.org/bugs/show_bug.cgi?id=175794
 	 */
-	public void testTwoAnnotations()
+	public void testTwoAnnotations() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String projectName = getProjectName();
 		clearProcessorResult(HelloWorldAnnotationProcessor.class);
@@ -244,7 +244,7 @@ public class AptBuilderTests extends APTTestBase
 	 *  This test makes sure we run apt on generated files during build
 	 */
 
-	public void testNestedGeneratedFileInBuilder() throws Exception
+	public void testNestedGeneratedFileInBuilder() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath( getProjectName() );
@@ -293,7 +293,7 @@ public class AptBuilderTests extends APTTestBase
 	 *   build output is there because of the dependency.
 	 */
 
-	public void testExtraDependencies()
+	public void testExtraDependencies() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String codeA = "package p1.p2.p3.p4;\n"
 			+  "public class A { B b; }";
@@ -420,7 +420,7 @@ public class AptBuilderTests extends APTTestBase
 	 *   not changed even as their parent is modified.
 	 */
 
-	public void testCaching()
+	public void testCaching() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		String code = "package p1;\n"
 			+ "import org.eclipse.jdt.apt.tests.annotations.helloworld.HelloWorldAnnotation;"
@@ -472,7 +472,7 @@ public class AptBuilderTests extends APTTestBase
 	 * is deleted.  We also make sure that multi-parent support is working.
 	 */
 
-	public void testDeletedParentFile() throws Exception
+	public void testDeletedParentFile() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath( getProjectName() );
@@ -531,7 +531,7 @@ public class AptBuilderTests extends APTTestBase
 		internalTestStopGeneratingFileInBuilder( false );
 	}
 
-	private void internalTestStopGeneratingFileInBuilder( boolean fullBuild )
+	private void internalTestStopGeneratingFileInBuilder( boolean fullBuild ) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath( getProjectName() );
@@ -611,7 +611,7 @@ public class AptBuilderTests extends APTTestBase
 					new ExpectedProblem( "A", "GeneratedFileTest cannot be resolved", p1aPath ) ); //$NON-NLS-1$
 	}
 
-	public void testAPTRounding()
+	public void testAPTRounding() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath( getProjectName()  );
@@ -637,7 +637,7 @@ public class AptBuilderTests extends APTTestBase
 	// After fix for https://bugs.eclipse.org/bugs/show_bug.cgi?id=185601,
 	// the config marker 'Generated source folder * is not in classpath'
 	// is not easy to simulate. So, this test doesn't really do anything
-	public void testConfigMarker() throws Exception{
+	public void testConfigMarker() throws Exception{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String projectName = "ConfigMarkerTestProject";
 		final IJavaProject javaProj = createJavaProject( projectName );
 		// apt is currently disabled save off the cp before configuration
@@ -681,7 +681,7 @@ public class AptBuilderTests extends APTTestBase
 		expectingNoMarkers();
 	}
 
-	public void testDeletedGeneratedSourceFolder()
+	public void testDeletedGeneratedSourceFolder() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws Exception
 	{
 		final String projectName = "DeleteGenSourceFolderTestProject";

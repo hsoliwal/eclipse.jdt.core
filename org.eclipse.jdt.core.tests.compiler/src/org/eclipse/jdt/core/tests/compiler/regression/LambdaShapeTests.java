@@ -28,7 +28,7 @@ public LambdaShapeTests(String name) {
 public static Test suite() {
 	return buildMinimalComplianceTestSuite(testClass(), F_1_8);
 }
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -121,7 +121,7 @@ public void test001() {
 			"}\n",
 		});
 }
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -160,7 +160,7 @@ public void test002() {
 			"}\n"
 		});
 }
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -193,7 +193,7 @@ public void test003() {
 		"Void methods cannot return a value\n" +
 		"----------\n");
 }
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -227,7 +227,7 @@ public void test004() {
 		"Void methods cannot return a value\n" +
 		"----------\n");
 }
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -260,7 +260,7 @@ public void test005() {
 		"Void methods cannot return a value\n" +
 		"----------\n");
 }
-public void test006() {
+public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -295,7 +295,7 @@ public void test006() {
 		"Void methods cannot return a value\n" +
 		"----------\n");
 }
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -331,7 +331,7 @@ public void test007() {
 		"Void methods cannot return a value\n" +
 		"----------\n");
 }
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -366,7 +366,7 @@ public void test008() {
 		"Void methods cannot return a value\n" +
 		"----------\n");
 }
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -390,7 +390,7 @@ public void test009() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -419,7 +419,7 @@ public void test010() {
 		"Dead code\n" +
 		"----------\n");
 }
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -453,7 +453,7 @@ public void test011() {
 		"Statement unnecessarily nested within else clause. The corresponding then clause does not complete normally\n" +
 		"----------\n");
 }
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -482,7 +482,7 @@ public void test012() {
 		"Statement unnecessarily nested within else clause. The corresponding then clause does not complete normally\n" +
 		"----------\n");
 }
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -506,7 +506,7 @@ public void test013() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -529,7 +529,7 @@ public void test014() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -553,7 +553,7 @@ public void test015() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -575,7 +575,7 @@ public void test016() {
 		"This lambda expression must return a result of type String\n" +
 		"----------\n");
 }
-public void test017() {
+public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -601,7 +601,7 @@ public void test017() {
 		"Unreachable code\n" +
 		"----------\n");
 }
-public void test018() {
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -629,7 +629,7 @@ public void test018() {
 		"Statement unnecessarily nested within else clause. The corresponding then clause does not complete normally\n" +
 		"----------\n");
 }
-public void test019() {
+public void test019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -652,7 +652,7 @@ public void test019() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -673,7 +673,7 @@ public void test020() {
 			"}\n"
 		});
 }
-public void test021() {
+public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -711,7 +711,7 @@ public void test021() {
 		"The label inner is never explicitly referenced\n" +
 		"----------\n");
 }
-public void test022() {
+public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -754,7 +754,7 @@ public void test022() {
 			"}\n"
 		});
 }
-public void test023() {
+public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -778,7 +778,7 @@ public void test023() {
 			"}\n"
 		});
 }
-public void test024() {
+public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -806,7 +806,7 @@ public void test024() {
 		"Statement unnecessarily nested within else clause. The corresponding then clause does not complete normally\n" +
 		"----------\n");
 }
-public void test025() {
+public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -829,7 +829,7 @@ public void test025() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test026() {
+public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -867,7 +867,7 @@ public void test026() {
 		"The label inner is never explicitly referenced\n" +
 		"----------\n");
 }
-public void test027() {
+public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -908,7 +908,7 @@ public void test027() {
 			"}\n"
 		});
 }
-public void test028() {
+public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -957,7 +957,7 @@ public void test028() {
 			"}\n"
 		});
 }
-public void test029() {
+public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -981,7 +981,7 @@ public void test029() {
 		"This lambda expression must return a result of type String\n" +
 		"----------\n");
 }
-public void test030() {
+public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1011,7 +1011,7 @@ public void test030() {
 		"Statement unnecessarily nested within else clause. The corresponding then clause does not complete normally\n" +
 		"----------\n");
 }
-public void test031() {
+public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1047,7 +1047,7 @@ public void test031() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test032() {
+public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1091,7 +1091,7 @@ public void test032() {
 		"Dead code\n" +
 		"----------\n");
 }
-public void test033() {
+public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1129,7 +1129,7 @@ public void test033() {
 			"}\n"
 		});
 }
-public void test034() {
+public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1165,7 +1165,7 @@ public void test034() {
 		"Statement unnecessarily nested within else clause. The corresponding then clause does not complete normally\n" +
 		"----------\n");
 }
-public void test035() {
+public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1190,7 +1190,7 @@ public void test035() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test036() {
+public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1226,7 +1226,7 @@ public void test036() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test037() {
+public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1269,7 +1269,7 @@ public void test037() {
 		"Dead code\n" +
 		"----------\n");
 }
-public void test038() {
+public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1304,7 +1304,7 @@ public void test038() {
 			"}\n"
 		});
 }
-public void test039() {
+public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1330,7 +1330,7 @@ public void test039() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test040() {
+public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1358,7 +1358,7 @@ public void test040() {
 		"The method goo(I) in the type X is not applicable for the arguments ((<no type> x) -> {})\n" +
 		"----------\n");
 }
-public void test041() {
+public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1397,7 +1397,7 @@ public void test041() {
 			"}\n"
 		});
 }
-public void test042() {
+public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1424,7 +1424,7 @@ public void test042() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test043() {
+public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1452,7 +1452,7 @@ public void test043() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test044() {
+public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1493,7 +1493,7 @@ public void test044() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test045() {
+public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1521,7 +1521,7 @@ public void test045() {
 		"This method must return a result of type String\n" +
 		"----------\n");
 }
-public void test046() {
+public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1558,7 +1558,7 @@ public void test046() {
 		"finally block does not complete normally\n" +
 		"----------\n");
 }
-public void testSwitch() {
+public void testSwitch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1591,7 +1591,7 @@ public void testSwitch() {
 		},
 		"goo(I)");
 }
-public void testSwitch2() {
+public void testSwitch2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1629,7 +1629,7 @@ public void testSwitch2() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testSwitch3() {
+public void testSwitch3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1665,7 +1665,7 @@ public void testSwitch3() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testSwitch4() {
+public void testSwitch4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1702,7 +1702,7 @@ public void testSwitch4() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testSwitch5() {
+public void testSwitch5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1731,7 +1731,7 @@ public void testSwitch5() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testSwitch6() {
+public void testSwitch6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1759,7 +1759,7 @@ public void testSwitch6() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testWhileThis() {
+public void testWhileThis() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1788,7 +1788,7 @@ public void testWhileThis() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testWhile2() {
+public void testWhile2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1812,7 +1812,7 @@ public void testWhile2() {
 		},
 		"goo(I)");
 }
-public void testWhile3() {
+public void testWhile3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1836,7 +1836,7 @@ public void testWhile3() {
 		},
 		"goo(I)");
 }
-public void testWhile4() {
+public void testWhile4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1865,7 +1865,7 @@ public void testWhile4() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo() {
+public void testDo() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1889,7 +1889,7 @@ public void testDo() {
 		},
 		"goo(I)");
 }
-public void testDo2() {
+public void testDo2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1913,7 +1913,7 @@ public void testDo2() {
 		},
 		"goo(I)");
 }
-public void testDo3() {
+public void testDo3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1937,7 +1937,7 @@ public void testDo3() {
 		},
 		"goo(I)");
 }
-public void testDo4() {
+public void testDo4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1965,7 +1965,7 @@ public void testDo4() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo5() {
+public void testDo5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1992,7 +1992,7 @@ public void testDo5() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo6() {
+public void testDo6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2019,7 +2019,7 @@ public void testDo6() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo7() {
+public void testDo7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2046,7 +2046,7 @@ public void testDo7() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo8() {
+public void testDo8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2068,7 +2068,7 @@ public void testDo8() {
 		},
 		"goo(I)");
 }
-public void testDo9() {
+public void testDo9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2096,7 +2096,7 @@ public void testDo9() {
 		},
 		"J");
 }
-public void testDo10() {
+public void testDo10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2127,7 +2127,7 @@ public void testDo10() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo11() {
+public void testDo11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2160,7 +2160,7 @@ public void testDo11() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo12() {
+public void testDo12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2193,7 +2193,7 @@ public void testDo12() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo13() {
+public void testDo13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2221,7 +2221,7 @@ public void testDo13() {
 		},
 		"I");
 }
-public void testDo14() {
+public void testDo14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2257,7 +2257,7 @@ public void testDo14() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo15() {
+public void testDo15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2285,7 +2285,7 @@ public void testDo15() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo16() {
+public void testDo16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2313,7 +2313,7 @@ public void testDo16() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo17() {
+public void testDo17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2342,7 +2342,7 @@ public void testDo17() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testDo18() {
+public void testDo18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2368,7 +2368,7 @@ public void testDo18() {
 		},
 		"I");
 }
-public void testDo19() {
+public void testDo19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2399,7 +2399,7 @@ public void testDo19() {
 		},
 		"J");
 }
-public void testDo20() {
+public void testDo20() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2430,7 +2430,7 @@ public void testDo20() {
 		},
 		"J");
 }
-public void testDo21() {
+public void testDo21() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2460,7 +2460,7 @@ public void testDo21() {
 		},
 		"I");
 }
-public void testDo22() {
+public void testDo22() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2491,7 +2491,7 @@ public void testDo22() {
 		},
 		"J");
 }
-public void testDo23() {
+public void testDo23() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2522,7 +2522,7 @@ public void testDo23() {
 		},
 		"I");
 }
-public void testDo24() {
+public void testDo24() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2553,7 +2553,7 @@ public void testDo24() {
 		},
 		"J");
 }
-public void testDo25() {
+public void testDo25() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2584,7 +2584,7 @@ public void testDo25() {
 		},
 		"J");
 }
-public void testDo26() {
+public void testDo26() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2615,7 +2615,7 @@ public void testDo26() {
 		},
 		"I");
 }
-public void testForeach() {
+public void testForeach() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2643,7 +2643,7 @@ public void testForeach() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testForeach2() {
+public void testForeach2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2688,7 +2688,7 @@ public void testForeach2() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testForeach3() {
+public void testForeach3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2733,7 +2733,7 @@ public void testForeach3() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testForeach4() {
+public void testForeach4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2762,7 +2762,7 @@ public void testForeach4() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testIf() {
+public void testIf() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2789,7 +2789,7 @@ public void testIf() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testIf2() {
+public void testIf2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2816,7 +2816,7 @@ public void testIf2() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testIf3() {
+public void testIf3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2840,7 +2840,7 @@ public void testIf3() {
 		},
 		"goo(I)");
 }
-public void testCFor() {
+public void testCFor() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2868,7 +2868,7 @@ public void testCFor() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testCFor2() {
+public void testCFor2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2891,7 +2891,7 @@ public void testCFor2() {
 		},
 		"goo(I)");
 }
-public void testTry() {
+public void testTry() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2914,7 +2914,7 @@ public void testTry() {
 		},
 		"goo(I)");
 }
-public void testTry2() {
+public void testTry2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2941,7 +2941,7 @@ public void testTry2() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testTry3() {
+public void testTry3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2969,7 +2969,7 @@ public void testTry3() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testTry4() {
+public void testTry4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2993,7 +2993,7 @@ public void testTry4() {
 		},
 		"goo(I)");
 }
-public void testWhileTrue() {
+public void testWhileTrue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3014,7 +3014,7 @@ public void testWhileTrue() {
 		},
 		"goo(I)");
 }
-public void testWhileTrue2() {
+public void testWhileTrue2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3038,7 +3038,7 @@ public void testWhileTrue2() {
 		},
 		"goo(I)");
 }
-public void testWhileTrue3() {
+public void testWhileTrue3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -3065,7 +3065,7 @@ public void testWhileTrue3() {
 		"The method goo(I) in the type X is not applicable for the arguments (() -> {})\n" +
 		"----------\n");
 }
-public void testLabeledStatement() {
+public void testLabeledStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3096,7 +3096,7 @@ public void testLabeledStatement() {
 		},
 		"J");
 }
-public void testLabeledStatement2() {
+public void testLabeledStatement2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3128,7 +3128,7 @@ public void testLabeledStatement2() {
 		},
 		"J");
 }
-public void testLabeledStatement3() {
+public void testLabeledStatement3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3160,7 +3160,7 @@ public void testLabeledStatement3() {
 		},
 		"J");
 }
-public void testLabeledStatement4() {
+public void testLabeledStatement4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3192,7 +3192,7 @@ public void testLabeledStatement4() {
 		},
 		"J");
 }
-public void testLabeledStatement5() {
+public void testLabeledStatement5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -3225,7 +3225,7 @@ public void testLabeledStatement5() {
 		"I");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=470232 NPE at org.eclipse.jdt.internal.compiler.ast.WhileStatement.doesNotCompleteNormally
-public void testBug470232_While() {
+public void testBug470232_While() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"While.java",
@@ -3244,7 +3244,7 @@ public void testBug470232_While() {
 		});
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=470232 NPE at org.eclipse.jdt.internal.compiler.ast.WhileStatement.doesNotCompleteNormally
-public void testBug470232_Do() {
+public void testBug470232_Do() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"While.java",
@@ -3263,7 +3263,7 @@ public void testBug470232_Do() {
 		});
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=470232 NPE at org.eclipse.jdt.internal.compiler.ast.WhileStatement.doesNotCompleteNormally
-public void testBug470232_For() {
+public void testBug470232_For() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"While.java",

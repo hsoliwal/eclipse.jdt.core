@@ -43,7 +43,7 @@ public static Test suite() {
 	return buildMinimalComplianceTestSuite(testClass(), FIRST_SUPPORTED_JAVA_VERSION);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=277450
-public void test1() throws Exception {
+public void test1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -83,7 +83,7 @@ public void test1() throws Exception {
 		      Local variable table:
 		        [pc: 0, pc: 9] local: args index: 0 type: java.lang.String[]
 		}""";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 public static Class testClass() {
 	return Jsr14Test.class;

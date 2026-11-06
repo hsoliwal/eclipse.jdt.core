@@ -123,7 +123,7 @@ public IJavaElement[] codeSelect(int offset, int length, WorkingCopyOwner owner)
 		return new IJavaElement[] {};
 	}
 }
-public boolean existsUsingJarTypeCache() {
+public boolean existsUsingJarTypeCache() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (getPackageFragmentRoot().isArchive()) {
 		JavaModelManager manager = JavaModelManager.getJavaModelManager();
 		IType type = getType();
@@ -137,7 +137,7 @@ public boolean existsUsingJarTypeCache() {
 		if (parentInfo != null) {
 			// if parent is open, this class file must be in its children
 			IJavaElement[] children = parentInfo.getChildren();
-			for (IJavaElement child : children) {
+			for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (child instanceof ClassFile && this.name.equals(((ClassFile) child).name))
 					return true;
 			}
@@ -181,7 +181,7 @@ public String getAttachedJavadoc(IProgressMonitor monitor) throws JavaModelExcep
  * @exception JavaModelException when the IFile resource or JAR is not available
  * or when this class file is not present in the JAR
  */
-public IBinaryType getBinaryTypeInfo() throws JavaModelException {
+public IBinaryType getBinaryTypeInfo() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IBinaryType info = getJarBinaryTypeInfo();
 		if (info == null) {
@@ -209,7 +209,7 @@ public String getName() {
 	return this.name;
 }
 
-private IBinaryType getJarBinaryTypeInfo() throws CoreException, IOException, ClassFormatException {
+private IBinaryType getJarBinaryTypeInfo() throws CoreException, IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	BinaryTypeDescriptor descriptor = BinaryTypeFactory.createDescriptor(this);
 
 	if (descriptor == null) {
@@ -224,7 +224,7 @@ private IBinaryType getJarBinaryTypeInfo() throws CoreException, IOException, Cl
 			String entryName = jarRoot.getClassFilePath(Util.concatWith(pkg.names, getElementName(), '/'));
 			byte[] contents = getClassFileContent(jarRoot, entryName);
 			if (contents != null) {
-				String fileName = root.getHandleIdentifier() + IDependent.JAR_FILE_ENTRY_SEPARATOR + entryName;
+				String fileName = root.getHandleIdentifier() + IDependent.JAR_FILE_ENTRY_SEPARATOR + entryName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result = new ClassFileReader(contents, fileName.toCharArray(), false);
 			}
 		} else {
@@ -268,7 +268,7 @@ private IBinaryType getJarBinaryTypeInfo() throws CoreException, IOException, Cl
 	return result;
 }
 
-private IBinaryType setupExternalAnnotationProvider(IProject project, final IPath externalAnnotationPath,
+private IBinaryType setupExternalAnnotationProvider(IProject project, final IPath externalAnnotationPath, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IBinaryType reader, final String typeName)
 {
 	IBinaryType result = reader;
@@ -286,7 +286,7 @@ private IBinaryType setupExternalAnnotationProvider(IProject project, final IPat
 	if (resource.exists()) {
 		if (resource.isVirtual()) {
 			Util.log(new Status(IStatus.ERROR, JavaCore.PLUGIN_ID,
-					"Virtual resource "+externalAnnotationPath+" cannot be used as annotationpath for project "+project.getName())); //$NON-NLS-1$ //$NON-NLS-2$
+					"Virtual resource "+externalAnnotationPath+" cannot be used as annotationpath for project "+project.getName())); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return reader;
 		}
 		resolvedPath = resource.getLocation().toString(); // workspace lookup succeeded -> resolve it
@@ -300,7 +300,7 @@ private IBinaryType setupExternalAnnotationProvider(IProject project, final IPat
 				try {
 					return JavaModelManager.getJavaModelManager().getZipFile(externalAnnotationPath); // use (absolute, but) unresolved path here
 				} catch (CoreException e) {
-					throw new IOException("Failed to read annotation file for "+typeName+" from "+externalAnnotationPath.toString(), e); //$NON-NLS-1$ //$NON-NLS-2$
+					throw new IOException("Failed to read annotation file for "+typeName+" from "+externalAnnotationPath.toString(), e); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}});
 
@@ -348,7 +348,7 @@ public ClassFile getClassFile() {
 @Override
 public IJavaElement getElementAt(int position) throws JavaModelException {
 	IJavaElement parentElement = getParent();
-	while (parentElement.getElementType() != IJavaElement.PACKAGE_FRAGMENT_ROOT) {
+	while (parentElement.getElementType() != IJavaElement.PACKAGE_FRAGMENT_ROOT) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		parentElement = parentElement.getParent();
 	}
 	PackageFragmentRoot root = (PackageFragmentRoot) parentElement;
@@ -464,7 +464,7 @@ protected IBuffer openBuffer(IProgressMonitor pm, IElementInfo info) throws Java
 	return buffer;
 }
 /** Loads the buffer via SourceMapper, and maps it in SourceMapper */
-private IBuffer mapSource(SourceMapper mapper, IBinaryType info, IClassFile bufferOwner) {
+private IBuffer mapSource(SourceMapper mapper, IBinaryType info, IClassFile bufferOwner) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] contents = mapper.findSource(getType(), info);
 	if (contents != null) {
 		// create buffer
@@ -512,7 +512,7 @@ private IBuffer mapSource(SourceMapper mapper, IBinaryType info, IClassFile buff
 private IType getOuterMostEnclosingType() {
 	IType type = getType();
 	IType enclosingType = type.getDeclaringType();
-	while (enclosingType != null) {
+	while (enclosingType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		type = enclosingType;
 		enclosingType = type.getDeclaringType();
 	}
@@ -533,7 +533,7 @@ public static char[] translatedName(char[] name) {
 		return null;
 	int nameLength = name.length;
 	char[] newName= new char[nameLength];
-	for (int i= 0; i < nameLength; i++) {
+	for (int i= 0; i < nameLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (name[i] == '/') {
 			newName[i]= '.';
 		} else {
@@ -556,7 +556,7 @@ public static char[] translatedName(char[] name) {
 		return null;
 	int length = names.length;
 	char[][] newNames = new char[length][];
-	for(int i = 0; i < length; i++) {
+	for(int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		newNames[i] = translatedName(names[i]);
 	}
 	return newNames;
@@ -575,7 +575,7 @@ public static char[] translatedName(char[] name) {
 	if (className == null)
 		return null;
 	int count = 0;
-	for (int i = className.length - 1; i > -1; i--) {
+	for (int i = className.length - 1; i > -1; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (className[i] == '/') {
 			char[] name = new char[count];
 			System.arraycopy(className, i + 1, name, 0, count);

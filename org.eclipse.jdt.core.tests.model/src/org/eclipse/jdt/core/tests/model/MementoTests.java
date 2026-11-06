@@ -45,7 +45,7 @@ static {
 public static Test suite() {
 	return buildModelTestSuite(MementoTests.class);
 }
-protected void assertMemento(String expected, IJavaElement element) {
+protected void assertMemento(String expected, IJavaElement element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String actual = element.getHandleIdentifier();
 	if (!expected.equals(actual)){
 		String escapedExternalJCL = getEscapedExternalJCLPath();
@@ -62,7 +62,7 @@ protected void assertMemento(String expected, IJavaElement element) {
 	 	System.out.println(",");
 	}
 	assertEquals(
-		"Unexpected memento for " + element,
+		"Unexpected memento for " + element, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		expected,
 		actual);
 	IJavaElement restored = JavaCore.create(actual);
@@ -72,7 +72,7 @@ protected void assertMemento(String expected, IJavaElement element) {
 		restored);
 	String restoredHandleIdentifier = restored.getHandleIdentifier();
 	assertEquals(
-		"Unexpected memento for restored element " + restored,
+		"Unexpected memento for restored element " + restored, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		expected,
 		restoredHandleIdentifier);
 }
@@ -80,14 +80,14 @@ protected String getEscapedExternalJCLPath() {
 	return getEscapedPath(getExternalJCLPath().toString());
 }
 String getEscapedJrtJarPath() {
-	String pathStr = System.getProperty("java.home")+"/lib/jrt-fs.jar";
+	String pathStr = System.getProperty("java.home")+"/lib/jrt-fs.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String path = new Path(pathStr).toPortableString();
 	return getEscapedPath(path);
 }
 protected String getEscapedPath(String path) {
 	return MementoTokenizer.escape(path);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 	super.setUpSuite();
 
@@ -319,7 +319,7 @@ public void testExternalJarBinaryFieldMemento() throws JavaModelException {
 	IType type = getClassFile("P", getExternalJCLPathString(), "p", "X.class").getType();
 	IField field = type.getField("field");
 	assertMemento(
-		"=P/"+ getEscapedExternalJCLPath() + "<p(X.class[X^field",
+		"=P/"+ getEscapedExternalJCLPath() + "<p(X.class[X^field", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		field);
 }
 /**
@@ -328,7 +328,7 @@ public void testExternalJarBinaryFieldMemento() throws JavaModelException {
 public void testExternalJarBinaryInnerTypeMemento() throws JavaModelException {
 	IType type = getClassFile("P", getExternalJCLPathString(), "p", "X$Inner.class").getType();
 	assertMemento(
-		"=P/" + getEscapedExternalJCLPath() + "<p(X$Inner.class[Inner",
+		"=P/" + getEscapedExternalJCLPath() + "<p(X$Inner.class[Inner", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		type);
 }
 /**
@@ -338,7 +338,7 @@ public void testExternalJarBinaryMethodMemento() throws JavaModelException {
 	IType type = getClassFile("P", getExternalJCLPathString(), "p", "X.class").getType();
 	IMethod method = type.getMethod("foo", new String[] {"[Ljava.lang.String;"});
 	assertMemento(
-		"=P/" + getEscapedExternalJCLPath() + "<p(X.class[X~foo~\\[Ljava.lang.String;",
+		"=P/" + getEscapedExternalJCLPath() + "<p(X.class[X~foo~\\[Ljava.lang.String;", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		method);
 }
 /**
@@ -347,7 +347,7 @@ public void testExternalJarBinaryMethodMemento() throws JavaModelException {
 public void testExternalJarBinaryTypeMemento() throws JavaModelException {
 	IType type = getClassFile("P", getExternalJCLPathString(), "p", "X.class").getType();
 	assertMemento(
-		"=P/" + getEscapedExternalJCLPath() + "<p(X.class[X",
+		"=P/" + getEscapedExternalJCLPath() + "<p(X.class[X", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		type);
 }
 /**
@@ -356,9 +356,9 @@ public void testExternalJarBinaryTypeMemento() throws JavaModelException {
 public void testExternalJarClassFileMemento() throws JavaModelException {
 	char separator = File.separatorChar;
 	String device = separator == '/' ? "" : "C:";
-	IClassFile classFile = getClassFile("P", device + separator + "lib.jar", "p", "X.class");
+	IClassFile classFile = getClassFile("P", device + separator + "lib.jar", "p", "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	assertMemento(
-		"=P/" + device + "\\/lib.jar<p(X.class",
+		"=P/" + device + "\\/lib.jar<p(X.class", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		classFile);
 }
 /*
@@ -367,7 +367,7 @@ public void testExternalJarClassFileMemento() throws JavaModelException {
 public void testExternalLibraryFolderClassFileMemento() throws JavaModelException {
 	IClassFile classFile = getClassFile("P", getExternalResourcePath("myLib"), "", "X.class");
 	assertMemento(
-		"=P/" + getEscapedPath(new Path(getExternalResourcePath("myLib")).toString()) + "<(X.class",
+		"=P/" + getEscapedPath(new Path(getExternalResourcePath("myLib")).toString()) + "<(X.class", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		classFile);
 }
 /**
@@ -527,7 +527,7 @@ public void testLocalVariableMemento3() {
  * Tests that a local variable can be persisted and restored using its memento.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=244549 )
  */
-public void testLocalVariableMemento4() throws Exception {
+public void testLocalVariableMemento4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {"src"}, new String[] {getExternalJCLPathString(CompilerOptions.getFirstSupportedJavaVersion())}, "bin", CompilerOptions.getFirstSupportedJavaVersion());
 		createFile(
@@ -674,7 +674,7 @@ public void testPackageFragmentRootMemento6() {
 public void testPackageFragmentRootMemento7() throws CoreException {
 	IPackageFragmentRoot root = getPackageFragmentRoot("P", getExternalJCLPathString());
 	assertMemento(
-		"=P/" + getEscapedExternalJCLPath() + "",
+		"=P/" + getEscapedExternalJCLPath() + "", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		root);
 }
 /*
@@ -813,7 +813,7 @@ public void testBug331821() throws JavaModelException {
 	IPackageFragmentRoot newRoot = (IPackageFragmentRoot) JavaCore.create(handleIdentifier);
 	assertEquals(root, newRoot);
 }
-public void testAnnotationPath18() throws CoreException, IOException {
+public void testAnnotationPath18() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// tests annotationpath in memento for a regular jar library:
 	try {
 		IJavaProject project = createJavaProject("Test", new String[] {"src"}, null, "bin", "1.8", false);
@@ -830,7 +830,7 @@ public void testAnnotationPath18() throws CoreException, IOException {
 		};
 		IPackageFragmentRoot[] roots = project.getPackageFragmentRoots();
 		boolean archiveSeen = false;
-		for (int i = 0; i < roots.length; i++) {
+		for (int i = 0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// JarPackageFragmentRoot
 			IPackageFragmentRoot packageRoot = roots[i];
 			String handleIdentifier = packageRoot.getHandleIdentifier();
@@ -842,14 +842,14 @@ public void testAnnotationPath18() throws CoreException, IOException {
 				// PackageFragment
 				IPackageFragment test = packageRoot.getPackageFragment("test");
 				handleIdentifier = test.getHandleIdentifier();
-				String expected = expectedIdentifiers[i]+"<test";
+				String expected = expectedIdentifiers[i]+"<test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				assertEquals("PackageFragment mementos", expected, handleIdentifier);
 				element = JavaCore.create(handleIdentifier, null);
 				assertEquals("PackageFragment equivalence", test, element);
 				// ClassFile:
 				IClassFile classFile = test.getClassFile("Test.class");
 				handleIdentifier = classFile.getHandleIdentifier();
-				assertEquals("ClassFile mementos", expected+"(Test.class", handleIdentifier);
+				assertEquals("ClassFile mementos", expected+"(Test.class", handleIdentifier); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				element = JavaCore.create(handleIdentifier);
 				assertEquals("ClassFile equivalence", classFile, element);
 			}
@@ -859,7 +859,7 @@ public void testAnnotationPath18() throws CoreException, IOException {
 		deleteProject("Test");
 	}
 }
-public void testAnnotationPath9() throws CoreException, IOException {
+public void testAnnotationPath9() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// tests annotationpath & add-exports in memento for a jrt system library:
 	if (!isJRE9) return;
 	try {
@@ -871,9 +871,9 @@ public void testAnnotationPath9() throws CoreException, IOException {
 		String attributesMemento = "=/annotationpath=/annots=/=/add-exports=/jdk.rmic\\/sun.rmi.rmic\\=ALL-UNNAMED=/";
 
 		// Module java.base:
-		String expectedIdentifier = "=Test/"+getEscapedJrtJarPath()+"`java.base"+attributesMemento; // for specific PFR (see below)
+		String expectedIdentifier = "=Test/"+getEscapedJrtJarPath()+"`java.base"+attributesMemento; // for specific PFR (see below) //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IModuleDescription module = project.findModule("java.base", null);
-		String moduleIdentifier = expectedIdentifier+"<'`java.base"; // PFR - PackageFragment - ModularClassFile - Module
+		String moduleIdentifier = expectedIdentifier+"<'`java.base"; // PFR - PackageFragment - ModularClassFile - Module //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String moduleHandleIdentifier = module.getHandleIdentifier();
 		assertEquals("Module mementos", moduleIdentifier, moduleHandleIdentifier);
 		IJavaElement module2 = JavaCore.create(moduleHandleIdentifier, null);
@@ -890,7 +890,7 @@ public void testAnnotationPath9() throws CoreException, IOException {
 		// PackageFragment
 		IPackageFragment test = packageRoot.getPackageFragment("java.lang");
 		handleIdentifier = test.getHandleIdentifier();
-		String expected = expectedIdentifier+"<java.lang";
+		String expected = expectedIdentifier+"<java.lang"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("PackageFragment mementos", expected, handleIdentifier);
 		element = JavaCore.create(handleIdentifier, null);
 		assertEquals("PackageFragment equivalence", test, element);
@@ -898,19 +898,19 @@ public void testAnnotationPath9() throws CoreException, IOException {
 		// ClassFile:
 		IClassFile classFile = test.getClassFile("Object.class");
 		handleIdentifier = classFile.getHandleIdentifier();
-		assertEquals("ClassFile mementos", expected+"(Object.class", handleIdentifier);
+		assertEquals("ClassFile mementos", expected+"(Object.class", handleIdentifier); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		element = JavaCore.create(handleIdentifier);
 		assertEquals("ClassFile equivalence", classFile, element);
 	} finally {
 		deleteProject("Test");
 	}
 }
-public void testEmptyAttribute() throws CoreException, IOException {
+public void testEmptyAttribute() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("Test", new String[] {"src"}, null, "bin", "1.8", false);
 		org.eclipse.jdt.core.tests.util.Util.createJar(
 				new String[] {"test/Test.java", "package test; public class Test {}\n" },
-				null, project.getProject().getLocation().toString()+"/lib.jar", null, "1.8", null);
+				null, project.getProject().getLocation().toString()+"/lib.jar", null, "1.8", null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		project.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 		IClasspathAttribute[] attributes = {
@@ -923,7 +923,7 @@ public void testEmptyAttribute() throws CoreException, IOException {
 		};
 		IPackageFragmentRoot[] roots = project.getAllPackageFragmentRoots();
 		boolean archiveSeen = false;
-		for (int i = 0; i < roots.length; i++) {
+		for (int i = 0; i < roots.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPackageFragmentRoot packageRoot = roots[i];
 			String handleIdentifier = packageRoot.getHandleIdentifier();
 			assertEquals("Root mementos", expectedIdentifiers[i], handleIdentifier);
@@ -934,14 +934,14 @@ public void testEmptyAttribute() throws CoreException, IOException {
 				// PackageFragment
 				IPackageFragment test = packageRoot.getPackageFragment("test");
 				handleIdentifier = test.getHandleIdentifier();
-				String expected = expectedIdentifiers[i]+"<test";
+				String expected = expectedIdentifiers[i]+"<test"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				assertEquals("PackageFragment mementos", expected, handleIdentifier);
 				element = JavaCore.create(handleIdentifier, null);
 				assertEquals("PackageFragment equivalence", test, element);
 				// ClassFile:
 				IClassFile classFile = test.getClassFile("Test.class");
 				handleIdentifier = classFile.getHandleIdentifier();
-				assertEquals("ClassFile mementos", expected+"(Test.class", handleIdentifier);
+				assertEquals("ClassFile mementos", expected+"(Test.class", handleIdentifier); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				element = JavaCore.create(handleIdentifier);
 				assertEquals("ClassFile equivalence", classFile, element);
 			}
@@ -951,7 +951,7 @@ public void testEmptyAttribute() throws CoreException, IOException {
 		deleteProject("Test");
 	}
 }
-public void testBug573147() throws CoreException, IOException {
+public void testBug573147() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("Test`", new String[] {"src"}, null, "bin", "1.8", false);
 		createFile(

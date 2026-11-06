@@ -47,7 +47,7 @@ public SelectionOnQualifiedSuperReference(TypeReference name, int pos, int sourc
 @Override
 public StringBuilder printExpression(int indent, StringBuilder output) {
 
-	output.append("<SelectOnQualifiedSuper:"); //$NON-NLS-1$
+	output.append("<SelectOnQualifiedSuper:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.printExpression(0, output).append('>');
 }
 

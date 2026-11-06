@@ -91,7 +91,7 @@ public class ASTBasedAnnotationElementDeclarationImpl
     	return nameNode == null ? EMPTY_STRING : nameNode.getIdentifier();
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeMirror getReturnType()
     {
     	final AnnotationTypeMemberDeclaration memberAstNode = getMemberAstNode();
@@ -115,14 +115,14 @@ public class ASTBasedAnnotationElementDeclarationImpl
 	@Override
 	public String toString()
     {
-        final StringBuilder buffer = new StringBuilder();
+        final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
         final AnnotationTypeMemberDeclaration memberAstNode = (AnnotationTypeMemberDeclaration) getAstNode();
 
         if( memberAstNode.getType() != null )
-            buffer.append(memberAstNode.getType());
-        buffer.append(' ');
-        buffer.append(memberAstNode.getName());
-        buffer.append("()"); //$NON-NLS-1$
+            buffer.append(memberAstNode.getType()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buffer.append(memberAstNode.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buffer.append("()"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
         return buffer.toString();
     }

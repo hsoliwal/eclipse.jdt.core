@@ -57,7 +57,7 @@ public class ASTConverterEitherOrMultiPatternTest extends ConverterTestSetup {
 		System.err.println("Test "+getName()+" requires a JRE 22");
 	}
 
-	public void test001() throws JavaModelException {
+	public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE22) {
 			printJREError();
 			return;
@@ -137,7 +137,7 @@ public class ASTConverterEitherOrMultiPatternTest extends ConverterTestSetup {
 	}
 
 
-	public void test002() throws JavaModelException {
+	public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE22) {
 			printJREError();
 			return;
@@ -210,7 +210,7 @@ public class ASTConverterEitherOrMultiPatternTest extends ConverterTestSetup {
 
 	}
 
-	public void test003() throws JavaModelException {
+	public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE22) {
 			printJREError();
 			return;
@@ -276,7 +276,7 @@ public class ASTConverterEitherOrMultiPatternTest extends ConverterTestSetup {
 		assertEquals("RecordPattern", listPatterns.get(2).getNodeType(), ASTNode.RECORD_PATTERN);
 	}
 
-	public void test004() throws JavaModelException {
+	public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE22) {
 			printJREError();
 			return;
@@ -330,7 +330,7 @@ public class ASTConverterEitherOrMultiPatternTest extends ConverterTestSetup {
 	}
 
 	//https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2623
-	public void test005() throws JavaModelException {
+	public void test005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE22) {
 			printJREError();
 			return;
@@ -367,7 +367,7 @@ public class ASTConverterEitherOrMultiPatternTest extends ConverterTestSetup {
 	}
 
 	//https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2623
-	public void test006() throws JavaModelException {
+	public void test006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE22) {
 			printJREError();
 			return;
@@ -403,7 +403,7 @@ public class ASTConverterEitherOrMultiPatternTest extends ConverterTestSetup {
 	}
 
 	//https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2741
-	public void test007() throws JavaModelException {
+	public void test007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE22) {
 			printJREError();
 			return;
@@ -442,7 +442,7 @@ public class ASTConverterEitherOrMultiPatternTest extends ConverterTestSetup {
 	}
 
 	//SingleVariableDeclaration with name and type
-	public void testNaiveASTFlattnerSync_a() throws JavaModelException {
+	public void testNaiveASTFlattnerSync_a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents = """
 					public class X {
 	                    public static void main(Object object) {
@@ -474,7 +474,7 @@ public class ASTConverterEitherOrMultiPatternTest extends ConverterTestSetup {
 	}
 
 	//SingleVariableDeclaration with Type and name as _
-	public void testNaiveASTFlattnerSync_b() throws JavaModelException {
+	public void testNaiveASTFlattnerSync_b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents = """
 					public class X {
 	                    public static void main(Object object) {
@@ -506,7 +506,7 @@ public class ASTConverterEitherOrMultiPatternTest extends ConverterTestSetup {
 	}
 
 	//VariableDeclarationFragment
-	public void testNaiveASTFlattnerSync_c() throws JavaModelException {
+	public void testNaiveASTFlattnerSync_c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents = """
 					public class X {
 	                    public static void main(Object object) {

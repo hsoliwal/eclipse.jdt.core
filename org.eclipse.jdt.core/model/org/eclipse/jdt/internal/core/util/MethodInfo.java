@@ -42,7 +42,7 @@ public class MethodInfo extends ClassFileStruct implements IMethodInfo {
 	 * @param offset int
 	 * @param decodingFlags int
 	 */
-	public MethodInfo(byte classFileBytes[], IConstantPool constantPool, int offset, int decodingFlags)
+	public MethodInfo(byte classFileBytes[], IConstantPool constantPool, int offset, int decodingFlags) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws ClassFormatException {
 
 		boolean no_code_attribute = (decodingFlags & IClassFileReader.METHOD_BODIES) == 0;
@@ -79,7 +79,7 @@ public class MethodInfo extends ClassFileStruct implements IMethodInfo {
 		}
 		int attributesIndex = 0;
 		int readOffset = 8;
-		for (int i = 0; i < this.attributesCount; i++) {
+		for (int i = 0; i < this.attributesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			constantPoolEntry = constantPool.decodeEntry(u2At(classFileBytes, readOffset, offset));
 			if (constantPoolEntry.getKind() != IConstantPoolConstant.CONSTANT_Utf8) {
 				throw new ClassFormatException(ClassFormatException.INVALID_CONSTANT_POOL_ENTRY);

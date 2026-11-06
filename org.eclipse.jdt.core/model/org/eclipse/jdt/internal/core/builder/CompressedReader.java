@@ -28,7 +28,7 @@ public class CompressedReader {
 	public CompressedReader(DataInputStream in) {
 		this.in = in;
 		this.lastName = new char[0];
-		this.lastWords = new ArrayList<>();
+		this.lastWords = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 
 	/** @see CompressedWriter#writeBoolean(boolean) **/

@@ -26,7 +26,7 @@ import org.eclipse.jdt.internal.core.util.Messages;
  *
  * @see CopyElementsOperation
  */
-public class MoveElementsOperation extends CopyElementsOperation {
+public class MoveElementsOperation extends CopyElementsOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 /**
  * When executed, this operation will move the given elements to the given containers.
  */

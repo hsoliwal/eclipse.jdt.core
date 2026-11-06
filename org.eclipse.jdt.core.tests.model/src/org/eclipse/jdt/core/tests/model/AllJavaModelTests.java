@@ -34,7 +34,7 @@ public class AllJavaModelTests extends junit.framework.TestCase {
 public AllJavaModelTests(String name) {
 	super(name);
 }
-private static Class[] getAllTestClasses() {
+private static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Class[] classes = new Class[] {
 
 		// Enter each test here, grouping the tests that are related
@@ -303,7 +303,7 @@ private static Class[] getDeprecatedJDOMTestClasses() {
 	};
 }
 
-public static Test suite() {
+public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TestSuite suite = new TestSuite(AllJavaModelTests.class.getName());
 
 	// Hack to load all classes before computing their suite of test cases
@@ -317,24 +317,24 @@ public static Test suite() {
 	TestCase.TESTS_RANGE = null;
 	TestCase.RUN_ONLY_ID = null;
 
-	for (int i = 0, length = classes.length; i < length; i++) {
+	for (int i = 0, length = classes.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Class clazz = classes[i];
 		Method suiteMethod;
 		try {
 			suiteMethod = clazz.getDeclaredMethod("suite", new Class[0]);
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
-			throw new AssertionError("Failed to find suite() method for: " + clazz, e);
+			throw new AssertionError("Failed to find suite() method for: " + clazz, e); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Object test;
 		try {
 			test = suiteMethod.invoke(null, new Object[0]);
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
-			throw new AssertionError("Failed to invoke suite() method for: " + clazz, e);
+			throw new AssertionError("Failed to invoke suite() method for: " + clazz, e); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
-			throw new AssertionError("Failed to invoke suite() method for: " + clazz, e);
+			throw new AssertionError("Failed to invoke suite() method for: " + clazz, e); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		suite.addTest((Test) test);
 	}

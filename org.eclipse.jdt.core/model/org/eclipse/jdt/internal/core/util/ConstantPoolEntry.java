@@ -44,7 +44,7 @@ public class ConstantPoolEntry implements IConstantPoolEntry {
 	private int utf8Length;
 	private char[] classInfoName;
 
-	public ConstantPoolEntry() {
+	public ConstantPoolEntry() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.classInfoNameIndex = -1;
 		this.classIndex = -1;
 		this.nameAndTypeIndex = -1;
@@ -403,7 +403,7 @@ public class ConstantPoolEntry implements IConstantPoolEntry {
 		this.utf8Length = utf8Length;
 	}
 
-	public void reset() {
+	public void reset() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.kind = 0;
 		this.classInfoNameIndex = 0;
 		this.classIndex = 0;

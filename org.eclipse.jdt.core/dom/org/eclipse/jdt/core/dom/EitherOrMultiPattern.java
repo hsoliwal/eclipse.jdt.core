@@ -48,7 +48,7 @@ public class EitherOrMultiPattern extends Pattern {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List properyList = new ArrayList(5);
+		List properyList = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(EitherOrMultiPattern.class, properyList);
 		addProperty(PATTERNS_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(properyList);

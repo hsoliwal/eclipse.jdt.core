@@ -94,7 +94,7 @@ public OverflowingLRUCache(int size, int overflow) {
 
 		/* Preserve order of entries by copying from oldest to newest */
 		qEntry = this.entryQueueTail;
-		while (qEntry != null) {
+		while (qEntry != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			newCache.privateAdd (qEntry.key, qEntry.value, qEntry.space);
 			qEntry = qEntry.previous;
 		}
@@ -119,7 +119,7 @@ protected abstract boolean close(LRUCacheEntry<K, V> entry);
 			new LRUCacheEnumerator.LRUEnumeratorElement<>(this.entryQueue.value);
 		LRUCacheEntry<K, V> currentEntry = this.entryQueue.next;
 		LRUCacheEnumerator.LRUEnumeratorElement<V> currentElement = head;
-		while(currentEntry != null) {
+		while(currentEntry != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			currentElement.next = new LRUCacheEnumerator.LRUEnumeratorElement<>(currentEntry.value);
 			currentElement = currentElement.next;
 
@@ -165,7 +165,7 @@ public double getLoadFactor() {
 	 *
 	 * @param space Amount of space to free up
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected boolean makeSpace(int space) {
 
 		int limit = this.spaceLimit;
@@ -184,7 +184,7 @@ public double getLoadFactor() {
 			// (by a call to get(Object) for example)
 			this.timestampsOn = false;
 
-			while (this.currentSpace + spaceNeeded > limit && entry != null) {
+			while (this.currentSpace + spaceNeeded > limit && entry != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.privateRemoveEntry(entry, false, false);
 				entry = entry.previous;
 			}
@@ -211,22 +211,22 @@ protected abstract LRUCache<K, V> newInstance(int size, int newOverflow);
 /**
  * For testing purposes only
  */
-public void printStats() {
+public void printStats() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int forwardListLength = 0;
 	LRUCacheEntry<K, V> entry = this.entryQueue;
-	while(entry != null) {
+	while(entry != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		forwardListLength++;
 		entry = entry.next;
 	}
-	System.out.println("Forward length: " + forwardListLength); //$NON-NLS-1$
+	System.out.println("Forward length: " + forwardListLength); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	int backwardListLength = 0;
 	entry = this.entryQueueTail;
-	while(entry != null) {
+	while(entry != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		backwardListLength++;
 		entry = entry.previous;
 	}
-	System.out.println("Backward length: " + backwardListLength); //$NON-NLS-1$
+	System.out.println("Backward length: " + backwardListLength); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	class Temp {
 		public Class<?> clazz;
@@ -237,11 +237,11 @@ public void printStats() {
 		}
 		@Override
 		public String toString() {
-			return "Class: " + this.clazz + " has " + this.count + " entries."; //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-1$
+			return "Class: " + this.clazz + " has " + this.count + " entries."; //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
-	HashMap<Class<?>, Temp> h = new HashMap<>();
-	for (K k : this.entryTable.keySet()) {
+	HashMap<Class<?>, Temp> h = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	for (K k : this.entryTable.keySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		entry = this.entryTable.get(k);
 		Class<?> key = entry.value.getClass();
 		Temp t = h.get(key);
@@ -251,7 +251,7 @@ public void printStats() {
 			t.count++;
 		}
 	}
-	for (Temp temp : h.values()) {
+	for (Temp temp : h.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		System.out.println(temp);
 	}
 }
@@ -278,7 +278,7 @@ public void printStats() {
  *	@param shuffle indicates whether we are just shuffling the queue
  *	(in which case, the entry table is not modified).
  */
-protected void privateRemoveEntry(LRUCacheEntry<K, V> entry, boolean shuffle, boolean external) {
+protected void privateRemoveEntry(LRUCacheEntry<K, V> entry, boolean shuffle, boolean external) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	if (!shuffle) {
 		if (external) {
@@ -314,7 +314,7 @@ protected void privateRemoveEntry(LRUCacheEntry<K, V> entry, boolean shuffle, bo
 	}
 }
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public V put(K key, V value) {
 		/* attempt to rid ourselves of the overflow, if there is any */
 		if (this.overflow > 0)
@@ -400,7 +400,7 @@ public void setLoadFactor(double newLoadFactor) throws IllegalArgumentException 
 @Override
 public String toString() {
 	return
-		toStringFillingRation("OverflowingLRUCache ") + //$NON-NLS-1$
+		toStringFillingRation("OverflowingLRUCache ") + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		toStringContents();
 }
 /**

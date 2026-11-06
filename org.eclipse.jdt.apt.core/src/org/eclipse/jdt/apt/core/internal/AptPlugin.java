@@ -38,13 +38,13 @@ public class AptPlugin extends Plugin implements DebugOptionsListener {
 
 	// Tracing options
 	public static boolean DEBUG = false;
-	public final static String APT_DEBUG_OPTION = AptPlugin.PLUGIN_ID + "/debug"; //$NON-NLS-1$
+	public final static String APT_DEBUG_OPTION = AptPlugin.PLUGIN_ID + "/debug"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	public static boolean DEBUG_GFM = false;
-	public final static String APT_DEBUG_GFM_OPTION = AptPlugin.APT_DEBUG_OPTION + "/generatedFiles"; //$NON-NLS-1$
+	public final static String APT_DEBUG_GFM_OPTION = AptPlugin.APT_DEBUG_OPTION + "/generatedFiles"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	public static boolean DEBUG_GFM_MAPS = false;
-	public final static String APT_DEBUG_GFM_MAPS_OPTION = AptPlugin.APT_DEBUG_OPTION + "/generatedFileMaps"; //$NON-NLS-1$
+	public final static String APT_DEBUG_GFM_MAPS_OPTION = AptPlugin.APT_DEBUG_OPTION + "/generatedFileMaps"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	public static boolean DEBUG_COMPILATION_ENV = false;
-	public final static String APT_COMPILATION_ENV_OPTION = AptPlugin.APT_DEBUG_OPTION + "/compilationEnv"; //$NON-NLS-1$
+	public final static String APT_COMPILATION_ENV_OPTION = AptPlugin.APT_DEBUG_OPTION + "/compilationEnv"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	/**
 	 * Status IDs for system log entries.  Must be unique per plugin.
@@ -59,15 +59,15 @@ public class AptPlugin extends Plugin implements DebugOptionsListener {
 	 */
 	public static final String APT_MARKER_SOURCE_ID = "APT"; //$NON-NLS-1$
 
-	public static final String APT_BATCH_PROCESSOR_PROBLEM_MARKER = PLUGIN_ID + ".marker"; //$NON-NLS-1$
+	public static final String APT_BATCH_PROCESSOR_PROBLEM_MARKER = PLUGIN_ID + ".marker"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/** Marker ID used for build problem, e.g., missing factory jar */
-	public static final String APT_LOADER_PROBLEM_MARKER = PLUGIN_ID + ".buildproblem"; //$NON-NLS-1$
+	public static final String APT_LOADER_PROBLEM_MARKER = PLUGIN_ID + ".buildproblem"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/** Marker ID used for configuration problem, e.g generated source folder not on classpath */
-	public static final String APT_CONFIG_PROBLEM_MARKER = PLUGIN_ID + ".configproblem"; //$NON-NLS-1$
+	public static final String APT_CONFIG_PROBLEM_MARKER = PLUGIN_ID + ".configproblem"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/** Marker ID used for posting problems during reconcile/build */
-	public static final String APT_COMPILATION_PROBLEM_MARKER = PLUGIN_ID + ".compile.problem"; //$NON-NLS-1$
+	public static final String APT_COMPILATION_PROBLEM_MARKER = PLUGIN_ID + ".compile.problem"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/** Marker ID used for posting problems during build by processors that don't run in reconcile */
-	public static final String APT_NONRECONCILE_COMPILATION_PROBLEM_MARKER = PLUGIN_ID + ".nonreconcile.compile.problem"; //$NON-NLS-1$
+	public static final String APT_NONRECONCILE_COMPILATION_PROBLEM_MARKER = PLUGIN_ID + ".nonreconcile.compile.problem"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	private static final SimpleDateFormat TRACE_DATE_FORMAT = new SimpleDateFormat("HH:mm:ss.SSS"); //$NON-NLS-1$
 
@@ -83,13 +83,13 @@ public class AptPlugin extends Plugin implements DebugOptionsListener {
 	// Entries are added lazily in getAptProject(), and removed upon
 	// project deletion in deleteAptProject().
 	private static final Map<IJavaProject,AptProject> PROJECT_MAP =
-		new HashMap<>();
+		new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	// Qualified names of services for which these containers may provide implementations
 	public static final String JAVA5_FACTORY_NAME = "com.sun.mirror.apt.AnnotationProcessorFactory"; //$NON-NLS-1$
 	public static final String JAVA6_FACTORY_NAME = "javax.annotation.processing.Processor"; //$NON-NLS-1$
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void start(BundleContext context) throws Exception {
 		thePlugin = this;
 		super.start(context);
@@ -195,26 +195,26 @@ public class AptPlugin extends Plugin implements DebugOptionsListener {
 		DEBUG_COMPILATION_ENV = options.getBooleanOption(APT_COMPILATION_ENV_OPTION, false);
 	}
 
-	public static void trace(final String msg){
+	public static void trace(final String msg){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (DEBUG) {
-			StringBuilder sb = new StringBuilder();
-			sb.append('[');
+			StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			sb.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// SimpleDateFormat is not thread-safe, according to javadoc
 			synchronized(TRACE_DATE_FORMAT) {
-				sb.append(TRACE_DATE_FORMAT.format(new Date()));
+				sb.append(TRACE_DATE_FORMAT.format(new Date())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			sb.append('-');
+			sb.append('-'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			// Some threads have qualified type names; too long.
 			String threadName = Thread.currentThread().getName();
 			int dot = threadName.lastIndexOf('.');
 			if (dot < 0) {
-				sb.append(threadName);
+				sb.append(threadName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			else {
-				sb.append(threadName.substring(dot+1));
+				sb.append(threadName.substring(dot+1)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			sb.append(']');
-			sb.append(msg);
+			sb.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			sb.append(msg); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			System.out.println(sb);
 		}
 	}

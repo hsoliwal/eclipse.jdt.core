@@ -41,12 +41,12 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeBinding;
 
 public class CompletionOnMessageSend extends MessageSend implements CompletionNode {
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeBinding resolveType(BlockScope scope) {
 		this.constant = Constant.NotAConstant;
 		if (this.arguments != null) {
 			int argsLength = this.arguments.length;
-			for (int a = argsLength; --a >= 0;) {
+			for (int a = argsLength; --a >= 0;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					this.arguments[a].resolveType(scope);
 				} catch (CompletionNodeFound cnf) {
@@ -67,28 +67,28 @@ public class CompletionOnMessageSend extends MessageSend implements CompletionNo
 		throw new CompletionNodeFound(this, this.actualReceiverType, scope);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public StringBuilder printExpression(int indent, StringBuilder output) {
 
-		output.append("<CompleteOnMessageSend:"); //$NON-NLS-1$
+		output.append("<CompleteOnMessageSend:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (!this.receiver.isImplicitThis()) this.receiver.printExpression(0, output).append('.');
 		if (this.typeArguments != null) {
-			output.append('<');
+			output.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			int max = this.typeArguments.length - 1;
-			for (int j = 0; j < max; j++) {
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.typeArguments[j].print(0, output);
-				output.append(", ");//$NON-NLS-1$
+				output.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			this.typeArguments[max].print(0, output);
-			output.append('>');
+			output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		output.append(this.selector).append('(');
+		output.append(this.selector).append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.arguments != null) {
-			for (int i = 0; i < this.arguments.length; i++) {
-				if (i > 0) output.append(", "); //$NON-NLS-1$
+			for (int i = 0; i < this.arguments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				if (i > 0) output.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				this.arguments[i].printExpression(0, output);
 			}
 		}
-		return output.append(")>"); //$NON-NLS-1$
+		return output.append(")>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }

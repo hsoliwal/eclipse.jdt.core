@@ -80,7 +80,7 @@ public class JavaSearchParticipant extends SearchParticipant implements IParalle
 		return new JavaSearchDocument(documentPath, this);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void indexDocument(SearchDocument document, IPath indexPath) {
 		// TODO must verify that the document + indexPath match, when this is not called from scheduleDocumentIndexing
 		document.removeAllIndexEntries(); // in case the document was already indexed
@@ -166,7 +166,7 @@ public class JavaSearchParticipant extends SearchParticipant implements IParalle
 		IndexSelector selector = getIndexSelector(pattern, scope);
 		IndexLocation[] urls = selector.getIndexLocations();
 		IPath[] paths = new IPath[urls.length];
-		for (int i = 0; i < urls.length; i++) {
+		for (int i = 0; i < urls.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			paths[i] = new Path(urls[i].getIndexFile().getPath());
 		}
 		return paths;

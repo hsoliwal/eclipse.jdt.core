@@ -68,7 +68,7 @@ public abstract char[] getReturnTypeName();
 public char[][][] getTypeParameterBounds() {
 	int length = this.typeParameters.length;
 	char[][][] typeParameterBounds = new char[length][][];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		try {
 			TypeParameterElementInfo info = (TypeParameterElementInfo) ((JavaElement)this.typeParameters[i]).getElementInfo();
 			typeParameterBounds[i] = info.bounds;
@@ -83,7 +83,7 @@ public char[][] getTypeParameterNames() {
 	int length = this.typeParameters.length;
 	if (length == 0) return CharOperation.NO_CHAR_CHAR;
 	char[][] typeParameterNames = new char[length][];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		typeParameterNames[i] = this.typeParameters[i].getElementName().toCharArray();
 	}
 	return typeParameterNames;

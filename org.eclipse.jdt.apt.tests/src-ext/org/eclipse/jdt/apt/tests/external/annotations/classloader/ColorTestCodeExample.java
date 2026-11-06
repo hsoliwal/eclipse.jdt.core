@@ -18,7 +18,7 @@ public class ColorTestCodeExample {
 
 	public static final String CODE_PACKAGE = "colortestpackage";
 	public static final String CODE_CLASS_NAME = "ColorTest";
-	public static final String CODE_FULL_NAME = CODE_PACKAGE + "." + CODE_CLASS_NAME;
+	public static final String CODE_FULL_NAME = CODE_PACKAGE + "." + CODE_CLASS_NAME; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	public static final String CODE =
 		"package colortestpackage;\r\n" +

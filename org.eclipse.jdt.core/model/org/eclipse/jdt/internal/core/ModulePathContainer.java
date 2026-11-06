@@ -32,16 +32,16 @@ public class ModulePathContainer implements IClasspathContainer{
 	public ModulePathContainer(IJavaProject project) {
 		this.project = project;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IClasspathEntry[] getClasspathEntries() {
 		//
-		List<IClasspathEntry> entries = new ArrayList<>();
+		List<IClasspathEntry> entries = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		ModuleSourcePathManager manager = JavaModelManager.getModulePathManager();
 		try {
 			AbstractModule module = (AbstractModule) ((JavaProject)this.project).getModuleDescription();
 			if (module == null)
 				return new IClasspathEntry[0];
-			for (org.eclipse.jdt.internal.compiler.env.IModule.IModuleReference ref : module.getRequiredModules()) {
+			for (org.eclipse.jdt.internal.compiler.env.IModule.IModuleReference ref : module.getRequiredModules()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IModulePathEntry entry = manager.getModuleRoot(new String(ref.name()));
 				JavaProject refRoot = null;
 				if (entry instanceof ProjectEntry) {

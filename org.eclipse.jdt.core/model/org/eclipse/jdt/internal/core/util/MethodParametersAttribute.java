@@ -33,7 +33,7 @@ public class MethodParametersAttribute extends ClassFileAttribute implements IMe
 	private final short[] accessFlags;
 
 
-	MethodParametersAttribute(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException {
+	MethodParametersAttribute(byte[] classFileBytes, IConstantPool constantPool, int offset) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super(classFileBytes, constantPool, offset);
 
 		final int length = u1At(classFileBytes, 6, offset);
@@ -42,7 +42,7 @@ public class MethodParametersAttribute extends ClassFileAttribute implements IMe
 			int readOffset = offset + 7;
 			this.names = new char[length][];
 			this.accessFlags = new short[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int nameIndex = u2At(classFileBytes, 0, readOffset);
 				int mask = u2At(classFileBytes, 2, readOffset);
 				readOffset += 4;

@@ -58,10 +58,10 @@ public class MirroredTypesException extends RuntimeException {
      * @param types  an ordered collection of the types being accessed
      */
     public MirroredTypesException(Collection<TypeMirror> types) {
-	super("Attempt to access Class objects for TypeMirrors " + types); //$NON-NLS-1$
+	super("Attempt to access Class objects for TypeMirrors " + types); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	this.types = types;
-	names = new ArrayList<>();
-	for (TypeMirror t : types) {
+	names = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (TypeMirror t : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    names.add(t.toString());
 	}
     }

@@ -221,7 +221,7 @@ public class MessagerImpl implements EclipseMessager
         }
     }
 
-    private void print(SourcePosition pos,
+    private void print(SourcePosition pos, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     				   Severity severity,
     				   String msg,
     				   String[] arguments)

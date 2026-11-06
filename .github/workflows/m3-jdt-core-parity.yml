@@ -1,0 +1,21 @@
+name: M3 JDT Core Regex and String Parity
+on:
+  push:
+    branches: [converge/m3-jdt-core-l1-l2-20261024]
+  pull_request:
+    paths: ['tools/m3/RegexStringParity.java', '.github/workflows/m3-jdt-core-parity.yml', 'org.eclipse.jdt.apt.pluggable.core/**', 'org.eclipse.jdt.core/model/**']
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Compile and run source-bound parity
+        run: |
+          javac --release 21 -Xlint:all -Werror tools/m3/RegexStringParity.java
+          java -cp tools/m3 RegexStringParity .

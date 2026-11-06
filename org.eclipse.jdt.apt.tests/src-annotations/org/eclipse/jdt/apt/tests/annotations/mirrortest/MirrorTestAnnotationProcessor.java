@@ -37,12 +37,12 @@ public class MirrorTestAnnotationProcessor extends BaseProcessor {
 		super(env);
 	}
 
-	public void process() {
+	public void process() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.setProcessorRan();
 		try {
 			Collection<TypeDeclaration> decls = _env.getSpecifiedTypeDeclarations();
 			TypeDeclaration decl = null;
-			for (TypeDeclaration declTemp : decls) {
+			for (TypeDeclaration declTemp : decls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (CodeExample.CODE_FULL_NAME.equals(declTemp.getQualifiedName()))
 					decl = declTemp;
 			}
@@ -58,16 +58,16 @@ public class MirrorTestAnnotationProcessor extends BaseProcessor {
 		}
 	}
 
-	private void testTypeDecl(TypeDeclaration typeDecl) {
+	private void testTypeDecl(TypeDeclaration typeDecl) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.assertEquals("Type name",
-				CodeExample.CODE_PACKAGE + "." + CodeExample.CODE_CLASS_NAME,
+				CodeExample.CODE_PACKAGE + "." + CodeExample.CODE_CLASS_NAME, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				typeDecl.getQualifiedName());
 
 		PackageDeclaration pkg = typeDecl.getPackage();
 		ProcessorTestStatus.assertEquals("Package", CodeExample.CODE_PACKAGE, pkg.getQualifiedName());
 
 		Collection<FieldDeclaration> fields = typeDecl.getFields();
-		ProcessorTestStatus.assertEquals("Number of fields: " + fields, 3, fields.size());
+		ProcessorTestStatus.assertEquals("Number of fields: " + fields, 3, fields.size()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		Collection<TypeParameterDeclaration> typeParams = typeDecl.getFormalTypeParameters();
 		ProcessorTestStatus.assertEquals("Number of type params", 0, typeParams.size());
@@ -82,7 +82,7 @@ public class MirrorTestAnnotationProcessor extends BaseProcessor {
 		ProcessorTestStatus.assertEquals("Number of supers", 1, supers.size());
 	}
 
-	private void testPackageImpl() {
+	private void testPackageImpl() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		PackageDeclaration pkg = _env.getPackage("org.eclipse.jdt.apt.tests.annotations.mirrortest");
 		ProcessorTestStatus.assertEquals("Package name", "org.eclipse.jdt.apt.tests.annotations.mirrortest", pkg.getQualifiedName());
 		// We used to test by counting the number of elements returned by the various calls,
@@ -107,7 +107,7 @@ public class MirrorTestAnnotationProcessor extends BaseProcessor {
 		ProcessorTestStatus.assertTrue("java.util contains Iterator", interfaces.contains(iteratorDecl));
 	}
 
-	private void testDeclarationsUtil(TypeDeclaration typeDecl) {
+	private void testDeclarationsUtil(TypeDeclaration typeDecl) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Declarations utils = _env.getDeclarationUtils();
 		TypeDeclaration objType = _env.getTypeDeclaration("java.lang.Object");
 
@@ -118,7 +118,7 @@ public class MirrorTestAnnotationProcessor extends BaseProcessor {
 		TypeDeclaration innerClass = typeDecl.getNestedTypes().iterator().next();
 
 		MethodDeclaration innerMethod = null;
-		for (MethodDeclaration method : innerClass.getMethods()) {
+		for (MethodDeclaration method : innerClass.getMethods()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (method.getSimpleName().equals("staticMethod")) {
 				innerMethod = method;
 				break;
@@ -126,7 +126,7 @@ public class MirrorTestAnnotationProcessor extends BaseProcessor {
 		}
 
 		MethodDeclaration outerMethod = null;
-		for (MethodDeclaration method : typeDecl.getMethods()) {
+		for (MethodDeclaration method : typeDecl.getMethods()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (method.getSimpleName().equals("staticMethod")) {
 				outerMethod = method;
 				break;

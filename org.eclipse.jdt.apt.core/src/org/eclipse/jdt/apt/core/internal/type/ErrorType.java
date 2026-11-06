@@ -141,10 +141,10 @@ public abstract class ErrorType implements DeclaredType, EclipseMirrorType
     	@Override
 		public String toString()
     	{
-    		final StringBuilder buffer = new StringBuilder();
-    		buffer.append(_name);
-    		for( int i=0; i<_dimension; i++ )
-    			buffer.append("[]"); //$NON-NLS-1$
+    		final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+    		buffer.append(_name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+    		for( int i=0; i<_dimension; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+    			buffer.append("[]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
     		return buffer.toString();
     	}
     }

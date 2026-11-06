@@ -37,8 +37,8 @@ public void test001() {
 	 CharOperation.replace(array, toBeReplaced, replacementChar, start, end);
 	 char[] result = { 'a' , 'b', 'b', 'c', 'a', 'a', 'a', 'a' };
 
-	 for (int i = 0, max = array.length; i < max; i++) {
-		 assertEquals("Wrong value at " + i, result[i], array[i]);
+	 for (int i = 0, max = array.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		 assertEquals("Wrong value at " + i, result[i], array[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 }
 }
 public void test002() {
@@ -50,8 +50,8 @@ public void test002() {
 	 CharOperation.replace(array, toBeReplaced, replacementChar, start, end);
 	 char[] result = { 'a' , 'b', 'a', 'c', 'a', 'b', 'c', 'a' };
 
-	 for (int i = 0, max = array.length; i < max; i++) {
-		 assertEquals("Wrong value at " + i, result[i], array[i]);
+	 for (int i = 0, max = array.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		 assertEquals("Wrong value at " + i, result[i], array[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 }
 }
 public void test003() {
@@ -75,8 +75,8 @@ public void test005() {
 	 CharOperation.replace(array, toBeReplaced, replacementChar);
 	 char[] result = { 'a' , 'a', 'a', 'a', 'a', 'a', 'a', 'a' };
 
-	 for (int i = 0, max = array.length; i < max; i++) {
-		 assertEquals("Wrong value at " + i, result[i], array[i]);
+	 for (int i = 0, max = array.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		 assertEquals("Wrong value at " + i, result[i], array[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 }
 }
 public void test006() {
@@ -86,12 +86,12 @@ public void test006() {
 	 char[] result = CharOperation.replace(array, toBeReplaced, replacementChar);
 	 char[] expectedValue = { 'a' , 'a', 'a', 'b', 'c', 'a' };
 	 assertEquals("Wrong size", expectedValue.length, result.length);
-	 for (int i = 0, max = expectedValue.length; i < max; i++) {
-		 assertEquals("Wrong value at " + i, result[i], expectedValue[i]);
+	 for (int i = 0, max = expectedValue.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		 assertEquals("Wrong value at " + i, result[i], expectedValue[i]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	 }
 }
 // test compareTo(char[], char[])
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] array = { 'a' , 'a', 'a', 'a', 'a', 'b', 'c', 'a' };
 	char[] array2 = { 'a', 'a' };
 	assertTrue(CharOperation.compareTo(array, array2) > 0);
@@ -152,7 +152,7 @@ public void test011() {
 			false));
 }
 // test the javadoc examples
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertTrue("Should match", CharOperation.match(
 			new char[] { '?', 'b', '*' },
 			1,

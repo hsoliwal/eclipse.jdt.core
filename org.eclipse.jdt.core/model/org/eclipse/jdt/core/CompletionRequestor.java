@@ -118,7 +118,7 @@ public abstract class CompletionRequestor {
 	public boolean isIgnored(int completionProposalKind) {
 		if (completionProposalKind < CompletionProposal.FIRST_KIND
 			|| completionProposalKind > CompletionProposal.LAST_KIND) {
-				throw new IllegalArgumentException("Unknown kind of completion proposal: "+completionProposalKind); //$NON-NLS-1$
+				throw new IllegalArgumentException("Unknown kind of completion proposal: "+completionProposalKind); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return 0 != (this.ignoreSet & (1 << completionProposalKind));
 	}
@@ -137,7 +137,7 @@ public abstract class CompletionRequestor {
 	public void setIgnored(int completionProposalKind, boolean ignore) {
 		if (completionProposalKind < CompletionProposal.FIRST_KIND
 			|| completionProposalKind > CompletionProposal.LAST_KIND) {
-				throw new IllegalArgumentException("Unknown kind of completion proposal: "+completionProposalKind); //$NON-NLS-1$
+				throw new IllegalArgumentException("Unknown kind of completion proposal: "+completionProposalKind); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (ignore) {
 			this.ignoreSet |= (1 << completionProposalKind);
@@ -181,12 +181,12 @@ public abstract class CompletionRequestor {
 	public boolean isAllowingRequiredProposals(int proposalKind, int requiredProposalKind) {
 		if (proposalKind < CompletionProposal.FIRST_KIND
 			|| proposalKind > CompletionProposal.LAST_KIND) {
-				throw new IllegalArgumentException("Unknown kind of completion proposal: "+requiredProposalKind); //$NON-NLS-1$
+				throw new IllegalArgumentException("Unknown kind of completion proposal: "+requiredProposalKind); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 
 		if (requiredProposalKind < CompletionProposal.FIRST_KIND
 			|| requiredProposalKind > CompletionProposal.LAST_KIND) {
-				throw new IllegalArgumentException("Unknown required kind of completion proposal: "+requiredProposalKind); //$NON-NLS-1$
+				throw new IllegalArgumentException("Unknown required kind of completion proposal: "+requiredProposalKind); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (this.requiredProposalAllowSet == null) return false;
 
@@ -216,14 +216,14 @@ public abstract class CompletionRequestor {
 	 *
 	 * @since 3.3
 	 */
-	public void setAllowsRequiredProposals(int proposalKind, int requiredProposalKind, boolean allow) {
+	public void setAllowsRequiredProposals(int proposalKind, int requiredProposalKind, boolean allow) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (proposalKind < CompletionProposal.FIRST_KIND
 			|| proposalKind > CompletionProposal.LAST_KIND) {
-				throw new IllegalArgumentException("Unknown kind of completion proposal: "+requiredProposalKind); //$NON-NLS-1$
+				throw new IllegalArgumentException("Unknown kind of completion proposal: "+requiredProposalKind); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if (requiredProposalKind < CompletionProposal.FIRST_KIND
 			|| requiredProposalKind > CompletionProposal.LAST_KIND) {
-				throw new IllegalArgumentException("Unknown required kind of completion proposal: "+requiredProposalKind); //$NON-NLS-1$
+				throw new IllegalArgumentException("Unknown required kind of completion proposal: "+requiredProposalKind); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		if (this.requiredProposalAllowSet == null) {

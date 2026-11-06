@@ -180,11 +180,11 @@ protected void assertProblemsInclude(String message, String expected) {
 	}
 }
 // Expect no error as soon as indexing is finished
-protected void assertNoProblem(char[] source, ICompilationUnit unit) throws InterruptedException, JavaModelException {
+protected void assertNoProblem(char[] source, ICompilationUnit unit) throws InterruptedException, JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IndexManager indexManager = JavaModelManager.getIndexManager();
 	if (this.problemRequestor.problemCount > 0) {
 		// If errors then wait for indexes to finish
-		while (indexManager.awaitingJobsCount() > 0) {
+		while (indexManager.awaitingJobsCount() > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			waitUntilIndexesReady();
 		}
 		// Reconcile again to see if error goes away
@@ -238,7 +238,7 @@ public void setUp() throws Exception {
 	this.problemRequestor.initialize(this.workingCopy.getSource().toCharArray());
 	startDeltas();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 	super.setUpSuite();
 
@@ -339,7 +339,7 @@ public void tearDownSuite() throws Exception {
 /*
  * Ensures that no problem is created for a reference to a type that is included in a prereq project.
  */
-public void testAccessRestriction() throws CoreException {
+public void testAccessRestriction() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {"src"}, new String[] {"JCL18_LIB"}, null, null, new String[0], null, null, new boolean[0], "bin", null, new String[][] {{"**/X.java"}}, null, CompilerOptions.getFirstSupportedJavaVersion());
 		createFolder("/P1/src/p");
@@ -361,7 +361,7 @@ public void testAccessRestriction() throws CoreException {
  * Ensures that no problem is created for a reference to a binary type that is included in a prereq project.
  * (regression test for bug 82542 Internal error during AST creation)
  */
-public void testAccessRestriction2() throws CoreException, IOException {
+public void testAccessRestriction2() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P1");
 		addLibrary(
@@ -398,7 +398,7 @@ public void testAccessRestriction2() throws CoreException, IOException {
  * Ensures that no problem is created for a reference to a type that is included and not exported in a prereq project
  * but with combineAccessRestriction flag set to false.
  */
-public void testAccessRestriction3() throws CoreException {
+public void testAccessRestriction3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		createFolder("/P1/p");
@@ -421,7 +421,7 @@ public void testAccessRestriction3() throws CoreException {
  * Ensures that a problem is created for a reference to a type that is included and not exported in a prereq project
  * but with combineAccessRestriction flag set to true.
  */
-public void testAccessRestriction4() throws CoreException {
+public void testAccessRestriction4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		createFolder("/P1/p");
@@ -448,7 +448,7 @@ public void testAccessRestriction4() throws CoreException {
  * Ensures that a problem is created for a reference to a type that is no longer accessible in a prereq project.
  * (regression test for bug 91498 Reconcile still sees old access rules)
  */
-public void testAccessRestriction5() throws CoreException {
+public void testAccessRestriction5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		createFolder("/P1/p");
@@ -512,7 +512,7 @@ public void testAddDuplicateMember() throws JavaModelException {
  * unit, and fires the Java element delta for the structural changes
  * of the addition of a field and a constructor.
  */
-public void testAddFieldAndConstructor() throws JavaModelException {
+public void testAddFieldAndConstructor() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"import p2.*;\n" +
@@ -538,7 +538,7 @@ public void testAddFieldAndConstructor() throws JavaModelException {
  * unit, and fires the Java element delta for the structural changes
  * of the addition of a field and a constructor.
  */
-public void testAddImports() throws JavaModelException {
+public void testAddImports() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"import p2.*;\n" +
@@ -608,7 +608,7 @@ public void testAddPartialMethod1() throws JavaModelException {
  * of the addition of a portion of a new method.  Ensures that when a
  * second part is added to the new method no structural changes are recognized.
  */
-public void testAddPartialMethod1and2() throws JavaModelException {
+public void testAddPartialMethod1and2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Add partial method before foo
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -639,7 +639,7 @@ public void testAddPartialMethod1and2() throws JavaModelException {
 /*
  * Ensures that the delta is correct when adding an annotation
  */
-public void testAnnotations1() throws JavaModelException {
+public void testAnnotations1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUp15WorkingCopy();
 	clearDeltas();
 	setWorkingCopyContents(
@@ -662,7 +662,7 @@ public void testAnnotations1() throws JavaModelException {
 /*
  * Ensures that the delta is correct when removing an annotation
  */
-public void testAnnotations2() throws JavaModelException {
+public void testAnnotations2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUp15WorkingCopy();
 	clearDeltas();
 	setWorkingCopyContents(
@@ -695,7 +695,7 @@ public void testAnnotations2() throws JavaModelException {
 /*
  * Ensures that the delta is correct when changing an annotation
  */
-public void testAnnotations3() throws JavaModelException {
+public void testAnnotations3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUp15WorkingCopy();
 	clearDeltas();
 	setWorkingCopyContents(
@@ -729,7 +729,7 @@ public void testAnnotations3() throws JavaModelException {
 /*
  * Ensures that the delta is correct when changing an annotation
  */
-public void testAnnotations4() throws JavaModelException {
+public void testAnnotations4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setUp15WorkingCopy();
 	clearDeltas();
 	setWorkingCopyContents(
@@ -764,7 +764,7 @@ public void testAnnotations4() throws JavaModelException {
  * Ensures that no error is reported if an annotation type's cu starts with a slash
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=214450 )
  */
-public void testAnnotations5() throws JavaModelException {
+public void testAnnotations5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit annotation = null;
 	try {
 		setUp15WorkingCopy();
@@ -845,9 +845,9 @@ public void testBroadcastAST3() throws JavaModelException {
  * Ensures that the AST broadcasted during a reconcile operation is correct.
  * (case of a working copy being reconciled twice in a batch operation)
  */
-public void testBroadcastAST4() throws CoreException {
+public void testBroadcastAST4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	JavaCore.run(
-		new IWorkspaceRunnable() {
+		new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				ReconcilerTests.this.workingCopy.reconcile(JLS_LATEST, true/*force problem detection*/, null/*primary owner*/, monitor);
 				setWorkingCopyContents(
@@ -891,7 +891,7 @@ public void testBroadcastAST5() throws JavaModelException {
  * Ensures that reconciling a subclass doesn't close the buffer while resolving its superclass.
  * (regression test for bug 62854 refactoring does not trigger reconcile)
  */
-public void testBufferOpenAfterReconcile() throws CoreException {
+public void testBufferOpenAfterReconcile() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  	try {
 		createFile(
 			"/Reconciler/src/p1/Super.java",
@@ -917,7 +917,7 @@ public void testBufferOpenAfterReconcile() throws CoreException {
  * Ensures that reconciling with a closed buffer reports an error
  * (regression test for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=138882 )
  */
-public void testBufferClosed1() throws CoreException {
+public void testBufferClosed1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wcOwner = new WorkingCopyOwner() {
 		public IBuffer createBuffer(ICompilationUnit copy) {
 			return new TestBuffer(copy);
@@ -953,7 +953,7 @@ public void testBufferClosed1() throws CoreException {
  * Ensures that reconciling with a closed buffer reports an error
  * (regression test for bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=138882 )
  */
-public void testBufferClosed2() throws CoreException {
+public void testBufferClosed2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wcOwner = new WorkingCopyOwner() {
 		public IBuffer createBuffer(ICompilationUnit copy) {
 			return new TestBuffer(copy);
@@ -995,7 +995,7 @@ public void testBufferClosed2() throws CoreException {
  * Ensure an OperationCanceledException is correctly thrown when progress monitor is canceled
  * @deprecated using deprecated code
  */
-public void testCancel() throws JavaModelException {
+public void testCancel() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"public class X {\n" +
@@ -1010,14 +1010,14 @@ public void testCancel() throws JavaModelException {
 	this.workingCopy.reconcile(AST.JLS2, true, null, counter);
 
 	// throw an OperatonCanceledException at each point isCanceled() is called
-	for (int i = 0; i < counter.count; i++) {
+	for (int i = 0; i < counter.count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		boolean gotException = false;
 		try {
 			this.workingCopy.reconcile(AST.JLS2, true, null, new Canceler(i));
 		} catch (OperationCanceledException e) {
 			gotException = true;
 		}
-		assertTrue("Should get an OperationCanceledException (" + i + ")", gotException);
+		assertTrue("Should get an OperationCanceledException (" + i + ")", gotException); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// last should not throw an OperationCanceledException
@@ -1026,7 +1026,7 @@ public void testCancel() throws JavaModelException {
 /**
  * Ensures that the delta is correct when adding a category
  */
-public void testCategories1() throws JavaModelException {
+public void testCategories1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"import p2.*;\n" +
@@ -1048,7 +1048,7 @@ public void testCategories1() throws JavaModelException {
 /**
  * Ensures that the delta is correct when removing a category
  */
-public void testCategories2() throws JavaModelException {
+public void testCategories2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"import p2.*;\n" +
@@ -1080,7 +1080,7 @@ public void testCategories2() throws JavaModelException {
 /**
  * Ensures that the delta is correct when changing a category
  */
-public void testCategories3() throws JavaModelException {
+public void testCategories3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"import p2.*;\n" +
@@ -1116,7 +1116,7 @@ public void testCategories3() throws JavaModelException {
  * Ensures that the delta is correct when adding a category to a second field
  * (regression test for bug 125675 @category not reflected in outliner in live fashion)
  */
-public void testCategories4() throws JavaModelException {
+public void testCategories4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"import p2.*;\n" +
@@ -1156,7 +1156,7 @@ public void testCategories4() throws JavaModelException {
  * Ensures that changing a binary folder used as class folder in 2 projects doesn't cause the old binary to be seen
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=210746 )
  */
-public void testChangeClassFolder() throws CoreException {
+public void testChangeClassFolder() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin");
 		createFolder("/P1/src/p");
@@ -1210,9 +1210,9 @@ public void testChangeClassFolder() throws CoreException {
  * Ensures that changing and external jar and refreshing takes the change into account
  * (regression test for bug 134110 [regression] Does not pick-up interface changes from classes in the build path)
  */
-public void testChangeExternalJar() throws CoreException, IOException {
+public void testChangeExternalJar() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("Reconciler");
-	String jarPath = getExternalPath() + "lib.jar";
+	String jarPath = getExternalPath() + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 		createJar(new String[] {
 			"p/Y.java",
@@ -1268,7 +1268,7 @@ public void testChangeExternalJar() throws CoreException, IOException {
  * test Ensures that changing an internal jar and refreshing takes the change into account
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=162621"
  */
-public void testChangeInternalJar() throws CoreException, IOException {
+public void testChangeInternalJar() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = getJavaProject("Reconciler");
 	String jarName = "b162621.jar";
 	try {
@@ -1327,7 +1327,7 @@ public void testChangeInternalJar() throws CoreException, IOException {
 
 		// change jar and refresh
 		String projectLocation = project.getProject().getLocation().toOSString();
-		String jarPath = projectLocation + File.separator + jarName;
+		String jarPath = projectLocation + File.separator + jarName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createJar(new String[] {
 			"test/after/Foo.java",
 			"package test.after;\n" +
@@ -1425,7 +1425,7 @@ public void testChangeMethodVisibility() throws JavaModelException {
 /**
  * Ensures that the correct delta is reported when closing the working copy and modifying its buffer.
  */
-public void testCloseWorkingCopy() throws JavaModelException {
+public void testCloseWorkingCopy() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBuffer buffer = this.workingCopy.getBuffer();
 	this.workingCopy.close();
 	buffer.setContents(
@@ -1449,7 +1449,7 @@ public void testCloseWorkingCopy() throws JavaModelException {
  * Ensures that a reference to a constant with type mismatch doesn't show an error.
  * (regression test for bug 17104 Compiler does not complain but "Quick Fix" ??? complains)
  */
-public void testConstantReference() throws CoreException {
+public void testConstantReference() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFile(
 			"/Reconciler/src/p1/OS.java",
@@ -1482,7 +1482,7 @@ public void testConstantReference() throws CoreException {
  * Ensures that the source type converter doesn't throw an OutOfMemoryError if converting a generic type with a primitive type array as argument
  * (regression test for bug 135296 opening a special java file results in an "out of memory" message)
  */
-public void testConvertPrimitiveTypeArrayTypeArgument() throws CoreException {
+public void testConvertPrimitiveTypeArrayTypeArgument() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit otherCopy = null;
 	try {
 		otherCopy = getWorkingCopy(
@@ -1538,7 +1538,7 @@ public void testDeleteMethod1() throws JavaModelException {
  * unit, and fires the Java element deltas for the structural changes
  * of two methods being deleted.
  */
-public void testDeleteTwoMethods() throws JavaModelException {
+public void testDeleteTwoMethods() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// create 2 methods
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -1569,7 +1569,7 @@ public void testDeleteTwoMethods() throws JavaModelException {
 /*
  * Ensures that excluded part of prereq project are not visible
  */
-public void testExcludePartOfAnotherProject1() throws CoreException {
+public void testExcludePartOfAnotherProject1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] newEntries = createClasspath("Reconciler", new String[] {"/P", "-**/internal/"});
 	try {
 		addClasspathEntries(newEntries, true);
@@ -1604,7 +1604,7 @@ public void testExcludePartOfAnotherProject1() throws CoreException {
 /*
  * Ensures that packages that are not in excluded part of prereq project are visible
  */
-public void testExcludePartOfAnotherProject2() throws CoreException {
+public void testExcludePartOfAnotherProject2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] newEntries = createClasspath("Reconciler", new String[] {"/P", "-**/internal/"});
 	try {
 		addClasspathEntries(newEntries, true);
@@ -1635,7 +1635,7 @@ public void testExcludePartOfAnotherProject2() throws CoreException {
 /*
  * Ensures that an external working copy can be reconciled with no error.
  */
-public void testExternal1() throws CoreException {
+public void testExternal1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	this.problemRequestor =  new ProblemRequestor();
@@ -1660,7 +1660,7 @@ public void testExternal1() throws CoreException {
  * Ensures that an external working copy with a container classpath entry can be reconciled with no exception.
  * (regression test for bug 148970 Exceptions opening external Java file)
  */
-public void testExternal2() throws CoreException {
+public void testExternal2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	class LogListener implements ILogListener {
     	IStatus loggedStatus;
         public void logging(IStatus status, String plugin) {
@@ -1696,7 +1696,7 @@ public void testExternal2() throws CoreException {
  * an external working copy.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=216772 )
  */
-public void testExternal3() throws Exception {
+public void testExternal3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 		this.workingCopy = null;
@@ -1742,7 +1742,7 @@ public void testExternal3() throws Exception {
 /*
  * Ensures that included part of prereq project are visible
  */
-public void testIncludePartOfAnotherProject1() throws CoreException {
+public void testIncludePartOfAnotherProject1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] newEntries = createClasspath("Reconciler", new String[] {"/P", "+**/api/"});
 	try {
 		addClasspathEntries(newEntries, true);
@@ -1773,7 +1773,7 @@ public void testIncludePartOfAnotherProject1() throws CoreException {
 /*
  * Ensures that packages that are not in included part of prereq project are not visible
  */
-public void testIncludePartOfAnotherProject2() throws CoreException {
+public void testIncludePartOfAnotherProject2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] newEntries = createClasspath("Reconciler", new String[] {"/P", "+**/api/|-**"});
 	try {
 		addClasspathEntries(newEntries, true);
@@ -1808,7 +1808,7 @@ public void testIncludePartOfAnotherProject2() throws CoreException {
 /**
  * Start with no imports, add an import, and then append to the import name.
  */
-public void testGrowImports() throws JavaModelException {
+public void testGrowImports() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// no imports
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -1849,7 +1849,7 @@ public void testGrowImports() throws JavaModelException {
  * on another classpath entry.
  * (regression test for bug 98127 Access restrictions started showing up after switching to bundle)
  */
-public void testIgnoreIfBetterNonAccessibleRule1() throws CoreException {
+public void testIgnoreIfBetterNonAccessibleRule1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] newEntries = createClasspath("Reconciler", new String[] {"/P1", "?**/internal/", "/P2", "+**/internal/Y"});
 	try {
 		addClasspathEntries(newEntries, true);
@@ -1890,7 +1890,7 @@ public void testIgnoreIfBetterNonAccessibleRule1() throws CoreException {
  * on another classpath entry.
  * (regression test for bug 98127 Access restrictions started showing up after switching to bundle)
  */
-public void testIgnoreIfBetterNonAccessibleRule2() throws CoreException {
+public void testIgnoreIfBetterNonAccessibleRule2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] newEntries = createClasspath("Reconciler", new String[] {"/P1", "?**/internal/", "/P2", "~**/internal/Y"});
 	try {
 		addClasspathEntries(newEntries, true);
@@ -1935,7 +1935,7 @@ public void testIgnoreIfBetterNonAccessibleRule2() throws CoreException {
  * on another classpath entry.
  * (regression test for bug 98127 Access restrictions started showing up after switching to bundle)
  */
-public void testIgnoreIfBetterNonAccessibleRule3() throws CoreException {
+public void testIgnoreIfBetterNonAccessibleRule3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] newEntries = createClasspath("Reconciler", new String[] {"/P1", "?**/internal/", "/P2", "-**/internal/Y"});
 	try {
 		addClasspathEntries(newEntries, true);
@@ -1980,7 +1980,7 @@ public void testIgnoreIfBetterNonAccessibleRule3() throws CoreException {
  * if no other classpath entry matches it.
  * (regression test for bug 98127 Access restrictions started showing up after switching to bundle)
  */
-public void testIgnoreIfBetterNonAccessibleRule4() throws CoreException {
+public void testIgnoreIfBetterNonAccessibleRule4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] newEntries = createClasspath("Reconciler", new String[] {"/P1", "?**/internal/"});
 	try {
 		addClasspathEntries(newEntries, true);
@@ -2015,7 +2015,7 @@ public void testIgnoreIfBetterNonAccessibleRule4() throws CoreException {
 /**
  * Introduces a syntax error in the modifiers of a method.
  */
-public void testMethodWithError01() throws CoreException {
+public void testMethodWithError01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Introduce syntax error
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -2068,7 +2068,7 @@ public void testMethodWithError01() throws CoreException {
  * Introduces a syntax error in the modifiers of a method.
  * Variant to force the expected modifier change.
  */
-public void testMethodWithError01a() throws CoreException {
+public void testMethodWithError01a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Introduce syntax error
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -2122,7 +2122,7 @@ public void testMethodWithError01a() throws CoreException {
 /**
  * Test reconcile force flag
  */
-public void testMethodWithError02() throws CoreException {
+public void testMethodWithError02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 		"package p1;\n" +
 		"import p2.*;\n" +
@@ -2150,7 +2150,7 @@ public void testMethodWithError02() throws CoreException {
 /**
  * Test reconcile force flag off
  */
-public void testMethodWithError03() throws CoreException {
+public void testMethodWithError03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 		"package p1;\n" +
 		"import p2.*;\n" +
@@ -2172,7 +2172,7 @@ public void testMethodWithError03() throws CoreException {
 /**
  * Test reconcile force flag + cancel
  */
-public void testMethodWithError04() throws CoreException {
+public void testMethodWithError04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	CancelingProblemRequestor myPbRequestor = new CancelingProblemRequestor();
 
@@ -2210,7 +2210,7 @@ public void testMethodWithError04() throws CoreException {
 /**
  * Test reconcile force flag off
  */
-public void testMethodWithError05() throws CoreException {
+public void testMethodWithError05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createFolder("/Reconciler/src/tests");
 		String contents =
@@ -2288,7 +2288,7 @@ public void testMethodWithError05() throws CoreException {
  * Test that the creation of a working copy detects errors
  * (regression test for bug 33757 Problem not detected when opening a working copy)
  */
-public void testMethodWithError06() throws CoreException {
+public void testMethodWithError06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	try {
@@ -2322,7 +2322,7 @@ public void testMethodWithError06() throws CoreException {
  * Test that the opening of a working copy detects errors
  * (regression test for bug 33757 Problem not detected when opening a working copy)
  */
-public void testMethodWithError07() throws CoreException {
+public void testMethodWithError07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	try {
@@ -2361,7 +2361,7 @@ public void testMethodWithError07() throws CoreException {
 }
 
 /** tests that after closing a workingcopy all elements are removed from JavaModelCache**/
-public void testCloseMethodArgumentChildren() throws Exception {
+public void testCloseMethodArgumentChildren() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy();
 	this.workingCopy = null;
 	try {
@@ -2404,7 +2404,7 @@ private static long getCachedElementCount(WorkingCopyOwner owner) throws Excepti
  * Test that the units with similar names aren't presenting each other errors
  * (regression test for bug 39475)
  */
-public void testMethodWithError08() throws CoreException {
+public void testMethodWithError08() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	try {
@@ -2452,7 +2452,7 @@ public void testMethodWithError08() throws CoreException {
 /*
  * Scenario of reconciling using a working copy owner
  */
-public void testMethodWithError09() throws CoreException {
+public void testMethodWithError09() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	ICompilationUnit workingCopy1 = null;
@@ -2490,7 +2490,7 @@ public void testMethodWithError09() throws CoreException {
 /*
  * Scenario of reconciling using a working copy owner  (68557)
  */
-public void testMethodWithError10() throws CoreException {
+public void testMethodWithError10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	ICompilationUnit workingCopy1 = null;
@@ -2535,7 +2535,7 @@ public void testMethodWithError10() throws CoreException {
 /*
  * Scenario of reconciling using a working copy owner (68557)
  */
-public void testMethodWithError11() throws CoreException {
+public void testMethodWithError11() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	ICompilationUnit workingCopy1 = null;
@@ -2583,7 +2583,7 @@ public void testMethodWithError11() throws CoreException {
 /*
  * Scenario of reconciling using a working copy owner (68557 variation with wildcards)
  */
-public void testMethodWithError12() throws CoreException {
+public void testMethodWithError12() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	ICompilationUnit workingCopy1 = null;
@@ -2631,7 +2631,7 @@ public void testMethodWithError12() throws CoreException {
 /*
  * Scenario of reconciling using a working copy owner (68730)
  */
-public void testMethodWithError13() throws CoreException {
+public void testMethodWithError13() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	ICompilationUnit workingCopy1 = null;
@@ -2683,7 +2683,7 @@ public void testMethodWithError13() throws CoreException {
 /*
  * Scenario of reconciling using a working copy owner (66424)
  */
-public void testMethodWithError14() throws CoreException {
+public void testMethodWithError14() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	ICompilationUnit workingCopy1 = null;
@@ -2730,7 +2730,7 @@ public void testMethodWithError14() throws CoreException {
 /**
  * Ensures that the reconciler handles member move correctly.
  */
-public void testMoveMember() throws JavaModelException {
+public void testMoveMember() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"import p2.*;\n" +
@@ -2808,7 +2808,7 @@ public void testNoChanges3() throws JavaModelException {
  * Ensures that using a non-generic method with no parameter and with a raw receiver type doesn't create a type safety warning
  * (regression test for bug 105756 [1.5][model] Incorrect warning on using raw types)
  */
-public void testRawUsage() throws CoreException {
+public void testRawUsage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit otherCopy = null;
 	try {
 		otherCopy = getWorkingCopy(
@@ -2840,7 +2840,7 @@ public void testRawUsage() throws CoreException {
 /*
  * Ensures that a reconcile participant is notified when a working copy is reconciled.
  */
-public void testReconcileParticipant01() throws CoreException {
+public void testReconcileParticipant01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ReconcileParticipant participant = new ReconcileParticipant();
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -2864,7 +2864,7 @@ public void testReconcileParticipant01() throws CoreException {
 /*
  * Ensures that a reconcile participant is not notified if not participating.
  */
-public void testReconcileParticipant02() throws CoreException {
+public void testReconcileParticipant02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ReconcileParticipant participant = new ReconcileParticipant(){
 		@Override
 		public boolean isActive(IJavaProject project) {
@@ -2890,7 +2890,7 @@ public void testReconcileParticipant02() throws CoreException {
 /*
  * Ensures that a reconcile participant is notified with the correct AST.
  */
-public void testReconcileParticipant03() throws CoreException {
+public void testReconcileParticipant03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ReconcileParticipant participant = new ReconcileParticipant();
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -2916,7 +2916,7 @@ public void testReconcileParticipant03() throws CoreException {
 /*
  * Ensures that the same AST as the one a reconcile participant requested is reported.
  */
-public void testReconcileParticipant04() throws CoreException {
+public void testReconcileParticipant04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ReconcileParticipant participant = new ReconcileParticipant();
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -2937,7 +2937,7 @@ public void testReconcileParticipant04() throws CoreException {
 /*
  * Ensures that a participant can fix an error during reconcile.
  */
-public void testReconcileParticipant05() throws CoreException {
+public void testReconcileParticipant05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	new ReconcileParticipant() {
 		/**
 		 * @deprecated
@@ -2976,7 +2976,7 @@ public void testReconcileParticipant05() throws CoreException {
 /*
  * Ensures that a participant can introduce an error during reconcile.
  */
-public void testReconcileParticipant06() throws CoreException {
+public void testReconcileParticipant06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	new ReconcileParticipant() {
 		/**
 		 * @deprecated
@@ -3021,7 +3021,7 @@ public void testReconcileParticipant06() throws CoreException {
  * in a project with insufficient source level.
  * (regression test for bug 125291 Enable conditional loading of APT)
  */
-public void testReconcileParticipant07() throws CoreException {
+public void testReconcileParticipant07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project = this.workingCopy.getJavaProject();
 	String originalSourceLevel = project.getOption(JavaCore.COMPILER_SOURCE, true);
 	try {
@@ -3051,7 +3051,7 @@ public void testReconcileParticipant07() throws CoreException {
  * and if the working copy is already consistent and the forceProblemDetection flag is false.
  * (regression test for bug 154170 Printing warnings breaks in-editor quick fixes)
  */
-public void testReconcileParticipant08() throws CoreException {
+public void testReconcileParticipant08() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// set working copy contents and ensure it is consistent
 	String contents =
 		"package p1;\n" +
@@ -3102,7 +3102,7 @@ public void testReconcileParticipant09() throws CoreException {
  * Ensures that a reconcile participant is notified when a working copy is reconciled
  * and it was consistent and forcing problem detection is on
  */
-public void testReconcileParticipant10() throws CoreException {
+public void testReconcileParticipant10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.makeConsistent(null);
 	final boolean[] participantReconciled = new boolean[1];
 	new ReconcileParticipant() {
@@ -3125,7 +3125,7 @@ public void testReconcileParticipant10() throws CoreException {
  * Ensures that the delta is still correct if a participant resets the ast during reconcile
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=210310)
  */
-public void testReconcileParticipant11() throws CoreException {
+public void testReconcileParticipant11() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	new ReconcileParticipant() {
 		/**
 		 * @deprecated
@@ -3155,7 +3155,7 @@ public void testReconcileParticipant11() throws CoreException {
  * Ensures that a misbehaving reconcile participant doesn't interfere with a reconcile operation
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=248680 )
  */
-public void testReconcileParticipant12() throws CoreException {
+public void testReconcileParticipant12() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		TestCompilationParticipant.failToInstantiate = true;
 		simulateExitRestart();
@@ -3187,7 +3187,7 @@ public void testReconcileParticipant12() throws CoreException {
  * Ensures that errors are fixed if renaming the .classpath file causes the missing type to be visible.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=207890)
  */
-public void testRenameClasspathFile() throws CoreException {
+public void testRenameClasspathFile() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		createJavaProject("P1");
@@ -3263,7 +3263,7 @@ public void testRenameMethod1() throws JavaModelException {
  * unit, and fires the Java element delta for the structural changes
  * of the addition of a portion of a new method.
  */
-public void testRenameWithSyntaxError() throws JavaModelException {
+public void testRenameWithSyntaxError() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"import p2.*;\n" +
@@ -3293,7 +3293,7 @@ public void testRenameWithSyntaxError() throws JavaModelException {
  * Ensure that warning are suppressed by an @SuppressWarnings annotation.
  */
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=95056
-public void testSuppressWarnings1() throws JavaModelException {
+public void testSuppressWarnings1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit otherCopy = null;
 	try {
 		otherCopy = getWorkingCopy(
@@ -3334,7 +3334,7 @@ public void testSuppressWarnings1() throws JavaModelException {
 /*
  * Ensure that warning are suppressed by an @SuppressWarning annotation.
  */
-public void testSuppressWarnings2() throws JavaModelException {
+public void testSuppressWarnings2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit otherCopy = null;
 	try {
 		otherCopy = getWorkingCopy(
@@ -3382,7 +3382,7 @@ public void testSuppressWarnings2() throws JavaModelException {
 /*
  * Ensure that warning are suppressed by an @SuppressWarning annotation.
  */
-public void testSuppressWarnings3() throws JavaModelException {
+public void testSuppressWarnings3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit otherCopy = null;
 	try {
 		otherCopy = getWorkingCopy(
@@ -3421,7 +3421,7 @@ public void testSuppressWarnings3() throws JavaModelException {
 /*
  * Ensure that warning are suppressed by an @SuppressWarnings annotation.
  */
-public void testSuppressWarnings4() throws JavaModelException {
+public void testSuppressWarnings4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit otherCopy = null;
 	try {
 		otherCopy = getWorkingCopy(
@@ -3462,7 +3462,7 @@ public void testSuppressWarnings4() throws JavaModelException {
 /**
  * Ensure that an unhandled exception is detected.
  */
-public void testUnhandledException() throws JavaModelException {
+public void testUnhandledException() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"public class X {\n" +
@@ -3499,7 +3499,7 @@ public void testMakeConsistentFoolingReconciler() throws JavaModelException {
  * AST on reconcile: AST without Javadoc comments created
  * @deprecated using deprecated code
  */
-public void testBug60689() throws JavaModelException {
+public void testBug60689() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents("public class X {\n" +
 		"	/**\n" +
 		"	 * Returns the length of the string representing the number of \n" +
@@ -3522,7 +3522,7 @@ public void testBug60689() throws JavaModelException {
  * Ensures that a working copy in a 1.4 project that references a 1.5 project can be reconciled without error.
  * (regression test for bug 98434 A non-1.5 project with 1.5 projects in the classpath does not show methods with generics)
  */
-public void testTwoProjectsWithDifferentCompliances() throws CoreException {
+public void testTwoProjectsWithDifferentCompliances() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	try {
 		createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getLatestVersion());
@@ -3563,7 +3563,7 @@ public void testTwoProjectsWithDifferentCompliances() throws CoreException {
  * Ensures that a method that has a type parameter with bound can be overriden in another working copy.
  * (regression test for bug 76780 [model] return type not recognized correctly on some generic methods)
  */
-public void testTypeParameterWithBound() throws CoreException {
+public void testTypeParameterWithBound() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	ICompilationUnit workingCopy1 = null;
@@ -3603,7 +3603,7 @@ public void testTypeParameterWithBound() throws CoreException {
  * Ensures that a method that has a type parameter starting with $ can be reconciled against.
  * (regression test for bug 91709 [1.5][model] Quick Fix Error but no Problem Reported)
  */
-public void testTypeParameterStartingWithDollar() throws CoreException {
+public void testTypeParameterStartingWithDollar() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	ICompilationUnit workingCopy1 = null;
@@ -3644,7 +3644,7 @@ public void testTypeParameterStartingWithDollar() throws CoreException {
  * Ensures that a working copy with a type with a dollar name can be reconciled without errors.
  * (regression test for bug 117121 Can't create class called A$B in eclipse)
  */
-public void testTypeWithDollarName() throws CoreException {
+public void testTypeWithDollarName() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	try {
@@ -3674,7 +3674,7 @@ public void testTypeWithDollarName() throws CoreException {
  * Ensures that a working copy with a type with a dollar name can be reconciled against without errors.
  * (regression test for bug 125301 Handling of classes with $ in class name.)
  */
-public void testTypeWithDollarName2() throws CoreException {
+public void testTypeWithDollarName2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit workingCopy2 = null;
 	try {
 		WorkingCopyOwner owner = this.workingCopy.getOwner();
@@ -3706,7 +3706,7 @@ public void testTypeWithDollarName2() throws CoreException {
  * Ensures that a working copy with a type with a dollar name can be reconciled against without errors.
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=232803 )
  */
-public void testTypeWithDollarName3() throws CoreException {
+public void testTypeWithDollarName3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit workingCopy2 = null;
 	try {
 		WorkingCopyOwner owner = this.workingCopy.getOwner();
@@ -3742,7 +3742,7 @@ public void testTypeWithDollarName3() throws CoreException {
 /*
  * Ensures that a varargs method can be referenced from another working copy.
  */
-public void testVarargs() throws CoreException {
+public void testVarargs() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopy.discardWorkingCopy(); // don't use the one created in setUp()
 	this.workingCopy = null;
 	ICompilationUnit workingCopy1 = null;
@@ -3785,7 +3785,7 @@ public void testVarargs() throws CoreException {
  * Bug 114338:[javadoc] Reconciler reports wrong javadoc warning (missing return type)
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=114338"
  */
-public void testBug114338() throws CoreException {
+public void testBug114338() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Set initial CU content
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -3828,7 +3828,7 @@ public void testBug114338() throws CoreException {
  * Bug 36032:[plan] JavaProject.findType() fails to find second type in source file
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=36032"
  */
-public void testBug36032a() throws CoreException, InterruptedException {
+public void testBug36032a() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Resources creation
 		createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "bin");
@@ -3878,7 +3878,7 @@ public void testBug36032a() throws CoreException, InterruptedException {
 		deleteProject("P");
 	}
 }
-public void testBug36032b() throws CoreException, InterruptedException {
+public void testBug36032b() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Resources creation
 		createJavaProject("P", new String[] {""}, new String[] {"JCL18_LIB"}, "bin");
@@ -3942,7 +3942,7 @@ public void testBug36032b() throws CoreException, InterruptedException {
 	}
 }
 // Secondary types used through multiple projects
-public void testBug36032c() throws CoreException, InterruptedException {
+public void testBug36032c() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Create first project
 		createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, "bin");
@@ -3993,7 +3993,7 @@ public void testBug36032c() throws CoreException, InterruptedException {
  * Bug 118823: [model] Secondary types cache not reset while removing _all_ secondary types from CU
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=118823"
  */
-public void testBug118823() throws CoreException, InterruptedException, IOException {
+public void testBug118823() throws CoreException, InterruptedException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Resources creation
 		createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, "bin");
@@ -4038,7 +4038,7 @@ public void testBug118823() throws CoreException, InterruptedException, IOExcept
 			"public class Test {}\n" +
 			"class Secondary{}\n";
 		getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					deleteFile("/P1/Test.java");
 					createFile(
@@ -4074,7 +4074,7 @@ public void testBug118823() throws CoreException, InterruptedException, IOExcept
 		deleteProject("P2");
 	}
 }
-public void testBug118823b() throws CoreException, InterruptedException {
+public void testBug118823b() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Resources creation
 		createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, "bin");
@@ -4142,7 +4142,7 @@ public void testBug118823b() throws CoreException, InterruptedException {
 		deleteProject("P2");
 	}
 }
-public void testBug118823c() throws CoreException, InterruptedException {
+public void testBug118823c() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Resources creation
 		createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, "bin");
@@ -4221,7 +4221,7 @@ public void testBug118823c() throws CoreException, InterruptedException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=107931
 // won't be fixed; this test watches the current behavior in case we change
 // our mind
-public void test1001() throws CoreException, InterruptedException, IOException {
+public void test1001() throws CoreException, InterruptedException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Resources creation
 		String sources[] = new String[3];
@@ -4252,7 +4252,7 @@ public void test1001() throws CoreException, InterruptedException, IOException {
 			"/P3/Y.java",
 			sources[2]
 		);
-		for (int i = 0 ; i < sources.length ; i++) {
+		for (int i = 0 ; i < sources.length ; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			sourcesAsCharArrays[i] = sources[i].toCharArray();
 		}
 		waitUntilIndexesReady();
@@ -4292,7 +4292,7 @@ public void test1001() throws CoreException, InterruptedException, IOException {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=107931
 // variant: having all needed projects on the classpath solves the issue
-public void test1002() throws CoreException, InterruptedException, IOException {
+public void test1002() throws CoreException, InterruptedException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Resources creation
 		String sources[] = new String[3];
@@ -4323,7 +4323,7 @@ public void test1002() throws CoreException, InterruptedException, IOException {
 			"/P3/Y.java",
 			sources[2]
 		);
-		for (int i = 0 ; i < sources.length ; i++) {
+		for (int i = 0 ; i < sources.length ; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			sourcesAsCharArrays[i] = sources[i].toCharArray();
 		}
 		waitUntilIndexesReady();
@@ -4364,7 +4364,7 @@ public void test1002() throws CoreException, InterruptedException, IOException {
 /*
  * Ensure that fallthrough diagnostics are silenced by $FALL-THROUGH$ comments
  */
-public void testFallthroughDiagnosis() throws CoreException, InterruptedException {
+public void testFallthroughDiagnosis() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// Resources creation
 		IJavaProject p1 = createJavaProject("P1", new String[] {""}, new String[] {"JCL18_LIB"}, "bin");
@@ -4408,7 +4408,7 @@ public void testFallthroughDiagnosis() throws CoreException, InterruptedExceptio
 /*
  * Ensure that the option ICompilationUnit.IGNORE_METHOD_BODIES is honored
  */
-public void testIgnoreMethodBodies1() throws CoreException {
+public void testIgnoreMethodBodies1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"import p2.*;" +
@@ -4439,7 +4439,7 @@ public void testIgnoreMethodBodies1() throws CoreException {
 			ast
 		);
 }
-public void testIgnoreMethodBodies2() throws CoreException {
+public void testIgnoreMethodBodies2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	setWorkingCopyContents(
 		"package p1;\n" +
 		"import p2.*;" +
@@ -4469,7 +4469,7 @@ public void testIgnoreMethodBodies2() throws CoreException {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=130000
-public void testIgnoreMethodBodies3() throws CoreException {
+public void testIgnoreMethodBodies3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	new ReconcileParticipant2();
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -4504,7 +4504,7 @@ public void testIgnoreMethodBodies3() throws CoreException {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=130000
-public void testIgnoreMethodBodies4() throws CoreException {
+public void testIgnoreMethodBodies4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	new ReconcileParticipant3();
 	setWorkingCopyContents(
 		"package p1;\n" +
@@ -4539,7 +4539,7 @@ public void testIgnoreMethodBodies4() throws CoreException {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=305259
-public void testGenericAPIUsageFromA14Project() throws CoreException {
+public void testGenericAPIUsageFromA14Project() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project14 = null;
 	IJavaProject project15 = null;
 	try {
@@ -4606,7 +4606,7 @@ public void testGenericAPIUsageFromA14Project() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=305259 (same as above, but with a JSR14 target)
-public void testGenericAPIUsageFromA14Project2() throws CoreException {
+public void testGenericAPIUsageFromA14Project2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project14 = null;
 	IJavaProject project15 = null;
 	try {
@@ -4673,7 +4673,7 @@ public void testGenericAPIUsageFromA14Project2() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=323633
-public void testGenericAPIUsageFromA14Project3() throws CoreException {
+public void testGenericAPIUsageFromA14Project3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project14 = null;
 	IJavaProject project15 = null;
 	try {
@@ -4781,7 +4781,7 @@ public void testGenericAPIUsageFromA14Project3() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=323633 (variation: 15 uses 14)
-public void testGenericAPIUsageFromA14Project4() throws CoreException {
+public void testGenericAPIUsageFromA14Project4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project14 = null;
 	IJavaProject project15 = null;
 	try {
@@ -4849,7 +4849,7 @@ public void testGenericAPIUsageFromA14Project4() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=325633
-public void testGenericAPIUsageFromA14Project5() throws CoreException {
+public void testGenericAPIUsageFromA14Project5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project14 = null;
 	IJavaProject project15 = null;
 	try {
@@ -4920,7 +4920,7 @@ public void testGenericAPIUsageFromA14Project5() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=324850
-public void testGenericAPIUsageFromA14Project6() throws CoreException {
+public void testGenericAPIUsageFromA14Project6() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project14 = null;
 	IJavaProject project15 = null;
 	try {
@@ -4996,7 +4996,7 @@ public void testGenericAPIUsageFromA14Project6() throws CoreException {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=328775
-public void test14ProjectWith15JRE() throws CoreException, IOException {
+public void test14ProjectWith15JRE() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project14 = null;
 	try {
 		project14 = createJavaProject("Reconciler1415", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin");
@@ -5036,7 +5036,7 @@ public void test14ProjectWith15JRE() throws CoreException, IOException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=329593
-public void testJsr14TargetProjectWith14JRE() throws CoreException, IOException {
+public void testJsr14TargetProjectWith14JRE() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project14 = null;
 	try {
 		project14 = createJavaProject("Reconciler1415", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin");
@@ -5079,7 +5079,7 @@ public void testJsr14TargetProjectWith14JRE() throws CoreException, IOException 
 			deleteProject(project14);
 	}
 }
-public void testGenericAPIUsageFromA14Project9() throws CoreException {
+public void testGenericAPIUsageFromA14Project9() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project14 = null;
 	IJavaProject project15 = null;
 	try {
@@ -5154,7 +5154,7 @@ public void testGenericAPIUsageFromA14Project9() throws CoreException {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=374176
 // verify that a reconcile does not result in errors for a CU whose package does not have
 // default null annotations
-public void testBug374176() throws CoreException, IOException, InterruptedException {
+public void testBug374176() throws CoreException, IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project15 = null;
 	try {
 		project15 = createJavaProject("TestAnnot", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin");
@@ -5198,7 +5198,7 @@ public void testBug374176() throws CoreException, IOException, InterruptedExcept
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=374176
 // verify that a reconcile DOES result in errors for package-info whose package does not have
 // default null annotations
-public void testBug374176b() throws CoreException, IOException, InterruptedException {
+public void testBug374176b() throws CoreException, IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project15 = null;
 	try {
 		project15 = createJavaProject("TestAnnot", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin");
@@ -5244,7 +5244,7 @@ public void testBug374176b() throws CoreException, IOException, InterruptedExcep
 			deleteProject(project15);
 	}
 }
-public void testSecondaryTypeDeletion() throws CoreException, IOException {
+public void testSecondaryTypeDeletion() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Set working copy content with no error
 	setUpWorkingCopy("/Reconciler/src/X.java",
@@ -5282,7 +5282,7 @@ public void testSecondaryTypeDeletion() throws CoreException, IOException {
 	}
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=440592, Cannot easily launch application in case of certain usage of lambda expressions
-public void testBug440592() throws Exception {
+public void testBug440592() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_FULL"}, "bin", CompilerOptions.getFirstSupportedJavaVersion(), true);
 		createFile(
@@ -5383,7 +5383,7 @@ public void testBug440592() throws Exception {
 		deleteProjects(new String[] { "P" });
 	}
 }
-public void testBug485092() throws CoreException, InterruptedException {
+public void testBug485092() throws CoreException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	IJavaProject project15 = null;
 	IJavaProject project18 = null;
@@ -5429,7 +5429,7 @@ public void testBug485092() throws CoreException, InterruptedException {
 		project18.setOption(JavaCore.COMPILER_ANNOTATION_NULL_ANALYSIS, JavaCore.ENABLED);
 		Bundle[] bundles = Platform.getBundles("org.eclipse.jdt.annotation","[2.0.0,3.0.0)");
 		File bundleFile = FileLocator.getBundleFileLocation(bundles[0]).get();
-		String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath();
+		String annotationsLib = bundleFile.isDirectory() ? bundleFile.getPath()+"/bin" : bundleFile.getPath(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		IClasspathEntry nullAnnotationsClassPathEntry = JavaCore.newLibraryEntry(new Path(annotationsLib), null, null);
 
 		IClasspathEntry[] oldClasspath = project18.getRawClasspath();
@@ -5460,7 +5460,7 @@ public void testBug485092() throws CoreException, InterruptedException {
 			deleteProject(project18);
 	}
 }
-public void testBug534865() throws CoreException, IOException {
+public void testBug534865() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject project18 = null;
 	try {
 		project18 = createJavaProject("Reconciler18", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin");
@@ -5515,7 +5515,7 @@ public void testBug534865() throws CoreException, IOException {
 			deleteProject(project18);
 	}
 }
-public void testBug562637() throws CoreException, IOException, InterruptedException {
+public void testBug562637() throws CoreException, IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE15) return;
 	IJavaProject project15 = null;
 	try {
@@ -5583,7 +5583,7 @@ public void testBug562637() throws CoreException, IOException, InterruptedExcept
 			deleteProject(project15);
 	}
 }
-public void testBug564613_001() throws CoreException, IOException, InterruptedException {
+public void testBug564613_001() throws CoreException, IOException, InterruptedException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE17) return;
 	IJavaProject project15 = null;
 	try {

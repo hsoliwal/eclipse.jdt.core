@@ -58,7 +58,7 @@ public class SuperMethodReference extends MethodReference {
 	private static final List PROPERTY_DESCRIPTORS_8_0;
 
 	static {
-		List propertyList = new ArrayList(4);
+		List propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(SuperMethodReference.class, propertyList);
 		addProperty(QUALIFIER_PROPERTY, propertyList);
 		addProperty(TYPE_ARGUMENTS_PROPERTY, propertyList);
@@ -115,7 +115,7 @@ public class SuperMethodReference extends MethodReference {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == QUALIFIER_PROPERTY) {
 			if (get) {

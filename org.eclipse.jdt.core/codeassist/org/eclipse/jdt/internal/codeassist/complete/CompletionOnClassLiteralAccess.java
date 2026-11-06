@@ -52,7 +52,7 @@ public class CompletionOnClassLiteralAccess extends ClassLiteralAccess implement
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
 
-		output.append("<CompleteOnClassLiteralAccess:"); //$NON-NLS-1$
+		output.append("<CompleteOnClassLiteralAccess:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return this.type.print(0, output).append('.').append(this.completionIdentifier).append('>');
 	}
 

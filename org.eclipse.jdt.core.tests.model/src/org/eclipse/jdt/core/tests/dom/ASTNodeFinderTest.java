@@ -54,7 +54,7 @@ public class ASTNodeFinderTest extends ConverterTestSetup {
 		return buildModelTestSuite(ASTNodeFinderTest.class);
 	}
 
-	public void test0001() throws JavaModelException {
+	public void test0001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/NodeFinder/src/test0001/Test.java", false);
 		String contents =
 			"package test0001;\n" +
@@ -75,7 +75,7 @@ public class ASTNodeFinderTest extends ConverterTestSetup {
 		NodeFinder nodeFinder = new NodeFinder(result, index, index2 - index + 1);
 		assertTrue("Different node", nodeFinder.getCoveringNode() == node);
 	}
-	public void test0002() throws JavaModelException {
+	public void test0002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/NodeFinder/src/test0001/Test.java", false);
 		String contents =
 			"package test0001;\n" +
@@ -95,7 +95,7 @@ public class ASTNodeFinderTest extends ConverterTestSetup {
 		NodeFinder nodeFinder = new NodeFinder(result, index, className.length);
 		assertTrue("Different node", nodeFinder.getCoveredNode() == node);
 	}
-	public void test0003() throws JavaModelException {
+	public void test0003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/NodeFinder/src/test0001/Test.java", false);
 		String contents =
 			"package test0001;\n" +
@@ -117,7 +117,7 @@ public class ASTNodeFinderTest extends ConverterTestSetup {
 		NodeFinder nodeFinder = new NodeFinder(result, index, index2 - index + 1);
 		assertTrue("Different node", nodeFinder.getCoveringNode() == node);
 	}
-	public void test0004() throws JavaModelException {
+	public void test0004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/NodeFinder/src/test0001/Test.java", false);
 		String contents =
 			"package test0001;\n" +
@@ -138,7 +138,7 @@ public class ASTNodeFinderTest extends ConverterTestSetup {
 		NodeFinder nodeFinder = new NodeFinder(result, index, className.length);
 		assertTrue("Different node", nodeFinder.getCoveredNode() == node);
 	}
-	public void test0005() throws JavaModelException {
+	public void test0005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/NodeFinder/src/test0001/Test.java", false);
 		String contents =
 			"package test0001;\n" +
@@ -159,7 +159,7 @@ public class ASTNodeFinderTest extends ConverterTestSetup {
 		NodeFinder nodeFinder = new NodeFinder(result, index, index2 - index + 1);
 		assertTrue("Different node", nodeFinder.getCoveringNode() == node);
 	}
-	public void test0006() throws JavaModelException {
+	public void test0006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/NodeFinder/src/test0001/Test.java", false);
 		String contents =
 			"package test0001;\n" +
@@ -179,7 +179,7 @@ public class ASTNodeFinderTest extends ConverterTestSetup {
 		NodeFinder nodeFinder = new NodeFinder(result, index, className.length);
 		assertTrue("Different node", nodeFinder.getCoveredNode() == node);
 	}
-	public void test0007() throws JavaModelException {
+	public void test0007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/NodeFinder/src/test0001/Test.java", false);
 		String contents =
 			"package test0001;\n" +
@@ -200,7 +200,7 @@ public class ASTNodeFinderTest extends ConverterTestSetup {
 		assertNull("No covered node", nodeFinder.getCoveredNode());
 		assertNotNull("Got a covering node", node);
 	}
-	public void test0008() throws JavaModelException {
+	public void test0008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/NodeFinder/src/test0001/Test.java", false);
 		String contents =
 			"package test0001;\n" +
@@ -222,7 +222,7 @@ public class ASTNodeFinderTest extends ConverterTestSetup {
 		assertNull("No covered node", nodeFinder.getCoveredNode());
 		assertNotNull("Got a covering node", node);
 	}
-	public void test0009() throws JavaModelException {
+	public void test0009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getWorkingCopy("/NodeFinder/src/test0001/Test.java", false);
 		String contents =
 			"package test0001;\n" +

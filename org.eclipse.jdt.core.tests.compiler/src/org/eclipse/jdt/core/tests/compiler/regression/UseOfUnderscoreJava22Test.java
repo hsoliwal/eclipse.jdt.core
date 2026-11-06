@@ -36,7 +36,7 @@ public class UseOfUnderscoreJava22Test extends AbstractBatchCompilerTest {
 			return;
 		runNegativeTest(false/*skipJavac*/, null, testFiles, expectedCompilerLog);
 	}
-	public void testReportsUnderscoreInstanceMemberAsError() {
+	public void testReportsUnderscoreInstanceMemberAsError() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String message = "As of release 22, '_' is only allowed to declare unnamed patterns, local variables, exception parameters or lambda parameters";
 		String errorLevel = "ERROR";
 
@@ -49,7 +49,7 @@ public class UseOfUnderscoreJava22Test extends AbstractBatchCompilerTest {
 				}
 				""" },
 
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. " + errorLevel + " in A.java (at line 2)\n" +
 				"	int _ = 1;\n" +
 				"	    ^\n" +
@@ -57,7 +57,7 @@ public class UseOfUnderscoreJava22Test extends AbstractBatchCompilerTest {
 				"----------\n");
 	}
 
-	public void testReportsUnicodeEscapeUnderscoreInstanceMemberAsError() {
+	public void testReportsUnicodeEscapeUnderscoreInstanceMemberAsError() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String message = "As of release 22, '_' is only allowed to declare unnamed patterns, local variables, exception parameters or lambda parameters";
 		String errorLevel = "ERROR";
 
@@ -69,7 +69,7 @@ public class UseOfUnderscoreJava22Test extends AbstractBatchCompilerTest {
 					}
 				}
 				""" },
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. " + errorLevel + " in A.java (at line 2)\n" +
 				"	int \\u005F = 1;\n" +
 				"	    ^^^^^^\n" +
@@ -77,7 +77,7 @@ public class UseOfUnderscoreJava22Test extends AbstractBatchCompilerTest {
 				"----------\n");
 	}
 
-	public void testReportsUnderscoreParameterAsError() {
+	public void testReportsUnderscoreParameterAsError() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String message = "As of release 22, '_' is only allowed to declare unnamed patterns, local variables, exception parameters or lambda parameters";
 		String errorLevel = "ERROR";
 
@@ -91,7 +91,7 @@ public class UseOfUnderscoreJava22Test extends AbstractBatchCompilerTest {
 					}
 				}
 				""" },
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. " + errorLevel + " in A.java (at line 5)\n" +
 				"	public static void foo(int _) {\n" +
 				"	                           ^\n" +
@@ -99,7 +99,7 @@ public class UseOfUnderscoreJava22Test extends AbstractBatchCompilerTest {
 				"----------\n");
 	}
 
-	public void testReportsUnderscoreParameterAsErrorUnicodeEscape() {
+	public void testReportsUnderscoreParameterAsErrorUnicodeEscape() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String message = "As of release 22, '_' is only allowed to declare unnamed patterns, local variables, exception parameters or lambda parameters";
 		String errorLevel = "ERROR";
 
@@ -113,7 +113,7 @@ public class UseOfUnderscoreJava22Test extends AbstractBatchCompilerTest {
 					}
 				}
 				""" },
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. " + errorLevel + " in A.java (at line 5)\n" +
 				"	public static void foo(int \\u005F) {\n" +
 				"	                           ^^^^^^\n" +

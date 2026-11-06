@@ -30,7 +30,7 @@ public class Bug571363Test extends BuilderTests {
 		return buildTestSuite(Bug571363Test.class);
 	}
 
-	public void _testBug571363() throws JavaModelException, Exception {
+	public void _testBug571363() throws JavaModelException, Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Bug571364Test", "12"); //$NON-NLS-1$
 		env.getJavaProject(projectPath).setOption(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_11);
 		env.getJavaProject(projectPath).setOption(JavaCore.COMPILER_RELEASE, JavaCore.ENABLED);
@@ -46,17 +46,17 @@ public class Bug571363Test extends BuilderTests {
 				"	org.w3c.dom.Element list;\n" +
 				"}\n" //$NON-NLS-1$
 				);
-		StringBuilder buffer = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); //$NON-NLS-1$
-		buffer.append("<classpath>\n"); //$NON-NLS-1$
-		buffer.append("    <classpathentry kind=\"src\" path=\"src\"/>\n"); //$NON-NLS-1$
-        buffer.append("    <classpathentry kind=\"con\" path=\"org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-12\">\n");
-        buffer.append("        <attributes>\n");
-        buffer.append("            <attribute name=\"module\" value=\"true\"/>\n");
-        buffer.append("        </attributes>\n");
-        buffer.append("    </classpathentry>\n");
-		buffer.append("    <classpathentry kind=\"lib\" path=\"" + getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test571363.jar\"/>");
-		buffer.append("    <classpathentry kind=\"output\" path=\"bin\"/>\n"); //$NON-NLS-1$
-		buffer.append("</classpath>"); //$NON-NLS-1$
+		StringBuilder buffer = new StringBuilder("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("<classpath>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("    <classpathentry kind=\"src\" path=\"src\"/>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buffer.append("    <classpathentry kind=\"con\" path=\"org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-12\">\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buffer.append("        <attributes>\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buffer.append("            <attribute name=\"module\" value=\"true\"/>\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buffer.append("        </attributes>\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+        buffer.append("    </classpathentry>\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("    <classpathentry kind=\"lib\" path=\"" + getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test571363.jar\"/>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("    <classpathentry kind=\"output\" path=\"bin\"/>\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("</classpath>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		env.addFile(projectPath, ".classpath", buffer.toString()); //$NON-NLS-1$
 		fullBuild();
 

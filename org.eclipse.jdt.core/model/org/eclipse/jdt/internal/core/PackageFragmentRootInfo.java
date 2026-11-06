@@ -60,7 +60,7 @@ public PackageFragmentRootInfo() {
  *
  * @exception JavaModelException  The resource associated with this package fragment does not exist
  */
-static Object[] computeFolderNonJavaResources(IPackageFragmentRoot root, IContainer folder, char[][] inclusionPatterns, char[][] exclusionPatterns) throws JavaModelException {
+static Object[] computeFolderNonJavaResources(IPackageFragmentRoot root, IContainer folder, char[][] inclusionPatterns, char[][] exclusionPatterns) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IResource[] nonJavaResources = new IResource[5];
 	int nonJavaResourcesCounter = 0;
 	try {
@@ -75,7 +75,7 @@ static Object[] computeFolderNonJavaResources(IPackageFragmentRoot root, IContai
 			String complianceLevel = otherJavaProject.getOption(JavaCore.COMPILER_COMPLIANCE, true);
 			JavaProject javaProject = (JavaProject) root.getJavaProject();
 			IClasspathEntry[] classpath = javaProject.getResolvedClasspath();
-			nextResource: for (int i = 0; i < length; i++) {
+			nextResource: for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IResource member = members[i];
 				switch (member.getType()) {
 					case IResource.FILE :
@@ -109,7 +109,7 @@ static Object[] computeFolderNonJavaResources(IPackageFragmentRoot root, IContai
 		}
 		if (ExternalFoldersManager.isInternalPathForExternalFolder(folder.getFullPath())) {
 			IJarEntryResource[] jarEntryResources = new IJarEntryResource[nonJavaResourcesCounter];
-			for (int i = 0; i < nonJavaResourcesCounter; i++) {
+			for (int i = 0; i < nonJavaResourcesCounter; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				jarEntryResources[i] = new NonJavaResource(root, nonJavaResources[i]);
 			}
 			return jarEntryResources;
@@ -124,7 +124,7 @@ static Object[] computeFolderNonJavaResources(IPackageFragmentRoot root, IContai
 /**
  * Compute the non-package resources of this package fragment root.
  */
-private Object[] computeNonJavaResources(IResource underlyingResource, PackageFragmentRoot handle) {
+private Object[] computeNonJavaResources(IResource underlyingResource, PackageFragmentRoot handle) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Object[] resources = NO_NON_JAVA_RESOURCES;
 	try {
 		// the underlying resource may be a folder or a project (in the case that the project folder
@@ -175,7 +175,7 @@ boolean ignoreOptionalProblems(PackageFragmentRoot packageFragmentRoot) throws J
 	return this.ignoreOptionalProblems;
 }
 private static boolean isClasspathEntry(IPath path, IClasspathEntry[] resolvedClasspath) {
-	for (IClasspathEntry entry : resolvedClasspath) {
+	for (IClasspathEntry entry : resolvedClasspath) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (entry.getPath().equals(path)) {
 			return true;
 		}

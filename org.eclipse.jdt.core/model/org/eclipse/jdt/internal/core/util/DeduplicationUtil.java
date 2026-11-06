@@ -64,7 +64,7 @@ public final class DeduplicationUtil {
 			return JavaElement.NO_STRINGS;
 		}
 		synchronized (stringSymbols) {
-			for (int j = 0; j < a.length; j++) {
+			for (int j = 0; j < a.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				a[j] = a[j] == null ? null : stringSymbols.add(a[j]);
 			}
 			return a;
@@ -72,7 +72,7 @@ public final class DeduplicationUtil {
 	}
 
 	/** interns the elements and the list as whole **/
-	public static List<String> intern(List<String> a) {
+	public static List<String> intern(List<String> a) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (a.size() == 0) {
 			return List.of();
 		}
@@ -85,9 +85,9 @@ public final class DeduplicationUtil {
 			}
 		}
 
-		ArrayList<String> result= new ArrayList<>(a.size());
+		ArrayList<String> result= new ArrayList<>(a.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		synchronized (stringSymbols) {
-			for (String s:a) {
+			for (String s:a) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				result.add(s == null ? null :stringSymbols.add(s));
 			}
 		}

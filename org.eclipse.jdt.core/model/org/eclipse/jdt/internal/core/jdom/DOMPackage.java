@@ -152,6 +152,6 @@ public void setName(String name) {
  */
 @Override
 public String toString() {
-	return "PACKAGE: " + getName(); //$NON-NLS-1$
+	return "PACKAGE: " + getName(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

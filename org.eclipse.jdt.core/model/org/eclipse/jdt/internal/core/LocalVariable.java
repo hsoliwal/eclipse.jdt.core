@@ -84,7 +84,7 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 		int noOfDimensions = astAnnotationsOnDimensions == null ? 0 : astAnnotationsOnDimensions.length;
 		if (noOfDimensions > 0) {
 			this.annotationsOnDimensions = new IAnnotation[noOfDimensions][];
-			for (int i = 0; i < noOfDimensions; ++i) {
+			for (int i = 0; i < noOfDimensions; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.annotationsOnDimensions[i] = getAnnotations(astAnnotationsOnDimensions[i]);
 			}
 		}
@@ -129,7 +129,7 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 
 	@Override
 	public IAnnotation getAnnotation(String annotationName) {
-		for (IAnnotation annotation : this.annotations) {
+		for (IAnnotation annotation : this.annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (annotation.getElementName().equals(annotationName))
 				return annotation;
 		}
@@ -146,13 +146,13 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 		if (astAnnotations == null || (length = astAnnotations.length) == 0)
 			return Annotation.NO_ANNOTATIONS;
 		IAnnotation[] result = new IAnnotation[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i] = getAnnotation(astAnnotations[i], this);
 		}
 		return result;
 	}
 
-	private IAnnotation getAnnotation(final org.eclipse.jdt.internal.compiler.ast.Annotation annotation, JavaElement parentElement) {
+	private IAnnotation getAnnotation(final org.eclipse.jdt.internal.compiler.ast.Annotation annotation, JavaElement parentElement) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final int typeStart = annotation.type.sourceStart();
 		final int typeEnd = annotation.type.sourceEnd();
 		final int sourceStart = annotation.sourceStart();
@@ -188,7 +188,7 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 			memberValuePairs = Annotation.NO_MEMBER_VALUE_PAIRS;
 		} else {
 			memberValuePairs = new IMemberValuePair[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				org.eclipse.jdt.internal.compiler.ast.MemberValuePair astMemberValuePair = astMemberValuePairs[i];
 				MemberValuePair memberValuePair = new MemberValuePair(new String(astMemberValuePair.name));
 				memberValuePair.value = getAnnotationMemberValue(memberValuePair, astMemberValuePair.value, localVarAnnotation);
@@ -202,7 +202,7 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 	/*
 	 * Creates the value wrapper from the given expression, and sets the valueKind on the given memberValuePair
 	 */
-	private Object getAnnotationMemberValue(MemberValuePair memberValuePair, Expression expression, JavaElement parentElement) {
+	private Object getAnnotationMemberValue(MemberValuePair memberValuePair, Expression expression, JavaElement parentElement) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (expression instanceof NullLiteral) {
 			return null;
 		} else if (expression instanceof Literal) {
@@ -233,7 +233,7 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 			Expression[] expressions = ((ArrayInitializer) expression).expressions;
 			int length = expressions == null ? 0 : expressions.length;
 			Object[] values = new Object[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int previousValueKind = memberValuePair.valueKind;
 				Object value = getAnnotationMemberValue(memberValuePair, expressions[i], parentElement);
 				if (previousValueKind != -1 && memberValuePair.valueKind != previousValueKind) {
@@ -276,28 +276,28 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 		getHandleMemento(buff, true);
 	}
 
-	protected void getHandleMemento(StringBuilder buff, boolean memoizeParent) {
+	protected void getHandleMemento(StringBuilder buff, boolean memoizeParent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (memoizeParent)
 			getParent().getHandleMemento(buff);
-		buff.append(getHandleMementoDelimiter());
-		buff.append(this.name);
-		buff.append(JEM_COUNT);
-		buff.append(this.declarationSourceStart);
-		buff.append(JEM_COUNT);
-		buff.append(this.declarationSourceEnd);
-		buff.append(JEM_COUNT);
-		buff.append(this.nameStart);
-		buff.append(JEM_COUNT);
-		buff.append(this.nameEnd);
-		buff.append(JEM_COUNT);
+		buff.append(getHandleMementoDelimiter()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.declarationSourceStart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.declarationSourceEnd); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.nameStart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.nameEnd); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		escapeMementoName(buff, this.typeSignature);
-		buff.append(JEM_COUNT);
-		buff.append(this.flags);
-		buff.append(JEM_COUNT);
-		buff.append(this.isParameter);
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.flags); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.isParameter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (this.getOccurrenceCount() > 1) {
-			buff.append(JEM_COUNT);
-			buff.append(this.getOccurrenceCount());
+			buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buff.append(this.getOccurrenceCount()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -334,7 +334,7 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 	 * {@inheritDoc}
 	 * @since 3.7
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public int getFlags() {
 		if (this.flags == -1) {
 			SourceMapper mapper= getSourceMapper();
@@ -361,7 +361,7 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 	@Override
 	public ClassFile getClassFile() {
 		JavaElement element = getParent();
-		while (element instanceof Member) {
+		while (element instanceof Member) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			element= element.getParent();
 		}
 		if (element instanceof ClassFile) {
@@ -373,7 +373,7 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 	 * {@inheritDoc}
 	 * @since 3.7
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public ISourceRange getNameRange() {
 		if (this.nameEnd == -1) {
 			SourceMapper mapper= getSourceMapper();
@@ -407,7 +407,7 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 	/**
 	 * @see ISourceReference
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String getSource() throws JavaModelException {
 		IOpenable openable = this.getParent().getOpenableParent();
 		IBuffer buffer = openable.getBuffer();
@@ -484,20 +484,20 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 	/**
 	 * @see org.eclipse.jdt.internal.compiler.lookup.Binding#computeUniqueKey()
 	 */
-	public String getKey(boolean forceOpen) throws JavaModelException {
+	public String getKey(boolean forceOpen) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.getParent().getElementType() == IJavaElement.METHOD) {
-			StringBuilder buf = new StringBuilder();
+			StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			if (this.getParent() instanceof BinaryMethod)
-				buf.append(((BinaryMethod) this.getParent()).getKey(forceOpen));
+				buf.append(((BinaryMethod) this.getParent()).getKey(forceOpen)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			else
-				buf.append(((IMethod)this.getParent()).getKey());
-			buf.append('#');
-			buf.append(this.name);
+				buf.append(((IMethod)this.getParent()).getKey()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append('#'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buf.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (this.isParameter) {
 				ILocalVariable[] parameters = ((IMethod) this.getParent()).getParameters();
-				for (int i = 0; i < parameters.length; i++) {
+				for (int i = 0; i < parameters.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (this.equals(parameters[i])) {
-						buf.append("#0#").append(i); // always first occurrence, followed by parameter rank //$NON-NLS-1$
+						buf.append("#0#").append(i); // always first occurrence, followed by parameter rank //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					}
 				}
@@ -509,10 +509,10 @@ public class LocalVariable extends SourceRefElement implements ILocalVariable {
 
 	@Override
 	protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-		buffer.append(tabString(tab));
+		buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (info != NO_INFO) {
-			buffer.append(Signature.toString(getTypeSignature()));
-			buffer.append(" "); //$NON-NLS-1$
+			buffer.append(Signature.toString(getTypeSignature())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(" "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		toStringName(buffer);
 	}

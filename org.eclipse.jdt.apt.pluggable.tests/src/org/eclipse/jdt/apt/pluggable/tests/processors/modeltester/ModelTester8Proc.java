@@ -129,10 +129,10 @@ public class ModelTester8Proc extends AbstractProcessor {
 	 * Perform a round of processing: for a given annotation instance, determine what test method it
 	 * specifies, and invoke that method, passing in the annotated element.
 	 */
-	private void round(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+	private void round(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeElement modelTesterAnno = annotations.iterator().next();
 		Set<? extends Element> annotatedEls = roundEnv.getElementsAnnotatedWith(modelTesterAnno);
-		for (Element annotatedEl : annotatedEls) {
+		for (Element annotatedEl : annotatedEls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ModelTest8Trigger modelTesterMirror = annotatedEl.getAnnotation(ModelTest8Trigger.class);
 			String testMethodName = modelTesterMirror.test();
 			String arg0 = modelTesterMirror.arg0();
@@ -149,7 +149,7 @@ public class ModelTester8Proc extends AbstractProcessor {
 					// IllegalStateException probably means test method called ProcessorTestStatus.fail()
 					String msg = (t instanceof IllegalStateException) ?
 							t.getMessage() :
-							t.getClass().getSimpleName() + " invoking test method " +
+							t.getClass().getSimpleName() + " invoking test method " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							testMethodName + " - see console for details";
 					ProcessorTestStatus.fail(msg);
 				}
@@ -164,12 +164,12 @@ public class ModelTester8Proc extends AbstractProcessor {
 	 * @see #TEST_METHOD_PARAMETERS_TYPE2_SOURCE
 	 * @see #TEST_METHOD_PARAMETERS_TYPE3_SOURCE
 	 */
-	public void testMethodParameters(RoundEnvironment roundEnv, Element e, String arg0, String arg1) throws Exception {
-		Map<String, ExecutableElement> methods = new HashMap<>();
+	public void testMethodParameters(RoundEnvironment roundEnv, Element e, String arg0, String arg1) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		Map<String, ExecutableElement> methods = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		Iterable<? extends Element> elements;
 
 		elements = roundEnv.getElementsAnnotatedWith(LookAt.class);
-		for (ExecutableElement method : ElementFilter.methodsIn(elements)) {
+		for (ExecutableElement method : ElementFilter.methodsIn(elements)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			methods.put(method.getSimpleName().toString(), method);
 		}
 
@@ -179,7 +179,7 @@ public class ModelTester8Proc extends AbstractProcessor {
 			ProcessorTestStatus.fail("Method doStuff() was not found");
 		}
 		if (mDoStuff.getKind() != ElementKind.METHOD) {
-			ProcessorTestStatus.fail("ElementKind of method doStuff() was " + mDoStuff.getKind() +
+			ProcessorTestStatus.fail("ElementKind of method doStuff() was " + mDoStuff.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected METHOD");
 		}
 		// Examine parameters
@@ -195,13 +195,13 @@ public class ModelTester8Proc extends AbstractProcessor {
 		// Cool, now check 'p.Bar.otherStuff' which is also the return type of doStuff
 		TypeMirror returnType = mDoStuff.getReturnType();
 		if (returnType.getKind() != TypeKind.DECLARED)
-			ProcessorTestStatus.fail("TypeKind of method doStuff()'s return type " + returnType.getKind() +
+			ProcessorTestStatus.fail("TypeKind of method doStuff()'s return type " + returnType.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected DECLARED");
 
 		DeclaredType barType = (DeclaredType) returnType;
 		TypeElement bar = (TypeElement) barType.asElement();
 
-		for (Element method : bar.getEnclosedElements()) {
+		for (Element method : bar.getEnclosedElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (method.getKind() == ElementKind.METHOD)
 				methods.put(method.getSimpleName().toString(), (ExecutableElement)method);
 		}
@@ -211,7 +211,7 @@ public class ModelTester8Proc extends AbstractProcessor {
 			ProcessorTestStatus.fail("Method otherStuff() was not found");
 		}
 		if (mOtherStuff.getKind() != ElementKind.METHOD) {
-			ProcessorTestStatus.fail("ElementKind of method otherStuff() was " + mOtherStuff.getKind() +
+			ProcessorTestStatus.fail("ElementKind of method otherStuff() was " + mOtherStuff.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected METHOD");
 		}
 		// Examine parameters
@@ -230,21 +230,21 @@ public class ModelTester8Proc extends AbstractProcessor {
 			ProcessorTestStatus.fail("Method guess() was not found");
 		}
 		if (mGuess.getKind() != ElementKind.METHOD) {
-			ProcessorTestStatus.fail("ElementKind of method doStuff() was " + mGuess.getKind() +
+			ProcessorTestStatus.fail("ElementKind of method doStuff() was " + mGuess.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected METHOD");
 		}
 
 		// Cool, now check 'p.Bar.otherStuff' which is also the return type of doStuff
 		TypeMirror guessReturnType = mGuess.getReturnType();
 		if (guessReturnType.getKind() != TypeKind.DECLARED)
-			ProcessorTestStatus.fail("TypeKind of method guess()'s return type " + guessReturnType.getKind() +
+			ProcessorTestStatus.fail("TypeKind of method guess()'s return type " + guessReturnType.getKind() + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					", expected DECLARED");
 
 		DeclaredType myEnumType = (DeclaredType) guessReturnType;
 		TypeElement myEnumClass = (TypeElement) myEnumType.asElement();
 
 		List<ExecutableElement> ctors = new LinkedList<>();
-		for (Element method : myEnumClass.getEnclosedElements()) {
+		for (Element method : myEnumClass.getEnclosedElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (method.getKind() == ElementKind.CONSTRUCTOR) {
 				ctors.add((ExecutableElement)method);
 			}

@@ -34,7 +34,7 @@ public class DefaultStackMapFrame extends ClassFileStruct implements IStackMapFr
 	/**
 	 * Constructor for StackMapFrame.
 	 */
-	public DefaultStackMapFrame(
+	public DefaultStackMapFrame( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			byte[] classFileBytes,
 			IConstantPool constantPool,
 			int offset) throws ClassFormatException {
@@ -45,7 +45,7 @@ public class DefaultStackMapFrame extends ClassFileStruct implements IStackMapFr
 		this.readOffset = 4;
 		if (tempLocals != 0) {
 			this.locals = new IVerificationTypeInfo[tempLocals];
-			for (int i = 0; i < tempLocals; i++) {
+			for (int i = 0; i < tempLocals; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				VerificationInfo verificationInfo = new VerificationInfo(classFileBytes, constantPool, offset + this.readOffset);
 				this.locals[i] = verificationInfo;
 				this.readOffset += verificationInfo.sizeInBytes();
@@ -58,7 +58,7 @@ public class DefaultStackMapFrame extends ClassFileStruct implements IStackMapFr
 		this.numberOfStackItems = tempStackItems;
 		if (tempStackItems != 0) {
 			this.stackItems = new IVerificationTypeInfo[tempStackItems];
-			for (int i = 0; i < tempStackItems; i++) {
+			for (int i = 0; i < tempStackItems; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				VerificationInfo verificationInfo = new VerificationInfo(classFileBytes, constantPool, offset + this.readOffset);
 				this.stackItems[i] = verificationInfo;
 				this.readOffset += verificationInfo.sizeInBytes();

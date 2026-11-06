@@ -44,7 +44,7 @@ public class Issue565Processor extends AbstractProcessor {
 			return false;
 		}
 
-		for (Element element : roundEnv.getElementsAnnotatedWith(annotations.stream().findAny().get())) {
+		for (Element element : roundEnv.getElementsAnnotatedWith(annotations.stream().findAny().get())) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (element instanceof TypeElement) {
 				keyBuilder.visit(element.asType(), true);
 			}
@@ -62,7 +62,7 @@ public class Issue565Processor extends AbstractProcessor {
 		private final List<String> defaultValue = Collections.singletonList("Object");
 
 		private List<String> visitBase(TypeMirror t) {
-			List<String> rv = new ArrayList<>();
+			List<String> rv = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			String name = t.toString();
 			if (name.contains("<")) {
 				name = name.substring(0, name.indexOf('<'));
@@ -74,7 +74,7 @@ public class Issue565Processor extends AbstractProcessor {
 		@Override
 		public List<String> visitDeclared(DeclaredType t, Boolean p) {
 			List<String> rv = visitBase(t);
-			for (TypeMirror arg : t.getTypeArguments()) {
+			for (TypeMirror arg : t.getTypeArguments()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (p) {
 					rv.addAll(visit(arg, false));
 				} else {

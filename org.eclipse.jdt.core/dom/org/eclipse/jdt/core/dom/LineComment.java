@@ -44,7 +44,7 @@ public final class LineComment extends Comment {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(1);
+		List propertyList = new ArrayList(1); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(LineComment.class, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
 	}

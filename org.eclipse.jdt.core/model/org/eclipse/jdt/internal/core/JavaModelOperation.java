@@ -44,7 +44,7 @@ import org.eclipse.text.edits.TextEdit;
 /**
  * Defines behavior common to all Java Model operations
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"rawtypes", "unchecked"}) //FLLDCIM: MARK — T09  IMPLEMENTS
 public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgressMonitor {
 	protected interface IPostAction {
 		/*
@@ -189,12 +189,12 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 	/*
 	 * Registers the given reconcile delta with the Java Model Manager.
 	 */
-	protected void addReconcileDelta(ICompilationUnit workingCopy, IJavaElementDelta delta) {
+	protected void addReconcileDelta(ICompilationUnit workingCopy, IJavaElementDelta delta) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<ICompilationUnit, IJavaElementDelta> reconcileDeltas = JavaModelManager.getJavaModelManager().getDeltaProcessor().reconcileDeltas;
 		JavaElementDelta previousDelta = (JavaElementDelta)reconcileDeltas.get(workingCopy);
 		if (previousDelta != null) {
 			IJavaElementDelta[] children = delta.getAffectedChildren();
-			for (IJavaElementDelta d : children) {
+			for (IJavaElementDelta d : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JavaElementDelta child = (JavaElementDelta)d;
 				previousDelta.insertDeltaTree(child.getElement(), child);
 			}
@@ -258,7 +258,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 		if (this.elementsToProcess == null || this.elementsToProcess.length == 0) {
 			return new JavaModelStatus(IJavaModelStatusConstants.NO_ELEMENTS_TO_PROCESS);
 		}
-		for (IJavaElement element : this.elementsToProcess) {
+		for (IJavaElement element : this.elementsToProcess) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (element == null) {
 				return new JavaModelStatus(IJavaModelStatusConstants.NO_ELEMENTS_TO_PROCESS);
 			}
@@ -272,7 +272,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 		IProgressMonitor subProgressMonitor = getSubProgressMonitor(resources.length);
 		IWorkspaceRoot root =  ResourcesPlugin.getWorkspace().getRoot();
 		try {
-			for (IResource resource : resources) {
+			for (IResource resource : resources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath destination = container.append(resource.getName());
 				if (root.findMember(destination) == null) {
 					resource.copy(destination, false, subProgressMonitor);
@@ -317,7 +317,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 	/**
 	 * Convenience method to delete an empty package fragment
 	 */
-	protected void deleteEmptyPackageFragment(
+	protected void deleteEmptyPackageFragment( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment fragment,
 		boolean forceFlag,
 		IResource rootResource)
@@ -330,7 +330,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 				forceFlag ? IResource.FORCE | IResource.KEEP_HISTORY : IResource.KEEP_HISTORY,
 				getSubProgressMonitor(1));
 			setAttribute(HAS_MODIFIED_RESOURCE_ATTR, TRUE);
-			while (resource instanceof IFolder) {
+			while (resource instanceof IFolder) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// deleting a package: delete the parent if it is empty (e.g. deleting x.y where folder x doesn't have resources but y)
 				// without deleting the package fragment root
 				resource = resource.getParent();
@@ -389,7 +389,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 	 * Returns whether the given path is equals to one of the given other paths.
 	 */
 	protected boolean equalsOneOf(IPath path, IPath[] otherPaths) {
-		for (IPath otherPath : otherPaths) {
+		for (IPath otherPath : otherPaths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (path.equals(otherPath)) {
 				return true;
 			}
@@ -399,7 +399,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 	/**
 	 * Convenience method to run an operation within this operation
 	 */
-	public void executeNestedOperation(JavaModelOperation operation, int subWorkAmount) throws JavaModelException {
+	public void executeNestedOperation(JavaModelOperation operation, int subWorkAmount) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaModelStatus status= operation.verify();
 		if (!status.isOK()) {
 			throw new JavaModelException(status);
@@ -458,7 +458,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 	protected static ArrayList getCurrentOperationStack() {
 		ArrayList stack = (ArrayList)OPERATION_STACKS.get();
 		if (stack == null) {
-			stack = new ArrayList();
+			stack = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			OPERATION_STACKS.set(stack);
 		}
 		return stack;
@@ -494,7 +494,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 		int length = classpath.length;
 		IPath[] result = new IPath[length];
 		int index = 0;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPath path = classpath[i].getPath();
 			if (rootPath.isPrefixOf(path) && !rootPath.equals(path)) {
 				result[index++] = path;
@@ -587,7 +587,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 	 * Returns -1 if not found.
 	 */
 	protected int firstActionWithID(String id, int start) {
-		for (int i = start; i <= this.actionsEnd; i++) {
+		for (int i = start; i <= this.actionsEnd; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.actions[i].getID().equals(id)) {
 				return i;
 			}
@@ -602,7 +602,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 		SubMonitor subProgressMonitor = this.progressMonitor.newChild(resources.length);
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		try {
-			for (IResource resource : resources) {
+			for (IResource resource : resources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPath destination = container.append(resource.getName());
 				if (root.findMember(destination) == null) {
 					resource.move(destination, false, subProgressMonitor.split(1));
@@ -643,9 +643,9 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 	 * - the action should be ignored if there is already an action with the same id (KEEP_EXISTING),
 	 * - the action should be queued at the end without looking at existing actions (APPEND)
 	 */
-	protected void postAction(IPostAction action, int insertionMode) {
+	protected void postAction(IPostAction action, int insertionMode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (POST_ACTION_VERBOSE) {
-			trace("(" + Thread.currentThread() + ") [JavaModelOperation.postAction(IPostAction, int)] Posting action " + action.getID()); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("(" + Thread.currentThread() + ") [JavaModelOperation.postAction(IPostAction, int)] Posting action " + action.getID()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			switch(insertionMode) {
 				case REMOVEALL_APPEND:
 					trace(" (REMOVEALL_APPEND)"); //$NON-NLS-1$
@@ -670,7 +670,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 			switch (insertionMode) {
 				case REMOVEALL_APPEND :
 					int index = this.actionsStart-1;
-					while ((index = topLevelOp.firstActionWithID(id, index+1)) >= 0) {
+					while ((index = topLevelOp.firstActionWithID(id, index+1)) >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						// remove action[index]
 						System.arraycopy(postActions, index+1, postActions, index, topLevelOp.actionsEnd - index);
 						postActions[topLevelOp.actionsEnd--] = null;
@@ -692,7 +692,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 	 * Returns whether the given path is the prefix of one of the given other paths.
 	 */
 	protected boolean prefixesOneOf(IPath path, IPath[] otherPaths) {
-		for (IPath otherPath : otherPaths) {
+		for (IPath otherPath : otherPaths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (path.isPrefixOf(otherPath)) {
 				return true;
 			}
@@ -711,14 +711,14 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 	 */
 	protected void removeAllPostAction(String actionID) {
 		if (POST_ACTION_VERBOSE) {
-			trace("(" + Thread.currentThread() + ") [JavaModelOperation.removeAllPostAction(String)] Removing actions " + actionID); //$NON-NLS-1$ //$NON-NLS-2$
+			trace("(" + Thread.currentThread() + ") [JavaModelOperation.removeAllPostAction(String)] Removing actions " + actionID); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		JavaModelOperation topLevelOp = (JavaModelOperation)getCurrentOperationStack().get(0);
 		IPostAction[] postActions = topLevelOp.actions;
 		if (postActions == null) return;
 		int index = this.actionsStart-1;
-		while ((index = topLevelOp.firstActionWithID(actionID, index+1)) >= 0) {
+		while ((index = topLevelOp.firstActionWithID(actionID, index+1)) >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// remove action[index]
 			System.arraycopy(postActions, index+1, postActions, index, topLevelOp.actionsEnd - index);
 			postActions[topLevelOp.actionsEnd--] = null;
@@ -731,7 +731,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 	 * @see IWorkspaceRunnable
 	 * @exception CoreException if the operation fails
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void run(IProgressMonitor monitor) throws CoreException {
 		SubMonitor oldMonitor = this.progressMonitor;
 		try {
@@ -760,14 +760,14 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 					deltaProcessor = manager.getDeltaProcessor();
 
 					// update JavaModel using deltas that were recorded during this operation
-					for (int i = previousDeltaCount, size = deltaProcessor.javaModelDeltas.size(); i < size; i++) {
+					for (int i = previousDeltaCount, size = deltaProcessor.javaModelDeltas.size(); i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						deltaProcessor.updateJavaModel(deltaProcessor.javaModelDeltas.get(i));
 					}
 
 					// close the parents of the created elements and reset their project's cache (in case we are in an
 					// IWorkspaceRunnable and the clients wants to use the created element's parent)
 					// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=83646
-					for (IJavaElement element : this.resultElements) {
+					for (IJavaElement element : this.resultElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						Openable openable = (Openable) element.getOpenable();
 						if (!(openable instanceof CompilationUnit) || !((CompilationUnit) openable).isWorkingCopy()) { // a working copy must remain a child of its parent even after a move
 							openable.getParent().close();
@@ -806,7 +806,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 	 * Main entry point for Java Model operations. Runs a Java Model Operation as an IWorkspaceRunnable
 	 * if not read-only.
 	 */
-	public void runOperation(IProgressMonitor monitor) throws JavaModelException {
+	public void runOperation(IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaModelStatus status= verify();
 		if (!status.isOK()) {
 			throw new JavaModelException(status);
@@ -835,10 +835,10 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 		}
 	}
 	protected void runPostActions() throws JavaModelException {
-		while (this.actionsStart <= this.actionsEnd) {
+		while (this.actionsStart <= this.actionsEnd) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IPostAction postAction = this.actions[this.actionsStart++];
 			if (POST_ACTION_VERBOSE) {
-				trace("(" + Thread.currentThread() + ") [JavaModelOperation.runPostActions()] Running action " + postAction.getID()); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("(" + Thread.currentThread() + ") [JavaModelOperation.runPostActions()] Running action " + postAction.getID()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			postAction.run();
 		}
@@ -852,7 +852,7 @@ public abstract class JavaModelOperation implements IWorkspaceRunnable, IProgres
 			return;
 		JavaModelOperation topLevelOp = (JavaModelOperation) operationStack.get(0);
 		if (topLevelOp.attributes == null) {
-			topLevelOp.attributes = new HashMap();
+			topLevelOp.attributes = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		}
 		topLevelOp.attributes.put(key, attribute);
 	}

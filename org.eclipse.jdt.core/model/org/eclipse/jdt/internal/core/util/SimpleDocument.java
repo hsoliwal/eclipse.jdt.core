@@ -31,7 +31,7 @@ public class SimpleDocument implements IDocument {
 
 
 	public SimpleDocument(String source) {
-		this.buffer = new StringBuilder(source);
+		this.buffer = new StringBuilder(source); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 
 	@Override

@@ -99,7 +99,7 @@ class SourceOrderDeclScanner extends DeclarationScanner {
 	    public void visitMethodDeclaration(MethodDeclaration d) {value = 14 + staticAdjust(d);}
 	}
 
-	private int compareEqualPosition(Declaration d1, Declaration d2) {
+	private int compareEqualPosition(Declaration d1, Declaration d2) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    assert d1.getPosition() == d2.getPosition();
 
 	    DeclPartialOrder dpo1 = new DeclPartialOrder();
@@ -120,7 +120,7 @@ class SourceOrderDeclScanner extends DeclarationScanner {
 	    }
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public int compare(Declaration d1, Declaration d2) {
 	    if (equals(d1, d2))
 		return 0;
@@ -168,63 +168,63 @@ class SourceOrderDeclScanner extends DeclarationScanner {
      *
      * @param d the declaration to visit
      */
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void visitTypeDeclaration(TypeDeclaration d) {
 	d.accept(pre);
 
 	SortedSet<Declaration> decls = new
 	    TreeSet<>(SourceOrderDeclScanner.comparator) ;
 
-	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters()) {
+	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decls.add(tpDecl);
 	}
 
-	for(FieldDeclaration fieldDecl: d.getFields()) {
+	for(FieldDeclaration fieldDecl: d.getFields()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decls.add(fieldDecl);
 	}
 
-	for(MethodDeclaration methodDecl: d.getMethods()) {
+	for(MethodDeclaration methodDecl: d.getMethods()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decls.add(methodDecl);
 	}
 
-	for(TypeDeclaration typeDecl: d.getNestedTypes()) {
+	for(TypeDeclaration typeDecl: d.getNestedTypes()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decls.add(typeDecl);
 	}
 
-	for(Declaration decl: decls )
+	for(Declaration decl: decls ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decl.accept(this);
 
 	d.accept(post);
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void visitClassDeclaration(ClassDeclaration d) {
 	d.accept(pre);
 
 	SortedSet<Declaration> decls = new
 	    TreeSet<>(SourceOrderDeclScanner.comparator) ;
 
-	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters()) {
+	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decls.add(tpDecl);
 	}
 
-	for(FieldDeclaration fieldDecl: d.getFields()) {
+	for(FieldDeclaration fieldDecl: d.getFields()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decls.add(fieldDecl);
 	}
 
-	for(MethodDeclaration methodDecl: d.getMethods()) {
+	for(MethodDeclaration methodDecl: d.getMethods()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decls.add(methodDecl);
 	}
 
-	for(TypeDeclaration typeDecl: d.getNestedTypes()) {
+	for(TypeDeclaration typeDecl: d.getNestedTypes()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decls.add(typeDecl);
 	}
 
-	for(ConstructorDeclaration ctorDecl: d.getConstructors()) {
+	for(ConstructorDeclaration ctorDecl: d.getConstructors()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decls.add(ctorDecl);
 	}
 
-	for(Declaration decl: decls )
+	for(Declaration decl: decls ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decl.accept(this);
 
 	d.accept(post);
@@ -237,13 +237,13 @@ class SourceOrderDeclScanner extends DeclarationScanner {
 	SortedSet<Declaration> decls = new
 	    TreeSet<>(SourceOrderDeclScanner.comparator) ;
 
-	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters())
+	for(TypeParameterDeclaration tpDecl: d.getFormalTypeParameters()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decls.add(tpDecl);
 
-	for(ParameterDeclaration pDecl: d.getParameters())
+	for(ParameterDeclaration pDecl: d.getParameters()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decls.add(pDecl);
 
-	for(Declaration decl: decls )
+	for(Declaration decl: decls ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	    decl.accept(this);
 
 	d.accept(post);

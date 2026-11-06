@@ -54,14 +54,14 @@ public class FileManagerTests extends TestCase {
 		BatchTestUtils.init();
 	}
 
-	public void testFileManager() {
+	public void testFileManager() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
-		File dir = new File(tmpFolder, "src" + System.currentTimeMillis());
-		dir.mkdirs();
+		File dir = new File(tmpFolder, "src" + System.currentTimeMillis()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile = new File(dir, "X.java");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("public class X {}");
 			writer.flush();
 			writer.close();
@@ -80,29 +80,29 @@ public class FileManagerTests extends TestCase {
 		try {
 			fileManager = new EclipseFileManager(Locale.getDefault(), Charset.defaultCharset());
 
-			List<File> fins = new ArrayList<>();
+			List<File> fins = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			fins.add(dir);
 
 			JavaFileManager.Location sourceLoc = javax.tools.StandardLocation.SOURCE_PATH;
 			fileManager.setLocation(sourceLoc, fins);
 
-			Set<JavaFileObject.Kind> fileTypes = new HashSet<>();
+			Set<JavaFileObject.Kind> fileTypes = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			fileTypes.add(JavaFileObject.Kind.SOURCE);
 
 			Iterable<? extends JavaFileObject> compilationUnits = fileManager.list(sourceLoc, "", fileTypes, true);
 
 			Iterator<? extends JavaFileObject> it = compilationUnits.iterator();
-			StringBuilder builder = new StringBuilder();
-			while (it.hasNext()) {
+			StringBuilder builder = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while (it.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				JavaFileObject next = it.next();
 				String name = next.getName();
 				name = name.replace('\\', '/');
 				int lastIndexOf = name.lastIndexOf('/');
-				builder.append(name.substring(lastIndexOf + 1));
+				builder.append(name.substring(lastIndexOf + 1)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			assertEquals("Wrong contents", "X.java", String.valueOf(builder));
 
-			List<File> files = new ArrayList<>();
+			List<File> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			files.add(dir);
 			try {
 				fileManager.getJavaFileObjectsFromFiles(files);
@@ -121,18 +121,18 @@ public class FileManagerTests extends TestCase {
 			}
 		}
 		// check that the .class file exist for X
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", dir.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 	// Test that JavaFileManager#inferBinaryName returns null for invalid file
-	public void testInferBinaryName() {
+	public void testInferBinaryName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String tmpFolder = System.getProperty("java.io.tmpdir");
-		File dir = new File(tmpFolder, "src" + System.currentTimeMillis());
-		dir.mkdirs();
+		File dir = new File(tmpFolder, "src" + System.currentTimeMillis()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		dir.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		File inputFile = new File(dir, "test.txt");
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(inputFile));
+			writer = new BufferedWriter(new FileWriter(inputFile)); //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			writer.write("This is not a valid Java file");
 			writer.flush();
 			writer.close();
@@ -148,17 +148,17 @@ public class FileManagerTests extends TestCase {
 		try {
 			StandardJavaFileManager fileManager = new EclipseFileManager(Locale.getDefault(), Charset.defaultCharset());
 
-			List<File> fins = new ArrayList<>();
+			List<File> fins = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			fins.add(dir);
 			JavaFileManager.Location sourceLoc = javax.tools.StandardLocation.SOURCE_PATH;
 			fileManager.setLocation(sourceLoc, fins);
 
-			Set<JavaFileObject.Kind> fileTypes = new HashSet<>();
+			Set<JavaFileObject.Kind> fileTypes = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			fileTypes.add(JavaFileObject.Kind.OTHER);
 
 			Iterable<? extends JavaFileObject> compilationUnits = fileManager.list(sourceLoc, "", fileTypes, true);
 			JavaFileObject invalid = null;
-			for (JavaFileObject javaFileObject : compilationUnits) {
+			for (JavaFileObject javaFileObject : compilationUnits) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				invalid = javaFileObject;
 				break;
 			}
@@ -168,11 +168,11 @@ public class FileManagerTests extends TestCase {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		assertTrue("delete failed", inputFile.delete());
-		assertTrue("delete failed", dir.delete());
+		assertTrue("delete failed", inputFile.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		assertTrue("delete failed", dir.delete()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
-	public void testBug460085() {
+	public void testBug460085() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isOnJRE9()) return;
 		try {
 			boolean found = false;
@@ -180,7 +180,7 @@ public class FileManagerTests extends TestCase {
 			fileManager = new EclipseFileManager(Locale.getDefault(), Charset.defaultCharset());
 			Iterable <? extends File> files = fileManager.getLocation(javax.tools.StandardLocation.PLATFORM_CLASS_PATH);
 			Iterator<? extends File> iter = files.iterator();
-			while (iter.hasNext()) {
+			while (iter.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				File f = iter.next();
 				if ("rt.jar".equals(f.getName())) {
 					found = true;
@@ -204,7 +204,7 @@ public class FileManagerTests extends TestCase {
 
 	public void testBug466878_getResource_defaultPackage() throws Exception {
 		EclipseFileManager fileManager = new EclipseFileManager(Locale.getDefault(), Charset.defaultCharset());
-		List<File> classpath = new ArrayList<>();
+		List<File> classpath = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		classpath.add(new File(BatchTestUtils.getPluginDirectoryPath(), "resources/targets/filemanager/classes"));
 		classpath.add(new File(BatchTestUtils.getPluginDirectoryPath(), "resources/targets/filemanager/dependency.zip"));
 		fileManager.setLocation(javax.tools.StandardLocation.CLASS_PATH, classpath);
@@ -215,7 +215,7 @@ public class FileManagerTests extends TestCase {
 
 	public void testBug514121_getClassloader_close() throws Exception {
 		EclipseFileManager fileManager = new EclipseFileManager(Locale.getDefault(), Charset.defaultCharset());
-		List<File> classpath = new ArrayList<>();
+		List<File> classpath = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		classpath.add(new File(BatchTestUtils.getPluginDirectoryPath(), "resources/targets/filemanager/dependency.zip"));
 		fileManager.setLocation(javax.tools.StandardLocation.ANNOTATION_PROCESSOR_PATH, classpath);
 		URLClassLoader loader = (URLClassLoader) fileManager
@@ -225,20 +225,20 @@ public class FileManagerTests extends TestCase {
 		assertNull(loader.findResource("jarresource.txt")); // assert the classloader is closed
 	}
 
-	@SuppressWarnings("removal")
+	@SuppressWarnings("removal") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testBug573287_ArchiveFileObject_openInputStream() throws Exception {
 		Path dir = Files.createTempDirectory("repro573287-");
 		Path target = dir.resolve("copy573287.zip");
 		File src = new File(BatchTestUtils.getPluginDirectoryPath(), "resources/targets/filemanager/dependency.zip");
-		Path copy = Files.copy(src.toPath(), target);
+		Path copy = Files.copy(src.toPath(), target); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 
 		extracted_ArchiveFileObject_openInputStream(copy); //do not inline (!) - otherwise the reference to local variables are not lost
 		try {
 			// Try to clean up:
 			// On Windows this resulted in java.nio.file.FileSystemException because copy
 			// was still open until GC:
-			Files.delete(copy); // (impossible to delete a open file under Windows)
-			Files.delete(dir);
+			Files.delete(copy); // (impossible to delete a open file under Windows) //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			Files.delete(dir); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		} catch (Exception e) {
 			// clean up temp files:
 			try {
@@ -247,8 +247,8 @@ public class FileManagerTests extends TestCase {
 				// runs finalize() - but only if extracted_ArchiveFileObject_openInputStream is not inlined(!):
 				System.runFinalization();
 				// clean up files - now it works:
-				Files.delete(copy);
-				Files.delete(dir);
+				Files.delete(copy); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+				Files.delete(dir); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			} catch (Exception e2) {
 				e.addSuppressed(e2);
 			}
@@ -258,7 +258,7 @@ public class FileManagerTests extends TestCase {
 
 	private void extracted_ArchiveFileObject_openInputStream(Path copy) throws IOException {
 		try (EclipseFileManager fileManager = new EclipseFileManager(Locale.getDefault(), Charset.defaultCharset())) {
-			List<File> classpath = new ArrayList<>();
+			List<File> classpath = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			classpath.add(copy.toFile());
 			fileManager.setLocation(javax.tools.StandardLocation.CLASS_PATH, classpath);
 			FileObject fileForInput = fileManager.getFileForInput(javax.tools.StandardLocation.CLASS_PATH, "",

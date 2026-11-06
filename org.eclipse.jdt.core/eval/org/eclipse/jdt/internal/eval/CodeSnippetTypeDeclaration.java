@@ -32,7 +32,7 @@ public CodeSnippetTypeDeclaration(CompilationResult compilationResult){
 /**
  * Generic bytecode generation for type
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generateCode(ClassFile enclosingClassFile) {
 	if ((this.bits & ASTNode.HasBeenGenerated) != 0) return;
 	this.bits |= ASTNode.HasBeenGenerated;
@@ -55,13 +55,13 @@ public void generateCode(ClassFile enclosingClassFile) {
 			classFile.recordInnerClasses(this.binding);
 		}
 		TypeVariableBinding[] typeVariables = this.binding.typeVariables();
-		for (TypeVariableBinding typeVariableBinding : typeVariables) {
+		for (TypeVariableBinding typeVariableBinding : typeVariables) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((typeVariableBinding.tagBits & TagBits.ContainsNestedTypeReferences) != 0) {
 				Util.recordNestedType(classFile, typeVariableBinding);
 			}
 		}
 		if (this.memberTypes != null) {
-			for (TypeDeclaration memberType : this.memberTypes) {
+			for (TypeDeclaration memberType : this.memberTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				classFile.recordInnerClasses(memberType.binding);
 				memberType.generateCode(this.scope, classFile);
 			}
@@ -69,7 +69,7 @@ public void generateCode(ClassFile enclosingClassFile) {
 		// generate all methods
 		classFile.setForMethodInfos();
 		if (this.methods != null) {
-			for (AbstractMethodDeclaration method : this.methods) {
+			for (AbstractMethodDeclaration method : this.methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				method.generateCode(this.scope, classFile);
 			}
 		}

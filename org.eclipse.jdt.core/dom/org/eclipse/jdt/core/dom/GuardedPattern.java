@@ -62,7 +62,7 @@ public class GuardedPattern extends Pattern{
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(3);
+		List propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(GuardedPattern.class, propertyList);
 		addProperty(PATTERN_PROPERTY, propertyList);
 		addProperty(EXPRESSION_PROPERTY, propertyList);
@@ -91,7 +91,7 @@ public class GuardedPattern extends Pattern{
 	final List internalStructuralPropertiesForType(int apiLevel, boolean previewEnabled) {
 		return propertyDescriptors(apiLevel, previewEnabled);
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == EXPRESSION_PROPERTY) {
 			if (get) {

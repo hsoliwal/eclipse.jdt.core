@@ -53,7 +53,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	/*
 	 * Anonymous type test.
 	 */
-	public void testAnonymousType1() throws CoreException {
+	public void testAnonymousType1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -83,7 +83,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	/*
 	 * Anonymous type test.
 	 */
-	public void testAnonymousType2() throws CoreException {
+	public void testAnonymousType2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -119,7 +119,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	/*
 	 * Anonymous type test.
 	 */
-	public void testAnonymousType3() throws CoreException {
+	public void testAnonymousType3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -155,7 +155,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	/*
 	 * Anonymous type test.
 	 */
-	public void testAnonymousType4() throws CoreException {
+	public void testAnonymousType4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -196,7 +196,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	 * Anonymous type test.
 	 * (regression test for bug 69028 Anonymous type in argument of super() is not in type hierarchy)
 	 */
-	public void testAnonymousType5() throws CoreException {
+	public void testAnonymousType5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -249,7 +249,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	 * Anonymous type test.
 	 * (regression test for bug 147485 Anonymous type missing from java model)
 	 */
-	public void testAnonymousType7() throws CoreException {
+	public void testAnonymousType7() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -288,7 +288,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	/*
 	 * IType.getSuperclassName() test
 	 */
-	public void testGetSuperclassName() throws CoreException {
+	public void testGetSuperclassName() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -315,7 +315,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	/*
 	 * IMember.getType(...) test
 	 */
-	public void testGetType() {
+	public void testGetType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = getCompilationUnit("P/X.java");
 		IType topLevelType = cu.getType("X");
 		IJavaElement[] types = new IJavaElement[5];
@@ -337,7 +337,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	/*
 	 * Local type test.
 	 */
-	public void testLocalType1() throws CoreException {
+	public void testLocalType1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -364,7 +364,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	/*
 	 * Local type test.
 	 */
-	public void testLocalType2() throws CoreException {
+	public void testLocalType2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -394,7 +394,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	/*
 	 * Local type test.
 	 */
-	public void testLocalType3() throws CoreException {
+	public void testLocalType3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -427,7 +427,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	/*
 	 * Local type test.
 	 */
-	public void testLocalType4() throws CoreException {
+	public void testLocalType4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -460,7 +460,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	/*
 	 * Local type test.
 	 */
-	public void testLocalType5() throws CoreException {
+	public void testLocalType5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/X.java",
@@ -486,7 +486,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=167357
-	public void testLocalType6() throws CoreException {
+	public void testLocalType6() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 					"/P/X.java",
@@ -517,7 +517,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=167357
-	public void testLocalType7() throws CoreException {
+	public void testLocalType7() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 					"/P/X.java",
@@ -550,7 +550,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=167357
-	public void testLocalType8() throws CoreException {
+	public void testLocalType8() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 					"/P/X.java",
@@ -583,7 +583,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=167357
-	public void testLocalType9() throws CoreException {
+	public void testLocalType9() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 					"/P/X.java",
@@ -615,7 +615,7 @@ public class LocalElementTests extends ModifyingResourceTests {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=167357
-	public void testLocalType10() throws CoreException {
+	public void testLocalType10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 					"/P/X.java",

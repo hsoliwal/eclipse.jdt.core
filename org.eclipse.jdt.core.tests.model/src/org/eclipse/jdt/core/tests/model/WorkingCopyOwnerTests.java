@@ -102,15 +102,15 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 		assertProblems("Unexpected problems", expectedProblems, cu.getProblems(), source.toCharArray());
 	}
 
-	protected void assertTypeBindingsEqual(String message, String expected, ITypeBinding[] types) {
-		StringBuilder buffer = new StringBuilder();
+	protected void assertTypeBindingsEqual(String message, String expected, ITypeBinding[] types) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (types == null) {
-			buffer.append("<null>");
+			buffer.append("<null>"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			for (int i = 0, length = types.length; i < length; i++){
-				buffer.append(types[i].getQualifiedName());
+			for (int i = 0, length = types.length; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				buffer.append(types[i].getQualifiedName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1) {
-					buffer.append("\n");
+					buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}
@@ -164,7 +164,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensure an OperationCanceledException is correcly thrown when progress monitor is canceled
 	 */
-	public void testBecomeWorkingCopy4() throws CoreException {
+	public void testBecomeWorkingCopy4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy = getCompilationUnit("P/X.java");
 
 		// count the number of time isCanceled() is called when converting this source unit
@@ -173,14 +173,14 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 		this.workingCopy.discardWorkingCopy();
 
 		// throw an OperatonCanceledException at each point isCanceled() is called
-		for (int i = 0; i < counter.count; i++) {
+		for (int i = 0; i < counter.count; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			boolean gotException = false;
 			try {
 				this.workingCopy.becomeWorkingCopy(new Canceler(i));
 			} catch (OperationCanceledException e) {
 				gotException = true;
 			}
-			assertTrue("Should get an OperationCanceledException (" + i + ")", gotException);
+			assertTrue("Should get an OperationCanceledException (" + i + ")", gotException); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			this.workingCopy.discardWorkingCopy();
 		}
 
@@ -191,7 +191,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Tests that a primary working copy can be commited.
 	 */
-	public void testCommitPrimaryWorkingCopy() throws CoreException {
+	public void testCommitPrimaryWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IFile file = createFile(
 				"P/Y.java",
@@ -220,7 +220,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * Ensures that no delta is issued when a primary working copy that is consistent is commited.
 	 * (regression test for bug 40782 Primary working copies: unnecessary deltas on save)
 	 */
-	public void testDeltaCommitPrimaryWorkingCopy1() throws CoreException {
+	public void testDeltaCommitPrimaryWorkingCopy1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"P/Y.java",
@@ -255,7 +255,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that the correct delta is issued when a primary working copy that is not consistent is commited.
 	 */
-	public void testDeltaCommitPrimaryWorkingCopy2() throws CoreException {
+	public void testDeltaCommitPrimaryWorkingCopy2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"P/Y.java",
@@ -291,7 +291,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that the correct delta is issued when a non-primary working copy is created.
 	 */
-	public void testDeltaCreateNonPrimaryWorkingCopy() throws CoreException {
+	public void testDeltaCreateNonPrimaryWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"P/Y.java",
@@ -318,7 +318,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that the correct delta is issued when a primary compilation unit becomes a working copy.
 	 */
-	public void testDeltaBecomeWorkingCopy1() throws CoreException {
+	public void testDeltaBecomeWorkingCopy1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"P/Y.java",
@@ -368,7 +368,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that the correct delta is issued when a non-primary working copy is discarded.
 	 */
-	public void testDeltaDiscardNonPrimaryWorkingCopy() throws CoreException {
+	public void testDeltaDiscardNonPrimaryWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"P/Y.java",
@@ -397,7 +397,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that the correct delta is issued when a primary working copy becomes a compilation unit.
 	 */
-	public void testDeltaDiscardPrimaryWorkingCopy1() throws CoreException {
+	public void testDeltaDiscardPrimaryWorkingCopy1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"P/Y.java",
@@ -429,7 +429,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * (regression test for bug 40779 Primary working copies: no deltas on destroy)
 
 	 */
-	public void testDeltaDiscardPrimaryWorkingCopy2() throws CoreException {
+	public void testDeltaDiscardPrimaryWorkingCopy2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"P/Y.java",
@@ -462,7 +462,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * and this compilation unit doesn't exist on disk.
 	 * (regression test for bug 44084 No refresh when deleting edited unit)
 	 */
-	public void testDeltaDiscardPrimaryWorkingCopy3() throws CoreException {
+	public void testDeltaDiscardPrimaryWorkingCopy3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.workingCopy = getCompilationUnit("P/Y.java");
 			this.workingCopy.becomeWorkingCopy(null);
@@ -486,7 +486,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * with unsaved changes.
 	 * (regression test for bug 146012 No F_CONTENT flag on delta when reverting to old annotations)
 	 */
-	public void testDeltaDiscardPrimaryWorkingCopy4() throws CoreException {
+	public void testDeltaDiscardPrimaryWorkingCopy4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			this.workingCopy = getCompilationUnit("P/X.java");
 			this.workingCopy.becomeWorkingCopy(null);
@@ -529,7 +529,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * Tests that the same number of calls to discardWorkingCopy() is needed for primary working copy to be back
 	 * in compilation uint mode.
 	 */
-	public void testDiscardWorkingCopy2() throws CoreException {
+	public void testDiscardWorkingCopy2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = null;
 		try {
 			cu = getCompilationUnit("P/X.java");
@@ -547,7 +547,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 		} finally {
 			if (cu != null) {
 				int max = 3;
-				while (cu.isWorkingCopy() && max-- > 0) {
+				while (cu.isWorkingCopy() && max-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					cu.discardWorkingCopy();
 				}
 			}
@@ -558,7 +558,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * Tests that the same number of calls to discardWorkingCopy() is needed for non-primary working copy
 	 * to be discarded.
 	 */
-	public void testDiscardWorkingCopy3() throws CoreException {
+	public void testDiscardWorkingCopy3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			ICompilationUnit cu = getCompilationUnit("P/X.java");
 			TestWorkingCopyOwner owner = new TestWorkingCopyOwner();
@@ -583,7 +583,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 		} finally {
 			if (this.workingCopy != null) {
 				int max = 3;
-				while (this.workingCopy.isWorkingCopy() && max-- > 0) {
+				while (this.workingCopy.isWorkingCopy() && max-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					this.workingCopy.discardWorkingCopy();
 				}
 			}
@@ -593,7 +593,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Tests that a non-primary working copy that is discarded cannot be reopened.
 	 */
-	public void testDiscardWorkingCopy4() throws CoreException {
+	public void testDiscardWorkingCopy4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = getCompilationUnit("P/X.java");
 		TestWorkingCopyOwner owner = new TestWorkingCopyOwner();
 		this.workingCopy = cu.getWorkingCopy(owner, null);
@@ -642,7 +642,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that a type that is otherwise missing can be looked up using the working copy owner.
 	 */
-	public void testFindType1() throws Exception {
+	public void testFindType1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		WorkingCopyOwner owner = new WorkingCopyOwner() {
 			public String findSource(String typeName, String packageName) {
 				if ("to.be".equals(packageName) && "Generated".equals(typeName)) {
@@ -674,7 +674,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that a type that is otherwise available can be hidden using the working copy owner.
 	 */
-	public void testFindType2() throws Exception {
+	public void testFindType2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile("/P/Y.java", "public class Y {}");
 			WorkingCopyOwner owner = new WorkingCopyOwner() {
@@ -803,7 +803,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that the correct working copies are returned by JavaCore.getWorkingCopies(WorkingCopyOwner)
 	 */
-	public void testGetWorkingCopies() throws CoreException {
+	public void testGetWorkingCopies() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit workingCopy11 = null;
 		ICompilationUnit workingCopy12 = null;
 		ICompilationUnit workingCopy21 = null;
@@ -888,7 +888,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 		} finally {
 			if (this.workingCopy != null) {
 				int max = 2;
-				while (this.workingCopy.isWorkingCopy() && max-- > 0) {
+				while (this.workingCopy.isWorkingCopy() && max-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					this.workingCopy.discardWorkingCopy();
 				}
 			}
@@ -899,7 +899,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * Ensures that getWorkingCopy(WorkingCopyOwner, IProblemRequestor, IProgressMonitor)
 	 * returns a different working copy if called twice with a different working copy owner.
 	 */
-	public void testGetWorkingCopy2() throws CoreException {
+	public void testGetWorkingCopy2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit workingCopy1 = null;
 		ICompilationUnit workingCopy2 = null;
 		try {
@@ -925,7 +925,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * that are hidden by a type of the working copy owner
 	 * (regression test for bug 133372 [hierarchy] Type hierarchy returns type twice if executed on working copy layer)
 	 */
-	public void testHierarchy() throws CoreException {
+	public void testHierarchy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile(
 				"/P/Y.java",
@@ -951,7 +951,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * working copy from the original package.
 	 * (regression test for bug 43847 IPackageFragment not updated after CUs have moved)
 	 */
-	public void testMoveWorkingCopy() throws CoreException {
+	public void testMoveWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFolder("/P/p1");
 			createFile(
@@ -1015,7 +1015,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 			"public class X {\n" +
 			"}"
 		);
-		assertEquals("Unexpected path", "/" + ExternalJavaProject.EXTERNAL_PROJECT_NAME + "/X.java", this.workingCopy.getPath().toString());
+		assertEquals("Unexpected path", "/" + ExternalJavaProject.EXTERNAL_PROJECT_NAME + "/X.java", this.workingCopy.getPath().toString()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/*
@@ -1033,7 +1033,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that a new working copy with no resource can be reconciled and that the delta is correct.
 	 */
-	public void testNewWorkingCopy05() throws CoreException {
+	public void testNewWorkingCopy05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy =  newExternalWorkingCopy(
 			"X.java",
 			"public class X {\n" +
@@ -1060,7 +1060,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that a new working copy with no resource can be reconciled and that the resulting AST is correct.
 	 */
-	public void testNewWorkingCopy06() throws CoreException {
+	public void testNewWorkingCopy06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopy =  newExternalWorkingCopy(
 			"X.java",
 			"public class X {\n" +
@@ -1136,7 +1136,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * (regression test for bug 39533 Working copy with no corresponding file not considered by NameLookup)
 	 * @deprecated using deprecated code
 	 */
-	public void testParseCompilationUnit1() throws CoreException {
+	public void testParseCompilationUnit1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit workingCopy1 = null;
 		ICompilationUnit workingCopy2 = null;
 		try {
@@ -1182,7 +1182,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * Ensures that creating a DOM AST and computing the bindings takes the owner's working copies into account.
 	 * @deprecated using deprecated code
 	 */
-	public void testParseCompilationUnit2() throws CoreException {
+	public void testParseCompilationUnit2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TestWorkingCopyOwner owner = new TestWorkingCopyOwner();
 		this.workingCopy = getCompilationUnit("P/Y.java").getWorkingCopy(owner, null);
 		this.workingCopy.getBuffer().setContents(
@@ -1217,7 +1217,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * Ensures that creating a DOM AST and computing the bindings takes the owner's working copies into account.
 	 * @deprecated using deprecated code
 	 */
-	public void testParseCompilationUnit3() throws CoreException {
+	public void testParseCompilationUnit3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P1", new String[] {"src"}, new String[] {"JCL18_LIB", "lib"}, "bin");
 
@@ -1281,7 +1281,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that searching takes the owner's working copies into account.
 	 */
-	public void testSearch1() throws CoreException {
+	public void testSearch1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = getCompilationUnit("P/Y.java");
 		TestWorkingCopyOwner owner = new TestWorkingCopyOwner();
 		this.workingCopy = cu.getWorkingCopy(owner, null);
@@ -1312,7 +1312,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	/*
 	 * Ensures that searching takes the owner's working copies into account.
 	 */
-	public void testSearch2() throws CoreException {
+	public void testSearch2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit cu = getCompilationUnit("P/X.java");
 		TestWorkingCopyOwner owner = new TestWorkingCopyOwner();
 		this.workingCopy = cu.getWorkingCopy(owner, null);
@@ -1342,7 +1342,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * Ensures that searching takes the primary owner's working copies into account only if the working copy
 	 * is not saved.
 	 */
-	public void testSearch3() throws CoreException {
+	public void testSearch3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createFile("/P/Y.java", "");
 			this.workingCopy = getCompilationUnit("P/Y.java");
@@ -1384,7 +1384,7 @@ public class WorkingCopyOwnerTests extends ModifyingResourceTests {
 	 * Ensures that searching takes the primary owner's working copies and the given working copies into account.
 	 * (regression test for bug 43300 SearchEngine(IWorkingCopy[] workingCopies) not backward compatible)
 	 */
-	public void testSearch4() throws CoreException {
+	public void testSearch4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit primaryWorkingCopy = null;
 		try {
 			createFolder("P/p");

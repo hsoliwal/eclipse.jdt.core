@@ -41,7 +41,7 @@ public class ModulePathContainerInitializer extends ClasspathContainerInitialize
 	}
 	private void verbose_not_a_module_project(IJavaProject project, IPath containerPath) {
 		JavaModelManager.trace(
-			"Module path INIT - FAILED (not a module project)\n" + //$NON-NLS-1$
+			"Module path INIT - FAILED (not a module project)\n" + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	project: " + project.getElementName() + '\n' + //$NON-NLS-1$
 			"	container path: " + containerPath); //$NON-NLS-1$
 	}

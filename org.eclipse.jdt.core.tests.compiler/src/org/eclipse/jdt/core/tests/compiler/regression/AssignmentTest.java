@@ -53,7 +53,7 @@ public static Test suite() {
  * no effect assignment bug
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=27235
  */
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(		new String[] {
 			"X.java",
 			"public class X {	\n" +
@@ -78,7 +78,7 @@ public void test001() {
 		"3 3");
 }
 
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -139,7 +139,7 @@ public void test002() {
 		"The assignment to variable next has no effect\n" +
 		"----------\n");
 }
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -159,7 +159,7 @@ public void test003() {
 		"12");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=151787
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -276,7 +276,7 @@ public void test004() {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=190391
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -312,7 +312,7 @@ public void test005() {
 		"----------\n");
 }
 // final multiple assignment
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -340,7 +340,7 @@ public void test020() {
 }
 
 // null part has been repeated into NullReferenceTest#test1033
-public void test033() {
+public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -380,7 +380,7 @@ public void test033() {
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84215
 //TODO (philippe) should move to InitializationTest suite
-public void test034() {
+public void test034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNUSED_PRIVATE_MEMBER, JavaCore.IGNORE);
 	this.runNegativeTest(
@@ -777,7 +777,7 @@ public void test034() {
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=84480
  * disabled: https://bugs.eclipse.org/bugs/show_bug.cgi?id=111898
  */
-public void test035() {
+public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -809,7 +809,7 @@ public void test035() {
 		"Zork cannot be resolved to a type\n" +
 		"----------\n");
 }
-public void test036() {
+public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -840,7 +840,7 @@ public void test036() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=93588
-public void test037() {
+public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -863,7 +863,7 @@ public void test037() {
 		"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=111703
-public void test038() {
+public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expectedError = 	this.complianceLevel < ClassFileConstants.JDK16 ?
 			"----------\n" +
 			"1. WARNING in X.java (at line 19)\n" +
@@ -949,7 +949,7 @@ public void test038() {
 		expectedError);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=111898
-public void test039() {
+public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -969,7 +969,7 @@ public void test039() {
 }
 // warn upon parameter assignment
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=53773
-public void test040() {
+public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportParameterAssignment, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -999,7 +999,7 @@ public void test040() {
 // warn upon parameter assignment
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=53773
 // diagnose within fake reachable code
-public void test041() {
+public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportParameterAssignment, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -1031,7 +1031,7 @@ public void test041() {
 // warn upon parameter assignment
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=53773
 // diagnose within fake reachable code
-public void test042() {
+public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportParameterAssignment, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -1064,7 +1064,7 @@ public void test042() {
 // warn upon parameter assignment
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=53773
 // we only show the 'assignment to final' error here
-public void test043() {
+public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportParameterAssignment, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -1087,7 +1087,7 @@ public void test043() {
 		null, true, options);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=100369
-public void test044() {
+public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1144,7 +1144,7 @@ public void test044() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=133351
-public void test045() {
+public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1170,7 +1170,7 @@ public void test045() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=200724
-public void test046() {
+public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1223,7 +1223,7 @@ public void _test048() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=200724
 // adding a package to the picture
-public void test049() {
+public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"p/X.java",
@@ -1245,7 +1245,7 @@ public void test049() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=200724
 // adding an inner class to the picture
-public void test050() {
+public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String expectedError = 	this.complianceLevel < ClassFileConstants.JDK16 ?
 			"----------\n" +
 			"1. ERROR in p\\X.java (at line 4)\n" +
@@ -1284,7 +1284,7 @@ public void test050() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=200724
 // swap lhs and rhs
-public void test051() {
+public void test051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1304,7 +1304,7 @@ public void test051() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=206017
-public void test052() {
+public void test052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1328,7 +1328,7 @@ public void test052() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=206017
-public void test053() {
+public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1352,7 +1352,7 @@ public void test053() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=235543
-public void _test054_definite_unassignment_try_catch() {
+public void _test054_definite_unassignment_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		// test directory preparation
 		new String[] { /* test files */
@@ -1385,7 +1385,7 @@ public void _test054_definite_unassignment_try_catch() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=235543
 // variant
-public void test055_definite_unassignment_try_catch() {
+public void test055_definite_unassignment_try_catch() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		// test directory preparation
 		new String[] { /* test files */
@@ -1419,7 +1419,7 @@ public void test055_definite_unassignment_try_catch() {
 		JavacTestOptions.EclipseJustification.EclipseBug235543 /* javac test options */);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=235546
-public void test056_definite_unassignment_infinite_for_loop() {
+public void test056_definite_unassignment_infinite_for_loop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		true /* flush output directory */,
@@ -1449,7 +1449,7 @@ public void test056_definite_unassignment_infinite_for_loop() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=235546
 // variant
-public void test057_definite_unassignment_infinite_while_loop() {
+public void test057_definite_unassignment_infinite_while_loop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		true /* flush output directory */,
@@ -1478,7 +1478,7 @@ public void test057_definite_unassignment_infinite_while_loop() {
 		JavacTestOptions.EclipseJustification.EclipseBug235546 /* javac test options */);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=235550
-public void test058_definite_unassignment_try_finally() {
+public void test058_definite_unassignment_try_finally() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		new String[] { /* test files */
@@ -1503,7 +1503,7 @@ public void test058_definite_unassignment_try_finally() {
 		// I hold to be wrong
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=235555
-public void test059_definite_unassignment_assign_in_for_condition() {
+public void test059_definite_unassignment_assign_in_for_condition() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		true /* flush output directory */,
@@ -1528,7 +1528,7 @@ public void test059_definite_unassignment_assign_in_for_condition() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=235555
 // variant
-public void test060_definite_unassignment_assign_in_for_condition() {
+public void test060_definite_unassignment_assign_in_for_condition() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		new String[] { /* test files */
@@ -1564,7 +1564,7 @@ public void test061() {
 }
 
 // challenge widening conversion
-public void test062() {
+public void test062() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1777,7 +1777,7 @@ public void test062() {
 		"----------\n");
 }
 //challenge narrowing conversion
-public void test063() {
+public void test063() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1890,7 +1890,7 @@ public void test064() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=282891
-public void test065() {
+public void test065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportComparingIdentical, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -1922,7 +1922,7 @@ public void test065() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=290376
-public void test066() {
+public void test066() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportComparingIdentical, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -1953,7 +1953,7 @@ public void test066() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=290376
-public void test067() {
+public void test067() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportComparingIdentical, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -1984,7 +1984,7 @@ public void test067() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=362279
-public void test068() {
+public void test068() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2035,7 +2035,7 @@ public void test068() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=480989
-public void testbug480989() {
+public void testbug480989() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String src =
 			"public abstract class Unassigned {\n" +
 			"    public Unassigned() {}\n" +
@@ -2064,7 +2064,7 @@ public void testbug480989() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=486908
-public void testBug486908_A(){
+public void testBug486908_A(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String[] {
 			"Random.java",
 			"import java.util.ArrayList;\n" +

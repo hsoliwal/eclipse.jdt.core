@@ -76,7 +76,7 @@ private IJavaElement[] computeChildren(List<String> namesWithoutExtension) {
 	if (size == 0)
 		return NO_ELEMENTS;
 	IJavaElement[] children = new IJavaElement[size];
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String nameWithoutExtension = namesWithoutExtension.get(i);
 		if (TypeConstants.MODULE_INFO_NAME_STRING.equals(nameWithoutExtension))
 			children[i] = new ModularClassFile(this);
@@ -88,14 +88,14 @@ private IJavaElement[] computeChildren(List<String> namesWithoutExtension) {
 /**
  * Compute all the non-java resources according to the given entry names.
  */
-private Object[] computeNonJavaResources(List<String> entryNames) {
+private Object[] computeNonJavaResources(List<String> entryNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (entryNames.isEmpty()) {
 		return JavaElementInfo.NO_NON_JAVA_RESOURCES;
 	}
-	HashMap<IPath, IJarEntryResource> jarEntries = new HashMap<>();
-	HashMap<IPath, ArrayList<IPath>> childrenMap = new HashMap<>();
-	ArrayList<IJarEntryResource> topJarEntries = new ArrayList<>();
-	for (String resName: entryNames) {
+	HashMap<IPath, IJarEntryResource> jarEntries = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	HashMap<IPath, ArrayList<IPath>> childrenMap = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	ArrayList<IJarEntryResource> topJarEntries = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (String resName: entryNames) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// consider that a .java file is not a non-java resource (see bug 12246 Packages view shows .class and .java files when JAR has source)
 		if (!Util.isJavaLikeFileName(resName)) {
 			IPath filePath = new Path(resName);
@@ -111,12 +111,12 @@ private Object[] computeNonJavaResources(List<String> entryNames) {
 				topJarEntries.add(file);
 			} else {
 				IPath parentPath = childPath.removeLastSegments(1);
-				while (parentPath.segmentCount() > 0) {
+				while (parentPath.segmentCount() > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ArrayList<IPath> parentChildren = childrenMap.get(parentPath);
 					if (parentChildren == null) {
 						JarEntryDirectory dir = new JarEntryDirectory(parentPath.lastSegment());
 						jarEntries.put(parentPath, dir);
-						childrenMap.put(parentPath, parentChildren = new ArrayList<>());
+						childrenMap.put(parentPath, parentChildren = new ArrayList<>()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 						parentChildren.add(childPath);
 						if (parentPath.segmentCount() == 1) {
 							topJarEntries.add(dir);
@@ -132,13 +132,13 @@ private Object[] computeNonJavaResources(List<String> entryNames) {
 			}
 		}
 	}
-	for (Entry<IPath, ArrayList<IPath>> entry: childrenMap.entrySet()) {
+	for (Entry<IPath, ArrayList<IPath>> entry: childrenMap.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IPath entryPath = entry.getKey();
 		ArrayList<IPath> entryValue =  entry.getValue();
 		JarEntryDirectory jarEntryDirectory = (JarEntryDirectory) jarEntries.get(entryPath);
 		int size = entryValue.size();
 		IJarEntryResource[] children = new IJarEntryResource[size];
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			JarEntryResource child = (JarEntryResource) jarEntries.get(entryValue.get(i));
 			child.setParent(jarEntryDirectory);
 			children[i] = child;

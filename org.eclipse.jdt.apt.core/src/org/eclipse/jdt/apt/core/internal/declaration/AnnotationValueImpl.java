@@ -96,7 +96,7 @@ public class AnnotationValueImpl implements EclipseMirrorObject, AnnotationValue
 		assert _parent != null : "missing element"; //$NON-NLS-1$
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	@SuppressWarnings("rawtypes") // DOM AST API returns raw collections
     public SourcePosition getPosition()
     {
@@ -198,46 +198,46 @@ public class AnnotationValueImpl implements EclipseMirrorObject, AnnotationValue
 		return _env;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String toString() {
 		if (_value == null) {
 			return "null"; //$NON-NLS-1$
 		} else if (_value instanceof String) {
 			String value = (String) _value;
-			StringBuilder sb = new StringBuilder();
-			sb.append('"');
-			for (int i = 0; i < value.length(); i++) {
+			StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			sb.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < value.length(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Util.appendEscapedChar(sb, value.charAt(i), true);
 			}
-			sb.append('"');
+			sb.append('"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return sb.toString();
 		} else if (_value instanceof Character) {
-			StringBuilder sb = new StringBuilder();
-			sb.append('\'');
+			StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			sb.append('\''); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			Util.appendEscapedChar(sb, ((Character) _value).charValue(), false);
-			sb.append('\'');
+			sb.append('\''); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return sb.toString();
 		} else if (_value instanceof EnumConstantDeclaration) {
 			EnumConstantDeclaration enumDecl = (EnumConstantDeclaration) _value;
-			return enumDecl.getDeclaringType().toString() + "." + enumDecl.getSimpleName(); //$NON-NLS-1$
+			return enumDecl.getDeclaringType().toString() + "." + enumDecl.getSimpleName(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else if (_value instanceof Collection) {
 			// It must be Collection<AnnotationValue>
 			@SuppressWarnings("unchecked")
 			Collection<AnnotationValue> values = (Collection<AnnotationValue>) _value;
-			StringBuilder sb = new StringBuilder();
-			sb.append('{');
+			StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			sb.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			boolean first = true;
-			for (AnnotationValue annoValue : values) {
+			for (AnnotationValue annoValue : values) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!first) {
-					sb.append(", "); //$NON-NLS-1$
+					sb.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				first = false;
-				sb.append(annoValue.toString());
+				sb.append(annoValue.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			sb.append('}');
+			sb.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return sb.toString();
 		} else if (_value instanceof TypeMirror) {
-			return _value.toString() + ".class"; //$NON-NLS-1$
+			return _value.toString() + ".class"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			return _value.toString();
 		}

@@ -129,7 +129,7 @@ public void test0003() throws JavaModelException {
 		elements
 	);
 }
-public void test0004() throws JavaModelException {
+public void test0004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0004/Test.java",
 			"package test0004;\n" +
@@ -501,7 +501,7 @@ public void test0025() throws JavaModelException {
 		elements
 	);
 }
-public void test0026() throws JavaModelException {
+public void test0026() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0026/Test.java",
 			"package test0026;\n" +
@@ -522,7 +522,7 @@ public void test0026() throws JavaModelException {
 		elements
 	);
 }
-public void test0027() throws JavaModelException {
+public void test0027() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0027/Test.java",
 			"package test0027;\n" +
@@ -543,7 +543,7 @@ public void test0027() throws JavaModelException {
 		elements
 	);
 }
-public void test0028() throws JavaModelException {
+public void test0028() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0028/Test.java",
 			"package test0028;\n" +
@@ -564,7 +564,7 @@ public void test0028() throws JavaModelException {
 		elements
 	);
 }
-public void test0029() throws JavaModelException {
+public void test0029() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0029/Test.java",
 			"package test0029;\n" +
@@ -585,7 +585,7 @@ public void test0029() throws JavaModelException {
 		elements
 	);
 }
-public void test0030() throws JavaModelException {
+public void test0030() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0030/Test.java",
 			"package test0030;\n" +
@@ -607,7 +607,7 @@ public void test0030() throws JavaModelException {
 		elements
 	);
 }
-public void test0031() throws JavaModelException {
+public void test0031() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0031/Test.java",
 			"package test0031;\n" +
@@ -629,7 +629,7 @@ public void test0031() throws JavaModelException {
 		elements
 	);
 }
-public void test0032() throws JavaModelException {
+public void test0032() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0032/Test.java",
 			"package test0032;\n" +
@@ -651,7 +651,7 @@ public void test0032() throws JavaModelException {
 		elements
 	);
 }
-public void test0033() throws JavaModelException {
+public void test0033() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0033/Test.java",
 			"package test0033;\n" +
@@ -673,7 +673,7 @@ public void test0033() throws JavaModelException {
 		elements
 	);
 }
-public void test0034() throws JavaModelException {
+public void test0034() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0034/Test.java",
 			"package test0034;\n" +
@@ -695,7 +695,7 @@ public void test0034() throws JavaModelException {
 		elements
 	);
 }
-public void test0035() throws JavaModelException {
+public void test0035() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0035/Test.java",
 			"package test0035;\n" +
@@ -717,7 +717,7 @@ public void test0035() throws JavaModelException {
 		elements
 	);
 }
-public void test0036() throws JavaModelException {
+public void test0036() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0036/Test.java",
 			"package test0036;\n" +
@@ -739,7 +739,7 @@ public void test0036() throws JavaModelException {
 		elements
 	);
 }
-public void test0037() throws JavaModelException {
+public void test0037() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0037/Test.java",
 			"package test0037;\n" +
@@ -761,7 +761,7 @@ public void test0037() throws JavaModelException {
 		elements
 	);
 }
-public void test0038() throws JavaModelException {
+public void test0038() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0038/Test.java",
 			"package test0038;\n" +
@@ -783,7 +783,7 @@ public void test0038() throws JavaModelException {
 		elements
 	);
 }
-public void test0039() throws JavaModelException {
+public void test0039() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0039/Test.java",
 			"package test0039;\n" +
@@ -805,7 +805,7 @@ public void test0039() throws JavaModelException {
 		elements
 	);
 }
-public void test0040() throws JavaModelException {
+public void test0040() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0040/Test.java",
 			"package test0040;\n" +
@@ -827,7 +827,7 @@ public void test0040() throws JavaModelException {
 		elements
 	);
 }
-public void test0041() throws JavaModelException {
+public void test0041() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0041/Test.java",
 			"package test0041;\n" +
@@ -855,7 +855,7 @@ public void test0041() throws JavaModelException {
 		elements
 	);
 }
-public void test0042() throws JavaModelException {
+public void test0042() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0042/Test.java",
 			"package test0042;\n" +
@@ -877,7 +877,7 @@ public void test0042() throws JavaModelException {
 		elements
 	);
 }
-public void test0043() throws JavaModelException {
+public void test0043() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0043/Test.java",
 			"package test0043;\n" +
@@ -897,7 +897,7 @@ public void test0043() throws JavaModelException {
 		elements
 	);
 }
-public void test0044() throws JavaModelException {
+public void test0044() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0044/Test.java",
 			"package test0044;\n" +
@@ -919,7 +919,7 @@ public void test0044() throws JavaModelException {
 		elements
 	);
 }
-public void test0045() throws JavaModelException {
+public void test0045() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0045/Test.java",
 			"package test0045;\n" +
@@ -939,7 +939,7 @@ public void test0045() throws JavaModelException {
 		elements
 	);
 }
-public void test0046() throws JavaModelException {
+public void test0046() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0046/Test.java",
 			"package test0046;\n" +
@@ -962,7 +962,7 @@ public void test0046() throws JavaModelException {
 		elements
 	);
 }
-public void test0047() throws JavaModelException {
+public void test0047() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0047/Test.java",
 			"package test0047;\n" +
@@ -986,7 +986,7 @@ public void test0047() throws JavaModelException {
 		elements
 	);
 }
-public void test0048() throws JavaModelException {
+public void test0048() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0048/Test.java",
 			"package test0048;\n" +
@@ -1010,7 +1010,7 @@ public void test0048() throws JavaModelException {
 		elements
 	);
 }
-public void test0049() throws JavaModelException {
+public void test0049() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0049/Test.java",
 			"package test0049;\n" +
@@ -1034,7 +1034,7 @@ public void test0049() throws JavaModelException {
 		elements
 	);
 }
-public void test0050() throws JavaModelException {
+public void test0050() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0050/Test.java",
 			"package test0050;\n" +
@@ -1058,7 +1058,7 @@ public void test0050() throws JavaModelException {
 		elements
 	);
 }
-public void test0051() throws JavaModelException {
+public void test0051() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0051/Test.java",
 			"package test0051;\n" +
@@ -1084,7 +1084,7 @@ public void test0051() throws JavaModelException {
 		elements
 	);
 }
-public void test0052() throws JavaModelException {
+public void test0052() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0052/Test.java",
 			"package test0052;\n" +
@@ -1110,7 +1110,7 @@ public void test0052() throws JavaModelException {
 		elements
 	);
 }
-public void test0053() throws JavaModelException {
+public void test0053() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0053/Test.java",
 			"package test0053;\n" +
@@ -1137,7 +1137,7 @@ public void test0053() throws JavaModelException {
 		elements
 	);
 }
-public void test0054() throws JavaModelException {
+public void test0054() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0054/Test.java",
 			"package test0054;\n" +
@@ -1164,7 +1164,7 @@ public void test0054() throws JavaModelException {
 		elements
 	);
 }
-public void test0055() throws JavaModelException {
+public void test0055() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0055/Test.java",
 			"package test0055;\n" +
@@ -1191,7 +1191,7 @@ public void test0055() throws JavaModelException {
 		elements
 	);
 }
-public void test0056() throws JavaModelException {
+public void test0056() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0056/Test.java",
 			"package test0056;\n" +
@@ -1216,7 +1216,7 @@ public void test0056() throws JavaModelException {
 		elements
 	);
 }
-public void test0057() throws JavaModelException {
+public void test0057() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0057/Test.java",
 			"package test0057;\n" +
@@ -1243,7 +1243,7 @@ public void test0057() throws JavaModelException {
 		elements
 	);
 }
-public void test0058() throws JavaModelException {
+public void test0058() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0058/Test.java",
 			"package test0058;\n" +
@@ -1270,7 +1270,7 @@ public void test0058() throws JavaModelException {
 		elements
 	);
 }
-public void test0059() throws JavaModelException {
+public void test0059() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0059/Test.java",
 			"package test0059;\n" +
@@ -1297,7 +1297,7 @@ public void test0059() throws JavaModelException {
 		elements
 	);
 }
-public void test0060() throws JavaModelException {
+public void test0060() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0060/Test.java",
 			"package test0060;\n" +
@@ -1324,7 +1324,7 @@ public void test0060() throws JavaModelException {
 		elements
 	);
 }
-public void test0061() throws JavaModelException {
+public void test0061() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0061/Test.java",
 			"package test0061;\n" +
@@ -1347,7 +1347,7 @@ public void test0061() throws JavaModelException {
 		elements
 	);
 }
-public void test0062() throws JavaModelException {
+public void test0062() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0062/Test.java",
 			"package test0062;\n" +
@@ -1370,7 +1370,7 @@ public void test0062() throws JavaModelException {
 		elements
 	);
 }
-public void test0063() throws JavaModelException {
+public void test0063() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0063/Test.java",
 			"package test0063;\n" +
@@ -1397,7 +1397,7 @@ public void test0063() throws JavaModelException {
 		elements
 	);
 }
-public void test0064() throws JavaModelException {
+public void test0064() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0064/Test.java",
 			"package test0064;\n" +
@@ -1421,7 +1421,7 @@ public void test0064() throws JavaModelException {
 		elements
 	);
 }
-public void test0065() throws JavaModelException {
+public void test0065() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0065/Test.java",
 			"package test0065;\n" +
@@ -1445,7 +1445,7 @@ public void test0065() throws JavaModelException {
 		elements
 	);
 }
-public void test0066() throws JavaModelException {
+public void test0066() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0066/Test.java",
 			"package test0066;\n" +
@@ -1469,7 +1469,7 @@ public void test0066() throws JavaModelException {
 		elements
 	);
 }
-public void test0067() throws JavaModelException {
+public void test0067() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0067/Test.java",
 			"package test0067;\n" +
@@ -1493,7 +1493,7 @@ public void test0067() throws JavaModelException {
 		elements
 	);
 }
-public void test0068() throws JavaModelException {
+public void test0068() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0068/Test.java",
 			"package test0068;\n" +
@@ -1517,7 +1517,7 @@ public void test0068() throws JavaModelException {
 		elements
 	);
 }
-public void test0069() throws JavaModelException {
+public void test0069() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0069/Test.java",
 			"package test0069;\n" +
@@ -1545,7 +1545,7 @@ public void test0069() throws JavaModelException {
 		elements
 	);
 }
-public void test0070() throws JavaModelException {
+public void test0070() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0070/Test.java",
 			"package test0070;\n" +
@@ -1569,7 +1569,7 @@ public void test0070() throws JavaModelException {
 		elements
 	);
 }
-public void test0071() throws JavaModelException {
+public void test0071() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0071/Test.java",
 			"package test0071;\n" +
@@ -1593,7 +1593,7 @@ public void test0071() throws JavaModelException {
 		elements
 	);
 }
-public void test0072() throws JavaModelException {
+public void test0072() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0072/Test.java",
 			"package test0072;\n" +
@@ -1617,7 +1617,7 @@ public void test0072() throws JavaModelException {
 		elements
 	);
 }
-public void test0073() throws JavaModelException {
+public void test0073() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0073/Test.java",
 			"package test0073;\n" +
@@ -1641,7 +1641,7 @@ public void test0073() throws JavaModelException {
 		elements
 	);
 }
-public void test0074() throws JavaModelException {
+public void test0074() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0074/Test.java",
 			"package test0074;\n" +
@@ -1665,7 +1665,7 @@ public void test0074() throws JavaModelException {
 		elements
 	);
 }
-public void test0075() throws JavaModelException {
+public void test0075() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0075/Test.java",
 			"package test0075;\n" +
@@ -1693,7 +1693,7 @@ public void test0075() throws JavaModelException {
 		elements
 	);
 }
-public void test0076() throws JavaModelException {
+public void test0076() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0076/Test.java",
 			"package test0076;\n" +
@@ -1715,7 +1715,7 @@ public void test0076() throws JavaModelException {
 		elements
 	);
 }
-public void test0077() throws JavaModelException {
+public void test0077() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0077/Test.java",
 			"package test0077;\n" +
@@ -1736,7 +1736,7 @@ public void test0077() throws JavaModelException {
 		elements
 	);
 }
-public void test0078() throws JavaModelException {
+public void test0078() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0078/Test.java",
 			"package test0078;\n" +
@@ -1758,7 +1758,7 @@ public void test0078() throws JavaModelException {
 		elements
 	);
 }
-public void test0079() throws JavaModelException {
+public void test0079() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0079/Test.java",
 			"package test0079;\n" +
@@ -1780,7 +1780,7 @@ public void test0079() throws JavaModelException {
 		elements
 	);
 }
-public void test0080() throws JavaModelException {
+public void test0080() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0080/Test.java",
 			"package test0080;\n" +
@@ -1803,7 +1803,7 @@ public void test0080() throws JavaModelException {
 		elements
 	);
 }
-public void test0081() throws JavaModelException {
+public void test0081() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0081/Test.java",
 			"package test0080;\n" +
@@ -1867,7 +1867,7 @@ public void test0085() throws JavaModelException {
 	assertEquals("test0085.Test<T>.Member", ((IType)elements[0]).getFullyQualifiedParameterizedName());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=80957
-public void test0086() throws JavaModelException {
+public void test0086() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src2/test0086/Test.java",
 			"package test0080;\n" +
@@ -1888,7 +1888,7 @@ public void test0086() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=82137
-public void test0087() throws JavaModelException {
+public void test0087() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit imported = null;
 	try {
 		imported = getWorkingCopy(
@@ -1918,7 +1918,7 @@ public void test0087() throws JavaModelException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=82137
-public void test0088() throws JavaModelException {
+public void test0088() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit imported = null;
 	try {
 		imported = getWorkingCopy(
@@ -1950,7 +1950,7 @@ public void test0088() throws JavaModelException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=82558
-public void test0089() throws JavaModelException {
+public void test0089() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement[] elements = selectAfter(
 			"/Resolve/src2/test0089/Test.java",
 			"package test0089;\n" +
@@ -1988,7 +1988,7 @@ public void test0090() throws JavaModelException {
 
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=86971
-public void test0091() throws JavaModelException {
+public void test0091() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit imported = null;
 	try {
 		imported = getWorkingCopy(
@@ -2017,7 +2017,7 @@ public void test0091() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=86971
-public void test0092() throws JavaModelException {
+public void test0092() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit imported = null;
 	try {
 		imported = getWorkingCopy(
@@ -2046,7 +2046,7 @@ public void test0092() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=85379
-public void test0093() throws JavaModelException {
+public void test0093() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit imported = null;
 	try {
 		imported = getWorkingCopy(
@@ -2080,7 +2080,7 @@ public void test0093() throws JavaModelException {
 		}
 	}
 }
-public void test0094() throws JavaModelException {
+public void test0094() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement[] elements = select(
 			"/Resolve/src2/test0094/Test.java",
 			"package test0094;\n" +
@@ -2102,7 +2102,7 @@ public void test0094() throws JavaModelException {
 /*
  * Regression test for bug 87929 Wrong decoding of type signature with wildcards
  */
-public void test0095() throws JavaModelException {
+public void test0095() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement[] elements = select(
 			"/Resolve/src2/test0095/X.java",
 			"package test0095;\n" +
@@ -2132,7 +2132,7 @@ public void test0095() throws JavaModelException {
 		typeArguments);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=94653
-public void test0096() throws JavaModelException {
+public void test0096() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement[] elements = select(
 			"/Resolve/src2/test0096/X.java",
 			"package test0095;\n" +
@@ -2151,7 +2151,7 @@ public void test0096() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=95481
-public void test0097() throws JavaModelException {
+public void test0097() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit imported = null;
 	try {
 		imported = getWorkingCopy(
@@ -2181,7 +2181,7 @@ public void test0097() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=83206
-public void test0098() throws JavaModelException {
+public void test0098() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit imported = null;
 	try {
 		imported = getWorkingCopy(
@@ -2229,7 +2229,7 @@ public void test0099() throws JavaModelException {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=99645
-public void test0100() throws JavaModelException {
+public void test0100() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement[] elements = select(
 			"/Resolve/src2/test0100/Test.java",
 			"public class Test<\n" +
@@ -2270,7 +2270,7 @@ public void test0101() throws JavaModelException {
  * Ensure that resolving a binary synthetic contructor call in a generic class returns the member type
  * (regression test for bug 131519 JDK with attached source unnavigable.)
  */
-public void test0102() throws CoreException, IOException {
+public void test0102() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 		String source =
@@ -2295,7 +2295,7 @@ public void test0102() throws CoreException, IOException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=165900
-public void test0103() throws JavaModelException {
+public void test0103() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -2324,7 +2324,7 @@ public void test0103() throws JavaModelException {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=165900
-public void test0104() throws JavaModelException {
+public void test0104() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -2355,7 +2355,7 @@ public void test0104() throws JavaModelException {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=165900
-public void test0105() throws JavaModelException {
+public void test0105() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -2386,7 +2386,7 @@ public void test0105() throws JavaModelException {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=165900
-public void test0106() throws JavaModelException {
+public void test0106() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Resolve/src/test/Test.java",
@@ -2417,7 +2417,7 @@ public void test0106() throws JavaModelException {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=185318
-public void test0107() throws CoreException {
+public void test0107() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2438,7 +2438,7 @@ public void test0107() throws CoreException {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=185318
-public void test0108() throws CoreException {
+public void test0108() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2459,7 +2459,7 @@ public void test0108() throws CoreException {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=185318
-public void test0109() throws CoreException {
+public void test0109() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2480,7 +2480,7 @@ public void test0109() throws CoreException {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=185318
-public void test0110() throws CoreException {
+public void test0110() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2501,7 +2501,7 @@ public void test0110() throws CoreException {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209661
-public void test0111() throws CoreException {
+public void test0111() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2533,7 +2533,7 @@ public void test0111() throws CoreException {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209661
-public void test0112() throws CoreException {
+public void test0112() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2565,7 +2565,7 @@ public void test0112() throws CoreException {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=222458
-public void test0113() throws JavaModelException {
+public void test0113() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit definition = null;
 	try {
 		definition = getWorkingCopy(
@@ -2591,7 +2591,7 @@ public void test0113() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=222458
-public void test0114() throws Exception {
+public void test0114() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IResource rootResource = getPackageFragmentRoot("Resolve", "/Resolve/class-folder").getResource();
 	IPath rootLocation = rootResource.getLocation();
 	try {
@@ -2619,7 +2619,7 @@ public void test0114() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=238534
-public void test0115() throws Exception {
+public void test0115() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/X.java",
@@ -2675,7 +2675,7 @@ public void test0115() throws Exception {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=238534
-public void test0116() throws Exception {
+public void test0116() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2713,7 +2713,7 @@ public void test0116() throws Exception {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=230830
-public void test0117() throws Exception {
+public void test0117() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2746,7 +2746,7 @@ public void test0117() throws Exception {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=230830
-public void test0118() throws Exception {
+public void test0118() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2784,7 +2784,7 @@ public void test0118() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209639
-public void test0119() throws Exception {
+public void test0119() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2821,7 +2821,7 @@ public void test0119() throws Exception {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209639
-public void test0120() throws Exception {
+public void test0120() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2858,7 +2858,7 @@ public void test0120() throws Exception {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209639
-public void test0121() throws Exception {
+public void test0121() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2895,7 +2895,7 @@ public void test0121() throws Exception {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209639
-public void test0122() throws Exception {
+public void test0122() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2918,7 +2918,7 @@ public void test0122() throws Exception {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209639
-public void test0123() throws Exception {
+public void test0123() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/test/Test.java",
@@ -2945,7 +2945,7 @@ public void test0123() throws Exception {
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=308356
-public void test0124() throws Exception {
+public void test0124() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/Test.java",
@@ -2990,7 +2990,7 @@ public void test0125() throws CoreException {
 	}
 }
 
-public void testBrokenSwitch0() throws JavaModelException {
+public void testBrokenSwitch0() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = getWorkingCopy("/Resolve/src/Test.java",
 			"interface ILog {\n" +
 			"	void log(String status);\n" +
@@ -3014,7 +3014,7 @@ public void testBrokenSwitch0() throws JavaModelException {
 				elements);
 }
 
-public void testBrokenSwitch1() throws JavaModelException {
+public void testBrokenSwitch1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit cu = getWorkingCopy("/Resolve/src/Test.java",
 			"interface ILog {\n" +
 			"	void log(String status);\n" +

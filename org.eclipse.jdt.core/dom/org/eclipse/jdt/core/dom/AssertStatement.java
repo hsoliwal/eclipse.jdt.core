@@ -53,7 +53,7 @@ public class AssertStatement extends Statement {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List properyList = new ArrayList(3);
+		List properyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(AssertStatement.class, properyList);
 		addProperty(EXPRESSION_PROPERTY, properyList);
 		addProperty(MESSAGE_PROPERTY, properyList);
@@ -105,7 +105,7 @@ public class AssertStatement extends Statement {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == EXPRESSION_PROPERTY) {
 			if (get) {

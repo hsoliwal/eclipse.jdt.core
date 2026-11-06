@@ -44,8 +44,8 @@ public class WeakHashSet<T> {
 		@Override
 		public String toString() {
 			T referent = get();
-			if (referent == null) return "[hashCode=" + this.hashCode + "] <referent was garbage collected>"; //$NON-NLS-1$  //$NON-NLS-2$
-			return "[hashCode=" + this.hashCode + "] " + referent.toString(); //$NON-NLS-1$ //$NON-NLS-2$
+			if (referent == null) return "[hashCode=" + this.hashCode + "] <referent was garbage collected>"; //$NON-NLS-1$  //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			return "[hashCode=" + this.hashCode + "] " + referent.toString(); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -74,12 +74,12 @@ public class WeakHashSet<T> {
 	 * If an object that is equals to the given object already exists, do nothing.
 	 * Returns the existing object or the new object if not found.
 	 */
-	public T add(T obj) {
+	public T add(T obj) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		cleanupGarbageCollectedValues();
 		int valuesLength = this.values.length,
 			index = (obj.hashCode() & 0x7FFFFFFF) % valuesLength;
 		HashableWeakReference<T> currentValue;
-		while ((currentValue = this.values[index]) != null) {
+		while ((currentValue = this.values[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			T referent;
 			if (obj.equals(referent = currentValue.get())) {
 				return referent;
@@ -97,13 +97,13 @@ public class WeakHashSet<T> {
 		return obj;
 	}
 
-	private void addValue(HashableWeakReference<T> value) {
+	private void addValue(HashableWeakReference<T> value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		T obj = value.get();
 		if (obj == null) return;
 		int valuesLength = this.values.length;
 		int index = (value.hashCode & 0x7FFFFFFF) % valuesLength;
 		HashableWeakReference<T> currentValue;
-		while ((currentValue = this.values[index]) != null) {
+		while ((currentValue = this.values[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (obj.equals(currentValue.get())) {
 				return;
 			}
@@ -118,19 +118,19 @@ public class WeakHashSet<T> {
 			rehash();
 	}
 
-	private void cleanupGarbageCollectedValues() {
+	private void cleanupGarbageCollectedValues() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Reference<? extends T> toBeRemoved;
-		while ((toBeRemoved =  this.referenceQueue.poll()) != null) {
+		while ((toBeRemoved =  this.referenceQueue.poll()) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int hashCode = toBeRemoved.hashCode();
 			int valuesLength = this.values.length;
 			int index = (hashCode & 0x7FFFFFFF) % valuesLength;
 			HashableWeakReference<T> currentValue;
-			while ((currentValue = this.values[index]) != null) {
+			while ((currentValue = this.values[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (currentValue == toBeRemoved) {
 					// replace the value at index with the last value with the same hash
 					int sameHash = index;
 					int current;
-					while ((currentValue = this.values[current = (sameHash + 1) % valuesLength]) != null && currentValue.hashCode == hashCode)
+					while ((currentValue = this.values[current = (sameHash + 1) % valuesLength]) != null && currentValue.hashCode == hashCode) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						sameHash = current;
 					this.values[index] = this.values[sameHash];
 					this.values[sameHash] = null;
@@ -157,7 +157,7 @@ public class WeakHashSet<T> {
 		int valuesLength = this.values.length;
 		int index = (obj.hashCode() & 0x7FFFFFFF) % valuesLength;
 		HashableWeakReference<T> currentValue;
-		while ((currentValue = this.values[index]) != null) {
+		while ((currentValue = this.values[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			T referent;
 			if (obj.equals(referent = currentValue.get())) {
 				return referent;
@@ -173,7 +173,7 @@ public class WeakHashSet<T> {
 		WeakHashSet<T> newHashSet = new WeakHashSet<>(this.elementSize * 2);		// double the number of expected elements
 		newHashSet.referenceQueue = this.referenceQueue;
 		HashableWeakReference<T> currentValue;
-		for (HashableWeakReference<T> value : this.values)
+		for (HashableWeakReference<T> value : this.values) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((currentValue = value) != null)
 				newHashSet.addValue(currentValue);
 
@@ -186,12 +186,12 @@ public class WeakHashSet<T> {
 	 * Removes the object that is in this set and that is equals to the given object.
 	 * Return the object that was in the set, or null if not found.
 	 */
-	public T remove(T obj) {
+	public T remove(T obj) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		cleanupGarbageCollectedValues();
 		int valuesLength = this.values.length;
 		int index = (obj.hashCode() & 0x7FFFFFFF) % valuesLength;
 		HashableWeakReference<T> currentValue;
-		while ((currentValue = this.values[index]) != null) {
+		while ((currentValue = this.values[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			T referent;
 			if (obj.equals(referent = currentValue.get())) {
 				this.elementSize--;
@@ -212,17 +212,17 @@ public class WeakHashSet<T> {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder("{"); //$NON-NLS-1$
-		for (HashableWeakReference<T> value : this.values) {
+		StringBuilder buffer = new StringBuilder("{"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (HashableWeakReference<T> value : this.values) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (value != null) {
 				T ref = value.get();
 				if (ref != null) {
-					buffer.append(ref.toString());
-					buffer.append(", "); //$NON-NLS-1$
+					buffer.append(ref.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}
-		buffer.append("}"); //$NON-NLS-1$
+		buffer.append("}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buffer.toString();
 	}
 }

@@ -41,7 +41,7 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=341828
-	public void test001() {
+	public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -64,7 +64,7 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
 
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2098
     // Roll back gratuitous changes to !instanceof code generation in the absence of pattern bindings
-    public void testIssue2098() throws ClassFormatException, IOException {
+    public void testIssue2098() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	String source =
     			"""
 				public class X {
@@ -127,7 +127,7 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2098
     // Roll back gratuitous changes to !instanceof code generation in the absence of pattern bindings
-    public void testIssue2098_2() throws ClassFormatException, IOException {
+    public void testIssue2098_2() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	String source =
     			"""
 				public class X {
@@ -189,7 +189,7 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2098
     // Roll back gratuitous changes to !instanceof code generation in the absence of pattern bindings
-    public void testIssue2098_3() throws ClassFormatException, IOException {
+    public void testIssue2098_3() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	String source =
     			"""
 				public class X {
@@ -252,7 +252,7 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2098
     // Roll back gratuitous changes to !instanceof code generation in the absence of pattern bindings
-    public void testIssue2098_4() throws ClassFormatException, IOException {
+    public void testIssue2098_4() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	String source =
     			"""
 				public class X {
@@ -314,7 +314,7 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2098
     // Roll back gratuitous changes to !instanceof code generation in the absence of pattern bindings
-    public void testIssue2098_5() throws ClassFormatException, IOException {
+    public void testIssue2098_5() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	String source =
     			"""
 				public class X {
@@ -379,7 +379,7 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2098
     // Roll back gratuitous changes to !instanceof code generation in the absence of pattern bindings
-    public void testIssue2098_6() throws ClassFormatException, IOException {
+    public void testIssue2098_6() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
      	String source =
      			"""
  				public class X {
@@ -448,7 +448,7 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2098
     // Roll back gratuitous changes to !instanceof code generation in the absence of pattern bindings
-    public void testIssue2098_7() throws ClassFormatException, IOException {
+    public void testIssue2098_7() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
       	String source =
       			"""
   				public class X {
@@ -517,7 +517,7 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2098
     // Roll back gratuitous changes to !instanceof code generation in the absence of pattern bindings
-    public void testIssue2098_8() throws ClassFormatException, IOException {
+    public void testIssue2098_8() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
       	String source =
       			"""
   				public class X {
@@ -586,7 +586,7 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2098
     // Roll back gratuitous changes to !instanceof code generation in the absence of pattern bindings
-    public void testIssue2098_9() throws ClassFormatException, IOException {
+    public void testIssue2098_9() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
       	String source =
       			"""
   				public class X {
@@ -631,7 +631,7 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2101
     // [Patterns] Secret local variable slots appear to be reaped later than they should be
-    public void testIssue2101() throws ClassFormatException, IOException {
+    public void testIssue2101() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	if (this.complianceLevel < ClassFileConstants.JDK16)
     		return;
 

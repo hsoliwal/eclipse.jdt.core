@@ -42,7 +42,7 @@ public class SourceRangeVerifier extends ASTVisitor {
 	 * @return <code>null</code> if everything is OK; a list of errors otherwise
 	 */
 	public String process(ASTNode node) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		this.bugs = buffer;
 		node.accept(this);
 		this.bugs = null;
@@ -51,7 +51,7 @@ public class SourceRangeVerifier extends ASTVisitor {
 		return buffer.toString();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean preVisit2(ASTNode node) {
 		ASTNode previous = null;
 
@@ -59,7 +59,7 @@ public class SourceRangeVerifier extends ASTVisitor {
 		if (properties == null) { // happens for some nodes that aren't usually available at AST level
 			return false;
 		}
-		for (Object p : properties) {
+		for (Object p : properties) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			StructuralPropertyDescriptor property = (StructuralPropertyDescriptor) p;
 			if (property.isChildProperty()) {
 				ASTNode child = (ASTNode) node.getStructuralProperty(property);
@@ -73,7 +73,7 @@ public class SourceRangeVerifier extends ASTVisitor {
 				}
 			} else if (property.isChildListProperty()) {
 				List children = (List) node.getStructuralProperty(property);
-				for (Object c : children) {
+				for (Object c : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ASTNode child = (ASTNode) c;
 					boolean ok = checkChild(node, previous, child);
 					if (ok) {
@@ -87,7 +87,7 @@ public class SourceRangeVerifier extends ASTVisitor {
 		return true;
 	}
 
-	private boolean checkChild(ASTNode parent, ASTNode previous, ASTNode child) {
+	private boolean checkChild(ASTNode parent, ASTNode previous, ASTNode child) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if ((parent.getFlags() & (ASTNode.RECOVERED | ASTNode.MALFORMED)) != 0
 				|| (child.getFlags() & (ASTNode.RECOVERED | ASTNode.MALFORMED)) != 0)
 			return false;
@@ -111,16 +111,16 @@ public class SourceRangeVerifier extends ASTVisitor {
 			int previousStart = previous.getStartPosition();
 			int previousEnd = previousStart + previous.getLength();
 			if (childStart < previousEnd) {
-				String bug = "- parent [" + parentStart + ", " + parentEnd + "] " + parent.getClass().getName() + '\n' //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				String bug = "- parent [" + parentStart + ", " + parentEnd + "] " + parent.getClass().getName() + '\n' //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						+ "   previous [" + previousStart + ", " + previousEnd + "] "  + previous.getClass().getName() + '\n'//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 						+ "   " + child.getLocationInParent().getId() + " [" + childStart + ", " + childEnd + "] " + child.getClass().getName() + '\n'; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-				this.bugs.append(bug);
+				this.bugs.append(bug); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (!(parentStart <= childStart && childEnd <= parentEnd)) {
-			String bug = "- parent [" + parentStart + ", " + parentEnd + "] " + parent.getClass().getName() + '\n' //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			String bug = "- parent [" + parentStart + ", " + parentEnd + "] " + parent.getClass().getName() + '\n' //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					   + "   " + child.getLocationInParent().getId() + " [" + childStart + ", " + childEnd + "] " + child.getClass().getName() + '\n'; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-			this.bugs.append(bug);
+			this.bugs.append(bug); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return true;
 	}

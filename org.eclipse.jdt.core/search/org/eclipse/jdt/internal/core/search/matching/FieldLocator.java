@@ -41,7 +41,7 @@ public FieldLocator(FieldPattern pattern) {
 protected int fineGrain() {
 	return this.pattern.fineGrain;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int match(ASTNode node, MatchingNodeSet nodeSet) {
 	int declarationsLevel = IMPOSSIBLE_MATCH;
 	if (this.pattern.findReferences) {
@@ -63,7 +63,7 @@ public int match(ASTNode node, MatchingNodeSet nodeSet) {
 	return nodeSet.addMatch(node, declarationsLevel);
 }
 //public int match(ConstructorDeclaration node, MatchingNodeSet nodeSet) - SKIP IT
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int match(FieldDeclaration node, MatchingNodeSet nodeSet) {
 	int referencesLevel = IMPOSSIBLE_MATCH;
 	if (this.pattern.findReferences)
@@ -106,7 +106,7 @@ private int matchLocal(LocalVariableBinding field, boolean matchName) {
 	int declaringLevel = resolveLevelForType(fieldPattern.declaringSimpleName, fieldPattern.declaringQualification,field.getEnclosingMethod().declaringClass);
 	return declaringLevel;
 }
-protected int matchField(FieldBinding field, boolean matchName) {
+protected int matchField(FieldBinding field, boolean matchName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (field == null) return INACCURATE_MATCH;
 
 	if (matchName && !matchesName(this.pattern.name, field.readableName())) return IMPOSSIBLE_MATCH;
@@ -161,7 +161,7 @@ protected int matchReference(Reference node, MatchingNodeSet nodeSet, boolean wr
 protected void matchReportReference(ASTNode reference, IJavaElement element, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
 	matchReportReference(reference, element, null, null, elementBinding, accuracy, locator);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void matchReportReference(ASTNode reference, IJavaElement element, IJavaElement localElement, IJavaElement[] otherElements,Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
 	if (this.isDeclarationOfAccessedFieldsPattern) {
 		// need exact match to be able to open on type ref
@@ -169,7 +169,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, IJa
 
 		// element that references the field must be included in the enclosing element
 		DeclarationOfAccessedFieldsPattern declPattern = (DeclarationOfAccessedFieldsPattern) this.pattern;
-		while (element != null && !declPattern.enclosingElement.equals(element))
+		while (element != null && !declPattern.enclosingElement.equals(element)) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			element = element.getParent();
 		if (element != null) {
 			if (reference instanceof FieldReference) {
@@ -180,7 +180,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, IJa
 				if (nameBinding instanceof FieldBinding)
 					reportDeclaration((FieldBinding)nameBinding, locator, declPattern.knownFields);
 				int otherMax = qNameRef.otherBindings == null ? 0 : qNameRef.otherBindings.length;
-				for (int i = 0; i < otherMax; i++)
+				for (int i = 0; i < otherMax; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					reportDeclaration(qNameRef.otherBindings[i], locator, declPattern.knownFields);
 			} else if (reference instanceof SingleNameReference ) {
 				if(((SingleNameReference) reference).binding instanceof FieldBinding) {
@@ -236,7 +236,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, IJa
 		}
 
 		// other tokens
-		for (int i = indexOfFirstFieldBinding+1; i < length; i++) {
+		for (int i = indexOfFirstFieldBinding+1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] token = qNameRef.tokens[i];
 			if (matchesName(this.pattern.name, token)) {
 				FieldBinding otherBinding = qNameRef.otherBindings == null ? null : qNameRef.otherBindings[i-(indexOfFirstFieldBinding+1)];
@@ -275,7 +275,7 @@ protected void updateMatch(ParameterizedTypeBinding parameterizedBinding, char[]
 		this.match.setRule(0);
 	}
 }
-protected void reportDeclaration(FieldBinding fieldBinding, MatchLocator locator, SimpleSet knownFields) throws CoreException {
+protected void reportDeclaration(FieldBinding fieldBinding, MatchLocator locator, SimpleSet knownFields) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// ignore length field
 	if (fieldBinding == ArrayBinding.ArrayLength) return;
 
@@ -284,7 +284,7 @@ protected void reportDeclaration(FieldBinding fieldBinding, MatchLocator locator
 	if (type == null) {
 		if (declaringClass instanceof LocalTypeBinding) {
 			ReferenceBinding refBinding= declaringClass;
-			while (refBinding instanceof LocalTypeBinding localBinding) {
+			while (refBinding instanceof LocalTypeBinding localBinding) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				MethodBinding enclosingBinding= localBinding.enclosingMethod;
 				refBinding= enclosingBinding.declaringClass;
 			}
@@ -325,7 +325,7 @@ protected void reportDeclaration(FieldBinding fieldBinding, MatchLocator locator
 			FieldDeclaration fieldDecl = null;
 			FieldDeclaration[] fieldDecls = typeDecl.fields;
 			int length = fieldDecls == null ? 0 : fieldDecls.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (CharOperation.equals(bindingName, fieldDecls[i].name)) {
 					fieldDecl = fieldDecls[i];
 					break;
@@ -368,7 +368,7 @@ public int resolveLevel(Binding binding) {
 
 	return matchField((FieldBinding) binding, true);
 }
-protected int resolveLevel(NameReference nameRef) {
+protected int resolveLevel(NameReference nameRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (nameRef instanceof SingleNameReference)
 		return resolveLevel(nameRef.binding);
 
@@ -387,7 +387,7 @@ protected int resolveLevel(NameReference nameRef) {
 		}
 	}
 	int otherMax = qNameRef.otherBindings == null ? 0 : qNameRef.otherBindings.length;
-	for (int i = 0; i < otherMax; i++) {
+	for (int i = 0; i < otherMax; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char[] token = qNameRef.tokens[i + qNameRef.indexOfFirstFieldBinding];
 		if (matchesName(this.pattern.name, token)) {
 			FieldBinding otherBinding = qNameRef.otherBindings[i];

@@ -59,7 +59,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 	public BinaryIndexer(SearchDocument document) {
 		super(document);
 	}
-	private void addBinaryStandardAnnotations(long annotationTagBits) {
+	private void addBinaryStandardAnnotations(long annotationTagBits) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if ((annotationTagBits & TagBits.AllStandardAnnotationsMask) == 0) {
 			return;
 		}
@@ -103,7 +103,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 			addAnnotationTypeReference(compoundName[compoundName.length-1]);
 		}
 	}
-	private void addBinaryTargetAnnotation(long bits) {
+	private void addBinaryTargetAnnotation(long bits) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] compoundName = null;
 		if ((bits & TagBits.AnnotationForAnnotationType) != 0) {
 			compoundName = TypeConstants.JAVA_LANG_ANNOTATION_ELEMENTTYPE;
@@ -189,7 +189,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 		addAnnotationTypeReference(replace('/', '.', Signature.toCharArray(annotation.getTypeName())));
 		IBinaryElementValuePair[] valuePairs = annotation.getElementValuePairs();
 		if (valuePairs != null) {
-			for (IBinaryElementValuePair valuePair : valuePairs) {
+			for (IBinaryElementValuePair valuePair : valuePairs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				addMethodReference(valuePair.getName(), 0);
 				Object pairValue = valuePair.getValue();
 				addPairValue(pairValue);
@@ -208,12 +208,12 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 			addBinaryAnnotation((IBinaryAnnotation) pairValue);
 		} else if (pairValue instanceof Object[]) {
 			Object[] objects = (Object[]) pairValue;
-			for (Object o : objects) {
+			for (Object o : objects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				addPairValue(o);
 			}
 		}
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void addTypeReference(char[] typeName) {
 		int length = typeName.length;
 		if (length > 2 && typeName[length - 2] == '$') {
@@ -247,7 +247,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 		int length = parameterTypes[counter].length;
 		char[] arrayType = new char[length + arrayDim*2];
 		System.arraycopy(parameterTypes[counter], 0, arrayType, 0, length);
-		for (int i = 0; i < arrayDim; i++) {
+		for (int i = 0; i < arrayDim; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			arrayType[length + (i * 2)] = '[';
 			arrayType[length + (i * 2) + 1] = ']';
 		}
@@ -262,16 +262,16 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 		int length = typeName.length;
 		char[] arrayType = new char[length + arrayDim*2];
 		System.arraycopy(typeName, 0, arrayType, 0, length);
-		for (int i = 0; i < arrayDim; i++) {
+		for (int i = 0; i < arrayDim; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			arrayType[length + (i * 2)] = '[';
 			arrayType[length + (i * 2) + 1] = ']';
 		}
 		return arrayType;
 	}
-	private char[] decodeFieldType(char[] signature) throws ClassFormatException {
+	private char[] decodeFieldType(char[] signature) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (signature == null) return null;
 		int arrayDim = 0;
-		for (int i = 0, max = signature.length; i < max; i++) {
+		for (int i = 0, max = signature.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch(signature[i]) {
 				case 'B':
 					if (arrayDim > 0)
@@ -339,7 +339,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 	 *   - int foo(String[]) is ([Ljava/lang/String;)I => java.lang.String[] in a char[][]
 	 *   - void foo(int) is (I)V ==> int
 	 */
-	private char[][] decodeParameterTypes(char[] signature, boolean firstIsSynthetic) throws ClassFormatException {
+	private char[][] decodeParameterTypes(char[] signature, boolean firstIsSynthetic) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (signature == null) return null;
 		int indexOfClosingParen = CharOperation.lastIndexOf(')', signature);
 		if (indexOfClosingParen == 1) {
@@ -352,7 +352,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 		char[][] parameterTypes = new char[3][];
 		int parameterTypesCounter = 0;
 		int arrayDim = 0;
-		for (int i = 1; i < indexOfClosingParen; i++) {
+		for (int i = 1; i < indexOfClosingParen; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (parameterTypesCounter == parameterTypes.length) {
 				// resize
 				System.arraycopy(parameterTypes, 0, (parameterTypes = new char[parameterTypesCounter * 2][]), 0, parameterTypesCounter);
@@ -442,12 +442,12 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 		}
 		return parameterTypes;
 	}
-	private char[] decodeReturnType(char[] signature) throws ClassFormatException {
+	private char[] decodeReturnType(char[] signature) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (signature == null) return null;
 		int indexOfClosingParen = CharOperation.lastIndexOf(')', signature);
 		if (indexOfClosingParen == -1) throw new ClassFormatException(ClassFormatException.ErrInvalidMethodSignature);
 		int arrayDim = 0;
-		for (int i = indexOfClosingParen + 1, max = signature.length; i < max; i++) {
+		for (int i = indexOfClosingParen + 1, max = signature.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch(signature[i]) {
 				case 'B':
 					if (arrayDim > 0)
@@ -513,7 +513,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 	private int extractArgCount(char[] signature, char[] className) throws ClassFormatException {
 		return extractArgCount(signature, className, false);
 	}
-	private int extractArgCount(char[] signature, char[] className, boolean isStaticTypeConstructor) throws ClassFormatException {
+	private int extractArgCount(char[] signature, char[] className, boolean isStaticTypeConstructor) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int indexOfClosingParen = CharOperation.lastIndexOf(')', signature);
 		if (indexOfClosingParen == 1) {
 			// there is no parameter
@@ -523,7 +523,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 			throw new ClassFormatException(ClassFormatException.ErrInvalidMethodSignature);
 		}
 		int parameterTypesCounter = 0;
-		for (int i = 1; i < indexOfClosingParen; i++) {
+		for (int i = 1; i < indexOfClosingParen; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch(signature[i]) {
 				case 'B':
 				case 'C':
@@ -544,7 +544,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 						int length = indexOfSemiColon-i+1;
 						if (classSignature.length > (length+1)) {
 							// synthetic means that parameter type has same signature than given class
-							for (int j=i, k=0; j<indexOfSemiColon; j++, k++) {
+							for (int j=i, k=0; j<indexOfSemiColon; j++, k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (!(signature[j] == classSignature[k] || (signature[j] == '/' && classSignature[k] == '.' ))) {
 									parameterTypesCounter++;
 									break;
@@ -586,10 +586,10 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 	/**
 	 * Extract all type, method, field and interface method references from the constant pool
 	 */
-	private void extractReferenceFromConstantPool(byte[] contents, ClassFileReader reader) throws ClassFormatException {
+	private void extractReferenceFromConstantPool(byte[] contents, ClassFileReader reader) throws ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int[] constantPoolOffsets = reader.getConstantPoolOffsets();
 		int constantPoolCount = constantPoolOffsets.length;
-		for (int i = 1; i < constantPoolCount; i++) {
+		for (int i = 1; i < constantPoolCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int tag = reader.u1At(constantPoolOffsets[i]);
 			/**
 			 * u1 tag
@@ -616,7 +616,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 						boolean isStaticType = reader.isStaticInner(className);
 						boolean localType = false;
 						if (className !=  null) {
-							for (int c = 0, max = className.length; c < max; c++) {
+							for (int c = 0, max = className.length; c < max; c++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								switch (className[c]) {
 									case '/':
 										className[c] = '.';
@@ -644,7 +644,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 
 					// also add a simple reference on each segment of the qualification (see http://bugs.eclipse.org/bugs/show_bug.cgi?id=24741)
 					char[][] qualification = CharOperation.splitOn('.', name);
-					for (char[] nr : qualification) {
+					for (char[] nr : qualification) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						addNameReference(nr);
 					}
 					break;
@@ -664,7 +664,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 	private URI toUri(final String absoluteNormalFilePath) {
 		String p = absoluteNormalFilePath.replace(File.separatorChar, '/');
 		if (!p.startsWith("/")) { //$NON-NLS-1$
-			p = "/" + p; //$NON-NLS-1$
+			p = "/" + p; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		try {
 			return new URI("file", null, p, null); //$NON-NLS-1$
@@ -673,7 +673,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void indexDocument() {
 		try {
 			final byte[] contents = this.document.getByteContents();
@@ -760,7 +760,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 			// Look for references in class annotations
 			IBinaryAnnotation[] annotations = reader.getAnnotations();
 			if (annotations != null) {
-				for (IBinaryAnnotation annotation : annotations) {
+				for (IBinaryAnnotation annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					addBinaryAnnotation(annotation);
 				}
 			}
@@ -775,7 +775,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 			MethodInfo[] methods = (MethodInfo[]) reader.getMethods();
 			boolean noConstructor = true;
 			if (methods != null) {
-				for (MethodInfo method : methods) {
+				for (MethodInfo method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					boolean isConstructor = method.isConstructor();
 					char[] descriptor = method.getMethodDescriptor();
 					boolean isStatic = Flags.isStatic(reader.getModifiers());
@@ -832,7 +832,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 					// look for references in method annotations
 					annotations = method.getAnnotations();
 					if (annotations != null) {
-						for (IBinaryAnnotation annotation : annotations) {
+						for (IBinaryAnnotation annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							addBinaryAnnotation(annotation);
 						}
 					}
@@ -847,14 +847,14 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 			}
 			FieldInfo[] fields = (FieldInfo[]) reader.getFields();
 			if (fields != null) {
-				for (FieldInfo field : fields) {
+				for (FieldInfo field : fields) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					char[] fieldName = field.getName();
 					char[] fieldType = decodeFieldType(replace('/', '.', field.getTypeName()));
 					addFieldDeclaration(fieldType, fieldName);
 					// look for references in field annotations
 					annotations = field.getAnnotations();
 					if (annotations != null) {
-						for (IBinaryAnnotation annotation : annotations) {
+						for (IBinaryAnnotation annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							addBinaryAnnotation(annotation);
 						}
 					}
@@ -873,21 +873,21 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 			this.document.removeAllIndexEntries();
 			if (e instanceof ClassFormatException cfe && cfe.getErrorCode() == ClassFormatException.ErrBadMagic) {
 				Util.log(new Status(IStatus.INFO, JavaCore.PLUGIN_ID,
-						"Could not index empty " + this.document.getPath())); //$NON-NLS-1$
+						"Could not index empty " + this.document.getPath())); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				return;
 			}
 			Util.log(new Status(IStatus.WARNING,
 					JavaCore.PLUGIN_ID,
-					"The Java indexing could not index " + this.document.getPath() + ". This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor", //$NON-NLS-1$ //$NON-NLS-2$
+					"The Java indexing could not index " + this.document.getPath() + ". This .class file doesn't follow the class file format specification. Please report this issue against the .class file vendor", //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					e));
 		}
 	}
 
-	private void indexModule(IModule module) {
+	private void indexModule(IModule module) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		addModuleDeclaration(module.name());
 		IModuleReference[] requiredModules = module.requires();
 		if (requiredModules != null) {
-			for (IModuleReference req : requiredModules) {
+			for (IModuleReference req : requiredModules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				addModuleReference(req.name());
 			}
 		}
@@ -895,13 +895,13 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 		indexPackageVisibilityDirective(module.opens());
 		char[][] refUsed = module.uses();
 		if (refUsed != null) {
-			for (char[] ref : refUsed) {
+			for (char[] ref : refUsed) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				indexTypeReference(ref);
 			}
 		}
 		IService[] services = module.provides();
 		if (services != null) {
-			for (IService service : services) {
+			for (IService service : services) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				indexTypeReference(service.name());
 				indexTypeReferences(service.with());
 			}
@@ -909,11 +909,11 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 	}
 	private void indexPackageVisibilityDirective(IPackageExport[] exportedPackages) {
 		if (exportedPackages != null) {
-			for (IPackageExport pack : exportedPackages) {
+			for (IPackageExport pack : exportedPackages) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				addModuleExportedPackages(pack.name());
 				char[][] tgts = pack.targets();
 				if (tgts == null || tgts == CharOperation.NO_CHAR_CHAR) continue;
-				for (char[] tgt : tgts) {
+				for (char[] tgt : tgts) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (tgt != null && tgt != CharOperation.NO_CHAR)
 						addModuleReference(tgt);
 				}
@@ -923,7 +923,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 	private void indexTypeReferences(char[][] ref) {
 		if (ref == null || ref == CharOperation.NO_CHAR_CHAR)
 			return;
-		for (char[] name : ref) {
+		for (char[] name : ref) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			addTypeReference(name);
 		}
 	}
@@ -955,7 +955,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 	private char[][] replace(char toBeReplaced, char newChar, char[][] array) {
 		if (array == null) return null;
 		array = Arrays.copyOf(array, array.length);
-		for (int i = 0; i < array.length; i++) {
+		for (int i = 0; i < array.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			array[i] = replace(toBeReplaced, newChar, array[i]);
 		}
 		return array;
@@ -966,7 +966,7 @@ public class BinaryIndexer extends AbstractIndexer implements SuffixConstants {
 	private char[] replace(char toBeReplaced, char newChar, char[] array) {
 		if (array == null) return null;
 		array = Arrays.copyOf(array, array.length);
-		for (int i = 0, max = array.length; i < max; i++) {
+		for (int i = 0, max = array.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (array[i] == toBeReplaced) {
 				array[i] = newChar;
 			}

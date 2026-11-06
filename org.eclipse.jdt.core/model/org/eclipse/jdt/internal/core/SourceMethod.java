@@ -59,7 +59,7 @@ protected void closing(Object info) throws JavaModelException {
 	super.closing(info);
 	SourceMethodElementInfo elementInfo = (SourceMethodElementInfo) info;
 	ITypeParameter[] typeParameters = elementInfo.typeParameters;
-	for (ITypeParameter typeParameter : typeParameters) {
+	for (ITypeParameter typeParameter : typeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		((TypeParameter) typeParameter).close();
 	}
 }
@@ -105,15 +105,15 @@ public String[] getExceptionTypes() throws JavaModelException {
 protected void getHandleMemento(StringBuilder buff) {
 	getParent().getHandleMemento(buff);
 	char delimiter = getHandleMementoDelimiter();
-	buff.append(delimiter);
+	buff.append(delimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	escapeMementoName(buff, getElementName());
-	for (String parameterType : this.parameterTypes) {
-		buff.append(delimiter);
+	for (String parameterType : this.parameterTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buff.append(delimiter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		escapeMementoName(buff, parameterType);
 	}
 	if (this.getOccurrenceCount() > 1) {
-		buff.append(JEM_COUNT);
-		buff.append(this.getOccurrenceCount());
+		buff.append(JEM_COUNT); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buff.append(this.getOccurrenceCount()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 /**
@@ -179,12 +179,12 @@ public ILocalVariable[] getParameters() throws JavaModelException {
  * @since 3.0
  * @deprecated
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String[] getTypeParameterSignatures() throws JavaModelException {
 	ITypeParameter[] typeParameters = getTypeParameters();
 	int length = typeParameters.length;
 	String[] typeParameterSignatures = new String[length];
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		TypeParameter typeParameter = (TypeParameter) typeParameters[i];
 		TypeParameterElementInfo info = (TypeParameterElementInfo) typeParameter.getElementInfo();
 		char[][] bounds = info.bounds;
@@ -193,7 +193,7 @@ public String[] getTypeParameterSignatures() throws JavaModelException {
 		} else {
 			int boundsLength = bounds.length;
 			char[][] boundSignatures = new char[boundsLength][];
-			for (int j = 0; j < boundsLength; j++) {
+			for (int j = 0; j < boundsLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				boundSignatures[j] = Signature.createCharArrayTypeSignature(bounds[j], false);
 			}
 			typeParameterSignatures[i] = new String(Signature.createTypeParameterSignature(typeParameter.getElementName().toCharArray(), boundSignatures));
@@ -283,18 +283,18 @@ public boolean isSimilar(IMethod method) {
 @Override
 public String readableName() {
 
-	StringBuilder buffer = new StringBuilder(super.readableName());
-	buffer.append('(');
+	StringBuilder buffer = new StringBuilder(super.readableName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	int length;
 	if (this.parameterTypes != null && (length = this.parameterTypes.length) > 0) {
-		for (int i = 0; i < length; i++) {
-			buffer.append(Signature.toString(this.parameterTypes[i]));
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(Signature.toString(this.parameterTypes[i])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (i < length - 1) {
-				buffer.append(", "); //$NON-NLS-1$
+				buffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}
-	buffer.append(')');
+	buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return buffer.toString();
 }
 @Override
@@ -304,23 +304,23 @@ public JavaElement resolved(Binding binding) {
 /**
  * for debugging only
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-	buffer.append(tabString(tab));
+	buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (info == null) {
 		toStringName(buffer);
-		buffer.append(" (not open)"); //$NON-NLS-1$
+		buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else if (info == NO_INFO) {
 		toStringName(buffer);
 	} else {
 		SourceMethodElementInfo methodInfo = (SourceMethodElementInfo) info;
 		int flags = methodInfo.getModifiers();
 		if (Flags.isStatic(flags)) {
-			buffer.append("static "); //$NON-NLS-1$
+			buffer.append("static "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (!methodInfo.isConstructor()) {
-			buffer.append(methodInfo.getReturnTypeName());
-			buffer.append(' ');
+			buffer.append(methodInfo.getReturnTypeName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		toStringName(buffer, flags);
 	}
@@ -329,37 +329,37 @@ protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean 
 protected void toStringName(StringBuilder buffer) {
 	toStringName(buffer, 0);
 }
-protected void toStringName(StringBuilder buffer, int flags) {
-	buffer.append(getElementName());
-	buffer.append('(');
+protected void toStringName(StringBuilder buffer, int flags) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	buffer.append(getElementName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	String[] parameters = getParameterTypes();
 	int length;
 	if (parameters != null && (length = parameters.length) > 0) {
 		boolean isVarargs = Flags.isVarargs(flags);
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				if (i < length - 1) {
-					buffer.append(Signature.toString(parameters[i]));
-					buffer.append(", "); //$NON-NLS-1$
+					buffer.append(Signature.toString(parameters[i])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else if (isVarargs) {
 					// remove array from signature
 					String parameter = parameters[i].substring(1);
-					buffer.append(Signature.toString(parameter));
-					buffer.append(" ..."); //$NON-NLS-1$
+					buffer.append(Signature.toString(parameter)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(" ..."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				} else {
-					buffer.append(Signature.toString(parameters[i]));
+					buffer.append(Signature.toString(parameters[i])); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			} catch (IllegalArgumentException e) {
 				// parameter signature is malformed
-				buffer.append("*** invalid signature: "); //$NON-NLS-1$
-				buffer.append(parameters[i]);
+				buffer.append("*** invalid signature: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(parameters[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}
-	buffer.append(')');
+	buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.getOccurrenceCount() > 1) {
-		buffer.append("#"); //$NON-NLS-1$
-		buffer.append(this.getOccurrenceCount());
+		buffer.append("#"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(this.getOccurrenceCount()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 }

@@ -82,7 +82,7 @@ public void testCreateMethodSignature() {
 /**
  * @see Signature
  */
-public void testCreateTypeSignature() {
+public void testCreateTypeSignature() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertEquals("Signature#createTypeSignature is not correct1", "I",
 			Signature.createTypeSignature("int".toCharArray(), false));
 	assertEquals("Signature#createTypeSignature is not correct2", "Ljava.lang.String;",
@@ -159,7 +159,7 @@ public void testGetArrayCount() {
 /**
  * @see Signature
  */
-public void testGetElementType() {
+public void testGetElementType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertEquals("Signature#getElementType is not correct1", "QString;",
 			Signature.getElementType("[[[[QString;"));
 	assertEquals("Signature#getElementType is not correct2", "QString;",
@@ -295,7 +295,7 @@ public void testGetParameterCount18() {
 /**
  * @see Signature
  */
-public void testGetParameterTypes() {
+public void testGetParameterTypes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String methodSig = "(QString;QObject;I)I";
 	String[] parameterTypes = Signature.getParameterTypes(methodSig);
 	assertEquals("Signature#getParameterTypes is not correct1", 3, parameterTypes.length);
@@ -477,7 +477,7 @@ public void testGetQualifier3() {
 /**
  * @see Signature
  */
-public void testGetReturnType() {
+public void testGetReturnType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String methodSig = "(QString;QObject;I)I";
 	assertEquals("Signature#getReturnType is not correct1", "I",
 			Signature.getReturnType(methodSig));
@@ -523,7 +523,7 @@ public void testGetReturnType4() {
 /**
  * @see Signature
  */
-public void testGetThrownExceptionTypes() {
+public void testGetThrownExceptionTypes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String methodSig = "(QString;QObject;I)I";
 	assertStringsEqual("Signature#getThrownExceptionTypes is not correct1", "",
 			Signature.getThrownExceptionTypes(methodSig));
@@ -581,7 +581,7 @@ public void testGetThrownExceptions_Bug155003() throws JavaModelException {
  * @see Signature
  * @since 3.0
  */
-public void testGetTypeVariable() {
+public void testGetTypeVariable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// tests with 1.5-specific elements
 	String formalTypeParameterSignature = "Hello:";
 	assertEquals("Signature#getTypeVariable is not correct1", "Hello",
@@ -607,14 +607,14 @@ public void testGetTypeVariable() {
 public void testInvalidCharacter() {
 	assertEquals(
 		"Lorg.eclipse.Identified.ClassName;",
-		Signature.createTypeSignature("org.eclipse." + (char) 5760 + "Identified.ClassName", true));
+		Signature.createTypeSignature("org.eclipse." + (char) 5760 + "Identified.ClassName", true)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 /**
  * @see Signature
  * @since 3.0
  */
-public void testGetTypeParameterBounds() {
+public void testGetTypeParameterBounds() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// tests with 1.5-specific elements
 	String formalTypeParameterSignature = "Hello:";
 	assertEquals("Signature#getTypeParameterBounds is not correct1", 0,
@@ -1616,7 +1616,7 @@ public void testDollarPackageDollarClass() {
 }
 
 // Bug 380048 - error popup when navigating to source files
-public void testSourceMapperSigConversion01() {
+public void testSourceMapperSigConversion01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SourceMapper mapper = new SourceMapper();
 	char[][] typeNames = new char[][] {
 		"java.lang.String".toCharArray(),
@@ -1662,7 +1662,7 @@ public void testSourceMapperSigConversion01() {
 	};
 	String[] ss = mapper.convertTypeNamesToSigs(typeNames);
 	assertEquals("Wrong number of signatures", expectedSigs.length, ss.length);
-	for (int i=0; i<ss.length; i++)
+	for (int i=0; i<ss.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		assertEquals("Unexpected signature", expectedSigs[i], ss[i]);
 }
 }

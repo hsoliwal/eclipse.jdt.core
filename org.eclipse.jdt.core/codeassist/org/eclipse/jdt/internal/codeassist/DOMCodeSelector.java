@@ -53,7 +53,7 @@ public class DOMCodeSelector {
 		this.owner = owner;
 	}
 
-	public IJavaElement[] codeSelect(int offset, int length) throws JavaModelException {
+	public IJavaElement[] codeSelect(int offset, int length) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (offset < 0) {
 			throw new JavaModelException(new IndexOutOfBoundsException(offset), IJavaModelStatusConstants.INDEX_OUT_OF_BOUNDS);
 		}
@@ -70,7 +70,7 @@ public class DOMCodeSelector {
 			.anyMatch(comment -> comment.getStartPosition() <= initialOffset && comment.getStartPosition() + comment.getLength() >= initialOffset + initialLength);
 		if (!insideComment) { // trim whitespaces and surrounding comments
 			boolean changed = false;
-			do {
+			do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				changed = false;
 				if (length > 0 && Character.isWhitespace(this.unit.getSource().charAt(offset))) {
 					offset++;
@@ -116,7 +116,7 @@ public class DOMCodeSelector {
 		final ASTNode node = NodeFinder.perform(currentAST, offset, length);
 		if (node instanceof TagElement tagElement && TagElement.TAG_INHERITDOC.equals(tagElement.getTagName())) {
 			ASTNode javadocNode = node;
-			while (javadocNode != null && !(javadocNode instanceof Javadoc)) {
+			while (javadocNode != null && !(javadocNode instanceof Javadoc)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				javadocNode = javadocNode.getParent();
 			}
 			if (javadocNode instanceof Javadoc javadoc) {
@@ -125,13 +125,13 @@ public class DOMCodeSelector {
 				if (binding instanceof IMethodBinding methodBinding) {
 					var typeBinding = methodBinding.getDeclaringClass();
 					if (typeBinding != null) {
-						List<ITypeBinding> types = new ArrayList<>(Arrays.asList(typeBinding.getInterfaces()));
+						List<ITypeBinding> types = new ArrayList<>(Arrays.asList(typeBinding.getInterfaces())); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 						if (typeBinding.getSuperclass() != null) {
 							types.add(typeBinding.getSuperclass());
 						}
-						while (!types.isEmpty()) {
+						while (!types.isEmpty()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							ITypeBinding type = types.remove(0);
-							for (IMethodBinding m : Arrays.stream(type.getDeclaredMethods()).filter(methodBinding::overrides).toList()) {
+							for (IMethodBinding m : Arrays.stream(type.getDeclaredMethods()).filter(methodBinding::overrides).toList()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (m.getJavaElement() instanceof IMethod methodElement && methodElement.getJavadocRange() != null) {
 									return new IJavaElement[] { methodElement };
 								} else {
@@ -188,7 +188,7 @@ public class DOMCodeSelector {
 						.collect(Collectors.toCollection(ArrayDeque::new));
 				IJavaElement[] reorderedOverloadedMethods = new IJavaElement[overloadedMethods.size()];
 				Iterator<IJavaElement> reverseIterator = overloadedMethods.descendingIterator();
-				for (int i = 0; i < reorderedOverloadedMethods.length; i++) {
+				for (int i = 0; i < reorderedOverloadedMethods.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					reorderedOverloadedMethods[i] = reverseIterator.next();
 				}
 				return reorderedOverloadedMethods;
@@ -299,7 +299,7 @@ public class DOMCodeSelector {
 		boolean newChildFound;
 		int finalOffset = offset;
 		int finalLength = length;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			newChildFound = false;
 			boolean isGeneratedByLombok = isGenerated(currentAST);
 			if (currentElement instanceof IParent parentElement) {
@@ -347,12 +347,12 @@ public class DOMCodeSelector {
 		}
 		// failback to lookup search
 		ASTNode currentNode = node;
-		while (currentNode != null && !(currentNode instanceof Type)) {
+		while (currentNode != null && !(currentNode instanceof Type)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			currentNode = currentNode.getParent();
 		}
 		if (currentNode instanceof Type parentType) {
 			if (this.unit.getJavaProject() != null) {
-				StringBuilder buffer = new StringBuilder();
+				StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				Util.getFullyQualifiedName(parentType, buffer);
 				IType type = this.unit.getJavaProject().findType(buffer.toString());
 				if (type != null) {
@@ -379,7 +379,7 @@ public class DOMCodeSelector {
 		return new IJavaElement[0];
 	}
 
-	public static IBinding resolveBinding(ASTNode node) {
+	public static IBinding resolveBinding(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (node instanceof MethodDeclaration decl) {
 			return decl.resolveBinding();
 		}
@@ -417,7 +417,7 @@ public class DOMCodeSelector {
 
 						ITypeBinding superclassBinding = newInstance.getType().resolveBinding();
 
-						while (superclassBinding != null) {
+						while (superclassBinding != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							Optional<IMethodBinding> potentialConstructor = Stream.of(superclassBinding.getDeclaredMethods()) //
 									.filter(methodBinding -> methodBinding.isConstructor() && matchSignatures(constructorBinding, methodBinding))
 									.findFirst();
@@ -467,7 +467,7 @@ public class DOMCodeSelector {
 				// find the type that the method is bound to
 				ITypeBinding type = null;
 				ASTNode cursor = methodRef;
-				while (type == null && cursor != null) {
+				while (type == null && cursor != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (cursor.getParent() instanceof VariableDeclarationFragment declFragment) {
 						type = declFragment.resolveBinding().getType();
 					} else if (cursor.getParent() instanceof MethodInvocation methodInvocation) {
@@ -518,7 +518,7 @@ public class DOMCodeSelector {
 	}
 
 	private static ClassInstanceCreation findConstructor(ASTNode node) {
-		while (node != null && !(node instanceof ClassInstanceCreation)) {
+		while (node != null && !(node instanceof ClassInstanceCreation)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode parent = node.getParent();
 			if ((parent instanceof SimpleType type && type.getName() == node) ||
 				(parent instanceof ClassInstanceCreation constructor && constructor.getType() == node) ||
@@ -533,7 +533,7 @@ public class DOMCodeSelector {
 
 	private static AbstractTypeDeclaration findTypeDeclaration(ASTNode node) {
 		ASTNode cursor = node;
-		while (cursor != null && (cursor instanceof Type || cursor instanceof Name)) {
+		while (cursor != null && (cursor instanceof Type || cursor instanceof Name)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cursor = cursor.getParent();
 		}
 		if (cursor instanceof AbstractTypeDeclaration typeDecl && typeDecl.getName() == node) {
@@ -543,24 +543,24 @@ public class DOMCodeSelector {
 	}
 
 	private static org.eclipse.jdt.core.dom.ImportDeclaration findImportDeclaration(ASTNode node) {
-		while (node != null && !(node instanceof org.eclipse.jdt.core.dom.ImportDeclaration)) {
+		while (node != null && !(node instanceof org.eclipse.jdt.core.dom.ImportDeclaration)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			node = node.getParent();
 		}
 		return (org.eclipse.jdt.core.dom.ImportDeclaration)node;
 	}
 
-	private static boolean matchSignatures(IMethodBinding invocation, IMethodBinding declaration) {
+	private static boolean matchSignatures(IMethodBinding invocation, IMethodBinding declaration) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (declaration.getTypeParameters().length == 0) {
 			return invocation.isSubsignature(declaration);
 		}
 		if (invocation.getParameterTypes().length != declaration.getParameterTypes().length) {
 			return false;
 		}
-		for (int i = 0; i < invocation.getParameterTypes().length; i++) {
+		for (int i = 0; i < invocation.getParameterTypes().length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (declaration.getParameterTypes()[i].isTypeVariable()) {
 				if (declaration.getParameterTypes()[i].getTypeBounds().length > 0) {
 					ITypeBinding[] bounds = declaration.getParameterTypes()[i].getTypeBounds();
-					for (int j = 0; j < bounds.length; j++) {
+					for (int j = 0; j < bounds.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!invocation.getParameterTypes()[i].isSubTypeCompatible(bounds[j])) {
 							return false;
 						}
@@ -574,11 +574,11 @@ public class DOMCodeSelector {
 		return true;
 	}
 
-	private IJavaElement[] findTypeInIndex(String packageName, String simpleName) throws JavaModelException {
+	private IJavaElement[] findTypeInIndex(String packageName, String simpleName) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (simpleName == null) {
 			return new IJavaElement[0];
 		}
-		List<IType> indexMatch = new ArrayList<>();
+		List<IType> indexMatch = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		TypeNameMatchRequestor requestor = new TypeNameMatchRequestor() {
 			@Override
 			public void acceptTypeNameMatch(org.eclipse.jdt.core.search.TypeNameMatch match) {
@@ -619,9 +619,9 @@ public class DOMCodeSelector {
 	private String findWord(int offset) throws JavaModelException {
 		int start = offset;
 		String source = this.unit.getSource();
-		while (start >= 0 && Character.isJavaIdentifierPart(source.charAt(start))) start--;
+		while (start >= 0 && Character.isJavaIdentifierPart(source.charAt(start))) start--; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int end = offset + 1;
-		while (end < source.length() && Character.isJavaIdentifierPart(source.charAt(end))) end++;
+		while (end < source.length() && Character.isJavaIdentifierPart(source.charAt(end))) end++; //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		return source.substring(start, end);
 	}
 
@@ -631,7 +631,7 @@ public class DOMCodeSelector {
 	 * @param node the AST node
 	 * @return true if the node is generated.
 	 */
-	public static boolean isGenerated(ASTNode node) {
+	public static boolean isGenerated(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (node != null) {
 			boolean[] isGenerated = {false};
 			node.accept(new ASTVisitor() {

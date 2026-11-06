@@ -134,7 +134,7 @@ public class ExternalPackageFragmentRoot extends PackageFragmentRoot {
 		File file = location.toFile();
 		if (file == null)
 			return false;
-		return file.exists();
+		return file.exists(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	@Override

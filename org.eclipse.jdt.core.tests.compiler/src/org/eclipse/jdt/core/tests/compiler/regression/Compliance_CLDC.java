@@ -49,7 +49,7 @@ static {
 //		TESTS_NUMBERS = new int[] { 104 };
 //		TESTS_RANGE = new int[] { 76, -1 };
 }
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -93,7 +93,7 @@ public void test002() throws Exception {
 		},
 		"truetruetruetrue");
 }
-public void test003() throws Exception {
+public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -141,9 +141,9 @@ public void test003() throws Exception {
 		"        [pc: 13, same_locals_1_stack_item, stack: {java.io.PrintStream}]\n" +
 		"        [pc: 14, full, stack: {java.io.PrintStream, int}, locals: {java.lang.String[]}]\n" +
 		"}";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",

@@ -57,9 +57,9 @@ public class ResolvedSourceType extends SourceType {
 	protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
 		super.toStringInfo(tab, buffer, info, showResolvedInfo);
 		if (showResolvedInfo) {
-			buffer.append(" {key="); //$NON-NLS-1$
-			buffer.append(this.getKey());
-			buffer.append("}"); //$NON-NLS-1$
+			buffer.append(" {key="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.getKey()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 

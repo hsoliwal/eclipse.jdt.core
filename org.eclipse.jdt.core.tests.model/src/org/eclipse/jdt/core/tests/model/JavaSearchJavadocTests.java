@@ -229,7 +229,7 @@ public class JavaSearchJavadocTests extends JavaSearchTests {
 	 * Test search of type references in javadoc comments
 	 * ==================================================
 	 */
-	public void testJavadocTypeReference() throws CoreException {
+	public void testJavadocTypeReference() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch", "src", "j1", "JavadocSearched.java").getType("JavadocSearched");
 		search(
 				type,
@@ -250,7 +250,7 @@ public class JavaSearchJavadocTests extends JavaSearchTests {
 			"src/j1/JavadocValidRef.java void j1.JavadocValidRef.valid() [JavadocSearched] EXACT_MATCH INSIDE_JAVADOC",
 			this.resultCollector);
 	}
-	public void testJavadocTypeStringReference() throws CoreException {
+	public void testJavadocTypeStringReference() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		search(
 				"JavadocSearched",
 				TYPE,
@@ -271,7 +271,7 @@ public class JavaSearchJavadocTests extends JavaSearchTests {
 			"src/j1/JavadocValidRef.java void j1.JavadocValidRef.valid() [JavadocSearched] EXACT_MATCH INSIDE_JAVADOC",
 			this.resultCollector);
 	}
-	public void testJavadocTypeReferenceWithJavadoc() throws CoreException {
+	public void testJavadocTypeReferenceWithJavadoc() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch", "src", "j1", "JavadocSearched.java").getType("JavadocSearched");
 		setJavadocOptions();
 		search(
@@ -293,7 +293,7 @@ public class JavaSearchJavadocTests extends JavaSearchTests {
 			"src/j1/JavadocValidRef.java void j1.JavadocValidRef.valid() [JavadocSearched] EXACT_MATCH INSIDE_JAVADOC",
 			this.resultCollector);
 	}
-	public void testJavadocTypeStringReferenceWithJavadoc() throws CoreException {
+	public void testJavadocTypeStringReferenceWithJavadoc() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setJavadocOptions();
 		search(
 				"JavadocSearched",
@@ -594,7 +594,7 @@ public class JavaSearchJavadocTests extends JavaSearchTests {
 				this.resultCollector);
 		assertSearchResults("");
 	}
-	private void setUpJavadocTypeParameterReferences() throws CoreException {
+	private void setUpJavadocTypeParameterReferences() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearch15/src/b81190/Test.java",
 			"package b81190;\n" +
@@ -669,7 +669,7 @@ public class JavaSearchJavadocTests extends JavaSearchTests {
 	 * Test fix for bug 47968.
 	 * @see <a href="http://bugs.eclipse.org/bugs/show_bug.cgi?id=47968">47968</a>
 	 */
-	public void testBug47968type() throws CoreException {
+	public void testBug47968type() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IType type = getCompilationUnit("JavaSearch", "src", "j2", "Bug47968.java").getType("Bug47968");
 		setJavadocOptions();
 		search(
@@ -919,7 +919,7 @@ public class JavaSearchJavadocTests extends JavaSearchTests {
 	 * Bug 83285: [javadoc] Javadoc reference to constructor of secondary type has no binding / not found by search
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=83285"
 	 */
-	public void testBug83285() throws CoreException {
+	public void testBug83285() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.resultCollector.showRule();
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearch/src/b83285/A.java",
@@ -942,7 +942,7 @@ public class JavaSearchJavadocTests extends JavaSearchTests {
 			"src/b83285/A.java b83285.C.fGerman [C(String)] EXACT_MATCH INSIDE_JAVADOC"
 		);
 	}
-	public void testBug83285a() throws CoreException {
+	public void testBug83285a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.resultCollector.showRule();
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearch/src/b83285/A.java",
@@ -967,7 +967,7 @@ public class JavaSearchJavadocTests extends JavaSearchTests {
 		);
 		IMethod[] methods = this.workingCopies[0].getType("B").getMethods();
 		assertEquals("Invalid number of methods", 2, methods.length);
-		for (int i=0,l=methods.length; i<l; i++) {
+		for (int i=0,l=methods.length; i<l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			search(methods[i], REFERENCES, getJavaSearchScope());
 		}
 		assertSearchResults(
@@ -975,7 +975,7 @@ public class JavaSearchJavadocTests extends JavaSearchTests {
 			"src/b83285/A.java b83285.B$C(String) [foo()] EXACT_MATCH INSIDE_JAVADOC"
 		);
 	}
-	public void testBug83285b() throws CoreException {
+	public void testBug83285b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.resultCollector.showRule();
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy("/JavaSearch/src/b83285/A.java",
@@ -1000,7 +1000,7 @@ public class JavaSearchJavadocTests extends JavaSearchTests {
 		);
 		IMethod[] methods = this.workingCopies[0].getType("B").getType("C").getMethods();
 		assertEquals("Invalid number of methods", 2, methods.length);
-		for (int i=0,l=methods.length; i<l; i++) {
+		for (int i=0,l=methods.length; i<l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			search(methods[i], REFERENCES, getJavaSearchScope());
 		}
 		assertSearchResults(

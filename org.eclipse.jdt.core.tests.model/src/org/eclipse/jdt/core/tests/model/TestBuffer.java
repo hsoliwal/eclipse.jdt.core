@@ -38,7 +38,7 @@ public class TestBuffer implements IBuffer {
 		 */
 		public void addBufferChangedListener(IBufferChangedListener listener) {
 			if (this.changeListeners == null) {
-				this.changeListeners = new ArrayList(5);
+				this.changeListeners = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			}
 			if (!this.changeListeners.contains(listener)) {
 				this.changeListeners.add(listener);
@@ -75,7 +75,7 @@ public class TestBuffer implements IBuffer {
 			if (this.changeListeners == null) return;
 			BufferChangedEvent event = null;
 			event = new BufferChangedEvent(this, 0, 0, null);
-			for (int i = 0, size = this.changeListeners.size(); i < size; ++i) {
+			for (int i = 0, size = this.changeListeners.size(); i < size; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IBufferChangedListener listener = (IBufferChangedListener) this.changeListeners.get(i);
 				listener.bufferChanged(event);
 			}

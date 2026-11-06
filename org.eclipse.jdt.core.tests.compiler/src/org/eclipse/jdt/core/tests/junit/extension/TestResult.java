@@ -36,7 +36,7 @@ public TestResult() {
 	public synchronized void addError(Test test, Throwable t) {
 		TestFailure testFailure= new TestFailure(test, t);
 		this.fErrors.add(testFailure);
-		for (Iterator e= cloneListeners().iterator(); e.hasNext(); ) {
+		for (Iterator e= cloneListeners().iterator(); e.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((TestListener)e.next()).addError(test, testFailure);
 		}
 	}
@@ -47,7 +47,7 @@ public TestResult() {
 	public synchronized void addFailure(Test test, AssertionFailedError t) {
 		TestFailure testFailure= new TestFailure(test, t);
 		this.fFailures.add(testFailure);
-		for (Iterator e= cloneListeners().iterator(); e.hasNext(); ) {
+		for (Iterator e= cloneListeners().iterator(); e.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((TestListener)e.next()).addFailure(test, testFailure);
 		}
 	}
@@ -55,7 +55,7 @@ public TestResult() {
 	 * Returns a copy of the listeners.
 	 */
 	private synchronized List cloneListeners() {
-		List result = new ArrayList();
+		List result = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		result.addAll(this.fListeners);
 		return result;
 	}

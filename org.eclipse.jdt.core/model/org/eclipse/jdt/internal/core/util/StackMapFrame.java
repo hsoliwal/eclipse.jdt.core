@@ -35,7 +35,7 @@ public class StackMapFrame extends ClassFileStruct implements IStackMapFrame {
 	/**
 	 * Constructor for StackMapFrame.
 	 */
-	public StackMapFrame(
+	public StackMapFrame( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			byte[] classFileBytes,
 			IConstantPool constantPool,
 			int offset) throws ClassFormatException {
@@ -85,7 +85,7 @@ public class StackMapFrame extends ClassFileStruct implements IStackMapFrame {
 				int diffLocals = type - 251;
 				this.numberOfLocals = diffLocals;
 				this.locals = new IVerificationTypeInfo[diffLocals];
-				for (int i = 0; i < diffLocals; i++) {
+				for (int i = 0; i < diffLocals; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					VerificationInfo verificationInfo = new VerificationInfo(classFileBytes, constantPool, offset + this.readOffset);
 					this.locals[i] = verificationInfo;
 					this.readOffset += verificationInfo.sizeInBytes();
@@ -99,7 +99,7 @@ public class StackMapFrame extends ClassFileStruct implements IStackMapFrame {
 				this.readOffset = 5;
 				if (tempLocals != 0) {
 					this.locals = new IVerificationTypeInfo[tempLocals];
-					for (int i = 0; i < tempLocals; i++) {
+					for (int i = 0; i < tempLocals; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						VerificationInfo verificationInfo = new VerificationInfo(classFileBytes, constantPool, offset + this.readOffset);
 						this.locals[i] = verificationInfo;
 						this.readOffset += verificationInfo.sizeInBytes();
@@ -112,7 +112,7 @@ public class StackMapFrame extends ClassFileStruct implements IStackMapFrame {
 				this.numberOfStackItems = tempStackItems;
 				if (tempStackItems != 0) {
 					this.stackItems = new IVerificationTypeInfo[tempStackItems];
-					for (int i = 0; i < tempStackItems; i++) {
+					for (int i = 0; i < tempStackItems; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						VerificationInfo verificationInfo = new VerificationInfo(classFileBytes, constantPool, offset + this.readOffset);
 						this.stackItems[i] = verificationInfo;
 						this.readOffset += verificationInfo.sizeInBytes();

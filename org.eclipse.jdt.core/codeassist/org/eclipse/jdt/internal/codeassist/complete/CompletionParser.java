@@ -281,7 +281,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	protected void attachOrphanCompletionNode() {
+	protected void attachOrphanCompletionNode() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.assistNode == null || this.isAlreadyAttached)
 			return;
 
@@ -487,7 +487,7 @@ public class CompletionParser extends AssistParser {
 							int attributeIndentifierPtr = this.elementInfoStack[index];
 							int identLengthPtr = this.identifierLengthPtr;
 							int identPtr = this.identifierPtr;
-							while (attributeIndentifierPtr < identPtr) {
+							while (attributeIndentifierPtr < identPtr) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								identPtr -= this.identifierLengthStack[identLengthPtr--];
 							}
 
@@ -575,10 +575,10 @@ public class CompletionParser extends AssistParser {
 					}
 					int numberOfIdentifiers = this.genericsIdentifiersLengthStack[this.genericsIdentifiersLengthPtr];
 					int genPtr = this.genericsPtr;
-					done: for (int i = 0; i <= this.identifierLengthPtr && numberOfIdentifiers > 0; i++) {
+					done: for (int i = 0; i <= this.identifierLengthPtr && numberOfIdentifiers > 0; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int identifierLength = this.identifierLengthStack[this.identifierLengthPtr - i];
 						int length = this.genericsLengthStack[this.genericsLengthPtr - i];
-						for (int j = 0; j < length; j++) {
+						for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							ASTNode node = this.genericsStack[genPtr - j];
 							CompletionNodeDetector detector = new CompletionNodeDetector(this.assistNode, node);
 							if (detector.containsCompletionNode()) {
@@ -701,14 +701,14 @@ public class CompletionParser extends AssistParser {
 					// instead
 					RecoveredStatement[] statements = new RecoveredStatement[recoveredBlock.statementCount - 1];
 					int j = 0;
-					for (int i = 0; i < recoveredBlock.statementCount; i++) {
+					for (int i = 0; i < recoveredBlock.statementCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						RecoveredStatement statement = recoveredBlock.statements[i];
 						if (!(statement instanceof RecoveredLocalVariable recoveredLocalVariable
 								&& recoveredLocalVariable.localDeclaration == local)) {
 							statements[j++] = statement;
 						}
 					}
-					for (int i = 0; i < statements.length; i++) {
+					for (int i = 0; i < statements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						recoveredBlock.statements[i] = statements[i];
 					}
 					recoveredBlock.statements[--recoveredBlock.statementCount] = null;
@@ -729,7 +729,7 @@ public class CompletionParser extends AssistParser {
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=287939
 		// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2106
 		int ptr = this.astPtr;
-		while (ptr > -1) {
+		while (ptr > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// To take care of: if (a instance of X) int i = a.|
 			// if (a instanceof List l) { l.is| Object
 			// if (a instanceof List l) { l.| Object // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2106
@@ -767,7 +767,7 @@ public class CompletionParser extends AssistParser {
 		return parserState;
 	}
 
-	private void buildMoreAnnotationCompletionContext(MemberValuePair memberValuePair) {
+	private void buildMoreAnnotationCompletionContext(MemberValuePair memberValuePair) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.identifierPtr < 0 || this.identifierLengthPtr < 0)
 			return;
 
@@ -824,7 +824,7 @@ public class CompletionParser extends AssistParser {
 		this.pendingAnnotation = fakeType;
 	}
 
-	private void buildMoreCompletionContext(Expression expression) {
+	private void buildMoreCompletionContext(Expression expression) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Statement statement = expression;
 		int kind = topKnownElementKind(COMPLETION_OR_ASSIST_PARSER);
 		if (kind != 0) {
@@ -877,7 +877,7 @@ public class CompletionParser extends AssistParser {
 									break;
 								case NAME_RECEIVER:
 									// remove special flags for primitive types
-									while (this.identifierLengthPtr >= 0
+									while (this.identifierLengthPtr >= 0 //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 											&& this.identifierLengthStack[this.identifierLengthPtr] < 0) {
 										this.identifierLengthPtr--;
 									}
@@ -1219,7 +1219,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	private boolean assembleSwitch(Expression innerStatement) {
+	private boolean assembleSwitch(Expression innerStatement) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (lastIndexOfElement(K_SWITCH_LABEL) > -1 && this.expressionPtr > -1 && this.astPtr > -1
 				&& this.currentElement instanceof RecoveredBlock) {
 			// init a temporary expression pointer:
@@ -1233,7 +1233,7 @@ public class CompletionParser extends AssistParser {
 			// find the caseStatement on the stack:
 			CaseStatement caseStatement = null;
 			int casePos = -1;
-			for (int i = this.astPtr; i >= 0; i--) {
+			for (int i = this.astPtr; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.astStack[i] instanceof CaseStatement stmt) {
 					caseStatement = stmt;
 					casePos = i;
@@ -1276,12 +1276,12 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	private boolean popBlockContaining(ASTNode soughtStatement) {
+	private boolean popBlockContaining(ASTNode soughtStatement) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// check if soughtStatement was prematurely captured in a RecoveredStatement up the parent chain.
 		// if so, pop until the next parent.
 		RecoveredElement elem = this.currentElement;
-		while (elem instanceof RecoveredBlock block) {
-			for (int i = 0; i < block.statementCount; i++) {
+		while (elem instanceof RecoveredBlock block) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int i = 0; i < block.statementCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				RecoveredStatement stmt;
 				if ((stmt = block.statements[i]) != null) {
 					if (stmt.statement == soughtStatement) {
@@ -1300,7 +1300,7 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	private Statement buildMoreCompletionEnclosingContext(Statement statement) {
+	private Statement buildMoreCompletionEnclosingContext(Statement statement) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IfStatement ifStatement = null;
 		int index = -1;
 		/*
@@ -1319,7 +1319,7 @@ public class CompletionParser extends AssistParser {
 		} else {
 			index = blockIndex != -1 && controlIndex < blockIndex ? blockIndex : controlIndex;
 		}
-		while (index >= 0) {
+		while (index >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// Try to find an enclosing if statement with instanceof even if one is not found immediately preceding the
 			// completion node.
 			// A if statement is only chosen if it has a instanceof or the completion node is in the if statment it
@@ -1341,7 +1341,7 @@ public class CompletionParser extends AssistParser {
 							&& condition.sourceStart < recoveredLocalVariable.localDeclaration.sourceStart) {
 						this.currentElement.add(statement, 0);
 
-						statement = recoveredLocalVariable.updatedStatement(0, new HashSet<>());
+						statement = recoveredLocalVariable.updatedStatement(0, new HashSet<>()); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 						// RecoveredLocalVariable must be removed from its parent because the IfStatement will be added
 						// instead
@@ -1370,7 +1370,7 @@ public class CompletionParser extends AssistParser {
 		}
 		// collect all if statements with instanceof expressions that enclose the completion node
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=304006
-		while (index >= 0) {
+		while (index >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.elementInfoStack[index] == IF && isInstanceOfGuard(this.elementObjectInfoStack[index])) {
 				Expression condition = (Expression) this.elementObjectInfoStack[index];
 				ifStatement = new IfStatement(condition, ifStatement, condition.sourceStart, ifStatement.sourceEnd);
@@ -1392,7 +1392,7 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	private void buildMoreGenericsCompletionContext(ASTNode node, boolean consumeTypeArguments) {
+	private void buildMoreGenericsCompletionContext(ASTNode node, boolean consumeTypeArguments) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int kind = topKnownElementKind(COMPLETION_OR_ASSIST_PARSER);
 		if (kind != 0) {
 			int info = topKnownElementInfo(COMPLETION_OR_ASSIST_PARSER);
@@ -1480,7 +1480,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	private void buildMoreTryStatementCompletionContext(TypeReference exceptionRef) {
+	private void buildMoreTryStatementCompletionContext(TypeReference exceptionRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.astLengthPtr > 0 && this.astPtr > 2 && this.astStack[this.astPtr - 1] instanceof Block
 				&& this.astStack[this.astPtr - 2] instanceof Argument) {
 			TryStatement tryStatement = new TryStatement();
@@ -1491,7 +1491,7 @@ public class CompletionParser extends AssistParser {
 			Block[] bks = (tryStatement.catchBlocks = new Block[length + 1]);
 			Argument[] args = (tryStatement.catchArguments = new Argument[length + 1]);
 			if (length != 0) {
-				while (length-- > 0) {
+				while (length-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					bks[length] = (Block) this.astStack[newAstPtr--];
 					bks[length].statements = null; // statements of catch block won't be used
 					args[length] = (Argument) this.astStack[newAstPtr--];
@@ -1563,7 +1563,7 @@ public class CompletionParser extends AssistParser {
 	/**
 	 * Checks if the completion is on the type following a 'new'. Returns whether we found a completion node.
 	 */
-	private boolean checkClassInstanceCreation() {
+	private boolean checkClassInstanceCreation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (topKnownElementKind(COMPLETION_OR_ASSIST_PARSER) == K_BETWEEN_NEW_AND_LEFT_BRACKET) {
 			int length = this.identifierLengthStack[this.identifierLengthPtr];
 			int numberOfIdentifiers = this.genericsIdentifiersLengthStack[this.genericsIdentifiersLengthPtr];
@@ -1633,7 +1633,7 @@ public class CompletionParser extends AssistParser {
 	 * Checks if the completion is on the dot following an array type, a primitive type or an primitive array type.
 	 * Returns whether we found a completion node.
 	 */
-	private boolean checkClassLiteralAccess() {
+	private boolean checkClassLiteralAccess() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.identifierLengthPtr >= 1 && this.previousToken == TokenNameDOT) { // (NB: the top id length is 1 and it
 																					// is for the completion identifier)
 			int length;
@@ -1694,7 +1694,7 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	private boolean checkKeywordAndRestrictedIdentifiers() {
+	private boolean checkKeywordAndRestrictedIdentifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.currentElement instanceof RecoveredUnit) {
 			RecoveredUnit unit = (RecoveredUnit) this.currentElement;
 			if (unit.unitDeclaration.isModuleInfo())
@@ -1720,7 +1720,7 @@ public class CompletionParser extends AssistParser {
 				if (!this.compilationUnit.isPackageInfo()) {
 					if ((this.lastModifiers & ClassFileConstants.AccPublic) == 0) {
 						boolean hasNoPublicType = true;
-						for (int i = 0; i < unit.typeCount; i++) {
+						for (int i = 0; i < unit.typeCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if ((unit.types[i].typeDeclaration.modifiers & ClassFileConstants.AccPublic) != 0) {
 								hasNoPublicType = false;
 								break;
@@ -1797,7 +1797,7 @@ public class CompletionParser extends AssistParser {
 					Keywords.USES };
 	}
 
-	private boolean checkModuleInfoConstructs() {
+	private boolean checkModuleInfoConstructs() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if (!isInsideModuleInfo())
 			return false;
@@ -1855,7 +1855,7 @@ public class CompletionParser extends AssistParser {
 		return true;
 	}
 
-	private boolean checkInstanceofKeyword() {
+	private boolean checkInstanceofKeyword() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isInsideMethod()) {
 			int kind = topKnownElementKind(COMPLETION_OR_ASSIST_PARSER);
 			int index;
@@ -1889,7 +1889,7 @@ public class CompletionParser extends AssistParser {
 	 * Checks if the completion is inside a method invocation or a constructor invocation. Returns whether we found a
 	 * completion node.
 	 */
-	private boolean checkInvocation() {
+	private boolean checkInvocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Expression topExpression = this.expressionPtr >= 0 ? this.expressionStack[this.expressionPtr] : null;
 		boolean isEmptyNameCompletion = false;
 		boolean isEmptyAssistIdentifier = false;
@@ -1935,7 +1935,7 @@ public class CompletionParser extends AssistParser {
 				// consume the expression arguments
 				this.expressionPtr -= numArgs;
 				int count = numArgs;
-				while (count > 0) {
+				while (count > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					count -= this.expressionLengthStack[this.expressionLengthPtr--];
 				}
 			}
@@ -1952,7 +1952,7 @@ public class CompletionParser extends AssistParser {
 						break;
 					case NAME_RECEIVER:
 						// remove special flags for primitive types
-						while (this.identifierLengthPtr >= 0
+						while (this.identifierLengthPtr >= 0 //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								&& this.identifierLengthStack[this.identifierLengthPtr] < 0) {
 							this.identifierLengthPtr--;
 						}
@@ -2051,7 +2051,7 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	private boolean checkLabelStatement() {
+	private boolean checkLabelStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (isInsideMethod() || isInsideFieldInitialization()) {
 
 			int kind = this.topKnownElementKind(COMPLETION_OR_ASSIST_PARSER);
@@ -2066,7 +2066,7 @@ public class CompletionParser extends AssistParser {
 
 			int labelKind = kind;
 			int index = 1;
-			while (labelKind != 0 && labelKind != K_METHOD_DELIMITER) {
+			while (labelKind != 0 && labelKind != K_METHOD_DELIMITER) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				labelKind = this.topKnownElementKind(COMPLETION_OR_ASSIST_PARSER, index);
 				if (labelKind == K_LABEL) {
 					int ptr = this.topKnownElementInfo(COMPLETION_OR_ASSIST_PARSER, index);
@@ -2126,7 +2126,7 @@ public class CompletionParser extends AssistParser {
 	/**
 	 * Checks if the completion is on a name reference. Returns whether we found a completion node.
 	 */
-	private boolean checkNameCompletion() {
+	private boolean checkNameCompletion() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/*
 		 * We didn't find any other completion, but the completion identifier is on the identifier stack, so it can only
 		 * be a completion on name. Note that we allow the completion on a name even if nothing is expected (e.g. foo()
@@ -2145,7 +2145,7 @@ public class CompletionParser extends AssistParser {
 		return true;
 	}
 
-	private boolean checkParemeterizedMethodName() {
+	private boolean checkParemeterizedMethodName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (topKnownElementKind(COMPLETION_OR_ASSIST_PARSER) == K_PARAMETERIZED_METHOD_INVOCATION
 				&& topKnownElementInfo(COMPLETION_OR_ASSIST_PARSER) == INSIDE_NAME) {
 			if (this.identifierLengthPtr > -1 && this.genericsLengthPtr > -1
@@ -2224,7 +2224,7 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	private boolean checkParemeterizedType() {
+	private boolean checkParemeterizedType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.identifierLengthPtr > -1 && this.genericsLengthPtr > -1 && this.genericsIdentifiersLengthPtr > -1) {
 			int length = this.identifierLengthStack[this.identifierLengthPtr];
 			int numberOfIdentifiers = this.genericsIdentifiersLengthStack[this.genericsIdentifiersLengthPtr];
@@ -2256,7 +2256,7 @@ public class CompletionParser extends AssistParser {
 	 * Checks if the completion is in the context of a method and on the type of one of its arguments Returns whether we
 	 * found a completion node.
 	 */
-	private boolean checkRecoveredMethod() {
+	private boolean checkRecoveredMethod() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.currentElement instanceof RecoveredMethod) {
 			/* check if current awaiting identifier is the completion identifier */
 			if (this.indexOfAssistIdentifier() < 0)
@@ -2284,7 +2284,7 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	private boolean checkMemberValueName() {
+	private boolean checkMemberValueName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/* check if current awaiting identifier is the completion identifier */
 		if (this.indexOfAssistIdentifier() < 0)
 			return false;
@@ -2314,7 +2314,7 @@ public class CompletionParser extends AssistParser {
 	 * Checks if the completion is in the context of a type and on a type reference in this type. Persists the
 	 * identifier into a fake field return type Returns whether we found a completion node.
 	 */
-	private boolean checkRecoveredType() {
+	private boolean checkRecoveredType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.currentElement instanceof RecoveredType) {
 			/* check if current awaiting identifier is the completion identifier */
 			if (this.indexOfAssistIdentifier() < 0)
@@ -2361,7 +2361,7 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	private void classHeaderExtendsOrImplements(boolean isInterface, boolean isRecord, boolean isEnum) {
+	private void classHeaderExtendsOrImplements(boolean isInterface, boolean isRecord, boolean isEnum) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.currentElement != null && this.currentToken == TokenNameIdentifier
 				&& this.cursorLocation + 1 >= this.scanner.startPosition
 				&& this.cursorLocation < this.scanner.currentPosition) {
@@ -2421,7 +2421,7 @@ public class CompletionParser extends AssistParser {
 	 * need to be created and attached to the existing recovered structure so as to be remember in the resulting parsed
 	 * structure.
 	 */
-	public void completionIdentifierCheck() {
+	public void completionIdentifierCheck() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// if (assistNode != null) return;
 
 		if (checkMemberValueName())
@@ -2636,7 +2636,7 @@ public class CompletionParser extends AssistParser {
 		super.consumeCastExpressionLL1();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeCatchFormalParameter() {
 		if (this.indexOfAssistIdentifier() < 0) {
 			super.consumeCatchFormalParameter();
@@ -2690,7 +2690,7 @@ public class CompletionParser extends AssistParser {
 		super.consumeClassBodyopt();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeClassDeclaration() {
 		if (this.astPtr >= 0) {
 			int length = this.astLengthStack[this.astLengthPtr];
@@ -2735,7 +2735,7 @@ public class CompletionParser extends AssistParser {
 		classHeaderExtendsOrImplements(false, true, false);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeClassHeaderExtends() {
 		pushOnElementStack(K_NEXT_TYPEREF_IS_CLASS);
 		super.consumeClassHeaderExtends();
@@ -2791,7 +2791,7 @@ public class CompletionParser extends AssistParser {
 			if (typeDecl != null) {
 				TypeReference[] superInterfaces = typeDecl.superInterfaces;
 				int length = superInterfaces == null ? 0 : superInterfaces.length;
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (superInterfaces[i] == this.assistNode) {
 						this.assistNodeParent = typeDecl;
 					}
@@ -2814,7 +2814,7 @@ public class CompletionParser extends AssistParser {
 		popElement(K_NEXT_TYPEREF_IS_EXCEPTION);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeCompilationUnit() {
 		this.javadoc = null;
 		checkComment();
@@ -2858,7 +2858,7 @@ public class CompletionParser extends AssistParser {
 		pushOnElementStack(K_BLOCK_DELIMITER);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeConstructorHeaderName(boolean isCompact) {
 
 		/* no need to take action if not inside assist identifiers */
@@ -2925,14 +2925,14 @@ public class CompletionParser extends AssistParser {
 		pushOnExpressionStack(null);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeEmptyStatement() {
 		boolean shouldAttachParent = (this.assistNodeParent instanceof MessageSend)
 				|| (this.assistNodeParent instanceof ParameterizedSingleTypeReference)
 				|| (this.assistNodeParent instanceof LocalDeclaration);
 		ASTNode nodeToAttach = shouldAttachParent ? this.assistNodeParent : this.assistNode;
 		if (this.shouldStackAssistNode && nodeToAttach != null) {
-			for (int ptr = this.astPtr; ptr >= 0; ptr--) {
+			for (int ptr = this.astPtr; ptr >= 0; ptr--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (new CompletionNodeDetector(nodeToAttach, this.astStack[ptr]).containsCompletionNode()) {
 					// likely synthetic ';' detected after the nodeToAttach was already attached => skip
 					this.astLengthStack[++this.astLengthPtr] = 0; // start an empty list instead of the unnecessary
@@ -2954,7 +2954,7 @@ public class CompletionParser extends AssistParser {
 		this.shouldStackAssistNode = false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeBlockStatement() {
 		super.consumeBlockStatement();
 		if (this.shouldStackAssistNode && this.assistNode != null) {
@@ -3017,7 +3017,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeEnterVariable() {
 		this.identifierPtr--;
 		this.identifierLengthPtr--;
@@ -3166,7 +3166,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeExitVariableWithInitialization() {
 		super.consumeExitVariableWithInitialization();
 		if ((this.currentToken == TokenNameCOMMA || this.currentToken == TokenNameSEMICOLON)
@@ -3243,7 +3243,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeSingleVariableDeclarator(boolean isVarArgs) {
 
 		this.invocationType = NO_RECEIVER;
@@ -3361,7 +3361,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeInsideCastExpression() {
 		TypeReference[] bounds = null;
 		int additionalBoundsLength = this.genericsLengthStack[this.genericsLengthPtr--];
@@ -3400,7 +3400,7 @@ public class CompletionParser extends AssistParser {
 		pushOnElementStack(K_CAST_STATEMENT);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeInsideCastExpressionLL1() {
 		if (topKnownElementKind(COMPLETION_OR_ASSIST_PARSER) == K_PARAMETERIZED_CAST) {
 			popElement(K_PARAMETERIZED_CAST);
@@ -3425,7 +3425,7 @@ public class CompletionParser extends AssistParser {
 		pushOnElementStack(K_CAST_STATEMENT);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeInsideCastExpressionLL1WithBounds() {
 		if (topKnownElementKind(COMPLETION_OR_ASSIST_PARSER) == K_PARAMETERIZED_CAST) {
 			popElement(K_PARAMETERIZED_CAST);
@@ -3439,7 +3439,7 @@ public class CompletionParser extends AssistParser {
 				super.consumeInsideCastExpressionLL1WithBounds();
 				if (this.record) {
 					int length = this.expressionLengthStack[this.expressionLengthPtr];
-					for (int i = 0; i < length; i++) {
+					for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						Expression typeReference = this.expressionStack[this.expressionPtr - length + i + 1];
 						if (!isAlreadyPotentialName(typeReference.sourceStart)) {
 							addPotentialName(null, typeReference.sourceStart, typeReference.sourceEnd);
@@ -3453,7 +3453,7 @@ public class CompletionParser extends AssistParser {
 		pushOnElementStack(K_CAST_STATEMENT);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeInsideCastExpressionWithQualifiedGenerics() {
 		popElement(K_PARAMETERIZED_CAST);
 
@@ -3594,7 +3594,7 @@ public class CompletionParser extends AssistParser {
 		super.consumeMethodInvocationSuperWithTypeArguments();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeMethodHeaderName(boolean isAnnotationMethod) {
 		if (this.indexOfAssistIdentifier() < 0) {
 			this.identifierPtr--;
@@ -3736,7 +3736,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeMethodHeaderRightParen() {
 		super.consumeMethodHeaderRightParen();
 
@@ -3768,7 +3768,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeMethodHeaderExtendedDims() {
 		super.consumeMethodHeaderExtendedDims();
 
@@ -3829,7 +3829,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeAnnotationName() {
 		int index;
 
@@ -3938,7 +3938,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeMemberValuePair() {
 		/* check if current awaiting identifier is the completion identifier */
 		if (this.indexOfAssistIdentifier() < 0) {
@@ -4150,7 +4150,7 @@ public class CompletionParser extends AssistParser {
 			pushOnElementStack(K_BLOCK_DELIMITER);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeNormalAnnotation(boolean isTypeAnnotation) {
 		if (this.topKnownElementKind(COMPLETION_OR_ASSIST_PARSER) == K_BETWEEN_ANNOTATION_NAME_AND_RPAREN
 				&& (this.topKnownElementInfo(COMPLETION_OR_ASSIST_PARSER) & ANNOTATION_NAME_COMPLETION) != 0) {
@@ -4239,7 +4239,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected TerminalToken fetchNextToken() throws InvalidInputException {
 		TerminalToken token = this.scanner.getNextToken();
 		if (token != TokenNameEOF && this.scanner.currentPosition > this.cursorLocation) {
@@ -4289,12 +4289,12 @@ public class CompletionParser extends AssistParser {
 	 * Variant of parse() without side effects that stops when another token would need to be fetched. Returns the name
 	 * of the last reduced rule, or empty string if nothing reduced, or null if error was detected.
 	 */
-	String reduce(TerminalToken token) {
+	String reduce(TerminalToken token) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int myStackTop = this.stateStackTop;
 		int[] myStack = Arrays.copyOf(this.stack, this.stack.length);
 		int act = this.unstackedAct;
 		String reduceName = ""; //$NON-NLS-1$
-		for (;;) {
+		for (;;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int stackLength = myStack.length;
 			if (++myStackTop >= stackLength) {
 				System.arraycopy(myStack, 0, myStack = new int[stackLength + StackIncrement], 0, stackLength);
@@ -4313,7 +4313,7 @@ public class CompletionParser extends AssistParser {
 				}
 				return reduceName; // ?
 			}
-			do {
+			do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				reduceName = name[non_terminal_index[lhs[act]]];
 				myStackTop -= (rhs[act] - 1);
 				act = ntAction(myStack[myStackTop], lhs[act]);
@@ -4324,7 +4324,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeToken(TerminalToken token) {
 		if (this.isFirst) {
 			super.consumeToken(token);
@@ -5124,7 +5124,7 @@ public class CompletionParser extends AssistParser {
 		popElement(K_BINARY_OPERATOR);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeTypeParameterHeader() {
 		super.consumeTypeParameterHeader();
 		TypeParameter typeParameter = (TypeParameter) this.genericsStack[this.genericsPtr];
@@ -5227,7 +5227,7 @@ public class CompletionParser extends AssistParser {
 		popElement(K_INSIDE_USES_STATEMENT);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void consumeWildcard() {
 		super.consumeWildcard();
 		if (assistIdentifier() == null && this.currentToken == TokenNameIdentifier) { // Test below copied from
@@ -5412,7 +5412,7 @@ public class CompletionParser extends AssistParser {
 		return null;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeReference createQualifiedAssistTypeReference(char[][] previousIdentifiers, char[] assistName,
 			long[] positions) {
 		switch (topKnownElementKind(COMPLETION_OR_ASSIST_PARSER)) {
@@ -5437,11 +5437,11 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeReference createParameterizedQualifiedAssistTypeReference(char[][] previousIdentifiers,
 			TypeReference[][] typeArguments, char[] assistName, TypeReference[] assistTypeArguments, long[] positions) {
 		boolean isParameterized = false;
-		for (TypeReference[] typeArgument : typeArguments) {
+		for (TypeReference[] typeArgument : typeArguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (typeArgument != null) {
 				isParameterized = true;
 				break;
@@ -5469,7 +5469,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public NameReference createSingleAssistNameReference(char[] assistName, long position) {
 		int kind = topKnownElementKind(COMPLETION_OR_ASSIST_PARSER);
 		if (!isInsideMethod()) {
@@ -5491,7 +5491,7 @@ public class CompletionParser extends AssistParser {
 				return new CompletionOnKeyword3(assistName, position, new char[][] { Keywords.CASE, Keywords.DEFAULT },
 						false);
 			} else {
-				List<char[]> keywordsList = new ArrayList<>(Keywords.COUNT);
+				List<char[]> keywordsList = new ArrayList<>(Keywords.COUNT); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				canBeExplicitConstructorCall = computeKeywords(kind, keywordsList);
 				char[][] keywords = keywordsList.toArray(char[][]::new);
 				return new CompletionOnSingleNameReference(assistName, position, keywords, canBeExplicitConstructorCall,
@@ -5500,7 +5500,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	boolean computeKeywords(int kind, List<char[]> keywords) {
+	boolean computeKeywords(int kind, List<char[]> keywords) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean canBeExplicitConstructorCall = false;
 
 		if ((this.lastModifiers & ClassFileConstants.AccStatic) == 0) {
@@ -5619,7 +5619,7 @@ public class CompletionParser extends AssistParser {
 				return new CompletionOnProvidesImplementationsSingleTypeReference(assistName, position);
 			return new CompletionOnProvidesInterfacesSingleTypeReference(assistName, position);
 		}
-		List<char[]> keywords = new ArrayList<>(Keywords.COUNT);
+		List<char[]> keywords = new ArrayList<>(Keywords.COUNT); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		boolean canBeCtorCall = computeKeywords(topKnownElementKind(COMPLETION_OR_ASSIST_PARSER), keywords);
 		return new CompletionOnSingleTypeReference(assistName, position, keywords.toArray(char[][]::new),
 				canBeCtorCall);
@@ -5650,7 +5650,7 @@ public class CompletionParser extends AssistParser {
 		return createSingleAssistTypeReference(assistName, position);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected StringLiteral createStringLiteral(char[] token, int start, int end, int lineNumber) {
 		if (start <= this.cursorLocation && this.cursorLocation <= end) {
 			char[] source = this.scanner.source;
@@ -5664,7 +5664,7 @@ public class CompletionParser extends AssistParser {
 				contentStart = pos + 1;
 			} else if (source[pos] == '\\' && source[pos + 1] == 'u') {
 				pos += 2;
-				while (source[pos] == 'u') {
+				while (source[pos] == 'u') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					pos++;
 				}
 				if (source[pos] == 0 && source[pos + 1] == 0 && source[pos + 2] == 2 && source[pos + 3] == 2) {
@@ -5678,7 +5678,7 @@ public class CompletionParser extends AssistParser {
 			} else if (source.length > 5 && source[pos - 4] == 'u') {
 				if (source[pos - 3] == 0 && source[pos - 2] == 0 && source[pos - 1] == 2 && source[pos] == 2) {
 					pos -= 5;
-					while (pos > -1 && source[pos] == 'u') {
+					while (pos > -1 && source[pos] == 'u') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						pos--;
 					}
 					if (pos > -1 && source[pos] == '\\') {
@@ -5744,7 +5744,7 @@ public class CompletionParser extends AssistParser {
 		completionScanner.completedIdentifierEnd = -1;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected TypeReference getTypeReferenceForGenericType(int dim, int identifierLength, int numberOfIdentifiers) {
 		TypeReference ref = super.getTypeReferenceForGenericType(dim, identifierLength, numberOfIdentifiers);
 		// in completion case we might have encountered the assist node before really parsing
@@ -5755,7 +5755,7 @@ public class CompletionParser extends AssistParser {
 			if (identifierLength == 1 && numberOfIdentifiers == 1) {
 				ParameterizedSingleTypeReference singleRef = (ParameterizedSingleTypeReference) ref;
 				TypeReference[] typeArguments = singleRef.typeArguments;
-				for (TypeReference typeArgument : typeArguments) {
+				for (TypeReference typeArgument : typeArguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (typeArgument == this.assistNode) {
 						this.assistNodeParent = ref;
 						return ref;
@@ -5764,9 +5764,9 @@ public class CompletionParser extends AssistParser {
 			} else {
 				ParameterizedQualifiedTypeReference qualifiedRef = (ParameterizedQualifiedTypeReference) ref;
 				TypeReference[][] typeArguments = qualifiedRef.typeArguments;
-				for (TypeReference[] typeArgument : typeArguments) {
+				for (TypeReference[] typeArgument : typeArguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (typeArgument != null) {
-						for (int j = 0; j < typeArgument.length; j++) {
+						for (int j = 0; j < typeArgument.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (typeArgument[j] == this.assistNode) {
 								this.assistNodeParent = ref;
 								return ref;
@@ -5781,7 +5781,7 @@ public class CompletionParser extends AssistParser {
 		return ref;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected NameReference getUnspecifiedReference(boolean rejectTypeAnnotations) {
 		// code copied from super, but conditionally creating CompletionOn* nodes:
 
@@ -5817,7 +5817,7 @@ public class CompletionParser extends AssistParser {
 			if (this.assistNode == null && start <= this.cursorLocation && end >= this.cursorLocation) {
 				// find the token at cursorLocation:
 				int previousCount = 0;
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (((int) positions[i]) < this.cursorLocation)
 						previousCount = i + 1;
 				}
@@ -5963,7 +5963,7 @@ public class CompletionParser extends AssistParser {
 
 	protected boolean isInsideAnnotation() {
 		int i = this.elementPtr;
-		while (i > -1) {
+		while (i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.elementKindStack[i] == K_BETWEEN_ANNOTATION_NAME_AND_RPAREN)
 				return true;
 			i--;
@@ -5973,7 +5973,7 @@ public class CompletionParser extends AssistParser {
 
 	protected boolean isInsideSwitch() {
 		int i = this.elementPtr;
-		while (i > -1) {
+		while (i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (this.elementKindStack[i]) {
 				case K_SWITCH_LABEL:
 					return true;
@@ -5983,9 +5983,9 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	protected boolean isInsideBreakable() {
+	protected boolean isInsideBreakable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int i = this.elementPtr;
-		while (i > -1) {
+		while (i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (this.elementKindStack[i]) {
 				case K_TYPE_DELIMITER:
 					return false;
@@ -6009,9 +6009,9 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	protected boolean isInsideLoop() {
+	protected boolean isInsideLoop() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int i = this.elementPtr;
-		while (i > -1) {
+		while (i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (this.elementKindStack[i]) {
 				case K_TYPE_DELIMITER:
 					return false;
@@ -6033,9 +6033,9 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	protected boolean isInsideReturn() {
+	protected boolean isInsideReturn() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int i = this.elementPtr;
-		while (i > -1) {
+		while (i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (this.elementKindStack[i]) {
 				case K_TYPE_DELIMITER:
 					return false;
@@ -6084,7 +6084,7 @@ public class CompletionParser extends AssistParser {
 		return super.newMessageSendWithTypeArguments();
 	}
 
-	private MessageSend internalNewMessageSend() {
+	private MessageSend internalNewMessageSend() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		MessageSend m = null;
 		long nameStart = this.identifierPositionStack[this.identifierPtr] >>> 32;
 		if (this.assistNode == null && this.lParenPos > this.cursorLocation && nameStart <= this.cursorLocation + 1) {
@@ -6127,7 +6127,7 @@ public class CompletionParser extends AssistParser {
 		return super.newAllocationExpression(isQualified);
 	}
 
-	private boolean checkIfAtFirstArgumentOfConstructor() {
+	private boolean checkIfAtFirstArgumentOfConstructor() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// See if we are in a simple constructure like Foo(|) or Foo(|null, null)
 		if (this.lParenPos == this.assistNode.sourceEnd) {
 			return true;
@@ -6164,7 +6164,7 @@ public class CompletionParser extends AssistParser {
 	@Override
 	public void parseBlockStatements(AbstractMethodDeclaration md, CompilationUnitDeclaration unit) {
 		if (md.arguments != null) {
-			for (Argument argument : md.arguments) {
+			for (Argument argument : md.arguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (argument instanceof CompletionOnArgumentName && argument == this.assistNode)
 					return; // no need to parse more
 			}
@@ -6182,7 +6182,7 @@ public class CompletionParser extends AssistParser {
 	public void parseBlockStatements(ConstructorDeclaration cd, CompilationUnitDeclaration unit) {
 		this.canBeExplicitConstructor = 1;
 		if (cd.arguments != null) {
-			for (Argument argument : cd.arguments) {
+			for (Argument argument : cd.arguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (argument instanceof CompletionOnArgumentName && argument == this.assistNode)
 					return; // no need to parse more
 			}
@@ -6190,7 +6190,7 @@ public class CompletionParser extends AssistParser {
 		super.parseBlockStatements(cd, unit);
 	}
 
-	public MethodDeclaration parseSomeStatements(int start, int end, int fakeBlocksCount,
+	public MethodDeclaration parseSomeStatements(int start, int end, int fakeBlocksCount, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			CompilationUnitDeclaration unit) {
 		this.methodRecoveryActivated = true;
 
@@ -6217,7 +6217,7 @@ public class CompletionParser extends AssistParser {
 
 		this.scanner.resetTo(start, end);
 		consumeNestedMethod();
-		for (int i = 0; i < fakeBlocksCount; i++) {
+		for (int i = 0; i < fakeBlocksCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			consumeOpenFakeBlock();
 		}
 		try {
@@ -6230,12 +6230,12 @@ public class CompletionParser extends AssistParser {
 		return fakeMethod;
 	}
 
-	protected void popUntilCompletedAnnotationIfNecessary() {
+	protected void popUntilCompletedAnnotationIfNecessary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.elementPtr < 0)
 			return;
 
 		int i = this.elementPtr;
-		while (i > -1 && (this.elementKindStack[i] != K_BETWEEN_ANNOTATION_NAME_AND_RPAREN
+		while (i > -1 && (this.elementKindStack[i] != K_BETWEEN_ANNOTATION_NAME_AND_RPAREN //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				|| (this.elementInfoStack[i] & ANNOTATION_NAME_COMPLETION) == 0)) {
 			i--;
 		}
@@ -6245,7 +6245,7 @@ public class CompletionParser extends AssistParser {
 			this.previousInfo = this.elementInfoStack[i];
 			this.previousObjectInfo = this.elementObjectInfoStack[i];
 
-			for (int j = i; j <= this.elementPtr; j++) {
+			for (int j = i; j <= this.elementPtr; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.elementObjectInfoStack[j] = null;
 			}
 
@@ -6280,7 +6280,7 @@ public class CompletionParser extends AssistParser {
 	/**
 	 * Creates a completion on member access node and push it on the expression stack.
 	 */
-	private void pushCompletionOnMemberAccessOnExpressionStack(boolean isSuperAccess) {
+	private void pushCompletionOnMemberAccessOnExpressionStack(boolean isSuperAccess) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] source = this.identifierStack[this.identifierPtr];
 		long pos = this.identifierPositionStack[this.identifierPtr--];
 		CompletionOnMemberAccess fr = new CompletionOnMemberAccess(source, pos, isInsideAnnotation());
@@ -6314,7 +6314,7 @@ public class CompletionParser extends AssistParser {
 		this.expressionStack[this.expressionPtr] = fr;
 	}
 
-	private void recordReference(NameReference nameReference) {
+	private void recordReference(NameReference nameReference) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!this.skipRecord && this.recordFrom <= nameReference.sourceStart && nameReference.sourceEnd <= this.recordTo
 				&& !isAlreadyPotentialName(nameReference.sourceStart)) {
 			char[] token;
@@ -6333,7 +6333,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void recoveryExitFromVariable() {
 		if (this.currentElement != null && this.currentElement instanceof RecoveredLocalVariable) {
 			RecoveredElement oldElement = this.currentElement;
@@ -6358,7 +6358,7 @@ public class CompletionParser extends AssistParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void recoveryTokenCheck() {
 		RecoveredElement oldElement = this.currentElement;
 		switch (this.currentToken) {
@@ -6456,7 +6456,7 @@ public class CompletionParser extends AssistParser {
 	 *
 	 * Move checkpoint location, reset internal stacks and decide which grammar goal is activated.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected int resumeAfterRecovery() {
 		this.hasUnusedModifiers = false;
 		if (this.assistNode != null) {
@@ -6526,25 +6526,25 @@ public class CompletionParser extends AssistParser {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append("elementKindStack : int[] = {"); //$NON-NLS-1$
-		for (int i = 0; i <= this.elementPtr; i++) {
-			buffer.append(String.valueOf(this.elementKindStack[i])).append(',');
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("elementKindStack : int[] = {"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i <= this.elementPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(String.valueOf(this.elementKindStack[i])).append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append("}\n"); //$NON-NLS-1$
-		buffer.append("elementInfoStack : int[] = {"); //$NON-NLS-1$
-		for (int i = 0; i <= this.elementPtr; i++) {
-			buffer.append(String.valueOf(this.elementInfoStack[i])).append(',');
+		buffer.append("}\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("elementInfoStack : int[] = {"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (int i = 0; i <= this.elementPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(String.valueOf(this.elementInfoStack[i])).append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append("}\n"); //$NON-NLS-1$
-		buffer.append(super.toString());
+		buffer.append("}\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(super.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return String.valueOf(buffer);
 	}
 
 	/*
 	 * Update recovery state based on current parser/scanner state
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void updateRecoveryState() {
 
 		/* expose parser state to recovery state */
@@ -6579,7 +6579,7 @@ public class CompletionParser extends AssistParser {
 		recoveryExitFromVariable();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected CompilationUnitDeclaration endParse(int act) {
 		CompilationUnitDeclaration cud = super.endParse(act);
 		// in absence of a syntax error we never call attachOrphaneCompletionNode().
@@ -6606,7 +6606,7 @@ public class CompletionParser extends AssistParser {
 						// or before transferring statements into a nested recovered element?
 						this.currentElement.add(statement, 0);
 						RecoveredElement element = this.currentElement;
-						while (element != null) {
+						while (element != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (element instanceof RecoveredMethod
 									&& ((RecoveredMethod) element).methodDeclaration == method) {
 								element.updateParseTree();
@@ -6633,7 +6633,7 @@ public class CompletionParser extends AssistParser {
 		return cud;
 	}
 
-	private boolean isInsideBody(Statement statement, AbstractMethodDeclaration method) {
+	private boolean isInsideBody(Statement statement, AbstractMethodDeclaration method) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// avoid interpreting garbage before '{' as a method statement, e.g.:
 		// void foo(int arg) foo bar zork { ...
 		// foo bar zork are not inside the method body.
@@ -6644,7 +6644,7 @@ public class CompletionParser extends AssistParser {
 		this.scanner.resetTo(method.sourceEnd, statement.sourceStart);
 		try {
 			TerminalToken tkn;
-			while ((tkn = this.scanner.getNextToken()) != TokenNameEOF) {
+			while ((tkn = this.scanner.getNextToken()) != TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (tkn == TokenNameLBRACE)
 					return true;
 			}
@@ -6699,7 +6699,7 @@ public class CompletionParser extends AssistParser {
 	 */
 	private boolean stackHasInstanceOfExpression(Object[] stackToSearch, int startIndex) {
 		int indexInstanceOf = startIndex;
-		while (indexInstanceOf >= 0) {
+		while (indexInstanceOf >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (stackToSearch[indexInstanceOf] instanceof InstanceOfExpression) {
 				return true;
 			}
@@ -6720,7 +6720,7 @@ public class CompletionParser extends AssistParser {
 
 	private boolean foundToken(int token) {
 		int i = this.elementPtr;
-		while (i > -1) {
+		while (i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.elementKindStack[i] == token) {
 				return true;
 			}
@@ -6729,14 +6729,14 @@ public class CompletionParser extends AssistParser {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected int actFromTokenOrSynthetic(int previousAct) {
 		int newAct = tAction(previousAct, this.currentToken.tokenNumber());
 		if (this.hasError && !this.diet && newAct == ERROR_ACTION
 				&& this.scanner.currentPosition > this.cursorLocation) {
 			if (requireExtendedRecovery()) {
 				// during extended recovery, if EOF would be wrong, try a few things to reduce our stacks:
-				for (TerminalToken tok : RECOVERY_TOKENS) {
+				for (TerminalToken tok : RECOVERY_TOKENS) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					newAct = tAction(previousAct, tok.tokenNumber());
 					if (newAct != ERROR_ACTION) {
 						this.currentToken = tok; // this worked, pretend we really got this from the Scanner

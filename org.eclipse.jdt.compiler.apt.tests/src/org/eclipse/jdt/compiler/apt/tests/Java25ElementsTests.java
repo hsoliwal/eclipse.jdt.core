@@ -35,7 +35,7 @@ public class Java25ElementsTests extends TestCase {
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 		internalTestWithBinary(compiler, MODULE_PROC, "25", "getTypeElement", null, false);
 	}
-	protected void internalTestWithBinary(JavaCompiler compiler, String processor, String compliance, String testMethod, String testClass, boolean processBinariesAgain) throws IOException {
+	protected void internalTestWithBinary(JavaCompiler compiler, String processor, String compliance, String testMethod, String testClass, boolean processBinariesAgain) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!canRunJava25()) {
 			return;
 		}
@@ -44,16 +44,16 @@ public class Java25ElementsTests extends TestCase {
 		if (testClass == null || testClass.equals("")) {
 			BatchTestUtils.copyResources("targets/unnamed/", targetFolder);
 		} else {
-			BatchTestUtils.copyResource("targets/unnamed/" + testClass, targetFolder);
+			BatchTestUtils.copyResource("targets/unnamed/" + testClass, targetFolder); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
-		List<String> options = new ArrayList<>();
-		options.add("-A" + processor);
-		options.add("-A" + testMethod);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + processor); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		options.add("-A" + testMethod); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		options.add("-processor");
 		options.add(processor);
 		if (compiler instanceof EclipseCompiler) {
-			options.add("-" + compliance);
+			options.add("-" + compliance); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			options.add("-source");
 			options.add(compliance);

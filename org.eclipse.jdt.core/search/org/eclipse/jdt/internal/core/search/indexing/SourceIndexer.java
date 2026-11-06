@@ -75,10 +75,10 @@ public class SourceIndexer extends AbstractIndexer implements SuffixConstants {
 	}
 
 	private boolean usedDomBasedIndexing() {
-		return Boolean.getBoolean(getClass().getSimpleName() + ".DOM_BASED_INDEXER");  //$NON-NLS-1$
+		return Boolean.getBoolean(getClass().getSimpleName() + ".DOM_BASED_INDEXER");  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void indexDocument() {
 		if (disabledForFile()) {
 			return;
@@ -119,7 +119,7 @@ public class SourceIndexer extends AbstractIndexer implements SuffixConstants {
 		}
 	}
 
-	public void resolveDocument() {
+	public void resolveDocument() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (usedDomBasedIndexing() && this.dom != null && getUnit() instanceof org.eclipse.jdt.internal.core.CompilationUnit unit) {
 			resolveDocumentDomImpl(unit);
 		} else {
@@ -156,7 +156,7 @@ public class SourceIndexer extends AbstractIndexer implements SuffixConstants {
 		}
 	}
 
-	private String reduceDOM(org.eclipse.jdt.core.dom.ASTNode domParam) {
+	private String reduceDOM(org.eclipse.jdt.core.dom.ASTNode domParam) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		domParam.accept(new ASTVisitor(false) {
 			private boolean requiresBinding = false;
 			@Override
@@ -227,7 +227,7 @@ public class SourceIndexer extends AbstractIndexer implements SuffixConstants {
 		return domParam.toString();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void indexResolvedDocument() {
 		if (usedDomBasedIndexing() && this.dom != null) {
 			// just re-run indexing, but with the resolved document (and its bindings)
@@ -238,16 +238,16 @@ public class SourceIndexer extends AbstractIndexer implements SuffixConstants {
 
 		try {
 			if (DEBUG) {
-				trace(new String(this.cud.compilationResult.fileName) + ':');
+				trace(new String(this.cud.compilationResult.fileName) + ':'); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-			for (int i = 0, length = this.cud.functionalExpressionsCount; i < length; i++) {
+			for (int i = 0, length = this.cud.functionalExpressionsCount; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				FunctionalExpression expression = this.cud.functionalExpressions[i];
 				if (expression instanceof LambdaExpression) {
 					LambdaExpression lambdaExpression = (LambdaExpression) expression;
 					if (lambdaExpression.binding != null && lambdaExpression.binding.isValidBinding()) {
 						final char[] superinterface = lambdaExpression.resolvedType.sourceName();
 						if (DEBUG) {
-							trace('\t' + new String(superinterface) + '.' +
+							trace('\t' + new String(superinterface) + '.' + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									new String(lambdaExpression.descriptor.selector) + "-> {}"); //$NON-NLS-1$
 						}
 						SourceIndexer.this.addIndexEntry(IIndexConstants.METHOD_DECL, MethodPattern.createIndexKey(lambdaExpression.descriptor.selector, lambdaExpression.descriptor.parameters.length));
@@ -273,7 +273,7 @@ public class SourceIndexer extends AbstractIndexer implements SuffixConstants {
 					MethodBinding binding = referenceExpression.getMethodBinding();
 					if (binding != null && binding.isValidBinding()) {
 						if (DEBUG) {
-							trace('\t' + new String(referenceExpression.resolvedType.sourceName()) + "::"  //$NON-NLS-1$
+							trace('\t' + new String(referenceExpression.resolvedType.sourceName()) + "::"  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									+ new String(referenceExpression.descriptor.selector) + " == " + new String(binding.declaringClass.sourceName()) + '.' + //$NON-NLS-1$
 									new String(binding.selector));
 						}
@@ -311,7 +311,7 @@ public class SourceIndexer extends AbstractIndexer implements SuffixConstants {
 		}
 	}
 
-	private org.eclipse.jdt.core.ICompilationUnit getUnit() {
+	private org.eclipse.jdt.core.ICompilationUnit getUnit() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFile file = getJavaSearchFile();
 		if (file != null) {
 			try {
@@ -326,7 +326,7 @@ public class SourceIndexer extends AbstractIndexer implements SuffixConstants {
 					}
 				}
 			} catch (Exception ex) {
-				ILog.get().error("Failed to index document from DOM for " + this.document.getPath(), ex); //$NON-NLS-1$
+				ILog.get().error("Failed to index document from DOM for " + this.document.getPath(), ex); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return null;
@@ -342,7 +342,7 @@ public class SourceIndexer extends AbstractIndexer implements SuffixConstants {
 	/**
 	 * @return whether the operation was successful
 	 */
-	boolean indexDocumentFromDOM() {
+	boolean indexDocumentFromDOM() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		var unit = getUnit();
 		String documentPath = this.document.getPath();
 		char[] source = null;
@@ -388,7 +388,7 @@ public class SourceIndexer extends AbstractIndexer implements SuffixConstants {
 		return false;
 	}
 
-	private boolean disabledForFile() {
+	private boolean disabledForFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (JavaModelManager.disableRestrictedFileIndexing()) {
 			IFile file = getJavaSearchFile();
 			if (file == null) {

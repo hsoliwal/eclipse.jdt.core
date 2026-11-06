@@ -58,7 +58,7 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 
-	public void test001() throws CoreException {
+	public void test001() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents = """
 				package p;
 				import module java.base;
@@ -69,7 +69,7 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 					}
 				}
 				""";
-		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/p/X.java", true/*resolve*/);
+		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/p/X.java", true/*resolve*/); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ASTNode node = buildAST(
 			contents,
 			this.workingCopy);
@@ -103,14 +103,14 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 		}
 	}
 
-	public void test002() throws CoreException {
+	public void test002() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String contents = """
 					/** */
 					void main() {
 					    System.out.println("Eclipse");
 					}
 				""";
-		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/X.java", true/*resolve*/);
+		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/X.java", true/*resolve*/); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ASTNode node = buildAST(contents, this.workingCopy);
 		assertEquals("Wrong type of statement", ASTNode.COMPILATION_UNIT, node.getNodeType());
 		CompilationUnit compilationUnit = (CompilationUnit) node;
@@ -129,9 +129,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 		assertEquals("Block startPosition is not correct", block.getStartPosition(), 21);
 	}
 
-	public void test003_a() throws CoreException {
+	public void test003_a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -160,9 +160,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	    assertTrue(Modifier.isSealed(aBinding.getModifiers()));
 	}
 
-	public void test003_b() throws CoreException {
+	public void test003_b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -190,9 +190,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 	//public sealed
-	public void test003_c() throws CoreException {
+	public void test003_c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -224,9 +224,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 	//abstract final
-	public void test003_d() throws CoreException {
+	public void test003_d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -254,9 +254,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 	//abstract non-sealed
-	public void test003_e() throws CoreException {
+	public void test003_e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -284,9 +284,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 	//public final
-	public void test003_f() throws CoreException {
+	public void test003_f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -314,9 +314,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 	//public non-sealed
-	public void test003_g() throws CoreException {
+	public void test003_g() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -344,9 +344,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 	//protected non-sealed
-	public void test003_h() throws CoreException {
+	public void test003_h() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -374,9 +374,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 	//private non-sealed
-	public void test003_i() throws CoreException {
+	public void test003_i() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -404,9 +404,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 	//protected abstract
-	public void test003_j() throws CoreException {
+	public void test003_j() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -434,9 +434,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 	//public sealed interface
-	public void test003_k() throws CoreException {
+	public void test003_k() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -467,9 +467,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 	//public non-sealed interface
-	public void test003_l() throws CoreException {
+	public void test003_l() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -500,9 +500,9 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	}
 
 	//public strictfp interface
-	public void test003_m() throws CoreException {
+	public void test003_m() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTParser astParser = ASTParser.newParser(getAST25());
-	    Map<String, String> options = new HashMap<>();
+	    Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	    options.put(JavaCore.COMPILER_COMPLIANCE, "23");
 	    options.put(JavaCore.COMPILER_SOURCE, "23");
 
@@ -531,7 +531,7 @@ public class ModuleImportASTConverterTest extends ConverterTestSetup {
 	    assertTrue(Modifier.isPublic(aBinding.getModifiers()));
 	}
 
-	public void testBug549248_01() throws CoreException {
+	public void testBug549248_01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    String contents = """
 	        public enum X {
 	            JAPAN(new java.lang.String[] {"1","2"}){

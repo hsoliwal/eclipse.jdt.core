@@ -84,7 +84,7 @@ public final class StringOperation {
  * 	the pattern
  * @since 3.5
  */
-public static final int[] getCamelCaseMatchingRegions(String pattern, int patternStart, int patternEnd, String name, int nameStart, int nameEnd, boolean samePartCount) {
+public static final int[] getCamelCaseMatchingRegions(String pattern, int patternStart, int patternEnd, String name, int nameStart, int nameEnd, boolean samePartCount) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	/* !!!!!!!!!! WARNING !!!!!!!!!!
 	 * The algorithm used in this method has been fully inspired from
@@ -122,7 +122,7 @@ public static final int[] getCamelCaseMatchingRegions(String pattern, int patter
 
 	// init segments
 	int parts = 1;
-	for (int i=patternStart+1; i<patternEnd; i++) {
+	for (int i=patternStart+1; i<patternEnd; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		final char ch = pattern.charAt(i);
 		if (ch < ScannerHelper.MAX_OBVIOUS) {
 			if ((ScannerHelper.OBVIOUS_IDENT_CHAR_NATURES[ch] & (ScannerHelper.C_UPPER_LETTER | ScannerHelper.C_DIGIT)) != 0) {
@@ -137,7 +137,7 @@ public static final int[] getCamelCaseMatchingRegions(String pattern, int patter
 
 	// Main loop is on pattern characters
 	int segmentStart = iName;
-	while (true) {
+	while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		iPattern++;
 		iName++;
 
@@ -157,7 +157,7 @@ public static final int[] getCamelCaseMatchingRegions(String pattern, int patter
 
 			// otherwise it's a match only if the name has no more uppercase characters
 			int segmentEnd = iName;
-			while (true) {
+			while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (iName == nameEnd) {
 					// we have exhausted the name, so it's a match
 					if (segments == null) {
@@ -205,7 +205,7 @@ public static final int[] getCamelCaseMatchingRegions(String pattern, int patter
 		}
 
 		// patternChar is uppercase, so let's find the next uppercase in name
-		while (true) {
+		while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (iName == nameEnd){
 	            //	We have exhausted name (and not pattern), so it's not a match
 				return null;
@@ -297,7 +297,7 @@ public static final int[] getCamelCaseMatchingRegions(String pattern, int patter
  * 	the pattern
  * @since 3.5
  */
-public static final int[] getPatternMatchingRegions(
+public static final int[] getPatternMatchingRegions( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String pattern,
 	int patternStart,
 	int patternEnd,
@@ -331,7 +331,7 @@ public static final int[] getPatternMatchingRegions(
 	int questions = 0;
 	int parts = 0;
 	char previous = 0;
-	for (int i=patternStart; i<patternEnd; i++) {
+	for (int i=patternStart; i<patternEnd; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		char ch = pattern.charAt(i);
 		switch (ch) {
 			case '?':
@@ -361,7 +361,7 @@ public static final int[] getPatternMatchingRegions(
 	int start = iName;
 	char patternChar = 0;
 	previous = 0;
-	while ((iPattern < patternEnd)
+	while ((iPattern < patternEnd) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		&& (patternChar = pattern.charAt(iPattern)) != '*') {
 		if (iName == nameEnd)
 			return null;
@@ -408,7 +408,7 @@ public static final int[] getPatternMatchingRegions(
 			if (count == (parts*2)) return segments;
 			int end = patternEnd;
 			if (previous == '?') { // last char was a '?' => purge all trailing '?'
-				while (pattern.charAt(--end-1) == '?') {
+				while (pattern.charAt(--end-1) == '?') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (end == start) {
 						return new int[] { patternStart, patternEnd-patternStart };
 					}
@@ -422,7 +422,7 @@ public static final int[] getPatternMatchingRegions(
 	int previousCount = count;
 	previous = patternChar;
 	char previousSegment = patternChar;
-	checkSegment : while (iName < nameEnd) {
+	checkSegment : while (iName < nameEnd) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (iPattern == patternEnd) {
 			iPattern = segmentStart; // mismatch - restart current segment
 			iName = ++prefixStart;

@@ -42,13 +42,13 @@ public class HierarchyMultiReleaseTests extends AbstractJavaModelTests {
 		return buildModelTestSuite(HierarchyMultiReleaseTests.class);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setUpSuite() throws Exception {
 		super.setUpSuite();
 		IJavaProject project = createJava9ProjectWithJREAttributes("HierarchyMR",
 				new String[] { "src", "src17", "src21" }, null, "21");
 		IClasspathEntry[] classpath = project.getRawClasspath();
-		for (int i = 0; i < classpath.length; i++) {
+		for (int i = 0; i < classpath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = classpath[i];
 			if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 				if (entry.getPath().toString().endsWith("src17")) {
@@ -117,7 +117,7 @@ public class HierarchyMultiReleaseTests extends AbstractJavaModelTests {
 	private IType getFocusType(String unitPath) throws Exception {
 		ICompilationUnit unit = getCompilationUnit(unitPath);
 		IType type = unit.getType("Test");
-		assertTrue("Test type does not exist in " + unitPath, type.exists());
+		assertTrue("Test type does not exist in " + unitPath, type.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return type;
 	}
 
@@ -138,7 +138,7 @@ public class HierarchyMultiReleaseTests extends AbstractJavaModelTests {
 		ITypeHierarchy hierarchy = type.newSupertypeHierarchy(new NullProgressMonitor());
 		IType[] superInterfaces = hierarchy.getSuperInterfaces(type);
 		boolean found = false;
-		for (IType superInterface : superInterfaces) {
+		for (IType superInterface : superInterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ("org.w3c.dom.Element".equals(superInterface.getFullyQualifiedName())) {
 				found = true;
 			}

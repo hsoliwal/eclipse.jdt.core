@@ -48,8 +48,8 @@ public class CompletionOnPackageVisibilityReference extends CompletionOnImportRe
 	@Override
 	public StringBuilder print(int indent, StringBuilder output) {
 		printIndent(indent, output).append("<CompleteOnPackageVisibilityReference:"); //$NON-NLS-1$
-		output.append(this.pkgName);
-		return output.append('>');
+		output.append(this.pkgName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		return output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 }

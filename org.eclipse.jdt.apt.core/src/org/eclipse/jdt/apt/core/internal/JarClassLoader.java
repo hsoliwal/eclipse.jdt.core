@@ -54,7 +54,7 @@ public class JarClassLoader extends ClassLoader {
 		super(parent);
 		// Handle manifest classpath entries
 		_files = new LinkedHashSet<>(jarFiles);
-		for (File f : jarFiles) {
+		for (File f : jarFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			_recursiveGetManifestJars(f, _files);
 		}
 		open();
@@ -62,23 +62,23 @@ public class JarClassLoader extends ClassLoader {
 
 	private void open() {
 		// Create all jar files
-		_jars = new ArrayList<>(_files.size());
-		for (File f : _files) {
+		_jars = new ArrayList<>(_files.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (File f : _files) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				JarFile jar = new JarFile(f);
 				_jars.add(jar);
 			}
 			catch (IOException ioe) {
-				AptPlugin.log(ioe, "Unable to create JarFile for file: " + f); //$NON-NLS-1$
+				AptPlugin.log(ioe, "Unable to create JarFile for file: " + f); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 
-	public synchronized void close() {
+	public synchronized void close() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (! _open) return;
 		_open = false;
 
-		for (JarCLInputStream st : _openStreams) {
+		for (JarCLInputStream st : _openStreams) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				st.close();
 			}
@@ -88,12 +88,12 @@ public class JarClassLoader extends ClassLoader {
 		}
 		_openStreams = null;
 
-		for (JarFile jar : _jars) {
+		for (JarFile jar : _jars) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				jar.close();
 			}
 			catch (IOException ioe) {
-				AptPlugin.log(ioe, "Failed to close jar: " + jar); //$NON-NLS-1$
+				AptPlugin.log(ioe, "Failed to close jar: " + jar); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		_jars = null;
@@ -110,14 +110,14 @@ public class JarClassLoader extends ClassLoader {
 			_openStreams.remove(in);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected synchronized Class<?> findClass(String name) throws ClassNotFoundException {
 		if (!_open)
-			throw new ClassNotFoundException("Classloader closed: " + name); //$NON-NLS-1$
+			throw new ClassNotFoundException("Classloader closed: " + name); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		byte[] b = loadClassData(name);
 		if (b == null) {
-			throw new ClassNotFoundException("Could not find class " + name); //$NON-NLS-1$
+			throw new ClassNotFoundException("Could not find class " + name); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Class<?> clazz = defineClass(name, b, 0, b.length);
 		// Define the package if necessary
@@ -140,16 +140,16 @@ public class JarClassLoader extends ClassLoader {
 	}
 
 	// returns null if no class found
-	private byte[] loadClassData(String name) {
+	private byte[] loadClassData(String name) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		name = name.replace('.','/');
-		InputStream input = getResourceAsStream(name + ".class"); //$NON-NLS-1$
+		InputStream input = getResourceAsStream(name + ".class"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (input == null)
 			return null;
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			byte[] buf = new byte[1024];
 	        int len;
-	        while ((len = input.read(buf)) > 0) {
+	        while ((len = input.read(buf)) > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            baos.write(buf, 0, len);
 	        }
 	        baos.close();
@@ -163,7 +163,7 @@ public class JarClassLoader extends ClassLoader {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public synchronized InputStream getResourceAsStream(String name) {
 		InputStream input = getParent().getResourceAsStream(name);
 		if (input != null)
@@ -172,16 +172,16 @@ public class JarClassLoader extends ClassLoader {
 		if (!_open)
 			return null;
 
-		for (JarFile j : _jars) {
+		for (JarFile j : _jars) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				ZipEntry entry = j.getEntry(name);
 				if (entry != null) {
-					InputStream zipInput = j.getInputStream(entry);
+					InputStream zipInput = j.getInputStream(entry); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 					return openInputStream(zipInput);
 				}
 			}
 			catch (IOException ioe) {
-				AptPlugin.log(ioe, "Unable to get entry from jar: " + j); //$NON-NLS-1$
+				AptPlugin.log(ioe, "Unable to get entry from jar: " + j); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return null;
@@ -196,10 +196,10 @@ public class JarClassLoader extends ClassLoader {
 	 */
 	@Override
 	public URL getResource(String name) {
-		for (JarFile j : _jars) {
+		for (JarFile j : _jars) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ZipEntry entry = j.getEntry(name);
 			if (entry != null) {
-				throw new UnsupportedOperationException("getResource() not implemented: " + name); //$NON-NLS-1$
+				throw new UnsupportedOperationException("getResource() not implemented: " + name); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return null;
@@ -285,8 +285,8 @@ public class JarClassLoader extends ClassLoader {
 	 * Scan manifest classpath entries of a jar, adding all found jar files
 	 * to the set of manifest jars.
 	 */
-    private static void _recursiveGetManifestJars(File jarFile, Set<File> manifestJars) {
-        if (!jarFile.exists())
+    private static void _recursiveGetManifestJars(File jarFile, Set<File> manifestJars) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+        if (!jarFile.exists()) //FLLDCIM: MARK — M31 M3FILE_IO CALL
             return;
 
         JarFile jar = null;
@@ -302,14 +302,14 @@ public class JarClassLoader extends ClassLoader {
             // We've got some entries
             File parent = jarFile.getParentFile();
 
-            String[] rgPaths = classpath.split(" "); //$NON-NLS-1$
-            for (String path : rgPaths)
+            String[] rgPaths = classpath.split(" "); //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+            for (String path : rgPaths) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             {
                 if (path.length() == 0)
                     continue;
                 File file = new File(parent, path);
                 // If we haven't seen this, we need to get its manifest jars as well
-                if (!manifestJars.contains(file) && file.exists()) {
+                if (!manifestJars.contains(file) && file.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
                     manifestJars.add(file);
                     _recursiveGetManifestJars(file, manifestJars);
                 }

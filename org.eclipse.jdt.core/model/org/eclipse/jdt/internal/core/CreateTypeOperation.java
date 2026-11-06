@@ -34,7 +34,7 @@ import org.eclipse.jdt.internal.core.util.Messages;
  *      performed.
  * </ul>
  */
-public class CreateTypeOperation extends CreateTypeMemberOperation {
+public class CreateTypeOperation extends CreateTypeMemberOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 /**
  * When executed, this operation will create a type unit
  * in the given parent element (a compilation unit, type)
@@ -86,7 +86,7 @@ protected IType getType() {
 /**
  * @see CreateTypeMemberOperation#verifyNameCollision
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected IJavaModelStatus verifyNameCollision() {
 	IJavaElement parent = getParentElement();
 	switch (parent.getElementType()) {

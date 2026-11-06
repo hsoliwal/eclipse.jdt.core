@@ -105,30 +105,30 @@ protected boolean mustResolve() {
 
 	return super.mustResolve();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected StringBuilder print(StringBuilder output) {
 	if (this.findDeclarations) {
-		output.append(this.findReferences
+		output.append(this.findReferences //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			? "FieldCombinedPattern: " //$NON-NLS-1$
 			: "FieldDeclarationPattern: "); //$NON-NLS-1$
 	} else {
-		output.append("FieldReferencePattern: "); //$NON-NLS-1$
+		output.append("FieldReferencePattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	if (this.declaringQualification != null) output.append(this.declaringQualification).append('.');
+	if (this.declaringQualification != null) output.append(this.declaringQualification).append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.declaringSimpleName != null)
-		output.append(this.declaringSimpleName).append('.');
-	else if (this.declaringQualification != null) output.append("*."); //$NON-NLS-1$
+		output.append(this.declaringSimpleName).append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	else if (this.declaringQualification != null) output.append("*."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.name == null) {
-		output.append("*"); //$NON-NLS-1$
+		output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
-		output.append(this.name);
+		output.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	if (this.typeQualification != null)
-		output.append(" --> ").append(this.typeQualification).append('.'); //$NON-NLS-1$
-	else if (this.typeSimpleName != null) output.append(" --> "); //$NON-NLS-1$
+		output.append(" --> ").append(this.typeQualification).append('.'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	else if (this.typeSimpleName != null) output.append(" --> "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.typeSimpleName != null)
-		output.append(this.typeSimpleName);
-	else if (this.typeQualification != null) output.append("*"); //$NON-NLS-1$
+		output.append(this.typeSimpleName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	else if (this.typeQualification != null) output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.print(output);
 }
 }

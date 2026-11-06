@@ -49,7 +49,7 @@ public static Test suite() {
 	return buildModelTestSuite(ClassFileTests.class);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 	super.setUpSuite();
 	IJavaProject javaProject = createJavaProject("P", new String[0], new String[] {"JCL18_LIB", "/P/lib"}, "", JavaCore.VERSION_9);
@@ -537,7 +537,7 @@ public void testAnnotations25() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=342757
  */
-public void testAnnotations26() throws JavaModelException {
+public void testAnnotations26() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType type = this.jarRoot.getPackageFragment("test342757").getOrdinaryClassFile("X$B.class").getType();
 	IMethod[] methods = type.getMethods();
 	String expected =
@@ -545,21 +545,21 @@ public void testAnnotations26() throws JavaModelException {
 			"@java.lang.Deprecated\n" +
 			"@test342757.Annot\n" +
 			"@java.lang.Deprecated\n";
-	StringBuilder buffer = new StringBuilder();
-	for (int i = 0, max = methods.length; i < max; i++) {
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		ILocalVariable[] parameters = methods[i].getParameters();
-		for (int j = 0, max2 = parameters.length; j < max2; j++) {
+		for (int j = 0, max2 = parameters.length; j < max2; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IAnnotation[] annotations = parameters[j].getAnnotations();
-			for (int n = 0; n < annotations.length; n++) {
+			for (int n = 0; n < annotations.length; n++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IAnnotation annotation = annotations[n];
 				appendAnnotation(buffer, annotation);
-				buffer.append("\n");
+				buffer.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 	}
 	String actual = buffer.toString();
 	if (!expected.equals(actual)) {
-		System.out.println(displayString(actual, 2) + this.endChar);
+		System.out.println(displayString(actual, 2) + this.endChar); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	assertEquals("Unexpected annotations", expected, actual);
 }
@@ -780,7 +780,7 @@ public void testGetCategories10() throws CoreException, IOException {
 /*
  * Ensures that the children of a type for a given category are correct.
  */
-public void testGetChildrenForCategory01() throws CoreException, IOException {
+public void testGetChildrenForCategory01() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createClassFile(
 		"package p;\n" +
 		"public class X {\n" +
@@ -810,7 +810,7 @@ public void testGetChildrenForCategory01() throws CoreException, IOException {
 		"foo2() [in X [in X.class [in p [in lib2.jar [in P]]]]]",
 		children);
 }
-public void testGetChildrenForCategory02() throws CoreException, IOException {
+public void testGetChildrenForCategory02() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createClassFile(
 		"package p;\n" +
 		"public class X {\n" +
@@ -1018,7 +1018,7 @@ public void testGetSuperInterfaceTypeSignatures() throws JavaModelException {
  * then attempting to open a class file in this folder doesn't throw a ClassCastException
  * (regression test for bug 204652 "Open Type": ClassCastException in conjunction with a class folder)
  */
-public void testJarLikeRootFolder() throws CoreException {
+public void testJarLikeRootFolder() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P1", new String[0], new String[] {"/P1/classFolder.jar"}, "");
 		IFolder folder = createFolder("/P1/classFolder.jar/p");
@@ -1039,7 +1039,7 @@ public void testJarLikeRootFolder() throws CoreException {
 		} catch (JavaModelException e) {
 			expected = e;
 		}
-		assertExceptionEquals("Unexpected exception", new Path("/P1/classFolder.jar").toOSString() + " does not exist", expected);
+		assertExceptionEquals("Unexpected exception", new Path("/P1/classFolder.jar").toOSString() + " does not exist", expected); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		deleteProject("P1");
 	}
@@ -1297,7 +1297,7 @@ public void testWorkingCopy01() throws CoreException {
 /*
  * Ensures that a class file without source attached can be turned into a working copy and that its children are correct.
  */
-public void testWorkingCopy02() throws CoreException {
+public void testWorkingCopy02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath sourceAttachmentPath = this.jarRoot.getSourceAttachmentPath();
 	try {
 		attachSource(this.jarRoot, null, null);
@@ -1320,7 +1320,7 @@ public void testWorkingCopy02() throws CoreException {
 /*
  * Ensures that a class file can be turned into a working copy, modified and that its children are correct.
  */
-public void testWorkingCopy03() throws CoreException {
+public void testWorkingCopy03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IOrdinaryClassFile clazz = this.jarRoot.getPackageFragment("workingcopy").getOrdinaryClassFile("X.class");
 	this.workingCopy = clazz.getWorkingCopy(null/*primary owner*/, (IProgressMonitor) null/*no progress*/);
 	this.workingCopy.getBuffer().setContents(
@@ -1343,7 +1343,7 @@ public void testWorkingCopy03() throws CoreException {
 /*
  * Ensures that a class file working copy cannot be commited
  */
-public void testWorkingCopy04() throws CoreException {
+public void testWorkingCopy04() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IOrdinaryClassFile clazz = this.jarRoot.getPackageFragment("workingcopy").getOrdinaryClassFile("X.class");
 	this.workingCopy = clazz.getWorkingCopy(null/*primary owner*/, (IProgressMonitor) null/*no progress*/);
 	this.workingCopy.getBuffer().setContents(
@@ -1368,7 +1368,7 @@ public void testWorkingCopy04() throws CoreException {
 /*
  * Ensures that a type can be created in class file working copy.
  */
-public void testWorkingCopy05() throws CoreException {
+public void testWorkingCopy05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IOrdinaryClassFile clazz = this.jarRoot.getPackageFragment("workingcopy").getOrdinaryClassFile("X.class");
 	this.workingCopy = clazz.getWorkingCopy(null/*primary owner*/, (IProgressMonitor) null/*no progress*/);
 	this.workingCopy.createType(
@@ -1401,7 +1401,7 @@ public void testWorkingCopy06() throws CoreException {
 /*
  * Ensures that a class file working copy can be restored from the original source.
  */
-public void testWorkingCopy07() throws CoreException {
+public void testWorkingCopy07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IOrdinaryClassFile clazz = this.jarRoot.getPackageFragment("workingcopy").getOrdinaryClassFile("X.class");
 	WorkingCopyOwner owner = new WorkingCopyOwner() {};
 	this.workingCopy = clazz.getWorkingCopy(owner, null/*no progress*/);
@@ -1426,7 +1426,7 @@ public void testWorkingCopy07() throws CoreException {
 /*
  * Ensures that a class file working copy can be reconciled against.
  */
-public void testWorkingCopy08() throws CoreException {
+public void testWorkingCopy08() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IOrdinaryClassFile clazz = this.jarRoot.getPackageFragment("workingcopy").getOrdinaryClassFile("X.class");
 	ProblemRequestor problemRequestor = new ProblemRequestor();
 	WorkingCopyOwner owner = newWorkingCopyOwner(problemRequestor);
@@ -1451,7 +1451,7 @@ public void testWorkingCopy08() throws CoreException {
 			"  }\n" +
 			"}"
 		);
-		problemRequestor.problems = new StringBuilder();
+		problemRequestor.problems = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		problemRequestor.problemCount = 0;
 		copy.reconcile(ICompilationUnit.NO_AST, false/*don't force problems*/, owner, null/*no progress*/);
 		assertProblems(
@@ -1468,7 +1468,7 @@ public void testWorkingCopy08() throws CoreException {
 /*
  * Ensures that types in a class file are hidden when reconciling against if the class file working copy is empty.
  */
-public void testWorkingCopy09() throws CoreException {
+public void testWorkingCopy09() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IOrdinaryClassFile clazz = this.jarRoot.getPackageFragment("workingcopy").getOrdinaryClassFile("X.class");
 	ProblemRequestor problemRequestor = new ProblemRequestor();
 	WorkingCopyOwner owner = newWorkingCopyOwner(problemRequestor);
@@ -1485,7 +1485,7 @@ public void testWorkingCopy09() throws CoreException {
 			"  workingcopy.X x;\n" +
 			"}"
 		);
-		problemRequestor.problems = new StringBuilder();
+		problemRequestor.problems = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		problemRequestor.problemCount = 0;
 		copy.reconcile(ICompilationUnit.NO_AST, false/*don't force problems*/, owner, null/*no progress*/);
 		assertProblems(
@@ -1504,7 +1504,7 @@ public void testWorkingCopy09() throws CoreException {
 /*
  * Ensures that a 1.5 class file without source attached can be turned into a working copy and that its source is correct.
  */
-public void testWorkingCopy10() throws CoreException {
+public void testWorkingCopy10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath sourceAttachmentPath = this.jarRoot.getSourceAttachmentPath();
 	try {
 		attachSource(this.jarRoot, null, null);
@@ -1594,7 +1594,7 @@ public void testGenericFieldGetTypeSignature() throws JavaModelException {
 							"TT;\n", typeParam.getBoundsSignatures());
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=316937
-	public void testBug316937() throws Exception {
+	public void testBug316937() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = getJavaProject("P");
 			String[] pathAndContents = new String[] {
@@ -1620,7 +1620,7 @@ public void testGenericFieldGetTypeSignature() throws JavaModelException {
 
 			// Remove the source attachment
 			IClasspathEntry[] rawClasspath = project.getRawClasspath();
-			for (int index = 0; index < rawClasspath.length; index++) {
+			for (int index = 0; index < rawClasspath.length; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IClasspathEntry entry = rawClasspath[index];
 				if (entry.getPath().toString().endsWith("lib316937.jar")) {
 					((ClasspathEntry) entry).sourceAttachmentPath = null;
@@ -1647,7 +1647,7 @@ public void testGenericFieldGetTypeSignature() throws JavaModelException {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=372687
 	 * Ensures that if more than one thread try to open a class file at the same time, the children are correct.
 	 */
-	public void testBug372687() throws CoreException {
+	public void testBug372687() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String expected = "X.class\n" +
 						  "  class X\n" +
 						  "    X()\n" +
@@ -1664,7 +1664,7 @@ public void testGenericFieldGetTypeSignature() throws JavaModelException {
 				}
 			}
 		}
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 10; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			GetClassThread th1 = new GetClassThread();
 			GetClassThread th2 = new GetClassThread();
 			GetClassThread th3 = new GetClassThread();

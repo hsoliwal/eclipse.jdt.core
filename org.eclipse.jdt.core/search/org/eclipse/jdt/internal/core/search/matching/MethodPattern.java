@@ -73,14 +73,14 @@ public final static int FINE_GRAIN_MASK =
 public static char[] createIndexKey(char[] selector, int argCount) {
 	char[] countChars = argCount < 10
 		? COUNTS[argCount]
-		: ("/" + String.valueOf(argCount)).toCharArray(); //$NON-NLS-1$
+		: ("/" + String.valueOf(argCount)).toCharArray(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return CharOperation.concat(selector, countChars);
 }
 
 MethodPattern(int matchRule) {
 	super(METHOD_PATTERN, matchRule);
 }
-public MethodPattern(
+public MethodPattern( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] selector,
 	char[] declaringQualification,
 	char[] declaringSimpleName,
@@ -119,7 +119,7 @@ public MethodPattern(
 		this.parameterCount = parameterSimpleNames.length;
 		this.parameterQualifications = new char[this.parameterCount][];
 		this.parameterSimpleNames = new char[this.parameterCount][];
-		for (int i = 0; i < this.parameterCount; i++) {
+		for (int i = 0; i < this.parameterCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.parameterQualifications[i] = this.isCaseSensitive ? parameterQualifications[i] : CharOperation.toLowerCase(parameterQualifications[i]);
 			this.parameterSimpleNames[i] = this.isCaseSensitive ? parameterSimpleNames[i] : CharOperation.toLowerCase(parameterSimpleNames[i]);
 		}
@@ -135,7 +135,7 @@ public MethodPattern(
 /*
  * Instanciate a method pattern with signatures for generics search
  */
-public MethodPattern(
+public MethodPattern( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] selector,
 	char[] declaringQualification,
 	char[] declaringSimpleName,
@@ -196,7 +196,7 @@ public MethodPattern(
 		if (length > 0) {
 			this.parametersTypeSignatures = new char[length][][];
 			this.parametersTypeArguments = new char[length][][][];
-			for (int i=0; i<length; i++) {
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.parametersTypeSignatures[i] = Util.splitTypeLevelsSignature(parameterSignatures[i]);
 				this.parametersTypeArguments[i] = Util.getAllTypeArguments(this.parametersTypeSignatures[i]);
 			}
@@ -210,7 +210,7 @@ public MethodPattern(
 /*
  * Instanciate a method pattern with signatures for generics search
  */
-public MethodPattern(
+public MethodPattern( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] selector,
 	char[] declaringQualification,
 	char[] declaringSimpleName,
@@ -253,7 +253,7 @@ public MethodPattern(
 		if (length > 0) {
 			this.parametersTypeSignatures = new char[length][][];
 			this.parametersTypeArguments = new char[length][][][];
-			for (int i=0; i<length; i++) {
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.parametersTypeSignatures[i] = Util.splitTypeLevelsSignature(parameterSignatures[i]);
 				this.parametersTypeArguments[i] = Util.getAllTypeArguments(this.parametersTypeSignatures[i]);
 			}
@@ -264,13 +264,13 @@ public MethodPattern(
 	this.methodArguments = arguments;
 	if (hasMethodArguments())  this.mustResolve = true;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void decodeIndexKey(char[] key) {
 	int last = key.length - 1;
 	this.parameterCount = 0;
 	this.selector = null;
 	int power = 1;
-	for (int i=last; i>=0; i--) {
+	for (int i=last; i>=0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (key[i] == SEPARATOR) {
 			System.arraycopy(key, 0, this.selector = new char[i], 0, i);
 			break;
@@ -327,11 +327,11 @@ protected boolean mustResolve() {
 
 	// parameter types
 	if (this.parameterSimpleNames != null)
-		for (int i = 0, max = this.parameterSimpleNames.length; i < max; i++)
+		for (int i = 0, max = this.parameterSimpleNames.length; i < max; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.parameterQualifications[i] != null) return true;
 	return false;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public EntryResult[] queryIn(Index index) throws IOException {
 	char[] key = this.selector; // can be null
 	int matchRule = getMatchRule();
@@ -366,45 +366,45 @@ public EntryResult[] queryIn(Index index) throws IOException {
 
 	return index.query(getIndexCategories(), key, matchRule); // match rule is irrelevant when the key is null
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected StringBuilder print(StringBuilder output) {
 	if (this.findDeclarations) {
-		output.append(this.findReferences
+		output.append(this.findReferences //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			? "MethodCombinedPattern: " //$NON-NLS-1$
 			: "MethodDeclarationPattern: "); //$NON-NLS-1$
 	} else {
-		output.append("MethodReferencePattern: "); //$NON-NLS-1$
+		output.append("MethodReferencePattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 	if (this.declaringQualification != null)
-		output.append(this.declaringQualification).append('.');
+		output.append(this.declaringQualification).append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.declaringSimpleName != null)
-		output.append(this.declaringSimpleName).append('.');
+		output.append(this.declaringSimpleName).append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else if (this.declaringQualification != null)
-		output.append("*."); //$NON-NLS-1$
+		output.append("*."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	if (this.selector != null)
-		output.append(this.selector);
+		output.append(this.selector); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else
-		output.append("*"); //$NON-NLS-1$
-	output.append('(');
+		output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	output.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.parameterSimpleNames == null) {
-		output.append("..."); //$NON-NLS-1$
+		output.append("..."); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
-		for (int i = 0, max = this.parameterSimpleNames.length; i < max; i++) {
-			if (i > 0) output.append(", "); //$NON-NLS-1$
-			if (this.parameterQualifications[i] != null) output.append(this.parameterQualifications[i]).append('.');
-			if (this.parameterSimpleNames[i] == null) output.append('*'); else output.append(this.parameterSimpleNames[i]);
+		for (int i = 0, max = this.parameterSimpleNames.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			if (i > 0) output.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			if (this.parameterQualifications[i] != null) output.append(this.parameterQualifications[i]).append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			if (this.parameterSimpleNames[i] == null) output.append('*'); else output.append(this.parameterSimpleNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
-	output.append(')');
+	output.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.returnQualification != null)
-		output.append(" --> ").append(this.returnQualification).append('.'); //$NON-NLS-1$
+		output.append(" --> ").append(this.returnQualification).append('.'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else if (this.returnSimpleName != null)
-		output.append(" --> "); //$NON-NLS-1$
+		output.append(" --> "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (this.returnSimpleName != null)
-		output.append(this.returnSimpleName);
+		output.append(this.returnSimpleName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else if (this.returnQualification != null)
-		output.append("*"); //$NON-NLS-1$
+		output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.print(output);
 }
 }

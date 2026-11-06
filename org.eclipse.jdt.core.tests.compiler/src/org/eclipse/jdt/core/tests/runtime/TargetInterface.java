@@ -59,13 +59,13 @@ public class TargetInterface {
  * Try as long as the given time (in ms) has not expired.
  * Use isConnected() to find out if the connection was successful.
  */
-public void connect(ServerSocket server, int timeoutMs) {
+public void connect(ServerSocket server, int timeoutMs) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (isConnected()) {
 		return;
 	}
 	if (server != null) {
 		long timeoutNanos = System.nanoTime() + timeoutMs * 1_000_000L;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
 				this.socket = server.accept();
 				this.socket.setTcpNoDelay(true);
@@ -100,13 +100,13 @@ public void disconnect() {
 /**
  * Returns the result of the evaluation sent previously to the target.
  */
-public Result getResult() {
+public Result getResult() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean hasValue = false;
 	String typeName = null;
 	String toString = null;
 	if (DEBUG) {
 		hasValue = true;
-		typeName = "TargetInterface in debug mode. Run d:\\eval\\TestCodeSnippet.bat d:\\eval\\snippets\\" + this.codeSnippetClassName;
+		typeName = "TargetInterface in debug mode. Run d:\\eval\\TestCodeSnippet.bat d:\\eval\\snippets\\" + this.codeSnippetClassName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		toString = "";
 	} else {
 		if (isConnected()) {
@@ -135,7 +135,7 @@ public Result getResult() {
 		}
 	}
 	if (TIMING) {
-		System.out.println("Time to send compiled classes, run on target and get result is " + (System.nanoTime() - this.sentTimeNanos) / 1_000_000L + "ms");
+		System.out.println("Time to send compiled classes, run on target and get result is " + (System.nanoTime() - this.sentTimeNanos) / 1_000_000L + "ms"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	Result result = new Result();
 	result.displayString = toString == null ? null : toString.toCharArray();
@@ -151,10 +151,10 @@ public boolean isConnected() {
 /**
  * Sends the given class definitions to the target for loading and (if specified) for running.
  */
-public void sendClasses(boolean mustRun, ClassFile[] classes) throws TargetException {
+public void sendClasses(boolean mustRun, ClassFile[] classes) throws TargetException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (DEBUG) {
-		for (int i = 0; i < classes.length; i++) {
-			String className = new String(classes[i].fileName()).replace('/', '\\') + ".class";
+		for (int i = 0; i < classes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			String className = new String(classes[i].fileName()).replace('/', '\\') + ".class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if ((i == 0) && (className.indexOf("CodeSnippet") != -1)) {
 				this.codeSnippetClassName = className;
 				try {
@@ -165,9 +165,9 @@ public void sendClasses(boolean mustRun, ClassFile[] classes) throws TargetExcep
 			} else {
 				String dirName;
 				if (className.startsWith("java")) {
-					dirName = "d:\\eval\\" + LocalVMLauncher.BOOT_CLASSPATH_DIRECTORY;
+					dirName = "d:\\eval\\" + LocalVMLauncher.BOOT_CLASSPATH_DIRECTORY; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				} else {
-					dirName = "d:\\eval\\" + LocalVMLauncher.REGULAR_CLASSPATH_DIRECTORY;
+					dirName = "d:\\eval\\" + LocalVMLauncher.REGULAR_CLASSPATH_DIRECTORY; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				try {
 					Util.writeToDisk(true, dirName, className, classes[i]);
@@ -187,7 +187,7 @@ public void sendClasses(boolean mustRun, ClassFile[] classes) throws TargetExcep
 			DataOutputStream out = new DataOutputStream(this.socket.getOutputStream());
 			out.writeBoolean(mustRun);
 			out.writeInt(classes.length);
-			for (int i = 0; i < classes.length; i++) {
+			for (int i = 0; i < classes.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				byte[] classDefinition = classes[i].getBytes();
 				out.writeInt(classDefinition.length);
 				out.write(classDefinition);

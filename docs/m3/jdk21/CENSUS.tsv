@@ -1,0 +1,10 @@
+repo	kind	path	line	text
+eclipse.jdt.core	unnamed_decl	org.eclipse.jdt.core.compiler.batch/src/org/eclipse/jdt/internal/compiler/ast/SwitchStatement.java	1036	  * diagnostic lists {@code "B(Circle _)"} rather than the coarser {@code "B _"}.
+eclipse.jdt.core	unnamed_decl	org.eclipse.jdt.core.compiler.batch/src/org/eclipse/jdt/internal/compiler/ast/SwitchStatement.java	1070	      for it: either it enumerated the missing component combinations (e.g. "B(Circle _)"), or
+eclipse.jdt.core	unnamed_decl	org.eclipse.jdt.core.compiler.batch/src/org/eclipse/jdt/internal/compiler/ast/SwitchStatement.java	993	  // reconstructed (e.g. "B(Circle _)"); they must not additionally be reported as plain "B _".
+eclipse.jdt.core	unnamed_lambda	org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/builder/JavaBuilder.java	903	     directDependents.computeIfAbsent(required, _ -> new ArrayList<>()).add(project);
+eclipse.jdt.core	unnamed_pattern	JCL/javax23api/src/javax/lang/model/SourceVersion.java	102	        case "_":
+eclipse.jdt.core	unnamed_pattern	org.eclipse.jdt.core.compiler.batch/src/org/eclipse/jdt/internal/compiler/ast/NumberLiteral.java	65	    case '_' :
+eclipse.jdt.core	unnamed_pattern	org.eclipse.jdt.core.compiler.batch/src/org/eclipse/jdt/internal/compiler/ast/NumberLiteral.java	87	    case '_' :
+eclipse.jdt.core	unnamed_pattern	org.eclipse.jdt.core/model/org/eclipse/jdt/core/NamingConventions.java	1068	  * In this case all letters of the name will be converted to upper case and words will be separated by an underscore (<code>"_"</code>).<br>
+eclipse.jdt.core	unnamed_pattern	org.eclipse.jdt.core/model/org/eclipse/jdt/core/NamingConventions.java	1078	  * In this case a variable name will contain some words of the base name, all letters of the name will be converted to upper case and segments will be separated by a underscore (<code>"_"</code>).<br>

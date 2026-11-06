@@ -233,15 +233,15 @@ public class ASTParser {
 		initializeDefaults();
 	}
 
-	private List<Classpath> getClasspath() throws IllegalStateException {
+	private List<Classpath> getClasspath() throws IllegalStateException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Main main = new Main(new PrintWriter(System.out), new PrintWriter(System.err), false/*systemExit*/, null/*options*/, null/*progress*/);
-		ArrayList<Classpath> allClasspaths = new ArrayList<>();
+		ArrayList<Classpath> allClasspaths = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		try {
 			if ((this.bits & CompilationUnitResolver.INCLUDE_RUNNING_VM_BOOTCLASSPATH) != 0) {
 				org.eclipse.jdt.internal.compiler.util.Util.collectRunningVMBootclasspath(allClasspaths);
 			}
 			if (this.sourcepaths != null) {
-				for (int i = 0, max = this.sourcepaths.length; i < max; i++) {
+				for (int i = 0, max = this.sourcepaths.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					String sourcePath = this.sourcepaths[i];
 					if (sourcePath != null) {
 						String encoding = this.sourcepathsEncodings == null ? null : this.sourcepathsEncodings[i];
@@ -252,7 +252,7 @@ public class ASTParser {
 				}
 			}
 			if (this.classpaths != null) {
-				for (String classpath : this.classpaths) {
+				for (String classpath : this.classpaths) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					main.processPathEntries(
 							Main.DEFAULT_SIZE_CLASSPATH,
 							allClasspaths, classpath, null, false, false);
@@ -271,7 +271,7 @@ public class ASTParser {
 		return allClasspaths;
 	}
 
-	private void checkForSystemLibrary(List<Classpath> allClasspaths) {
+	private void checkForSystemLibrary(List<Classpath> allClasspaths) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!hasJavaNature()) {
 			return;
 		}
@@ -285,7 +285,7 @@ public class ASTParser {
 				// not found in allClasspaths, try this.project instead:
 				try {
 					// try module java.base:
-					for (IPackageFragmentRoot root : this.project.getAllPackageFragmentRoots()) {
+					for (IPackageFragmentRoot root : this.project.getAllPackageFragmentRoots()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IModuleDescription moduleDescription = root.getModuleDescription();
 						if (moduleDescription != null) {
 							hasModule = true;
@@ -420,7 +420,7 @@ public class ASTParser {
 			options = JavaCore.getOptions();
 		} else {
 			// copy client's options so as to not do any side effect on them
-			options = new HashMap<>(options);
+			options = new HashMap<>(options); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		}
 		// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2179
 		// options.remove(JavaCore.COMPILER_TASK_TAGS); // no need to parse task tags
@@ -1001,7 +1001,7 @@ public class ASTParser {
 	 * are insufficient, contradictory, or otherwise unsupported
 	 * @since 3.1
 	 */
-	public void createASTs(ICompilationUnit[] compilationUnits, String[] bindingKeys, ASTRequestor requestor, IProgressMonitor monitor) {
+	public void createASTs(ICompilationUnit[] compilationUnits, String[] bindingKeys, ASTRequestor requestor, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			int flags = 0;
 			if ((this.bits & CompilationUnitResolver.STATEMENT_RECOVERY) != 0) {
@@ -1102,7 +1102,7 @@ public class ASTParser {
 	 * are insufficient, contradictory, or otherwise unsupported
 	 * @since 3.6
 	 */
-	public void createASTs(String[] sourceFilePaths, String[] encodings, String[] bindingKeys,
+	public void createASTs(String[] sourceFilePaths, String[] encodings, String[] bindingKeys, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			FileASTRequestor requestor, IProgressMonitor monitor) {
 		try {
 			int flags = 0;
@@ -1168,7 +1168,7 @@ public class ASTParser {
 	 * are insufficient, contradictory, or otherwise unsupported
 	 * @since 3.1
 	 */
-	public IBinding[] createBindings(IJavaElement[] elements, IProgressMonitor monitor) {
+	public IBinding[] createBindings(IJavaElement[] elements, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			if (this.project == null)
 				throw new IllegalStateException("project or classpath not specified"); //$NON-NLS-1$
@@ -1202,7 +1202,7 @@ public class ASTParser {
 	 * @param monitor
 	 * @return an array of bindings that match the resolved elements
 	 */
-	static IBinding[] resolve(
+	static IBinding[] resolve( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final IJavaElement[] elements,
 		int apiLevel,
 		Map<String,String> compilerOptions,
@@ -1213,13 +1213,13 @@ public class ASTParser {
 		IProgressMonitor monitor) {
 
 		final int length = elements.length;
-		final HashMap<IJavaElement, IntArrayList> sourceElementPositions = new HashMap<>(); // a map from ICompilationUnit to int[] (positions in elements)
+		final HashMap<IJavaElement, IntArrayList> sourceElementPositions = new HashMap<>(); // a map from ICompilationUnit to int[] (positions in elements) //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		int cuNumber = 0;
 		final HashtableOfObjectToInt binaryElementPositions = new HashtableOfObjectToInt(); // a map from String (binding key) to int (position in elements)
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaElement element = elements[i];
 			if (!(element instanceof SourceRefElement))
-				throw new IllegalStateException(element + " is not part of a compilation unit or class file"); //$NON-NLS-1$
+				throw new IllegalStateException(element + " is not part of a compilation unit or class file"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			IJavaElement cu = element.getAncestor(IJavaElement.COMPILATION_UNIT);
 			if (cu != null) {
 				// source member
@@ -1242,12 +1242,12 @@ public class ASTParser {
 					else if (element instanceof BinaryModule)
 						key = ((BinaryModule) element).getKey(true);
 					else
-						throw new IllegalArgumentException(element + " has an unexpected type"); //$NON-NLS-1$
+						throw new IllegalArgumentException(element + " has an unexpected type"); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					if (key != null) {
 						binaryElementPositions.put(key, i);
 					}
 				} catch (JavaModelException e) {
-					throw new IllegalArgumentException(element + " does not exist", e); //$NON-NLS-1$
+					throw new IllegalArgumentException(element + " does not exist", e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -1264,14 +1264,14 @@ public class ASTParser {
 			public void acceptAST(ICompilationUnit source, CompilationUnit ast) {
 				// TODO (jerome) optimize to visit the AST only once
 				IntArrayList intList = sourceElementPositions.get(source);
-				for (int i = 0; i < intList.length; i++) {
+				for (int i = 0; i < intList.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					final int index = intList.list[i];
 					SourceRefElement element = (SourceRefElement) elements[index];
 					DOMFinder finder = new DOMFinder(ast, element, true/*resolve binding*/);
 					try {
 						finder.search();
 					} catch (JavaModelException e) {
-						throw new IllegalArgumentException(element + " does not exist", e); //$NON-NLS-1$
+						throw new IllegalArgumentException(element + " does not exist", e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					this.bindings[index] = finder.foundBinding;
 				}
@@ -1290,7 +1290,7 @@ public class ASTParser {
 	private ASTNode internalCreateAST(IProgressMonitor monitor) {
 		return JavaModelManager.cacheZipFiles(() -> internalCreateASTCached(monitor));
 	}
-	private ASTNode internalCreateASTCached(IProgressMonitor monitor) {
+	private ASTNode internalCreateASTCached(IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean needToResolveBindings = (this.bits & CompilationUnitResolver.RESOLVE_BINDING) != 0;
 		switch(this.astKind) {
 			case K_CLASS_BODY_DECLARATIONS :
@@ -1491,7 +1491,7 @@ public class ASTParser {
 	 * @see ASTNode#getStartPosition()
 	 * @see ASTNode#getLength()
 	 */
-	private ASTNode internalCreateASTForKind() {
+	private ASTNode internalCreateASTForKind() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final ASTConverter converter = new ASTConverter(this.compilerOptions, false, null);
 		converter.compilationUnitSource = this.rawSource;
 		converter.compilationUnitSourceLength = this.rawSource.length;
@@ -1539,7 +1539,7 @@ public class ASTParser {
 				org.eclipse.jdt.internal.compiler.ast.Statement[] statements = constructorDeclaration.statements;
 				if (statements != null) {
 					int statementsLength = statements.length;
-					for (int i = 0; i < statementsLength; i++) {
+					for (int i = 0; i < statementsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (statements[i] instanceof org.eclipse.jdt.internal.compiler.ast.LocalDeclaration) {
 							converter.checkAndAddMultipleLocalDeclaration(statements, i, block.statements());
 						} else if (!(statements[i] instanceof ExplicitConstructorCall constructorCall) || constructorCall.accessMode != org.eclipse.jdt.internal.compiler.ast.ExplicitConstructorCall.ImplicitSuper) {
@@ -1621,7 +1621,7 @@ public class ASTParser {
 		}
 	}
 
-	private void rootNodeToCompilationUnit(AST ast, CompilationUnit compilationUnit, ASTNode node, RecordedParsingInformation recordedParsingInformation, RecoveryScannerData data) {
+	private void rootNodeToCompilationUnit(AST ast, CompilationUnit compilationUnit, ASTNode node, RecordedParsingInformation recordedParsingInformation, RecoveryScannerData data) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final int problemsCount = recordedParsingInformation.problemsCount;
 		switch(node.getNodeType()) {
 			case ASTNode.BLOCK :

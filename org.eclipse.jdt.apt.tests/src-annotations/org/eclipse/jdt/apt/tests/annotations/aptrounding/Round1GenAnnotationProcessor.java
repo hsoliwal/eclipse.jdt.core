@@ -29,7 +29,7 @@ public class Round1GenAnnotationProcessor implements AnnotationProcessor{
 		_env = env;
 	}
 
-	public void process() {
+	public void process() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final TypeDeclaration beanType = _env.getTypeDeclaration("test.Bean");
 		final Filer filer = _env.getFiler();
 		if( beanType == null ){
@@ -47,9 +47,9 @@ public class Round1GenAnnotationProcessor implements AnnotationProcessor{
 		if( typeDecls.size() == 1 ){
 			final TypeDeclaration type = typeDecls.iterator().next();
 			if( !type.getQualifiedName().equals( "p1.X") )
-				msger.printError("Expected to find p1.X but got " + type.getQualifiedName() );
+				msger.printError("Expected to find p1.X but got " + type.getQualifiedName() ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		else
-			msger.printError("expected one type declaration but got " + typeDecls );
+			msger.printError("expected one type declaration but got " + typeDecls ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

@@ -90,7 +90,7 @@ public class JavaElementRequestor implements IJavaElementRequestor {
 @Override
 public void acceptField(IField field) {
 	if (this.fields == null) {
-		this.fields= new ArrayList();
+		this.fields= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 	this.fields.add(field);
 }
@@ -100,7 +100,7 @@ public void acceptField(IField field) {
 @Override
 public void acceptInitializer(IInitializer initializer) {
 	if (this.initializers == null) {
-		this.initializers= new ArrayList();
+		this.initializers= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 	this.initializers.add(initializer);
 }
@@ -110,7 +110,7 @@ public void acceptInitializer(IInitializer initializer) {
 @Override
 public void acceptMemberType(IType type) {
 	if (this.memberTypes == null) {
-		this.memberTypes= new ArrayList();
+		this.memberTypes= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 	this.memberTypes.add(type);
 }
@@ -120,7 +120,7 @@ public void acceptMemberType(IType type) {
 @Override
 public void acceptMethod(IMethod method) {
 	if (this.methods == null) {
-		this.methods = new ArrayList();
+		this.methods = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 	this.methods.add(method);
 }
@@ -130,7 +130,7 @@ public void acceptMethod(IMethod method) {
 @Override
 public void acceptPackageFragment(IPackageFragment packageFragment) {
 	if (this.packageFragments== null) {
-		this.packageFragments= new ArrayList();
+		this.packageFragments= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 	this.packageFragments.add(packageFragment);
 }
@@ -140,7 +140,7 @@ public void acceptPackageFragment(IPackageFragment packageFragment) {
 @Override
 public void acceptType(IType type) {
 	if (this.types == null) {
-		this.types= new ArrayList();
+		this.types= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 	this.types.add(type);
 }
@@ -150,7 +150,7 @@ public void acceptType(IType type) {
 @Override
 public void acceptModule(IModuleDescription module) {
 	if (this.modules == null) {
-		this.modules= new ArrayList();
+		this.modules= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 	this.modules.add(module);
 }

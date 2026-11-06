@@ -41,7 +41,7 @@ public CodeSnippetEnvironment(INameEnvironment env, EvaluationContext context) {
 /**
  * @see INameEnvironment#findType(char[][])
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public NameEnvironmentAnswer findType(char[][] compoundTypeName) {
 	NameEnvironmentAnswer result = this.env.findType(compoundTypeName);
 	if (result != null) {
@@ -57,7 +57,7 @@ public NameEnvironmentAnswer findType(char[][] compoundTypeName) {
 	}
 	VariablesInfo installedVars = this.context.installedVars;
 	ClassFile[] classFiles = installedVars.classFiles;
-	for (ClassFile classFile : classFiles) {
+	for (ClassFile classFile : classFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (CharOperation.equals(compoundTypeName, classFile.getCompoundName())) {
 			ClassFileReader binary = null;
 			try {

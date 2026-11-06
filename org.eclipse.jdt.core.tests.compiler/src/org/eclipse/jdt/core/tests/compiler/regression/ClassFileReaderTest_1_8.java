@@ -50,7 +50,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		this.complianceLevel = CompilerOptions.getFirstSupportedJdkLevel();
 	}
 
-	public void test001_classTypeParameter() throws Exception {
+	public void test001_classTypeParameter() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"public class X<@Foo T1,@Bar(iii=99) T2> {}\n" +
@@ -73,7 +73,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LBar;(iii=(int)99) CLASS_TYPE_PARAMETER(type_parameter_index=1)", printTypeAnnotation(typeAnnotations[1]));
 	}
 
-	public void test001a_classTypeParameterDifferingRetentions() throws Exception {
+	public void test001a_classTypeParameterDifferingRetentions() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"public class X<@Foo T1,@Bar(iii=99) T2> {}\n" +
@@ -96,7 +96,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LFoo; CLASS_TYPE_PARAMETER(type_parameter_index=0)", printTypeAnnotation(typeAnnotations[1]));
 	}
 
-	public void test002_methodTypeParameter() throws Exception {
+	public void test002_methodTypeParameter() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"public class X {\n" +
@@ -123,7 +123,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LBar;(value=(int)3) METHOD_TYPE_PARAMETER(type_parameter_index=1)",printTypeAnnotation(typeAnnotations[1]));
 	}
 
-	public void test003_classExtends() throws Exception {
+	public void test003_classExtends() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.complianceLevel = CompilerOptions.getFirstSupportedJdkLevel();
 		String source =
 			"import java.lang.annotation.*;\n" +
@@ -148,7 +148,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LBar;(iii=(int)1) CLASS_EXTENDS(type_index=0)", printTypeAnnotation(typeAnnotations[2]));
 	}
 
-	public void test004_classExtends() throws Exception {
+	public void test004_classExtends() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"public class X extends Y<@Foo String,@Bar Integer> implements I<@Foo String> {\n" +
@@ -174,7 +174,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LFoo; CLASS_EXTENDS(type_index=0), location=[TYPE_ARGUMENT(0)]", printTypeAnnotation(typeAnnotations[2]));
 	}
 
-	public void test005_classTypeParameterBound() throws Exception {
+	public void test005_classTypeParameterBound() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"public class X<U, T extends Y<@Foo String @Bar(1)[][]@Bar(2)[]> & @Bar(3) Cloneable> {}\n" +
@@ -199,7 +199,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LBar;(value=(int)3) CLASS_TYPE_PARAMETER_BOUND(type_parameter_index=1, bound_index=1)", printTypeAnnotation(typeAnnotations[3]));
 	}
 
-	public void test006_methodTypeParameterBound() throws Exception {
+	public void test006_methodTypeParameterBound() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"public class X{\n" +
@@ -230,7 +230,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LBar;(value=(int)3) METHOD_TYPE_PARAMETER_BOUND(type_parameter_index=0, bound_index=1)", printTypeAnnotation(typeAnnotations[3]));
 	}
 
-	public void test007_field() throws Exception {
+	public void test007_field() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"import java.util.Map;\n" +
@@ -264,7 +264,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LBar;(value=(int)5) FIELD, location=[TYPE_ARGUMENT(1), ARRAY, ARRAY]", printTypeAnnotation(typeAnnotations[5]));
 	}
 
-	public void test008_methodReturn() throws Exception {
+	public void test008_methodReturn() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"import java.util.Map;\n" +
@@ -305,7 +305,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LFoo; METHOD_RETURN", printTypeAnnotation(typeAnnotations[1]));
 	}
 
-	public void test009_methodReceiver() throws Exception {
+	public void test009_methodReceiver() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"import java.util.Map;\n" +
@@ -332,7 +332,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LBar;(value=(int)3) METHOD_RECEIVER", printTypeAnnotation(typeAnnotations[0]));
 	}
 
-	public void test010_methodFormalParameter() throws Exception {
+	public void test010_methodFormalParameter() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"import java.util.Map;\n" +
@@ -360,7 +360,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LFoo; METHOD_FORMAL_PARAMETER(method_formal_parameter_index=1)",printTypeAnnotation(typeAnnotations[1]));
 	}
 
-	public void test011_throws() throws Exception {
+	public void test011_throws() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"import java.util.Map;\n" +
@@ -387,7 +387,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals("@LFoo; THROWS(throws_type_index=0)",printTypeAnnotation(typeAnnotations[0]));
 		assertEquals("@LBar;(value=(int)1) THROWS(throws_type_index=1)",printTypeAnnotation(typeAnnotations[1]));
 	}
-	public void test012_annotationMethodReturn() throws Exception {
+	public void test012_annotationMethodReturn() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 			"import java.lang.annotation.*;\n" +
 			"import java.util.Map;\n" +
@@ -434,7 +434,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		assertEquals(((org.eclipse.jdt.internal.compiler.impl.Constant)method.getDefaultValue()).stringValue(), "aaa");
 	}
 
-	public void testBug548596() {
+	public void testBug548596() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/*-
 		 * Test548596.jar contains classes for the following kotlin code (compiled with kotlin 1.3.21):
 		 * package k;
@@ -449,7 +449,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		String[] libs = getDefaultClassPaths();
 		int len = libs.length;
 		System.arraycopy(libs, 0, libs = new String[len+1], 0, len);
-		libs[libs.length-1] = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test548596.jar";
+		libs[libs.length-1] = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test548596.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformTest(
 			new String[] {
@@ -469,13 +469,13 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 		);
 	}
 
-	public void testGH2625() {
+	public void testGH2625() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] libs = getDefaultClassPaths();
 		int len = libs.length;
 		System.arraycopy(libs, 0, libs = new String[len+1], 0, len);
 		// in this jar the num_parameters field of RuntimeInvisibleParameterAnnotations has been manually set to 2
 		// (annotations on the 3-arg method a(Function,Object,long)):
-		libs[libs.length-1] = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "TestGH2625.jar";
+		libs[libs.length-1] = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "TestGH2625.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		runConformTest(
 			new String[] {
@@ -501,93 +501,93 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 	 * Output examples:<br>
 	 * <tt>@Foo(id=34) CLASS_EXTENDS, type_index=-1, location=[ARRAY, INNER_TYPE, TYPE_ARGUMENT(0)]</tt><br>
 	 */
-	private String printTypeAnnotation(IBinaryTypeAnnotation typeAnnotation) {
-		StringBuilder sb = new StringBuilder();
+	private String printTypeAnnotation(IBinaryTypeAnnotation typeAnnotation) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		StringBuilder sb = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		// The annotation:
 		IBinaryAnnotation annotation = typeAnnotation.getAnnotation();
-		sb.append('@').append(annotation.getTypeName());
+		sb.append('@').append(annotation.getTypeName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IBinaryElementValuePair[] pairs = annotation.getElementValuePairs();
 		if (pairs.length != 0) {
-			sb.append('(');
-			for (int i = 0; i < pairs.length; i++) {
+			sb.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < pairs.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i > 0) {
-					sb.append(',');
+					sb.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				sb.append(pairs[i].getName()).append('=').append(pairs[i].getValue());
+				sb.append(pairs[i].getName()).append('=').append(pairs[i].getValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			sb.append(')');
+			sb.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		sb.append(' ');
+		sb.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		// target type
 		int targetType = typeAnnotation.getTargetType();
 		switch (targetType) {
 			case AnnotationTargetTypeConstants.CLASS_TYPE_PARAMETER:
-				sb.append("CLASS_TYPE_PARAMETER(type_parameter_index=").append(typeAnnotation.getTypeParameterIndex()).append(')');
+				sb.append("CLASS_TYPE_PARAMETER(type_parameter_index=").append(typeAnnotation.getTypeParameterIndex()).append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case AnnotationTargetTypeConstants.METHOD_TYPE_PARAMETER:
-				sb.append("METHOD_TYPE_PARAMETER(type_parameter_index=").append(typeAnnotation.getTypeParameterIndex()).append(')');
+				sb.append("METHOD_TYPE_PARAMETER(type_parameter_index=").append(typeAnnotation.getTypeParameterIndex()).append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case AnnotationTargetTypeConstants.CLASS_EXTENDS:
-				sb.append("CLASS_EXTENDS(type_index=").append((short)typeAnnotation.getSupertypeIndex()).append(')');
+				sb.append("CLASS_EXTENDS(type_index=").append((short)typeAnnotation.getSupertypeIndex()).append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case AnnotationTargetTypeConstants.CLASS_TYPE_PARAMETER_BOUND:
-				sb.append("CLASS_TYPE_PARAMETER_BOUND(type_parameter_index=").
+				sb.append("CLASS_TYPE_PARAMETER_BOUND(type_parameter_index="). //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					append(typeAnnotation.getTypeParameterIndex()).
 					append(", bound_index=").append(typeAnnotation.getBoundIndex()).
 					append(')');
 				break;
 			case AnnotationTargetTypeConstants.METHOD_TYPE_PARAMETER_BOUND:
-				sb.append("METHOD_TYPE_PARAMETER_BOUND(type_parameter_index=").
+				sb.append("METHOD_TYPE_PARAMETER_BOUND(type_parameter_index="). //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					append(typeAnnotation.getTypeParameterIndex()).
 					append(", bound_index=").append(typeAnnotation.getBoundIndex()).
 					append(')');
 				break;
 			case AnnotationTargetTypeConstants.FIELD:
-				sb.append("FIELD");
+				sb.append("FIELD"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case AnnotationTargetTypeConstants.METHOD_RETURN:
-				sb.append("METHOD_RETURN");
+				sb.append("METHOD_RETURN"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case AnnotationTargetTypeConstants.METHOD_RECEIVER:
-				sb.append("METHOD_RECEIVER");
+				sb.append("METHOD_RECEIVER"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case AnnotationTargetTypeConstants.METHOD_FORMAL_PARAMETER :
-				sb.append("METHOD_FORMAL_PARAMETER(method_formal_parameter_index=").
+				sb.append("METHOD_FORMAL_PARAMETER(method_formal_parameter_index="). //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					append(typeAnnotation.getMethodFormalParameterIndex()).append(')');
 				break;
 			case AnnotationTargetTypeConstants.THROWS :
-				sb.append("THROWS(throws_type_index=").
+				sb.append("THROWS(throws_type_index="). //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					append(typeAnnotation.getThrowsTypeIndex()).append(')');
 				break;
-			default: throw new IllegalStateException("nyi "+targetType);
+			default: throw new IllegalStateException("nyi "+targetType); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		// location
 		int[] typepath = typeAnnotation.getTypePath();
 
 		if (typepath != IBinaryTypeAnnotation.NO_TYPE_PATH) {
-			sb.append(", location=["); //$NON-NLS-1$
-			for (int i = 0, max = typepath.length; i < max; i += 2) {
+			sb.append(", location=["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0, max = typepath.length; i < max; i += 2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i > 0) {
-					sb.append(", "); //$NON-NLS-1$
+					sb.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				switch (typepath[i]) {
 					case 0:
-						sb.append("ARRAY"); //$NON-NLS-1$
+						sb.append("ARRAY"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case 1:
-						sb.append("INNER_TYPE"); //$NON-NLS-1$
+						sb.append("INNER_TYPE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case 2:
-						sb.append("WILDCARD"); //$NON-NLS-1$
+						sb.append("WILDCARD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case 3:
-						sb.append("TYPE_ARGUMENT(").append(typepath[i+1]).append(')'); //$NON-NLS-1$
+						sb.append("TYPE_ARGUMENT(").append(typepath[i+1]).append(')'); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 				}
 			}
-			sb.append(']');
+			sb.append(']'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return sb.toString();
 	}
@@ -598,7 +598,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 			return null;
 		}
 		char[] methodnameAsCharArray = methodname.toCharArray();
-		for (int i = 0, max = methods.length; i < max; i++) {
+		for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(methods[i].getSelector(),methodnameAsCharArray)) {
 				return methods[i];
 			}
@@ -612,7 +612,7 @@ public class ClassFileReaderTest_1_8 extends AbstractRegressionTest {
 			return null;
 		}
 		char[] fieldnameAsCharArray = fieldname.toCharArray();
-		for (int i = 0, max = fields.length; i < max; i++) {
+		for (int i = 0, max = fields.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(fields[i].getName(),fieldnameAsCharArray)) {
 				return fields[i];
 			}

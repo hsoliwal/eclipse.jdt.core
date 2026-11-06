@@ -48,7 +48,7 @@ public class ModuleUtil {
 			super(javaProject, CompilationGroup.MAIN);
 		}
 
-		Set<String> modules = new HashSet<>();
+		Set<String> modules = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		public String[] getModules() {
 			this.modules.remove(String.valueOf(TypeConstants.JAVA_DOT_BASE));
 			String[] mods = new String[this.modules.size()];
@@ -83,7 +83,7 @@ public class ModuleUtil {
 			return answer;
 		}
 	}
-	private static Compiler newCompiler(ModuleAccumulatorEnvironment environment, IJavaProject javaProject) {
+	private static Compiler newCompiler(ModuleAccumulatorEnvironment environment, IJavaProject javaProject) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> projectOptions = javaProject.getOptions(true);
 		CompilerOptions compilerOptions = new CompilerOptions(projectOptions);
 		compilerOptions.performMethodsFullRecovery = true;
@@ -103,25 +103,25 @@ public class ModuleUtil {
 
 		return newCompiler;
 	}
-	public static String[] getReferencedModules(IJavaProject project) throws CoreException {
+	public static String[] getReferencedModules(IJavaProject project) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		ModuleAccumulatorEnvironment environment = new ModuleAccumulatorEnvironment(project);
 		Compiler compiler = newCompiler(environment, project);
 		// First go over the binary roots and see if any of them are modules
-		List<String> required = new ArrayList<>();
-		Set<org.eclipse.jdt.internal.compiler.env.ICompilationUnit> toCompile = new HashSet<>();
+		List<String> required = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		Set<org.eclipse.jdt.internal.compiler.env.ICompilationUnit> toCompile = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		IPackageFragmentRoot[] roots = project.getPackageFragmentRoots();
-		for (IPackageFragmentRoot root : roots) {
+		for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (root.getKind() == IPackageFragmentRoot.K_SOURCE) {
 				IJavaElement[] children = root.getChildren();
-				for (IJavaElement child : children) {
+				for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (child instanceof IPackageFragment) {
 						IPackageFragment fragment = (IPackageFragment) child;
 						if (fragment.isDefaultPackage()) continue;
 						ICompilationUnit[] units = fragment.getCompilationUnits();
 						if (units.length != 0) {
 							String pack = fragment.getElementName();
-							for (ICompilationUnit iUnit : units) {
+							for (ICompilationUnit iUnit : units) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								org.eclipse.jdt.internal.compiler.env.ICompilationUnit sourceFile =
 										new BasicCompilationUnit(iUnit.getSource().toCharArray(),
 												CharOperation.splitOn('.', pack.toCharArray()),
@@ -140,7 +140,7 @@ public class ModuleUtil {
 		compiler.compile(sources);
 		String[] mods = environment.getModules();
 		Collections.addAll(required, mods);
-		Collections.sort(required, new Comparator<String>() {
+		Collections.sort(required, new Comparator<String>() { //FLLDCIM: MARK — M16 SORT_LANE CALL
 			@Override
 			public int compare(String o1, String o2) {
 				return o1.compareTo(o2);

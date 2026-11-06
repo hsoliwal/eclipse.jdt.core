@@ -53,7 +53,7 @@ public static Test suite() {
 
 //=== negative tests for module imports remain in CompletionTests23 ===
 
-public void testKeyword() throws JavaModelException {
+public void testKeyword() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion25/src/p/X.java",
@@ -71,7 +71,7 @@ public void testKeyword() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevanceWithoutCase = DEFAULT_RELEVANCE - R_CASE;
 	assertResults(
-			"Map[TYPE_REF]{java.util.Map;, java.util, Ljava.util.Map;, null, null, "+relevanceWithoutCase+"}\n" +
+			"Map[TYPE_REF]{java.util.Map;, java.util, Ljava.util.Map;, null, null, "+relevanceWithoutCase+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"MethodHandle[TYPE_REF]{java.lang.invoke.MethodHandle;, java.lang.invoke, Ljava.lang.invoke.MethodHandle;, null, null, "+relevanceWithoutCase+"}\n" +
 			"MethodHandles[TYPE_REF]{java.lang.invoke.MethodHandles;, java.lang.invoke, Ljava.lang.invoke.MethodHandles;, null, null, "+relevanceWithoutCase+"}\n" +
 			"MethodType[TYPE_REF]{java.lang.invoke.MethodType;, java.lang.invoke, Ljava.lang.invoke.MethodType;, null, null, "+relevanceWithoutCase+"}\n" +
@@ -79,7 +79,7 @@ public void testKeyword() throws JavaModelException {
 			requestor.getResults());
 }
 
-public void test001() throws JavaModelException {
+public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// prefixed
 	// only java.base available (from JCL_25_LIB)
 	this.workingCopies = new ICompilationUnit[1];
@@ -99,11 +99,11 @@ public void test001() throws JavaModelException {
 	int cursorLocation = nameStart + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"[MODULE_REF]{java.base, java.base, null, null, null, ["+nameStart+", "+cursorLocation+"], "+DEFAULT_RELEVANCE + "}",
+			"[MODULE_REF]{java.base, java.base, null, null, null, ["+nameStart+", "+cursorLocation+"], "+DEFAULT_RELEVANCE + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 
-public void test002() throws JavaModelException {
+public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// no prefix
 	// only java.base available (from JCL_25_LIB)
 	this.workingCopies = new ICompilationUnit[1];
@@ -122,11 +122,11 @@ public void test002() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"[MODULE_REF]{java.base, java.base, null, null, null, " + DEFAULT_RELEVANCE + "}",
+			"[MODULE_REF]{java.base, java.base, null, null, null, " + DEFAULT_RELEVANCE + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 
-public void test003() throws JavaModelException {
+public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// no prefix
 	// 2 modules available: mod.one & java.base
 	// unnamed module reads them all
@@ -146,7 +146,7 @@ public void test003() throws JavaModelException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-				"[MODULE_REF]{java.base, java.base, null, null, null, " + DEFAULT_RELEVANCE + "}\n" +
+				"[MODULE_REF]{java.base, java.base, null, null, null, " + DEFAULT_RELEVANCE + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"[MODULE_REF]{mod.one, mod.one, null, null, null, " + DEFAULT_RELEVANCE + "}",
 				requestor.getResults());
 	} finally {
@@ -154,7 +154,7 @@ public void test003() throws JavaModelException {
 	}
 }
 
-public void test004() throws JavaModelException {
+public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// with prefix
 	// 3 modules on the module path: mod.two, mod.one & java.base
 	// prefix selects 2 out of 3
@@ -176,7 +176,7 @@ public void test004() throws JavaModelException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-				"[MODULE_REF]{mod.one, mod.one, null, null, null, " + DEFAULT_RELEVANCE + "}\n" +
+				"[MODULE_REF]{mod.one, mod.one, null, null, null, " + DEFAULT_RELEVANCE + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"[MODULE_REF]{mod.two, mod.two, null, null, null, " + DEFAULT_RELEVANCE + "}",
 				requestor.getResults());
 	} finally {
@@ -185,7 +185,7 @@ public void test004() throws JavaModelException {
 	}
 }
 
-public void test005() throws CoreException {
+public void test005() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// with prefix
 	// 4 modules available: mod.test (self), mod.two (required), mod.one (transitively required) & java.base (from JCL_25_LIB)
 	// prefix selects 3 out of 4
@@ -214,7 +214,7 @@ public void test005() throws CoreException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-				"[MODULE_REF]{mod.one, mod.one, null, null, null, " + DEFAULT_RELEVANCE + "}\n" +
+				"[MODULE_REF]{mod.one, mod.one, null, null, null, " + DEFAULT_RELEVANCE + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"[MODULE_REF]{mod.test, mod.test, null, null, null, " + DEFAULT_RELEVANCE + "}\n" +
 				"[MODULE_REF]{mod.two, mod.two, null, null, null, " + DEFAULT_RELEVANCE + "}",
 				requestor.getResults());
@@ -225,7 +225,7 @@ public void test005() throws CoreException {
 			deleteResource(moduleFile);
 	}
 }
-public void test006() throws CoreException {
+public void test006() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// with prefix
 	// 4 modules present: mod.test(self), mod.one, mod.two & java.base available
 	// + prefix rules out java.base
@@ -254,7 +254,7 @@ public void test006() throws CoreException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-				"[MODULE_REF]{mod.two, mod.two, null, null, null, " + (DEFAULT_RELEVANCE - R_NON_RESTRICTED) + "}\n" + // lower relevance, not read
+				"[MODULE_REF]{mod.two, mod.two, null, null, null, " + (DEFAULT_RELEVANCE - R_NON_RESTRICTED) + "}\n" + // lower relevance, not read //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"[MODULE_REF]{mod.one, mod.one, null, null, null, " + DEFAULT_RELEVANCE + "}\n" +
 				"[MODULE_REF]{mod.test, mod.test, null, null, null, " + DEFAULT_RELEVANCE + "}",
 				requestor.getResults());
@@ -263,7 +263,7 @@ public void test006() throws CoreException {
 		removeClasspathEntry(this.completion25Project, jarTwoPath);
 	}
 }
-public void testGH4796_1() throws JavaModelException {
+public void testGH4796_1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion25/src/X.java",
@@ -287,7 +287,7 @@ public void testGH4796_1() throws JavaModelException {
 			+ "StringTemplate[TYPE_REF]{java.lang.StringTemplate, java.lang, Ljava.lang.StringTemplate;, null, null, 51}",
 			requestor.getResults());
 }
-public void testGH4796_2() throws JavaModelException {
+public void testGH4796_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"""
 			static final String CODE = "001";

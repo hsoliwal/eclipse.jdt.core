@@ -41,7 +41,7 @@ public class ClassFileReaderTest_17 extends AbstractRegressionTest {
 		this.complianceLevel = ClassFileConstants.JDK17;
 	}
 
-	public void testBug564227_001() throws Exception {
+	public void testBug564227_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"sealed class X permits Y, Z{\n" +
 				"  public static void main(String[] args){\n"+
@@ -60,7 +60,7 @@ public class ClassFileReaderTest_17 extends AbstractRegressionTest {
 		assertTrue(CharOperation.equals(permittedSubtypesNames, expected));
 
 	}
-	public void testBug565782_001() throws Exception {
+	public void testBug565782_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"sealed interface I {}\n"+
 				"enum X implements I {\n"+
@@ -81,7 +81,7 @@ public class ClassFileReaderTest_17 extends AbstractRegressionTest {
 		int modifiers = classFileReader.getModifiers();
 		assertTrue("sealed modifier expected", (modifiers & ExtraCompilerModifiers.AccSealed) != 0);
 	}
-	public void testBug565782_002() throws Exception {
+	public void testBug565782_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"sealed interface I {}\n"+
 				"class X {\n"+
@@ -138,7 +138,7 @@ public class ClassFileReaderTest_17 extends AbstractRegressionTest {
 		int modifiers = method.getModifiers();
 		assertTrue("strictfp modifier not expected", (modifiers & ClassFileConstants.AccStrictfp) == 0);
 	}
-	public void testWildcardBinding() throws Exception {
+	public void testWildcardBinding() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"public class X {    \n"
 				+ "    public static void main(String[] args) {\n"

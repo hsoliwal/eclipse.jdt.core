@@ -39,14 +39,14 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1774
 	// [switch] Code generated for statement switch doesn't handle MatchException
-	public void testGHI1774_Expression() throws Exception {
+	public void testGHI1774_Expression() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String path = LIB_DIR;
 		String libPath = null;
 		if (path.endsWith(File.separator)) {
-			libPath = path + "lib.jar";
+			libPath = path + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			libPath = path + File.separator + "lib.jar";
+			libPath = path + File.separator + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.createJar(new String[] {
 			"p/Color.java",
@@ -83,7 +83,7 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 				+ "	}\n"
 				+ "}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -cp \"" + LIB_DIR + File.separator + "lib.jar\""
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 			+ " -source 21 -warn:none"
@@ -91,7 +91,7 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 			"",
 			"",
 			true);
-		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], new String[] {"--enable-preview"});
+		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], new String[] {"--enable-preview"}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("Incorrect output", "END", this.verifier.getExecutionOutput());
 		Util.createJar(new String[] {
 				"p/Color.java",
@@ -105,20 +105,20 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 			},
 			libPath,
 			JavaCore.VERSION_20);
-		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], new String[] {"--enable-preview"});
+		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], new String[] {"--enable-preview"}); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("Incorrect output", "OKEND", this.verifier.getExecutionOutput());
 	}
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1774
 	// [switch] Code generated for statement switch doesn't handle MatchException
-	public void testGHI1774_Statement() throws Exception {
+	public void testGHI1774_Statement() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		String path = LIB_DIR;
 		String libPath = null;
 		if (path.endsWith(File.separator)) {
-			libPath = path + "lib.jar";
+			libPath = path + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			libPath = path + File.separator + "lib.jar";
+			libPath = path + File.separator + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.createJar(new String[] {
 			"p/Color.java",
@@ -155,7 +155,7 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 				+ "	}\n"
 				+ "}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -cp \"" + LIB_DIR + File.separator + "lib.jar\""
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 			+ " -source 21 -warn:none"
@@ -163,7 +163,7 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 			"",
 			"",
 			true);
-		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], new String[0]);
+		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], new String[0]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("Incorrect output", "REND", this.verifier.getExecutionOutput());
 		Util.createJar(new String[] {
 				"p/Color.java",
@@ -177,17 +177,17 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 			},
 			libPath,
 			JavaCore.VERSION_20);
-		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], new String[0]);
+		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], new String[0]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("Incorrect output", "OK!END", this.verifier.getExecutionOutput());
 	}
 
-	public void testIssue558_1() throws Exception {
+	public void testIssue558_1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String path = LIB_DIR;
 		String libPath = null;
 		if (path.endsWith(File.separator)) {
-			libPath = path + "lib.jar";
+			libPath = path + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			libPath = path + File.separator + "lib.jar";
+			libPath = path + File.separator + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.createJar(new String[] {
 			"p/Color.java",
@@ -223,7 +223,7 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 				+ "	}\n"
 				+ "}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -cp \"" + LIB_DIR + File.separator + "lib.jar\""
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 			+ " -source 21 -warn:none"
@@ -231,7 +231,7 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 			"",
 			"",
 			true);
-		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], null);
+		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("Incorrect output", "END", this.verifier.getExecutionOutput());
 		Util.createJar(new String[] {
 				"p/Color.java",
@@ -245,17 +245,17 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 			},
 			libPath,
 			JavaCore.VERSION_21);
-		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], null);
+		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("Incorrect output", "OKEND", this.verifier.getExecutionOutput());
 	}
 
-	public void testIssue558_2() throws Exception {
+	public void testIssue558_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String path = LIB_DIR;
 		String libPath = null;
 		if (path.endsWith(File.separator)) {
-			libPath = path + "lib.jar";
+			libPath = path + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			libPath = path + File.separator + "lib.jar";
+			libPath = path + File.separator + "lib.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		Util.createJar(new String[] {
 			"p/I.java",
@@ -292,7 +292,7 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 				+ "	}\n"
 				+ "}",
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "src/p/X.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -cp \"" + LIB_DIR + File.separator + "lib.jar\""
 			+ " -sourcepath \"" + OUTPUT_DIR +  File.separator + "src\""
 			+ " -source 21 -warn:none"
@@ -300,7 +300,7 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 			"",
 			"",
 			true);
-		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], null);
+		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("Incorrect output", "END", this.verifier.getExecutionOutput());
 		Util.createJar(new String[] {
 				"p/I.java",
@@ -316,7 +316,7 @@ public class BatchCompilerTest_21 extends AbstractBatchCompilerTest {
 			},
 			libPath,
 			JavaCore.VERSION_21);
-		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], null);
+		this.verifier.execute("p.X", new String[] {OUTPUT_DIR + File.separator + "bin", libPath}, new String[0], null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertEquals("Incorrect output", "OKEND", this.verifier.getExecutionOutput());
 	}
 

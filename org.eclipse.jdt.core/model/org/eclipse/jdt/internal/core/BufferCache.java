@@ -49,7 +49,7 @@ public class BufferCache<K> extends OverflowingLRUCache<K, IBuffer> {
 		} else {
 			List<IBuffer> buffers = this.buffersToClose.get();
 			if (buffers == null) {
-				buffers = new ArrayList<>();
+				buffers = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				this.buffersToClose.set(buffers);
 			}
 			buffers.add(buffer);
@@ -62,7 +62,7 @@ public class BufferCache<K> extends OverflowingLRUCache<K, IBuffer> {
 		if (buffers == null)
 			return;
 		this.buffersToClose.remove();
-		for (IBuffer buffer : buffers) {
+		for (IBuffer buffer : buffers) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			buffer.close();
 		}
 	}

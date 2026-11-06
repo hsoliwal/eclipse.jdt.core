@@ -45,7 +45,7 @@ public final class NodeFinder {
 			this.fEnd= offset + length;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public boolean preVisit2(ASTNode node) {
 			int nodeStart= node.getStartPosition();
 			int nodeEnd= nodeStart + node.getLength();
@@ -141,7 +141,7 @@ public final class NodeFinder {
 	 * @return the result node
 	 * @throws JavaModelException if an error occurs in the Java model
 	 */
-	public static ASTNode perform(ASTNode root, int start, int length, ITypeRoot source) throws JavaModelException {
+	public static ASTNode perform(ASTNode root, int start, int length, ITypeRoot source) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		NodeFinder finder = new NodeFinder(root, start, length);
 		ASTNode result= finder.getCoveredNode();
 		if (result == null)

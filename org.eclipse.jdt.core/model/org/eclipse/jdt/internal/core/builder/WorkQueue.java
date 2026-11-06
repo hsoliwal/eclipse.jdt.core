@@ -23,8 +23,8 @@ private final Set<SourceFile> needsCompileList;
 private final Set<SourceFile> compiledList;
 
 public WorkQueue() {
-	this.needsCompileList = new HashSet<>();
-	this.compiledList = new HashSet<>();
+	this.needsCompileList = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	this.compiledList = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 }
 
 public void add(SourceFile element) {
@@ -55,6 +55,6 @@ public boolean isWaiting(SourceFile element) {
 
 @Override
 public String toString() {
-	return "WorkQueue: " + this.needsCompileList; //$NON-NLS-1$
+	return "WorkQueue: " + this.needsCompileList; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

@@ -54,7 +54,7 @@ public abstract class MemberDeclarationImpl extends DeclarationImpl implements M
 		return _getAnnotationMirrors(instances);
     }
 
-	private IAnnotationBinding[] getAnnotationInstances()
+	private IAnnotationBinding[] getAnnotationInstances() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final IBinding binding = getDeclarationBinding();
 		final IAnnotationBinding[] instances;
@@ -78,7 +78,7 @@ public abstract class MemberDeclarationImpl extends DeclarationImpl implements M
 		return instances;
 	}
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String getDocComment()
     {
         if( isFromSource()){

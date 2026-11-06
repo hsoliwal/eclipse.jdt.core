@@ -125,7 +125,7 @@ public AssistParser(ProblemReporter problemReporter) {
 
 public abstract char[] assistIdentifier();
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void copyState(Parser from) {
 
 	super.copyState(from);
@@ -174,7 +174,7 @@ public int bodyEnd(Initializer initializer){
  * Build initial recovery state.
  * Recovery state is inferred from the current state of the parser (reduced node stack).
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public RecoveredElement buildInitialRecoveryState(){
 	/* recovery in unit structure */
 	if (this.referenceContext instanceof CompilationUnitDeclaration){
@@ -199,7 +199,7 @@ public RecoveredElement buildInitialRecoveryState(){
 			TypeDeclaration type = (TypeDeclaration) this.referenceContext;
 			FieldDeclaration[] fields = type.fields;
 			int length = fields == null ? 0 : fields.length;
-			for (int i = 0; i < length; i++){
+			for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				FieldDeclaration field = fields[i];
 				if (field != null
 						&& field.getKind() == AbstractVariableDeclaration.INITIALIZER
@@ -224,11 +224,11 @@ public RecoveredElement buildInitialRecoveryState(){
 	int blockIndex = 1;	// ignore first block start, since manually rebuilt here
 
 	ASTNode node = null, lastNode = null;
-	for (int i = 0, end = this.cookedAstPtr(); i <= end; i++, lastNode = node) {
+	for (int i = 0, end = this.cookedAstPtr(); i <= end; i++, lastNode = node) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		node = this.astStack[i];
 		/* check for intermediate block creation, so recovery can properly close them afterwards */
 		int nodeStart = node.sourceStart;
-		for (int j = blockIndex; j <= this.realBlockPtr; j++){
+		for (int j = blockIndex; j <= this.realBlockPtr; j++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.blockStarts[j] >= 0) {
 				if (this.blockStarts[j] > nodeStart){
 					blockIndex = j; // shift the index to the new block
@@ -335,7 +335,7 @@ public RecoveredElement buildInitialRecoveryState(){
 						// Kludge, for the unfortunate case where recovery can't
 						// construct a switch expression but simply creates a case statement (with type patterns)
 						// and leaves it in the astStack
-						final List<LocalDeclaration> locals = new ArrayList<>();
+						final List<LocalDeclaration> locals = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 						node.traverse(new ASTVisitor() {
 							@SuppressWarnings("synthetic-access")
 							@Override
@@ -348,7 +348,7 @@ public RecoveredElement buildInitialRecoveryState(){
 								return true;
 							}
 						}, null);
-						for (LocalDeclaration local : locals) {
+						for (LocalDeclaration local : locals) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							element.add(local, 0);
 						}
 					}
@@ -379,7 +379,7 @@ public RecoveredElement buildInitialRecoveryState(){
 	/* For block bodied lambdas we should create a block even though the lambda header appears before it, so elements from within don't get misattributed. */
 	int pos = this.assistNode == null ? this.lastCheckPoint : this.assistNode.sourceStart;
 	boolean createLambdaBlock = lastNode instanceof LambdaExpression && ((LambdaExpression) node).body() instanceof Block;
-	for (int j = blockIndex; j <= this.realBlockPtr; j++){
+	for (int j = blockIndex; j <= this.realBlockPtr; j++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.blockStarts[j] >= 0) {
 			if ((this.blockStarts[j] < pos || createLambdaBlock) && (this.blockStarts[j] != lastStart)){ // avoid multiple block if at same position
 				block = new Block(0);
@@ -409,7 +409,7 @@ private void initModuleInfo(RecoveredElement element) {
 		if (unit.unitDeclaration.isModuleInfo()) {
 			ASTNode node = null;
 			int i = 0;
-			for (; i <= this.astPtr; i++) {
+			for (; i <= this.astPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if ((node = this.astStack[i]) instanceof ModuleDeclaration) {
 					unit.add((ModuleDeclaration) node, this.bracketDepth);
 					break;
@@ -515,7 +515,7 @@ protected void consumeExplicitConstructorInvocation(int flag, int recFlag) {
 	popElement(K_SELECTOR);
 }
 
-protected boolean triggerRecoveryUponLambdaClosure(Statement statement, boolean shouldCommit) {
+protected boolean triggerRecoveryUponLambdaClosure(Statement statement, boolean shouldCommit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Last block statement reduced is required to be on the AST stack top.
 	boolean lambdaClosed = false;
 	int statementStart, statementEnd;
@@ -531,7 +531,7 @@ protected boolean triggerRecoveryUponLambdaClosure(Statement statement, boolean 
 		statementEnd = statement.sourceEnd;
 	}
 	boolean insideType = false;
-	for (int i = this.elementPtr; i >= 0; --i) {
+	for (int i = this.elementPtr; i >= 0; --i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.elementKindStack[i] == K_TYPE_DELIMITER) {
 			insideType = true;
 			break;
@@ -592,7 +592,7 @@ protected boolean triggerRecoveryUponLambdaClosure(Statement statement, boolean 
 						this.currentElement instanceof RecoveredMethod ? ((RecoveredMethod) this.currentElement).methodBody : null);
 				if (recoveredBlock != null) {
 					RecoveredStatement recoveredStatement = recoveredBlock.statementCount > 0 ? recoveredBlock.statements[recoveredBlock.statementCount - 1] : null;
-					ASTNode parseTree = recoveredStatement != null ? recoveredStatement.updatedStatement(0, new HashSet<>()) : null;
+					ASTNode parseTree = recoveredStatement != null ? recoveredStatement.updatedStatement(0, new HashSet<>()) : null; //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 					if (parseTree != null) {
 						detectAssistNodeParent(parseTree);
 						if ((parseTree.sourceStart == 0 || parseTree.sourceEnd == 0) || (parseTree.sourceStart >= statementStart && parseTree.sourceEnd <= statementEnd)) {
@@ -615,7 +615,7 @@ protected boolean triggerRecoveryUponLambdaClosure(Statement statement, boolean 
 				}
 			}
 			if (statement != null) {
-				while (this.currentElement != null) {
+				while (this.currentElement != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ASTNode tree = this.currentElement.parseTree();
 					if (tree.sourceStart < statement.sourceStart) {
 						this.currentElement.add(statement, 0);
@@ -635,14 +635,14 @@ protected void detectAssistNodeParent(ASTNode parseTree) {
 	// only for completion
 }
 
-public Statement replaceAssistStatement(RecoveredElement top, ASTNode assistParent, int start, int end, Statement stmt) {
+public Statement replaceAssistStatement(RecoveredElement top, ASTNode assistParent, int start, int end, Statement stmt) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (top == null) return null;
 	if (top instanceof RecoveredBlock) {
 		RecoveredBlock blk = (RecoveredBlock) top;
 		RecoveredStatement[] statements = blk.statements;
 		boolean found = false;
 		if (statements != null) {
-			for(int i = 0; i < statements.length; i++) {
+			for(int i = 0; i < statements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (statements[i] == null) break;
 				ASTNode node = statements[i].parseTree();
 				if ((node.sourceStart >= start && node.sourceEnd <= end)) {
@@ -709,7 +709,7 @@ protected void consumeFieldDeclaration() {
 			this.restartRecovery = true;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeForceNoDiet() {
 	super.consumeForceNoDiet();
 	// if we are not in a method (i.e. we are not in a local variable initializer)
@@ -818,7 +818,7 @@ protected void consumeMethodInvocationSuperWithTypeArguments() {
 		this.lastCheckPoint = messageSend.sourceEnd + 1;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeModuleHeader() {
 	pushOnElementStack(K_MODULE_INFO_DELIMITER);
 	// ModuleHeader ::= 'module' Name
@@ -876,7 +876,7 @@ protected void consumeNestedMethod() {
 	super.consumeNestedMethod();
 	if(!isInsideMethod()) pushOnElementStack(K_METHOD_DELIMITER);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeOpenBlock() {
 	// OpenBlock ::= $empty
 	super.consumeOpenBlock();
@@ -919,7 +919,7 @@ protected void consumeOpenFakeBlock() {
 	}
 	this.blockStarts[this.realBlockPtr] = -this.scanner.startPosition;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumePackageDeclarationName() {
 	// PackageDeclarationName ::= 'package' Name
 	/* build an ImportRef build from the last name
@@ -968,7 +968,7 @@ protected void consumePackageDeclarationName() {
 		this.restartRecovery = true; // used to avoid branching back into the regular automaton
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumePackageDeclarationNameWithModifiers() {
 	// PackageDeclarationName ::= Modifiers 'package' PushRealModifiers Name
 	/* build an ImportRef build from the last name
@@ -1038,7 +1038,7 @@ protected void consumeRestoreDiet() {
 		popElement(K_FIELD_INITIALIZER_DELIMITER);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeSingleModifierImportDeclarationName(int modifier) {
 	// SingleStaticImportDeclarationName ::= 'import' 'static' Name RejectTypeAnnotations
 	// SingleModuleImportDeclarationName ::= 'import' 'module' Name RejectTypeAnnotations
@@ -1094,7 +1094,7 @@ protected void consumeSingleModifierImportDeclarationName(int modifier) {
 		this.restartRecovery = true; // used to avoid branching back into the regular automaton
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeSinglePkgName() {
 	int index;
 	/* no need to take action if not inside assist identifiers */
@@ -1129,7 +1129,7 @@ protected void consumeSinglePkgName() {
 		reference.declarationSourceEnd = (int) positions[length-1];
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeSingleTargetModuleName() {
 	int index;
 	/* no need to take action if not inside assist identifiers */
@@ -1154,7 +1154,7 @@ protected void consumeSingleTargetModuleName() {
 	}
 
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeSingleRequiresModuleName() {
 
 	int index = indexOfAssistIdentifier();
@@ -1195,7 +1195,7 @@ protected void consumeSingleRequiresModuleName() {
 
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeSingleTypeImportDeclarationName() {
 	// SingleTypeImportDeclarationName ::= 'import' Name
 	/* push an ImportRef build from the last name
@@ -1247,7 +1247,7 @@ protected void consumeSingleTypeImportDeclarationName() {
 		this.restartRecovery = true; // used to avoid branching back into the regular automaton
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeStaticImportOnDemandDeclarationName() {
 	// TypeImportOnDemandDeclarationName ::= 'import' 'static' Name '.' '*'
 	/* push an ImportRef build from the last name
@@ -1328,7 +1328,7 @@ private void adjustBracket(TerminalToken token) {
 			break;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeToken(TerminalToken token) {
 	super.consumeToken(token);
 
@@ -1394,7 +1394,7 @@ protected void consumeToken(TerminalToken token) {
 		this.previousIdentifierPtr = this.identifierPtr;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeTypeImportOnDemandDeclarationName() {
 	// TypeImportOnDemandDeclarationName ::= 'import' Name '.' '*'
 	/* push an ImportRef build from the last name
@@ -1471,7 +1471,7 @@ public void flushAssistState(){
 	setAssistIdentifier(null);
 }
 protected void flushElementStack() {
-	for (int j = 0; j <= this.elementPtr; j++) {
+	for (int j = 0; j <= this.elementPtr; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		this.elementObjectInfoStack[j] = null;
 	}
 
@@ -1483,7 +1483,7 @@ protected void flushElementStack() {
 /*
  * Build specific type reference nodes in case the cursor is located inside the type reference
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected TypeReference constructTypeReference(int dim) {
 
 	int index;
@@ -1537,7 +1537,7 @@ protected TypeReference constructTypeReference(int dim) {
 	}
 	return reference;
 }
-protected TypeReference getAssistTypeReferenceForGenericType(int dim, int identifierLength, int numberOfIdentifiers) {
+protected TypeReference getAssistTypeReferenceForGenericType(int dim, int identifierLength, int numberOfIdentifiers) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	/* no need to take action if not inside completed identifiers */
 	if (/*(indexOfAssistIdentifier()) < 0 ||*/ (identifierLength == 1 && numberOfIdentifiers == 1)) {
 		int currentTypeArgumentsLength = this.genericsLengthStack[this.genericsLengthPtr--];
@@ -1574,7 +1574,7 @@ protected TypeReference getAssistTypeReferenceForGenericType(int dim, int identi
 	long[] positions = new long[numberOfIdentifiers];
 	int index = numberOfIdentifiers;
 	int currentIdentifiersLength = identifierLength;
-	while (index > 0) {
+	while (index > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int currentTypeArgumentsLength = this.genericsLengthStack[this.genericsLengthPtr--];
 		if (currentTypeArgumentsLength > 0) {
 			this.genericsPtr -= currentTypeArgumentsLength;
@@ -1600,7 +1600,7 @@ protected TypeReference getAssistTypeReferenceForGenericType(int dim, int identi
 
 	// remove completion token
 	int realLength = numberOfIdentifiers;
-	for (int i = 0; i < numberOfIdentifiers; i++) {
+	for (int i = 0; i < numberOfIdentifiers; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if(tokens[i] == assistIdentifier()) {
 			realLength = i;
 		}
@@ -1618,7 +1618,7 @@ protected TypeReference getAssistTypeReferenceForGenericType(int dim, int identi
 		System.arraycopy(typeArguments, 0, typeArguments = new TypeReference[realLength][], 0, realLength);
 
 		boolean isParameterized = false;
-		for (TypeReference[] typeArgument : typeArguments) {
+		for (TypeReference[] typeArgument : typeArguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(typeArgument != null) {
 				isParameterized = true;
 				break;
@@ -1641,7 +1641,7 @@ protected TypeReference getAssistTypeReferenceForGenericType(int dim, int identi
  * qualified name reference, then create a CompletionOnQualifiedNameReference
  * instead.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected NameReference getUnspecifiedReferenceOptimized() {
 
 	int completionIndex;
@@ -1732,7 +1732,7 @@ protected int indexOfAssistIdentifier(){
  *	e.g. aa(0).bb(1).cc(2)
  * If no assist identifier was found, answers -1.
  */
-protected int indexOfAssistIdentifier(boolean useGenericsStack){
+protected int indexOfAssistIdentifier(boolean useGenericsStack){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	if (this.identifierLengthPtr < 0 || this.identifierPtr < 0 ){
 		return -1; // no awaiting identifier
@@ -1748,7 +1748,7 @@ protected int indexOfAssistIdentifier(boolean useGenericsStack){
 	if(useGenericsStack && length > 0 && this.genericsIdentifiersLengthPtr > -1 ) {
 		length = this.genericsIdentifiersLengthStack[this.genericsIdentifiersLengthPtr];
 	}
-	for (int i = 0; i < length; i++){
+	for (int i = 0; i < length; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.identifierStack[this.identifierPtr - i] == assistIdentifier){
 			return length - i - 1;
 		}
@@ -1776,7 +1776,7 @@ public void initialize(boolean parsingCompilationUnit) {
 public abstract void initializeScanner();
 protected boolean isIndirectlyInsideFieldInitialization(){
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if(this.elementKindStack[i] == K_FIELD_INITIALIZER_DELIMITER)
 			return true;
 		i--;
@@ -1785,7 +1785,7 @@ protected boolean isIndirectlyInsideFieldInitialization(){
 }
 protected boolean isIndirectlyInsideEnumConstantnitialization(){
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if(this.elementKindStack[i] == K_ENUM_CONSTANT_DELIMITER)
 			return true;
 		i--;
@@ -1794,7 +1794,7 @@ protected boolean isIndirectlyInsideEnumConstantnitialization(){
 }
 protected boolean isIndirectlyInsideMethod(){
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if(this.elementKindStack[i] == K_METHOD_DELIMITER)
 			return true;
 		i--;
@@ -1804,7 +1804,7 @@ protected boolean isIndirectlyInsideMethod(){
 @Override
 protected boolean isIndirectlyInsideLambdaExpression(){
 	int i = this.elementPtr;
-	while (i > -1) {
+	while (i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.elementKindStack[i] == K_LAMBDA_EXPRESSION_DELIMITER)
 			return true;
 		i--;
@@ -1813,7 +1813,7 @@ protected boolean isIndirectlyInsideLambdaExpression(){
 }
 protected boolean isIndirectlyInsideLambdaBlock(){
 	int i = this.elementPtr;
-	while (i > -1) {
+	while (i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.elementKindStack[i] == K_LAMBDA_EXPRESSION_DELIMITER && this.elementInfoStack[i] == BLOCK_BODY)
 			return true;
 		i--;
@@ -1822,7 +1822,7 @@ protected boolean isIndirectlyInsideLambdaBlock(){
 }
 protected boolean isIndirectlyInsideType(){
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if(this.elementKindStack[i] == K_TYPE_DELIMITER)
 			return true;
 		i--;
@@ -1831,7 +1831,7 @@ protected boolean isIndirectlyInsideType(){
 }
 protected boolean isInsideAttributeValue(){
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (this.elementKindStack[i]) {
 			case K_TYPE_DELIMITER : return false;
 			case K_METHOD_DELIMITER : return false;
@@ -1844,7 +1844,7 @@ protected boolean isInsideAttributeValue(){
 }
 protected boolean isInsideFieldInitialization(){
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (this.elementKindStack[i]) {
 			case K_TYPE_DELIMITER : return false;
 			case K_METHOD_DELIMITER : return false;
@@ -1857,7 +1857,7 @@ protected boolean isInsideFieldInitialization(){
 }
 protected boolean isInsideEnumConstantnitialization(){
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (this.elementKindStack[i]) {
 			case K_TYPE_DELIMITER : return false;
 			case K_METHOD_DELIMITER : return false;
@@ -1870,7 +1870,7 @@ protected boolean isInsideEnumConstantnitialization(){
 }
 protected boolean isInsideModuleInfo(){
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (this.elementKindStack[i]) {
 			case K_TYPE_DELIMITER :
 			case K_METHOD_DELIMITER :
@@ -1885,7 +1885,7 @@ protected boolean isInsideModuleInfo(){
 }
 protected boolean isInsideMethod(){
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (this.elementKindStack[i]) {
 			case K_TYPE_DELIMITER : return false;
 			case K_METHOD_DELIMITER : return true;
@@ -1897,7 +1897,7 @@ protected boolean isInsideMethod(){
 }
 protected boolean isInsideType(){
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (this.elementKindStack[i]) {
 			case K_TYPE_DELIMITER : return true;
 			case K_METHOD_DELIMITER : return false;
@@ -1909,7 +1909,7 @@ protected boolean isInsideType(){
 }
 protected int lastIndexOfElement(int kind) {
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if(this.elementKindStack[i] == kind) return i;
 		i--;
 	}
@@ -1930,7 +1930,7 @@ public void parseBlockStatements(AbstractMethodDeclaration md, CompilationUnitDe
  * Parse the block statements inside the given constructor declaration and try to complete at the
  * cursor location.
  */
-public void parseBlockStatements(ConstructorDeclaration cd, CompilationUnitDeclaration unit) {
+public void parseBlockStatements(ConstructorDeclaration cd, CompilationUnitDeclaration unit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//only parse the method body of cd
 	//fill out its statements
 
@@ -1976,7 +1976,7 @@ public void parseBlockStatements(ConstructorDeclaration cd, CompilationUnitDecla
  * Parse the block statements inside the given initializer and try to complete at the
  * cursor location.
  */
-public void parseBlockStatements(
+public void parseBlockStatements( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Initializer initializer,
 	TypeDeclaration type,
 	CompilationUnitDeclaration unit) {
@@ -2032,7 +2032,7 @@ public void parseBlockStatements(
  * Parse the block statements inside the given method declaration and try to complete at the
  * cursor location.
  */
-public void parseBlockStatements(MethodDeclaration md, CompilationUnitDeclaration unit) {
+public void parseBlockStatements(MethodDeclaration md, CompilationUnitDeclaration unit) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	//only parse the method body of md
 	//fill out method statements
 
@@ -2091,7 +2091,7 @@ public void parseBlockStatements(MethodDeclaration md, CompilationUnitDeclaratio
 }
 
 // the name is a misnomer, we allow "pop"s not just at the TOS. Lambda wants to be sticky till fully reduced, however we do want other elements popped at the right point, so ...
-protected void popElement(int kind) {
+protected void popElement(int kind) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	if (this.elementPtr < 0)
 		return;
@@ -2099,7 +2099,7 @@ protected void popElement(int kind) {
 	int stackPointer = this.elementPtr;
 
 	if (kind != K_LAMBDA_EXPRESSION_DELIMITER) {
-		while (this.elementKindStack[stackPointer] == K_LAMBDA_EXPRESSION_DELIMITER) {
+		while (this.elementKindStack[stackPointer] == K_LAMBDA_EXPRESSION_DELIMITER) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (--stackPointer < 0) break;
 		}
 	}
@@ -2119,10 +2119,10 @@ protected void popElement(int kind) {
 	this.elementObjectInfoStack[this.elementPtr] = null;
 	this.elementPtr--;
  }
-protected void popUntilElement(int kind){
+protected void popUntilElement(int kind){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if(this.elementPtr < 0) return;
 	int i = this.elementPtr;
-	while (i >= 0 && this.elementKindStack[i] != kind) {
+	while (i >= 0 && this.elementKindStack[i] != kind) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		i--;
 	}
 	if(i >= 0) {
@@ -2131,7 +2131,7 @@ protected void popUntilElement(int kind){
 			this.previousInfo = this.elementInfoStack[i+1];
 			this.previousObjectInfo = this.elementObjectInfoStack[i+1];
 
-			for (int j = i + 1; j <= this.elementPtr; j++) {
+			for (int j = i + 1; j <= this.elementPtr; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.elementObjectInfoStack[j] = null;
 			}
 		}
@@ -2186,7 +2186,7 @@ protected void pushOnElementStack(int kind){
 protected void pushOnElementStack(int kind, int info){
 	this.pushOnElementStack(kind, info, null);
 }
-protected void pushOnElementStack(int kind, int info, Object objectInfo){
+protected void pushOnElementStack(int kind, int info, Object objectInfo){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.elementPtr < -1) return;
 
 	this.previousKind = 0;
@@ -2225,7 +2225,7 @@ public void recoveryExitFromVariable() {
 		super.recoveryExitFromVariable();
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void recoveryTokenCheck() {
 	RecoveredElement oldElement = this.currentElement;
 	switch (this.currentToken) {
@@ -2313,7 +2313,7 @@ protected TerminalToken getNextToken() {
 protected abstract AssistParser createSnapShotParser();
 
 // We get here on real syntax error or syntax error triggered by fake EOF at completion site, never due to triggered recovery.
-protected int fallBackToSpringForward(Statement unused) {
+protected int fallBackToSpringForward(Statement unused) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TerminalToken nextToken;
 	int automatonState = automatonState();
 
@@ -2346,7 +2346,7 @@ protected int fallBackToSpringForward(Statement unused) {
 			ignoreNextClosingBrace(); // having ungotten it, recoveryTokenCheck will see this again.
 	}
 	// OK, next token is no good to resume "in place", attempt some local repair.
-	for (TerminalToken token : RECOVERY_TOKENS) {
+	for (TerminalToken token : RECOVERY_TOKENS) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (automatonWillShift(token, automatonState)) {
 			this.currentToken = token;
 			return RESUME;
@@ -2373,7 +2373,7 @@ protected int fallBackToSpringForward(Statement unused) {
  * Move checkpoint location, reset internal stacks and
  * decide which grammar goal is activated.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected int resumeAfterRecovery() {
 	if (requireExtendedRecovery()) {
 		if (this.unstackedAct == ERROR_ACTION) {
@@ -2484,7 +2484,7 @@ private boolean safeToResume() {
 	this.lastResumeState.currentToken = this.currentToken;
 	return true;
 }
-private boolean noProgressSince(ResumeState previous) {
+private boolean noProgressSince(ResumeState previous) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int stateTop = this.stateStackTop;
 	int astTop = this.astPtr;
 	int exprTop = this.expressionPtr;
@@ -2516,7 +2516,7 @@ protected int topKnownElementInfo(int owner) {
 }
 protected int topKnownElementInfo(int owner, int offSet) {
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if((this.elementKindStack[i] & owner) != 0) {
 			if(offSet <= 0) return this.elementInfoStack[i];
 			offSet--;
@@ -2530,7 +2530,7 @@ protected int topKnownElementKind(int owner) {
 }
 protected int topKnownElementKind(int owner, int offSet) {
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if((this.elementKindStack[i] & owner) != 0) {
 			if(offSet <= 0) return this.elementKindStack[i];
 			offSet--;
@@ -2541,7 +2541,7 @@ protected int topKnownElementKind(int owner, int offSet) {
 }
 protected Object topKnownElementObjectInfo(int owner, int offSet) {
 	int i = this.elementPtr;
-	while(i > -1) {
+	while(i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if((this.elementKindStack[i] & owner) != 0) {
 			if(offSet <= 0) return this.elementObjectInfoStack[i];
 			offSet--;
@@ -2558,7 +2558,7 @@ protected Object topKnownElementObjectInfo(int owner) {
  * then wrap it with a fake constructor call.
  * Returns the wrapped completion node or the completion node itself.
  */
-protected ASTNode wrapWithExplicitConstructorCallIfNeeded(ASTNode ast) {
+protected ASTNode wrapWithExplicitConstructorCallIfNeeded(ASTNode ast) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int selector;
 	if (ast != null && topKnownElementKind(ASSIST_PARSER) == K_SELECTOR && ast instanceof Expression &&
 			((Expression) ast).isTrulyExpression() &&

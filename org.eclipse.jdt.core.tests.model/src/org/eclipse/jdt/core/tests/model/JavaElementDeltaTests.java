@@ -72,7 +72,7 @@ public JavaElementDeltaTests(String name) {
  * delta with the kind set for POST_CHANGE listeners.
  * (regression test for bug 32937 Kind not set for empty fine-grained delta)
  */
-public void testAddCommentAndCommit() throws CoreException {
+public void testAddCommentAndCommit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DeltaListener listener = new DeltaListener(ElementChangedEvent.POST_CHANGE);
 	ICompilationUnit copy = null;
 	try {
@@ -90,7 +90,7 @@ public void testAddCommentAndCommit() throws CoreException {
 			"}");
 
 		// commit working copy
-		JavaCore.addElementChangedListener(listener, ElementChangedEvent.POST_CHANGE);
+		JavaCore.addElementChangedListener(listener, ElementChangedEvent.POST_CHANGE); //FLLDCIM: MARK — T31 JAVA_ELEMENT_DELTA_ADAPTER CALL
 		copy.commitWorkingCopy(true, null);
 		assertEquals(
 			"Unexpected delta after committing working copy",
@@ -109,7 +109,7 @@ public void testAddCommentAndCommit() throws CoreException {
 /*
  * Add cu in default package test (proj=src=bin).
  */
-public void testAddCuInDefaultPkg1() throws CoreException {
+public void testAddCuInDefaultPkg1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P", new String[] {""}, "");
@@ -134,7 +134,7 @@ public void testAddCuInDefaultPkg1() throws CoreException {
 /*
  * Add cu in default package test (proj!=src!=bin).
  */
-public void testAddCuInDefaultPkg2() throws CoreException {
+public void testAddCuInDefaultPkg2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P", new String[] {"src"}, "bin");
@@ -159,7 +159,7 @@ public void testAddCuInDefaultPkg2() throws CoreException {
  * Add cu after opening its project
  * (regression test for 56870 copied file not shown in package explorer / java browser [ccp])
  */
-public void testAddCuAfterProjectOpen() throws CoreException {
+public void testAddCuAfterProjectOpen() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = createJavaProject("P1", new String[] {"src"}, "bin");
 		IJavaProject p2 = createJavaProject("P2", new String[] {"src"}, "bin");
@@ -196,7 +196,7 @@ public void testAddCuAfterProjectOpen() throws CoreException {
  * Add the .classpath file to a Java project that was missing it.
  * (regression test for bug 26128 packages don't appear in package explorer view)
  */
-public void testAddDotClasspathFile() throws CoreException {
+public void testAddDotClasspathFile() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P");
 		createFolder("/P/src");
@@ -248,7 +248,7 @@ public void testAddDotClasspathFile() throws CoreException {
 /*
  * Ensures that adding a library entry for an existing external library folder triggers the correct delta
  */
-public void _testAddExternalLibFolder1() throws CoreException {
+public void _testAddExternalLibFolder1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		createExternalFolder("externalLib");
@@ -257,7 +257,7 @@ public void _testAddExternalLibFolder1() throws CoreException {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newLibraryEntry(new Path(getExternalResourcePath("externalLib")), null, null)});
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	<project root>[*]: {REMOVED FROM CLASSPATH}\n" +
 			"	"+ getExternalPath() + "externalLib[*]: {ADDED TO CLASSPATH}\n" +
 			"	"+ getExternalJCLPathString() + "[*]: {REMOVED FROM CLASSPATH}\n" +
@@ -273,7 +273,7 @@ public void _testAddExternalLibFolder1() throws CoreException {
 /*
  * Ensures that adding a library entry for a non-existing external library folder triggers the correct delta
  */
-public void _testAddExternalLibFolder2() throws CoreException {
+public void _testAddExternalLibFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		refresh(p);
@@ -282,7 +282,7 @@ public void _testAddExternalLibFolder2() throws CoreException {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newLibraryEntry(path, null, null)});
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	<project root>[*]: {REMOVED FROM CLASSPATH}\n" +
 			"	"+ getExternalJCLPathString() + "[*]: {REMOVED FROM CLASSPATH}\n" +
 			"	ResourceDelta(/P/.classpath)[*]"
@@ -296,7 +296,7 @@ public void _testAddExternalLibFolder2() throws CoreException {
 /*
  * Ensures that creating an external library folder referenced by a library entry and refreshing triggers the correct delta
  */
-public void testAddExternalLibFolder3() throws CoreException {
+public void testAddExternalLibFolder3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p =createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib")}, "");
 		refresh(p);
@@ -305,7 +305,7 @@ public void testAddExternalLibFolder3() throws CoreException {
 		refresh(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n" +
+			"P[*]: {CHILDREN}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "externalLib[+]: {}"
 		);
 	} finally {
@@ -318,7 +318,7 @@ public void testAddExternalLibFolder3() throws CoreException {
 /*
  * Ensures that creating an external library folder referenced by a library entry and refreshing after a restart triggers the correct delta
  */
-public void testAddExternalLibFolder4() throws CoreException {
+public void testAddExternalLibFolder4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		simulateExitRestart();
 		startDeltas();
@@ -327,7 +327,7 @@ public void testAddExternalLibFolder4() throws CoreException {
 		refresh(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[+]: {}\n" +
+			"P[+]: {}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"P[*]: {CHILDREN}\n" +
 			"	"+ getExternalPath() + "externalLib[+]: {}"
@@ -342,7 +342,7 @@ public void testAddExternalLibFolder4() throws CoreException {
 /*
  * Ensures that adding a library entry for an existing external ZIP archive triggers the correct delta
  */
-public void testAddZIPArchive1() throws CoreException {
+public void testAddZIPArchive1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		refreshExternalArchives(p);
@@ -352,7 +352,7 @@ public void testAddZIPArchive1() throws CoreException {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newLibraryEntry(new Path(getExternalResourcePath("externalLib.abc")), null, null)});
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	<project root>[*]: {REMOVED FROM CLASSPATH}\n" +
 			"	"+ getExternalPath() + "externalLib.abc[+]: {}\n" +
 			"	"+ getExternalJCLPathString() + "[*]: {REMOVED FROM CLASSPATH}\n" +
@@ -368,7 +368,7 @@ public void testAddZIPArchive1() throws CoreException {
 /*
  * Ensures that adding a library entry for a non-existing external ZIP archive triggers the correct delta
  */
-public void testAddZIPArchive2() throws CoreException {
+public void testAddZIPArchive2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		refreshExternalArchives(p);
@@ -377,7 +377,7 @@ public void testAddZIPArchive2() throws CoreException {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newLibraryEntry(new Path(getExternalResourcePath("externalLib.abc")), null, null)});
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	<project root>[*]: {REMOVED FROM CLASSPATH}\n" +
 			"	"+ getExternalJCLPathString() + "[*]: {REMOVED FROM CLASSPATH}\n" +
 			"	ResourceDelta(/P/.classpath)[*]"
@@ -391,7 +391,7 @@ public void testAddZIPArchive2() throws CoreException {
 /*
  * Ensures that creating an external ZIP archive referenced by a library entry and refreshing triggers the correct delta
  */
-public void testAddZIPArchive3() throws CoreException {
+public void testAddZIPArchive3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib.abc")}, "");
 		refreshExternalArchives(p);
@@ -401,7 +401,7 @@ public void testAddZIPArchive3() throws CoreException {
 		refreshExternalArchives(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n" +
+			"P[*]: {CHILDREN}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "externalLib.abc[+]: {}"
 		);
 	} finally {
@@ -414,7 +414,7 @@ public void testAddZIPArchive3() throws CoreException {
 /*
  * Ensures that creating an external ZIP archive referenced by a library entry and refreshing after a restart triggers the correct delta
  */
-public void testAddZIPArchive4() throws CoreException {
+public void testAddZIPArchive4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		simulateExitRestart();
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib.abc")}, "");
@@ -425,7 +425,7 @@ public void testAddZIPArchive4() throws CoreException {
 		refreshExternalArchives(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n" +
+			"P[*]: {CHILDREN}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "externalLib.abc[+]: {}"
 		);
 	} finally {
@@ -438,7 +438,7 @@ public void testAddZIPArchive4() throws CoreException {
 /*
  * Ensures that adding a library entry for an existing internal ZIP archive triggers the correct delta
  */
-public void testAddZIPArchive5() throws CoreException {
+public void testAddZIPArchive5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P");
 		createFile("/P/internalLib.abc", "");
@@ -447,7 +447,7 @@ public void testAddZIPArchive5() throws CoreException {
 		setClasspath(p, new IClasspathEntry[] {JavaCore.newLibraryEntry(new Path("/P/internalLib.abc"), null, null)});
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	<project root>[*]: {REMOVED FROM CLASSPATH}\n" +
 			"	internalLib.abc[*]: {ADDED TO CLASSPATH}\n" +
 			"	"+ getExternalJCLPathString() + "[*]: {REMOVED FROM CLASSPATH}\n" +
@@ -483,7 +483,7 @@ public void testAddFileToNonJavaProject() throws CoreException {
  * which is also on the build path of another project.
  * (regression test for bug 207441 Wrong delta for files created in folders that are on a java project as classes folder)
  */
-public void testAddFileToSharedNonJavaResource() throws CoreException {
+public void testAddFileToSharedNonJavaResource() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("A", new String[0], "bin");
 		createFolder("/A/resources");
@@ -529,7 +529,7 @@ public void testAddFolderInNonJavaFolder() throws CoreException {
  * Ensure that a resource delta is fired when a .name folder is added to a java project where prj=src.
  * (regression test for bug 31383 Strange rendering of of link resources when link points to Eclipse workspace)
  */
-public void testAddInvalidSubfolder() throws CoreException {
+public void testAddInvalidSubfolder() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P");
@@ -573,13 +573,13 @@ public void testAddJavaNature() throws CoreException {
  * (the folder and jar file being in a source folder)
  * (regression test for bug 177819 Jar files added to a plugin are ignored)
  */
-public void testAddJarAndFolderInSource() throws CoreException {
+public void testAddJarAndFolderInSource() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P", new String[] {""}, new String[] {"/P/lib-1/test.jar"}, "");
 
 		ResourcesPlugin.getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					createFolder("/P/lib-1");
 					createFile("/P/lib-1/test.jar", "");
@@ -606,11 +606,11 @@ public void testAddJarAndFolderInSource() throws CoreException {
  * Ensures that adding a non-java resource reports the correct delta.
  * (regression test for bug 44066 Package Explorer doesn't show new file)
  */
-public void testAddJavaNatureAndClasspath() throws CoreException {
+public void testAddJavaNatureAndClasspath() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("P");
 		ResourcesPlugin.getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					addJavaNature("P");
 					createFolder("/P/src");
@@ -670,7 +670,7 @@ public void testAddNonJavaProject() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testAddPackageSourceIsBin() throws CoreException {
+public void testAddPackageSourceIsBin() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P", new String[] {"src"}, "src");
@@ -691,11 +691,11 @@ public void testAddPackageSourceIsBin() throws CoreException {
 /*
  * Add 2 java projects in an IWorkspaceRunnable.
  */
-public void testAddTwoJavaProjects() throws CoreException {
+public void testAddTwoJavaProjects() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		ResourcesPlugin.getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					createJavaProject("P1", new String[] {""}, "");
 					createJavaProject("P2", new String[] {"src"}, "bin");
@@ -717,11 +717,11 @@ public void testAddTwoJavaProjects() throws CoreException {
 /*
  * Add 2 java projects in an IWorkspaceRunnable.
  */
-public void testAddTwoJavaProjectsWithExtraSetClasspath() throws CoreException {
+public void testAddTwoJavaProjectsWithExtraSetClasspath() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		ResourcesPlugin.getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					IJavaProject p1 = createJavaProject("P1", new String[] {""}, "");
 					// should be a no-op and no extra delta volley should be fired
@@ -744,7 +744,7 @@ public void testAddTwoJavaProjectsWithExtraSetClasspath() throws CoreException {
 /*
  * Batch operation test.
  */
-public void testBatchOperation() throws CoreException {
+public void testBatchOperation() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, "bin");
 		createFolder("P/src/x");
@@ -755,7 +755,7 @@ public void testBatchOperation() throws CoreException {
 			"}");
 		startDeltas();
 		JavaCore.run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					ICompilationUnit unit = getCompilationUnit("P/src/x/A.java");
 					unit.createType("class B {}", null, false, monitor);
@@ -782,7 +782,7 @@ public void testBatchOperation() throws CoreException {
  * Ensures that if a project's output folder is used as a lib folder in another project, building
  * the first project results in the correct delta in the other project.
  */
-public void testBuildProjectUsedAsLib() throws CoreException {
+public void testBuildProjectUsedAsLib() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p1 = createJavaProject("P1", new String[] {"src1"}, new String[] {"JCL18_LIB"}, "bin1");
 		createJavaProject("P2", new String[] {"src2"}, new String[] {"/P1/bin1"}, "bin2");
@@ -840,7 +840,7 @@ public void testBuildProjectUsedAsLib() throws CoreException {
  * Ensures that changing the custom output folder of a source entry
  * triggers a F_REMOVED_FROM_CLASSPATH and F_ADDED_TO_CLASSPATH delta.
  */
-public void testChangeCustomOutput() throws CoreException {
+public void testChangeCustomOutput() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		IJavaProject proj = createJavaProject("P", new String[] {"src"}, "bin", new String[] {"bin1"});
@@ -868,7 +868,7 @@ public void testChangeCustomOutput() throws CoreException {
  * triggers a F_CLASSPATH CHANGED delta.
  * (regression test for bug 75517 No classpath delta for project becoming exported)
  */
-public void testChangeExportFlag() throws CoreException {
+public void testChangeExportFlag() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1");
 		IJavaProject proj = createJavaProject("P2", new String[] {}, new String[] {}, new String[] {"/P1"}, new boolean[] {false}, "bin");
@@ -893,7 +893,7 @@ public void testChangeExportFlag() throws CoreException {
 /*
  * Ensures that changing an external library folder referenced by a library entry and refreshing triggers the correct delta
  */
-public void testChangeExternalLibFolder1() throws CoreException {
+public void testChangeExternalLibFolder1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib");
 		startDeltas();
@@ -902,7 +902,7 @@ public void testChangeExternalLibFolder1() throws CoreException {
 		refresh(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[+]: {}\n" +
+			"P[+]: {}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"P[*]: {CHILDREN}\n" +
 			"	"+ getExternalPath() + "externalLib[*]: {CHILDREN}\n" +
@@ -918,7 +918,7 @@ public void testChangeExternalLibFolder1() throws CoreException {
 /*
  * Ensures that changing an external library folder referenced by a library entry and refreshing triggers the correct delta
  */
-public void testChangeExternalLibFolder2() throws CoreException {
+public void testChangeExternalLibFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib/p");
 		startDeltas();
@@ -927,7 +927,7 @@ public void testChangeExternalLibFolder2() throws CoreException {
 		refresh(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[+]: {}\n" +
+			"P[+]: {}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"P[*]: {CHILDREN}\n" +
 			"	"+ getExternalPath() + "externalLib[*]: {CHILDREN}\n" +
@@ -945,7 +945,7 @@ public void testChangeExternalLibFolder2() throws CoreException {
  * Ensures that changing an external library folder referenced by a library entry and refreshing triggers the correct delta
  * Disable as long as it is not more reliable see https://bugs.eclipse.org/bugs/show_bug.cgi?id=295619
  */
-public void testChangeExternalLibFolder3() throws CoreException {
+public void testChangeExternalLibFolder3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib/p");
 		createExternalFile("externalLib/p/X.class", "");
@@ -955,7 +955,7 @@ public void testChangeExternalLibFolder3() throws CoreException {
 		refresh(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[+]: {}\n" +
+			"P[+]: {}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"P[*]: {CHILDREN}\n" +
 			"	"+ getExternalPath() + "externalLib[*]: {CHILDREN}\n" +
@@ -972,7 +972,7 @@ public void testChangeExternalLibFolder3() throws CoreException {
 /*
  * Ensures that changing an external library folder referenced by a library entry and refreshing triggers the correct delta
  */
-public void testChangeExternalLibFolder4() throws CoreException {
+public void testChangeExternalLibFolder4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib");
 		startDeltas();
@@ -981,7 +981,7 @@ public void testChangeExternalLibFolder4() throws CoreException {
 		refresh(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[+]: {}\n" +
+			"P[+]: {}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"P[*]: {CHILDREN}\n" +
 			"	"+ getExternalPath() + "externalLib[*]: {CONTENT}"
@@ -996,7 +996,7 @@ public void testChangeExternalLibFolder4() throws CoreException {
 /*
  * Ensures that changing an external library folder referenced by a library entry and refreshing triggers the correct delta
  */
-public void testChangeExternalLibFolder5() throws CoreException {
+public void testChangeExternalLibFolder5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib/p");
 		startDeltas();
@@ -1005,7 +1005,7 @@ public void testChangeExternalLibFolder5() throws CoreException {
 		refresh(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[+]: {}\n" +
+			"P[+]: {}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"P[*]: {CHILDREN}\n" +
 			"	"+ getExternalPath() + "externalLib[*]: {CHILDREN}\n" +
@@ -1018,7 +1018,7 @@ public void testChangeExternalLibFolder5() throws CoreException {
 	}
 }
 
-public void testChangeJRE9_8() throws CoreException, IOException {
+public void testChangeJRE9_8() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		// create project P8, just to ensure that JCL18_LIB is properly configured.
@@ -1026,20 +1026,20 @@ public void testChangeJRE9_8() throws CoreException, IOException {
 
 		IJavaProject p = createJava9Project("P");
 
-		StringBuilder expectedDelta = new StringBuilder();
-		expectedDelta.append("P[*]: {CHILDREN | CONTENT | RESOLVED CLASSPATH CHANGED}\n");
-		expectedDelta.append('\t').append(getExternalJCLPathString("1.8")).append("[*]: {ADDED TO CLASSPATH}\n"); // the addition
+		StringBuilder expectedDelta = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		expectedDelta.append("P[*]: {CHILDREN | CONTENT | RESOLVED CLASSPATH CHANGED}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		expectedDelta.append('\t').append(getExternalJCLPathString("1.8")).append("[*]: {ADDED TO CLASSPATH}\n"); // the addition //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		// for stable test construct expectation from actual list of contained modules (before modification):
-		for (IPackageFragmentRoot root : p.getPackageFragmentRoots()) {
+		for (IPackageFragmentRoot root : p.getPackageFragmentRoots()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (root instanceof JrtPackageFragmentRoot)
-				expectedDelta.append("	<module:"+root.getElementName()+">[*]: {REMOVED FROM CLASSPATH}\n");
+				expectedDelta.append("	<module:"+root.getElementName()+">[*]: {REMOVED FROM CLASSPATH}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		expectedDelta.append("	ResourceDelta(/P/.classpath)[*]");
+		expectedDelta.append("	ResourceDelta(/P/.classpath)[*]"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		// replace JRE System Library (9 -> 8):
 		startDeltas();
 		IClasspathEntry[] rawClasspath = p.getRawClasspath();
-		for (int i = 0; i < rawClasspath.length; i++) {
+		for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = rawClasspath[i];
 			if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
 				rawClasspath[i] = JavaCore.newVariableEntry(new Path("JCL18_LIB"), new Path("JCL18_SRC"), null, null, null, false);
@@ -1060,7 +1060,7 @@ public void testChangeJRE9_8() throws CoreException, IOException {
 	}
 }
 
-public void testChangeJRE8_9() throws CoreException, IOException {
+public void testChangeJRE8_9() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!isJRE9) return;
 	try {
 		// replace JRE System Library (8 - 9):
@@ -1070,7 +1070,7 @@ public void testChangeJRE8_9() throws CoreException, IOException {
 
 		setUpJCLClasspathVariables("9", false);
 		IClasspathEntry[] rawClasspath = p.getRawClasspath();
-		for (int i = 0; i < rawClasspath.length; i++) {
+		for (int i = 0; i < rawClasspath.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IClasspathEntry entry = rawClasspath[i];
 			if (entry.getEntryKind() == IClasspathEntry.CPE_VARIABLE) {
 				rawClasspath[i] = JavaCore.newVariableEntry(new Path("JCL19_LIB"), new Path("JCL19_SRC"), null, null, null, false);
@@ -1082,7 +1082,7 @@ public void testChangeJRE8_9() throws CoreException, IOException {
 
 		assertDeltas(
 			"Unexpected delta",
-			"P[+]: {}\n" +
+			"P[+]: {}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"P[*]: {CHILDREN | CONTENT | RESOLVED CLASSPATH CHANGED}\n" +
 			"	"+ getExternalPath() + "jclMin1.8.jar[*]: {REMOVED FROM CLASSPATH}\n" +
@@ -1097,7 +1097,7 @@ public void testChangeJRE8_9() throws CoreException, IOException {
 /*
  * Ensures that changing an external ZIP archive referenced by a library entry and refreshing triggers the correct delta
  */
-public void testChangeZIPArchive1() throws CoreException {
+public void testChangeZIPArchive1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFile("externalLib.abc", "");
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib.abc")}, "");
@@ -1108,7 +1108,7 @@ public void testChangeZIPArchive1() throws CoreException {
 		refreshExternalArchives(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n" +
+			"P[*]: {CHILDREN}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "externalLib.abc[*]: {CONTENT | ARCHIVE CONTENT CHANGED}"
 		);
 	} finally {
@@ -1142,7 +1142,7 @@ public void testChangeZIPArchive2() throws CoreException {
 /*
  * Ensures that changing an external source folder referenced by a library entry as source attachment and refreshing triggers the correct delta
  */
-public void testChangeExternalSourceAttachment() throws CoreException {
+public void testChangeExternalSourceAttachment() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib");
 		createExternalFolder("externalSrc");
@@ -1153,7 +1153,7 @@ public void testChangeExternalSourceAttachment() throws CoreException {
 		refresh(project);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n" +
+			"P[*]: {CHILDREN}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "externalLib[*]: {SOURCE ATTACHED | SOURCE DETACHED}"
 			);
 	} finally {
@@ -1168,7 +1168,7 @@ public void testChangeExternalSourceAttachment() throws CoreException {
  * Ensures that the setting the classpath with a library entry
  * triggers a F_REMOVED_FROM_CLASSPATH and F_ADDED_TO_CLASSPATH delta.
  */
-public void testChangeRootKind() throws CoreException {
+public void testChangeRootKind() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		IJavaProject proj = createJavaProject("P", new String[] {"src"}, "bin");
@@ -1194,7 +1194,7 @@ public void testChangeRootKind() throws CoreException {
 /*
  * Close a java project.
  */
-public void testCloseJavaProject() throws CoreException {
+public void testCloseJavaProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P", new String[] {""}, "");
@@ -1237,7 +1237,7 @@ public void testCloseNonJavaProject() throws CoreException {
  * a delta on this other project.
  * (regression test for bug 19058 Closing non-java project doesn't remove root from java project)
  */
-public void testCloseNonJavaProjectUpdateDependent() throws CoreException {
+public void testCloseNonJavaProjectUpdateDependent() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("SP");
 		createFile("/SP/x.jar", "");
@@ -1261,7 +1261,7 @@ public void testCloseNonJavaProjectUpdateDependent() throws CoreException {
  * Test that deltas are generated when a compilation unit is added
  * and removed from a package via core API.
  */
-public void testCompilationUnitRemoveAndAdd() throws CoreException {
+public void testCompilationUnitRemoveAndAdd() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P");
 		createFolder("/P/p");
@@ -1304,7 +1304,7 @@ public void testCompilationUnitRemoveAndAdd() throws CoreException {
 	}
 }
 
-public void testCreateSharedWorkingCopy() throws CoreException {
+public void testCreateSharedWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		createJavaProject("P", new String[] {""}, "");
@@ -1327,7 +1327,7 @@ public void testCreateSharedWorkingCopy() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testCreateWorkingCopy() throws CoreException {
+public void testCreateWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		createJavaProject("P", new String[] {""}, "");
@@ -1355,7 +1355,7 @@ public void testCreateWorkingCopy() throws CoreException {
  * package.
  * (regression test for bug 61270 Wrong delta when copying a package that overrides another package)
  */
-public void testCopyAndOverwritePackage() throws CoreException {
+public void testCopyAndOverwritePackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src1", "src2"}, "bin");
 		createFolder("/P/src1/p");
@@ -1383,7 +1383,7 @@ public void testCopyAndOverwritePackage() throws CoreException {
  * Test that deltas are generated when a compilation unit not on the classpath is added
  * and removed from a package via core API.
  */
-public void testCUNotOnClasspath() throws CoreException {
+public void testCUNotOnClasspath() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {}, "bin");
 		createFolder("/P/src/p");
@@ -1424,7 +1424,7 @@ public void testCUNotOnClasspath() throws CoreException {
  * a removed  pkg fragment root delta.
  * (regression test for bug 27068 Elements in the Package Explorer are displayed but don't more exist [package explorer])
  */
-public void testDeleteInnerJar() throws CoreException {
+public void testDeleteInnerJar() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"/P/lib/x.jar"}, "bin");
 		createFolder("/P/lib");
@@ -1468,10 +1468,10 @@ public void testDeleteNonJavaFolder() throws CoreException {
  * Ensures that changing a project's classpath and deleting it in an IWorkspaceRunnable doesn't throw an NPE
  * (regression test for bug 148015 NPE in log from ClasspathChange)
  */
-public void testDeleteProjectAfterChangingClasspath() throws CoreException {
+public void testDeleteProjectAfterChangingClasspath() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		final IJavaProject project = createJavaProject("P");
-		IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
+		IWorkspaceRunnable runnable = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				project.setRawClasspath(createClasspath("P", new String[] {"/P/src", ""}), new Path("/P/bin"), monitor);
 				deleteProject("P");
@@ -1493,14 +1493,14 @@ public void testDeleteProjectAfterChangingClasspath() throws CoreException {
  * in an IWorkspaceRunnable doesn't throw a NullPointerException
  * (regression test for bug 25197 NPE importing external plugins)
  */
-public void testDeleteProjectSetCPAnotherProject() throws CoreException {
+public void testDeleteProjectSetCPAnotherProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final IJavaProject project = createJavaProject("P1", new String[] {"src"}, "bin");
 	createJavaProject("P2", new String[] {}, "");
 
 	try {
 		startDeltas();
 		JavaCore.run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					deleteProject("P2");
 					project.setRawClasspath(
@@ -1525,7 +1525,7 @@ public void testDeleteProjectSetCPAnotherProject() throws CoreException {
 		deleteProject("P2");
 	}
 }
-public void testDiscardWorkingCopy1() throws CoreException { // renamed from testDestroyWorkingCopy
+public void testDiscardWorkingCopy1() throws CoreException { // renamed from testDestroyWorkingCopy //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		createJavaProject("P", new String[] {""}, "");
@@ -1550,7 +1550,7 @@ public void testDiscardWorkingCopy1() throws CoreException { // renamed from tes
 		deleteProject("P");
 	}
 }
-public void testDiscardWorkingCopy2() throws CoreException { // renamed from testDestroySharedWorkingCopy
+public void testDiscardWorkingCopy2() throws CoreException { // renamed from testDestroySharedWorkingCopy //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		createJavaProject("P", new String[] {""}, "");
@@ -1581,7 +1581,7 @@ public void testDiscardWorkingCopy2() throws CoreException { // renamed from tes
  * in a batch operation.
  * (regression test for bug 178213 Compilation Unit not shown in Package Explorer after a rename
  */
-public void testDiscardWorkingCopy3() throws CoreException {
+public void testDiscardWorkingCopy3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		createJavaProject("P", new String[] {""}, "");
@@ -1592,7 +1592,7 @@ public void testDiscardWorkingCopy3() throws CoreException {
 		copy = unit.getWorkingCopy(new WorkingCopyOwner() {}, null);
 		startDeltas();
 		final ICompilationUnit copyToDiscard = copy;
-		JavaCore.run(new IWorkspaceRunnable(){
+		JavaCore.run(new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				getPackage("/P").createCompilationUnit("Y.java", "public class Y {}", false/*don't force*/, monitor);
 				getWorkspace().checkpoint(false/*don't build*/);
@@ -1623,12 +1623,12 @@ public void testDiscardWorkingCopy3() throws CoreException {
  * Ensures that a delta listener that asks for POST_CHANGE events gets those events
  * and no others.
  */
-public void testListenerPostChange() throws CoreException {
+public void testListenerPostChange() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DeltaListener listener = new DeltaListener(ElementChangedEvent.POST_CHANGE);
 	ICompilationUnit wc = null;
 	try {
 		createJavaProject("P", new String[] {""}, "");
-		JavaCore.addElementChangedListener(listener, ElementChangedEvent.POST_CHANGE);
+		JavaCore.addElementChangedListener(listener, ElementChangedEvent.POST_CHANGE); //FLLDCIM: MARK — T31 JAVA_ELEMENT_DELTA_ADAPTER CALL
 
 		// cu creation
 		IPackageFragment pkg = getPackage("P");
@@ -1734,12 +1734,12 @@ public void testListenerPostChange() throws CoreException {
  * Ensures that a delta listener that asks for POST_RECONCILE events gets those events
  * and no others.
  */
-public void testListenerReconcile() throws CoreException {
+public void testListenerReconcile() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DeltaListener listener = new DeltaListener(ElementChangedEvent.POST_RECONCILE);
 	ICompilationUnit wc = null;
 	try {
 		createJavaProject("P", new String[] {""}, "");
-		JavaCore.addElementChangedListener(listener, ElementChangedEvent.POST_RECONCILE);
+		JavaCore.addElementChangedListener(listener, ElementChangedEvent.POST_RECONCILE); //FLLDCIM: MARK — T31 JAVA_ELEMENT_DELTA_ADAPTER CALL
 
 		// cu creation
 		IPackageFragment pkg = getPackage("P");
@@ -1828,12 +1828,12 @@ public void testListenerReconcile() throws CoreException {
  * results in a java delta with the resource delta.
  * (regression test for 11210 ResourceDeltas are lost when merging deltas)
  */
-public void testMergeResourceDeltas() throws CoreException {
+public void testMergeResourceDeltas() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P", new String[] {""}, "");
 		ResourcesPlugin.getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					// an operation that creates a java delta without firing it
 					IPackageFragment pkg = getPackageFragment("P", "", "");
@@ -1867,7 +1867,7 @@ public void testMergeResourceDeltas() throws CoreException {
 
 
 }
-public void testModifyMethodBodyAndSave() throws CoreException {
+public void testModifyMethodBodyAndSave() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit workingCopy = null;
 	try {
 		createJavaProject("P", new String[] {""}, "");
@@ -1965,7 +1965,7 @@ public void testModifyOutputLocation3() throws CoreException {
  * Ensures that modifying a custom output location (i.e. simulate a build) doesn't report any delta.
  * (regression test for bug 32629 DeltaProcessor walking some binary output)
  */
-public void testModifyOutputLocation4() throws CoreException {
+public void testModifyOutputLocation4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P");
 		editFile(
@@ -1993,14 +1993,14 @@ public void testModifyOutputLocation4() throws CoreException {
 /**
  * bug 18953
  */
-public void testModifyProjectDescriptionAndRemoveFolder() throws CoreException {
+public void testModifyProjectDescriptionAndRemoveFolder() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P");
 		final IProject projectFolder = project.getProject();
 		final IFolder folder = createFolder("/P/folder");
 
 		getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					startDeltas();
 					IProjectDescription desc = projectFolder.getDescription();
@@ -2027,7 +2027,7 @@ public void testModifyProjectDescriptionAndRemoveFolder() throws CoreException {
  * Move a cu from a package to its enclosing package.
  * (regression test for bug 7033 Stale packages view after moving compilation units)
  */
-public void testMoveCuInEnclosingPkg() throws CoreException {
+public void testMoveCuInEnclosingPkg() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {""}, "");
 		createFolder("P/x/y");
@@ -2070,7 +2070,7 @@ public void testMoveCuInEnclosingPkg() throws CoreException {
  * Move a non-java resources that is under a dot-named folder.
  * (regression test for bug 6687 Wrong JavaModel refresh after drag and drop outside folder with dot in name)
  */
-public void testMoveResInDotNamedFolder() throws CoreException {
+public void testMoveResInDotNamedFolder() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {}, "");
 		IProject project = getProject("P");
@@ -2094,7 +2094,7 @@ public void testMoveResInDotNamedFolder() throws CoreException {
  * Move 2 non-java resources that were outside classpath to a package fragment root.
  * (regression test for bug 28583 Missing one unit in package view)
  */
-public void testMoveTwoResInRoot() throws CoreException {
+public void testMoveTwoResInRoot() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, "bin");
 		final IFile f1 = createFile("P/X.java", "public class X {}");
@@ -2102,7 +2102,7 @@ public void testMoveTwoResInRoot() throws CoreException {
 
 		startDeltas();
 		JavaCore.run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					f1.move(new Path("/P/src/X.java"), true, null);
 					f2.move(new Path("/P/src/Y.java"), true, null);
@@ -2128,7 +2128,7 @@ public void testMoveTwoResInRoot() throws CoreException {
  * Test that deltas are generated when a nested package fragment root is removed
  * and added via core API.
  */
-public void testNestedRootParentMove() throws CoreException {
+public void testNestedRootParentMove() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"nested2/src", "nested/src"}, "bin");
 		deleteFolder("/P/nested2/src");
@@ -2153,7 +2153,7 @@ public void testNestedRootParentMove() throws CoreException {
  * Test that deltas are generated when a non-java file is
  * removed and added
  */
-public void testNonJavaResourceRemoveAndAdd() throws CoreException {
+public void testNonJavaResourceRemoveAndAdd() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, "bin");
 		IFile file = createFile("/P/src/read.txt", "");
@@ -2227,7 +2227,7 @@ public void testOpenNonJavaProject() throws CoreException {
  * Ensures that .classpath overwrite is taken into account.
  * (regression test for bug 21420 Changing .classpath doesn't update JDT)
  */
-public void testOverwriteClasspath() throws CoreException {
+public void testOverwriteClasspath() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {""}, "");
 		createFolder("P/src");
@@ -2240,7 +2240,7 @@ public void testOverwriteClasspath() throws CoreException {
 			"    <classpathentry kind=\"output\" path=\"bin\"/>\n" +
 			"</classpath>");
 		startDeltas();
-		IWorkspaceRunnable run = new IWorkspaceRunnable() {
+		IWorkspaceRunnable run = new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 			public void run(IProgressMonitor monitor) throws CoreException {
 				IFile oldCP = newCP.getParent().getFile(new Path(".classpath"));
 				deleteResource(oldCP);
@@ -2265,7 +2265,7 @@ public void testOverwriteClasspath() throws CoreException {
  * Test that deltas are generated when package fragments are added
  * and removed from a root via core API.
  */
-public void testPackageFragmentAddAndRemove() throws CoreException {
+public void testPackageFragmentAddAndRemove() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P", new String[] {"src"}, "bin");
@@ -2297,7 +2297,7 @@ public void testPackageFragmentAddAndRemove() throws CoreException {
  * Test that deltas are generated when a package fragment is moved
  * via core API.
  */
-public void testPackageFragmentMove() throws CoreException {
+public void testPackageFragmentMove() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, "bin");
 		IFolder folder = createFolder("/P/src/p");
@@ -2320,7 +2320,7 @@ public void testPackageFragmentMove() throws CoreException {
  * Test that deltas are generated when a package fragment root is removed
  * and added via core API.
  */
-public void testPackageFragmentRootRemoveAndAdd() throws CoreException {
+public void testPackageFragmentRootRemoveAndAdd() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P", new String[] {"src"}, "bin");
@@ -2350,7 +2350,7 @@ public void testPackageFragmentRootRemoveAndAdd() throws CoreException {
  * Remove then add a binary project (in a workspace runnable).
  * (regression test for 24775 Wrong delta when replacing binary project with source project)
  */
-public void testRemoveAddBinaryProject() throws CoreException {
+public void testRemoveAddBinaryProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {""}, "");
 		createFile("P/lib.jar", "");
@@ -2363,7 +2363,7 @@ public void testRemoveAddBinaryProject() throws CoreException {
 
 		startDeltas();
 		getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					deleteProject("P");
 					createJavaProject("P", new String[] {""}, "");
@@ -2387,12 +2387,12 @@ public void testRemoveAddBinaryProject() throws CoreException {
 /*
  * Remove then add a java project (in a workspace runnable).
  */
-public void testRemoveAddJavaProject() throws CoreException {
+public void testRemoveAddJavaProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P", new String[] {""}, "");
 		getWorkspace().run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					deleteProject("P");
 					createJavaProject("P", new String[] {""}, "");
@@ -2418,7 +2418,7 @@ public void testRemoveAddJavaProject() throws CoreException {
  * (regression test for bug 24517 type view does not notice when jar disappears)
 
  */
-public void testRemoveCPEntryAndRoot1() throws CoreException {
+public void testRemoveCPEntryAndRoot1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject project = createJavaProject("P", new String[] {"src"}, "bin");
 
@@ -2427,7 +2427,7 @@ public void testRemoveCPEntryAndRoot1() throws CoreException {
 
 		startDeltas();
 		JavaCore.run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					editFile(
 						"/P/.classpath",
@@ -2455,7 +2455,7 @@ public void testRemoveCPEntryAndRoot1() throws CoreException {
  * (regression test for bug 24517 type view does not notice when jar disappears)
 
  */
-public void testRemoveCPEntryAndRoot2() throws CoreException {
+public void testRemoveCPEntryAndRoot2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		final IJavaProject project = createJavaProject("P", new String[] {"src"}, "bin");
 
@@ -2464,7 +2464,7 @@ public void testRemoveCPEntryAndRoot2() throws CoreException {
 
 		startDeltas();
 		JavaCore.run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					project.setRawClasspath(new IClasspathEntry[] {}, null);
 					deleteFolder("/P/src");
@@ -2487,7 +2487,7 @@ public void testRemoveCPEntryAndRoot2() throws CoreException {
  * (regression test for bug 24517 type view does not notice when jar disappears)
 
  */
-public void testRemoveCPEntryAndRoot3() throws CoreException {
+public void testRemoveCPEntryAndRoot3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		final IJavaProject project = createJavaProject("P", new String[] {"src"}, "bin");
 
@@ -2496,7 +2496,7 @@ public void testRemoveCPEntryAndRoot3() throws CoreException {
 
 		startDeltas();
 		JavaCore.run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					deleteFolder("/P/src");
 					project.setRawClasspath(new IClasspathEntry[] {}, null);
@@ -2519,7 +2519,7 @@ public void testRemoveCPEntryAndRoot3() throws CoreException {
  * Removes the .classpath file from a Java project.
  * (regression test https://bugs.eclipse.org/bugs/show_bug.cgi?id=211290 )
  */
-public void testRemoveDotClasspathFile() throws CoreException {
+public void testRemoveDotClasspathFile() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P", new String[] {"src"}, "bin");
@@ -2544,7 +2544,7 @@ public void testRemoveDotClasspathFile() throws CoreException {
 /*
  * Ensures that removing a library entry for an existing external library folder triggers the correct delta
  */
-public void testRemoveExternalLibFolder1() throws CoreException {
+public void testRemoveExternalLibFolder1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib");
 		startDeltas();
@@ -2552,7 +2552,7 @@ public void testRemoveExternalLibFolder1() throws CoreException {
 		setClasspath(p, new IClasspathEntry[] {});
 		assertDeltas(
 			"Unexpected delta",
-			"P[+]: {}\n" +
+			"P[+]: {}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
 			"	"+ getExternalPath() + "externalLib[*]: {REMOVED FROM CLASSPATH}\n" +
@@ -2568,14 +2568,14 @@ public void testRemoveExternalLibFolder1() throws CoreException {
 /*
  * Ensures that removing a library entry for a non-existing external library folder triggers the correct delta
  */
-public void testRemoveExternalLibFolder2() throws CoreException {
+public void testRemoveExternalLibFolder2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib")}, "");
 		setClasspath(p, new IClasspathEntry[] {});
 		assertDeltas(
 			"Unexpected delta",
-			"P[+]: {}\n" +
+			"P[+]: {}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
 			"	"+ getExternalPath() + "externalLib[*]: {REMOVED FROM CLASSPATH}\n" +
@@ -2590,7 +2590,7 @@ public void testRemoveExternalLibFolder2() throws CoreException {
 /*
  * Ensures that removing an external library folder referenced by a library entry triggers the correct delta
  */
-public void testRemoveExternalLibFolder3() throws CoreException {
+public void testRemoveExternalLibFolder3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFolder("externalLib");
 		startDeltas();
@@ -2599,7 +2599,7 @@ public void testRemoveExternalLibFolder3() throws CoreException {
 		refresh(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[+]: {}\n" +
+			"P[+]: {}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"P[*]: {CHILDREN}\n" +
 			"	"+ getExternalPath() + "externalLib[-]: {}"
@@ -2615,7 +2615,7 @@ public void testRemoveExternalLibFolder3() throws CoreException {
  * Ensures that removing an external library folder referenced by a library entry after a restart
  * triggers the correct delta
  */
-public void testRemoveExternalLibFolder4() throws CoreException {
+public void testRemoveExternalLibFolder4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		simulateExitRestart();
 		createExternalFolder("externalLib");
@@ -2625,7 +2625,7 @@ public void testRemoveExternalLibFolder4() throws CoreException {
 		refresh(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[+]: {}\n" +
+			"P[+]: {}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"\n" +
 			"P[*]: {CHILDREN}\n" +
 			"	"+ getExternalPath() + "externalLib[-]: {}"
@@ -2640,7 +2640,7 @@ public void testRemoveExternalLibFolder4() throws CoreException {
 /*
  * Ensures that removing a library entry for an existing external ZIP archive triggers the correct delta
  */
-public void testRemoveZIPArchive1() throws CoreException {
+public void testRemoveZIPArchive1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFile("externalLib.abc", "");
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib.abc")}, "");
@@ -2650,7 +2650,7 @@ public void testRemoveZIPArchive1() throws CoreException {
 		setClasspath(p, new IClasspathEntry[] {});
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "externalLib.abc[*]: {REMOVED FROM CLASSPATH}\n" +
 			"	ResourceDelta(/P/.classpath)[*]"
 		);
@@ -2673,7 +2673,7 @@ public void testRemoveZIPArchive2() throws CoreException {
 		setClasspath(p, new IClasspathEntry[] {});
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" +
+			"P[*]: {CHILDREN | CONTENT | RAW CLASSPATH CHANGED | RESOLVED CLASSPATH CHANGED}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "externalLib.abc[*]: {REMOVED FROM CLASSPATH}\n" +
 			"	ResourceDelta(/P/.classpath)[*]"		);
 	} finally {
@@ -2685,7 +2685,7 @@ public void testRemoveZIPArchive2() throws CoreException {
 /*
  * Ensures that removing an external ZIP archive referenced by a library entry triggers the correct delta
  */
-public void testRemoveZIPArchive3() throws CoreException {
+public void testRemoveZIPArchive3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createExternalFile("externalLib.abc", "");
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {getExternalResourcePath("externalLib.abc")}, "");
@@ -2696,7 +2696,7 @@ public void testRemoveZIPArchive3() throws CoreException {
 		refreshExternalArchives(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n" +
+			"P[*]: {CHILDREN}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "externalLib.abc[-]: {}"
 		);
 	} finally {
@@ -2710,7 +2710,7 @@ public void testRemoveZIPArchive3() throws CoreException {
  * Ensures that removing an external ZIP archive referenced by a library entry after a restart
  * triggers the correct delta
  */
-public void testRemoveZIPArchive4() throws CoreException {
+public void testRemoveZIPArchive4() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		simulateExitRestart();
 		createExternalFile("externalLib.abc", "");
@@ -2722,7 +2722,7 @@ public void testRemoveZIPArchive4() throws CoreException {
 		refreshExternalArchives(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n" +
+			"P[*]: {CHILDREN}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "externalLib.abc[-]: {}"
 		);
 	} finally {
@@ -2735,7 +2735,7 @@ public void testRemoveZIPArchive4() throws CoreException {
 /*
  * Ensures that removing a library entry for an existing internal ZIP archive triggers the correct delta
  */
-public void testRemoveZIPArchive5() throws CoreException {
+public void testRemoveZIPArchive5() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[0], new String[] {"/P/internalLib.abc"}, "");
 		createFile("/P/internalLib.abc", "");
@@ -2810,7 +2810,7 @@ public void testRemoveNonJavaProject() throws CoreException {
  * a delta on this other project.
  * (regression test for bug 19058 Closing non-java project doesn't remove root from java project)
  */
-public void testRemoveNonJavaProjectUpdateDependent1() throws CoreException {
+public void testRemoveNonJavaProjectUpdateDependent1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("SP");
 		createFile("/SP/x.jar", "");
@@ -2855,7 +2855,7 @@ public void testRemoveNonJavaProjectUpdateDependent2() throws CoreException {
  * a delta on this other project. Case of the removal being done right after start-up.
  * (regression test for bug 31377 NullPointerException on binary import)
  */
-public void testRemoveNonJavaProjectUpdateDependent3() throws CoreException {
+public void testRemoveNonJavaProjectUpdateDependent3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("SP");
 		createFile("/SP/x.jar", "");
@@ -2869,7 +2869,7 @@ public void testRemoveNonJavaProjectUpdateDependent3() throws CoreException {
 
 		startDeltas();
 		JavaCore.run(
-			new IWorkspaceRunnable() {
+			new IWorkspaceRunnable() { //FLLDCIM: MARK — T09  ANONYMOUS
 				public void run(IProgressMonitor monitor) throws CoreException {
 					deleteProject("SP");
 				}
@@ -2891,7 +2891,7 @@ public void testRemoveNonJavaProjectUpdateDependent3() throws CoreException {
  * Remove a non-Java resource .jar from a project, this .jar being on the classpath of another project
  * (regression test for bug 185310 Removing internal jar referenced from another project doesn't update Package Explorer)
  */
-public void testRemoveNonJavaResourceJar() throws CoreException {
+public void testRemoveNonJavaResourceJar() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P1", new String[] {"src"}, "bin");
 		createFile("/P1/test.jar", "");
@@ -2916,7 +2916,7 @@ public void testRemoveNonJavaResourceJar() throws CoreException {
  * Rename a java project.
  * (regression test for bug 7030 IllegalArgumentException renaming project)
  */
-public void testRenameJavaProject() throws CoreException {
+public void testRenameJavaProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		startDeltas();
 		createJavaProject("P", new String[] {""}, "");
@@ -2934,7 +2934,7 @@ public void testRenameJavaProject() throws CoreException {
 		deleteProject("P1");
 	}
 }
-public void testRenameMethodAndSave() throws CoreException {
+public void testRenameMethodAndSave() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit workingCopy = null;
 	try {
 		createJavaProject("P", new String[] {""}, "");
@@ -2998,7 +2998,7 @@ public void testRenameNonJavaProject() throws CoreException {
  * Rename an outer pkg fragment.
  * (regression test for bug 24685 Inner package fragments gets deleted - model out of synch)
  */
-public void testRenameOuterPkgFragment() throws CoreException {
+public void testRenameOuterPkgFragment() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {""}, "");
 		createFolder("P/x/y");
@@ -3025,7 +3025,7 @@ public void testRenameOuterPkgFragment() throws CoreException {
  * Ensures that saving a working copy doesn't change the underlying resource.
  * (only commit should do so)
  */
-public void testSaveWorkingCopy() throws CoreException {
+public void testSaveWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		createJavaProject("P", new String[] {""}, "");
@@ -3063,7 +3063,7 @@ public void testSaveWorkingCopy() throws CoreException {
 /**
  * Ensure that a classpath change is detected even on a project which got closed
  */
-public void testSetClasspathOnFreshProject() throws CoreException {
+public void testSetClasspathOnFreshProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("LibProj");
 		createFile("LibProj/mylib.jar", "");
@@ -3099,7 +3099,7 @@ public void testSetClasspathOnFreshProject() throws CoreException {
  * Ensures that setting a classpath variable when there is exactly one project
  * triggers a java element delta.
  */
-public void testSetClasspathVariable1() throws CoreException {
+public void testSetClasspathVariable1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("LibProj");
 		createFile("LibProj/mylib.jar", "");
@@ -3124,7 +3124,7 @@ public void testSetClasspathVariable1() throws CoreException {
  * Ensures that setting a classpath variable when there are more than one project
  * triggers a java element delta.
  */
-public void testSetClasspathVariable2() throws CoreException {
+public void testSetClasspathVariable2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createProject("LibProj");
 		createFile("LibProj/mylib.jar", "");
@@ -3154,7 +3154,7 @@ public void testSetClasspathVariable2() throws CoreException {
 /**
  * Ensures that committing a working copy fires a fine grained delta.
  */
-public void testWorkingCopyCommit() throws CoreException {
+public void testWorkingCopyCommit() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {""}, "");
 		createFolder("P/x/y");
@@ -3187,7 +3187,7 @@ public void testWorkingCopyCommit() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testChangeExternalJar() throws CoreException {
+public void testChangeExternalJar() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String jarName = "externalLib.jar";
 	try {
 		createExternalFile(jarName, "");
@@ -3199,7 +3199,7 @@ public void testChangeExternalJar() throws CoreException {
 		refresh(p);
 		assertDeltas(
 			"Unexpected delta",
-			"P[*]: {CHILDREN}\n" +
+			"P[*]: {CHILDREN}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"	"+ getExternalPath() + "externalLib.jar[*]: {CONTENT | ARCHIVE CONTENT CHANGED}"
 		);
 	} finally {
@@ -3230,7 +3230,7 @@ public void testBug455882() {
 	);
 }
 // See: https://github.com/eclipse-jdt/eclipse.jdt.core/issues/486
-public void testClasspathAttributesDeltaGh486() throws Exception {
+public void testClasspathAttributesDeltaGh486() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		IJavaProject p = createJavaProject("P", new String[] {"src"}, new String[0], "bin");
 		startDeltas();
@@ -3261,10 +3261,10 @@ public void testClasspathAttributesDeltaGh486() throws Exception {
 	}
 }
 
-private void setJavaDocLocation(IJavaProject p, String javadocLocation) throws CoreException {
+private void setJavaDocLocation(IJavaProject p, String javadocLocation) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IClasspathEntry[] classpath = p.getRawClasspath();
 	IClasspathEntry[] newClasspath = Arrays.copyOf(classpath, classpath.length);
-	for (int i = 0; i < classpath.length; ++i) {
+	for (int i = 0; i < classpath.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IClasspathEntry entry = classpath[i];
 		if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
 			IClasspathAttribute[] attributes = {};

@@ -141,7 +141,7 @@ public abstract class AbstractClassFile extends Openable implements IClassFile, 
 	 * which has a source range that encloses <code>position</code>
 	 * according to <code>mapper</code>.
 	 */
-	protected IJavaElement findElement(IJavaElement elt, int position, SourceMapper mapper) {
+	protected IJavaElement findElement(IJavaElement elt, int position, SourceMapper mapper) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SourceRange range = mapper.getSourceRange(elt);
 		if (range == null || position < range.getOffset() || range.getOffset() + range.getLength() - 1 < position) {
 			return null;
@@ -149,7 +149,7 @@ public abstract class AbstractClassFile extends Openable implements IClassFile, 
 		if (elt instanceof IParent) {
 			try {
 				IJavaElement[] children = ((IParent) elt).getChildren();
-				for (IJavaElement child : children) {
+				for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IJavaElement match = findElement(child, position, mapper);
 					if (match != null) {
 						return match;
@@ -170,7 +170,7 @@ public abstract class AbstractClassFile extends Openable implements IClassFile, 
 	 * @return some kind of unique class file identifier based on path information only. The return value may look like
 	 *         a path in a file system, but is not guaranteed to be a valid path that could be resolved via NIO API.
 	 */
-	public String getPathIdentifier() {
+	public String getPathIdentifier() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaElement pkg = getParent();
 		if (pkg instanceof JarPackageFragment) {
 			JarPackageFragmentRoot root = (JarPackageFragmentRoot) pkg.getParent();
@@ -179,10 +179,10 @@ public abstract class AbstractClassFile extends Openable implements IClassFile, 
 			String rootPath = root.getPath().toOSString();
 			if (org.eclipse.jdt.internal.compiler.util.Util.isJrt(rootPath)) {
 				// container + module + class
-				return rootPath + '/' + root.getElementName() + '/' +entryName;
+				return rootPath + '/' + root.getElementName() + '/' +entryName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			} else {
 				// container + class
-				return rootPath + '/' + entryName;
+				return rootPath + '/' + entryName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} else {
 			IFile file = (IFile) resource();
@@ -191,7 +191,7 @@ public abstract class AbstractClassFile extends Openable implements IClassFile, 
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public byte[] getBytes() throws JavaModelException {
 		JavaElement pkg = getParent();
 		if (pkg instanceof JarPackageFragment) {
@@ -216,7 +216,7 @@ public abstract class AbstractClassFile extends Openable implements IClassFile, 
 			return Util.getResourceContentsAsByteArray(file);
 		}
 	}
-	protected byte[] getClassFileContent(JarPackageFragmentRoot root, String className) throws CoreException, IOException {
+	protected byte[] getClassFileContent(JarPackageFragmentRoot root, String className) throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		byte[] contents = null;
 		String rootPath = root.getPath().toOSString();
 		if (org.eclipse.jdt.internal.compiler.util.Util.isJrt(rootPath)) {
@@ -277,7 +277,7 @@ public abstract class AbstractClassFile extends Openable implements IClassFile, 
 			return getUnderlyingResource();
 		}
 	}
-	public IJavaElement getElementAtConsideringSibling(int position) throws JavaModelException {
+	public IJavaElement getElementAtConsideringSibling(int position) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment fragment = (IPackageFragment)getParent();
 		PackageFragmentRoot root = (PackageFragmentRoot) fragment.getAncestor(IJavaElement.PACKAGE_FRAGMENT_ROOT);
 		SourceMapper mapper = root.getSourceMapper();
@@ -291,7 +291,7 @@ public abstract class AbstractClassFile extends Openable implements IClassFile, 
 			int start = -1;
 			int end = Integer.MAX_VALUE;
 			IJavaElement[] children = fragment.getChildren();
-			for (IJavaElement child : children) {
+			for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (child instanceof IOrdinaryClassFile) {
 					IOrdinaryClassFile classFile = (IOrdinaryClassFile) child;
 					String childName = classFile.getElementName();
@@ -324,7 +324,7 @@ public abstract class AbstractClassFile extends Openable implements IClassFile, 
 	}
 	@Override
 	public String getElementName() {
-		return this.name + SuffixConstants.SUFFIX_STRING_class;
+		return this.name + SuffixConstants.SUFFIX_STRING_class; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/**
 	 * @see IJavaElement
@@ -420,7 +420,7 @@ public abstract class AbstractClassFile extends Openable implements IClassFile, 
 	 * @see ICodeAssist#codeComplete(int, ICodeCompletionRequestor)
 	 * @deprecated - should use codeComplete(int, ICompletionRequestor) instead
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	@Deprecated
 	public void codeComplete(int offset, final org.eclipse.jdt.core.ICodeCompletionRequestor requestor) throws JavaModelException {
 

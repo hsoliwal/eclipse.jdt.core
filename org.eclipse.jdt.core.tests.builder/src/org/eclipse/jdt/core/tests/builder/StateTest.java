@@ -57,7 +57,7 @@ public class StateTest extends BuilderTests {
 		return buildTestSuite(StateTest.class);
 	}
 
-	public void testWriteAndReadState() throws JavaModelException, Exception {
+	public void testWriteAndReadState() throws JavaModelException, Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath interfaceProjectPath = env.addProject("Interface"); //$NON-NLS-1$
 		env.addExternalJars(interfaceProjectPath, Util.getJavaClassLibs());
 
@@ -116,10 +116,10 @@ public class StateTest extends BuilderTests {
 		writeReadAndCompareReferences(project);
 	}
 
-	public void testBug567532() throws JavaModelException, Exception {
+	public void testBug567532() throws JavaModelException, Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath project = env.addProject("Bug567532"); //$NON-NLS-1$
 		String[] classLibs = Util.getJavaClassLibs();
-		for (String jar : classLibs) {
+		for (String jar : classLibs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			env.addEntry(project,
 					JavaCore.newLibraryEntry(
 							new Path(jar),
@@ -146,7 +146,7 @@ public class StateTest extends BuilderTests {
 
 		writeReadAndCompareTestBinaryLocations(project);
 	}
-	public void testSelfAnnotatedJars() throws CoreException, IOException {
+	public void testSelfAnnotatedJars() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// derived from the same named test in ExternalAnnotation18Test:
 		IPath projectPath = env.addProject("PrjTest", "1.8"); //$NON-NLS-1$
 		IJavaProject project = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot().getProject(projectPath.segment(0)));
@@ -169,7 +169,7 @@ public class StateTest extends BuilderTests {
 				" (Ljava/lang/String;)Ljava/lang/String;\n" +
 				" (L1java/lang/String;)L1java/lang/String;\n"
 			},
-			projectLoc+"/lib/prj1.jar",
+			projectLoc+"/lib/prj1.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1.8");
 		IClasspathEntry entry = JavaCore.newLibraryEntry(
 				new Path("/PrjTest/lib/prj1.jar"),
@@ -193,7 +193,7 @@ public class StateTest extends BuilderTests {
 				" (Ljava/lang/Exception;)Ljava/lang/String;\n" +
 				" (L1java/lang/Exception;)L1java/lang/String;\n",
 			},
-			projectLoc+"/lib/prj2.jar",
+			projectLoc+"/lib/prj2.jar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1.8");
 		entry = JavaCore.newLibraryEntry(
 				new Path("/PrjTest/lib/prj2.jar"),
@@ -255,8 +255,8 @@ public class StateTest extends BuilderTests {
 		State readState = JavaBuilder.readState(project, new DataInputStream(new ByteArrayInputStream(bytes)));
 		assertArrayEquals(savedState.binaryLocations, readState.binaryLocations);
 		// beyond this point we know that both arrays have the same length
-		for (int i=0; i < savedState.binaryLocations.length; i++) {
-			assertTrue("comparing eea locations of "+savedState.binaryLocations[i], savedState.binaryLocations[i].externalAnnotationsEquals(readState.binaryLocations[i]));
+		for (int i=0; i < savedState.binaryLocations.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			assertTrue("comparing eea locations of "+savedState.binaryLocations[i], savedState.binaryLocations[i].externalAnnotationsEquals(readState.binaryLocations[i])); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		assertEquals(readState, savedState);
@@ -282,7 +282,7 @@ public class StateTest extends BuilderTests {
 	private void assertEqualLookupTables(Map<String, ReferenceCollection> expectation, Map<String, ReferenceCollection> actual) {
 		assertEquals(expectation.size(), actual.size());
 		Set<String> expectedKeys = expectation.keySet();
-		for (String key : expectedKeys) {
+		for (String key : expectedKeys) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ReferenceCollection actualReferenceCollection = actual.get(key);
 			ReferenceCollection expectedReferenceCollection = expectation.get(key);
 			assertEqualReferenceCollections(expectedReferenceCollection, actualReferenceCollection);

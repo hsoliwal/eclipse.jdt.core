@@ -141,7 +141,7 @@ public int numberOfMatches; // (numberOfMatches - 1) is the last unit in matches
 public PossibleMatch[] matchesToProcess;
 public PossibleMatch currentPossibleMatch;
 
-/* package */HashMap<SearchMatch, Binding> matchBinding = new HashMap<>();
+/* package */HashMap<SearchMatch, Binding> matchBinding = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 /*
  * Time spent in the IJavaSearchResultCollector
  */
@@ -174,7 +174,7 @@ public static class WorkingCopyDocument extends JavaSearchDocument {
 	}
 	@Override
 	public String toString() {
-		return "WorkingCopyDocument for " + getPath(); //$NON-NLS-1$
+		return "WorkingCopyDocument for " + getPath(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 
@@ -186,14 +186,14 @@ public static class WrappedCoreException extends RuntimeException {
 	}
 }
 
-public static SearchDocument[] addWorkingCopies(SearchPattern pattern, SearchDocument[] indexMatches, org.eclipse.jdt.core.ICompilationUnit[] copies, SearchParticipant participant) {
+public static SearchDocument[] addWorkingCopies(SearchPattern pattern, SearchDocument[] indexMatches, org.eclipse.jdt.core.ICompilationUnit[] copies, SearchParticipant participant) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (copies == null) return indexMatches;
 	// working copies take precedence over corresponding compilation units
 	HashMap<String, WorkingCopyDocument> workingCopyDocuments = workingCopiesThatCanSeeFocus(copies, pattern, participant);
 	if (workingCopyDocuments.size() == 0) return indexMatches;
 	SearchDocument[] matches = null;
 	int length = indexMatches.length;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		SearchDocument searchDocument = indexMatches[i];
 		if (searchDocument.getParticipant() == participant) {
 			SearchDocument workingCopyDocument = workingCopyDocuments.remove(searchDocument.getPath());
@@ -212,7 +212,7 @@ public static SearchDocument[] addWorkingCopies(SearchPattern pattern, SearchDoc
 	if (remainingWorkingCopiesSize != 0) {
 		System.arraycopy(matches, 0, matches = new SearchDocument[length+remainingWorkingCopiesSize], 0, length);
 		int index = length;
-		for (WorkingCopyDocument element : workingCopyDocuments.values()) {
+		for (WorkingCopyDocument element : workingCopyDocuments.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			matches[index++] = element;
 		}
 	}
@@ -235,9 +235,9 @@ public static void setIndexQualifierQuery(SearchPattern pattern, char[] queries)
  * Returns the working copies that can see the given focus.
  */
 private static HashMap<String, WorkingCopyDocument> workingCopiesThatCanSeeFocus(org.eclipse.jdt.core.ICompilationUnit[] copies, SearchPattern pattern, SearchParticipant participant) {
-	if (copies == null) return new HashMap<>();
-	HashMap<String, WorkingCopyDocument> result = new HashMap<>();
-	for (org.eclipse.jdt.core.ICompilationUnit workingCopy : copies) {
+	if (copies == null) return new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	HashMap<String, WorkingCopyDocument> result = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	for (org.eclipse.jdt.core.ICompilationUnit workingCopy : copies) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IPath projectOrJar = MatchLocator.getProjectOrJar(workingCopy).getPath();
 		if (pattern.focus == null || IndexSelector.canSeeFocus(pattern, projectOrJar) != IndexSelector.PROJECT_CAN_NOT_SEE_FOCUS) {
 			result.put(
@@ -249,7 +249,7 @@ private static HashMap<String, WorkingCopyDocument> workingCopiesThatCanSeeFocus
 	return result;
 }
 
-public static IBinaryType classFileReader(IType type) {
+public static IBinaryType classFileReader(IType type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IOrdinaryClassFile classFile = type.getClassFile();
 	JavaModelManager manager = JavaModelManager.getJavaModelManager();
 	if (classFile.isOpen())
@@ -271,7 +271,7 @@ public static IBinaryType classFileReader(IType type) {
 			try {
 				IPath zipPath = root.getPath();
 				if (JavaModelManager.ZIP_ACCESS_VERBOSE) {
-					trace("(" + Thread.currentThread() + ") [MatchLocator.classFileReader()] Creating ZipFile on " + zipPath); //$NON-NLS-1$	//$NON-NLS-2$
+					trace("(" + Thread.currentThread() + ") [MatchLocator.classFileReader()] Creating ZipFile on " + zipPath); //$NON-NLS-1$	//$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				zipFile = manager.getZipFile(zipPath);
 				String classFileName = classFile.getElementName();
@@ -302,7 +302,7 @@ public static void findIndexMatches(SearchPattern pattern, Index index, IndexQue
 }
 
 public static IJavaElement getProjectOrJar(IJavaElement element) {
-	while (!(element instanceof IJavaProject) && !(element instanceof JarPackageFragmentRoot)) {
+	while (!(element instanceof IJavaProject) && !(element instanceof JarPackageFragmentRoot)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		element = element.getParent();
 	}
 	return element;
@@ -312,7 +312,7 @@ public static IJavaElement projectOrJarFocus(SearchPattern pattern) {
 	return pattern == null || pattern.focus == null ? null : getProjectOrJar(pattern.focus);
 }
 
-public MatchLocator(
+public MatchLocator( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SearchPattern pattern,
 	SearchRequestor requestor,
 	IJavaSearchScope scope,
@@ -363,7 +363,7 @@ public void accept(IBinaryType binaryType, PackageBinding packageBinding, Access
  * Add an additional compilation unit into the loop
  *  ->  build compilation unit declarations, their bindings and record their results.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void accept(ICompilationUnit sourceUnit, AccessRestriction accessRestriction) {
 	// Switch the current policy and compilation result for this unit to the requested one.
 	CompilationResult unitResult = new CompilationResult(sourceUnit, 1, 1, this.options.maxProblemsPerUnit);
@@ -390,11 +390,11 @@ public void accept(ICompilationUnit sourceUnit, AccessRestriction accessRestrict
 /**
  * Add additional source types
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void accept(ISourceType[] sourceTypes, PackageBinding packageBinding, AccessRestriction accessRestriction) {
 	// case of SearchableEnvironment of an IJavaProject is used
 	ISourceType sourceType = sourceTypes[0];
-	while (sourceType.getEnclosingType() != null)
+	while (sourceType.getEnclosingType() != null) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		sourceType = sourceType.getEnclosingType();
 	if (sourceType instanceof SourceTypeElementInfo) {
 		// get source
@@ -435,7 +435,7 @@ protected Parser basicParser() {
  * Returns the existing one if already cached.
  * Returns null if source type binding was cached.
  */
-protected BinaryTypeBinding cacheBinaryType(IType type, IBinaryType binaryType) throws JavaModelException {
+protected BinaryTypeBinding cacheBinaryType(IType type, IBinaryType binaryType) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IType enclosingType = type.getDeclaringType();
 	if (enclosingType != null)
 		cacheBinaryType(enclosingType, null); // cache enclosing types first, so that binary type can be found in lookup enviroment
@@ -466,7 +466,7 @@ protected BinaryTypeBinding cacheBinaryType(IType type, IBinaryType binaryType) 
 /*
  * Computes the super type names of the focus type if any.
  */
-protected char[][][] computeSuperTypeNames(IType focusType) {
+protected char[][][] computeSuperTypeNames(IType focusType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String fullyQualifiedName = focusType.getFullyQualifiedName();
 	int lastDot = fullyQualifiedName.lastIndexOf('.');
 	char[] qualification = lastDot == -1 ? CharOperation.NO_CHAR : fullyQualifiedName.substring(0, lastDot).toCharArray();
@@ -499,7 +499,7 @@ protected IJavaElement createHandle(LambdaExpression lambdaExpression, IJavaElem
 /**
  * Creates an IMethod from the given method declaration and type.
  */
-protected IJavaElement createHandle(AbstractMethodDeclaration method, IJavaElement parent) {
+protected IJavaElement createHandle(AbstractMethodDeclaration method, IJavaElement parent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!(parent instanceof IType)) return parent;
 
 	IType type = (IType) parent;
@@ -517,7 +517,7 @@ protected IJavaElement createHandle(AbstractMethodDeclaration method, IJavaEleme
 				argCount++;
 			}
 			char[][] argumentTypeNames = new char[argCount][];
-			for (int i = 0; i < argCount; i++) {
+			for (int i = 0; i < argCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[] typeName = null;
 				if (i == 0 && firstIsSynthetic) {
 					IType declaringType = type.getDeclaringType();
@@ -525,13 +525,13 @@ protected IJavaElement createHandle(AbstractMethodDeclaration method, IJavaEleme
 						typeName = declaringType.getFullyQualifiedName().toCharArray();
 					} else {
 						if (BasicSearchEngine.VERBOSE) {
-							trace("Null declaring type for " + type); //$NON-NLS-1$
+							trace("Null declaring type for " + type); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 					}
 				} else if (arguments != null) {
 					TypeReference typeRef = arguments[firstIsSynthetic ? i - 1 : i].type;
 					typeName = CharOperation.concatWith(typeRef.getTypeName(), '.');
-					for (int k = 0, dim = typeRef.dimensions(); k < dim; k++)
+					for (int k = 0, dim = typeRef.dimensions(); k < dim; k++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						typeName = CharOperation.concat(typeName, new char[] {'[', ']'});
 				}
 				if (typeName == null) {
@@ -545,7 +545,7 @@ protected IJavaElement createHandle(AbstractMethodDeclaration method, IJavaEleme
 			if (binaryMethod == null) {
 				// when first attempt fails, try with similar matches if any...
 				PossibleMatch similarMatch = this.currentPossibleMatch.getSimilarMatch();
-				while (similarMatch != null) {
+				while (similarMatch != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					type = ((ClassFile)similarMatch.openable).getType();
 					binaryMethod = createBinaryMethodHandle(type, method.selector, argumentTypeNames);
 					if (binaryMethod != null) {
@@ -557,7 +557,7 @@ protected IJavaElement createHandle(AbstractMethodDeclaration method, IJavaEleme
 			return binaryMethod;
 		}
 		if (BasicSearchEngine.VERBOSE) {
-			trace("Not able to createHandle for the method " + //$NON-NLS-1$
+			trace("Not able to createHandle for the method " + //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					CharOperation.charToString(method.selector) + " May miss some results");  //$NON-NLS-1$
 		}
 		return null;
@@ -565,7 +565,7 @@ protected IJavaElement createHandle(AbstractMethodDeclaration method, IJavaEleme
 
 	String[] parameterTypeSignatures = new String[argCount];
 	if (arguments != null) {
-		for (int i = 0; i < argCount; i++) {
+		for (int i = 0; i < argCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference typeRef = arguments[i].type;
 			char[] typeName = CharOperation.concatWith(typeRef.getParameterizedTypeName(), '.');
 			parameterTypeSignatures[i] = Signature.createTypeSignature(typeName, false);
@@ -577,13 +577,13 @@ protected IJavaElement createHandle(AbstractMethodDeclaration method, IJavaEleme
 /*
  * Create binary method handle
  */
-IMethod createBinaryMethodHandle(IType type, char[] methodSelector, char[][] argumentTypeNames) {
+IMethod createBinaryMethodHandle(IType type, char[] methodSelector, char[][] argumentTypeNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBinaryType reader = MatchLocator.classFileReader(type);
 	if (reader != null) {
 		IBinaryMethod[] methods = reader.getMethods();
 		if (methods != null) {
 			int argCount = argumentTypeNames == null ? 0 : argumentTypeNames.length;
-			nextMethod : for (IBinaryMethod binaryMethod : methods) {
+			nextMethod : for (IBinaryMethod binaryMethod : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				char[] selector = binaryMethod.isConstructor() ? type.getElementName().toCharArray() : binaryMethod.getSelector();
 				if (CharOperation.equals(selector, methodSelector)) {
 					char[] signature = binaryMethod.getGenericSignature();
@@ -591,7 +591,7 @@ IMethod createBinaryMethodHandle(IType type, char[] methodSelector, char[][] arg
 					char[][] parameterTypes = Signature.getParameterTypes(signature);
 					if (argCount != parameterTypes.length) continue nextMethod;
 					if (argumentTypeNames != null) {
-						for (int j = 0; j < argCount; j++) {
+						for (int j = 0; j < argCount; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							char[] parameterTypeName = ClassFileMatchLocator.convertClassFileFormat(parameterTypes[j]);
 							if (!CharOperation.endsWith(Signature.toCharArray(Signature.getTypeErasure(parameterTypeName)), CharOperation.replaceOnCopy(argumentTypeNames[j], '$', '.')))
 								continue nextMethod;
@@ -612,7 +612,7 @@ IMethod createBinaryMethodHandle(IType type, char[] methodSelector, char[][] arg
 private IJavaElement createMethodHandle(IType type, String methodName, String[] parameterTypeSignatures) {
 	IMethod methodHandle = type.getMethod(methodName, parameterTypeSignatures);
 	if (methodHandle instanceof SourceMethod mh) {
-		while (this.methodHandles.contains(methodHandle)) {
+		while (this.methodHandles.contains(methodHandle)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			mh.incOccurrenceCount();
 		}
 	}
@@ -622,7 +622,7 @@ private IJavaElement createMethodHandle(IType type, String methodName, String[] 
 /**
  * Creates an IField from the given field declaration and type.
  */
-protected IJavaElement createHandle(AbstractVariableDeclaration fieldDeclaration, TypeDeclaration typeDeclaration, IJavaElement parent) {
+protected IJavaElement createHandle(AbstractVariableDeclaration fieldDeclaration, TypeDeclaration typeDeclaration, IJavaElement parent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!(parent instanceof IType)) return parent;
 	IType type = (IType) parent;
 
@@ -641,7 +641,7 @@ protected IJavaElement createHandle(AbstractVariableDeclaration fieldDeclaration
 	int occurrenceCount = 0;
 	FieldDeclaration[] fields = typeDeclaration.fields;
 	int length = fields == null ? 0 : fields.length;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (fields[i].getKind() == AbstractVariableDeclaration.INITIALIZER) {
 			occurrenceCount++;
 			if (fields[i].equals(fieldDeclaration)) break;
@@ -652,7 +652,7 @@ protected IJavaElement createHandle(AbstractVariableDeclaration fieldDeclaration
 /**
  * Create an handle for a local variable declaration (may be a local variable or type parameter).
  */
-protected IJavaElement createHandle(AbstractVariableDeclaration variableDeclaration, IJavaElement parent) {
+protected IJavaElement createHandle(AbstractVariableDeclaration variableDeclaration, IJavaElement parent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean isParameter = true;
 	switch (variableDeclaration.getKind()) {
 		case AbstractVariableDeclaration.LOCAL_VARIABLE:
@@ -682,7 +682,7 @@ protected IJavaElement createHandle(AbstractVariableDeclaration variableDeclarat
 /**
  * Create an handle for a local variable declaration (may be a local variable or type parameter).
  */
-protected IJavaElement createHandle(Annotation annotation, IAnnotatable parent) {
+protected IJavaElement createHandle(Annotation annotation, IAnnotatable parent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (parent == null) return null;
 	TypeReference typeRef = annotation.type;
 	char[][] typeName = typeRef.getTypeName();
@@ -690,7 +690,7 @@ protected IJavaElement createHandle(Annotation annotation, IAnnotatable parent) 
 	try {
 		IAnnotation[] annotations = parent.getAnnotations();
 		int length = annotations == null ? 0 : annotations.length;
-		for (int i=0; i<length; i++) {
+		for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (annotations[i].getElementName().equals(name)) {
 				return annotations[i];
 			}
@@ -699,10 +699,10 @@ protected IJavaElement createHandle(Annotation annotation, IAnnotatable parent) 
 			LocalVariable localVariable = (LocalVariable) parent;
 			IAnnotation[][] annotationsOnDimensions = localVariable.annotationsOnDimensions;
 			int noOfDimensions = annotationsOnDimensions == null ? 0 : annotationsOnDimensions.length;
-			for (int i = 0; i < noOfDimensions; ++i) {
+			for (int i = 0; i < noOfDimensions; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IAnnotation[] dimAnnotations = annotationsOnDimensions[i];
 				int noOfAnnotations = dimAnnotations.length;
-				for (int j = 0; j < noOfAnnotations; ++j) {
+				for (int j = 0; j < noOfAnnotations; ++j) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (dimAnnotations[j].getElementName().equals(name))
 						return dimAnnotations[j];
 				}
@@ -722,11 +722,11 @@ private IJavaElement[] createHandles(FieldDeclaration[] fields, TypeDeclaration 
 	if (fields != null) {
 		int length = fields.length;
 		int size = 0;
-		while (size<length && fields[size] != null) {
+		while (size<length && fields[size] != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			size++;
 		}
 		otherElements = new IJavaElement[size];
-		for (int j=0; j<size; j++) {
+		for (int j=0; j<size; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			otherElements[j] = createHandle(fields[j], type, parent);
 		}
 	}
@@ -736,11 +736,11 @@ private IJavaElement[] createHandles(FieldDeclaration[] fields, TypeDeclaration 
  * Creates hierarchy resolver if needed.
  * Returns whether focus is visible.
  */
-protected boolean createHierarchyResolver(IType focusType, PossibleMatch[] possibleMatches) {
+protected boolean createHierarchyResolver(IType focusType, PossibleMatch[] possibleMatches) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// cache focus type if not a possible match
 	char[][] compoundName = CharOperation.splitOn('.', focusType.getFullyQualifiedName().toCharArray());
 	boolean isPossibleMatch = false;
-	for (PossibleMatch possibleMatch : possibleMatches) {
+	for (PossibleMatch possibleMatch : possibleMatches) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (CharOperation.equals(possibleMatch.compoundName, compoundName)) {
 			isPossibleMatch = true;
 			break;
@@ -812,7 +812,7 @@ protected IType createTypeHandle(String simpleTypeName) {
 
 	// type name may be null for anonymous (see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=164791)
 	String classFileName = simpleTypeName.length() == 0 ? binaryTypeQualifiedName : simpleTypeName;
-	IOrdinaryClassFile classFile = binaryType.getPackageFragment().getOrdinaryClassFile(classFileName + SuffixConstants.SUFFIX_STRING_class);
+	IOrdinaryClassFile classFile = binaryType.getPackageFragment().getOrdinaryClassFile(classFileName + SuffixConstants.SUFFIX_STRING_class); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return classFile.getType();
 }
 protected boolean encloses(IJavaElement element) {
@@ -849,15 +849,15 @@ private boolean filterEnum(SearchMatch match) {
  * For example, this method will return 0x300000020 for type ref List<List<List<String>>>
  * if end position of type reference "String" equals 32.
  */
-private long findLastTypeArgumentInfo(TypeReference typeRef) {
+private long findLastTypeArgumentInfo(TypeReference typeRef) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Get last list of type arguments for parameterized qualified type reference
 	TypeReference lastTypeArgument = typeRef;
 	int depth = 0;
-	while (true) {
+	while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		TypeReference[] lastTypeArguments = null;
 		if (lastTypeArgument instanceof ParameterizedQualifiedTypeReference) {
 			ParameterizedQualifiedTypeReference pqtRef = (ParameterizedQualifiedTypeReference) lastTypeArgument;
-			for (int i=pqtRef.typeArguments.length-1; i>=0 && lastTypeArguments==null; i--) {
+			for (int i=pqtRef.typeArguments.length-1; i>=0 && lastTypeArguments==null; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				lastTypeArguments = pqtRef.typeArguments[i];
 			}
 		}
@@ -868,7 +868,7 @@ private long findLastTypeArgumentInfo(TypeReference typeRef) {
 				lastTypeArguments = ((ParameterizedSingleTypeReference)lastTypeArgument).typeArguments;
 			}
 			if (lastTypeArguments != null) {
-				for (int i=lastTypeArguments.length-1; i>=0 && last==null; i++) {
+				for (int i=lastTypeArguments.length-1; i>=0 && last==null; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					last = lastTypeArguments[i];
 				}
 			}
@@ -880,7 +880,7 @@ private long findLastTypeArgumentInfo(TypeReference typeRef) {
 	// Current type reference is not parameterized. So, it is the last type argument
 	return (((long) depth) << 32) + lastTypeArgument.sourceEnd;
 }
-protected IBinaryType getBinaryInfo(ClassFile classFile, IResource resource) throws CoreException {
+protected IBinaryType getBinaryInfo(ClassFile classFile, IResource resource) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	BinaryType binaryType = (BinaryType) classFile.getType();
 	if (classFile.isOpen())
 		return binaryType.getElementInfo(); // reuse the info from the java model cache
@@ -919,7 +919,7 @@ protected IBinaryType getBinaryInfo(ClassFile classFile, IResource resource) thr
 protected IType getFocusType() {
 	return this.scope instanceof HierarchyScope ? ((HierarchyScope) this.scope).focusType : null;
 }
-protected void getMethodBodies(CompilationUnitDeclaration unit, MatchingNodeSet nodeSet) {
+protected void getMethodBodies(CompilationUnitDeclaration unit, MatchingNodeSet nodeSet) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (unit.ignoreMethodBodies) {
 		unit.ignoreFurtherInvestigation = true;
 		return; // if initial diet parse did not work, no need to dig into method bodies.
@@ -948,7 +948,7 @@ protected void getMethodBodies(CompilationUnitDeclaration unit, MatchingNodeSet 
 		this.parser.scanner.linePtr = oldLinePtr;
 	}
 }
-protected TypeBinding getType(char[] typeKey, char[] typeName) {
+protected TypeBinding getType(char[] typeKey, char[] typeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.unitScope == null || typeName == null || typeName.length == 0) return null;
 	// Try to get binding from cache
 	Binding binding = this.bindingsByName.get(new String(typeKey));
@@ -967,7 +967,7 @@ protected TypeBinding getType(char[] typeKey, char[] typeName) {
 	this.bindingsByName.put(new String(typeKey), typeBinding);
 	return typeBinding != null && typeBinding.isValidBinding() ? typeBinding : null;
 }
-public MethodBinding getMethodBinding(MethodPattern methodPattern) {
+public MethodBinding getMethodBinding(MethodPattern methodPattern) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.unitScopeTypeBinding = null;
     MethodBinding methodBinding = getMethodBinding0(methodPattern);
     if (methodBinding != null)
@@ -982,7 +982,7 @@ public MethodBinding getMethodBinding(MethodPattern methodPattern) {
     	if (typeName != null) {
     		IType type = methodPattern.declaringType;
     		IType enclosingType = type.getDeclaringType();
-    		while (enclosingType != null) {
+    		while (enclosingType != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     			type = enclosingType;
     			enclosingType = type.getDeclaringType();
     		}
@@ -1026,9 +1026,9 @@ private MethodBinding getClosestMatchMethodBinding(MethodPattern methodPattern) 
 }
 
 private List<String> getInverseFullName(char[] qualifier, char[] simpleName) {
-	List <String> result = new ArrayList<>();
+	List <String> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	if (qualifier != null && qualifier.length > 0) {
-		result.addAll(Arrays.asList(new String(qualifier).split("\\.")));//$NON-NLS-1$
+		result.addAll(Arrays.asList(new String(qualifier).split("\\.")));//$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 		Collections.reverse(result);
 	}
 	if (simpleName != null) result.add(0, new String(simpleName));
@@ -1038,15 +1038,15 @@ private List<String> getInverseFullName(char[] qualifier, char[] simpleName) {
 /** returns the row index which has the highest column entry.
  * TODO: rewrite this code with list when (if) we move to 1.8 [with FP constructs].
  */
-private int  getMaxResult(int[][] resultsMap) {
+private int  getMaxResult(int[][] resultsMap) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int rows = resultsMap.length;
 	int cols = resultsMap[0].length;
-	List <Integer> candidates = new ArrayList<>();
+	List <Integer> candidates = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 	candidates.add(0); //default row
 
-	for (int j = 0; j < cols; ++j) {
+	for (int j = 0; j < cols; ++j) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int current = resultsMap[0][j];
-		for (int i = 1; i < rows; ++i) {
+		for (int i = 1; i < rows; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int tmp = resultsMap[i][j];
 			if (tmp < current) continue;
 			if (tmp > current)  {
@@ -1067,7 +1067,7 @@ private int mapParameter(List <String> patternParameterFullName, List <String> m
 	int methodLen = methodParameterFullName.size();
 	int size = patternLen < methodLen ? patternLen : methodLen;
 	int result = -1;
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (!patternParameterFullName.get(i).equals(methodParameterFullName.get(i))) break;
 		++result;
 	}
@@ -1077,10 +1077,10 @@ private int mapParameter(List <String> patternParameterFullName, List <String> m
  * returns an array of integers whose elements are matching indices.
  * As a special case, full match would have max value as the index.
  */
-private int[] getResultMap(Map<Integer, List<String>> patternMap, Map<Integer, List<String>> methodMap) {
+private int[] getResultMap(Map<Integer, List<String>> patternMap, Map<Integer, List<String>> methodMap) { //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES PARAMETER
 	int paramLength = methodMap.size();
 	int[] result = new int[paramLength];
-	for (int p = 0; p < paramLength; p++) {
+	for (int p = 0; p < paramLength; p++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result[p] = mapParameter(patternMap.get(p), methodMap.get(p));
 	}
 	return result;
@@ -1088,16 +1088,16 @@ private int[] getResultMap(Map<Integer, List<String>> patternMap, Map<Integer, L
 
 private Map<Integer, List<String>> getSplitNames(char[][] qualifiedNames, char[][] simpleNames) {
 	int paramLength = simpleNames.length;
-	Map <Integer, List<String>> result = new HashMap<>();
-	for (int p = 0; p < paramLength; p++) result.put(p, getInverseFullName(qualifiedNames[p], simpleNames[p]));
+	Map <Integer, List<String>> result = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
+	for (int p = 0; p < paramLength; p++) result.put(p, getInverseFullName(qualifiedNames[p], simpleNames[p])); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	return result;
 }
 
 private Map<Integer, List<String>> getSplitNames(MethodBinding method) {
 	TypeBinding[] methodParameters = method.parameters;
 	int paramLength = methodParameters == null ? 0 : methodParameters.length;
-	Map <Integer, List<String>> result = new HashMap<>();
-	for (int p = 0; p < paramLength; p++) result.put(p, getInverseFullName(methodParameters[p].qualifiedSourceName(), null)); // source is part of qualifiedSourceName here);
+	Map <Integer, List<String>> result = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
+	for (int p = 0; p < paramLength; p++) result.put(p, getInverseFullName(methodParameters[p].qualifiedSourceName(), null)); // source is part of qualifiedSourceName here); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	return result;
 }
 
@@ -1110,16 +1110,16 @@ private MethodBinding getMostApplicableMethod(List<MethodBinding> possibleMethod
 	MethodBinding result = size != 0 ? possibleMethods.get(0) : null;
 	if (size > 1) {
 		// can cache but may not be worth since this is not a common case
-		Map<Integer, List<String>> methodPatternReverseNames = getSplitNames(methodPattern.parameterQualifications, methodPattern.parameterSimpleNames);
+		Map<Integer, List<String>> methodPatternReverseNames = getSplitNames(methodPattern.parameterQualifications, methodPattern.parameterSimpleNames); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		int len = possibleMethods.size();
 		int[][] resultMaps = new int[len][];
-		for (int i = 0; i < len; ++i) resultMaps[i] = getResultMap(methodPatternReverseNames, getSplitNames(possibleMethods.get(i)));
+		for (int i = 0; i < len; ++i) resultMaps[i] = getResultMap(methodPatternReverseNames, getSplitNames(possibleMethods.get(i))); //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result = possibleMethods.get(getMaxResult(resultMaps));
 	}
 	return result;
 }
 
-private MethodBinding getMethodBinding0(MethodPattern methodPattern) {
+private MethodBinding getMethodBinding0(MethodPattern methodPattern) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.unitScope == null) return null;
 	// Try to get binding from cache
 	Binding binding = this.bindingsByPattern.get(methodPattern);
@@ -1154,7 +1154,7 @@ private boolean matchParams(MethodPattern methodPattern, int index, TypeBinding 
 	return new String(s2).endsWith(s1);
 }
 
-private MethodBinding getMethodBinding(MethodPattern methodPattern, TypeBinding declaringTypeBinding) {
+private MethodBinding getMethodBinding(MethodPattern methodPattern, TypeBinding declaringTypeBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	MethodBinding result;
 	char[][] parameterTypes = methodPattern.parameterSimpleNames;
 	if (parameterTypes == null) return null;
@@ -1164,15 +1164,15 @@ private MethodBinding getMethodBinding(MethodPattern methodPattern, TypeBinding 
 	int methodsLength = methods.length;
 	TypeVariableBinding[] refTypeVariables = referenceBinding.typeVariables();
 	int typeVarLength = refTypeVariables==null ? 0 : refTypeVariables.length;
-	List <MethodBinding> possibleMethods = new ArrayList<>(methodsLength);
-	for (int i=0; i<methodsLength; i++) {
+	List <MethodBinding> possibleMethods = new ArrayList<>(methodsLength); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (int i=0; i<methodsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		TypeBinding[] methodParameters = methods[i].parameters;
 		int paramLength = methodParameters==null ? 0 : methodParameters.length;
 		TypeVariableBinding[] methodTypeVariables = methods[i].typeVariables;
 		int methTypeVarLength = methodTypeVariables==null ? 0 : methodTypeVariables.length;
 		boolean found = false;
 		if (methodParameters != null && paramLength == paramTypeslength) {
-			for (int p=0; p<paramLength; p++) {
+			for (int p=0; p<paramLength; p++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeBinding parameter = methodParameters[p];
 				if (matchParams(methodPattern, p, parameter)) {
 					// param erasure match
@@ -1181,7 +1181,7 @@ private MethodBinding getMethodBinding(MethodPattern methodPattern, TypeBinding 
 					// type variable
 					found = false;
 					if (refTypeVariables != null) {
-						for (int v=0; v<typeVarLength; v++) {
+						for (int v=0; v<typeVarLength; v++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (!CharOperation.equals(refTypeVariables[v].sourceName, parameterTypes[p])) {
 								found = false;
 								break;
@@ -1190,7 +1190,7 @@ private MethodBinding getMethodBinding(MethodPattern methodPattern, TypeBinding 
 						}
 					}
 					if (!found && methodTypeVariables != null) {
-						for (int v=0; v<methTypeVarLength; v++) {
+						for (int v=0; v<methTypeVarLength; v++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (!CharOperation.equals(methodTypeVariables[v].sourceName, parameterTypes[p])) {
 								found = false;
 								break;
@@ -1212,7 +1212,7 @@ private MethodBinding getMethodBinding(MethodPattern methodPattern, TypeBinding 
 protected boolean hasAlreadyDefinedType(CompilationUnitDeclaration parsedUnit) {
 	CompilationResult result = parsedUnit.compilationResult;
 	if (result == null) return false;
-	for (int i = 0; i < result.problemCount; i++)
+	for (int i = 0; i < result.problemCount; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (result.problems[i].getID() == IProblem.DuplicateTypes)
 			return true;
 	return false;
@@ -1220,7 +1220,7 @@ protected boolean hasAlreadyDefinedType(CompilationUnitDeclaration parsedUnit) {
 /**
  * Create a new parser for the given project, as well as a lookup environment.
  */
-public void initialize(JavaProject project, int possibleMatchSize) throws JavaModelException {
+public void initialize(JavaProject project, int possibleMatchSize) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// clean up name environment only if there are several possible match as it is reused
 	// when only one possible match (bug 58581)
 	if (this.nameEnvironment != null && possibleMatchSize != 1) {
@@ -1230,7 +1230,7 @@ public void initialize(JavaProject project, int possibleMatchSize) throws JavaMo
 
 	SearchableEnvironment searchableEnvironment = project.newSearchableNameEnvironment(this.workingCopies);
 
-	List<IJavaProject> projects = new ArrayList<>();
+	List<IJavaProject> projects = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	if (this.pattern.focus != null) {
 		IJavaProject focusProject = this.pattern.focus.getJavaProject();
 		if (!project.equals(focusProject)) {
@@ -1251,8 +1251,8 @@ public void initialize(JavaProject project, int possibleMatchSize) throws JavaMo
 	this.lookupEnvironment = new LookupEnvironment(this, this.options, problemReporter, this.nameEnvironment);
 	this.lookupEnvironment.mayTolerateMissingType = true;
 	this.parser = MatchLocatorParser.createParser(problemReporter, this);
-	this.bindingsByPattern = new HashMap<>();
-	this.bindingsByName = new HashMap<>(); // For every LE
+	this.bindingsByPattern = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	this.bindingsByName = new HashMap<>(); // For every LE //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	// basic parser needs also to be reset as project options may have changed
 	// see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=163072
@@ -1284,7 +1284,7 @@ protected void locateMatches(JavaProject javaProject, PossibleMatch[] possibleMa
 	}
 }
 
-protected void locateMatchesDefaultImpl(JavaProject javaProject, PossibleMatch[] possibleMatches, int start, int length) throws CoreException {
+protected void locateMatchesDefaultImpl(JavaProject javaProject, PossibleMatch[] possibleMatches, int start, int length) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	initialize(javaProject, length);
 
 	// create and resolve binding (equivalent to beginCompilation() in Compiler)
@@ -1293,7 +1293,7 @@ protected void locateMatchesDefaultImpl(JavaProject javaProject, PossibleMatch[]
 	this.patternLocator.mayBeGeneric = true;
 	boolean bindingsWereCreated = mustResolve;
 	try {
-		for (int i = start, maxUnits = start + length; i < maxUnits; i++) {
+		for (int i = start, maxUnits = start + length; i < maxUnits; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			PossibleMatch possibleMatch = possibleMatches[i];
 			if (skipMatch(javaProject, possibleMatch)) continue;
 			try {
@@ -1355,7 +1355,7 @@ protected void locateMatchesDefaultImpl(JavaProject javaProject, PossibleMatch[]
 	}
 
 	// possible match resolution
-	for (int i = 0; i < this.numberOfMatches; i++) {
+	for (int i = 0; i < this.numberOfMatches; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (this.progressMonitor != null && this.progressMonitor.isCanceled())
 			throw new OperationCanceledException();
 		PossibleMatch possibleMatch = this.matchesToProcess[i];
@@ -1396,7 +1396,7 @@ protected void locateMatches(JavaProject javaProject, PossibleMatchSet matchSet,
 		this.progressMonitor.worked( expected-length);
 	}
 	// locate matches (processed matches are limited to avoid problem while using VM default memory heap size)
-	for (int index = 0; index < length;) {
+	for (int index = 0; index < length;) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int max = Math.min(MAX_AT_ONCE, length - index);
 		locateMatches(javaProject, possibleMatches, index, max);
 		index += max;
@@ -1406,14 +1406,14 @@ protected void locateMatches(JavaProject javaProject, PossibleMatchSet matchSet,
 /**
  * Locate the matches in the given files and report them using the search requestor.
  */
-public void locateMatches(SearchDocument[] searchDocuments) throws CoreException {
+public void locateMatches(SearchDocument[] searchDocuments) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.patternLocator == null) return;
 	int docsLength = searchDocuments.length;
 	int progressLength = docsLength;
 	if (BasicSearchEngine.VERBOSE) {
 		trace("Locating matches in documents ["); //$NON-NLS-1$
-		for (int i = 0; i < docsLength; i++) {
-			trace("\t" + searchDocuments[i]); //$NON-NLS-1$
+		for (int i = 0; i < docsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			trace("\t" + searchDocuments[i]); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		trace("]"); //$NON-NLS-1$
 	}
@@ -1429,8 +1429,8 @@ public void locateMatches(SearchDocument[] searchDocuments) throws CoreException
 	this.progressWorked = 0;
 
 	// extract working copies
-	ArrayList<org.eclipse.jdt.core.ICompilationUnit> copies = new ArrayList<>();
-	for (int i = 0; i < docsLength; i++) {
+	ArrayList<org.eclipse.jdt.core.ICompilationUnit> copies = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (int i = 0; i < docsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		SearchDocument document = searchDocuments[i];
 		if (document instanceof WorkingCopyDocument) {
 			copies.add(((WorkingCopyDocument)document).workingCopy);
@@ -1441,8 +1441,8 @@ public void locateMatches(SearchDocument[] searchDocuments) throws CoreException
 	copies.toArray(this.workingCopies);
 
 	JavaModelManager manager = JavaModelManager.getJavaModelManager();
-	this.bindingsByPattern = new HashMap<>();
-	this.bindingsByName = new HashMap<>();
+	this.bindingsByPattern = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	this.bindingsByName = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	try {
 		// optimize access to zip files during search operation
 		manager.cacheZipFiles(this);
@@ -1469,7 +1469,7 @@ public void locateMatches(SearchDocument[] searchDocuments) throws CoreException
 		int displayed = 0; // progress worked displayed
 		String previousPath = null;
 		SearchParticipant searchParticipant = null;
-		for (int i = 0; i < docsLength; i++) {
+		for (int i = 0; i < docsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.progressMonitor != null && this.progressMonitor.isCanceled()) {
 				throw new OperationCanceledException();
 			}
@@ -1534,7 +1534,7 @@ public void locateMatches(SearchDocument[] searchDocuments) throws CoreException
 				IPath path = resource.getFullPath();
 				String s = (pathString.contains(path.lastSegment())) ?
 						JavaModelManager.getLocalFile(path).toPath().toAbsolutePath().toString() :
-						pathString.split(Pattern.quote("|"))[0]; //$NON-NLS-1$
+						pathString.split(Pattern.quote("|"))[0]; //$NON-NLS-1$ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 				possibleMatch.autoModuleName = new String(AutomaticModuleNaming.determineAutomaticModuleName(s));
 			}
 		}
@@ -1568,8 +1568,8 @@ private IJavaSearchScope getSubScope(String optionString, long value, boolean re
 		return this.subScope;
 	IPath[] enclosingProjectsAndJars = this.scope.enclosingProjectsAndJars();
 	JavaModelManager manager = JavaModelManager.getJavaModelManager();
-	HashSet<IJavaProject> set = new HashSet<>();
-	for (IPath path : enclosingProjectsAndJars) {
+	HashSet<IJavaProject> set = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	for (IPath path : enclosingProjectsAndJars) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (path.segmentCount() == 1) {
 			IJavaProject p = manager.getJavaModel().getJavaProject(path.segment(0));
 			if (p == null) continue;
@@ -1607,13 +1607,13 @@ protected void locatePackageDeclarations(SearchParticipant participant, IJavaPro
 /**
  * Locates the package declarations corresponding to the search pattern.
  */
-protected void locatePackageDeclarations(SearchPattern searchPattern, SearchParticipant participant, IJavaProject[] projects) throws CoreException {
+protected void locatePackageDeclarations(SearchPattern searchPattern, SearchParticipant participant, IJavaProject[] projects) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.progressMonitor != null && this.progressMonitor.isCanceled()) {
 		throw new OperationCanceledException();
 	}
 	if (searchPattern instanceof OrPattern) {
 		SearchPattern[] patterns = ((OrPattern) searchPattern).patterns;
-		for (SearchPattern p : patterns) {
+		for (SearchPattern p : patterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			locatePackageDeclarations(p, participant, projects);
 		}
 	} else if (searchPattern instanceof PackageDeclarationPattern) {
@@ -1630,7 +1630,7 @@ protected void locatePackageDeclarations(SearchPattern searchPattern, SearchPart
 		IPath[] scopeProjectsAndJars =  isWorkspaceScope ? null : this.scope.enclosingProjectsAndJars();
 		int scopeLength = isWorkspaceScope ? 0 : scopeProjectsAndJars.length;
 		SimpleSet packages = new SimpleSet();
-		for (IJavaProject javaProject : projects) {
+		for (IJavaProject javaProject : projects) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.progressMonitor != null) {
 				if (this.progressMonitor.isCanceled()) throw new OperationCanceledException();
 				this.progressWorked++;
@@ -1639,7 +1639,7 @@ protected void locatePackageDeclarations(SearchPattern searchPattern, SearchPart
 			// Verify that project belongs to the scope
 			if (!isWorkspaceScope) {
 				boolean found = false;
-				for (int j=0; j<scopeLength; j++) {
+				for (int j=0; j<scopeLength; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (javaProject.getPath().equals(scopeProjectsAndJars[j])) {
 						found = true;
 						break;
@@ -1652,7 +1652,7 @@ protected void locatePackageDeclarations(SearchPattern searchPattern, SearchPart
 			IPackageFragment[] packageFragments = this.nameLookup.findPackageFragments(new String(pkgPattern.pkgName), false, true);
 			int pLength = packageFragments == null ? 0 : packageFragments.length;
 			// Report matches avoiding duplicate names
-			for (int p=0; p<pLength; p++) {
+			for (int p=0; p<pLength; p++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IPackageFragment fragment = packageFragments[p];
 				if (packages.addIfNotIncluded(fragment) == null) continue;
 				if (encloses(fragment)) {
@@ -1675,7 +1675,7 @@ protected void locatePackageDeclarations(SearchPattern searchPattern, SearchPart
 	}
 }
 //*/
-protected IType lookupType(ReferenceBinding typeBinding) {
+protected IType lookupType(ReferenceBinding typeBinding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (typeBinding == null || !typeBinding.isValidBinding()) return null;
 
 	char[] packageName = typeBinding.qualifiedPackageName();
@@ -1701,7 +1701,7 @@ protected IType lookupType(ReferenceBinding typeBinding) {
 		acceptFlag = NameLookup.ACCEPT_CLASSES;
 	}
 	if (pkgs != null) {
-		for (IPackageFragment pkg : pkgs) {
+		for (IPackageFragment pkg : pkgs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IType type = this.nameLookup.findType(typeName, pkg,  false,  acceptFlag, false, true/*consider secondary types*/);
 			if (type != null) return type;
 		}
@@ -1715,7 +1715,7 @@ protected IType lookupType(ReferenceBinding typeBinding) {
 	IType type = createTypeHandle(new String(qualifiedName[0])); // find the top-level type
 	if (type == null) return null;
 
-	for (int i = 1; i < length; i++) {
+	for (int i = 1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		type = type.getType(new String(qualifiedName[i]));
 		if (type == null) return null;
 	}
@@ -1751,7 +1751,7 @@ public SearchMatch newDeclarationMatch(
 	return newDeclarationMatch(element, binding, accuracy, offset, length, participant, resource);
 }
 
-public SearchMatch newDeclarationMatch(
+public SearchMatch newDeclarationMatch( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaElement element,
 		Binding binding,
 		int accuracy,
@@ -1783,7 +1783,7 @@ public SearchMatch newDeclarationMatch(
 	}
 }
 
-public FieldReferenceMatch newFieldReferenceMatch(
+public FieldReferenceMatch newFieldReferenceMatch( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaElement enclosingElement,
 		IJavaElement localElement,
 		Binding enclosingBinding,
@@ -1800,7 +1800,7 @@ public FieldReferenceMatch newFieldReferenceMatch(
 			char[] lastToken = tokens[tokens.length-1];
 			if (this.pattern instanceof OrPattern) {
 				SearchPattern[] patterns = ((OrPattern) this.pattern).patterns;
-				for (SearchPattern p : patterns) {
+				for (SearchPattern p : patterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if(p instanceof VariablePattern variablePattern) {
 						if (!this.patternLocator.matchesName(variablePattern.name, lastToken)) {
 				        	isWriteAccess = false;
@@ -1825,7 +1825,7 @@ public FieldReferenceMatch newFieldReferenceMatch(
 	return match;
 }
 
-public SearchMatch newLocalVariableReferenceMatch(
+public SearchMatch newLocalVariableReferenceMatch( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaElement enclosingElement,
 		int accuracy,
 		int offset,
@@ -1841,7 +1841,7 @@ public SearchMatch newLocalVariableReferenceMatch(
 			char[] lastToken = tokens[tokens.length-1];
 			if (this.pattern instanceof OrPattern) {
 				SearchPattern[] patterns = ((OrPattern) this.pattern).patterns;
-				for (SearchPattern p : patterns) {
+				for (SearchPattern p : patterns) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (!this.patternLocator.matchesName(((VariablePattern)p).name, lastToken)) {
 			        	isWriteAccess = false;
 			        	isReadAccess = true;
@@ -1951,13 +1951,13 @@ public ModuleReferenceMatch newModuleReferenceMatch(
  * Add the possibleMatch to the loop
  *  ->  build compilation unit declarations, their bindings and record their results.
  */
-protected boolean parseAndBuildBindings(PossibleMatch possibleMatch, boolean mustResolve) throws CoreException {
+protected boolean parseAndBuildBindings(PossibleMatch possibleMatch, boolean mustResolve) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.progressMonitor != null && this.progressMonitor.isCanceled())
 		throw new OperationCanceledException();
 
 	try {
 		if (BasicSearchEngine.VERBOSE) {
-			trace("Parsing " + possibleMatch.openable.toStringWithAncestors()); //$NON-NLS-1$
+			trace("Parsing " + possibleMatch.openable.toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		this.parser.nodeSet = possibleMatch.nodeSet;
@@ -1996,7 +1996,7 @@ protected boolean parseAndBuildBindings(PossibleMatch possibleMatch, boolean mus
 /*
  * Process a compilation unit already parsed and build.
  */
-protected void process(PossibleMatch possibleMatch, boolean bindingsWereCreated) throws CoreException {
+protected void process(PossibleMatch possibleMatch, boolean bindingsWereCreated) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.currentPossibleMatch = possibleMatch;
 	CompilationUnitDeclaration unit = possibleMatch.parsedUnit;
 	try {
@@ -2044,7 +2044,7 @@ protected void process(PossibleMatch possibleMatch, boolean bindingsWereCreated)
 		if (bindingsWereCreated && mustResolve) {
 			if (unit.types != null) {
 				if (BasicSearchEngine.VERBOSE) {
-					trace("Resolving " + this.currentPossibleMatch.openable.toStringWithAncestors()); //$NON-NLS-1$
+					trace("Resolving " + this.currentPossibleMatch.openable.toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 
 				this.lookupEnvironment.unitBeingCompleted = unit;
@@ -2057,12 +2057,12 @@ protected void process(PossibleMatch possibleMatch, boolean bindingsWereCreated)
 				unit.resolve();
 			} else if (unit.isPackageInfo()) {
 				if (BasicSearchEngine.VERBOSE) {
-					trace("Resolving " + this.currentPossibleMatch.openable.toStringWithAncestors()); //$NON-NLS-1$
+					trace("Resolving " + this.currentPossibleMatch.openable.toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				unit.resolve();
 			} else if (unit.isModuleInfo()) {
 				if (BasicSearchEngine.VERBOSE) {
-					trace("Resolving " + this.currentPossibleMatch.openable.toStringWithAncestors()); //$NON-NLS-1$
+					trace("Resolving " + this.currentPossibleMatch.openable.toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				this.lookupEnvironment.unitBeingCompleted = unit;
 				if (unit.scope != null && unit.moduleDeclaration != null) {
@@ -2073,7 +2073,7 @@ protected void process(PossibleMatch possibleMatch, boolean bindingsWereCreated)
 		reportMatching(unit, mustResolve);
 	} catch (AbortCompilation e) {
 		if (BasicSearchEngine.VERBOSE) {
-			trace("AbortCompilation while resolving unit " + String.valueOf(unit.getFileName()), e); //$NON-NLS-1$
+			trace("AbortCompilation while resolving unit " + String.valueOf(unit.getFileName()), e); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		// could not resolve: report inaccurate matches
 		reportMatching(unit, false); // do not resolve when cu has errors
@@ -2086,13 +2086,13 @@ protected void process(PossibleMatch possibleMatch, boolean bindingsWereCreated)
 		this.currentPossibleMatch = null;
 	}
 }
-protected void purgeMethodStatements(TypeDeclaration type, boolean checkEachMethod) {
+protected void purgeMethodStatements(TypeDeclaration type, boolean checkEachMethod) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	checkEachMethod = checkEachMethod
 		&& this.currentPossibleMatch.nodeSet.hasPossibleNodes(type.declarationSourceStart, type.declarationSourceEnd);
 	AbstractMethodDeclaration[] methods = type.methods;
 	if (methods != null) {
 		if (checkEachMethod) {
-			for (AbstractMethodDeclaration method : methods) {
+			for (AbstractMethodDeclaration method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (!this.currentPossibleMatch.nodeSet.hasPossibleNodes(method.declarationSourceStart, method.declarationSourceEnd)) {
 					if (this.sourceStartOfMethodToRetain != method.declarationSourceStart || this.sourceEndOfMethodToRetain != method.declarationSourceEnd) { // approximate, but no big deal
 						method.statements = null;
@@ -2101,7 +2101,7 @@ protected void purgeMethodStatements(TypeDeclaration type, boolean checkEachMeth
 				}
 			}
 		} else {
-			for (AbstractMethodDeclaration method : methods) {
+			for (AbstractMethodDeclaration method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.sourceStartOfMethodToRetain != method.declarationSourceStart || this.sourceEndOfMethodToRetain != method.declarationSourceEnd) { // approximate, but no big deal
 					method.statements = null;
 					method.javadoc = null;
@@ -2112,7 +2112,7 @@ protected void purgeMethodStatements(TypeDeclaration type, boolean checkEachMeth
 
 	TypeDeclaration[] memberTypes = type.memberTypes;
 	if (memberTypes != null)
-		for (TypeDeclaration memberType : memberTypes)
+		for (TypeDeclaration memberType : memberTypes) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			purgeMethodStatements(memberType, checkEachMethod);
 }
 /**
@@ -2121,14 +2121,14 @@ protected void purgeMethodStatements(TypeDeclaration type, boolean checkEachMeth
 protected void reduceParseTree(CompilationUnitDeclaration unit) {
 	// remove statements from methods that have no possible matching nodes
 	TypeDeclaration[] types = unit.types;
-	for (TypeDeclaration type : types)
+	for (TypeDeclaration type : types) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		purgeMethodStatements(type, true);
 }
 public SearchParticipant getParticipant() {
 	return this.currentPossibleMatch.document.getParticipant();
 }
 
-protected void report(SearchMatch match) throws CoreException {
+protected void report(SearchMatch match) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (match == null) {
 		if (BasicSearchEngine.VERBOSE) {
 			trace("Cannot report a null match!!!"); //$NON-NLS-1$
@@ -2145,19 +2145,19 @@ protected void report(SearchMatch match) throws CoreException {
 	if (BasicSearchEngine.VERBOSE) {
 		start = System.currentTimeMillis();
 		trace("Reporting match"); //$NON-NLS-1$
-		trace("\tResource: " + match.getResource());//$NON-NLS-1$
-		trace("\tPositions: [offset=" + match.getOffset() + ", length=" + match.getLength() + "]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		trace("\tResource: " + match.getResource());//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace("\tPositions: [offset=" + match.getOffset() + ", length=" + match.getLength() + "]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		try {
 			if (this.parser != null && match.getOffset() > 0 && match.getLength() > 0 && !(match.getElement() instanceof BinaryMember)) {
 				String selection = new String(this.parser.scanner.source, match.getOffset(), match.getLength());
-				trace("\tSelection: -->" + selection + "<--"); //$NON-NLS-1$ //$NON-NLS-2$
+				trace("\tSelection: -->" + selection + "<--"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} catch (Exception e) {
 			// it's just for debug purposes... ignore all exceptions in this area
 		}
 		try {
 			JavaElement javaElement = (JavaElement)match.getElement();
-			trace("\tJava element: "+ javaElement.toStringWithAncestors()); //$NON-NLS-1$
+			trace("\tJava element: "+ javaElement.toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			if (!javaElement.exists()) {
 				trace("\t\tWARNING: this element does NOT exist!"); //$NON-NLS-1$
 			}
@@ -2169,7 +2169,7 @@ protected void report(SearchMatch match) throws CoreException {
 				ReferenceMatch refMatch = (ReferenceMatch) match;
 				JavaElement local = (JavaElement) refMatch.getLocalElement();
 				if (local != null) {
-					trace("\tLocal element: "+ local.toStringWithAncestors()); //$NON-NLS-1$
+					trace("\tLocal element: "+ local.toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 				if (match instanceof TypeReferenceMatch) {
 					IJavaElement[] others = ((TypeReferenceMatch) refMatch).getOtherElements();
@@ -2177,9 +2177,9 @@ protected void report(SearchMatch match) throws CoreException {
 						int length = others.length;
 						if (length > 0) {
 							trace("\tOther elements:"); //$NON-NLS-1$
-							for (int i=0; i<length; i++) {
+							for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								JavaElement other = (JavaElement) others[i];
-								trace("\t\t- "+ other.toStringWithAncestors()); //$NON-NLS-1$
+								trace("\t\t- "+ other.toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							}
 						}
 					}
@@ -2213,7 +2213,7 @@ protected void report(SearchMatch match) throws CoreException {
 				trace("+SYNTHETIC"); //$NON-NLS-1$
 			}
 		}
-		trace("\n\tRaw: "+match.isRaw()); //$NON-NLS-1$
+		trace("\n\tRaw: "+match.isRaw()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	this.requestor.acceptSearchMatch(match);
 	if (BasicSearchEngine.VERBOSE)
@@ -2224,7 +2224,7 @@ protected void report(SearchMatch match) throws CoreException {
  * in the source and reports a reference to this this qualified name
  * to the search requestor.
  */
-protected void reportAccurateTypeReference(SearchMatch match, ASTNode typeRef, char[] name) throws CoreException {
+protected void reportAccurateTypeReference(SearchMatch match, ASTNode typeRef, char[] name) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (match.getRule() == 0) return;
 	if (!encloses((IJavaElement)match.getElement())) return;
 
@@ -2239,7 +2239,7 @@ protected void reportAccurateTypeReference(SearchMatch match, ASTNode typeRef, c
 
 		TerminalToken token = TokenNameInvalid;
 		int currentPosition;
-		do {
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			currentPosition = scanner.currentPosition;
 			try {
 				token = scanner.getNextToken();
@@ -2268,7 +2268,7 @@ protected void reportAccurateTypeReference(SearchMatch match, ASTNode typeRef, c
  * to the search requestor.
  * @since 3.1
  */
-protected void reportAccurateParameterizedMethodReference(SearchMatch match, ASTNode statement, TypeReference[] typeArguments) throws CoreException {
+protected void reportAccurateParameterizedMethodReference(SearchMatch match, ASTNode statement, TypeReference[] typeArguments) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (match.getRule() == 0) return;
 	if (!encloses((IJavaElement)match.getElement())) return;
 
@@ -2289,14 +2289,14 @@ protected void reportAccurateParameterizedMethodReference(SearchMatch match, AST
 			scanner.resetTo(start, end);
 			int lineStart = start;
 			try {
-				linesUp: while (true) {
-					while (scanner.source[scanner.currentPosition] != '\n') {
+				linesUp: while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					while (scanner.source[scanner.currentPosition] != '\n') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						scanner.currentPosition--;
 						if (scanner.currentPosition == 0) break linesUp;
 					}
 					lineStart = scanner.currentPosition+1;
 					scanner.resetTo(lineStart, end);
-					while (!scanner.atEnd()) {
+					while (!scanner.atEnd()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (scanner.getNextToken() == TerminalToken.TokenNameLESS) {
 							start = scanner.getCurrentTokenStartPosition();
 							break linesUp;
@@ -2324,7 +2324,7 @@ protected void reportAccurateParameterizedMethodReference(SearchMatch match, AST
  * to the search requestor.
  * @since 3.1
  */
-protected void reportAccurateParameterizedTypeReference(SearchMatch match, TypeReference typeRef, int index, TypeReference[] typeArguments) throws CoreException {
+protected void reportAccurateParameterizedTypeReference(SearchMatch match, TypeReference typeRef, int index, TypeReference[] typeArguments) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (match.getRule() == 0) return;
 	if (!encloses((IJavaElement)match.getElement())) return;
 
@@ -2351,7 +2351,7 @@ protected void reportAccurateParameterizedTypeReference(SearchMatch match, TypeR
 			// Set scanner position at end of last type argument
 			scanner.resetTo(end, source.length-1);
 			int depth = 0;
-			for (int i=typeArguments.length-1; i>=0; i--) {
+			for (int i=typeArguments.length-1; i>=0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (typeArguments[i] != null) {
 					long lastTypeArgInfo = findLastTypeArgumentInfo(typeArguments[i]);
 					depth = (int) (lastTypeArgInfo >>> 32)+1;
@@ -2361,8 +2361,8 @@ protected void reportAccurateParameterizedTypeReference(SearchMatch match, TypeR
 			}
 
 			// Now, scan to search next closing '>'
-			while (depth-- > 0) {
-				while (!scanner.atEnd()) {
+			while (depth-- > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				while (!scanner.atEnd()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (scanner.getNextChar() == '>') {
 						end = scanner.currentPosition - 1;
 						break;
@@ -2381,7 +2381,7 @@ protected void reportAccurateParameterizedTypeReference(SearchMatch match, TypeR
  * reports a reference to this token to the search requestor.
  * A token is valid if it has an accuracy which is not -1.
  */
-protected void reportAccurateEnumConstructorReference(SearchMatch match, FieldDeclaration field, AllocationExpression allocation) throws CoreException {
+protected void reportAccurateEnumConstructorReference(SearchMatch match, FieldDeclaration field, AllocationExpression allocation) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// Verify that field declaration is really an enum constant
 	if (allocation == null || allocation.enumConstant == null) {
 		report(match);
@@ -2407,7 +2407,7 @@ protected void reportAccurateEnumConstructorReference(SearchMatch match, FieldDe
 	scanner.resetTo(sourceStart, sourceEnd);
 	try {
 		TerminalToken token = scanner.getNextToken();
-		while (token != TerminalToken.TokenNameEOF) {
+		while (token != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (token == TerminalToken.TokenNameRPAREN) {
 				sourceEnd = scanner.getCurrentTokenEndPosition();
 			}
@@ -2427,7 +2427,7 @@ protected void reportAccurateEnumConstructorReference(SearchMatch match, FieldDe
  * reports a reference to this token to the search requestor.
  * A token is valid if it has an accuracy which is not -1.
  */
-protected void reportAccurateFieldReference(SearchMatch[] matches, QualifiedNameReference qNameRef) throws CoreException {
+protected void reportAccurateFieldReference(SearchMatch[] matches, QualifiedNameReference qNameRef) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (matches == null) return; // there's nothing to accurate in this case
 	int matchesLength = matches.length;
 
@@ -2447,7 +2447,7 @@ protected void reportAccurateFieldReference(SearchMatch[] matches, QualifiedName
 	int previousValid = -1;
 	int i = 0;
 	int index = 0;
-	do {
+	do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int currentPosition = scanner.currentPosition;
 		// read token
 		try {
@@ -2458,7 +2458,7 @@ protected void reportAccurateFieldReference(SearchMatch[] matches, QualifiedName
 		if (token != TerminalToken.TokenNameEOF) {
 			char[] currentTokenSource = scanner.getCurrentTokenSource();
 			boolean equals = false;
-			while (i < length && !(equals = this.pattern.matchesName(tokens[i++], currentTokenSource))){/*empty*/}
+			while (i < length && !(equals = this.pattern.matchesName(tokens[i++], currentTokenSource))){/*empty*/} //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (equals && (previousValid == -1 || previousValid == i - 2)) {
 				previousValid = i - 1;
 				if (refSourceStart == -1)
@@ -2499,7 +2499,7 @@ protected void reportAccurateFieldReference(SearchMatch[] matches, QualifiedName
 	} while (token != TerminalToken.TokenNameEOF);
 
 }
-protected void reportBinaryMemberDeclaration(IResource resource, IMember binaryMember, Binding binaryMemberBinding, IBinaryType info, int accuracy) throws CoreException {
+protected void reportBinaryMemberDeclaration(IResource resource, IMember binaryMember, Binding binaryMemberBinding, IBinaryType info, int accuracy) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ClassFile classFile = (ClassFile) binaryMember.getClassFile();
 	ISourceRange range = classFile.isOpen() ? binaryMember.getNameRange() : SourceMapper.UNKNOWN_RANGE;
 	if (range.getOffset() == -1) {
@@ -2518,7 +2518,7 @@ protected void reportBinaryMemberDeclaration(IResource resource, IMember binaryM
 	SearchMatch match = newDeclarationMatch(binaryMember, binaryMemberBinding, accuracy, range.getOffset(), range.getLength(), getParticipant(), resource);
 	report(match);
 }
-protected void reportMatching(LambdaExpression lambdaExpression,  IJavaElement parent, int accuracy, MatchingNodeSet nodeSet, boolean typeInHierarchy) throws CoreException {
+protected void reportMatching(LambdaExpression lambdaExpression,  IJavaElement parent, int accuracy, MatchingNodeSet nodeSet, boolean typeInHierarchy) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement enclosingElement = null;
 	// Report the lambda declaration itself.
 	if (accuracy > -1) {
@@ -2546,7 +2546,7 @@ protected void reportMatching(LambdaExpression lambdaExpression,  IJavaElement p
 
 	if (lambdaExpression.arguments != null) {
 		int argumentsLength = lambdaExpression.arguments.length;
-		for (int i = 0; i < argumentsLength; i++)
+		for (int i = 0; i < argumentsLength; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			lambdaExpression.arguments[i].traverse(declarationVisitor, (BlockScope) null);
 	}
 
@@ -2557,7 +2557,7 @@ protected void reportMatching(LambdaExpression lambdaExpression,  IJavaElement p
 	// Report all nodes and remove them
 	if (nodes != null) {
 		int length = nodes.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Integer level = nodeSet.matchingNodes.remove(nodes[i]);
 			if (report && level != null) {
 				this.patternLocator.matchReportReference(nodes[i], enclosingElement, declarationVisitor.getLocalElement(i), declarationVisitor.getOtherElements(i), lambdaExpression.binding, level.intValue(), this);
@@ -2570,7 +2570,7 @@ protected void reportMatching(LambdaExpression lambdaExpression,  IJavaElement p
  * search pattern (i.e. the ones in the matching nodes set)
  * Note that the method declaration has already been checked.
  */
-protected void reportMatching(AbstractMethodDeclaration method, TypeDeclaration type, IJavaElement parent, int accuracy, boolean typeInHierarchy, MatchingNodeSet nodeSet) throws CoreException {
+protected void reportMatching(AbstractMethodDeclaration method, TypeDeclaration type, IJavaElement parent, int accuracy, boolean typeInHierarchy, MatchingNodeSet nodeSet) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement enclosingElement = null;
 
 	// report method declaration itself
@@ -2623,7 +2623,7 @@ protected void reportMatching(AbstractMethodDeclaration method, TypeDeclaration 
 			// Report all nodes and remove them
 			if (nodes != null) {
 				int length = nodes.length;
-				for (int i = 0; i < length; i++) {
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Integer level = nodeSet.matchingNodes.remove(nodes[i]);
 					if (report && level != null) {
 						this.patternLocator.matchReportReference(nodes[i], enclosingElement, declarationVisitor.getLocalElement(i), declarationVisitor.getOtherElements(i), method.binding, level.intValue(), this);
@@ -2671,14 +2671,14 @@ protected void reportMatching(AbstractMethodDeclaration method, TypeDeclaration 
 						MemberDeclarationVisitor declarationVisitor = new MemberDeclarationVisitor(enclosingElement, nodes, nodeSet, this, typeInHierarchy);
 						method.traverse(declarationVisitor, (ClassScope) null);
 						int length = nodes.length;
-						for (int i = 0; i < length; i++) {
+						for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							Integer level = nodeSet.matchingNodes.remove(nodes[i]);
 							if (level != null) { // ensure that the reference has not been already reported while visiting
 				    	        this.patternLocator.matchReportReference(nodes[i], enclosingElement, declarationVisitor.getLocalElement(i), declarationVisitor.getOtherElements(i), method.binding, level.intValue(), this);
 							}
 						}
 					} else {
-						for (ASTNode node : nodes) {
+						for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							Integer level = nodeSet.matchingNodes.remove(node);
 							if (level != null) { // ensure that the reference has not been already reported while visiting
 								this.patternLocator.matchReportReference(node, enclosingElement, null, null, method.binding, level.intValue(), this);
@@ -2689,7 +2689,7 @@ protected void reportMatching(AbstractMethodDeclaration method, TypeDeclaration 
 				}
 			}
 			// Remove all remaining nodes
-			for (ASTNode node : nodes) {
+			for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				nodeSet.matchingNodes.remove(node);
 			}
 		}
@@ -2700,10 +2700,10 @@ protected void reportMatching(AbstractMethodDeclaration method, TypeDeclaration 
  * Report matching in annotations.
  * @param otherElements TODO
  */
-protected void reportMatching(Annotation[] annotations, IJavaElement enclosingElement, IJavaElement[] otherElements, Binding elementBinding, MatchingNodeSet nodeSet, boolean matchedContainer, boolean enclosesElement) throws CoreException {
+protected void reportMatching(Annotation[] annotations, IJavaElement enclosingElement, IJavaElement[] otherElements, Binding elementBinding, MatchingNodeSet nodeSet, boolean matchedContainer, boolean enclosesElement) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (annotations == null)
 		return;
-	for (Annotation annotationType : annotations) {
+	for (Annotation annotationType : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IJavaElement localAnnotation = null;
 		IJavaElement[] otherAnnotations = null;
 		int length = otherElements == null ? 0 : otherElements.length;
@@ -2716,7 +2716,7 @@ protected void reportMatching(Annotation[] annotations, IJavaElement enclosingEl
 			localAnnotation = createHandle(annotationType, (IAnnotatable) enclosingElement);
 			if (length > 0) {
 				otherAnnotations = new IJavaElement[length];
-				for (int o=0; o<length; o++) {
+				for (int o=0; o<length; o++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					otherAnnotations[o] = createHandle(annotationType, (IAnnotatable) otherElements[o]);
 				}
 			}
@@ -2726,7 +2726,7 @@ protected void reportMatching(Annotation[] annotations, IJavaElement enclosingEl
 
 		// Look for attribute ref
 		MemberValuePair[] pairs = annotationType.memberValuePairs();
-		for (MemberValuePair pair : pairs) {
+		for (MemberValuePair pair : pairs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			level = nodeSet.matchingNodes.remove(pair);
 			if (level != null && enclosesElement) {
 				ASTNode reference = (annotationType instanceof SingleMemberAnnotation) ? (ASTNode) annotationType: pair;
@@ -2734,7 +2734,7 @@ protected void reportMatching(Annotation[] annotations, IJavaElement enclosingEl
 					localAnnotation = createHandle(annotationType, (IAnnotatable) enclosingElement);
 					if (length > 0) {
 						otherAnnotations = new IJavaElement[length];
-						for (int o=0; o<length; o++) {
+						for (int o=0; o<length; o++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							otherAnnotations[o] = createHandle(annotationType, (IAnnotatable) otherElements[o]);
 						}
 					}
@@ -2748,18 +2748,18 @@ protected void reportMatching(Annotation[] annotations, IJavaElement enclosingEl
 		ASTNode[] nodes = nodeSet.matchingNodes(annotationType.sourceStart, annotationType.declarationSourceEnd);
 		if (nodes != null) {
 			if (!matchedContainer) {
-				for (ASTNode node : nodes) {
+				for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					nodeSet.matchingNodes.remove(node);
 				}
 			} else {
-				for (ASTNode node : nodes) {
+				for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					level = nodeSet.matchingNodes.remove(node);
 					if (enclosesElement) {
 						if (!handlesCreated) {
 							localAnnotation = createHandle(annotationType, (IAnnotatable) enclosingElement);
 							if (length > 0) {
 								otherAnnotations = new IJavaElement[length];
-								for (int o=0; o<length; o++) {
+								for (int o=0; o<length; o++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 									otherAnnotations[o] = createHandle(annotationType, (IAnnotatable) otherElements[o]);
 								}
 							}
@@ -2775,7 +2775,7 @@ protected void reportMatching(Annotation[] annotations, IJavaElement enclosingEl
 private void reportMatching(Annotation[][] annotationsList, IJavaElement enclosingElement, Binding binding,
 		MatchingNodeSet nodeSet, boolean matchedClassContainer) throws CoreException {
 	if (annotationsList != null) {
-		for (Annotation[] annotations : annotationsList) {
+		for (Annotation[] annotations : annotationsList) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (annotations != null)
 				reportMatching(annotations, enclosingElement, null, binding, nodeSet, matchedClassContainer, encloses(enclosingElement));
 		}
@@ -2784,26 +2784,26 @@ private void reportMatching(Annotation[][] annotationsList, IJavaElement enclosi
 /**
  * Visit the given resolved parse tree and report the nodes that match the search pattern.
  */
-protected void reportMatching(CompilationUnitDeclaration unit, boolean mustResolve) throws CoreException {
+protected void reportMatching(CompilationUnitDeclaration unit, boolean mustResolve) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	MatchingNodeSet nodeSet = this.currentPossibleMatch.nodeSet;
 	boolean locatorMustResolve = this.patternLocator.mustResolve;
 	if (nodeSet.mustResolve) this.patternLocator.mustResolve = true;
 	if (BasicSearchEngine.VERBOSE) {
 		trace("Report matching: "); //$NON-NLS-1$
 		int size = nodeSet.matchingNodes==null ? 0 : nodeSet.matchingNodes.size();
-		trace("	- node set: accurate="+ size); //$NON-NLS-1$
+		trace("	- node set: accurate="+ size); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		size = nodeSet.possibleMatchingNodesSet==null ? 0 : nodeSet.possibleMatchingNodesSet.elementSize;
-		trace(", possible="+size); //$NON-NLS-1$
-		trace("	- must resolve: "+mustResolve); //$NON-NLS-1$
-		trace(" (locator: "+this.patternLocator.mustResolve); //$NON-NLS-1$
-		trace(", nodeSet: "+nodeSet.mustResolve+')'); //$NON-NLS-1$
-		trace("	- fine grain flags="+ JavaSearchPattern.getFineGrainFlagString(this.patternLocator.fineGrain())); //$NON-NLS-1$
+		trace(", possible="+size); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace("	- must resolve: "+mustResolve); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(" (locator: "+this.patternLocator.mustResolve); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace(", nodeSet: "+nodeSet.mustResolve+')'); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		trace("	- fine grain flags="+ JavaSearchPattern.getFineGrainFlagString(this.patternLocator.fineGrain())); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	if (mustResolve) {
 		this.unitScope= unit.scope.compilationUnitScope();
 		// move the possible matching nodes that exactly match the search pattern to the matching nodes set
 		Object[] nodes = nodeSet.possibleMatchingNodesSet.values;
-		for (Object o : nodes) {
+		for (Object o : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode node = (ASTNode) o;
 			if (node == null) continue;
 			if (node instanceof ImportReference) {
@@ -2828,16 +2828,16 @@ protected void reportMatching(CompilationUnitDeclaration unit, boolean mustResol
 		nodeSet.possibleMatchingNodesSet = new SimpleSet(3);
 		if (BasicSearchEngine.VERBOSE) {
 			int size = nodeSet.matchingNodes==null ? 0 : nodeSet.matchingNodes.size();
-			trace("	- node set: accurate="+size); //$NON-NLS-1$
+			trace("	- node set: accurate="+size); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			size = nodeSet.possibleMatchingNodesSet==null ? 0 : nodeSet.possibleMatchingNodesSet.elementSize;
-			trace(", possible="+size); //$NON-NLS-1$
+			trace(", possible="+size); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	} else {
 		this.unitScope = null;
 	}
 
 	if (nodeSet.matchingNodes.isEmpty()) return; // no matching nodes were found
-	this.methodHandles = new HashSet<>();
+	this.methodHandles = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 	boolean matchedUnitContainer = (this.matchContainer & PatternLocator.COMPILATION_UNIT_CONTAINER) != 0;
 
@@ -2846,11 +2846,11 @@ protected void reportMatching(CompilationUnitDeclaration unit, boolean mustResol
 		ASTNode[] nodes = nodeSet.matchingNodes(unit.javadoc.sourceStart, unit.javadoc.sourceEnd);
 		if (nodes != null) {
 			if (!matchedUnitContainer) {
-				for (ASTNode node : nodes)
+				for (ASTNode node : nodes) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					nodeSet.matchingNodes.remove(node);
 			} else {
 				IJavaElement element = createPackageDeclarationHandle(unit);
-				for (ASTNode node : nodes) {
+				for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Integer level = nodeSet.matchingNodes.remove(node);
 					if (encloses(element)) {
 						this.patternLocator.matchReportReference(node, element, null, null, null/*no binding*/, level.intValue(), this);
@@ -2871,7 +2871,7 @@ protected void reportMatching(CompilationUnitDeclaration unit, boolean mustResol
 
 		ImportReference[] imports = unit.imports;
 		if (imports != null) {
-			for (ImportReference importRef : imports) {
+			for (ImportReference importRef : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Integer level = nodeSet.matchingNodes.remove(importRef);
 				if (level != null) {
 					this.patternLocator.matchReportImportRef(importRef, null /*no binding*/, createImportHandle(importRef), level.intValue(), this);
@@ -2882,7 +2882,7 @@ protected void reportMatching(CompilationUnitDeclaration unit, boolean mustResol
 
 	TypeDeclaration[] types = unit.types;
 	if (types != null) {
-		for (TypeDeclaration type : types) {
+		for (TypeDeclaration type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (nodeSet.matchingNodes.isEmpty()) return; // reported all the matching nodes
 			Integer level = nodeSet.matchingNodes.remove(type);
 			int accuracy = (level != null && matchedUnitContainer) ? level.intValue() : -1;
@@ -2905,7 +2905,7 @@ protected void reportMatching(CompilationUnitDeclaration unit, boolean mustResol
  * Visit the given field declaration and report the nodes that match exactly the
  * search pattern (i.e. the ones in the matching nodes set)
  */
-protected void reportMatching(AbstractVariableDeclaration variable, FieldDeclaration[] otherFields, TypeDeclaration type, IJavaElement parent, int accuracy, boolean typeInHierarchy, MatchingNodeSet nodeSet) throws CoreException {
+protected void reportMatching(AbstractVariableDeclaration variable, FieldDeclaration[] otherFields, TypeDeclaration type, IJavaElement parent, int accuracy, boolean typeInHierarchy, MatchingNodeSet nodeSet) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement enclosingElement = null;
 	if (accuracy > -1) {
 		enclosingElement = createHandle(variable, type, parent);
@@ -2939,7 +2939,7 @@ protected void reportMatching(AbstractVariableDeclaration variable, FieldDeclara
 		// Report all nodes and remove them
 		if (nodes != null) {
 			int length = nodes.length;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ASTNode node = nodes[i];
 				Integer level = nodeSet.matchingNodes.remove(node);
 				if (report && level != null) {
@@ -2976,13 +2976,13 @@ protected void reportMatching(AbstractVariableDeclaration variable, FieldDeclara
 			ASTNode[] nodes = nodeSet.matchingNodes(sourceStart, sourceEnd);
 			if (nodes != null) {
 				if ((this.matchContainer & PatternLocator.FIELD_CONTAINER) == 0) {
-					for (ASTNode node : nodes)
+					for (ASTNode node : nodes) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						nodeSet.matchingNodes.remove(node);
 				} else {
 					if (enclosingElement == null)
 						enclosingElement = createHandle(variable, type, parent);
 					if (encloses(enclosingElement)) {
-						for (ASTNode node : nodes) {
+						for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							Integer level = nodeSet.matchingNodes.remove(node);
 							if (otherFields != null && otherElements == null) {
 								otherElements = createHandles(otherFields, type, parent);
@@ -3000,7 +3000,7 @@ protected void reportMatching(AbstractVariableDeclaration variable, FieldDeclara
 			ASTNode[] nodes = nodeSet.matchingNodes(field.sourceStart, fieldEnd);
 			if (nodes != null) {
 				if ((this.matchContainer & PatternLocator.FIELD_CONTAINER) == 0) {
-					for (ASTNode node : nodes) {
+					for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						nodeSet.matchingNodes.remove(node);
 					}
 				} else {
@@ -3011,7 +3011,7 @@ protected void reportMatching(AbstractVariableDeclaration variable, FieldDeclara
 						MemberDeclarationVisitor declarationVisitor = new MemberDeclarationVisitor(enclosingElement, nodes, nodeSet, this, typeInHierarchy);
 						field.traverse(declarationVisitor, (MethodScope) null);
 						int length = nodes.length;
-						for (int i = 0; i < length; i++) {
+						for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							ASTNode node = nodes[i];
 							Integer level = nodeSet.matchingNodes.remove(node);
 							if (level != null) { // ensure that the reference has not been already reported while visiting
@@ -3036,7 +3036,7 @@ protected void reportMatching(AbstractVariableDeclaration variable, FieldDeclara
  * Visit the given module declaration and report the nodes that match exactly the
  * search pattern (i.e. the ones in the matching nodes set)
  */
-protected void reportMatching(ModuleDeclaration module, IJavaElement parent, int accuracy, MatchingNodeSet nodeSet, int occurrenceCount) throws CoreException {
+protected void reportMatching(ModuleDeclaration module, IJavaElement parent, int accuracy, MatchingNodeSet nodeSet, int occurrenceCount) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.currentPossibleMatch.autoModuleName != null && accuracy > -1) {
 		reportMatchingAutoModule(module, parent, accuracy);
 		return;
@@ -3074,7 +3074,7 @@ private void reportMatching(RequiresStatement[] reqs, ModuleDeclaration module, 
 	if (reqs == null || reqs.length == 0)
 		return;
 	try {
-		for (RequiresStatement req : reqs) {
+		for (RequiresStatement req : reqs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Integer level = nodeSet.matchingNodes.remove(req.module);
 			if (level != null) {
 				this.patternLocator.matchReportReference(req.module, moduleDesc, req.resolvedBinding, level.intValue(), this);
@@ -3085,10 +3085,10 @@ private void reportMatching(RequiresStatement[] reqs, ModuleDeclaration module, 
 	}
 }
 
-private void reportMatching(PackageVisibilityStatement[] psvs, MatchingNodeSet nodeSet, IModuleDescription moduleDesc)
+private void reportMatching(PackageVisibilityStatement[] psvs, MatchingNodeSet nodeSet, IModuleDescription moduleDesc) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws JavaModelException, CoreException {
 	if (psvs != null && psvs.length > 0) {
-		for (PackageVisibilityStatement psv : psvs) {
+		for (PackageVisibilityStatement psv : psvs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportReference importRef = psv.pkgRef;
 			Integer level = nodeSet.matchingNodes.remove(importRef);
 			if (level != null) {
@@ -3097,7 +3097,7 @@ private void reportMatching(PackageVisibilityStatement[] psvs, MatchingNodeSet n
 			}
 			ModuleReference[] tgts = psv.targets;
 			if (tgts == null || tgts.length == 0) continue;
-			for (ModuleReference tgt : tgts) {
+			for (ModuleReference tgt : tgts) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				level = nodeSet.matchingNodes.remove(tgt);
 				if (level != null) {
 					this.patternLocator.matchReportReference(tgt, moduleDesc, tgt.resolve(this.unitScope), level.intValue(), this);
@@ -3106,9 +3106,9 @@ private void reportMatching(PackageVisibilityStatement[] psvs, MatchingNodeSet n
 		}
 	}
 }
-private void reportMatching(ProvidesStatement[] provides, ModuleDeclaration module, MatchingNodeSet nodeSet, IModuleDescription moduleDesc) throws JavaModelException, CoreException {
+private void reportMatching(ProvidesStatement[] provides, ModuleDeclaration module, MatchingNodeSet nodeSet, IModuleDescription moduleDesc) throws JavaModelException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (provides != null && provides.length > 0) {
-		for (ProvidesStatement service : provides) {
+		for (ProvidesStatement service : provides) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference intf = service.serviceInterface;
 			if (intf != null) {
 				Integer level = nodeSet.matchingNodes.remove(intf);
@@ -3116,7 +3116,7 @@ private void reportMatching(ProvidesStatement[] provides, ModuleDeclaration modu
 					this.patternLocator.matchReportReference(intf, moduleDesc, null, null, module.binding, level.intValue(), this);
 			}
 			TypeReference[] impls = service.implementations;
-			for (TypeReference impl : impls) {
+			for (TypeReference impl : impls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (impl != null) {
 					Integer level = nodeSet.matchingNodes.remove(impl);
 					if (level != null)
@@ -3126,10 +3126,10 @@ private void reportMatching(ProvidesStatement[] provides, ModuleDeclaration modu
 		}
 	}
 }
-private void reportMatching(UsesStatement[] uses, ModuleDeclaration module, MatchingNodeSet nodeSet, IModuleDescription moduleDesc) {
+private void reportMatching(UsesStatement[] uses, ModuleDeclaration module, MatchingNodeSet nodeSet, IModuleDescription moduleDesc) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (uses != null && uses.length > 0) {
 		try {
-			for (UsesStatement service : uses) {
+			for (UsesStatement service : uses) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeReference intf = service.serviceInterface;
 				if (intf != null) {
 					Integer level = nodeSet.matchingNodes.remove(intf);
@@ -3150,7 +3150,7 @@ private void reportMatching(UsesStatement[] uses, ModuleDeclaration module, Matc
  * Visit the given type declaration and report the nodes that match exactly the
  * search pattern (i.e. the ones in the matching nodes set)
  */
-protected void reportMatching(TypeDeclaration type, IJavaElement parent, int accuracy, MatchingNodeSet nodeSet, int occurrenceCount) throws CoreException {
+protected void reportMatching(TypeDeclaration type, IJavaElement parent, int accuracy, MatchingNodeSet nodeSet, int occurrenceCount) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// create type handle
 	IJavaElement enclosingElement = parent;
 	if (enclosingElement == null) {
@@ -3194,10 +3194,10 @@ protected void reportMatching(TypeDeclaration type, IJavaElement parent, int acc
 		ASTNode[] nodes = nodeSet.matchingNodes(type.declarationSourceStart, type.sourceStart);
 		if (nodes != null) {
 			if (!matchedClassContainer) {
-				for (ASTNode node : nodes)
+				for (ASTNode node : nodes) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					nodeSet.matchingNodes.remove(node);
 			} else {
-				for (ASTNode node : nodes) {
+				for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Integer level = nodeSet.matchingNodes.remove(node);
 					if (enclosesElement) {
 						this.patternLocator.matchReportReference(node, enclosingElement, null, null, type.binding, level.intValue(), this);
@@ -3219,7 +3219,7 @@ protected void reportMatching(TypeDeclaration type, IJavaElement parent, int acc
 		TypeReference superClass = type.superclass;
 		if (superClass != null) {
 			reportMatchingSuperOrPermit(superClass, enclosingElement, type.binding, nodeSet, matchedClassContainer);
-			for (int i = 0, length = superClass.annotations == null ? 0 : superClass.annotations.length; i < length; i++) {
+			for (int i = 0, length = superClass.annotations == null ? 0 : superClass.annotations.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Annotation[] annotations = superClass.annotations[i];
 				if (annotations == null) continue;
 				reportMatching(annotations, enclosingElement, null, type.binding, nodeSet, matchedClassContainer, enclosesElement);
@@ -3227,12 +3227,12 @@ protected void reportMatching(TypeDeclaration type, IJavaElement parent, int acc
 		}
 		TypeReference[] superInterfaces = type.superInterfaces;
 		if (superInterfaces != null) {
-			for (int i = 0, l = superInterfaces.length; i < l; i++) {
+			for (int i = 0, l = superInterfaces.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				reportMatchingSuperOrPermit(superInterfaces[i], enclosingElement, type.binding, nodeSet, matchedClassContainer);
 				TypeReference typeReference  = type.superInterfaces[i];
 				Annotation[][] annotations = typeReference != null ? typeReference.annotations : null;
 				if (annotations != null) {
-					for (Annotation[] annotation : annotations) {
+					for (Annotation[] annotation : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (annotation == null) continue;
 						reportMatching(annotation, enclosingElement, null, type.binding, nodeSet, matchedClassContainer, enclosesElement);
 					}
@@ -3240,7 +3240,7 @@ protected void reportMatching(TypeDeclaration type, IJavaElement parent, int acc
 			}
 		}
 		TypeReference[] permittedTypes = type.permittedTypes;
-		for (int i = 0, length = permittedTypes == null ? 0 : permittedTypes.length; i < length; i++) {
+		for (int i = 0, length = permittedTypes == null ? 0 : permittedTypes.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			reportMatchingSuperOrPermit(permittedTypes[i], enclosingElement, type.binding, nodeSet, matchedClassContainer);
 		}
 	}
@@ -3256,7 +3256,7 @@ protected void reportMatching(TypeDeclaration type, IJavaElement parent, int acc
 		FieldDeclaration[] otherFields = null;
 		int first = -1;
 		int length = variables.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			AbstractVariableDeclaration variable = variables[i];
 			boolean last = variable instanceof FieldDeclaration field ? field.endPart2Position == 0 || field.declarationEnd == field.endPart2Position : true;
 			// Store first index of multiple field declaration
@@ -3275,7 +3275,7 @@ protected void reportMatching(TypeDeclaration type, IJavaElement parent, int acc
 				}
 				// On last field, report match with all other elements
 				if (last) {
-					for (int j=first; j<=i; j++) {
+					for (int j=first; j<=i; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						Integer level = nodeSet.matchingNodes.remove(variables[j]);
 						int value = (level != null && matchedClassContainer) ? level.intValue() : -1;
 						reportMatching(variables[j], otherFields, type, enclosingElement, value, typeInHierarchy, nodeSet);
@@ -3296,7 +3296,7 @@ protected void reportMatching(TypeDeclaration type, IJavaElement parent, int acc
 	AbstractMethodDeclaration[] methods = type.methods;
 	if (methods != null) {
 		if (nodeSet.matchingNodes.isEmpty()) return;	// end as all matching nodes were reported
-		for (AbstractMethodDeclaration method : methods) {
+		for (AbstractMethodDeclaration method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Integer level = nodeSet.matchingNodes.remove(method);
 			int value = (level != null && matchedClassContainer) ? level.intValue() : -1;
 			boolean ignoreClinit = type.isImplicitType() && method.isClinit();
@@ -3309,7 +3309,7 @@ protected void reportMatching(TypeDeclaration type, IJavaElement parent, int acc
 	// Visit types
 	TypeDeclaration[] memberTypes = type.memberTypes;
 	if (memberTypes != null) {
-		for (TypeDeclaration memberType : memberTypes) {
+		for (TypeDeclaration memberType : memberTypes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (nodeSet.matchingNodes.isEmpty()) return;	// end as all matching nodes were reported
 			Integer level = nodeSet.matchingNodes.remove(memberType);
 			int value = (level != null && matchedClassContainer) ? level.intValue() : -1;
@@ -3320,9 +3320,9 @@ protected void reportMatching(TypeDeclaration type, IJavaElement parent, int acc
 /**
  * Report matches in type parameters.
  */
-protected void reportMatching(TypeParameter[] typeParameters, IJavaElement enclosingElement, IJavaElement parent, Binding binding, MatchingNodeSet nodeSet) throws CoreException {
+protected void reportMatching(TypeParameter[] typeParameters, IJavaElement enclosingElement, IJavaElement parent, Binding binding, MatchingNodeSet nodeSet) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (typeParameters == null) return;
-	for (TypeParameter typeParameter : typeParameters) {
+	for (TypeParameter typeParameter : typeParameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (typeParameter != null) {
 			Integer level = nodeSet.matchingNodes.remove(typeParameter);
 			if (level != null) {
@@ -3347,7 +3347,7 @@ protected void reportMatching(TypeParameter[] typeParameters, IJavaElement enclo
                     ParameterizedSingleTypeReference paramSTR = (ParameterizedSingleTypeReference) typeParameter.type;
                     if (paramSTR.typeArguments != null) {
                     	int length = paramSTR.typeArguments.length;
-                    	for (int k=0; k<length; k++) {
+                    	for (int k=0; k<length; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							TypeReference typeArgument = paramSTR.typeArguments[k];
 							reportMatching(typeArgument.annotations, enclosingElement, typeArgument.resolvedType, nodeSet, matchedClassContainer);
 							level = nodeSet.matchingNodes.remove(typeArgument);
@@ -3371,7 +3371,7 @@ protected void reportMatching(TypeParameter[] typeParameters, IJavaElement enclo
 				}
 			}
 			if (typeParameter.bounds != null) {
-				for (TypeReference typeParameterBound : typeParameter.bounds) {
+				for (TypeReference typeParameterBound : typeParameter.bounds) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (typeParameterBound.annotations != null) {
 						reportMatching(typeParameterBound.annotations, enclosingElement, binding,nodeSet, matchedClassContainer);
 					}
@@ -3384,7 +3384,7 @@ protected void reportMatching(TypeParameter[] typeParameters, IJavaElement enclo
 	                    ParameterizedSingleTypeReference paramSTR = (ParameterizedSingleTypeReference) typeParameterBound;
 	                    if (paramSTR.typeArguments != null) {
 	                    	int length = paramSTR.typeArguments.length;
-	                    	for (int k=0; k<length; k++) {
+	                    	for (int k=0; k<length; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								TypeReference typeArgument = paramSTR.typeArguments[k];
 								if (typeArgument.annotations != null) {
 									reportMatching(typeArgument.annotations, enclosingElement, binding,nodeSet, matchedClassContainer);
@@ -3415,7 +3415,7 @@ protected void reportMatching(TypeParameter[] typeParameters, IJavaElement enclo
 		}
 	}
 }
-protected void reportMatchingSuperOrPermit(TypeReference superReference, IJavaElement enclosingElement, Binding elementBinding, MatchingNodeSet nodeSet, boolean matchedClassContainer) throws CoreException {
+protected void reportMatchingSuperOrPermit(TypeReference superReference, IJavaElement enclosingElement, Binding elementBinding, MatchingNodeSet nodeSet, boolean matchedClassContainer) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTNode[] nodes = null;
 	if (superReference instanceof ParameterizedSingleTypeReference || superReference instanceof ParameterizedQualifiedTypeReference) {
 		long lastTypeArgumentInfo = findLastTypeArgumentInfo(superReference);
@@ -3423,11 +3423,11 @@ protected void reportMatchingSuperOrPermit(TypeReference superReference, IJavaEl
 	}
 	if (nodes != null) {
 		if ((this.matchContainer & PatternLocator.CLASS_CONTAINER) == 0) {
-			for (ASTNode node : nodes)
+			for (ASTNode node : nodes) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				nodeSet.matchingNodes.remove(node);
 		} else {
 			if (encloses(enclosingElement))
-				for (ASTNode node : nodes) {
+				for (ASTNode node : nodes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Integer level = nodeSet.matchingNodes.remove(node);
 					this.patternLocator.matchReportReference(node, enclosingElement, null, null, elementBinding, level.intValue(), this);
 				}
@@ -3444,7 +3444,7 @@ protected boolean typeInHierarchy(ReferenceBinding binding) {
 
 	if (this.allSuperTypeNames != null) {
 		char[][] compoundName = binding.compoundName;
-		for (char[][] superTypeName : this.allSuperTypeNames)
+		for (char[][] superTypeName : this.allSuperTypeNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(compoundName, superTypeName))
 				return true;
 	}
@@ -3469,17 +3469,17 @@ private IJavaElement createHandleFromNestAncestors(AbstractMethodDeclaration met
 /*
  * Tries to find a method in the nest ancestors of a type. E.g. for Type$2$1, nest ancestors are: Type$1, Type
  */
-private IJavaElement findMethodInNestAncestors(AbstractMethodDeclaration method, BinaryType binaryType) {
+private IJavaElement findMethodInNestAncestors(AbstractMethodDeclaration method, BinaryType binaryType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaElement methodHandle = null;
 	int index = 0;
 	String typeQualifiedName = binaryType.getTypeQualifiedName();
 	// loop until we find the method or arrive at the nested classes host, e.g. for Type$2$1 the "visited" types are: Type$1, Type
-	while (methodHandle == null && index != -1) {
+	while (methodHandle == null && index != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		index = typeQualifiedName.lastIndexOf('$');
 		if (index != -1) {
 			typeQualifiedName = typeQualifiedName.substring(0, index);
 		}
-		String className = typeQualifiedName + SuffixConstants.SUFFIX_STRING_class;
+		String className = typeQualifiedName + SuffixConstants.SUFFIX_STRING_class; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IOrdinaryClassFile classFile = binaryType.getPackageFragment()
 				.getOrdinaryClassFile(className);
 		IType parentType = classFile.getType();

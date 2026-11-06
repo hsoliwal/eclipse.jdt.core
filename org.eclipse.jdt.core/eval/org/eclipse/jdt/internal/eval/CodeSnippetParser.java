@@ -47,7 +47,7 @@ public CodeSnippetParser(ProblemReporter problemReporter, EvaluationContext eval
 	this.reportOnlyOneSyntaxError = true;
 	this.javadocParser.checkDocComment = false;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void classInstanceCreation(boolean alwaysQualified) {
 	// ClassInstanceCreationExpression ::= 'new' ClassType '(' ArgumentListopt ')' ClassBodyopt
 
@@ -94,7 +94,7 @@ protected void classInstanceCreation(boolean alwaysQualified) {
 		this.astLengthPtr--;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeClassInstanceCreationExpressionWithTypeArguments() {
 	// ClassInstanceCreationExpression ::= 'new' TypeArguments ClassType '(' ArgumentListopt ')' ClassBodyopt
 	AllocationExpression alloc;
@@ -154,7 +154,7 @@ protected void consumeClassDeclaration() {
 	/* recovery */
 	recordLastStatementIfNeeded();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeClassHeaderName1() {
 	// ClassHeaderName ::= Modifiersopt 'class' 'Identifier'
 	TypeDeclaration typeDecl;
@@ -221,7 +221,7 @@ protected void consumeExpressionStatement() {
 	/* recovery */
 	recordLastStatementIfNeeded();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeFieldAccess(boolean isSuperAccess) {
 	// FieldAccess ::= Primary '.' 'Identifier'
 	// FieldAccess ::= 'super' '.' 'Identifier'
@@ -280,7 +280,7 @@ protected void consumeLocalVariableDeclarationStatement() {
  * The CSToCuMapper could not be used, since it could have interfered with
  * the syntax recovery specific to code snippets.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeMethodDeclaration(boolean isNotAbstract, boolean isDefaultMethod) {
 	// MethodDeclaration ::= MethodHeader MethodBody
 	// AbstractMethodDeclaration ::= MethodHeader ';'
@@ -313,7 +313,7 @@ protected void consumeMethodDeclaration(boolean isNotAbstract, boolean isDefault
 
 		// generate n local variable declarations: [type] [name] = val$[name];
 		Statement[] newStatements = new Statement[varCount+1];
-		for (int i = 0; i < varCount; i++){
+		for (int i = 0; i < varCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] trimmedTypeName = this.evaluationContext.localVariableTypeNames[i];
 			int nameEnd = CharOperation.indexOf('[', trimmedTypeName);
 			if (nameEnd >= 0) {
@@ -357,7 +357,7 @@ protected void consumeMethodDeclaration(boolean isNotAbstract, boolean isDefault
 		finallyBlock.sourceStart = start;
 		finallyBlock.sourceEnd = end;
 		finallyBlock.statements = new Statement[varCount];
-		for (int i = 0; i < varCount; i++){
+		for (int i = 0; i < varCount; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			SingleNameReference nameRef = new SingleNameReference(this.evaluationContext.localVariableNames[i], position);
 			finallyBlock.statements[i] = new Assignment(
 				new SingleNameReference(CharOperation.concat(LOCAL_VAR_PREFIX, this.evaluationContext.localVariableNames[i]), position),
@@ -370,7 +370,7 @@ protected void consumeMethodDeclaration(boolean isNotAbstract, boolean isDefault
 		methodDecl.statements = newStatements;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeMethodInvocationName() {
 	// MethodInvocation ::= Name '(' ArgumentListopt ')'
 
@@ -409,7 +409,7 @@ protected void consumeMethodInvocationName() {
 		super.consumeMethodInvocationName();
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeMethodInvocationNameWithTypeArguments() {
 	// MethodInvocation ::= Name '.' TypeArguments 'Identifier' '(' ArgumentListopt ')'
 
@@ -452,7 +452,7 @@ protected void consumeMethodInvocationSuper() {
 	m.receiver = new CodeSnippetSuperReference(m.sourceStart, this.endPosition);
 	pushOnExpressionStack(m);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeMethodInvocationSuperWithTypeArguments() {
 	// MethodInvocation ::= 'super' '.' TypeArguments 'Identifier' '(' ArgumentListopt ')'
 
@@ -545,7 +545,7 @@ protected void consumeStatementLabel() {
 	/* recovery */
 	recordLastStatementIfNeeded();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeStatementReturn() {
 	// ReturnStatement ::= 'return' Expressionopt ';'
 
@@ -598,13 +598,13 @@ protected void consumeStatementWhile() {
 	/* recovery */
 	recordLastStatementIfNeeded();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected CompilationUnitDeclaration endParse(int act) {
 	if (this.hasRecoveredOnExpression) {
 		CompilationResult unitResult = this.compilationUnit.compilationResult;
 		if (act != ERROR_ACTION) { // expression recovery worked
 			// flush previously recorded problems
-			for (int i = 0; i < unitResult.problemCount; i++) {
+			for (int i = 0; i < unitResult.problemCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				unitResult.problems[i] = null; // discard problem
 			}
 			unitResult.problemCount = 0;
@@ -644,7 +644,7 @@ protected CompilationUnitDeclaration endParse(int act) {
 			// 2. during expression recovery
 			// -> must filter out one of them, the earliest one is less accurate
 			int maxRegularPos = 0, problemCount = unitResult.problemCount;
-			for (int i = 0; i < this.problemCountBeforeRecovery; i++) {
+			for (int i = 0; i < this.problemCountBeforeRecovery; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// skip unmatched bracket problems
 				if (unitResult.problems[i].getID() == IProblem.UnmatchedBracket) continue;
 
@@ -654,7 +654,7 @@ protected CompilationUnitDeclaration endParse(int act) {
 				}
 			}
 			int maxRecoveryPos = 0;
-			for (int i = this.problemCountBeforeRecovery; i < problemCount; i++) {
+			for (int i = this.problemCountBeforeRecovery; i < problemCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// skip unmatched bracket problems
 				if (unitResult.problems[i].getID() == IProblem.UnmatchedBracket) continue;
 
@@ -669,7 +669,7 @@ protected CompilationUnitDeclaration endParse(int act) {
 			} else {
 				unitResult.problemCount -= (problemCount - this.problemCountBeforeRecovery);
 			}
-			for (int i = unitResult.problemCount; i < problemCount; i++) {
+			for (int i = unitResult.problemCount; i < problemCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				unitResult.problems[i] = null; // discard problem
 			}
 
@@ -677,7 +677,7 @@ protected CompilationUnitDeclaration endParse(int act) {
 	}
 	return super.endParse(act);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected NameReference getUnspecifiedReference(boolean rejectTypeAnnotations) {
 	/* build a (unspecified) NameReference which may be qualified*/
 	if (rejectTypeAnnotations) {
@@ -714,7 +714,7 @@ protected NameReference getUnspecifiedReference(boolean rejectTypeAnnotations) {
 		return super.getUnspecifiedReference(rejectTypeAnnotations);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected NameReference getUnspecifiedReferenceOptimized() {
 	/* build a (unspecified) NameReference which may be qualified
 	The optimization occurs for qualified reference while we are
@@ -833,7 +833,7 @@ protected void reportSyntaxErrors(boolean isDietParse, TerminalToken oldFirstTok
  * A syntax error was detected. If a method is being parsed, records the number of errors and
  * attempts to restart from the last statement by going for an expression.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected int resumeOnSyntaxError() {
 	if (this.diet || this.hasRecoveredOnExpression) { // no reentering inside expression recovery
 		return HALT;

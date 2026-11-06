@@ -69,7 +69,7 @@ public class FullSourceWorkspaceASTTests extends FullSourceWorkspaceTests {
 		super.setUp();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     protected void tearDown() throws Exception {
 
 		// End of execution => one test less
@@ -85,7 +85,7 @@ public class FullSourceWorkspaceASTTests extends FullSourceWorkspaceTests {
 			System.out.println("-------------------------------------");
 			System.out.println("DOM/AST creation performance test statistics:");
 			NumberFormat intFormat = NumberFormat.getIntegerInstance();
-			System.out.println("  - "+intFormat.format(this.nodesCount)+" nodes have been parsed.");
+			System.out.println("  - "+intFormat.format(this.nodesCount)+" nodes have been parsed."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			System.out.println("-------------------------------------\n");
         }
 
@@ -553,10 +553,10 @@ public class FullSourceWorkspaceASTTests extends FullSourceWorkspaceTests {
 	 *
 	 * @deprecated
 	 */
-	private void createAST(ICompilationUnit unit, int astLevel) throws JavaModelException {
+	private void createAST(ICompilationUnit unit, int astLevel) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Warm up
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTParser parser = ASTParser.newParser(astLevel);
 			parser.setSource(unit);
 			parser.setResolveBindings(false);
@@ -566,18 +566,18 @@ public class FullSourceWorkspaceASTTests extends FullSourceWorkspaceTests {
 		// Measures
 		int measures = MEASURES_COUNT * 2;
 		int iterations = ITERATIONS_COUNT >> 1;
-		for (int i = 0; i < measures; i++) {
+		for (int i = 0; i < measures; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode result = null;
 			runGc();
 			startMeasuring();
-			for (int j=0; j<iterations; j++) {
+			for (int j=0; j<iterations; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ASTParser parser = ASTParser.newParser(astLevel);
 				parser.setSource(unit);
 				parser.setResolveBindings(false);
 				result = parser.createAST(null);
 			}
 			stopMeasuring();
-			assertEquals("Wrong type for node"+result, result.getNodeType(), ASTNode.COMPILATION_UNIT);
+			assertEquals("Wrong type for node"+result, result.getNodeType(), ASTNode.COMPILATION_UNIT); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			CompilationUnit compilationUnit = (CompilationUnit) result;
 			CommentMapperASTVisitor visitor = new CommentMapperASTVisitor(compilationUnit);
 			compilationUnit.accept(visitor);
@@ -615,13 +615,13 @@ public class FullSourceWorkspaceASTTests extends FullSourceWorkspaceTests {
 	/*
 	 * Create AST nodes tree for all compilation units of all projects
 	 */
-	private int runAllProjectsAstCreation(int astLevel) throws JavaModelException {
+	private int runAllProjectsAstCreation(int astLevel) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int unitsCount = 0;
 		startMeasuring();
 		if (DEBUG) System.out.println("Creating AST hierarchy for all units of projects:");
-		for (int i = 0; i < ALL_PROJECTS.length; i++) {
+		for (int i = 0; i < ALL_PROJECTS.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// Get project compilation units
-			if (DEBUG) System.out.print("\t- "+ALL_PROJECTS[i].getElementName());
+			if (DEBUG) System.out.print("\t- "+ALL_PROJECTS[i].getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			List units = getProjectCompilationUnits(ALL_PROJECTS[i]);
 			int size = units.size();
 			if (size == 0) {
@@ -633,23 +633,23 @@ public class FullSourceWorkspaceASTTests extends FullSourceWorkspaceTests {
 			int n = unitsArrays.size();
 			if (DEBUG)
 				if (n==1)
-					System.out.print(": "+size+" units to proceed ("+n+" step): ");
+					System.out.print(": "+size+" units to proceed ("+n+" step): "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				else
-					System.out.print(": "+size+" units to proceed ("+n+" steps): ");
-			while (unitsArrays.size() > 0) {
+					System.out.print(": "+size+" units to proceed ("+n+" steps): "); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			while (unitsArrays.size() > 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				ICompilationUnit[] unitsArray = (ICompilationUnit[]) unitsArrays.remove(0);
 				if (DEBUG) System.out.print('.');
 				int length = unitsArray.length;
 				CompilationUnit[] compilationUnits = new CompilationUnit[length];
 				// Create AST tree
-				for (int ptr=0; ptr<length; ptr++) {
+				for (int ptr=0; ptr<length; ptr++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					ICompilationUnit unit = unitsArray[ptr];
 					unitsArray[ptr] = null; // release memory handle
 					ASTParser parser = ASTParser.newParser(astLevel);
 					parser.setSource(unit);
 					parser.setResolveBindings(false);
 					ASTNode result = parser.createAST(null);
-					assertEquals("Wrong type for node"+result, result.getNodeType(), ASTNode.COMPILATION_UNIT);
+					assertEquals("Wrong type for node"+result, result.getNodeType(), ASTNode.COMPILATION_UNIT); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					compilationUnits[ptr] = (CompilationUnit) result;
 				}
 			}
@@ -672,8 +672,8 @@ public class FullSourceWorkspaceASTTests extends FullSourceWorkspaceTests {
 	/*
 	 * Create AST nodes for all compilation unit of a given project
 	 */
-	private void runAstCreation(IJavaProject javaProject) throws JavaModelException {
-		if (DEBUG) System.out.println("Creating AST for project" + javaProject.getElementName());
+	private void runAstCreation(IJavaProject javaProject) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		if (DEBUG) System.out.println("Creating AST for project" + javaProject.getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ASTParser parser = ASTParser.newParser(JLS3_INTERNAL);
 		parser.setResolveBindings(true);
 		parser.setProject(javaProject);
@@ -682,7 +682,7 @@ public class FullSourceWorkspaceASTTests extends FullSourceWorkspaceTests {
 		// turn all errors and warnings into ignore. The customizable set of compiler
 		// options only contains additional Eclipse options. The standard JDK compiler
 		// options can't be changed anyway.
-		for (Iterator iter= options.keySet().iterator(); iter.hasNext();) {
+		for (Iterator iter= options.keySet().iterator(); iter.hasNext();) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String key= (String)iter.next();
 			String value= (String)options.get(key);
 			if ("error".equals(value) || "warning".equals(value)) {  //$NON-NLS-1$//$NON-NLS-2$
@@ -701,8 +701,8 @@ public class FullSourceWorkspaceASTTests extends FullSourceWorkspaceTests {
 		units.toArray(compilationUnits);
 
 		if (PRINT) {
-			System.out.println("	- options: "+options);
-			System.out.println("	- "+compilationUnits.length+" units will be parsed in "+javaProject.getElementName()+" project");
+			System.out.println("	- options: "+options); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			System.out.println("	- "+compilationUnits.length+" units will be parsed in "+javaProject.getElementName()+" project"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		// warm up
@@ -711,12 +711,12 @@ public class FullSourceWorkspaceASTTests extends FullSourceWorkspaceTests {
 					IProblem[] problems = ast.getProblems();
 					int length = problems.length;
 					if (length > 0) {
-						StringBuilder buffer = new StringBuilder();
-						for (int i=0; i<length; i++) {
-							buffer.append(problems[i].getMessage());
-							buffer.append('\n');
+						StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+						for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+							buffer.append(problems[i].getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+							buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						}
-						assertEquals("Unexpected problems: "+buffer.toString(), 0, length);
+						assertEquals("Unexpected problems: "+buffer.toString(), 0, length); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			},
@@ -724,7 +724,7 @@ public class FullSourceWorkspaceASTTests extends FullSourceWorkspaceTests {
 
 		// Measures
 		int measures = MEASURES_COUNT * 2;
-		for (int i = 0; i < measures; i++) {
+		for (int i = 0; i < measures; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			runGc();
 			startMeasuring();
 			parser.createASTs(compilationUnits, new String[0], new ASTRequestor() {/* do nothing*/}, null);

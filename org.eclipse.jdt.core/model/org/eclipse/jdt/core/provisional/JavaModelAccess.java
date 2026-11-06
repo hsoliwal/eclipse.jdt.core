@@ -59,7 +59,7 @@ public class JavaModelAccess {
 			case IJavaElement.PACKAGE_FRAGMENT_ROOT:
 				return ((PackageFragmentRoot) element).getAutomaticModuleDescription();
 			default:
-				throw new IllegalArgumentException("Illegal kind of java element: "+element.getElementType()); //$NON-NLS-1$
+				throw new IllegalArgumentException("Illegal kind of java element: "+element.getElementType()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 

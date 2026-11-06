@@ -85,20 +85,20 @@ public class ImportDeclaration extends ASTNode {
 	private static final List PROPERTY_DESCRIPTORS_23;
 
 	static {
-		List properyList = new ArrayList(3);
+		List properyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(ImportDeclaration.class, properyList);
 		addProperty(NAME_PROPERTY, properyList);
 		addProperty(ON_DEMAND_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS_2_0 = reapPropertyList(properyList);
 
-		properyList = new ArrayList(4);
+		properyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(ImportDeclaration.class, properyList);
 		addProperty(STATIC_PROPERTY, properyList);
 		addProperty(NAME_PROPERTY, properyList);
 		addProperty(ON_DEMAND_PROPERTY, properyList);
 		PROPERTY_DESCRIPTORS_3_0 = reapPropertyList(properyList);
 
-		properyList = new ArrayList(5);
+		properyList = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(ImportDeclaration.class, properyList);
 		addProperty(STATIC_PROPERTY, properyList);
 		addProperty(MODIFIERS_PROPERTY, properyList);
@@ -213,7 +213,7 @@ public class ImportDeclaration extends ASTNode {
 		// performance could be improved by caching computed flags
 		// but this would require tracking changes to this.modifiers
 		int computedmodifierFlags = Modifier.NONE;
-		for (Object x : modifiers()) {
+		for (Object x : modifiers()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (x instanceof Modifier modifier) {
 				computedmodifierFlags |= modifier.getKeyword().toFlagValue();
 			}
@@ -226,7 +226,7 @@ public class ImportDeclaration extends ASTNode {
 		return propertyDescriptors(apiLevel);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final boolean internalGetSetBooleanProperty(SimplePropertyDescriptor property, boolean get, boolean value) {
 		if (property == ON_DEMAND_PROPERTY) {
 			if (get) {
@@ -400,7 +400,7 @@ public class ImportDeclaration extends ASTNode {
 	public boolean isStatic() {
 		if (this.modifiers != null) {
 			// JLS23 behavior: extract from the list of Modifier
-			for (Object x : modifiers()) {
+			for (Object x : modifiers()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (x instanceof Modifier modifier && modifier.isStatic()) {
 					return true;
 				}
@@ -426,11 +426,11 @@ public class ImportDeclaration extends ASTNode {
 	 *
 	 * @see #modifiers()
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void setStatic(boolean isStatic) {
 		if (this.ast.apiLevel >= AST.JLS23_INTERNAL) {
 			List<Modifier> mods = modifiers();
-			for (Modifier mod : mods) {
+			for (Modifier mod : mods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (mod.isStatic()) {
 					if (!isStatic)
 						this.modifiers.remove(mod);

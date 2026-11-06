@@ -76,13 +76,13 @@ public abstract class ClassFileStruct {
 				+ ((reference[position++] & 0xFF) << 8)
 				+ (reference[position] & 0xFF));
 	}
-	protected char[] utf8At(byte[] reference, int relativeOffset, int structOffset, int bytesAvailable) {
+	protected char[] utf8At(byte[] reference, int relativeOffset, int structOffset, int bytesAvailable) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = bytesAvailable;
 		char outputBuf[] = new char[bytesAvailable];
 		int outputPos = 0;
 		int readOffset = structOffset + relativeOffset;
 
-		while (length != 0) {
+		while (length != 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int x = reference[readOffset++] & 0xFF;
 			length--;
 			if ((0x80 & x) != 0) {
@@ -111,7 +111,7 @@ public abstract class ClassFileStruct {
 		if (first.length != second.length)
 			return false;
 
-		for (int i = first.length; --i >= 0;)
+		for (int i = first.length; --i >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (first[i] != second[i])
 				return false;
 		return true;

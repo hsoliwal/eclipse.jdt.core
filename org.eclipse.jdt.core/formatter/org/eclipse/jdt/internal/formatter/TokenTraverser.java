@@ -85,10 +85,10 @@ public abstract class TokenTraverser {
 		}
 	}
 
-	public int traverse(List<Token> tokens, int startIndex) {
+	public int traverse(List<Token> tokens, int startIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		initTraverse(tokens, startIndex);
 
-		for (int i = startIndex; i < tokens.size(); i++) {
+		for (int i = startIndex; i < tokens.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (this.structureChanged)
 				initTraverse(tokens, i);
 

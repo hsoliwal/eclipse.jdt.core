@@ -49,7 +49,7 @@ public final class NormalAnnotation extends Annotation {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List propertyList = new ArrayList(3);
+		List propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(NormalAnnotation.class, propertyList);
 		addProperty(TYPE_NAME_PROPERTY, propertyList);
 		addProperty(VALUES_PROPERTY, propertyList);

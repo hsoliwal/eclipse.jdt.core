@@ -56,7 +56,7 @@ public class TestBase extends BuilderTests
 	/**
 	 * Extract lib/annotations.jar from the test bundle and add it to the specified project
 	 */
-	private static void addAnnotationJar(IJavaProject jproj, boolean addToModulePath) throws Exception {
+	private static void addAnnotationJar(IJavaProject jproj, boolean addToModulePath) throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final String resName = "lib/annotations.jar"; // name in bundle
 		final String libName = resName; // name in destination project
 		URL resURL = Apt6TestsPlugin.thePlugin().getBundle().getEntry(resName);
@@ -150,7 +150,7 @@ public class TestBase extends BuilderTests
 	 */
 	protected void disableJava5Factories(IJavaProject jproj) throws CoreException {
 		FactoryPath fp = (FactoryPath) AptConfig.getFactoryPath(jproj);
-		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : fp.getAllContainers().entrySet()) {
+		for (Map.Entry<FactoryContainer, FactoryPath.Attributes> entry : fp.getAllContainers().entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (entry.getKey().getType() == FactoryType.PLUGIN) {
 				String id = entry.getKey().getId();
 				if (!Apt6TestsPlugin.PLUGIN_ID.equals(id)) {
@@ -169,7 +169,7 @@ public class TestBase extends BuilderTests
 	{
 		IPath path = proj.getLocation().append(fileName);
 		File file = new File(path.toOSString());
-		assertTrue("Expected file " + fileName + " was missing from project", file != null && file.exists());
+		assertTrue("Expected file " + fileName + " was missing from project", file != null && file.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 	}
 
 	/**
@@ -180,15 +180,15 @@ public class TestBase extends BuilderTests
 	{
 		IPath path = proj.getLocation().append(fileName);
 		File file = new File(path.toOSString());
-		boolean exists = file.exists();
+		boolean exists = file.exists(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		// work around a timing bug in some versions of JRE 1.6 on Linux:
 		// Before assuming the test has failed, wait half a second and try again.
 		// This delay is not encountered when the test is passing normally.
 		if (exists) {
 			Thread.sleep(500);
-			exists = file.exists();
+			exists = file.exists(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
-		assertTrue("File " + fileName + " was expected to not exist", file == null || !exists);
+		assertTrue("File " + fileName + " was expected to not exist", file == null || !exists); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
@@ -196,7 +196,7 @@ public class TestBase extends BuilderTests
 	{
 		super.setUp();
 		env.setAutoBuilding(false);
-		_projectName = String.format("testproj%04d", ++_projectSerial);
+		_projectName = String.format("testproj%04d", ++_projectSerial); //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 	}
 	public boolean canRunJava9() {
 		try {

@@ -198,9 +198,9 @@ public String getText(int offset, int length) {
 			int gapLength = this.gapEnd - this.gapStart;
 			return new String(this.contents, offset + gapLength, length);
 		}
-		StringBuilder buf = new StringBuilder();
-		buf.append(this.contents, offset, this.gapStart - offset);
-		buf.append(this.contents, this.gapEnd, offset + length - this.gapStart);
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append(this.contents, offset, this.gapStart - offset); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(this.contents, this.gapEnd, offset + length - this.gapStart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return buf.toString();
 	}
 }
@@ -245,7 +245,7 @@ public boolean isReadOnly() {
  * Thus the gap is resized to actual size + the specified size and
  * moved to the given position.
  */
-protected void moveAndResizeGap(int position, int size) {
+protected void moveAndResizeGap(int position, int size) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	char[] content = null;
 	int oldSize = this.gapEnd - this.gapStart;
 	if (size < 0) {
@@ -284,7 +284,7 @@ protected void moveAndResizeGap(int position, int size) {
  * Notify the listeners that this buffer has changed.
  * To avoid deadlock, this should not be called in a synchronized block.
  */
-protected void notifyChanged(final BufferChangedEvent event) {
+protected void notifyChanged(final BufferChangedEvent event) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IBufferChangedListener[] listeners;
 	synchronized(this) {
 		ListenerList<IBufferChangedListener> cListeners = this.changeListeners;
@@ -296,7 +296,7 @@ protected void notifyChanged(final BufferChangedEvent event) {
 		listeners = Arrays.copyOf(l, l.length, IBufferChangedListener[].class);
 	}
 
-	for (IBufferChangedListener listener : listeners) {
+	for (IBufferChangedListener listener : listeners) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		SafeRunner.run(new ISafeRunnable() {
 			@Override
 			public void handleException(Throwable exception) {
@@ -326,7 +326,7 @@ public synchronized void removeBufferChangedListener(IBufferChangedListener list
  * After that operation, the gap is placed at the end of the
  * inserted <code>text</code>.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void replace(int position, int length, char[] text) {
 	if (!isReadOnly()) {
 		int textLength = text == null ? 0 : text.length;
@@ -370,7 +370,7 @@ public void replace(int position, int length, String text) {
 /**
  * @see IBuffer
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void save(IProgressMonitor progress, boolean force) throws JavaModelException {
 
 	// determine if saving is required
@@ -436,7 +436,7 @@ public void save(IProgressMonitor progress, boolean force) throws JavaModelExcep
 /**
  * @see IBuffer
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setContents(char[] newContents) {
 	// allow special case for first initialization
 	// after creation by buffer factory
@@ -483,35 +483,35 @@ protected void setReadOnly(boolean readOnly) {
 		}
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
-	buffer.append("Owner: " + ((JavaElement)this.owner).toStringWithAncestors()); //$NON-NLS-1$
-	buffer.append("\nHas unsaved changes: " + hasUnsavedChanges()); //$NON-NLS-1$
-	buffer.append("\nIs readonly: " + isReadOnly()); //$NON-NLS-1$
-	buffer.append("\nIs closed: " + isClosed()); //$NON-NLS-1$
-	buffer.append("\nContents:\n"); //$NON-NLS-1$
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer.append("Owner: " + ((JavaElement)this.owner).toStringWithAncestors()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("\nHas unsaved changes: " + hasUnsavedChanges()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("\nIs readonly: " + isReadOnly()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("\nIs closed: " + isClosed()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	buffer.append("\nContents:\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	char[] charContents = getCharacters();
 	if (charContents == null) {
-		buffer.append("<null>"); //$NON-NLS-1$
+		buffer.append("<null>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else {
 		int length = charContents.length;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char c = charContents[i];
 			switch (c) {
 				case '\n':
-					buffer.append("\\n\n"); //$NON-NLS-1$
+					buffer.append("\\n\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 				case '\r':
 					if (i < length-1 && this.contents[i+1] == '\n') {
-						buffer.append("\\r\\n\n"); //$NON-NLS-1$
+						buffer.append("\\r\\n\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						i++;
 					} else {
-						buffer.append("\\r\n"); //$NON-NLS-1$
+						buffer.append("\\r\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					break;
 				default:
-					buffer.append(c);
+					buffer.append(c); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					break;
 			}
 		}

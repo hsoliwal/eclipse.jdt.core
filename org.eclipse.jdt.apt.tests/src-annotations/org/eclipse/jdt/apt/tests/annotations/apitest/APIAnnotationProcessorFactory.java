@@ -68,13 +68,13 @@ public class APIAnnotationProcessorFactory extends BaseFactory {
 		/**
 		 * validate instances of the Common annotation
 		 */
-		private void checkCommon()
+		private void checkCommon() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		{
 			final AnnotationTypeDeclaration commonAnnoType =
 				(AnnotationTypeDeclaration)_env.getTypeDeclaration(Common.class.getName());
 			final Collection<Declaration> decls =
 				_env.getDeclarationsAnnotatedWith(commonAnnoType);
-			for( Declaration decl : decls ){
+			for( Declaration decl : decls ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(decl instanceof FieldDeclaration ){
 					final FieldDeclaration field = (FieldDeclaration)decl;
 					final TypeMirror type = field.getType();
@@ -87,27 +87,27 @@ public class APIAnnotationProcessorFactory extends BaseFactory {
 							TypeMirror typeVar = typeVars.iterator().next();
 							boolean assignable = _env.getTypeUtils().isAssignable(typeVar, collectionType);
 							if( assignable )
-								_msgr.printError(typeVar + " is assignable to " + collectionType );
+								_msgr.printError(typeVar + " is assignable to " + collectionType ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 							else
-								_msgr.printError(typeVar + " is not assignable to " + collectionType );
+								_msgr.printError(typeVar + " is not assignable to " + collectionType ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 					}
 				}else if(decl instanceof TypeDeclaration){
 					final TypeDeclaration typeDecl = (TypeDeclaration)decl;
 					final Collection<TypeParameterDeclaration> typeParams =
 						typeDecl.getFormalTypeParameters();
-					for(TypeParameterDeclaration typeParam : typeParams){
+					for(TypeParameterDeclaration typeParam : typeParams){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						Declaration owner = typeParam.getOwner();
-						_msgr.printError("Type parameter '" + typeParam + "' belongs to " + owner.getClass().getName() + " " + owner.getSimpleName() );
+						_msgr.printError("Type parameter '" + typeParam + "' belongs to " + owner.getClass().getName() + " " + owner.getSimpleName() ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 				else if( decl instanceof MethodDeclaration ){
 					final MethodDeclaration methodDecl = (MethodDeclaration)decl;
 					final Collection<TypeParameterDeclaration> typeParams =
 						methodDecl.getFormalTypeParameters();
-					for(TypeParameterDeclaration typeParam : typeParams){
+					for(TypeParameterDeclaration typeParam : typeParams){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						Declaration owner = typeParam.getOwner();
-						_msgr.printError("Type parameter '" + typeParam + "' belongs to " + owner.getClass().getName() + " " + owner.getSimpleName() );
+						_msgr.printError("Type parameter '" + typeParam + "' belongs to " + owner.getClass().getName() + " " + owner.getSimpleName() ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 				}
 			}
@@ -118,12 +118,12 @@ public class APIAnnotationProcessorFactory extends BaseFactory {
 		 * the Types.subtypeOf() method.
 		 * We ignore anything but fields, out of laziness.
 		 */
-		private void checkSubtypeOf() {
+		private void checkSubtypeOf() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final AnnotationTypeDeclaration annoType =
 				(AnnotationTypeDeclaration)_env.getTypeDeclaration(SubtypeOf.class.getName());
 			final Collection<Declaration> decls =
 				_env.getDeclarationsAnnotatedWith(annoType);
-			for( Declaration decl : decls ){
+			for( Declaration decl : decls ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(decl instanceof FieldDeclaration ) {
 					AnnotationMirror mirror = findMirror(decl, annoType);
 					if (mirror == null) {
@@ -134,9 +134,9 @@ public class APIAnnotationProcessorFactory extends BaseFactory {
 					final TypeMirror fieldType = field.getType();
 					boolean isSubtype = _types.isSubtype(fieldType, valueType);
 					if( isSubtype )
-						_msgr.printError(fieldType + " is a subtype of " + valueType );
+						_msgr.printError(fieldType + " is a subtype of " + valueType ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					else
-						_msgr.printError(fieldType + " is not a subtype of " + valueType );
+						_msgr.printError(fieldType + " is not a subtype of " + valueType ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -145,12 +145,12 @@ public class APIAnnotationProcessorFactory extends BaseFactory {
 		 * Validate all the fields annotated with @AssignableTo.
 		 * We ignore anything but fields, out of laziness.
 		 */
-		private void checkAssignableTo() {
+		private void checkAssignableTo() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			final AnnotationTypeDeclaration annoType =
 				(AnnotationTypeDeclaration)_env.getTypeDeclaration(AssignableTo.class.getName());
 			final Collection<Declaration> decls =
 				_env.getDeclarationsAnnotatedWith(annoType);
-			for( Declaration decl : decls ){
+			for( Declaration decl : decls ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(decl instanceof FieldDeclaration ) {
 					AnnotationMirror mirror = findMirror(decl, annoType);
 					if (mirror == null) {
@@ -161,9 +161,9 @@ public class APIAnnotationProcessorFactory extends BaseFactory {
 					final TypeMirror fieldType = field.getType();
 					boolean isAssignableTo = _types.isAssignable(fieldType, valueType);
 					if( isAssignableTo )
-						_msgr.printError(fieldType + " is assignable to " + valueType );
+						_msgr.printError(fieldType + " is assignable to " + valueType ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					else
-						_msgr.printError(fieldType + " is not assignable to " + valueType );
+						_msgr.printError(fieldType + " is not assignable to " + valueType ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}
@@ -173,7 +173,7 @@ public class APIAnnotationProcessorFactory extends BaseFactory {
 		 * declaration, or null if one is not present.
 		 */
 		private AnnotationMirror findMirror(Declaration decl, AnnotationTypeDeclaration at) {
-			for (AnnotationMirror mirror : decl.getAnnotationMirrors()) {
+			for (AnnotationMirror mirror : decl.getAnnotationMirrors()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (mirror.getAnnotationType().getDeclaration().equals(at)) {
 					return mirror;
 				}
@@ -187,7 +187,7 @@ public class APIAnnotationProcessorFactory extends BaseFactory {
 		 */
 		private TypeMirror getTypeValue(AnnotationMirror mirror) {
 			Map<AnnotationTypeElementDeclaration, AnnotationValue> values = mirror.getElementValues();
-			for (Entry<AnnotationTypeElementDeclaration, AnnotationValue> entry : values.entrySet()) {
+			for (Entry<AnnotationTypeElementDeclaration, AnnotationValue> entry : values.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if ("value".equals(entry.getKey().getSimpleName())) {
 					if (entry.getValue().getValue() instanceof TypeMirror)
 						return (TypeMirror)entry.getValue().getValue();

@@ -40,17 +40,17 @@ public class SelectionOnParameterizedSingleTypeReference extends ParameterizedSi
 
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output){
-		output.append("<SelectOnType:");//$NON-NLS-1$
-		output.append(this.token);
-		output.append('<');
+		output.append("<SelectOnType:");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(this.token); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		int max = this.typeArguments.length - 1;
-		for (int i= 0; i < max; i++) {
+		for (int i= 0; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.typeArguments[i].print(0, output);
-			output.append(", ");//$NON-NLS-1$
+			output.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		this.typeArguments[max].print(0, output);
-		output.append('>');
-		output.append('>');
+		output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return output;
 	}
 }

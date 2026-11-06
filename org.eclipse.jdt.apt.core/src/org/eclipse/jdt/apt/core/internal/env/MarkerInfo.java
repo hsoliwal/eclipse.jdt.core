@@ -52,7 +52,7 @@ public class MarkerInfo {
 		case INFO :
 			return IMarker.SEVERITY_INFO;
 		}
-		throw new IllegalStateException("Unhandled severity level: " + severity); //$NON-NLS-1$
+		throw new IllegalStateException("Unhandled severity level: " + severity); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public boolean isError(){

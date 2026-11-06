@@ -26,7 +26,7 @@ public static Test suite() {
 /*
  * Complete on superclass
  */
-public void test01() {
+public void test01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -59,7 +59,7 @@ public void test01() {
 /*
  * Complete on superinterface
  */
-public void test02() {
+public void test02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;													\n" +
@@ -95,7 +95,7 @@ public void test02() {
 /*
  * Complete on qualified superclass
  */
-public void test03() {
+public void test03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;													\n" +
@@ -130,7 +130,7 @@ public void test03() {
 /*
  * Complete on qualified superinterface
  */
-public void test04() {
+public void test04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;															\n" +
@@ -163,7 +163,7 @@ public void test04() {
 /*
  * Complete on incomplete superclass
  */
-public void test05() {
+public void test05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -196,7 +196,7 @@ public void test05() {
 /*
  * Complete on incomplete superinterface
  */
-public void test06() {
+public void test06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;													\n" +
@@ -229,7 +229,7 @@ public void test06() {
 /*
  * Complete on incomplete qualified superclass
  */
-public void test07() {
+public void test07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;													\n" +
@@ -261,7 +261,7 @@ public void test07() {
 /*
  * Complete on incomplete qualified superinterface
  */
-public void test08() {
+public void test08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;															\n" +
@@ -294,7 +294,7 @@ public void test08() {
 /*
  * Complete inside qualified superclass
  */
-public void test09() {
+public void test09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"																	\n" +
@@ -325,7 +325,7 @@ public void test09() {
 /*
  * Complete inside qualified superinterface
  */
-public void test10() {
+public void test10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X extends IOException implements java.io.Serializable {		\n" +
@@ -355,7 +355,7 @@ public void test10() {
 /*
  * Complete inside qualified superclass ending with dot
  */
-public void test11() {
+public void test11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"																	\n" +
@@ -386,7 +386,7 @@ public void test11() {
 /*
  * Complete inside qualified superinterface ending with dot
  */
-public void test12() {
+public void test12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X extends IOException implements java.io.				 {		\n" +
@@ -417,7 +417,7 @@ public void test12() {
 /*
  * Complete on empty superclass
  */
-public void test13() {
+public void test13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -450,7 +450,7 @@ public void test13() {
 /*
  * Complete on empty superinterface
  */
-public void test14() {
+public void test14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;													\n" +
@@ -483,7 +483,7 @@ public void test14() {
 /*
  * Complete on empty superclass followed by identifier
  */
-public void test15() {
+public void test15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"public class X extends java.io. IOException  {			\n" +
@@ -515,7 +515,7 @@ public void test15() {
 /*
  * Complete on keyword extends
  */
-public void test16() {
+public void test16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -550,7 +550,7 @@ public void test16() {
 /*
  * Complete in keyword extends
  */
-public void test17() {
+public void test17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -585,7 +585,7 @@ public void test17() {
 /*
  * Complete in field type
  */
-public void test18() {
+public void test18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -618,7 +618,7 @@ public void test18() {
 /*
  * Complete at beginning of field type
  */
-public void test19() {
+public void test19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -651,7 +651,7 @@ public void test19() {
 /*
  * Complete at beginning of superclass
  */
-public void test20() {
+public void test20() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X extends IOException {				\n" +
@@ -682,7 +682,7 @@ public void test20() {
 /*
  * Complete in return type
  */
-public void test21() {
+public void test21() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -714,7 +714,7 @@ public void test21() {
 /*
  * Complete in argument type
  */
-public void test22() {
+public void test22() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -748,7 +748,7 @@ public void test22() {
 /*
  * Complete in return type
  */
-public void test23() {
+public void test23() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -780,7 +780,7 @@ public void test23() {
 /*
  * Complete in argument type (no closing brace for type)
  */
-public void test24() {
+public void test24() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -815,7 +815,7 @@ public void test24() {
 /*
  * Complete in return type with modifiers
  */
-public void test25() {
+public void test25() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -847,7 +847,7 @@ public void test25() {
 /*
  * Complete in field initialization
  */
-public void test26() {
+public void test26() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -879,7 +879,7 @@ public void test26() {
 /*
  * Complete in nth argument type
  */
-public void test27() {
+public void test27() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -913,7 +913,7 @@ public void test27() {
 /*
  * Complete in nth argument qualified type
  */
-public void test28() {
+public void test28() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -947,7 +947,7 @@ public void test28() {
 /*
  * Complete in nth thrown exception qualified type
  */
-public void test29() {
+public void test29() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {												\n" +
@@ -980,7 +980,7 @@ public void test29() {
 /*
  * Complete in completed argument
  */
-public void test30() {
+public void test30() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {												\n" +
@@ -1013,7 +1013,7 @@ public void test30() {
 /*
  * Negative test: no diet completion in allocation expression
  */
-public void test31() {
+public void test31() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class Bar {								\n"+
@@ -1048,7 +1048,7 @@ public void test31() {
 /*
  * Completion in package statement
  */
-public void test32() {
+public void test32() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"package x.abc				\n"+
@@ -1088,7 +1088,7 @@ public void test32() {
 /*
  * Completion in import statement
  */
-public void test33() {
+public void test33() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"package x.abc;				\n"+
@@ -1140,7 +1140,7 @@ public void test33() {
 	buffer.toString()
 	]
  */
-public void test34() {
+public void test34() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;									\n" +
@@ -1170,7 +1170,7 @@ public void test34() {
 		expectedReplacedSource,
 		testName);
 }
-public void test34a() {
+public void test34a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;									\n" +
@@ -1200,7 +1200,7 @@ public void test34a() {
 		expectedReplacedSource,
 		testName);
 }
-public void test34b() {
+public void test34b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;									\n" +
@@ -1230,7 +1230,7 @@ public void test34b() {
 		expectedReplacedSource,
 		testName);
 }
-public void test34c() {
+public void test34c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;									\n" +
@@ -1275,7 +1275,7 @@ public void test34c() {
 	buffer.toString()
 	]
  */
-public void test35() {
+public void test35() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;									\n" +
@@ -1308,7 +1308,7 @@ public void test35() {
 /*
  * Invalid completion inside a comment
  */
-public void test36() {
+public void test36() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;									\n" +
@@ -1341,7 +1341,7 @@ public void test36() {
 /*
  * Invalid completion inside a string literal
  */
-public void test37() {
+public void test37() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;									\n" +
@@ -1376,7 +1376,7 @@ public void test37() {
 /*
  * Invalid completion inside a number literal
  */
-public void test38() {
+public void test38() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;									\n" +
@@ -1410,7 +1410,7 @@ public void test38() {
 /*
  * Completion in import statement at the end of the unit
  */
-public void test39() {
+public void test39() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"package x.abc;				\n"+
@@ -1438,7 +1438,7 @@ public void test39() {
 /*
  * Completion in import statement at the end of the unit (qualified empty name)
  */
-public void test40() {
+public void test40() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"package a.b;			\n"+
@@ -1466,7 +1466,7 @@ public void test40() {
 /*
  * Should not find any diet completion
  */
-public void test41() {
+public void test41() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -1506,7 +1506,7 @@ public void test41() {
 /*
  * Complete on array type with prefix dimensions
  */
-public void test42() {
+public void test42() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -1540,7 +1540,7 @@ public void test42() {
 /*
  * Complete on array type with postfix dimensions
  */
-public void test43() {
+public void test43() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -1574,7 +1574,7 @@ public void test43() {
 /*
  * Complete in return type behind other member
  */
-public void test44() {
+public void test44() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -1608,7 +1608,7 @@ public void test44() {
 /*
  * Complete in return type behind other member
  */
-public void test45() {
+public void test45() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -1642,7 +1642,7 @@ public void test45() {
 /*
  * Complete on name in field initializer
  */
-public void test46() {
+public void test46() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -1676,7 +1676,7 @@ public void test46() {
 /*
  * Complete in field initializer in innner class
  */
-public void test47() {
+public void test47() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -1716,7 +1716,7 @@ public void test47() {
 /*
  * Should not find fake field of type <CompleteOnType:f>
  */
-public void test48() {
+public void test48() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"package pack;								\n"+
@@ -1766,7 +1766,7 @@ public void test48() {
 /*
  * Completion in middle of package import statement
  */
-public void test49() {
+public void test49() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.lang.reflect.*;	\n"+
@@ -1798,7 +1798,7 @@ public void test49() {
 /*
  * Complete on instance creation in field initializer.
  */
-public void test50() {
+public void test50() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -1832,7 +1832,7 @@ public void test50() {
 /*
  * Complete on member access in field initializer.
  */
-public void test51() {
+public void test51() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -1866,7 +1866,7 @@ public void test51() {
 /*
  * Complete on class literal access in field initializer.
  */
-public void test52() {
+public void test52() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -1900,7 +1900,7 @@ public void test52() {
 /*
  * Complete on method invocation in field initializer.
  */
-public void test53() {
+public void test53() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +
@@ -1934,7 +1934,7 @@ public void test53() {
 /*
  * Should not find fake field of type <CompleteOnType:f>
  */
-public void test54() {
+public void test54() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"package pack;								\n"+
@@ -1984,7 +1984,7 @@ public void test54() {
 /*
  * Complete on anonymous type in field initializer.
  */
-public void test55() {
+public void test55() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"class X {									\n" +

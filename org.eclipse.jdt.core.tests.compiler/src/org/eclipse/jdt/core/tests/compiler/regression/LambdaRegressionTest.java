@@ -34,7 +34,7 @@ public static Test suite() {
 	return buildMinimalComplianceTestSuite(testClass(), F_1_8);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=446317, java.lang.VerifyError: Bad type on operand stack with Lambdas and/or inner classes
-public void test001() {
+public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -69,7 +69,7 @@ public void test001() {
 			);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=446317, java.lang.VerifyError: Bad type on operand stack with Lambdas and/or inner classes
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -98,7 +98,7 @@ public void test002() {
 			"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=446317, java.lang.VerifyError: Bad type on operand stack with Lambdas and/or inner classes
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -127,7 +127,7 @@ public void test003() {
 			);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=446317, java.lang.VerifyError: Bad type on operand stack with Lambdas and/or inner classes
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		false,
 		JavacHasABug.JavacThrowsAnException,
@@ -156,7 +156,7 @@ public void test004() {
 	null);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=448724, [1.8] [compiler] Wrong resolution of overloaded method when irrelevant type parameter is present and lambda is used as parameter
-public void test448724() {
+public void test448724() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -198,7 +198,7 @@ public void test448724() {
 	"case2: Runnable");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=447767, [1.8][compiler] Spurious method not applicable error due to interaction between overload resolution and type inference
-public void test447767() {
+public void test447767() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -225,7 +225,7 @@ public void test447767() {
 	"Right!");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=447767, [1.8][compiler] Spurious method not applicable error due to interaction between overload resolution and type inference
-public void test447767a() {
+public void test447767a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -252,7 +252,7 @@ public void test447767a() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=447767, [1.8][compiler] Spurious method not applicable error due to interaction between overload resolution and type inference
-public void test447767b() {
+public void test447767b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -278,7 +278,7 @@ public void test447767b() {
 	"Right!");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=447767, [1.8][compiler] Spurious method not applicable error due to interaction between overload resolution and type inference
-public void test447767c() {
+public void test447767c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -308,7 +308,7 @@ public void test447767c() {
 	"Right!");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=447767, [1.8][compiler] Spurious method not applicable error due to interaction between overload resolution and type inference
-public void test447767d() {
+public void test447767d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -338,7 +338,7 @@ public void test447767d() {
 	"Right!");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=449410, [1.8][compiler] Eclipse java compiler does not detect a bad return type in lambda expression
-public void test449410() {
+public void test449410() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -372,7 +372,7 @@ public void test449410() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=449824, [1.8] Difference in behaviour with method references and lambdas
 // Captures present behavior - may not be correct.
-public void test449824() {
+public void test449824() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -420,7 +420,7 @@ public void test449824() {
 	"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=448954, [1.8][compiler] Suspect error: "The method foo(String, String, X::goo) is undefined for the type X"
-public void test448954() {
+public void test448954() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -453,7 +453,7 @@ public void test448954() {
 	"Right!");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=450380, [1.8][compiler] NPE in Scope.getExactConstructor(..) for bad constructor reference
-public void test450380() {
+public void test450380() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -506,7 +506,7 @@ public void test450604a() {
 	});
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=451677, [1.8][compiler] missing type inference
-public void _test451677() {
+public void _test451677() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -527,7 +527,7 @@ public void _test451677() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=451840
 // [1.8] java.lang.BootstrapMethodError when running code with constructor reference
-public void testBug451840() {
+public void testBug451840() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String [] {
 		"X.java",
 		"public class X {\n" +
@@ -548,7 +548,7 @@ public void testBug451840() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=448556
 // [1.8][compiler] Invalid compiler error about effectively final variable outside the context of a lambda.
-public void testBug4448556() {
+public void testBug4448556() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String [] {
 		"X.java",
 		"import java.io.Serializable;\n" +
@@ -570,7 +570,7 @@ public void testBug4448556() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=448556
 // [1.8][compiler] Invalid compiler error about effectively final variable outside the context of a lambda.
-public void testBug4448556a() {
+public void testBug4448556a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String [] {
 		"X.java",
 		"import java.io.Serializable;\n" +
@@ -596,7 +596,7 @@ public void testBug4448556a() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=453687
 // [1.8][compiler]Incorrect errors when compiling code with Method References
-public void testBug453687() {
+public void testBug453687() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String [] {
 		"X.java",
 		"import static java.util.stream.Collectors.groupingBy;\n" +
@@ -617,7 +617,7 @@ public void testBug453687() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=456481 - [1.8] VerifyError on constructor reference inside lambda
-public void testBug456481() {
+public void testBug456481() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String [] {
 		"Test.java",
 		"public class Test  {\n" +
@@ -696,7 +696,7 @@ public void testBug457007() {
 	},
 	"done");
 }
-public void testBug446691_comment5() {
+public void testBug446691_comment5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(new String [] {
 		"Test.java",
 		"import java.util.*;\n" +
@@ -732,7 +732,7 @@ public void testBug446691_comment8() {
 		"}\n"
 	});
 }
-public void testBug446691_comment14() {
+public void testBug446691_comment14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String [] {
 		"test/Main.java",
 		"package test;\n" +
@@ -766,7 +766,7 @@ public void testBug446691_comment14() {
 	"----------\n");
 }
 // error in lambda even if field is assigned later
-public void testBug446691_comment14b() {
+public void testBug446691_comment14b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String [] {
 		"test/Main.java",
 		"package test;\n" +
@@ -797,7 +797,7 @@ public void testBug446691_comment14b() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=463526
 // Parenthesis are incorrectly allowed in lambda when LambdaBody is an expression statement
-public void testBug463526() {
+public void testBug463526() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String [] {
 		"Test.java",
 		"public class Test {\n" +
@@ -832,7 +832,7 @@ public void testBug463526() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=463526
 // Parenthesis are incorrectly allowed in lambda when LambdaBody is an expression statement
-public void testBug463526b() {
+public void testBug463526b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String [] {
 		"Test.java",
 		"import java.util.function.Consumer;\n" +
@@ -861,7 +861,7 @@ public void testBug463526b() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=463526
 // Parenthesis are incorrectly allowed in lambda when LambdaBody is an expression statement
-public void testBug463526c() {
+public void testBug463526c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String [] {
 		"Test.java",
 		"import java.util.function.Consumer;\n" +
@@ -889,7 +889,7 @@ public void testBug463526c() {
 	"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=464408
-public void testBug464408() {
+public void testBug464408() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String[]{
 		"test/X.java",
 		"import java.util.ArrayList;\n" +
@@ -909,7 +909,7 @@ public void testBug464408() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=465900
 // Internal compiler error: java.lang.IllegalArgumentException: info cannot be null at org.eclipse.jdt.internal.compiler.codegen.StackMapFrame.addStackItem(StackMapFrame.java:81)
-public void testBug465900() {
+public void testBug465900() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String [] {
 		"X.java",
 		"import java.io.Serializable;\n" +
@@ -932,7 +932,7 @@ public void testBug465900() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=477888
 // [1.8][compiler] Compiler silently produces garbage but editor shows no errors
-public void testBug477888() {
+public void testBug477888() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String [] {
 		"Test.java",
 		"import java.io.IOException;\n" +
@@ -962,7 +962,7 @@ public void testBug477888() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=472648
 // [compiler][1.8] Lambda expression referencing method with generic type has incorrect compile errors
-public void testBug472648() {
+public void testBug472648() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		false,
 		JavacHasABug.JavacBugFixed_901,
@@ -1014,7 +1014,7 @@ public void testBug472648() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=473432
 // Internal compiler error: java.lang.IllegalArgumentException: info cannot be null at org.eclipse.jdt.internal.compiler.codegen.StackMapFrame.addStackItem(StackMapFrame.java:81)
-public void testBug473432() {
+public void testBug473432() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String [] {
 		"Tester.java",
 		"import java.util.function.Function;\n" +
@@ -1059,7 +1059,7 @@ public void testBug473432() {
 	"null");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=511676 [1.8] Lambda with inner class defs causes java.lang.VerifyError: Bad type on operand stack
-public void testBug511676() {
+public void testBug511676() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String [] {
 			"A.java",
 			"import java.util.function.Function;\n" +
@@ -1088,7 +1088,7 @@ public void testBug511676() {
 		"Done");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=511676 [1.8] Lambda with inner class defs causes java.lang.VerifyError: Bad type on operand stack
-public void testBug511676a() {
+public void testBug511676a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(new String [] {
 			"A.java",
 			"public class A {\n" +
@@ -1113,7 +1113,7 @@ public void testBug511676a() {
 		},
 		"Done");
 }
-public void testBug543778() {
+public void testBug543778() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -1154,7 +1154,7 @@ public void testBug543778() {
 	runner.customOptions.put(JavaCore.COMPILER_ANNOTATION_NULL_ANALYSIS, JavaCore.ENABLED); // bug happens due to type annotation handling
 	runner.runConformTest();
 }
-public void test572873a() {
+public void test572873a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1182,7 +1182,7 @@ public void test572873a() {
 			"test T"
 			);
 }
-public void test572873b() {
+public void test572873b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1210,7 +1210,7 @@ public void test572873b() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1507
 // Errors when referencing a var inside lambda
-public void testIssue1507() {
+public void testIssue1507() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK10)
 		return;
 	this.runNegativeTest(
@@ -1256,7 +1256,7 @@ public void testIssue1507() {
 			"The local variable buggyLambda may not have been initialized\n" +
 			"----------\n");
 }
-public void testGH3207() {
+public void testGH3207() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(new String[] {
 			"EnclosedInstance.java",
 			"""

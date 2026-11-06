@@ -65,7 +65,7 @@ public class FormatterJSR308Tests extends AbstractJavaModelTests {
 		this.formatterPrefs.page_width = 80;
 	}
 
-	String runFormatter(CodeFormatter codeFormatter, String source, int kind, int indentationLevel, int offset, int length, String lineSeparator, boolean repeat) {
+	String runFormatter(CodeFormatter codeFormatter, String source, int kind, int indentationLevel, int offset, int length, String lineSeparator, boolean repeat) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 //		long time = System.currentTimeMillis();
 		TextEdit edit = codeFormatter.format(kind, source, offset, length, indentationLevel, lineSeparator);//$NON-NLS-1$
 //		System.out.println((System.currentTimeMillis() - time) + " ms");
@@ -131,7 +131,7 @@ public class FormatterJSR308Tests extends AbstractJavaModelTests {
 		deleteProject(JAVA_PROJECT); //$NON-NLS-1$
 		JAVA_PROJECT = null;
 		if (DEBUG) {
-			System.out.println("Time spent = " + (System.nanoTime() - this.startNanos) / 1_000_000L);//$NON-NLS-1$
+			System.out.println("Time spent = " + (System.nanoTime() - this.startNanos) / 1_000_000L);//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		super.tearDownSuite();
 	}
@@ -140,14 +140,14 @@ public class FormatterJSR308Tests extends AbstractJavaModelTests {
 		assertNotNull(compilationUnitName);
 		int dotIndex = compilationUnitName.indexOf('.');
 		assertTrue(dotIndex != -1);
-		return compilationUnitName.substring(0, dotIndex) + IN + compilationUnitName.substring(dotIndex);
+		return compilationUnitName.substring(0, dotIndex) + IN + compilationUnitName.substring(dotIndex); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	private String getOut(String compilationUnitName) {
 		assertNotNull(compilationUnitName);
 		int dotIndex = compilationUnitName.indexOf('.');
 		assertTrue(dotIndex != -1);
-		return compilationUnitName.substring(0, dotIndex) + OUT + compilationUnitName.substring(dotIndex);
+		return compilationUnitName.substring(0, dotIndex) + OUT + compilationUnitName.substring(dotIndex); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	void assertLineEquals(String actualContents, String originalSource, String expectedContents, boolean checkNull) {
@@ -171,7 +171,7 @@ public class FormatterJSR308Tests extends AbstractJavaModelTests {
 		runTest(codeFormatter, packageName, compilationUnitName, kind, indentationLevel, checkNull, offset, length, null);
 	}
 
-	private void runTest(CodeFormatter codeFormatter, String packageName, String compilationUnitName, int kind, int indentationLevel, boolean checkNull, int offset, int length, String lineSeparator) {
+	private void runTest(CodeFormatter codeFormatter, String packageName, String compilationUnitName, int kind, int indentationLevel, boolean checkNull, int offset, int length, String lineSeparator) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			ICompilationUnit sourceUnit = getCompilationUnit(PROJECT_NAME , "", packageName, getIn(compilationUnitName)); //$NON-NLS-1$ //$NON-NLS-2$
 			String source = sourceUnit.getSource();

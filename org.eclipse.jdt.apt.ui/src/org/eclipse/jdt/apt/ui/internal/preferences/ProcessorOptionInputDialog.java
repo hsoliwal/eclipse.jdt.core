@@ -48,11 +48,11 @@ public class ProcessorOptionInputDialog extends StatusDialog {
 
 	private final List<String> fExistingNames;
 
-	public ProcessorOptionInputDialog(Shell parent, ProcessorOption option, List<ProcessorOption> existingEntries) {
+	public ProcessorOptionInputDialog(Shell parent, ProcessorOption option, List<ProcessorOption> existingEntries) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super(parent);
 
-		fExistingNames= new ArrayList<>(existingEntries.size());
-		for (ProcessorOption o : existingEntries) {
+		fExistingNames= new ArrayList<>(existingEntries.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (ProcessorOption o : existingEntries) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!o.equals(option)) {
 				fExistingNames.add(o.key);
 			}
@@ -86,7 +86,7 @@ public class ProcessorOptionInputDialog extends StatusDialog {
 		return option;
 	}
 
-	protected Control createDialogArea(Composite parent) {
+	protected Control createDialogArea(Composite parent) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Composite composite= (Composite) super.createDialogArea(parent);
 
 		Composite inner= new Composite(composite, SWT.NONE);

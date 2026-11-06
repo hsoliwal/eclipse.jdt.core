@@ -71,7 +71,7 @@ public class LambdaExpression extends Expression {
 	private static final List PROPERTY_DESCRIPTORS_8_0;
 
 	static {
-		List propertyList = new ArrayList(4);
+		List propertyList = new ArrayList(4); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(LambdaExpression.class, propertyList);
 		addProperty(PARENTHESES_PROPERTY, propertyList);
 		addProperty(PARAMETERS_PROPERTY, propertyList);

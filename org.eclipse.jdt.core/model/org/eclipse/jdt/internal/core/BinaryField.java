@@ -116,19 +116,19 @@ public JavaElement resolved(Binding binding) {
  */
 @Override
 protected void toStringInfo(int tab, StringBuilder buffer, Object info, boolean showResolvedInfo) {
-	buffer.append(tabString(tab));
+	buffer.append(tabString(tab)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	if (info == null) {
 		toStringName(buffer);
-		buffer.append(" (not open)"); //$NON-NLS-1$
+		buffer.append(" (not open)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	} else if (info == NO_INFO) {
 		toStringName(buffer);
 	} else {
 		try {
-			buffer.append(Signature.toString(getTypeSignature()));
-			buffer.append(" "); //$NON-NLS-1$
+			buffer.append(Signature.toString(getTypeSignature())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(" "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			toStringName(buffer);
 		} catch (JavaModelException e) {
-			buffer.append("<JavaModelException in toString of " + getElementName()); //$NON-NLS-1$
+			buffer.append("<JavaModelException in toString of " + getElementName()); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 }

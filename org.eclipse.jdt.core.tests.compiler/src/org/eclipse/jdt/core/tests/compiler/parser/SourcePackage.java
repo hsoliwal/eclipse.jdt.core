@@ -41,8 +41,8 @@ public SourcePackage(
  */
 @Override
 public String toString() {
-	StringBuilder buffer = new StringBuilder();
-	buffer
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		.append(
 			this.source,
 			this.declarationSourceStart,

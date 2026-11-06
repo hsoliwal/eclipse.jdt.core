@@ -33,10 +33,10 @@ public void copyNegative(IJavaElement element, IJavaElement destination, IJavaEl
 	try {
 		((ISourceManipulation)element).copy(destination, sibling, rename, force, null);
 	} catch (JavaModelException jme) {
-		assertTrue("Code not correct for JavaModelException: " + jme, jme.getStatus().getCode() == failureCode);
+		assertTrue("Code not correct for JavaModelException: " + jme, jme.getStatus().getCode() == failureCode); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return;
 	}
-	assertTrue("The copy should have failed for: " + element, false);
+	assertTrue("The copy should have failed for: " + element, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return;
 }
 /**
@@ -47,7 +47,7 @@ public void copyNegative(IJavaElement[] elements, IJavaElement[] destinations, I
 	try {
 		getJavaModel().copy(elements, destinations, siblings, renames, force, null);
 	} catch (JavaModelException jme) {
-		assertTrue("Code not correct for JavaModelException: " + jme, jme.getStatus().getCode() == failureCode);
+		assertTrue("Code not correct for JavaModelException: " + jme, jme.getStatus().getCode() == failureCode); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return;
 	}
 	assertTrue("The move should have failed for for multiple elements: ", false);
@@ -58,7 +58,7 @@ public void copyNegative(IJavaElement[] elements, IJavaElement[] destinations, I
  * and forcing. The operation should succeed, so any exceptions
  * encountered are thrown.
  */
-public IJavaElement copyPositive(IJavaElement element, IJavaElement container, IJavaElement sibling, String rename, boolean force) throws CoreException {
+public IJavaElement copyPositive(IJavaElement element, IJavaElement container, IJavaElement sibling, String rename, boolean force) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// make sure auto-refresh is not interfering with the test, see e.g.: https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2552
 	waitForAutoRefresh();
 	// if forcing, ensure that a name collision exists
@@ -98,7 +98,7 @@ public IJavaElement copyPositive(IJavaElement element, IJavaElement container, I
 					// default package - should be no package decl
 					IJavaElement[] children = ((ICompilationUnit) copy).getChildren();
 					boolean found = false;
-					for (int i = 0; i < children.length; i++) {
+					for (int i = 0; i < children.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (children[i] instanceof IPackageDeclaration) {
 							found = true;
 							break;
@@ -108,7 +108,7 @@ public IJavaElement copyPositive(IJavaElement element, IJavaElement container, I
 				} else {
 					IJavaElement[] children = ((ICompilationUnit) copy).getChildren();
 					boolean found = false;
-					for (int i = 0; i < children.length; i++) {
+					for (int i = 0; i < children.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (children[i] instanceof IPackageDeclaration) {
 							assertTrue("package declaration incorrect", ((IPackageDeclaration) children[i]).getElementName().equals(container.getElementName()));
 							found = true;
@@ -122,7 +122,7 @@ public IJavaElement copyPositive(IJavaElement element, IJavaElement container, I
 			container = ((ICompilationUnit) container).getImportContainer();
 		IJavaElementDelta destDelta = listener.getDeltaFor(container, true);
 		if(destDelta == null) {
-			fail("No delta found for " + container + ", all deltas: " + listener.getAllDeltas());
+			fail("No delta found for " + container + ", all deltas: " + listener.getAllDeltas()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		assertTrue("Destination container not changed", destDelta.getKind() == IJavaElementDelta.CHANGED);
 		IJavaElementDelta[] deltas = destDelta.getAddedChildren();
@@ -139,7 +139,7 @@ public IJavaElement copyPositive(IJavaElement element, IJavaElement container, I
  * Generates a new handle to the original element in
  * its new container.
  */
-public IJavaElement generateHandle(IJavaElement original, String rename, IJavaElement container) {
+public IJavaElement generateHandle(IJavaElement original, String rename, IJavaElement container) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String name = original.getElementName();
 	if (rename != null) {
 		name = rename;
@@ -172,7 +172,7 @@ public IJavaElement generateHandle(IJavaElement original, String rename, IJavaEl
 				case IJavaElement.TYPE :
 					if (isMainType(original, container)) {
 						//the cu has been renamed as well
-						container = ((IPackageFragment) container.getParent()).getCompilationUnit(name + ".java");
+						container = ((IPackageFragment) container.getParent()).getCompilationUnit(name + ".java"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					return ((ICompilationUnit) container).getType(name);
 				default :
@@ -229,10 +229,10 @@ public void moveNegative(IJavaElement element, IJavaElement destination, IJavaEl
 	try {
 		((ISourceManipulation)element).move(destination, sibling, rename, force, null);
 	} catch (JavaModelException jme) {
-		assertTrue("Code not correct for JavaModelException: " + jme, jme.getStatus().getCode() == failureCode);
+		assertTrue("Code not correct for JavaModelException: " + jme, jme.getStatus().getCode() == failureCode); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return;
 	}
-	assertTrue("The move should have failed for: " + element, false);
+	assertTrue("The move should have failed for: " + element, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return;
 }
 /**
@@ -243,7 +243,7 @@ public void moveNegative(IJavaElement[] elements, IJavaElement[] destinations, I
 	try {
 		getJavaModel().move(elements, destinations, siblings, renames, force, null);
 	} catch (JavaModelException jme) {
-		assertTrue("Code not correct for JavaModelException: " + jme, jme.getStatus().getCode() == failureCode);
+		assertTrue("Code not correct for JavaModelException: " + jme, jme.getStatus().getCode() == failureCode); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		return;
 	}
 	assertTrue("The move should have failed for for multiple elements: ", false);
@@ -281,11 +281,11 @@ public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, I
  * and forcing. The operation should succeed, so any exceptions
  * encountered are thrown.
  */
-public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, IJavaElement[] siblings, String[] names, boolean force, boolean checkDelta, IProgressMonitor monitor) throws JavaModelException {
+public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, IJavaElement[] siblings, String[] names, boolean force, boolean checkDelta, IProgressMonitor monitor) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// if forcing, ensure that a name collision exists
 	int i;
 	if (force) {
-		for (i = 0; i < elements.length; i++) {
+		for (i = 0; i < elements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaElement e = elements[i];
 			IJavaElement collision = null;
 			if (names == null) {
@@ -302,7 +302,7 @@ public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, I
 
 		// move
 		getJavaModel().move(elements, destinations, siblings, names, force, monitor);
-		for (i = 0; i < elements.length; i++) {
+		for (i = 0; i < elements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaElement element = elements[i];
 			IJavaElement moved = null;
 			if (names == null) {
@@ -343,7 +343,7 @@ public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, I
 						// default package - should be no package decl
 						IJavaElement[] children = ((ICompilationUnit) moved).getChildren();
 						boolean found = false;
-						for (int j = 0; j < children.length; j++) {
+						for (int j = 0; j < children.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (children[j] instanceof IPackageDeclaration) {
 								found = true;
 								break;
@@ -353,7 +353,7 @@ public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, I
 					} else {
 						IJavaElement[] children = ((ICompilationUnit) moved).getChildren();
 						boolean found = false;
-						for (int j = 0; j < children.length; j++) {
+						for (int j = 0; j < children.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (children[j] instanceof IPackageDeclaration) {
 								assertTrue("package declaration incorrect", ((IPackageDeclaration) children[j]).getElementName().equals(container.getElementName()));
 								found = true;
@@ -369,7 +369,7 @@ public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, I
 				if (isMainType(element, destinations[i]) && names != null && names[i] != null) { //moved/renamed main type to same cu
 					destDelta = listener.getDeltaFor(moved.getParent());
 					if(destDelta == null) {
-						fail("No delta found for " + moved.getParent() + ", all deltas: " + listener.getAllDeltas());
+						fail("No delta found for " + moved.getParent() + ", all deltas: " + listener.getAllDeltas()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
 					assertTrue("Renamed compilation unit as result of main type not added", destDelta.getKind() == IJavaElementDelta.ADDED);
 					assertTrue("flag should be F_MOVED_FROM", (destDelta.getFlags() & IJavaElementDelta.F_MOVED_FROM) > 0);

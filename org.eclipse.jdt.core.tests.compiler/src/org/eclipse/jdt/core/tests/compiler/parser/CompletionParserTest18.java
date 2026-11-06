@@ -30,7 +30,7 @@ public static Test suite() {
 	return buildMinimalComplianceTestSuite(CompletionParserTest18.class, F_1_8);
 }
 
-public void test0001() {
+public void test0001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I { \n" +
 			"	J foo(String x, String y);\n" +
@@ -89,7 +89,7 @@ public void test0001() {
 		expectedReplacedSource,
 		"diet ast");
 }
-public void test0002() {
+public void test0002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface Foo { \n" +
 			"	void run1(int s1, int s2);\n" +
@@ -125,7 +125,7 @@ public void test0002() {
 		expectedReplacedSource,
 		"diet ast");
 }
-public void test0003() {
+public void test0003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface Foo { \n" +
 			"	void run1(int s1, int s2);\n" +
@@ -163,7 +163,7 @@ public void test0003() {
 		expectedReplacedSource,
 		"diet ast");
 }
-public void test0004() {
+public void test0004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface Foo {\n" +
 			"	int run1(int s1, int s2);\n" +
@@ -204,7 +204,7 @@ public void test0004() {
 		expectedReplacedSource,
 		"diet ast");
 }
-public void test0005() {
+public void test0005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I {\n" +
 			"	int foo(int x);\n" +
@@ -253,7 +253,7 @@ public void test0005() {
 		expectedReplacedSource,
 		"diet ast");
 }
-public void test0006() {
+public void test0006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I {\n" +
 			"	int foo(int x);\n" +
@@ -300,7 +300,7 @@ public void test0006() {
 		expectedReplacedSource,
 		"diet ast");
 }
-public void test0007() {
+public void test0007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"public interface Foo { \n" +
 			"	int run(int s1, int s2); \n" +
@@ -350,7 +350,7 @@ public void test0007() {
 		expectedReplacedSource,
 		"diet ast");
 }
-public void test0010() {
+public void test0010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I {\n" +
 			"	void foo(String x);\n" +
@@ -405,7 +405,7 @@ public void test0010() {
 		"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=417935, [1.8][code select] ICU#codeSelect doesn't work on reference to lambda parameter
-public void test417935() {
+public void test417935() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.util.ArrayList;\n" +
 			"import java.util.Arrays;\n" +
@@ -452,7 +452,7 @@ public void test417935() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=405126, [1.8][code assist] Lambda parameters incorrectly recovered as fields.
-public void test405126() {
+public void test405126() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"public interface Foo { \n" +
 			"	int run(int s1, int s2); \n" +
@@ -503,7 +503,7 @@ public void test405126() {
 				"diet ast");
 }
 // Verify that locals inside a lambda block don't get promoted to the parent block.
-public void testLocalsPromotion() {
+public void testLocalsPromotion() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I {\n" +
 			"	void foo(int x);\n" +
@@ -563,7 +563,7 @@ public void testLocalsPromotion() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422107, [1.8][code assist] Invoking code assist just before and after a variable initialized using lambda gives different result
-public void testCompletionLocation() {
+public void testCompletionLocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I {\n" +
 			"    void doit();\n" +
@@ -605,7 +605,7 @@ public void testCompletionLocation() {
 				expectedReplacedSource,
 				"diet ast");
 }
-public void testElidedCompletion() {
+public void testElidedCompletion() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"class Collections {\n" +
 			"	public static void sort(ArrayList list, Comparator c) {\n" +
@@ -664,7 +664,7 @@ public void testElidedCompletion() {
 				expectedReplacedSource,
 				"diet ast");
 }
-public void testElidedCompletion2() {
+public void testElidedCompletion2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"class Collections {\n" +
 			"	public static void sort(ArrayList list, Comparator c) {\n" +
@@ -723,7 +723,7 @@ public void testElidedCompletion2() {
 				expectedReplacedSource,
 				"diet ast");
 }
-public void testUnspecifiedReference() {  // verify that completion works on unspecified reference and finds types and names.
+public void testUnspecifiedReference() {  // verify that completion works on unspecified reference and finds types and names. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I {\n" +
 			"    void doit(X x);\n" +
@@ -780,7 +780,7 @@ public void testUnspecifiedReference() {  // verify that completion works on uns
 				expectedReplacedSource,
 				"diet ast");
 }
-public void testBrokenMethodCall() {  // verify that completion works when the call containing the lambda is broken - i.e missing a semicolon.
+public void testBrokenMethodCall() {  // verify that completion works when the call containing the lambda is broken - i.e missing a semicolon. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I {\n" +
 			"    void doit(X x);\n" +
@@ -832,7 +832,7 @@ public void testBrokenMethodCall() {  // verify that completion works when the c
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424080, [1.8][completion] Workbench hanging on code completion with lambda expression containing anonymous class
-public void test424080() {
+public void test424080() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 String string =
 			"interface FI {\n" +
 			"	public static int val = 5;\n" +
@@ -876,7 +876,7 @@ String string =
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425084, [1.8][completion] Eclipse freeze while autocompleting try block in lambda.
-public void test425084() {
+public void test425084() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I {\n" +
 			"	void foo();\n" +
@@ -917,7 +917,7 @@ public void test425084() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425084, [1.8][completion] Eclipse freeze while autocompleting try block in lambda.
-public void test425084b() {
+public void test425084b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I {\n" +
 			"	void foo();\n" +
@@ -965,7 +965,7 @@ public void test425084b() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427255, [1.8][code assist] Hang due to infinite loop in Parser.automatonWillShift
-public void test427255() {
+public void test427255() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"public class X {\n" +
 			"  public final String targetApplication;\n" +
@@ -1004,7 +1004,7 @@ public void test427255() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427322, [1.8][code assist] Eclipse hangs upon completion just past lambda
-public void test427322() {
+public void test427322() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"public class X {\n" +
 			"	interface I {\n" +
@@ -1047,7 +1047,7 @@ public void test427322() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427322, [1.8][code assist] Eclipse hangs upon completion just past lambda
-public void test427322a() {
+public void test427322a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"public class X {\n" +
 			"	interface I {\n" +
@@ -1090,7 +1090,7 @@ public void test427322a() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427463, [1.8][content assist] No completions available in throw statement within lambda body
-public void test427463() {
+public void test427463() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface FI1 {\n" +
 			"	int foo(int x) throws Exception;\n" +
@@ -1136,7 +1136,7 @@ public void test427463() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427117, [1.8][code assist] code assist after lambda as a parameter does not work
-public void test427117() {
+public void test427117() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.util.ArrayList;\n" +
 			"import java.util.List;\n" +
@@ -1183,7 +1183,7 @@ public void test427117() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427532, [1.8][code assist] Completion engine does not like intersection casts
-public void test427532() {
+public void test427532() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.io.Serializable;\n" +
 			"interface I {\n" +
@@ -1228,7 +1228,7 @@ public void test427532() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735() {
+public void test428735() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.util.List;\n" +
 			"class Person {\n" +
@@ -1274,7 +1274,7 @@ public void test428735() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735a() {
+public void test428735a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.util.List;\n" +
 			"class Person {\n" +
@@ -1325,7 +1325,7 @@ public void test428735a() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735b() {
+public void test428735b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.util.List;\n" +
 			"class Person {\n" +
@@ -1376,7 +1376,7 @@ public void test428735b() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735c() {
+public void test428735c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.util.List;\n" +
 			"class Person {\n" +
@@ -1427,7 +1427,7 @@ public void test428735c() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735d() {
+public void test428735d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.util.List;\n" +
 			"class Person {\n" +
@@ -1478,7 +1478,7 @@ public void test428735d() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735e() { // field
+public void test428735e() { // field //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"class Person {\n" +
 			"   String getLastName() { return null; }\n" +
@@ -1524,7 +1524,7 @@ public void test428735e() { // field
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735f() { // local
+public void test428735f() { // local //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"class Person {\n" +
 			"   String getLastName() { return null; }\n" +
@@ -1574,7 +1574,7 @@ public void test428735f() { // local
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735g() { // initializer block
+public void test428735g() { // initializer block //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.util.List;\n" +
 			"class Person {\n" +
@@ -1628,7 +1628,7 @@ public void test428735g() { // initializer block
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402081, [1.8][code complete] No proposals while completing at method/constructor references
-public void test402081() { // initializer block
+public void test402081() { // initializer block //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I {\n" +
 			"    String foo(String x);\n" +
@@ -1677,7 +1677,7 @@ public void test402081() { // initializer block
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430656, [1.8][content assist] Content assist does not work for method reference argument
-public void test430656() {
+public void test430656() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.util.ArrayList;\n" +
 			"import java.util.Collections;\n" +
@@ -1733,7 +1733,7 @@ public void test430656() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=438952, [1.8][content assist] StackOverflowError at org.eclipse.jdt.internal.compiler.ast.SingleTypeReference.traverse(SingleTypeReference.java:108)
-public void test438952() {
+public void test438952() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.util.function.Supplier;\n" +
 			"class SO {\n" +
@@ -1781,7 +1781,7 @@ public void test438952() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
-public void test435219() {
+public void test435219() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String string =
 				"import java.util.Arrays;\n" +
 				"import java.util.List;\n" +
@@ -1824,7 +1824,7 @@ public void test435219() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435682, [1.8] content assist not working inside lambda expression
-public void test435682() {
+public void test435682() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String string =
 					"import java.util.Arrays;\n" +
 					"import java.util.List;\n" +
@@ -1865,7 +1865,7 @@ public void test435682() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430667, [1.8][content assist] no proposals around lambda as a field
-public void test430667() {
+public void test430667() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String string =
 					"interface D_FI {\n" +
 					"	void print(String value, int n);\n" +
@@ -1909,7 +1909,7 @@ public void test430667() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430667, [1.8][content assist] no proposals around lambda as a field
-public void test430667a() {
+public void test430667a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String string =
 					"class D_DemoRefactorings {\n" +
 					"	\n" +
@@ -1954,7 +1954,7 @@ public void test430667a() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430667, [1.8][content assist] no proposals around lambda as a field
-public void test430667b() {
+public void test430667b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String string =
 					"public class D_DemoRefactorings {\n" +
 					"   D_F\n" +
@@ -1997,7 +1997,7 @@ public void test430667b() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430667, [1.8][content assist] no proposals around lambda as a field
-public void test430667c() {
+public void test430667c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String string =
 					"public interface Foo {\n" +
 					"	int run(int s1, int s2);\n" +
@@ -2039,7 +2039,7 @@ public void test430667c() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430667, [1.8][content assist] no proposals around lambda as a field
-public void test430667d() {
+public void test430667d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String string =
 					"import java.util.Arrays;\n" +
 					"import java.util.List;\n" +
@@ -2076,7 +2076,7 @@ public void test430667d() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=446765,
-public void test446765() {
+public void test446765() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String string =
 					"class Stepper<T> {\n" +
 					"    public interface Step<T> {\n" +
@@ -2178,7 +2178,7 @@ public void test446765() {
 				"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735h()  {
+public void test428735h()  { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"import java.util.List;\n" +
 			"class Person {\n" +
@@ -2231,7 +2231,7 @@ public void test428735h()  {
 		"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422468, [1.8][assist] Code assist issues with type elided lambda parameters
-public void test422468() { // computing visible elements in lambda scope.
+public void test422468() { // computing visible elements in lambda scope. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface I {\n" +
 			"	void foo(X x);\n" +
@@ -2303,7 +2303,7 @@ public void test422468() { // computing visible elements in lambda scope.
 		"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=473008
-public void test473008() {
+public void test473008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =
 			"interface FooFunctional {\n" +
 			"   void function();\n" +

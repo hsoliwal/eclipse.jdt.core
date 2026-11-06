@@ -51,7 +51,7 @@ private IMarker[] getMarkers(ICompilationUnit unit){
 }
 private IMarker getMarker(ICompilationUnit unit, String message) throws CoreException {
 	IMarker[] markers = getMarkers(unit);
-	for (int i = 0; i < markers.length; i++) {
+	for (int i = 0; i < markers.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMarker marker = markers[i];
 		if (message.equals(marker.getAttribute(IMarker.MESSAGE))) {
 			return marker;
@@ -66,7 +66,7 @@ private IMarker getMarker(ICompilationUnit unit, String message) throws CoreExce
 public static String[] getProjectNames() {
 	return new String[] {"Compiler", "CodeCorrection"};
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void setUpSuite() throws Exception {
 	super.setUpSuite();
 
@@ -110,7 +110,7 @@ public void tearDownSuite() throws Exception {
 
 	super.tearDownSuite();
 }
-public static Test suite() {
+public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	return buildModelTestSuite(CodeCorrectionTests.class);
 	/*
 	Suite suite = new Suite(CodeCorrectionTests.class.getName());
@@ -146,7 +146,7 @@ public static Test suite() {
 	return suite;
 	*/
 }
-public void testCorrectFieldType1() throws JavaModelException {
+public void testCorrectFieldType1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectFieldType1.java");
@@ -166,16 +166,16 @@ public void testCorrectFieldType1() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectFieldType2() throws JavaModelException {
+public void testCorrectFieldType2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectFieldType2.java");
@@ -195,16 +195,16 @@ public void testCorrectFieldType2() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectFieldType3() throws CoreException {
+public void testCorrectFieldType3() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectFieldType3.java");
@@ -224,16 +224,16 @@ public void testCorrectFieldType3() throws CoreException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectLocalVariableType1() throws JavaModelException {
+public void testCorrectLocalVariableType1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectLocalVariableType1.java");
@@ -253,16 +253,16 @@ public void testCorrectLocalVariableType1() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectLocalVariableType2() throws JavaModelException {
+public void testCorrectLocalVariableType2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectLocalVariableType2.java");
@@ -282,16 +282,16 @@ public void testCorrectLocalVariableType2() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectImport1() throws JavaModelException {
+public void testCorrectImport1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectImport1.java");
@@ -311,16 +311,16 @@ public void testCorrectImport1() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectImport2() throws JavaModelException {
+public void testCorrectImport2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectImport2.java");
@@ -340,16 +340,16 @@ public void testCorrectImport2() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectImport3() throws JavaModelException {
+public void testCorrectImport3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectImport3.java");
@@ -369,16 +369,16 @@ public void testCorrectImport3() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectSuperClass1() throws JavaModelException {
+public void testCorrectSuperClass1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectSuperClass1.java");
@@ -398,16 +398,16 @@ public void testCorrectSuperClass1() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectSuperClass2() throws JavaModelException {
+public void testCorrectSuperClass2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectSuperClass2.java");
@@ -427,16 +427,16 @@ public void testCorrectSuperClass2() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectSuperInterface1() throws JavaModelException {
+public void testCorrectSuperInterface1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectSuperInterface1.java");
@@ -456,16 +456,16 @@ public void testCorrectSuperInterface1() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectSuperInterface2() throws JavaModelException {
+public void testCorrectSuperInterface2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectSuperInterface2.java");
@@ -484,14 +484,14 @@ public void testCorrectSuperInterface2() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		""+start,
+		""+start, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		""+end,
+		""+end, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getEnds());
 }
-public void testCorrectException1() throws JavaModelException {
+public void testCorrectException1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectException1.java");
@@ -511,16 +511,16 @@ public void testCorrectException1() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectException2() throws JavaModelException {
+public void testCorrectException2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectException2.java");
@@ -539,14 +539,14 @@ public void testCorrectException2() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		""+start,
+		""+start, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		""+end,
+		""+end, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getEnds());
 }
-public void testCorrectMethod1() throws JavaModelException {
+public void testCorrectMethod1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectMethod1.java");
@@ -565,14 +565,14 @@ public void testCorrectMethod1() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		""+start,
+		""+start, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		""+end,
+		""+end, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getEnds());
 }
-public void testCorrectMethod2() throws JavaModelException {
+public void testCorrectMethod2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectMethod2.java");
@@ -591,14 +591,14 @@ public void testCorrectMethod2() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		""+start,
+		""+start, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		""+end,
+		""+end, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getEnds());
 }
-public void testCorrectField1() throws JavaModelException {
+public void testCorrectField1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectField1.java");
@@ -617,14 +617,14 @@ public void testCorrectField1() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		""+start,
+		""+start, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		""+end,
+		""+end, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getEnds());
 }
-public void testCorrectField2() throws JavaModelException {
+public void testCorrectField2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectField2.java");
@@ -643,14 +643,14 @@ public void testCorrectField2() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		""+start,
+		""+start, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		""+end,
+		""+end, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getEnds());
 }
-public void testCorrectLocalVariable1() throws JavaModelException {
+public void testCorrectLocalVariable1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectLocalVariable1.java");
@@ -669,14 +669,14 @@ public void testCorrectLocalVariable1() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		""+start,
+		""+start, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		""+end,
+		""+end, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getEnds());
 }
-public void testCorrectLocalVariable2() throws JavaModelException {
+public void testCorrectLocalVariable2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectLocalVariable2.java");
@@ -695,14 +695,14 @@ public void testCorrectLocalVariable2() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		""+start,
+		""+start, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		""+end,
+		""+end, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getEnds());
 }
-public void testCorrectArgument1() throws JavaModelException {
+public void testCorrectArgument1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectArgument1.java");
@@ -721,14 +721,14 @@ public void testCorrectArgument1() throws JavaModelException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		""+start,
+		""+start, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		""+end,
+		""+end, //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getEnds());
 }
-public void testCorrectReturnType1() throws CoreException {
+public void testCorrectReturnType1() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectReturnType1.java");
@@ -748,16 +748,16 @@ public void testCorrectReturnType1() throws CoreException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testCorrectReturnType2() throws CoreException {
+public void testCorrectReturnType2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CorrectionEngine engine = new CorrectionEngine(JavaCore.getOptions());
 	CodeCorrectionTestsRequestor requestor = new CodeCorrectionTestsRequestor();
 	ICompilationUnit cu= getCompilationUnit("CodeCorrection", "src", "", "CorrectReturnType2.java");
@@ -778,16 +778,16 @@ public void testCorrectReturnType2() throws CoreException {
 		requestor.getSuggestions());
 	assertEquals(
 		"a start of a suggestion is not correct",
-		start+"\n"+
+		start+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		start,
 		requestor.getStarts());
 	assertEquals(
 		"a end of a suggestion is not correct",
-		end+"\n"+
+		end+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		end,
 		requestor.getEnds());
 }
-public void testWarningTokens() {
+public void testWarningTokens() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	assertNull("assertIdentifier is a valid token for @SuppressWarnings", CorrectionEngine.getWarningToken(IProblem.UseAssertAsAnIdentifier));
 	assertEquals("wrong token", "deprecation", CorrectionEngine.getWarningToken(IProblem.UsingDeprecatedConstructor));
 	assertEquals("wrong token", "deprecation", CorrectionEngine.getWarningToken(IProblem.OverridingDeprecatedMethod));

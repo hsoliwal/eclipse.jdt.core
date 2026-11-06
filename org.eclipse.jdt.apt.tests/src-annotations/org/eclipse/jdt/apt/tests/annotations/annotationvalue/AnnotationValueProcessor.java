@@ -31,27 +31,27 @@ public class AnnotationValueProcessor extends BaseProcessor {
 		super(env);
 	}
 
-	public void process() {
+	public void process() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.setProcessorRan();
 		try{
 			TypeDeclaration typeDecl = _env.getTypeDeclaration("question.AnnotationTest");
 			junit.framework.TestCase.assertNotNull("failed to locate type 'question.AnnotationTest'", typeDecl);
 			if( typeDecl != null){
 				FieldDeclaration firstFieldDecl = null;
-				for (FieldDeclaration fieldDeclaration : typeDecl.getFields()) {
+				for (FieldDeclaration fieldDeclaration : typeDecl.getFields()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					firstFieldDecl = fieldDeclaration;
 					break;
 				}
 
 				AnnotationMirror rtVisibleAnnotationMirror = null;
-				for (AnnotationMirror annotationMirror : firstFieldDecl.getAnnotationMirrors()) {
+				for (AnnotationMirror annotationMirror : firstFieldDecl.getAnnotationMirrors()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (annotationMirror.getAnnotationType().getDeclaration().getSimpleName().equals("RTVisibleAnno")) {
 						rtVisibleAnnotationMirror = annotationMirror;
 						break;
 					}
 				}
 
-				final Map<String, String> namesToValues = new HashMap<>();
+				final Map<String, String> namesToValues = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				namesToValues.put("name", "\"Foundation\"");
 				namesToValues.put("boolValue", "false");
 				namesToValues.put("byteValue", "16");
@@ -85,13 +85,13 @@ public class AnnotationValueProcessor extends BaseProcessor {
 
 	private void assertAnnotation(final Map<String, String> namesToValues, AnnotationMirror annotation)	{
 		Map<AnnotationTypeElementDeclaration, AnnotationValue> values = annotation.getElementValues();
-		for (Entry<AnnotationTypeElementDeclaration, AnnotationValue> e : values.entrySet()) {
+		for (Entry<AnnotationTypeElementDeclaration, AnnotationValue> e : values.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String key = e.getKey().getSimpleName();
 			if (namesToValues.containsKey(key)) {
 				junit.framework.TestCase.assertEquals(namesToValues.get(key), e.getValue().toString());
 				namesToValues.remove(key);
 			} else {
-				junit.framework.TestCase.fail("Unexpected annotation element: " + key);
+				junit.framework.TestCase.fail("Unexpected annotation element: " + key); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		junit.framework.TestCase.assertEquals(0, namesToValues.size());

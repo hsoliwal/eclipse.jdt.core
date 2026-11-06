@@ -55,7 +55,7 @@ public class DOMASTUtil {
 	 * @see ASTNode#getNodeType()
 	 * @since 3.22
 	 */
-	private static boolean isNodeTypeSupportedinAST(int apiLevel, boolean previewEnabled, int nodeType) {
+	private static boolean isNodeTypeSupportedinAST(int apiLevel, boolean previewEnabled, int nodeType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (nodeType) {
 			case ASTNode.SWITCH_EXPRESSION:
 			case ASTNode.YIELD_STATEMENT:

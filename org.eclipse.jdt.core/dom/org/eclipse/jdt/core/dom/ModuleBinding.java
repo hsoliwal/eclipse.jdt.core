@@ -60,12 +60,12 @@ class ModuleBinding implements IModuleBinding {
 		return this.annotations;
 	}
 
-	private IAnnotationBinding[] resolveAnnotationBindings(org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] internalAnnotations) {
+	private IAnnotationBinding[] resolveAnnotationBindings(org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding[] internalAnnotations) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = internalAnnotations == null ? 0 : internalAnnotations.length;
 		if (length != 0) {
 			IAnnotationBinding[] tempAnnotations = new IAnnotationBinding[length];
 			int convertedAnnotationCount = 0;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding internalAnnotation = internalAnnotations[i];
 				if (internalAnnotation == null)
 					break;
@@ -164,7 +164,7 @@ class ModuleBinding implements IModuleBinding {
 
 		org.eclipse.jdt.internal.compiler.lookup.ModuleBinding[] reqs = this.binding.getRequires();
 		IModuleBinding[] result = new IModuleBinding[reqs != null ? reqs.length : 0];
-		for (int i = 0, l = result.length; i < l; ++i) {
+		for (int i = 0, l = result.length; i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			org.eclipse.jdt.internal.compiler.lookup.ModuleBinding req = reqs[i];
 			result[i] = req != null ? this.resolver.getModuleBinding(req) : null;
 		}
@@ -178,7 +178,7 @@ class ModuleBinding implements IModuleBinding {
 
 		org.eclipse.jdt.internal.compiler.lookup.ModuleBinding[] reqs = this.binding.getRequiresTransitive();
 		IModuleBinding[] result = new IModuleBinding[reqs != null ? reqs.length : 0];
-		for (int i = 0, l = result.length; i < l; ++i) {
+		for (int i = 0, l = result.length; i < l; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			org.eclipse.jdt.internal.compiler.lookup.ModuleBinding req = reqs[i];
 			result[i] = req != null ? this.resolver.getModuleBinding(req) : null;
 		}
@@ -223,7 +223,7 @@ class ModuleBinding implements IModuleBinding {
 	private ITypeBinding[] getTypes(org.eclipse.jdt.internal.compiler.lookup.TypeBinding[] types) {
 		int length = types == null ? 0 : types.length;
 		TypeBinding[] result = new TypeBinding[length];
-		for (int i = 0; i < length; ++i) {
+		for (int i = 0; i < length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			result[i] = (TypeBinding) this.resolver.getTypeBinding(types[i]);
 		}
 		return result;

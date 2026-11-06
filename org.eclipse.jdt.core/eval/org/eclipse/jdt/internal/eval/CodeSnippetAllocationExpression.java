@@ -46,7 +46,7 @@ public class CodeSnippetAllocationExpression extends AllocationExpression implem
 public CodeSnippetAllocationExpression(EvaluationContext evaluationContext) {
 	this.evaluationContext = evaluationContext;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generateCode(BlockScope currentScope, CodeStream codeStream, 	boolean valueRequired) {
 	int pc = codeStream.position;
 	MethodBinding codegenBinding = this.binding.original();
@@ -70,7 +70,7 @@ public void generateCode(BlockScope currentScope, CodeStream codeStream, 	boolea
 		}
 		// generate the arguments for constructor
 		if (this.arguments != null) {
-			for (Expression argument : this.arguments) {
+			for (Expression argument : this.arguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				argument.generateCode(currentScope, codeStream, true);
 			}
 		}
@@ -92,7 +92,7 @@ public void generateCode(BlockScope currentScope, CodeStream codeStream, 	boolea
 			codeStream.generateInlinedValue(argsLength);
 			codeStream.newArray(currentScope.createArrayType(currentScope.getType(TypeConstants.JAVA_LANG_OBJECT, 3), 1));
 			codeStream.dup();
-			for (int i = 0; i < argsLength; i++) {
+			for (int i = 0; i < argsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				codeStream.generateInlinedValue(i);
 				this.arguments[i].generateCode(currentScope, codeStream, true);
 				TypeBinding parameterBinding = codegenBinding.parameters[i];
@@ -128,7 +128,7 @@ public void manageEnclosingInstanceAccessIfNecessary(BlockScope currentScope, Fl
 public void manageSyntheticAccessIfNecessary(BlockScope currentScope, FlowInfo flowInfo) {
 	// do nothing
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public TypeBinding resolveType(BlockScope scope) {
 	// Propagate the type checking to the arguments, and check if the constructor is defined.
 	this.constant = Constant.NotAConstant;
@@ -137,13 +137,13 @@ public TypeBinding resolveType(BlockScope scope) {
 		if (this.type instanceof ParameterizedQualifiedTypeReference) { // disallow new X<String>.Y<Integer>()
 			ReferenceBinding currentType = (ReferenceBinding)this.resolvedType;
 			if (currentType == null) return currentType;
-			do {
+			do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// isStatic() is answering true for toplevel types
 				if ((currentType.modifiers & ClassFileConstants.AccStatic) != 0) break checkParameterizedAllocation;
 				if (currentType.isRawType()) break checkParameterizedAllocation;
 			} while ((currentType = currentType.enclosingType())!= null);
 			ParameterizedQualifiedTypeReference qRef = (ParameterizedQualifiedTypeReference) this.type;
-			for (int i = qRef.typeArguments.length - 2; i >= 0; i--) {
+			for (int i = qRef.typeArguments.length - 2; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (qRef.typeArguments[i] != null) {
 					scope.problemReporter().illegalQualifiedParameterizedTypeAllocation(this.type, this.resolvedType);
 					break;
@@ -157,7 +157,7 @@ public TypeBinding resolveType(BlockScope scope) {
 		int length = this.typeArguments.length;
 		this.argumentsHaveErrors = false;
 		this.genericTypeArguments = new TypeBinding[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeReference typeReference = this.typeArguments[i];
 			if ((this.genericTypeArguments[i] = typeReference.resolveType(scope, true /* check bounds*/)) == null) {
 				this.argumentsHaveErrors = true;
@@ -172,7 +172,7 @@ public TypeBinding resolveType(BlockScope scope) {
 		}
 		if (this.argumentsHaveErrors) {
 			if (this.arguments != null) { // still attempt to resolve arguments
-				for (Expression argument : this.arguments) {
+				for (Expression argument : this.arguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					argument.resolveType(scope);
 				}
 			}
@@ -186,7 +186,7 @@ public TypeBinding resolveType(BlockScope scope) {
 		this.argumentsHaveErrors = false;
 		int length = this.arguments.length;
 		this.argumentTypes = new TypeBinding[length];
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Expression argument = this.arguments[i];
 			if (argument instanceof CastExpression) {
 				argument.bits |= DisableUnnecessaryCastCheck; // will check later on
@@ -274,7 +274,7 @@ public TypeBinding resolveType(BlockScope scope) {
 		scope.problemReporter().deprecatedMethod(this.binding, this);
 	}
 	if (this.arguments != null) {
-		for (int i = 0; i < this.arguments.length; i++) {
+		for (int i = 0; i < this.arguments.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			TypeBinding parameterType = this.binding.parameters[i];
 			TypeBinding argumentType = this.argumentTypes[i];
 			this.arguments[i].computeConversion(scope, parameterType, argumentType);

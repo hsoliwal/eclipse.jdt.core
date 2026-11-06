@@ -100,7 +100,7 @@ public class JarIndexLocation extends IndexLocation {
 		}
 		if (this.jarFile == null || this.jarEntry == null)
 			return null;
-		return this.jarFile.getInputStream(this.jarEntry);
+		return this.jarFile.getInputStream(this.jarEntry); //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM CALL
 	}
 
 	@Override

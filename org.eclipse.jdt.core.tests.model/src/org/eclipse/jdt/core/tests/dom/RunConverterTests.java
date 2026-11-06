@@ -26,7 +26,7 @@ public class RunConverterTests extends junit.framework.TestCase {
 public RunConverterTests(String name) {
 	super(name);
 }
-public static Class[] getAllTestClasses() {
+public static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	return new Class[] {
 		ASTConverterTest.class,
 		ASTConverterTest2.class,
@@ -67,10 +67,10 @@ public static Class[] getAllTestClasses() {
 		ASTConverterMarkdownSnippetTest.class
 	};
 }
-public static Test suite() {
+public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TestSuite ts = new TestSuite(RunConverterTests.class.getName());
 
-	ConverterTestSetup.TEST_SUITES = new ArrayList(Arrays.asList(getAllTestClasses()));
+	ConverterTestSetup.TEST_SUITES = new ArrayList(Arrays.asList(getAllTestClasses())); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	// Reset forgotten subsets of tests
 	TestCase.TESTS_PREFIX = null;
 	TestCase.TESTS_NAMES = null;
@@ -78,7 +78,7 @@ public static Test suite() {
 	TestCase.TESTS_RANGE = null;
 	TestCase.RUN_ONLY_ID = null;
 
-	for (int i = 0, l=ConverterTestSetup.TEST_SUITES.size(); i < l; i++) {
+	for (int i = 0, l=ConverterTestSetup.TEST_SUITES.size(); i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Class testClass = (Class) ConverterTestSetup.TEST_SUITES.get(i);
 
 		// call the suite() method and add the resulting suite to the suite

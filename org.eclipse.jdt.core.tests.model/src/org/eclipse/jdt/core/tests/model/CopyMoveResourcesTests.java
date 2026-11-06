@@ -34,7 +34,7 @@ public CopyMoveResourcesTests(String name) {
  * and forcing. The operation should succeed, so any exceptions
  * encountered are thrown.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public IJavaElement copyPositive(IJavaElement element, IJavaElement container, IJavaElement sibling, String rename, boolean force) throws JavaModelException {
 	DeltaListener listener = new DeltaListener();
 	try {
@@ -64,7 +64,7 @@ public IJavaElement copyPositive(IJavaElement element, IJavaElement container, I
 				// default package - should be no package decl
 				IJavaElement[] children = ((ICompilationUnit) copy).getChildren();
 				boolean found = false;
-				for (int i = 0; i < children.length; i++) {
+				for (int i = 0; i < children.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (children[i] instanceof IPackageDeclaration) {
 						found = true;
 						break;
@@ -74,7 +74,7 @@ public IJavaElement copyPositive(IJavaElement element, IJavaElement container, I
 			} else {
 				IJavaElement[] children = ((ICompilationUnit) copy).getChildren();
 				boolean found = false;
-				for (int i = 0; i < children.length; i++) {
+				for (int i = 0; i < children.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (children[i] instanceof IPackageDeclaration) {
 						assertTrue("package declaration incorrect", ((IPackageDeclaration) children[i]).getElementName().equals(container.getElementName()));
 						found = true;
@@ -94,7 +94,7 @@ public IJavaElement copyPositive(IJavaElement element, IJavaElement container, I
 		}
 		// FIXME: not strong enough
 		boolean found = false;
-		for (int i = 0; i < deltas.length; i++) {
+		for (int i = 0; i < deltas.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (deltas[i].getElement().equals(copy))
 				found = true;
 		}
@@ -110,7 +110,7 @@ public IJavaElement copyPositive(IJavaElement element, IJavaElement container, I
  * and forcing. The operation should succeed, so any exceptions
  * encountered are thrown.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, IJavaElement[] siblings, String[] names, boolean force, IProgressMonitor monitor) throws JavaModelException {
 	DeltaListener listener = new DeltaListener();
 	try {
@@ -119,7 +119,7 @@ public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, I
 		// if forcing, ensure that a name collision exists
 		int i;
 		if (force) {
-			for (i = 0; i < elements.length; i++) {
+			for (i = 0; i < elements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IJavaElement e = elements[i];
 				IJavaElement collision = null;
 				if (names == null) {
@@ -134,7 +134,7 @@ public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, I
 		// move
 		getJavaModel().move(elements, destinations, siblings, names, force, monitor);
 
-		for (i = 0; i < elements.length; i++) {
+		for (i = 0; i < elements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaElement element = elements[i];
 			IJavaElement moved = null;
 			if (names == null) {
@@ -155,7 +155,7 @@ public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, I
 					// default package
 					if (moved.getElementType() == IJavaElement.COMPILATION_UNIT) {
 						IJavaElement[] children = ((ICompilationUnit) moved).getChildren();
-						for (int j = 0; j < children.length; j++) {
+						for (int j = 0; j < children.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (children[j].getElementType() == IJavaElement.PACKAGE_DECLARATION) {
 								assertTrue("Should not find package decl", false);
 							}
@@ -164,7 +164,7 @@ public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, I
 				} else {
 					IJavaElement[] children = ((ICompilationUnit) moved).getChildren();
 					boolean found = false;
-					for (int j = 0; j < children.length; j++) {
+					for (int j = 0; j < children.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (children[j] instanceof IPackageDeclaration) {
 							assertTrue("package declaration incorrect", ((IPackageDeclaration) children[j]).getElementName().equals(container.getElementName()));
 							found = true;
@@ -186,7 +186,7 @@ public void movePositive(IJavaElement[] elements, IJavaElement[] destinations, I
 				destDelta = listener.getDeltaFor(destinations[i], true);
 				assertTrue("Destination container not changed", destDelta != null && destDelta.getKind() == IJavaElementDelta.CHANGED);
 				IJavaElementDelta[] deltas = destDelta.getAddedChildren();
-				for (int j = 0; j < deltas.length - 1; j++) {
+				for (int j = 0; j < deltas.length - 1; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					// side effect packages added
 					IJavaElement pkg = deltas[j].getElement();
 					assertTrue("Side effect child should be a package fragment", pkg.getElementType() == IJavaElement.PACKAGE_FRAGMENT);
@@ -231,7 +231,7 @@ public void tearDown() throws Exception {
 /**
  * Ensures that a CU can be copied to a different package.
  */
-public void testCopyCU01() throws CoreException {
+public void testCopyCU01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/p1");
 	this.createFile(
 		"/P/src/p1/X.java",
@@ -253,7 +253,7 @@ public void testCopyCU01() throws CoreException {
  * This operation should fail as copying a CU and a CU member at the
  * same time is not supported.
  */
-public void testCopyCU02() throws CoreException {
+public void testCopyCU02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/p1");
 	this.createFile(
 		"/P/src/p1/X.java",
@@ -274,7 +274,7 @@ public void testCopyCU02() throws CoreException {
 /**
  * Ensures that a CU can be copied to a different package, replacing an existing CU.
  */
-public void testCopyCU03() throws CoreException {
+public void testCopyCU03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/p1");
 	this.createFile(
 		"/P/src/p1/X.java",
@@ -336,7 +336,7 @@ public void testCopyCU05() throws CoreException {
 /**
  * Ensures that a read-only CU can be copied to a different package.
  */
-public void testCopyCU06() throws CoreException {
+public void testCopyCU06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!Util.isReadOnlySupported()) {
 		// Do not test if file system does not support read-only attribute
 		return;
@@ -376,7 +376,7 @@ public void testCopyCU06() throws CoreException {
  * Ensures that a CU can be copied to a different package,
  * and be renamed, overwriting an existing CU
  */
-public void testCopyCU07() throws CoreException {
+public void testCopyCU07() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/p1");
 	this.createFile(
 		"/P/src/p1/X.java",
@@ -400,7 +400,7 @@ public void testCopyCU07() throws CoreException {
 /**
  * Ensures that a CU cannot be copied to a different package,over an existing CU when no force.
  */
-public void testCopyCU08() throws CoreException {
+public void testCopyCU08() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/p1");
 	this.createFile(
 		"/P/src/p1/X.java",
@@ -460,7 +460,7 @@ public void testCopyCU10() throws CoreException {
  * Ensures that a CU can be copied to along with its server properties.
  * (Regression test for PR #1G56QT9)
  */
-public void testCopyCU11() throws CoreException {
+public void testCopyCU11() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/p1");
 	this.createFile(
 		"/P/src/p1/X.java",
@@ -496,7 +496,7 @@ public void testCopyCU12() throws Exception {
 	createFile("/P/src/p1/X.java", "package p1; public class X {}");
 	this.createFolder("/P/src/p2");
 
-	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){
+	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 		public void run(IProgressMonitor monitor) throws CoreException {
 			ICompilationUnit cuSource = getCompilationUnit("/P/src/p1/X.java");
 			IPackageFragment pkgDest = getPackage("/P/src/p2");
@@ -526,7 +526,7 @@ public void testCopyPackageFragment() throws CoreException {
 /**
  * Ensures that a package fragment can be copied to a different package fragment root.
  */
-public void testCopyReadOnlyPackageFragment() throws CoreException {
+public void testCopyReadOnlyPackageFragment() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!Util.isReadOnlySupported()) {
 		// Do not test if file system does not support read-only attribute
 		return;
@@ -584,7 +584,7 @@ public void testCopyReadOnlyPackageFragment() throws CoreException {
 /**
  * Ensures that a WorkingCopy can be copied to a different package.
  */
-public void testCopyWorkingCopy() throws CoreException {
+public void testCopyWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		this.createFolder("/P/src/p1");
@@ -609,7 +609,7 @@ public void testCopyWorkingCopy() throws CoreException {
  * Ensures that a CU can be copied over an existing primary working copy in a different package.
  * (regression test for bug 117282 Package declaration inserted on wrong CU while copying class if names collide and editor opened)
  */
-public void testCopyWorkingCopyDestination() throws CoreException {
+public void testCopyWorkingCopyDestination() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		createFolder("/P/src/p1");
@@ -642,7 +642,7 @@ public void testCopyWorkingCopyDestination() throws CoreException {
 /**
  * Ensures that a WorkingCopy can be copied to a different package, replacing an existing WorkingCopy.
  */
-public void testCopyWorkingCopyForce() throws CoreException {
+public void testCopyWorkingCopyForce() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		this.createFolder("/P/src/p1");
@@ -673,7 +673,7 @@ public void testCopyWorkingCopyForce() throws CoreException {
  * Ensures that a WorkingCopy can be copied to a different package,
  * and be renamed.
  */
-public void testCopyWorkingCopyRename() throws CoreException {
+public void testCopyWorkingCopyRename() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		this.createFolder("/P/src/p1");
@@ -698,7 +698,7 @@ public void testCopyWorkingCopyRename() throws CoreException {
  * Ensures that a WorkingCopy can be copied to a different package,
  * and be renamed, overwriting an existing WorkingCopy
  */
-public void testCopyWorkingCopyRenameForce() throws CoreException {
+public void testCopyWorkingCopyRenameForce() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		this.createFolder("/P/src/p1");
@@ -728,7 +728,7 @@ public void testCopyWorkingCopyRenameForce() throws CoreException {
 /**
  * Ensures that a WorkingCopy cannot be copied to a different package,over an existing WorkingCopy when no force.
  */
-public void testCopyWorkingCopyWithCollision() throws CoreException {
+public void testCopyWorkingCopyWithCollision() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		this.createFolder("/P/src/p1");
@@ -758,7 +758,7 @@ public void testCopyWorkingCopyWithCollision() throws CoreException {
 /**
  * Ensures that a WorkingCopy cannot be copied to an invalid destination
  */
-public void testCopyWorkingCopyWithInvalidDestination() throws CoreException {
+public void testCopyWorkingCopyWithInvalidDestination() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		this.createFolder("/P/src/p1");
@@ -779,7 +779,7 @@ public void testCopyWorkingCopyWithInvalidDestination() throws CoreException {
 /**
  * Ensures that a CU can be moved to a different package.
  */
-public void testMoveCU01() throws CoreException {
+public void testMoveCU01() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/p1");
 	this.createFile(
 		"/P/src/p1/X.java",
@@ -801,7 +801,7 @@ public void testMoveCU01() throws CoreException {
  * This operation should fail as moving a CU and a CU member at the
  * same time is not supported.
  */
-public void testMoveCU02() throws CoreException {
+public void testMoveCU02() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/p1");
 	this.createFile(
 		"/P/src/p1/X.java",
@@ -823,7 +823,7 @@ public void testMoveCU02() throws CoreException {
  * Ensures that a CU can be moved to a different package, replacing an
  * existing CU.
  */
-public void testMoveCU03() throws CoreException {
+public void testMoveCU03() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DeltaListener listener = new DeltaListener();
 	try {
 		this.createFolder("/P/src/p1");
@@ -881,7 +881,7 @@ public void testMoveCU04() throws CoreException {
  * Ensures that a CU can be moved to a different package,
  * be renamed, overwriting an existing resource.
  */
-public void testMoveCU05() throws CoreException {
+public void testMoveCU05() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	DeltaListener listener = new DeltaListener();
 	try {
 		this.createFolder("/P/src/p1");
@@ -921,7 +921,7 @@ public void testMoveCU05() throws CoreException {
  * Ensures that a CU cannot be moved to a different package, replacing an
  * existing CU when not forced.
  */
-public void testMoveCU06() throws CoreException {
+public void testMoveCU06() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.createFolder("/P/src/p1");
 	this.createFile(
 		"/P/src/p1/X.java",
@@ -986,7 +986,7 @@ public void testMoveCU09() throws Exception {
 	createFile("/P/src/p1/X.java", "package p1; public class X {}");
 	this.createFolder("/P/src/p2");
 
-	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){
+	IWorkspaceRunnable runnable = new IWorkspaceRunnable(){ //FLLDCIM: MARK — T09  ANONYMOUS
 		public void run(IProgressMonitor monitor) throws CoreException {
 			ICompilationUnit cuSource = getCompilationUnit("/P/src/p1/X.java");
 			IPackageFragment pkgDest = getPackage("/P/src/p2");
@@ -1000,7 +1000,7 @@ public void testMoveCU09() throws Exception {
  * Ensures that the first block comment is not lost if moving a cu to the default package
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=247757 )
  */
-public void testMoveCU10() throws CoreException {
+public void testMoveCU10() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p1");
 	createFile(
 		"/P/src/p1/X.java",
@@ -1026,7 +1026,7 @@ public void testMoveCU10() throws CoreException {
  * Ensures that the first block comments are not lost if moving a cu to the default package
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=247757 )
  */
-public void testMoveCU11() throws CoreException {
+public void testMoveCU11() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p1");
 	createFile(
 		"/P/src/p1/X.java",
@@ -1054,7 +1054,7 @@ public void testMoveCU11() throws CoreException {
  * Ensures that the Javadoc comment is not lost if moving a cu to the default package
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=247757 )
  */
-public void testMoveCU12() throws CoreException {
+public void testMoveCU12() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p1");
 	createFile(
 		"/P/src/p1/X.java",
@@ -1080,7 +1080,7 @@ public void testMoveCU12() throws CoreException {
  * Ensures that the Javadoc comment is not lost if moving a cu to the default package
  * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=247757 )
  */
-public void testMoveCU13() throws CoreException {
+public void testMoveCU13() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p1");
 	createFile(
 		"/P/src/p1/X.java",
@@ -1103,7 +1103,7 @@ public void testMoveCU13() throws CoreException {
 		"}",
 		cuDest.getSource());
 }
-public void testMoveCU14() throws CoreException {
+public void testMoveCU14() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	createFolder("/P/src/p1");
 	createFile(
 		"/P/src/p1/X.java",
@@ -1147,7 +1147,7 @@ public void testMovePackageFragment() throws CoreException {
 /**
  * Ensures that a package fragment can be copied to a different package fragment root.
  */
-public void testMoveReadOnlyPackageFragment() throws CoreException {
+public void testMoveReadOnlyPackageFragment() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (!Util.isReadOnlySupported()) {
 		// Do not test if file system does not support read-only attribute
 		return;
@@ -1205,7 +1205,7 @@ public void testMoveReadOnlyPackageFragment() throws CoreException {
 /**
  * Ensures that a WorkingCopy cannot be moved to a different package.
  */
-public void testMoveWorkingCopy() throws CoreException {
+public void testMoveWorkingCopy() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		this.createFolder("/P/src/p1");
@@ -1232,7 +1232,7 @@ public void testMoveWorkingCopy() throws CoreException {
  * and that its buffer doesn't contain unsaved changed after the move.
  * (regression test for bug 83599 CU dirty after move refactoring)
  */
-public void testMoveWorkingCopy2() throws CoreException {
+public void testMoveWorkingCopy2() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit copy = null;
 	try {
 		this.createFolder("/P/src/p1");

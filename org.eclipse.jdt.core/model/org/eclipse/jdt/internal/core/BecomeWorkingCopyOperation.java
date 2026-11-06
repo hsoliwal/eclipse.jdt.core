@@ -25,7 +25,7 @@ import org.eclipse.jdt.core.JavaModelException;
  * Switch and ICompilationUnit to working copy mode
  * and signal the working copy addition through a delta.
  */
-public class BecomeWorkingCopyOperation extends JavaModelOperation {
+public class BecomeWorkingCopyOperation extends JavaModelOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 
 	IProblemRequestor problemRequestor;
 
@@ -37,7 +37,7 @@ public class BecomeWorkingCopyOperation extends JavaModelOperation {
 		super(new IJavaElement[] {workingCopy});
 		this.problemRequestor = problemRequestor;
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void executeOperation() throws JavaModelException {
 
 		// open the working copy now to ensure contents are that of the current state of this element

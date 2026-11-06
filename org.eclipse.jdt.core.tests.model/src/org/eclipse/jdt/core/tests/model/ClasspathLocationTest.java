@@ -32,15 +32,15 @@ public class ClasspathLocationTest extends AbstractJavaModelTests {
 		return buildModelTestSuite(ClasspathLocationTest.class);
 	}
 
-	@Test
+	@Test //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testForJrtSystem() throws Exception {
 		String javaHome = System.getProperty("java.home", null);
 		assertNotNull("java.home is not defined", javaHome);
 		File image = Paths.get(javaHome).toFile();
-		assertTrue("java.home points to invalid path", image.isDirectory());
+		assertTrue("java.home points to invalid path", image.isDirectory()); //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		String releaseVersion = JRTUtil.getJdkRelease(image);
 
-		String jrt = "lib/" + org.eclipse.jdt.internal.compiler.util.JRTUtil.JRT_FS_JAR; //$NON-NLS-1$
+		String jrt = "lib/" + org.eclipse.jdt.internal.compiler.util.JRTUtil.JRT_FS_JAR; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		Path jrtPath = Paths.get(javaHome, jrt);
 		int majorSegment = getMajorVersionSegment(releaseVersion);
 		ClasspathJrt classpathJrt = ClasspathLocation.forJrtSystem(jrtPath.toString(), null, null, String.valueOf(majorSegment));

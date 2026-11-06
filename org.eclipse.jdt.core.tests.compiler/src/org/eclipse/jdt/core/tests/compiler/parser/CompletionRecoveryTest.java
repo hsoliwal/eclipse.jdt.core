@@ -28,7 +28,7 @@ public static Test suite() {
 /*
  * Complete on variable behind ill-formed declaration
  */
-public void test01() {
+public void test01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -67,7 +67,7 @@ public void test01() {
 /*
  * Complete on variable behind ill-formed declaration and nested block
  */
-public void test02() {
+public void test02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -111,7 +111,7 @@ public void test02() {
 /*
  * Complete on variable behind ill-formed declaration and inside local type field initialization
  */
-public void test03() {
+public void test03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -156,7 +156,7 @@ public void test03() {
 /*
  * Complete on variable behind closed scope
  */
-public void test04() {
+public void test04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;							\n" +
@@ -198,7 +198,7 @@ public void test04() {
 /*
  * Complete on variable str with sibling method stringAppend()
  */
-public void test05() {
+public void test05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;									\n"+
@@ -252,7 +252,7 @@ public void test05() {
  * Complete on variable str with sibling method stringAppend(), eliminating
  * uninteresting method bodies
  */
-public void test06() {
+public void test06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*;									\n"+
@@ -311,7 +311,7 @@ public void test06() {
 /*
  * Complete on new keyword
  */
-public void test07(){
+public void test07(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	String str =
 		"import java.io.*							\n" +
@@ -349,7 +349,7 @@ public void test07(){
 /*
  * Complete on field type in anonymous type.
  */
-public void test08() {
+public void test08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"package test;\n" +
@@ -400,7 +400,7 @@ public void test08() {
 /*
  * Complete on argument name
  */
-public void test09() {
+public void test09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"package pack;								\n"+
@@ -444,7 +444,7 @@ public void test09() {
 /*
  * Complete on argument name
  */
-public void test10() {
+public void test10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"package pack;								\n"+
@@ -488,7 +488,7 @@ public void test10() {
 /*
  * Complete inside method with incomplete signature
  */
-public void test11() {
+public void test11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"package pack;								\n"+
@@ -533,7 +533,7 @@ public void test11() {
 /*
  * Complete on argument name with class decl later on
  */
-public void test12() {
+public void test12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class DD  {									\n"+
@@ -573,7 +573,7 @@ public void test12() {
 /*
  * Complete behind array type
  */
-public void test13() {
+public void test13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class C {						\n"+
@@ -604,7 +604,7 @@ public void test13() {
 /*
  * Complete inside array type
  */
-public void test14() {
+public void test14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"public class B {			\n"+
@@ -635,7 +635,7 @@ public void test14() {
 /*
  * Complete inside array type
  */
-public void test15() {
+public void test15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"public class B {			\n"+
@@ -666,7 +666,7 @@ public void test15() {
 /*
  * Complete behind invalid array type
  */
-public void test16() {
+public void test16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"public class B {			\n"+
@@ -699,7 +699,7 @@ public void test16() {
 /*
  * Complete behind invalid base type
  */
-public void test17() {
+public void test17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class D {				\n" +
@@ -736,7 +736,7 @@ public void test17() {
 /*
  * Complete behind incomplete local method header
  */
-public void test18() {
+public void test18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class E {					\n"+
@@ -772,7 +772,7 @@ public void test18() {
 /*
  * Complete behind catch variable
  */
-public void test19() {
+public void test19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"public class Test {					\n" +
@@ -806,7 +806,7 @@ public void test19() {
 /*
  * Complete on catch variable
  */
-public void test20() {
+public void test20() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"public class Test {					\n" +
@@ -843,7 +843,7 @@ public void test20() {
 /*
  * Complete on catch variable after syntax error
  */
-public void test21() {
+public void test21() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"public class Test {					\n" +
@@ -883,7 +883,7 @@ public void test21() {
  * Complete on constructor type name
  * 1G1HF7P: ITPCOM:WIN98 - CodeAssist may not work in constructor signature
  */
-public void test22() {
+public void test22() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"public class SomeType {\n" +
@@ -924,7 +924,7 @@ public void test22() {
 /**
  * Complete in initializer in recovery mode
  */
-public void test23() {
+public void test23() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"package p;\n" +
@@ -962,7 +962,7 @@ public void test23() {
 /**
  * Complete after initializer in recovery mode
  */
-public void test24() {
+public void test24() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"package p;\n" +
@@ -1001,7 +1001,7 @@ public void test24() {
 /**
  * Complete after dot, before a number {@code .<|>12}
  */
-public void test25() {
+public void test25() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"package p;\n" +
@@ -1033,7 +1033,7 @@ public void test25() {
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=201762
-public void test26() {
+public void test26() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"import org.eclipse.swt.*;\n" +

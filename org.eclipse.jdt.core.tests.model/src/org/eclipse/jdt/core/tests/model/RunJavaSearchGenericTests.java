@@ -41,12 +41,12 @@ public static Class[] getJavaSearchTestClasses() {
 		JavaSearchGenericConstructorEquivalentTests.class,
 	};
 }
-public static Test suite() {
+public static Test suite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	TestSuite ts = new TestSuite(RunJavaSearchGenericTests.class.getName());
 
 	// Get all classes
-	AbstractJavaSearchTests.JAVA_SEARCH_SUITES = new ArrayList(Arrays.asList(getJavaSearchTestClasses()));
-	List allClasses = new ArrayList(AbstractJavaSearchTests.JAVA_SEARCH_SUITES);
+	AbstractJavaSearchTests.JAVA_SEARCH_SUITES = new ArrayList(Arrays.asList(getJavaSearchTestClasses())); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	List allClasses = new ArrayList(AbstractJavaSearchTests.JAVA_SEARCH_SUITES); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	allClasses.add(JavaSearchBugsTests.class);
 	allClasses.add(JavaSearchBugsTests2.class);
 	allClasses.add(JavaSearchBugs8Tests.class);
@@ -59,7 +59,7 @@ public static Test suite() {
 	TestCase.RUN_ONLY_ID = null;
 
 	// Add all tests suite of tests
-	for (int i = 0, size=allClasses.size(); i < size; i++) {
+	for (int i = 0, size=allClasses.size(); i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		Class testClass = (Class) allClasses.get(i);
 
 		// call the suite() method and add the resulting suite to the suite

@@ -79,7 +79,7 @@ protected void tearDown() throws Exception {
 	super.tearDown();
 }
 // Test (positive): self static methods can be targetted by references.
-public void test0001() throws JavaModelException {
+public void test0001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -105,7 +105,7 @@ public void test0001() throws JavaModelException {
 	);
 }
 // Test (negative): no valid target
-public void test0002() throws JavaModelException {
+public void test0002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -133,7 +133,7 @@ public void test0002() throws JavaModelException {
 	);
 }
 // test negative, super method targetted is not visible
-public void test0003() throws JavaModelException {
+public void test0003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -161,7 +161,7 @@ public void test0003() throws JavaModelException {
 	);
 }
 // test (positive) that method references can target super static methods.
-public void test0004() throws JavaModelException {
+public void test0004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -189,7 +189,7 @@ public void test0004() throws JavaModelException {
 	);
 }
 // Test (positive) method reference with primaries can target self methods.
-public void test0005() throws JavaModelException {
+public void test0005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -215,7 +215,7 @@ public void test0005() throws JavaModelException {
 	);
 }
 // Test (positive) method reference with primaries can target super methods.
-public void test0006() throws JavaModelException {
+public void test0006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -243,7 +243,7 @@ public void test0006() throws JavaModelException {
 	);
 }
 // Test that static method cannot be invoked with a receiver.
-public void test0007() throws JavaModelException {
+public void test0007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -269,7 +269,7 @@ public void test0007() throws JavaModelException {
 	);
 }
 // Negative test
-public void test0008() throws JavaModelException {
+public void test0008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -297,7 +297,7 @@ public void test0008() throws JavaModelException {
 	);
 }
 // Test (negative) method references: +ve test below
-public void test0009() throws JavaModelException {
+public void test0009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -325,7 +325,7 @@ public void test0009() throws JavaModelException {
 	);
 }
 // Test positive that metod references can target super methods
-public void test0010() throws JavaModelException {
+public void test0010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -353,7 +353,7 @@ public void test0010() throws JavaModelException {
 	);
 }
 // Test (negative) method references
-public void test0011() throws JavaModelException {
+public void test0011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -382,7 +382,7 @@ public void test0011() throws JavaModelException {
 	);
 }
 // Test positive that lhs of method reference is selectable.
-public void test0012() throws JavaModelException {
+public void test0012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -411,7 +411,7 @@ public void test0012() throws JavaModelException {
 	);
 }
 // Test positive that type arguments of method reference are selectable
-public void test0013() throws JavaModelException {
+public void test0013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -440,7 +440,7 @@ public void test0013() throws JavaModelException {
 	);
 }
 // Test (negative) constructor references: +ve test below
-public void test0014() throws JavaModelException {
+public void test0014() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -466,7 +466,7 @@ public void test0014() throws JavaModelException {
 	);
 }
 // Test (positive) constructor references.
-public void test0015() throws JavaModelException {
+public void test0015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -493,7 +493,7 @@ public void test0015() throws JavaModelException {
 	);
 }
 // Test (negative) type mismatch. Positive test with correction below.
-public void test0016() throws JavaModelException {
+public void test0016() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -520,7 +520,7 @@ public void test0016() throws JavaModelException {
 	);
 }
 // Test (positive) that the type arguments are selectable.
-public void test0017() throws JavaModelException {
+public void test0017() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -547,7 +547,7 @@ public void test0017() throws JavaModelException {
 	);
 }
 // Test (positive) that the LHS type is selectable.
-public void test0018() throws JavaModelException {
+public void test0018() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -574,7 +574,7 @@ public void test0018() throws JavaModelException {
 	);
 }
 // Test (positive) that super type methods can be targetted via a primary.
-public void test0019() throws JavaModelException {
+public void test0019() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -595,12 +595,12 @@ public void test0019() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"hashCode() [in Object [in Object.class [in java.lang [in "+ getExternalPath() + "jclFull1.8.jar]]]]",
+		"hashCode() [in Object [in Object.class [in java.lang [in "+ getExternalPath() + "jclFull1.8.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
 // Test (positive) that interface types on the LHS can refer to object methods.
-public void test0020() throws JavaModelException {
+public void test0020() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -621,12 +621,12 @@ public void test0020() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"hashCode() [in Object [in Object.class [in java.lang [in "+ getExternalPath() + "jclFull1.8.jar]]]]",
+		"hashCode() [in Object [in Object.class [in java.lang [in "+ getExternalPath() + "jclFull1.8.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
 // Test (negative) super:: style method references - such constructor references are not grammatical.
-public void test0021() throws JavaModelException {
+public void test0021() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -654,7 +654,7 @@ public void test0021() throws JavaModelException {
 	);
 }
 // Test (positive) super:: style method references - such constructor references are not grammatical.
-public void test0022() throws JavaModelException {
+public void test0022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -682,7 +682,7 @@ public void test0022() throws JavaModelException {
 	);
 }
 // Test (negative) that the synthesized array constructor is NOT selectable - it is fabricated out of nowhere, no where to navigate to !
-public void test0023() throws JavaModelException {
+public void test0023() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -710,7 +710,7 @@ public void test0023() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=408230, [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
-public void test0024() throws JavaModelException {
+public void test0024() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -737,7 +737,7 @@ public void test0024() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=408230, [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
-public void test0025() throws JavaModelException {
+public void test0025() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -762,7 +762,7 @@ public void test0025() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=408230, [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
-public void test0026() throws JavaModelException {
+public void test0026() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -785,7 +785,7 @@ public void test0026() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=408230, [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
-public void test0027() throws JavaModelException {
+public void test0027() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -813,7 +813,7 @@ public void test0027() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=408230, [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
-public void test0028() throws JavaModelException {
+public void test0028() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -841,7 +841,7 @@ public void test0028() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=408230, [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
-public void test0029() throws JavaModelException {
+public void test0029() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -869,7 +869,7 @@ public void test0029() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=408230, [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
-public void test0030() throws JavaModelException {
+public void test0030() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -907,7 +907,7 @@ public void test0030() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=408230, [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
-public void test0031() throws JavaModelException {
+public void test0031() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -940,7 +940,7 @@ public void test0031() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=408230, [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
-public void test0032() throws JavaModelException {
+public void test0032() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -975,7 +975,7 @@ public void test0032() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=408230, [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
-public void test0033() throws JavaModelException {
+public void test0033() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -1012,7 +1012,7 @@ public void test0033() throws JavaModelException {
 }
 //Bug 408230 - [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=408230
-public void testBug408230a() throws CoreException {
+public void testBug408230a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1035,7 +1035,7 @@ public void testBug408230a() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230b() throws CoreException {
+public void testBug408230b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1060,7 +1060,7 @@ public void testBug408230b() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230c() throws CoreException {
+public void testBug408230c() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1085,7 +1085,7 @@ public void testBug408230c() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230d() throws CoreException {
+public void testBug408230d() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1108,7 +1108,7 @@ public void testBug408230d() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230e() throws CoreException {
+public void testBug408230e() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1131,7 +1131,7 @@ public void testBug408230e() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230f() throws CoreException {
+public void testBug408230f() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1154,7 +1154,7 @@ public void testBug408230f() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230g() throws CoreException {
+public void testBug408230g() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1180,7 +1180,7 @@ public void testBug408230g() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230h() throws CoreException {
+public void testBug408230h() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1206,7 +1206,7 @@ public void testBug408230h() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230i() throws CoreException {
+public void testBug408230i() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1232,7 +1232,7 @@ public void testBug408230i() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230j() throws CoreException {
+public void testBug408230j() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1258,7 +1258,7 @@ public void testBug408230j() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230k() throws CoreException {
+public void testBug408230k() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1284,7 +1284,7 @@ public void testBug408230k() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230l() throws CoreException {
+public void testBug408230l() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1310,7 +1310,7 @@ public void testBug408230l() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230m() throws CoreException {
+public void testBug408230m() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1336,7 +1336,7 @@ public void testBug408230m() throws CoreException {
 		deleteProject("P");
 	}
 }
-public void testBug408230n() throws CoreException {
+public void testBug408230n() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] {"src"}, new String[] {"JCL18_LIB"}, "bin", "1.8", true);
 		String source = "package p;\n" +
@@ -1363,7 +1363,7 @@ public void testBug408230n() throws CoreException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=417935, [1.8][code select] ICU#codeSelect doesn't work on reference to lambda parameter
-public void test417935() throws JavaModelException {  // JCL_MIN does not have the relevant classes - these are needed to handle lambda. Use local versions.
+public void test417935() throws JavaModelException {  // JCL_MIN does not have the relevant classes - these are needed to handle lambda. Use local versions. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"class Collections {\n" +
@@ -1395,7 +1395,7 @@ public void test417935() throws JavaModelException {  // JCL_MIN does not have t
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=417935, [1.8][code select] ICU#codeSelect doesn't work on reference to lambda parameter
-public void test417935a() throws JavaModelException {
+public void test417935a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"import java.util.ArrayList;\n" +
@@ -1427,7 +1427,7 @@ public void test417935a() throws JavaModelException {
 		elements
 	);
 }
-public void testFieldInit() throws JavaModelException {
+public void testFieldInit() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -1450,7 +1450,7 @@ public void testFieldInit() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422468, [1.8][assist] Code assist issues with type elided lambda parameters
-public void test422468() throws JavaModelException {
+public void test422468() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -1473,7 +1473,7 @@ public void test422468() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422468, [1.8][assist] Code assist issues with type elided lambda parameters
-public void test422468a() throws JavaModelException {
+public void test422468a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -1496,7 +1496,7 @@ public void test422468a() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422468, [1.8][assist] Code assist issues with type elided lambda parameters
-public void test422468b() throws JavaModelException {
+public void test422468b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -1522,7 +1522,7 @@ public void test422468b() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422468, [1.8][assist] Code assist issues with type elided lambda parameters
-public void test422468c() throws JavaModelException {
+public void test422468c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -1548,7 +1548,7 @@ public void test422468c() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422468, [1.8][assist] Code assist issues with type elided lambda parameters
-public void test422468d() throws JavaModelException {
+public void test422468d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -1575,12 +1575,12 @@ public void test422468d() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclFull1.8.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclFull1.8.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422468, [1.8][assist] Code assist issues with type elided lambda parameters
-public void test422468e() throws JavaModelException {
+public void test422468e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -1612,7 +1612,7 @@ public void test422468e() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422468, [1.8][assist] Code assist issues with type elided lambda parameters
-public void testParser() throws JavaModelException {
+public void testParser() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {\n" +
@@ -1647,7 +1647,7 @@ public void testParser() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424110, [1.8][hovering] Hover, F3 does not work for method reference in method invocation
-public void test424110() throws JavaModelException {
+public void test424110() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"public class X {\n" +
@@ -1677,7 +1677,7 @@ public void test424110() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424110, [1.8][hovering] Hover, F3 does not work for method reference in method invocation
-public void test424110a() throws JavaModelException {
+public void test424110a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"public class X {\n" +
@@ -1706,7 +1706,7 @@ public void test424110a() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424071, [1.8][select] cannot select method invoked on a lambda parameter with inferred type
-public void test424071() throws JavaModelException {
+public void test424071() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"import java.util.List;\n" +
@@ -1742,7 +1742,7 @@ public void test424071() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424198, [1.8][hover] IAE in Signature.createCharArrayTypeSignature when hovering on variable of wildcard type, plus compile errors
-public void test424198() throws JavaModelException {
+public void test424198() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"import java.io.IOException;\n" +
@@ -1807,7 +1807,7 @@ public void test424198() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424198, [1.8][hover] IAE in Signature.createCharArrayTypeSignature when hovering on variable of wildcard type, plus compile errors
-public void test424198a() throws JavaModelException {
+public void test424198a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"import java.io.IOException;\n" +
@@ -1872,7 +1872,7 @@ public void test424198a() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424198, [1.8][hover] IAE in Signature.createCharArrayTypeSignature when hovering on variable of wildcard type, plus compile errors
-public void test424198b() throws JavaModelException {
+public void test424198b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"import java.io.IOException;\n" +
@@ -1937,7 +1937,7 @@ public void test424198b() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424198, [1.8][hover] IAE in Signature.createCharArrayTypeSignature when hovering on variable of wildcard type
-public void test424198c() throws JavaModelException {
+public void test424198c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"import java.io.IOException;\n" +
@@ -2002,7 +2002,7 @@ public void test424198c() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429262,  [1.8][code select] Hover/navigation support at -> and ::
-public void test429262() throws JavaModelException {
+public void test429262() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"class Y {\n" +
@@ -2030,7 +2030,7 @@ public void test429262() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429262,  [1.8][code select] Hover/navigation support at -> and ::
-public void test429262a() throws JavaModelException {
+public void test429262a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"class Y {\n" +
@@ -2058,7 +2058,7 @@ public void test429262a() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429262,  [1.8][code select] Hover/navigation support at -> and ::
-public void test429262b() throws JavaModelException {
+public void test429262b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"class Y {\n" +
@@ -2086,7 +2086,7 @@ public void test429262b() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429262,  [1.8][code select] Hover/navigation support at -> and ::
-public void test429262c() throws JavaModelException {
+public void test429262c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"class Y {\n" +
@@ -2115,7 +2115,7 @@ public void test429262c() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429262,  [1.8][code select] Hover/navigation support at -> and ::
-public void test429262d() throws JavaModelException {
+public void test429262d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"class Y {\n" +
@@ -2144,7 +2144,7 @@ public void test429262d() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429262,  [1.8][code select] Hover/navigation support at -> and ::
-public void test429262e() throws JavaModelException {
+public void test429262e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"class Y {\n" +
@@ -2173,7 +2173,7 @@ public void test429262e() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428968, [1.8] NPE while computing a text hover
-public void test428968() throws JavaModelException {
+public void test428968() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"import java.util.ArrayList;\n" +
@@ -2200,12 +2200,12 @@ public void test428968() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"comparing(java.util.function.Function<? super T,? extends U>) {key=Ljava/util/Comparator<>;.comparing<T:Ljava/lang/Object;U::Ljava/lang/Comparable<-TU;>;>(Ljava/util/function/Function<-TT;+TU;>;)Ljava/util/Comparator<TT;>;%<LX~Person;Ljava/lang/String;>} [in Comparator [in Comparator.class [in java.util [in "+ getExternalPath() + "jclFull1.8.jar]]]]",
+		"comparing(java.util.function.Function<? super T,? extends U>) {key=Ljava/util/Comparator<>;.comparing<T:Ljava/lang/Object;U::Ljava/lang/Comparable<-TU;>;>(Ljava/util/function/Function<-TT;+TU;>;)Ljava/util/Comparator<TT;>;%<LX~Person;Ljava/lang/String;>} [in Comparator [in Comparator.class [in java.util [in "+ getExternalPath() + "jclFull1.8.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements, true
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428968, [1.8] NPE while computing a text hover
-public void test428968a() throws JavaModelException {
+public void test428968a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"import java.util.ArrayList;\n" +
@@ -2232,12 +2232,12 @@ public void test428968a() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"comparing(java.util.function.Function<? super T,? extends U>) {key=Ljava/util/Comparator<>;.comparing<T:Ljava/lang/Object;U::Ljava/lang/Comparable<-TU;>;>(Ljava/util/function/Function<-TT;+TU;>;)Ljava/util/Comparator<TT;>;%<LX~Person;Ljava/lang/String;>} [in Comparator [in Comparator.class [in java.util [in "+ getExternalPath() + "jclFull1.8.jar]]]]",
+		"comparing(java.util.function.Function<? super T,? extends U>) {key=Ljava/util/Comparator<>;.comparing<T:Ljava/lang/Object;U::Ljava/lang/Comparable<-TU;>;>(Ljava/util/function/Function<-TT;+TU;>;)Ljava/util/Comparator<TT;>;%<LX~Person;Ljava/lang/String;>} [in Comparator [in Comparator.class [in java.util [in "+ getExternalPath() + "jclFull1.8.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements, true
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=428968, [1.8] NPE while computing a text hover
-public void test428968b() throws JavaModelException {
+public void test428968b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"import java.util.ArrayList;\n" +
@@ -2258,12 +2258,12 @@ public void test428968b() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"reverseOrder() {key=Ljava/util/Comparator<>;.reverseOrder<T::Ljava/lang/Comparable<-TT;>;>()Ljava/util/Comparator<TT;>;%<^{175#0};>} [in Comparator [in Comparator.class [in java.util [in "+ getExternalPath() + "jclFull1.8.jar]]]]",
+		"reverseOrder() {key=Ljava/util/Comparator<>;.reverseOrder<T::Ljava/lang/Comparable<-TT;>;>()Ljava/util/Comparator<TT;>;%<^{175#0};>} [in Comparator [in Comparator.class [in java.util [in "+ getExternalPath() + "jclFull1.8.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements, true
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425064,  [1.8][compiler] NPE in CaptureBinding.computeUniqueKey
-public void test425064() throws JavaModelException {
+public void test425064() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"import java.util.Comparator;\n" +
@@ -2281,12 +2281,12 @@ public void test425064() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"comparing(java.util.function.Function<? super T,? extends U>) {key=Ljava/util/Comparator<>;.comparing<T:Ljava/lang/Object;U::Ljava/lang/Comparable<-TU;>;>(Ljava/util/function/Function<-TT;+TU;>;)Ljava/util/Comparator<TT;>;%<Ljava/lang/String;Ljava/lang/String;>} [in Comparator [in Comparator.class [in java.util [in "+ getExternalPath() + "jclFull1.8.jar]]]]",
+		"comparing(java.util.function.Function<? super T,? extends U>) {key=Ljava/util/Comparator<>;.comparing<T:Ljava/lang/Object;U::Ljava/lang/Comparable<-TU;>;>(Ljava/util/function/Function<-TT;+TU;>;)Ljava/util/Comparator<TT;>;%<Ljava/lang/String;Ljava/lang/String;>} [in Comparator [in Comparator.class [in java.util [in "+ getExternalPath() + "jclFull1.8.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements, true
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425064,  [1.8][compiler] NPE in CaptureBinding.computeUniqueKey
-public void test425064a() throws JavaModelException {
+public void test425064a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"import java.util.Comparator;\n" +
@@ -2304,12 +2304,12 @@ public void test425064a() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"thenComparing(java.util.function.Function<? super T,? extends U>) {key=Ljava/util/Comparator<Ljava/lang/String;>;.thenComparing<U::Ljava/lang/Comparable<-TU;>;>(Ljava/util/function/Function<-Ljava/lang/String;+TU;>;)Ljava/util/Comparator<Ljava/lang/String;>;%<Ljava/lang/Integer;>} [in Comparator [in Comparator.class [in java.util [in "+ getExternalPath() + "jclFull1.8.jar]]]]",
+		"thenComparing(java.util.function.Function<? super T,? extends U>) {key=Ljava/util/Comparator<Ljava/lang/String;>;.thenComparing<U::Ljava/lang/Comparable<-TU;>;>(Ljava/util/function/Function<-Ljava/lang/String;+TU;>;)Ljava/util/Comparator<Ljava/lang/String;>;%<Ljava/lang/Integer;>} [in Comparator [in Comparator.class [in java.util [in "+ getExternalPath() + "jclFull1.8.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements, true
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429845, [1.8] CCE on hover
-public void test429845() throws JavaModelException {
+public void test429845() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"@FunctionalInterface\n" +
@@ -2342,7 +2342,7 @@ public void test429845() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429948, Unhandled event loop exception is thrown when a lambda expression is nested
-public void test429948() throws JavaModelException {
+public void test429948() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface Supplier<T> {\n" +
@@ -2381,7 +2381,7 @@ public void test429948() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429934, [1.8][search] for references to type of lambda with 'this' parameter throws AIIOBE
-public void test429934() throws CoreException {
+public void test429934() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Resolve/src/X.java",
 			"interface Function<T, R> {\n" +
@@ -2409,7 +2409,7 @@ public void test429934() throws CoreException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=429812, [1.8][model] Signatures returned by lambda IMethod APIs should be dot-based
 
-public void test429812() throws CoreException {
+public void test429812() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Resolve/src/X.java",
 			"import java.util.List;\n" +
@@ -2438,7 +2438,7 @@ public void test429812() throws CoreException {
 	assertEquals("(Ljava.util.List<TU;>;I)TU;", lambda.getSignature());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430136
-public void test430136() throws CoreException {
+public void test430136() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Resolve/src/X.java",
 			"import java.util.List;\n" +
@@ -2491,7 +2491,7 @@ public void test430136() throws CoreException {
 	assertEquals("Java elements should be equal", expression, result);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430307,  [1.8][model] NPE trying to get children of a LambdaExpression restored from handleIdentifier
-public void test430307() throws CoreException {
+public void test430307() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Resolve/src/X.java",
 			"import java.util.List;\n" +
@@ -2539,7 +2539,7 @@ public void test430307() throws CoreException {
 	LambdaMethod child = (LambdaMethod) recreatedType.getChildren()[0];
 	assertEquals("Java elements should be equal", lambda, child);
 }
-public void test430307a() throws JavaModelException {
+public void test430307a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Resolve/src/X.java",
 			"interface I {\n" +
@@ -2613,7 +2613,7 @@ public void test430307a() throws JavaModelException {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=439234, [1.8][navigation] Clicking F3 on a lambda arrow doesn't work
-public void test439234() throws JavaModelException {
+public void test439234() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"interface I {" +
@@ -2698,7 +2698,7 @@ public void test439234() throws JavaModelException {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=440731, [1.8] Hover, F3 doesn't work for method reference in method invocation
-public void test440731() throws JavaModelException {
+public void test440731() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"class Y {\n" +
@@ -2777,7 +2777,7 @@ public void test440731() throws JavaModelException {
 		elements);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430572,  [1.8] CCE on hovering over 'super' in lambda expression
-public void test430572() throws JavaModelException {
+public void test430572() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"@FunctionalInterface\n" +
@@ -2800,7 +2800,7 @@ public void test430572() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"Object [in Object.class [in java.lang [in "+ getExternalPath() + "jclFull1.8.jar]]]",
+		"Object [in Object.class [in java.lang [in "+ getExternalPath() + "jclFull1.8.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 
@@ -2853,7 +2853,7 @@ public void test430572() throws JavaModelException {
 		elements);
 }
 // nested poly invocation:
-public void testBug487791() throws JavaModelException {
+public void testBug487791() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"Resolve/src/Example.java",
 			"import java.util.Comparator;\n" +
@@ -2889,7 +2889,7 @@ public void testBug487791() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"collectingAndThen(java.util.stream.Collector<T,A,R>, java.util.function.Function<R,RR>) [in Collectors [in Collectors.class [in java.util.stream [in "+ getExternalPath() + "jclFull1.8.jar]]]]",
+		"collectingAndThen(java.util.stream.Collector<T,A,R>, java.util.function.Function<R,RR>) [in Collectors [in Collectors.class [in java.util.stream [in "+ getExternalPath() + "jclFull1.8.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	String signature = new BindingKey(((IMethod) elements[0]).getKey()).toSignature();
@@ -2900,7 +2900,7 @@ public void testBug487791() throws JavaModelException {
 	assertEquals("return type", "Ljava.util.stream.Collector<LSomething;!*LSomething;>;", returnType);
 }
 // ReferenceExpression:
-public void testBug487791b() throws JavaModelException {
+public void testBug487791b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"Resolve/src/Example.java",
 			"import java.util.function.Function;\n" +
@@ -2936,7 +2936,7 @@ public void testBug487791b() throws JavaModelException {
 	assertEquals("1st type argument", "Ljava.lang.String;", typeArguments[0]);
 	assertEquals("2nd type argument", "LExample;", typeArguments[1]);
 }
-public void testBug515758() throws JavaModelException {
+public void testBug515758() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"Resolve/src/Snippet.java",
 			"import java.util.function.Function;\n" +
@@ -2970,7 +2970,7 @@ public void testBug515758() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1264
 // NPE below LambdaExpression.copy()
-public void testGH1264() throws Exception {
+public void testGH1264() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"Resolve/src/Snippet.java",
 			"import java.io.File;\n"
@@ -2993,13 +2993,13 @@ public void testGH1264() throws Exception {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"apply(T) [in Function [in Function.class [in java.util.function [in " + getExternalPath() + "jclFull1.8.jar]]]]",
+		"apply(T) [in Function [in Function.class [in java.util.function [in " + getExternalPath() + "jclFull1.8.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1195
 // Open declaration results in ClassCastException: LocalDeclaration cannot be cast to LambdaExpression
-public void testGH1195() throws Exception {
+public void testGH1195() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"Resolve/src/Reproducer.java",
 			"import java.util.function.Predicate;\n" +
@@ -3022,7 +3022,7 @@ public void testGH1195() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=576252
 // Open declaration / Javadoc popup is confused by overloaded method with method reference
-public void testBug576252() throws Exception {
+public void testBug576252() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"Resolve/src/LambdaTest.java",
 			"public class LambdaTest {\n" +
@@ -3052,7 +3052,7 @@ public void testBug576252() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=578011
 // Open Declaration (F3) not navigating to static method in same class
-public void testBug578011() throws Exception {
+public void testBug578011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"Resolve/src/EclipseOpenDeclarationBug.java",
 			"import java.lang.reflect.Constructor;\n" +
@@ -3097,7 +3097,7 @@ public void testBug578011() throws Exception {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=546563
 // [navigation] Open Declaration not working
-public void testBug546563() throws Exception {
+public void testBug546563() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"Resolve/src/Test.java",
 			"import java.util.Optional;\n" +
@@ -3131,7 +3131,7 @@ public void testBug546563() throws Exception {
 }
 
 // Inspired from ReslveTests18.test0027
-public void test0027_BindingForLambdaMethod() throws JavaModelException {
+public void test0027_BindingForLambdaMethod() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Resolve/src/X.java",
 			"""
@@ -3172,7 +3172,7 @@ public void test0027_BindingForLambdaMethod() throws JavaModelException {
 		new IJavaElement[] { javaElement }
 	);
 }
-public void testGH2571() throws JavaModelException {
+public void testGH2571() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents = """
 			package org.eclipse;
 
@@ -3201,7 +3201,7 @@ public void testGH2571() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, selectionIdentifier.length());
 	assertElementsEqual(
 		"Unexpected elements",
-		"out [in System [in System.class [in java.lang [in "+ getExternalPath() + "jclFull1.8.jar]]]]",
+		"out [in System [in System.class [in java.lang [in "+ getExternalPath() + "jclFull1.8.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }

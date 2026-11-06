@@ -65,7 +65,7 @@ public class AbstractMethodTests extends BuilderTests {
 	/**
 	 * Check behavior in 1.2 target mode (NO generated default abstract method)
 	 */
-	public void test001() throws JavaModelException {
+	public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -152,7 +152,7 @@ public class AbstractMethodTests extends BuilderTests {
 	/**
 	 * Check behavior in 1.1 target mode (generated default abstract method)
 	 */
-	public void test002() throws JavaModelException {
+	public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -239,7 +239,7 @@ public class AbstractMethodTests extends BuilderTests {
 	/**
 	 * Check behavior in 1.1 target mode (generated default abstract method)
 	 */
-	public void test003() throws Exception {
+	public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -302,7 +302,7 @@ public class AbstractMethodTests extends BuilderTests {
 		assertNotNull("No class file reader", classFileReader);
 		IMethodInfo[] methodInfos = classFileReader.getMethodInfos();
 		IMethodInfo found = null;
-		loop: for (int i = 0, max = methodInfos.length; i < max; i++) {
+		loop: for (int i = 0, max = methodInfos.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IMethodInfo methodInfo = methodInfos[i];
 			if (CharOperation.equals(methodInfo.getName(), "foo".toCharArray())) {
 				found = methodInfo;
@@ -315,7 +315,7 @@ public class AbstractMethodTests extends BuilderTests {
 	private String getResourceOuput(IResource[] resources) {
 		StringWriter stringWriter = new StringWriter();
 		PrintWriter writer = new PrintWriter(stringWriter);
-		for (int i = 0, max = resources.length; i < max; i++) {
+		for (int i = 0, max = resources.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			writer.println(resources[i].getFullPath().toString());
 		}
 		writer.flush();

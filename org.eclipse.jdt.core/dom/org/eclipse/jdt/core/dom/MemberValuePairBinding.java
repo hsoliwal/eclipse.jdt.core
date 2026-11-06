@@ -38,22 +38,22 @@ class MemberValuePairBinding implements IMemberValuePairBinding {
 	static void appendValue(Object value, StringBuilder buffer) {
 		if (value instanceof Object[]) {
 			Object[] values = (Object[]) value;
-			buffer.append('{');
-			for (int i = 0, l = values.length; i < l; i++) {
+			buffer.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0, l = values.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (i != 0)
-					buffer.append(", "); //$NON-NLS-1$
+					buffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				appendValue(values[i], buffer);
 			}
-			buffer.append('}');
+			buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else if (value instanceof ITypeBinding) {
-			buffer.append(((ITypeBinding) value).getName());
-			buffer.append(".class"); //$NON-NLS-1$
+			buffer.append(((ITypeBinding) value).getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(".class"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append(value);
+			buffer.append(value); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
-	static Object buildDOMValue(final Object internalObject, BindingResolver resolver) {
+	static Object buildDOMValue(final Object internalObject, BindingResolver resolver) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (internalObject == null)
 			return null;
 
@@ -90,7 +90,7 @@ class MemberValuePairBinding implements IMemberValuePairBinding {
 			Object[] elements = (Object[]) internalObject;
 			int length = elements.length;
 			Object[] values = length == 0 ? EmptyArray : new Object[length];
-			for (int i = 0; i < length; i++)
+			for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				values[i] = buildDOMValue(elements[i], resolver);
 			return values;
 		}
@@ -182,7 +182,7 @@ class MemberValuePairBinding implements IMemberValuePairBinding {
 		return methodBinding == null ? false : methodBinding.isDeprecated();
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean isEqualTo(IBinding binding) {
 		if (this == binding)
 			return true;
@@ -213,7 +213,7 @@ class MemberValuePairBinding implements IMemberValuePairBinding {
 			if (length != otherValues.length) {
 				return false;
 			}
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Object current = currentValues[i];
 				Object other = otherValues[i];
 				if (current instanceof IBinding) {
@@ -245,9 +245,9 @@ class MemberValuePairBinding implements IMemberValuePairBinding {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
-		buffer.append(getName());
-		buffer.append(" = "); //$NON-NLS-1$
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append(getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(" = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		appendValue(getValue(), buffer);
 		return buffer.toString();
 	}

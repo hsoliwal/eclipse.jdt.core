@@ -27,7 +27,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		super(name);
 	}
 
-	public void testMarkdownSpacingFormat() throws JavaModelException {
+	public void testMarkdownSpacingFormat() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				class Mark {
@@ -50,7 +50,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownEmptyLinesBtwnDiffTags() throws JavaModelException {
+	public void testMarkdownEmptyLinesBtwnDiffTags() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		this.formatterPrefs.comment_insert_empty_line_between_different_tags = true;
 		String input = """
@@ -75,7 +75,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownUnorderedListTags() throws JavaModelException {
+	public void testMarkdownUnorderedListTags() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// ## Unordered Lists
@@ -100,7 +100,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownUnorderedListWithInvalidSpaces() throws JavaModelException {
+	public void testMarkdownUnorderedListWithInvalidSpaces() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// Invalid space
@@ -122,7 +122,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownUnorderedListDifferentTags() throws JavaModelException {
+	public void testMarkdownUnorderedListDifferentTags() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// ## Unordered Lists
@@ -149,7 +149,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownOrderedListTags() throws JavaModelException {
+	public void testMarkdownOrderedListTags() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// ## Ordered Lists
@@ -176,7 +176,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownHeadings() throws JavaModelException {
+	public void testMarkdownHeadings() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// ====
@@ -230,7 +230,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownSnippetComments() throws JavaModelException {
+	public void testMarkdownSnippetComments() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// Markdown Snippet
@@ -258,7 +258,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownMultiSnippetComments() throws JavaModelException {
+	public void testMarkdownMultiSnippetComments() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// ```
@@ -298,7 +298,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownMultiSnippetCommentsWithoutCode() throws JavaModelException {
+	public void testMarkdownMultiSnippetCommentsWithoutCode() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// ```
@@ -319,7 +319,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownFencedCodeBlock() throws JavaModelException {
+	public void testMarkdownFencedCodeBlock() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// A markdown comment, with a codeblock.
@@ -343,7 +343,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownFencedCodeBlock2() throws JavaModelException {
+	public void testMarkdownFencedCodeBlock2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// A markdown comment, with a codeblock.
@@ -371,7 +371,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownFencedCodeBlockWithTilde() throws JavaModelException {
+	public void testMarkdownFencedCodeBlockWithTilde() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// Markdown tilde codeblock.
@@ -395,7 +395,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownFencedCodeFormatForValidOnes() throws JavaModelException {
+	public void testMarkdownFencedCodeFormatForValidOnes() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// Markdown Snippets 1
@@ -495,7 +495,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownDoNotBreakTableOutsideClass() throws JavaModelException {
+	public void testMarkdownDoNotBreakTableOutsideClass() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				/// | Latin | Greek |
@@ -516,7 +516,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 				""";
 		formatSource(input, expected);
 	}
-	public void testMarkdownDoNotBreakMultipleTableInsideClass() throws JavaModelException {
+	public void testMarkdownDoNotBreakMultipleTableInsideClass() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 				class Main {
@@ -598,7 +598,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownInvalidLargeIndentation() throws JavaModelException {
+	public void testMarkdownInvalidLargeIndentation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 					/// 1. one
@@ -618,7 +618,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownOrderedListWithParanthesis() throws JavaModelException {
+	public void testMarkdownOrderedListWithParanthesis() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 					/// ## Ordered Lists
@@ -647,7 +647,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownOrderedListWithLineBreaksOnDifferentChars() throws JavaModelException {
+	public void testMarkdownOrderedListWithLineBreaksOnDifferentChars() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 					/// ## Ordered Lists
@@ -673,7 +673,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownListResetNestingOrderOnDIfferentTagInBetween() throws JavaModelException {
+	public void testMarkdownListResetNestingOrderOnDIfferentTagInBetween() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 					/// 1) Item 1
@@ -701,7 +701,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownWrappedListItemIndentation() throws JavaModelException {
+	public void testMarkdownWrappedListItemIndentation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		this.formatterPrefs.comment_line_length = 25;
 		String input = """
@@ -725,7 +725,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownIndentedCodeBlocks() throws JavaModelException {
+	public void testMarkdownIndentedCodeBlocks() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		this.formatterPrefs.comment_line_length = 25;
 		String input = """
@@ -747,7 +747,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownIndentedCodeBlocksMultiLineJava() throws JavaModelException {
+	public void testMarkdownIndentedCodeBlocksMultiLineJava() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		this.formatterPrefs.comment_line_length = 25;
 		String input = """
@@ -771,7 +771,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownIndentedCodeBlocksFakeFences() throws JavaModelException {
+	public void testMarkdownIndentedCodeBlocksFakeFences() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		this.formatterPrefs.comment_line_length = 25;
 		String input = """
@@ -797,7 +797,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownUnclosedCodeFences() throws JavaModelException {
+	public void testMarkdownUnclosedCodeFences() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 					/// ```
@@ -822,7 +822,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownFencedCodeInList() throws JavaModelException {
+	public void testMarkdownFencedCodeInList() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 					/// 1. three    four
@@ -845,7 +845,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownFencedCodeInListWithClosingFenceTooFar() throws JavaModelException {
+	public void testMarkdownFencedCodeInListWithClosingFenceTooFar() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 					/// 1. three    four
@@ -868,7 +868,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownFencedCodeInListEndedByNextListItem() throws JavaModelException {
+	public void testMarkdownFencedCodeInListEndedByNextListItem() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		String input = """
 					/// 1. three    four
@@ -909,7 +909,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownAndClassicJoinLinesWhenJoinLinesInCommentsIsFalse() throws JavaModelException {
+	public void testMarkdownAndClassicJoinLinesWhenJoinLinesInCommentsIsFalse() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		this.formatterPrefs.join_lines_in_comments = false;
 		this.formatterPrefs.comment_line_length = 1000;
@@ -954,7 +954,7 @@ public class FormatterMarkdownCommentsTests extends FormatterCommentsTests {
 		formatSource(input, expected);
 	}
 
-	public void testMarkdownAndClassicJoinLinesWhenJoinLinesInCommentsIsTrue() throws JavaModelException {
+	public void testMarkdownAndClassicJoinLinesWhenJoinLinesInCommentsIsTrue() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		setComplianceLevel(CompilerOptions.VERSION_23);
 		this.formatterPrefs.join_lines_in_comments = true;
 		this.formatterPrefs.comment_line_length = 1000;

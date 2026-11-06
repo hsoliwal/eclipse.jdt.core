@@ -41,7 +41,7 @@ protected Map getCompilerOptions() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=83321
  */
-public void test0001(){
+public void test0001(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Completion {\n" +
 		"	/*here*/\n" +
@@ -81,7 +81,7 @@ public void test0001(){
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0002(){
+public void test0002(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"	void foo() {\n" +
@@ -147,7 +147,7 @@ public void test0002(){
 			"full ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0003(){
+public void test0003(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"	void foo() {\n" +
@@ -216,7 +216,7 @@ public void test0003(){
 			"full ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0004(){
+public void test0004(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"	void foo() {\n" +
@@ -288,7 +288,7 @@ public void test0004(){
 			"full ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0005(){
+public void test0005(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"	void foo() {\n" +
@@ -357,7 +357,7 @@ public void test0005(){
 			"full ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0006(){
+public void test0006(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"	void foo() {\n" +
@@ -428,7 +428,7 @@ public void test0006(){
 			"full ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0007(){
+public void test0007(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"	void foo() {\n" +
@@ -507,7 +507,7 @@ public void test0007(){
 			"full ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0008(){
+public void test0008(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public enum Test {\n" +
 		"	A() {\n" +
@@ -547,7 +547,7 @@ public void test0008(){
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0009(){
+public void test0009(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public enum Test {\n" +
 		"	B,\n" +
@@ -589,7 +589,7 @@ public void test0009(){
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0010(){
+public void test0010(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public enum Test {\n" +
 		"	#\n" +
@@ -632,7 +632,7 @@ public void test0010(){
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0011(){
+public void test0011(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public enum Test {\n" +
 		"	B() {\n" +
@@ -680,7 +680,7 @@ public void test0011(){
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0012(){
+public void test0012(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public enum Test {\n" +
 		"	#\n" +
@@ -729,7 +729,7 @@ public void test0012(){
 	"diet ast");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0013(){
+public void test0013(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public enum Test {\n" +
 		"	#\n" +
@@ -779,7 +779,7 @@ public void test0013(){
 	"diet ast");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=100868
-public void test0014(){
+public void test0014(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public enum Enum1 {\n"+
 		"  A {\n"+

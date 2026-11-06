@@ -34,18 +34,18 @@ public OrLocator(OrPattern pattern) {
 	SearchPattern[] patterns = pattern.patterns;
 	int length = patterns.length;
 	this.patternLocators = new PatternLocator[length];
-	for (int i = 0; i < length; i++)
+	for (int i = 0; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		this.patternLocators[i] = PatternLocator.patternLocator(patterns[i]);
 }
 @Override
 public void initializePolymorphicSearch(MatchLocator locator) {
-	for (PatternLocator patternLocator : this.patternLocators)
+	for (PatternLocator patternLocator : this.patternLocators) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		patternLocator.initializePolymorphicSearch(locator);
 }
 @Override
 public int match(Annotation node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -57,7 +57,7 @@ public int match(Annotation node, MatchingNodeSet nodeSet) {
 @Override
 public int match(ASTNode node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -69,7 +69,7 @@ public int match(ASTNode node, MatchingNodeSet nodeSet) {
 @Override
 public int match(ConstructorDeclaration node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -81,7 +81,7 @@ public int match(ConstructorDeclaration node, MatchingNodeSet nodeSet) {
 @Override
 public int match(Expression node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -93,7 +93,7 @@ public int match(Expression node, MatchingNodeSet nodeSet) {
 @Override
 public int match(FieldDeclaration node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -105,7 +105,7 @@ public int match(FieldDeclaration node, MatchingNodeSet nodeSet) {
 @Override
 public int match(LambdaExpression node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -117,7 +117,7 @@ public int match(LambdaExpression node, MatchingNodeSet nodeSet) {
 @Override
 public int match(LocalDeclaration node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -129,7 +129,7 @@ public int match(LocalDeclaration node, MatchingNodeSet nodeSet) {
 @Override
 public int match(MethodDeclaration node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -141,7 +141,7 @@ public int match(MethodDeclaration node, MatchingNodeSet nodeSet) {
 @Override
 public int match(MemberValuePair node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -153,7 +153,7 @@ public int match(MemberValuePair node, MatchingNodeSet nodeSet) {
 @Override
 public int match(MessageSend node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -165,7 +165,7 @@ public int match(MessageSend node, MatchingNodeSet nodeSet) {
 @Override
 public int match(Reference node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -177,7 +177,7 @@ public int match(Reference node, MatchingNodeSet nodeSet) {
 @Override
 public int match(ReferenceExpression node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -189,7 +189,7 @@ public int match(ReferenceExpression node, MatchingNodeSet nodeSet) {
 @Override
 public int match(TypeDeclaration node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -201,7 +201,7 @@ public int match(TypeDeclaration node, MatchingNodeSet nodeSet) {
 @Override
 public int match(TypeParameter node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -213,7 +213,7 @@ public int match(TypeParameter node, MatchingNodeSet nodeSet) {
 @Override
 public int match(TypeReference node, MatchingNodeSet nodeSet) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.match(node, nodeSet);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -225,11 +225,11 @@ public int match(TypeReference node, MatchingNodeSet nodeSet) {
 @Override
 protected int matchContainer() {
 	int result = 0;
-	for (PatternLocator patternLocator : this.patternLocators)
+	for (PatternLocator patternLocator : this.patternLocators) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		result |= patternLocator.matchContainer();
 	return result;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void matchLevelAndReportImportRef(ImportReference importRef, Binding binding, MatchLocator locator) throws CoreException {
 
 	// for static import, binding can be a field binding or a member type binding
@@ -253,7 +253,7 @@ protected void matchLevelAndReportImportRef(ImportReference importRef, Binding b
 	// Look for closest pattern
 	PatternLocator closestPattern = null;
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.referenceType() == 0 ? IMPOSSIBLE_MATCH : patternLocator.resolveLevel(refBinding);
 		if (newLevel > level) {
 			closestPattern = patternLocator;
@@ -269,7 +269,7 @@ protected void matchLevelAndReportImportRef(ImportReference importRef, Binding b
 protected void matchReportImportRef(ImportReference importRef, Binding binding, IJavaElement element, int accuracy, MatchLocator locator) throws CoreException {
 	PatternLocator closestPattern = null;
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.matchLevel(importRef);
 		if (newLevel > level) {
 			closestPattern = patternLocator;
@@ -284,7 +284,7 @@ protected void matchReportImportRef(ImportReference importRef, Binding binding, 
 protected void matchReportReference(ASTNode reference, IJavaElement element, IJavaElement localElement, IJavaElement[] otherElements, Binding elementBinding, int accuracy, MatchLocator locator) throws CoreException {
 	PatternLocator closestPattern = null;
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.referenceType() == 0 ? IMPOSSIBLE_MATCH : patternLocator.resolveLevel(reference);
 		if (newLevel > level) {
 			closestPattern = patternLocator;
@@ -303,7 +303,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, Bin
 public SearchMatch newDeclarationMatch(ASTNode reference, IJavaElement element, Binding elementBinding, int accuracy, int length, MatchLocator locator) {
 	PatternLocator closestPattern = null;
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.referenceType() == 0 ? IMPOSSIBLE_MATCH : patternLocator.resolveLevel(reference);
 		if (newLevel > level) {
 			closestPattern = patternLocator;
@@ -320,7 +320,7 @@ public SearchMatch newDeclarationMatch(ASTNode reference, IJavaElement element, 
 @Override
 public int resolveLevel(ASTNode node) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.resolveLevel(node);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -332,7 +332,7 @@ public int resolveLevel(ASTNode node) {
 @Override
 public int resolveLevel(Binding binding) {
 	int level = IMPOSSIBLE_MATCH;
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		int newLevel = patternLocator.resolveLevel(binding);
 		if (newLevel > level) {
 			if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -344,13 +344,13 @@ public int resolveLevel(Binding binding) {
 
 @Override
 void setFlavors(int flavors) {
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		patternLocator.setFlavors(flavors);
 	}
 }
 @Override
 public void recordResolution(QualifiedTypeReference typeReference, TypeBinding resolution) {
-	for (PatternLocator patternLocator : this.patternLocators) {
+	for (PatternLocator patternLocator : this.patternLocators) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		patternLocator.recordResolution(typeReference, resolution);
 	}
 }

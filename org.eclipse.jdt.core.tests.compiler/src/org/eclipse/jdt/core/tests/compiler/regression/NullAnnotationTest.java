@@ -59,8 +59,8 @@ public boolean useDeclarationAnnotations() {
 
 String mismatch_NonNull_Nullable(String type) {
 	return 	useDeclarationAnnotations()
-			? "Null type mismatch: required \'@NonNull "+type+"\' but the provided value is specified as @Nullable\n"
-			: "Null type mismatch (type annotations): required '@NonNull "+type+"' but this expression has type '@Nullable "+type+"'\n";
+			? "Null type mismatch: required \'@NonNull "+type+"\' but the provided value is specified as @Nullable\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			: "Null type mismatch (type annotations): required '@NonNull "+type+"' but this expression has type '@Nullable "+type+"'\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 String nullTypeSafety() {
 	return useDeclarationAnnotations()
@@ -69,43 +69,43 @@ String nullTypeSafety() {
 }
 String variableMayBeNull(String var) {
 	return 	useDeclarationAnnotations()
-			? "Potential null pointer access: The variable "+var+" may be null at this location\n"
+			? "Potential null pointer access: The variable "+var+" may be null at this location\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			: "Potential null pointer access: this expression has a '@Nullable' type\n";
 }
 String redundant_check_nonnull(String expr, String type) {
 	return useDeclarationAnnotations()
-			? "Redundant null check: "+expr+" is specified as @NonNull\n"
-			: "Redundant null check: comparing '"+type+"' against null\n";
+			? "Redundant null check: "+expr+" is specified as @NonNull\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			: "Redundant null check: comparing '"+type+"' against null\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 String redundantCheck_method_cannot_return_null(String method, String type) {
 	return useDeclarationAnnotations()
-			? "Redundant null check: The method "+method+" cannot return null\n"
-			: "Redundant null check: comparing '@NonNull "+type+"' against null\n";
+			? "Redundant null check: The method "+method+" cannot return null\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			: "Redundant null check: comparing '@NonNull "+type+"' against null\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 String checkAlwaysFalse_method_cannot_return_null(String method, String type) {
 	return useDeclarationAnnotations()
-			? "Null comparison always yields false: The method "+method+" cannot return null\n"
-			: "Redundant null check: comparing '@NonNull "+type+"' against null\n";
+			? "Null comparison always yields false: The method "+method+" cannot return null\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			: "Redundant null check: comparing '@NonNull "+type+"' against null\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 String redundant_check_canonlynull(String expr, String type) {
 	return useDeclarationAnnotations()
-			? "Redundant null check: "+expr+" can only be null at this location\n"
-			: "Redundant null check: comparing '@NonNull "+type+"' against null\n";
+			? "Redundant null check: "+expr+" can only be null at this location\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			: "Redundant null check: comparing '@NonNull "+type+"' against null\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 String checkAlwaysFalse_nonnull(String expr, String type) {
 	return useDeclarationAnnotations()
-		? "Null comparison always yields false: "+expr+" is specified as @NonNull\n"
-		: "Redundant null check: comparing '@NonNull "+type+"' against null\n";
+		? "Null comparison always yields false: "+expr+" is specified as @NonNull\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		: "Redundant null check: comparing '@NonNull "+type+"' against null\n"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 String potNPE_nullable(String expr) {
 	return useDeclarationAnnotations()
-		? "Potential null pointer access: "+expr+" is specified as @Nullable\n"
+		? "Potential null pointer access: "+expr+" is specified as @Nullable\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		: "Potential null pointer access: this expression has a '@Nullable' type\n";
 }
 String potNPE_nullable_maybenull(String expr) {
 	return useDeclarationAnnotations()
-		? "Potential null pointer access: "+expr+" may be null at this location\n"
+		? "Potential null pointer access: "+expr+" may be null at this location\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		: "Potential null pointer access: this expression has a '@Nullable' type\n";
 }
 String nonNullArrayOf(String string) {
@@ -147,7 +147,7 @@ public void test_nullable_paramter_001() {
 			  "        System.out.print(o.toString());\n" +
 			  "    }\n" +
 			  "}\n"},
-	    "----------\n" +
+	    "----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 4)\n" +
 		"	System.out.print(o.toString());\n" +
 		"	                 ^\n" +
@@ -174,7 +174,7 @@ public void test_nullable_paramter_002() {
 }
 
 // a non-null argument is checked for null
-public void test_nonnull_parameter_001() {
+public void test_nonnull_parameter_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -185,7 +185,7 @@ public void test_nonnull_parameter_001() {
 			  "              System.out.print(o.toString());\n" +
 			  "    }\n" +
 			  "}\n"},
-	    "----------\n" +
+	    "----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 4)\n" +
 		"	if (o != null)\n" +
 		"	    ^\n" +
@@ -211,7 +211,7 @@ public void test_nonnull_parameter_002() {
 	    "OK");
 }
 // passing null to nonnull parameter - many fields in enclosing class
-public void test_nonnull_parameter_003() {
+public void test_nonnull_parameter_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -239,7 +239,7 @@ public void test_nonnull_parameter_003() {
 		"----------\n");
 }
 // passing potential null to nonnull parameter - target method is consumed from .class
-public void test_nonnull_parameter_004() {
+public void test_nonnull_parameter_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 			new String[] {
 				"Lib.java",
@@ -270,7 +270,7 @@ public void test_nonnull_parameter_004() {
 		"----------\n");
 }
 // passing unknown value to nonnull parameter  - target method is consumed from .class
-public void test_nonnull_parameter_005() {
+public void test_nonnull_parameter_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 			new String[] {
 				"Lib.java",
@@ -291,7 +291,7 @@ public void test_nonnull_parameter_005() {
 			  "    }\n" +
 			  "}\n"},
 		null /* options */,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in X.java (at line 3)\n" +
 		"	l.setObject(o);\n" +
 		"	            ^\n" +
@@ -316,7 +316,7 @@ public void test_nonnull_parameter_006() {
 		""  /* compiler output */);
 }
 // nullable value passed to a non-null parameter in a super-call
-public void test_nonnull_parameter_007() {
+public void test_nonnull_parameter_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -336,7 +336,7 @@ public void test_nonnull_parameter_007() {
 			  "}\n"
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in XSub.java (at line 4)\n" +
 		"	super(b);\n" +
 		"	      ^\n" +
@@ -344,7 +344,7 @@ public void test_nonnull_parameter_007() {
 		"----------\n");
 }
 // a nullable value is passed to a non-null parameter in an allocation expression
-public void test_nonnull_parameter_008() {
+public void test_nonnull_parameter_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -358,7 +358,7 @@ public void test_nonnull_parameter_008() {
 			  "		}\n" +
 			  "}\n"},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	return new X(b);\n" +
 		"	             ^\n" +
@@ -366,7 +366,7 @@ public void test_nonnull_parameter_008() {
 		"----------\n"  /* compiler output */);
 }
 // a nullable value is passed to a non-null parameter in a qualified allocation expression
-public void test_nonnull_parameter_009() {
+public void test_nonnull_parameter_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -382,7 +382,7 @@ public void test_nonnull_parameter_009() {
 			  "    }\n" +
 			  "}\n"},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 7)\n" +
 		"	return this.new Local(b);\n" +
 		"	                      ^\n" +
@@ -390,7 +390,7 @@ public void test_nonnull_parameter_009() {
 		"----------\n"  /* compiler output */);
 }
 // null is passed to a non-null parameter in a qualified allocation expression, across CUs
-public void test_nonnull_parameter_010() {
+public void test_nonnull_parameter_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -425,7 +425,7 @@ public void test_nonnull_parameter_010() {
 		"----------\n"  /* compiler output */);
 }
 // null is passed to a non-null parameter in a qualified allocation expression, target class read from .class
-public void test_nonnull_parameter_011() {
+public void test_nonnull_parameter_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -469,7 +469,7 @@ public void test_nonnull_parameter_011() {
 // Note: in new type inference we infer the parameter of the Inner ctor to NullTypeBinding.
 // This needs special treatment in ctor of ParameterizedGenericMethodBinding and in Statement.analyseOneArgument18
 // as to propagate nonnull info, although the NullTypeBinding cannot transport this info.
-public void test_nonnull_parameter_012() {
+public void test_nonnull_parameter_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -510,7 +510,7 @@ public void test_nonnull_parameter_012() {
 		"----------\n");
 }
 // a method of a local class has a non-null parameter, client passes null
-public void test_nonnull_parameter_013() {
+public void test_nonnull_parameter_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"B.java",
@@ -533,11 +533,11 @@ public void test_nonnull_parameter_013() {
 		"----------\n");
 }
 // non-null varargs (message send)
-public void test_nonnull_parameter_015() {
+public void test_nonnull_parameter_015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
-			"import org.eclipse.jdt.annotation.*;\n" +
+			"import org.eclipse.jdt.annotation.*;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			(useDeclarationAnnotations()
 			 ? "    void foo(@NonNull Object ... o) {\n"
@@ -563,7 +563,7 @@ public void test_nonnull_parameter_015() {
 			"    }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 4)\n" +
 		"	if (o != null)\n" +
 		"	    ^\n" +
@@ -586,11 +586,11 @@ public void test_nonnull_parameter_015() {
 		"----------\n");
 }
 // non-null varargs (allocation and explicit constructor calls)
-public void test_nonnull_parameter_016() {
+public void test_nonnull_parameter_016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
-			"import org.eclipse.jdt.annotation.*;\n" +
+			"import org.eclipse.jdt.annotation.*;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"public class X {\n" +
 			(useDeclarationAnnotations()
 			 ? "    X(@NonNull Object ... o) {\n"
@@ -620,7 +620,7 @@ public void test_nonnull_parameter_016() {
 			"    }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 4)\n" +
 		"	if (o != null)\n" +
 		"	    ^\n" +
@@ -638,7 +638,7 @@ public void test_nonnull_parameter_016() {
 		"----------\n");
 }
 // Bug 367203 - [compiler][null] detect assigning null to nonnull argument
-public void test_nonnull_argument_001() {
+public void test_nonnull_argument_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 			new String[] {
 				"ShowNPE2.java",
@@ -665,7 +665,7 @@ public void test_nonnull_argument_001() {
 			"----------\n");
 }
 // Bug 367203 - [compiler][null] detect assigning null to nonnull argument
-public void test_nonnull_argument_002() {
+public void test_nonnull_argument_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 			new String[] {
 				"ShowNPE2.java",
@@ -687,7 +687,7 @@ public void test_nonnull_argument_002() {
 			"----------\n");
 }
 // a method of a local class has a non-null parameter, client passes potential null (msg send)
-public void test_nonnull_parameter_014() {
+public void test_nonnull_parameter_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"B.java",
@@ -703,7 +703,7 @@ public void test_nonnull_parameter_014() {
 			"    @org.eclipse.jdt.annotation.Nullable Object getNull() { return null; }" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in B.java (at line 8)\n" +
 		"	l.callMe(getNull());\n" +
 		"	         ^^^^^^^^^\n" +
@@ -711,7 +711,7 @@ public void test_nonnull_parameter_014() {
 		"----------\n");
 }
 // assigning potential null to a nonnull local variable
-public void test_nonnull_local_001() {
+public void test_nonnull_local_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -724,7 +724,7 @@ public void test_nonnull_local_001() {
 			  "        @NonNull Object o3 = p;\n" +
 			  "    }\n" +
 			  "}\n"},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 4)\n" +
 		"	@NonNull Object o1 = b ? null : new Object();\n" +
 		(useDeclarationAnnotations() ?
@@ -747,7 +747,7 @@ public void test_nonnull_local_001() {
 }
 
 // assigning potential null to a nonnull local variable - separate decl and assignment
-public void test_nonnull_local_002() {
+public void test_nonnull_local_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -763,7 +763,7 @@ public void test_nonnull_local_002() {
 			  "        o3 = p;\n" +
 			  "    }\n" +
 			  "}\n"},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	o1 = b ? null : new Object();\n" +
 		(useDeclarationAnnotations() ?
@@ -788,7 +788,7 @@ public void test_nonnull_local_002() {
 // a method tries to tighten the type specification, super declares parameter o as @Nullable
 // other parameters: s is redefined from not constrained to @Nullable which is OK
 //                   third is redefined from not constrained to @NonNull which is bad, too
-public void test_parameter_specification_inheritance_001() {
+public void test_parameter_specification_inheritance_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Lib.java",
@@ -823,7 +823,7 @@ public void test_parameter_specification_inheritance_001() {
 		"----------\n");
 }
 // a method body fails to redeclare the inherited null annotation, super declares parameter as @Nullable
-public void test_parameter_specification_inheritance_002() {
+public void test_parameter_specification_inheritance_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Lib.java",
@@ -855,7 +855,7 @@ public void test_parameter_specification_inheritance_002() {
 }
 // a method relaxes the parameter null specification, super interface declares parameter o as @NonNull
 // other (first) parameter just repeats the inherited @NonNull
-public void test_parameter_specification_inheritance_003() {
+public void test_parameter_specification_inheritance_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"IX.java",
@@ -875,7 +875,7 @@ public void test_parameter_specification_inheritance_003() {
 }
 // a method adds a @NonNull annotation, super interface has no null annotation
 // changing other from unconstrained to @Nullable is OK
-public void test_parameter_specification_inheritance_004() {
+public void test_parameter_specification_inheritance_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"IX.java",
@@ -903,7 +903,7 @@ public void test_parameter_specification_inheritance_004() {
 		"----------\n");
 }
 // a method tries to relax the null contract, super declares @NonNull return
-public void test_parameter_specification_inheritance_005() {
+public void test_parameter_specification_inheritance_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Lib.java",
@@ -934,7 +934,7 @@ public void test_parameter_specification_inheritance_005() {
 }
 
 // super has no constraint for return, sub method confirms the null contract as @Nullable
-public void test_parameter_specification_inheritance_006() {
+public void test_parameter_specification_inheritance_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Lib.java",
@@ -958,7 +958,7 @@ public void test_parameter_specification_inheritance_006() {
 		"");
 }
 // a method body violates the inherited null specification, super declares @NonNull return, missing redeclaration
-public void test_parameter_specification_inheritance_007() {
+public void test_parameter_specification_inheritance_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Lib.java",
@@ -987,7 +987,7 @@ public void test_parameter_specification_inheritance_007() {
 		"----------\n");
 }
 //a method body violates the @NonNull return specification (repeated from super)
-public void test_parameter_specification_inheritance_007a() {
+public void test_parameter_specification_inheritance_007a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Lib.java",
@@ -1017,7 +1017,7 @@ public void test_parameter_specification_inheritance_007a() {
 		"----------\n");
 }
 // a client potentially violates the inherited null specification, super interface declares @NonNull parameter
-public void test_parameter_specification_inheritance_008() {
+public void test_parameter_specification_inheritance_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -1046,7 +1046,7 @@ public void test_parameter_specification_inheritance_008() {
 			"}\n"
 		},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in XSub.java (at line 3)\n" +
 		"	public void printObject(Object o) { super.printObject(o); }\n" +
 		"	                        ^^^^^^\n" +
@@ -1083,7 +1083,7 @@ public void test_parameter_specification_inheritance_009() {
 		"");
 }
 // class default is nonnull, method and its super both use the default
-public void test_parameter_specification_inheritance_010() {
+public void test_parameter_specification_inheritance_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -1114,7 +1114,7 @@ public void test_parameter_specification_inheritance_010() {
 		"");
 }
 // class default is nonnull, method and its super both use the default, super-call passes null
-public void test_parameter_specification_inheritance_011() {
+public void test_parameter_specification_inheritance_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -1151,7 +1151,7 @@ public void test_parameter_specification_inheritance_011() {
 }
 // methods from two super types have different null contracts.
 // sub-class merges both using the weakest common contract
-public void test_parameter_specification_inheritance_012() {
+public void test_parameter_specification_inheritance_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -1185,7 +1185,7 @@ public void test_parameter_specification_inheritance_012() {
 }
 // methods from two super types have different null contracts.
 // sub-class overrides this method in non-conforming ways
-public void test_parameter_specification_inheritance_013() {
+public void test_parameter_specification_inheritance_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	customOptions.put(JavaCore.COMPILER_PB_NONNULL_PARAMETER_ANNOTATION_DROPPED, JavaCore.IGNORE);
@@ -1236,7 +1236,7 @@ public void test_parameter_specification_inheritance_013() {
 }
 // methods from two super types have different null contracts.
 // sub-class does not override, but should to bridge the incompatibility
-public void test_parameter_specification_inheritance_014() {
+public void test_parameter_specification_inheritance_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -1328,7 +1328,7 @@ public void test_parameter_specification_inheritance_014() {
 }
 // a method relaxes the parameter null specification from @NonNull to un-annotated
 // see https://bugs.eclipse.org/381443
-public void test_parameter_specification_inheritance_015() {
+public void test_parameter_specification_inheritance_015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true, // flush
 		new String[] {
@@ -1356,7 +1356,7 @@ public void test_parameter_specification_inheritance_015() {
 // a method relaxes the parameter null specification from @NonNull to un-annotated
 // see https://bugs.eclipse.org/381443
 // issue configured as error
-public void test_parameter_specification_inheritance_016() {
+public void test_parameter_specification_inheritance_016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_NONNULL_PARAMETER_ANNOTATION_DROPPED, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -1385,7 +1385,7 @@ public void test_parameter_specification_inheritance_016() {
 // a class inherits two methods with different spec: one non-null param & one unannotated param
 // widening reported as warning by default
 // see https://bugs.eclipse.org/381443
-public void test_parameter_specification_inheritance_017() {
+public void test_parameter_specification_inheritance_017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true,
 		new String[] {
@@ -1418,7 +1418,7 @@ public void test_parameter_specification_inheritance_017() {
 // a class inherits two methods with different spec: one non-null param & one unannotated param
 // opt to accept this widening
 // see https://bugs.eclipse.org/381443
-public void test_parameter_specification_inheritance_018() {
+public void test_parameter_specification_inheritance_018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_NONNULL_PARAMETER_ANNOTATION_DROPPED, JavaCore.IGNORE);
 	runConformTestWithLibs(
@@ -1445,7 +1445,7 @@ public void test_parameter_specification_inheritance_018() {
 }
 
 // a nullable return value is dereferenced without a check
-public void test_nullable_return_001() {
+public void test_nullable_return_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -1466,7 +1466,7 @@ public void test_nullable_return_001() {
 		"----------\n");
 }
 // a nullable return value is dereferenced without a check, method is read from .class file
-public void test_nullable_return_002() {
+public void test_nullable_return_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Lib.java",
@@ -1497,7 +1497,7 @@ public void test_nullable_return_002() {
 		"----------\n");
 }
 // a non-null return value is checked for null, method is read from .class file
-public void test_nonnull_return_001() {
+public void test_nonnull_return_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Lib.java",
@@ -1529,7 +1529,7 @@ public void test_nonnull_return_001() {
 		"----------\n");
 }
 // a non-null method returns null
-public void test_nonnull_return_003() {
+public void test_nonnull_return_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -1550,7 +1550,7 @@ public void test_nonnull_return_003() {
 		"----------\n");
 }
 // a non-null method potentially returns null
-public void test_nonnull_return_004() {
+public void test_nonnull_return_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -1562,7 +1562,7 @@ public void test_nonnull_return_004() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 4)\n" +
 		"	return o;\n" +
 		"	       ^\n" +
@@ -1585,7 +1585,7 @@ public void test_nonnull_return_005() {
 		"");
 }
 //a non-null method has insufficient nullness info for its return value
-public void test_nonnull_return_006() {
+public void test_nonnull_return_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true, // flush
 		new String[] {
@@ -1598,7 +1598,7 @@ public void test_nonnull_return_006() {
 			"}\n"
 		},
 		getCompilerOptions(),
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in X.java (at line 4)\n" +
 		"	return o;\n" +
 		"	       ^\n" +
@@ -1606,7 +1606,7 @@ public void test_nonnull_return_006() {
 		"----------\n");
 }
 // a result from a nullable method is directly dereferenced
-public void test_nonnull_return_007() {
+public void test_nonnull_return_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -1628,7 +1628,7 @@ public void test_nonnull_return_007() {
 		"----------\n");
 }
 // a result from a nonnull method is directly checked for null: redundant
-public void test_nonnull_return_008() {
+public void test_nonnull_return_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -1646,7 +1646,7 @@ public void test_nonnull_return_008() {
 			"}\n"
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 7)\n" +
 		"	if (getObject() == null)\n" +
 		"	    ^^^^^^^^^^^\n" +
@@ -1659,7 +1659,7 @@ public void test_nonnull_return_008() {
 		"----------\n");
 }
 // a result from a nonnull method is directly checked for null (from local): redundant
-public void test_nonnull_return_009() {
+public void test_nonnull_return_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -1678,7 +1678,7 @@ public void test_nonnull_return_009() {
 			"}\n"
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 8)\n" +
 		"	if (left != getObject())\n" +
 		"	    ^^^^\n" +
@@ -1691,7 +1691,7 @@ public void test_nonnull_return_009() {
 		"----------\n");
 }
 // a result from a nonnull method is directly checked for null (from local): not redundant due to loop
-public void test_nonnull_return_009a() {
+public void test_nonnull_return_009a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -1718,7 +1718,7 @@ public void test_nonnull_return_009a() {
 // a result from a nonnull method is directly checked for null (from local): redundant despite loop
 // disabled because only one of two desirable errors is raised
 // need to integrate @NonNull expressions (MessageSend and more) into deferred analysis by FlowContext
-public void _test_nonnull_return_009b() {
+public void _test_nonnull_return_009b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -1740,7 +1740,7 @@ public void _test_nonnull_return_009b() {
 			"}\n"
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 9)\n" +
 		"	if (left != getObject())\n" +
 		"	    ^^^^\n" +
@@ -1754,7 +1754,7 @@ public void _test_nonnull_return_009b() {
 }
 // a result from a nullable method is assigned and checked for null (from local): not redundant
 // see also Bug 336428 - [compiler][null] bogus warning "redundant null check" in condition of do {} while() loop
-public void test_nonnull_return_010() {
+public void test_nonnull_return_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -1783,7 +1783,7 @@ public void test_nonnull_return_010() {
 		"----------\n");
 }
 // a non-null method returns a checked-for null value, but that branch is dead code
-public void test_nonnull_return_011() {
+public void test_nonnull_return_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -1800,7 +1800,7 @@ public void test_nonnull_return_011() {
 			"}\n"
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	if (dubious == null)\n" +
 		"	    ^^^^^^^\n" +
@@ -1817,7 +1817,7 @@ public void test_nonnull_return_011() {
 // a non-null method returns a definite null from a conditional expression
 // requires the fix for Bug 354554 - [null] conditional with redundant condition yields weak error message
 // TODO(SH): ENABLE!
-public void _test_nonnull_return_012() {
+public void _test_nonnull_return_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -1845,7 +1845,7 @@ public void _test_nonnull_return_012() {
 		"----------\n");
 }
 // don't apply any default annotations to return void
-public void test_nonnull_return_013() {
+public void test_nonnull_return_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -1866,7 +1866,7 @@ public void test_nonnull_return_013() {
 		"");
 }
 // bug 365835: [compiler][null] inconsistent error reporting.
-public void test_nonnull_return_014() {
+public void test_nonnull_return_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -1917,7 +1917,7 @@ public void test_suppress_001() {
 			"");
 }
 // mixed use of fully qualified name / explicit import
-public void test_annotation_import_001() {
+public void test_annotation_import_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo.NonNull");
@@ -1944,7 +1944,7 @@ public void test_annotation_import_001() {
 }
 
 // use of explicit imports throughout
-public void test_annotation_import_002() {
+public void test_annotation_import_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo.NonNull");
@@ -1973,7 +1973,7 @@ public void test_annotation_import_002() {
 }
 // explicit import of existing annotation types
 // using a Lib without null specifications
-public void test_annotation_import_005() {
+public void test_annotation_import_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.MayBeNull");
@@ -1982,14 +1982,14 @@ public void test_annotation_import_005() {
 		true/*shouldFlushOutputDirectory*/,
 		new String[] {
 			"org/foo/MayBeNull.java",
-			"package org.foo;\n" +
+			"package org.foo;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"import java.lang.annotation.*;\n" +
 			"@Retention(RetentionPolicy.CLASS)\n" +
 			targetTypeUseIfAvailable() +
 			"public @interface MayBeNull {}\n",
 
 			"org/foo/MustNotBeNull.java",
-			"package org.foo;\n" +
+			"package org.foo;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"import java.lang.annotation.*;\n" +
 			"@Retention(RetentionPolicy.CLASS)\n" +
 			targetTypeUseIfAvailable() +
@@ -2010,7 +2010,7 @@ public void test_annotation_import_005() {
 		},
 		null /*no libs*/,
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 4)\n" +
 		"	return l.getObject();\n" +
 		"	       ^^^^^^^^^^^^^\n" +
@@ -2019,7 +2019,7 @@ public void test_annotation_import_005() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError);
 }
 // a non-null method returns a value obtained from an unannotated method, missing annotation types
-public void test_annotation_import_006() {
+public void test_annotation_import_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.MayBeNull");
@@ -2063,7 +2063,7 @@ public void test_illegal_annotation_001() {
 			"@NonNull public class X {\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 2)\n" +
 		"	@NonNull public class X {\n" +
 		"	^^^^^^^^\n" +
@@ -2097,7 +2097,7 @@ public void _test_illegal_annotation_002() {
 }
 
 // a null annotation is illegally used on a void method:
-public void test_illegal_annotation_003() {
+public void test_illegal_annotation_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2106,7 +2106,7 @@ public void test_illegal_annotation_003() {
 			"	@NonNull void foo() {}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 3)\n" +
 		"	@NonNull void foo() {}\n" +
 		"	^^^^^^^^\n" +
@@ -2155,7 +2155,7 @@ public void test_illegal_annotation_004() {
 }
 
 // a null annotation is illegally used on a primitive type local var
-public void test_illegal_annotation_005() {
+public void test_illegal_annotation_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -2177,7 +2177,7 @@ public void test_illegal_annotation_005() {
 
 // a configured annotation type does not exist
 // see https://bugs.eclipse.org/bugs/show_bug.cgi?id=186342#c133
-public void test_illegal_annotation_006() {
+public void test_illegal_annotation_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "nullAnn.Nullable");
 	runNegativeTest(
@@ -2211,7 +2211,7 @@ public void test_illegal_annotation_006() {
 
 // a configured annotation type does not exist
 // see https://bugs.eclipse.org/bugs/show_bug.cgi?id=186342#c186
-public void test_illegal_annotation_007() {
+public void test_illegal_annotation_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runNegativeTest(
 		new String[] {
@@ -2248,7 +2248,7 @@ public void test_illegal_annotation_007() {
 }
 
 // a null annotation is illegally used on a constructor:
-public void test_illegal_annotation_008() {
+public void test_illegal_annotation_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -2257,7 +2257,7 @@ public void test_illegal_annotation_008() {
 			"	@NonNull X() {}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 3)\n" +
 		"	@NonNull X() {}\n" +
 		"	^^^^^^^^\n" +
@@ -2273,7 +2273,7 @@ public void test_illegal_annotation_008() {
 		"----------\n");
 }
 
-public void test_default_nullness_002() {
+public void test_default_nullness_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 // This option currently does nothing:
@@ -2314,7 +2314,7 @@ public void test_default_nullness_002() {
 		"----------\n");
 }
 
-public void test_default_nullness_002_custom() {
+public void test_default_nullness_002_custom() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.Nullable");
@@ -2361,7 +2361,7 @@ public void test_default_nullness_002_custom() {
 }
 
 // package default is non-null
-public void test_default_nullness_003() {
+public void test_default_nullness_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -2391,7 +2391,7 @@ public void test_default_nullness_003() {
 			"}\n"
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in p2\\Y.java (at line 5)\n" +
 		"	protected @Nullable Object getObject(@Nullable Object o) {\n" +
 		"	          ^^^^^^^^^^^^^^^^\n" +
@@ -2404,7 +2404,7 @@ public void test_default_nullness_003() {
 		"----------\n");
 }
 // package level default is consumed from package-info.class, similarly for type level default
-public void test_default_nullness_003a() {
+public void test_default_nullness_003a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -2443,7 +2443,7 @@ public void test_default_nullness_003a() {
 			"}\n"
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in p2\\Y.java (at line 5)\n" +
 		"	protected @Nullable Object getObject(@Nullable Object o) {\n" +
 		"	          ^^^^^^^^^^^^^^^^\n" +
@@ -2461,7 +2461,7 @@ public void test_default_nullness_003a() {
 		"----------\n");
 }
 // same as test_default_nullness_003a, but default-induced annotations are combined with explicit ones (not null related)
-public void test_default_nullness_003b() {
+public void test_default_nullness_003b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runConformTestWithLibs(
 		new String[] {
@@ -2506,7 +2506,7 @@ public void test_default_nullness_003b() {
 			"}\n"
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in p2\\Y.java (at line 5)\n" +
 		"	protected @Nullable Object getObject(@Nullable Object o) {\n" +
 		"	          ^^^^^^^^^^^^^^^^\n" +
@@ -2524,7 +2524,7 @@ public void test_default_nullness_003b() {
 		"----------\n");
 }
 // package level default is consumed from package-info.class, similarly for type level default - fine tuned default
-public void test_default_nullness_003c() {
+public void test_default_nullness_003c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (useDeclarationAnnotations()) return; // uses version 2.0 of @NonNullByDefault
 	Map customOptions = getCompilerOptions();
 	runConformTestWithLibs(
@@ -2586,7 +2586,7 @@ public void test_default_nullness_003c() {
 		"----------\n");
 }
 // don't apply type-level default to non-reference type
-public void test_default_nullness_004() {
+public void test_default_nullness_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -2615,7 +2615,7 @@ public void test_default_nullness_004() {
 }
 // package default is non-null
 // see also Bug 354536 - compiling package-info.java still depends on the order of compilation units
-public void test_default_nullness_005() {
+public void test_default_nullness_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo.NonNull");
@@ -2649,7 +2649,7 @@ public void test_default_nullness_005() {
 }
 // package default is non-null, package-info.java read before the annotation type
 // compile order: beginToCompile(X.Inner) triggers reading of package-info.java before the annotation type was read
-public void test_default_nullness_006() {
+public void test_default_nullness_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo.NonNull");
@@ -2683,7 +2683,7 @@ public void test_default_nullness_006() {
 }
 // global default nonnull, but return may be null
 // DISABLED due to dysfunctional global default after Bug 366063 - Compiler should not add synthetic @NonNull annotations
-public void _test_default_nullness_007() {
+public void _test_default_nullness_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 //	customOptions.put(JavaCore.COMPILER_NONNULL_IS_DEFAULT, JavaCore.ENABLED);
@@ -2711,7 +2711,7 @@ public void _test_default_nullness_007() {
 }
 
 // cancel type level default to comply with super specification
-public void test_default_nullness_008() {
+public void test_default_nullness_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -2724,7 +2724,7 @@ public void test_default_nullness_008() {
 			"    }\n" +
 			"}\n",
 	"p2/Y.java",
-			"package p2;\n" +
+			"package p2;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"import org.eclipse.jdt.annotation.*;\n" +
 			"@NonNullByDefault\n" +
 			"public class Y extends p1.X {\n" +
@@ -2742,7 +2742,7 @@ public void test_default_nullness_008() {
 }
 
 // cancel outer type level default to comply with super specification
-public void test_default_nullness_009() {
+public void test_default_nullness_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -2755,7 +2755,7 @@ public void test_default_nullness_009() {
 			"    }\n" +
 			"}\n",
 	"p2/Y.java",
-			"package p2;\n" +
+			"package p2;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"import org.eclipse.jdt.annotation.*;\n" +
 			"@NonNullByDefault\n" +
 			"public class Y { \n" +
@@ -2785,7 +2785,7 @@ public void test_default_nullness_009() {
 		"----------\n");
 }
 // non-null declarations are redundant within a default scope.
-public void test_default_nullness_010() {
+public void test_default_nullness_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 	runWarningTestWithLibs(
@@ -2802,7 +2802,7 @@ public void test_default_nullness_010() {
 			"}\n"
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in p2\\Y.java (at line 5)\n" +
 		"	protected @NonNull Object getObject(@NonNull Object o) {\n" +
 		"	          ^^^^^^^^^^^^^^^\n" +
@@ -2820,7 +2820,7 @@ public void test_default_nullness_010() {
 // package-info declares nonnull-by-default
 // special compile order due to import of type from that package
 // cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=186342#add_comment
-public void test_default_nullness_011() {
+public void test_default_nullness_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Main.java",
@@ -2860,7 +2860,7 @@ public void test_default_nullness_011() {
 		"----------\n");
 }
 // Bug 365836 - [compiler][null] Incomplete propagation of null defaults.
-public void test_default_nullness_012() {
+public void test_default_nullness_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -2886,7 +2886,7 @@ public void test_default_nullness_012() {
 		"----------\n");
 }
 // Bug 365836 - [compiler][null] Incomplete propagation of null defaults.
-public void test_default_nullness_013() {
+public void test_default_nullness_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -2915,7 +2915,7 @@ public void test_default_nullness_013() {
 		"----------\n");
 }
 // bug 367154 - [compiler][null] Problem in propagating null defaults.
-public void test_default_nullness_014() {
+public void test_default_nullness_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -2946,7 +2946,7 @@ public void test_default_nullness_014() {
 }
 // bug 367154 - [compiler][null] Problem in propagating null defaults.
 // initializer involved
-public void test_default_nullness_015() {
+public void test_default_nullness_015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -2976,7 +2976,7 @@ public void test_default_nullness_015() {
 }
 
 // default nullness applied to fields, class-level:
-public void test_default_nullness_016() {
+public void test_default_nullness_016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -2995,7 +2995,7 @@ public void test_default_nullness_016() {
 			"    }\n" +
 			"}\n",
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 4)\n" +
 		"	Object foo;\n" +
 		"	       ^^^\n" +
@@ -3019,7 +3019,7 @@ public void test_default_nullness_016() {
 }
 
 // default nullness applied to fields, method level applied to local class + redundant annotation
-public void test_default_nullness_017() {
+public void test_default_nullness_017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_UNUSED_PRIVATE_MEMBER, JavaCore.IGNORE);
 	runNegativeTestWithLibs(
@@ -3057,7 +3057,7 @@ public void test_default_nullness_017() {
 }
 
 // package case
-public void test_nullness_default_018() {
+public void test_nullness_default_018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_MISSING_NONNULL_BY_DEFAULT_ANNOTATION, JavaCore.WARNING);
 	customOptions.put(JavaCore.COMPILER_PB_UNUSED_WARNING_TOKEN, JavaCore.ERROR);
@@ -3078,7 +3078,7 @@ public void test_nullness_default_018() {
 }
 
 // type case (inside default package)
-public void test_nullness_default_018b() {
+public void test_nullness_default_018b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_MISSING_NONNULL_BY_DEFAULT_ANNOTATION, JavaCore.WARNING);
 	customOptions.put(JavaCore.COMPILER_PB_UNUSED_WARNING_TOKEN, JavaCore.ERROR);
@@ -3098,7 +3098,7 @@ public void test_nullness_default_018b() {
 }
 
 // redundant default annotations - class vs. inner class
-public void test_redundant_annotation_01() {
+public void test_redundant_annotation_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 	runWarningTestWithLibs(
@@ -3177,7 +3177,7 @@ public void test_redundant_annotation_01() {
 }
 
 // redundant default annotations - class vs. method
-public void test_redundant_annotation_02() {
+public void test_redundant_annotation_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runWarningTestWithLibs(
 		true,
@@ -3227,7 +3227,7 @@ public void test_redundant_annotation_02() {
 }
 
 //redundant default annotations - class vs. method - generics
-public void test_redundant_annotation_02g() {
+public void test_redundant_annotation_02g() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runWarningTestWithLibs(
 		true,
@@ -3267,7 +3267,7 @@ public void test_redundant_annotation_02g() {
 }
 
 // test missing default nullness annotation for types in default package
-public void test_missing_default_annotation_01() {
+public void test_missing_default_annotation_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_MISSING_NONNULL_BY_DEFAULT_ANNOTATION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -3300,7 +3300,7 @@ public void test_missing_default_annotation_01() {
 }
 
 // test missing default nullness annotation for a package with package-info
-public void test_missing_default_annotation_02() {
+public void test_missing_default_annotation_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_MISSING_NONNULL_BY_DEFAULT_ANNOTATION, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -3340,7 +3340,7 @@ public void test_missing_default_annotation_02() {
 
 // redundant default annotations - class vs. inner class
 // ensure that disabling null annotations also disables this diagnostic
-public void test_redundant_annotation_04() {
+public void test_redundant_annotation_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_ANNOTATION_NULL_ANALYSIS, JavaCore.DISABLED);
 	runConformTestWithLibs(
@@ -3382,7 +3382,7 @@ public void test_redundant_annotation_04() {
 }
 
 // contradictory null annotations
-public void test_contradictory_annotations_01() {
+public void test_contradictory_annotations_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runNegativeTestWithLibs(
 		new String[] {
@@ -3420,7 +3420,7 @@ public void test_contradictory_annotations_01() {
 }
 
 // contradictory null annotations on a field
-public void test_contradictory_annotations_02() {
+public void test_contradictory_annotations_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runNegativeTestWithLibs(
 		new String[] {
@@ -3441,7 +3441,7 @@ public void test_contradictory_annotations_02() {
 }
 
 // contradictory null annotations on a field - array type
-public void test_contradictory_annotations_03() {
+public void test_contradictory_annotations_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	runNegativeTestWithLibs(
 		new String[] {
@@ -3462,7 +3462,7 @@ public void test_contradictory_annotations_03() {
 }
 
 // a nonnull variable is dereferenced in a loop
-public void test_nonnull_var_in_constrol_structure_1() {
+public void test_nonnull_var_in_constrol_structure_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 // This option currently does nothing:
@@ -3493,7 +3493,7 @@ public void test_nonnull_var_in_constrol_structure_1() {
 
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in X.java (at line 4)\n" +
 		"	void print4(@NonNull String s) {\n" +
 		(useDeclarationAnnotations()
@@ -3522,7 +3522,7 @@ public void test_nonnull_var_in_constrol_structure_1() {
 		"----------\n");
 }
 // a nonnull variable is dereferenced in a finally block
-public void test_nonnull_var_in_constrol_structure_2() {
+public void test_nonnull_var_in_constrol_structure_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 // This option currently does nothing:
@@ -3556,7 +3556,7 @@ public void test_nonnull_var_in_constrol_structure_2() {
 
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 10)\n" +
 		"	print(s);\n" +
 		"	      ^\n" +
@@ -3569,7 +3569,7 @@ public void test_nonnull_var_in_constrol_structure_2() {
 		"----------\n");
 }
 // a nonnull variable is dereferenced in a finally block inside a loop
-public void test_nonnull_var_in_constrol_structure_3() {
+public void test_nonnull_var_in_constrol_structure_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_ANNOTATION, JavaCore.IGNORE);
 	runNegativeTestWithLibs(
@@ -3603,7 +3603,7 @@ public void test_nonnull_var_in_constrol_structure_3() {
 
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 12)\n" +
 		"	print(s);\n" +
 		"	      ^\n" +
@@ -3616,7 +3616,7 @@ public void test_nonnull_var_in_constrol_structure_3() {
 		"----------\n");
 }
 // witness for an AIOOBE in FlowContext.recordExpectedType()
-public void test_message_send_in_control_structure_01() {
+public void test_message_send_in_control_structure_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.IGNORE);
 	customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.WARNING);
@@ -3702,7 +3702,7 @@ public void test_message_send_in_control_structure_01() {
 }
 
 // Bug 370930 - NonNull annotation not considered for enhanced for loops
-public void test_message_send_in_control_structure_02() {
+public void test_message_send_in_control_structure_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true, // flush
 		new String[] {
@@ -3720,7 +3720,7 @@ public void test_message_send_in_control_structure_02() {
 			"}\n"
 		},
 		getCompilerOptions(),
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in Bug370930.java (at line 5)\n" +
 		"	for(@NonNull String s: list) { // warning here: insufficient info on elements\n" +
 		"	                       ^^^^\n" +
@@ -3728,7 +3728,7 @@ public void test_message_send_in_control_structure_02() {
 		"----------\n");
 }
 //Bug 370930 - NonNull annotation not considered for enhanced for loops over array
-public void test_message_send_in_control_structure_02a() {
+public void test_message_send_in_control_structure_02a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true, // flush
 		new String[] {
@@ -3745,7 +3745,7 @@ public void test_message_send_in_control_structure_02a() {
 			"}\n"
 		},
 		getCompilerOptions(),
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in Bug370930.java (at line 4)\n" +
 		"	for(@NonNull String s: array) { // warning here: insufficient info on elements\n" +
 		"	                       ^^^^^\n" +
@@ -3753,7 +3753,7 @@ public void test_message_send_in_control_structure_02a() {
 		"----------\n");
 }
 //Bug 370930 - NonNull annotation not considered for enhanced for loops
-public void test_message_send_in_control_structure_03() {
+public void test_message_send_in_control_structure_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"Bug370930.java",
@@ -3769,14 +3769,14 @@ public void test_message_send_in_control_structure_03() {
 			"	void expectNonNull(@NonNull String s) {}\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in Bug370930.java (at line 6)\n" +
 		"	expectNonNull(s); // warning here\n" +
 		"	              ^\n" +
 		mismatch_NonNull_Nullable("String") +
 		"----------\n");
 }
-public void test_assignment_expression_1() {
+public void test_assignment_expression_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_REDUNDANT_NULL_CHECK, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -3805,7 +3805,7 @@ public void test_assignment_expression_1() {
 		"");
 }
 // a nonnull variable is dereferenced in a method of a nested type
-public void test_nesting_1() {
+public void test_nesting_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 //	customOptions.put(CompilerOptions.OPTION_ReportPotentialNullSpecViolation, JavaCore.ERROR);
 // This option currently does nothing:
@@ -3848,7 +3848,7 @@ public void test_nesting_1() {
 
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 16)\n" +
 		"	print(s2);\n" +
 		"	      ^^\n" +
@@ -3862,7 +3862,7 @@ public void test_nesting_1() {
 }
 // Test a regression incurred to the OT/J based implementation
 // by the fix in Bug 360328 - [compiler][null] detect null problems in nested code (local class inside a loop)
-public void test_constructor_with_nested_class() {
+public void test_constructor_with_nested_class() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -3882,7 +3882,7 @@ public void test_constructor_with_nested_class() {
 		"");
 }
 // test analysis disablement, binary type contains annotation
-public void test_options_01() {
+public void test_options_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
 	runConformTestWithLibs(
@@ -3914,7 +3914,7 @@ public void test_options_01() {
 		""  /* compiler output */);
 }
 // test illegally trying to ignore null spec violations
-public void test_options_02() {
+public void test_options_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_SPECIFICATION_VIOLATION, JavaCore.IGNORE); // has no effect
 	runNegativeTestWithLibs(
@@ -3948,7 +3948,7 @@ public void test_options_02() {
 		"----------\n");
 }
 // test setting null spec violations to "warning"
-public void test_options_03() {
+public void test_options_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_SPECIFICATION_VIOLATION, JavaCore.WARNING); // OK
 	runNegativeTestWithLibs(
@@ -4001,7 +4001,7 @@ public void test_nonnull_field_1() {
 
 // a non-null field is not properly initialized
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_2() {
+public void test_nonnull_field_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4024,7 +4024,7 @@ public void test_nonnull_field_2() {
 
 // a non-null field is not properly initialized - explicit constructor
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_2a() {
+public void test_nonnull_field_2a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4054,7 +4054,7 @@ public void test_nonnull_field_2a() {
 
 // a non-null field is not properly initialized - explicit constructor - incomplete switch
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_2b() {
+public void test_nonnull_field_2b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4084,7 +4084,7 @@ public void test_nonnull_field_2b() {
 
 // a non-null static field is not properly initialized
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_2c() {
+public void test_nonnull_field_2c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4144,7 +4144,7 @@ public void test_nonnull_field_2e() {
 
 // a non-null field is initialized to null
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_3() {
+public void test_nonnull_field_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4166,7 +4166,7 @@ public void test_nonnull_field_3() {
 }
 // a non-null field is assigned to null
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_4() {
+public void test_nonnull_field_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4196,7 +4196,7 @@ public void test_nonnull_field_4() {
 }
 // a non-null field is checked for null
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_5() {
+public void test_nonnull_field_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4212,7 +4212,7 @@ public void test_nonnull_field_5() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	return o == null;\n" +
 		"	       ^\n" +
@@ -4227,7 +4227,7 @@ public void test_nonnull_field_5() {
 
 // a non-null field is checked for null twice - method call inbetween
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_6() {
+public void test_nonnull_field_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4243,7 +4243,7 @@ public void test_nonnull_field_6() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	if (o != null)\n" +
 		"	    ^\n" +
@@ -4258,7 +4258,7 @@ public void test_nonnull_field_6() {
 
 // a non-null field is accessed via a qualified name reference - static field
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_7() {
+public void test_nonnull_field_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4285,7 +4285,7 @@ public void test_nonnull_field_7() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 7)\n" +
 		"	if (Objects.o != null) // redundant\n" +
 		"	            ^\n" +
@@ -4300,7 +4300,7 @@ public void test_nonnull_field_7() {
 
 // a non-null field is accessed via a qualified name reference - instance field
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_8() {
+public void test_nonnull_field_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4321,7 +4321,7 @@ public void test_nonnull_field_8() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 7)\n" +
 		"	if (objs.o == null) // always false\n" +
 		"	         ^\n" +
@@ -4336,7 +4336,7 @@ public void test_nonnull_field_8() {
 
 // a non-null field is accessed via an indirect field reference - instance field
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_9() {
+public void test_nonnull_field_9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4361,7 +4361,7 @@ public void test_nonnull_field_9() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 8)\n" +
 		"	if (this.objs.o != null) // redundant\n" +
 		"	              ^\n" +
@@ -4376,7 +4376,7 @@ public void test_nonnull_field_9() {
 
 // trying to assign null to a nonnull field via a single / a qualified name reference
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_11() {
+public void test_nonnull_field_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4394,7 +4394,7 @@ public void test_nonnull_field_11() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	o = x;\n" +
 		"	    ^\n" +
@@ -4450,7 +4450,7 @@ public void _test_nonnull_field_13() {
 // A field in a different CU is implicitly @NonNull (by type default) - that class is read from binary
 // Assignment to other @NonNull field should not raise a warning
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_14() {
+public void test_nonnull_field_14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"p1/X.java",
@@ -4484,7 +4484,7 @@ public void test_nonnull_field_14() {
 // A field in a different CU is implicitly @NonNull (by package default) - that class is read from binary
 // Assignment to other @NonNull field should not raise a warning
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nonnull_field_14b() {
+public void test_nonnull_field_14b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"p1/package-info.java",
@@ -4519,7 +4519,7 @@ public void test_nonnull_field_14b() {
 // A @NonNull field is assumed to be initialized by the injection framework
 // [compiler] Null analysis for fields does not take @com.google.inject.Inject into account
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400421
-public void test_nonnull_field_15() {
+public void test_nonnull_field_15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			GOOGLE_INJECT_NAME,
@@ -4541,7 +4541,7 @@ public void test_nonnull_field_15() {
 // Injection is optional, don't rely on the framework
 // [compiler] Null analysis for fields does not take @com.google.inject.Inject into account
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400421
-public void test_nonnull_field_16() {
+public void test_nonnull_field_16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			GOOGLE_INJECT_NAME,
@@ -4574,7 +4574,7 @@ public void test_nonnull_field_16() {
 // Using javax.inject.Inject, slight variations
 // [compiler] Null analysis for fields does not take @com.google.inject.Inject into account
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=400421
-public void test_nonnull_field_17() {
+public void test_nonnull_field_17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			JAVAX_INJECT_NAME,
@@ -4600,7 +4600,7 @@ public void test_nonnull_field_17() {
 //Using jakarta.inject.Inject
 //jakarta.inject.Inject not treated properly with annotation-based null analysis
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1112
-public void test_nonnull_field_18() {
+public void test_nonnull_field_18() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			JAKARTA_INJECT_NAME,
@@ -4622,7 +4622,7 @@ public void test_nonnull_field_18() {
 //Using jakarta.inject.Inject, slight variations
 //jakarta.inject.Inject not treated properly with annotation-based null analysis
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1112
-public void test_nonnull_field_19() {
+public void test_nonnull_field_19() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			JAKARTA_INJECT_NAME,
@@ -4646,7 +4646,7 @@ public void test_nonnull_field_19() {
 }
 
 //Using jakarta.inject.Inject and javax.inject.Inject
-public void test_nonnull_field_20() {
+public void test_nonnull_field_20() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			JAVAX_INJECT_NAME,
@@ -4673,7 +4673,7 @@ public void test_nonnull_field_20() {
 
 // access to a nullable field - field reference
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_1() {
+public void test_nullable_field_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4686,7 +4686,7 @@ public void test_nullable_field_1() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	return this.o.toString();\n" +
 		"	            ^\n" +
@@ -4695,7 +4695,7 @@ public void test_nullable_field_1() {
 }
 // access to a nullable field - single name reference
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_2() {
+public void test_nullable_field_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4708,7 +4708,7 @@ public void test_nullable_field_2() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	return o.toString();\n" +
 		"	       ^\n" +
@@ -4717,7 +4717,7 @@ public void test_nullable_field_2() {
 }
 // access to a nullable field - qualified name reference
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_3() {
+public void test_nullable_field_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4731,7 +4731,7 @@ public void test_nullable_field_3() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 6)\n" +
 		"	return other.o.toString();\n" +
 		"	       ^^^^^\n" +
@@ -4745,7 +4745,7 @@ public void test_nullable_field_3() {
 }
 // access to a nullable field - qualified name reference - multiple segments
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_3m() {
+public void test_nullable_field_3m() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4759,7 +4759,7 @@ public void test_nullable_field_3m() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 6)\n" +
 		"	return other.other.o.toString();\n" +
 		"	       ^^^^^\n" +
@@ -4778,7 +4778,7 @@ public void test_nullable_field_3m() {
 }
 // access to a nullable field - dereference after check
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_4() {
+public void test_nullable_field_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// currently no flow analysis for fields is implemented,
 	// but the direct sequence of null-check + dereference is optionally supported as a special case
 	Map options = getCompilerOptions();
@@ -4807,7 +4807,7 @@ public void test_nullable_field_4() {
 			"}\n"
 		},
 		options /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 12)\n" +
 		"	String local = o.toString();\n" +
 		"	               ^\n" +
@@ -4822,7 +4822,7 @@ public void test_nullable_field_4() {
 
 // access to a nullable field - intermediate component in a QNR
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_5() {
+public void test_nullable_field_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4845,7 +4845,7 @@ public void test_nullable_field_5() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	return y.z.o.toString(); // pot.NPE on z\n" +
 		"	         ^\n" +
@@ -4855,7 +4855,7 @@ public void test_nullable_field_5() {
 
 // access to a nullable field - intermediate component in a QNR - inverse of test_nullable_field_5
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_6() {
+public void test_nullable_field_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4879,7 +4879,7 @@ public void test_nullable_field_6() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	return y.z.o.toString(); // pot.NPE on y and o\n" +
 		"	       ^\n" +
@@ -4894,7 +4894,7 @@ public void test_nullable_field_6() {
 
 // access to a nullable field - intermediate component in a double field reference
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_7() {
+public void test_nullable_field_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -4912,7 +4912,7 @@ public void test_nullable_field_7() {
 			"}\n"
 		},
 		null /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 5)\n" +
 		"	return this.y.o.toString(); // pot.NPE on y and o\n" +
 		"	            ^\n" +
@@ -4967,7 +4967,7 @@ public void test_nullable_field_9() {
 
 // protected access to nullable fields - different kinds of references
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_10a() {
+public void test_nullable_field_10a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runConformTestWithLibs(
@@ -5001,7 +5001,7 @@ public void test_nullable_field_10a() {
 
 // protected access to nullable fields - different kinds of references - option not enabled
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_10b() {
+public void test_nullable_field_10b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.DISABLED);
 	runNegativeTestWithLibs(
@@ -5030,7 +5030,7 @@ public void test_nullable_field_10b() {
 			"}\n"
 		},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 7)\n" +
 		"	System.out.println(other.o1.toString());\n" +
 		"	                         ^^\n" +
@@ -5070,7 +5070,7 @@ public void test_nullable_field_10b() {
 
 // protected access to nullable fields - different boolean operators
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_10c() {
+public void test_nullable_field_10c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runNegativeTestWithLibs(
@@ -5098,7 +5098,7 @@ public void test_nullable_field_10c() {
 			"}\n"
 		},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 8)\n" +
 		"	System.out.println(o2.toString()); // warn here: disjunktion is no protection\n" +
 		"	                   ^^\n" +
@@ -5123,7 +5123,7 @@ public void test_nullable_field_10c() {
 
 // protected access to nullable fields - assignment as expression
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_10d() {
+public void test_nullable_field_10d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runNegativeTestWithLibs(
@@ -5146,7 +5146,7 @@ public void test_nullable_field_10d() {
 			"}\n"
 		},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 12)\n" +
 		"	System.out.println(o1.toString()); // info is expired\n" +
 		"	                   ^^\n" +
@@ -5156,7 +5156,7 @@ public void test_nullable_field_10d() {
 
 // protected access to nullable fields - distinguish local and field
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_10e() {
+public void test_nullable_field_10e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runNegativeTestWithLibs(
@@ -5182,7 +5182,7 @@ public void test_nullable_field_10e() {
 			"}\n"
 		},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in X.java (at line 4)\n" +
 		"	void bar(Object o2) {\n" +
 		"	                ^^\n" +
@@ -5212,7 +5212,7 @@ public void test_nullable_field_10e() {
 
 // protected access to nullable fields - duplicate comparison
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_10f() {
+public void test_nullable_field_10f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runNegativeTestWithLibs(
@@ -5245,7 +5245,7 @@ public void test_nullable_field_10f() {
 }
 
 // combined test from comment 20 in https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_11() {
+public void test_nullable_field_11() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runConformTestWithLibs(
@@ -5283,7 +5283,7 @@ public void test_nullable_field_11() {
 
 // combined test from comment 20 in https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
 //  - version with 'this' field references
-public void test_nullable_field_11a() {
+public void test_nullable_field_11a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runConformTestWithLibs(
@@ -5321,7 +5321,7 @@ public void test_nullable_field_11a() {
 
 // protected access to nullable field - expiration of information
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_12() {
+public void test_nullable_field_12() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runNegativeTestWithLibs(
@@ -5346,7 +5346,7 @@ public void test_nullable_field_12() {
 			"}\n"
 		},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 6)\n" +
 		"	System.out.println(goo()+other.o1.toString()); // warn here: expired by call to goo()\n" +
 		"	                               ^^\n" +
@@ -5371,7 +5371,7 @@ public void test_nullable_field_12() {
 
 // example from comment 47
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_13() {
+public void test_nullable_field_13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runNegativeTestWithLibs(
@@ -5389,7 +5389,7 @@ public void test_nullable_field_13() {
 			"}\n"
 		},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 7)\n" +
 		"	this.o2 = other.o1; // warn here: assign @Nullable to @NonNull\n" +
 		"	          ^^^^^^^^\n" +
@@ -5399,7 +5399,7 @@ public void test_nullable_field_13() {
 
 // access to a nullable field - protected by check against a @NonNull value
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_14() {
+public void test_nullable_field_14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runConformTestWithLibs(
@@ -5421,7 +5421,7 @@ public void test_nullable_field_14() {
 
 // access to a nullable field - not protected by negative check against a @NonNull value
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=331649
-public void test_nullable_field_14a() {
+public void test_nullable_field_14a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	runNegativeTestWithLibs(
@@ -5438,7 +5438,7 @@ public void test_nullable_field_14a() {
 			"}\n"
 		},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 6)\n" +
 		"	return this.o.toString(); // warn here, check has no effect\n" +
 		"	            ^\n" +
@@ -5447,7 +5447,7 @@ public void test_nullable_field_14a() {
 }
 
 // https://bugs.eclipse.org/401017: [compiler][null] casted reference to @Nullable field lacks a warning
-public void test_nullable_field_15() {
+public void test_nullable_field_15() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5467,7 +5467,7 @@ public void test_nullable_field_15() {
 			"    }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 8)\n" +
 		"	((Number)nullable).intValue(); // A\n" +
 		"	         ^^^^^^^^\n" +
@@ -5486,7 +5486,7 @@ public void test_nullable_field_15() {
 }
 // access to a nullable field - dereference after check in while loop
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=414761
-public void test_nullable_field_16() {
+public void test_nullable_field_16() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// currently no flow analysis for fields is implemented,
 	// but the direct sequence of null-check + dereference is optionally supported as a special case
 	Map options = getCompilerOptions();
@@ -5522,7 +5522,7 @@ public void test_nullable_field_16() {
 			"}\n"
 		},
 		options /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 19)\n" +
 		"	test(this.prop);\n" +
 		"	     ^^^^^^^^^\n" +
@@ -5533,7 +5533,7 @@ public void test_nullable_field_16() {
 }
 // access to a nullable field - field reference
 // Configured as of https://bugs.eclipse.org/bugs/show_bug.cgi?id=433615
-public void test_nullable_field_17() {
+public void test_nullable_field_17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.INFO);
 	runNegativeTestWithLibs(
@@ -5548,7 +5548,7 @@ public void test_nullable_field_17() {
 			"}\n"
 		},
 		options /*customOptions*/,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. INFO in X.java (at line 5)\n" +
 		"	return this.o.toString();\n" +
 		"	            ^\n" +
@@ -5577,7 +5577,7 @@ public void test_enum_field_01() {
 
 // Bug 380896 - Enum constants not recognised as being NonNull.
 // see also https://bugs.eclipse.org/331649#c61
-public void test_enum_field_02() {
+public void test_enum_field_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"tests/X.java",
@@ -5600,8 +5600,8 @@ public void test_enum_field_02() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=372011
 // Test whether @NonNullByDefault on a binary package or an enclosing type is respected from enclosed elements.
-public void testBug372011() {
-	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test372011.jar";
+public void testBug372011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test372011.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String[] libs = new String[this.LIBS.length + 1];
 	System.arraycopy(this.LIBS, 0, libs, 0, this.LIBS.length);
 	libs[this.LIBS.length] = path;
@@ -5653,8 +5653,8 @@ public void testBug372011() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=374129  - more tests for bug 372011
 // Test whether @NonNullByDefault on a binary package or an enclosing type is respected from enclosed elements.
-public void testBug374129() {
-	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test374129"+this.TEST_JAR_SUFFIX;
+public void testBug374129() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test374129"+this.TEST_JAR_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	/* content of Test372129.jar:
 	 	p1bin/package-info.java:
 	 		@org.eclipse.jdt.annotation.NonNullByDefault
@@ -5734,7 +5734,7 @@ public void testBug374129() {
 				"	static String getN() { return null; }\n" +
 				"}\n" +
 				"\n"},
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in bug374129\\Test.java (at line 22)\n" +
 			"	s = c1.getId(n, n); // error on first arg (package default)\n" +
 			"	             ^\n" +
@@ -5766,7 +5766,7 @@ public void testBug374129() {
 }
 
 // Bug 385626 - @NonNull fails across loop boundaries
-public void testBug385626_1() {
+public void testBug385626_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5791,7 +5791,7 @@ public void testBug385626_1() {
 }
 
 // Bug 385626 - @NonNull fails across loop boundaries
-public void testBug385626_2() {
+public void testBug385626_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -5821,7 +5821,7 @@ public void testBug385626_2() {
 
 // Bug 388630 - @NonNull diagnostics at line 0
 // synthetic constructor must repeat null annotations of its super
-public void testBug388630_1() {
+public void testBug388630_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"C0.java",
@@ -5843,7 +5843,7 @@ public void testBug388630_1() {
 
 // Bug 388630 - @NonNull diagnostics at line 0
 // additionally also references to outer variables must share their nullness
-public void testBug388630_2() {
+public void testBug388630_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"C0.java",
@@ -5867,7 +5867,7 @@ public void testBug388630_2() {
 			"}\n"
 		},
 		null,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 7)\n" +
 		"	System.out.println(a.toString());\n" +
 		"	                   ^\n" +
@@ -5939,8 +5939,8 @@ public class C2 implements i2.I2 {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=388281
 // Test whether null annotations from a super interface are respected
 // Class and its super interface both read from binary
-public void testBug388281_01() {
-	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX;
+public void testBug388281_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String[] libs = new String[this.LIBS.length + 1];
 	System.arraycopy(this.LIBS, 0, libs, 0, this.LIBS.length);
 	libs[this.LIBS.length] = path;
@@ -5976,8 +5976,8 @@ public void testBug388281_01() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=388281
 // Test whether null annotations from a super interface are respected
 // Class from source, its supers (class + super interface) from binary
-public void testBug388281_02() {
-	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX;
+public void testBug388281_02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String[] libs = new String[this.LIBS.length + 1];
 	System.arraycopy(this.LIBS, 0, libs, 0, this.LIBS.length);
 	libs[this.LIBS.length] = path;
@@ -6008,7 +6008,7 @@ public void testBug388281_02() {
 			"    }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in ctest\\C.java (at line 5)\n" +
 		"	System.out.println(a1.toString());   // (1)\n" +
 		"	                   ^^\n" +
@@ -6038,8 +6038,8 @@ public void testBug388281_02() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=388281
 // Test whether null annotations from a super interface trigger an error against the overriding implementation
 // Class from source, its super interface from binary
-public void testBug388281_03() {
-	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX;
+public void testBug388281_03() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String[] libs = new String[this.LIBS.length + 1];
 	System.arraycopy(this.LIBS, 0, libs, 0, this.LIBS.length);
 	libs[this.LIBS.length] = path;
@@ -6064,7 +6064,7 @@ public void testBug388281_03() {
 			"    }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in ctest\\C.java (at line 4)\n" +
 		"	System.out.println(a1.toString());   // (1)\n" +
 		"	                   ^^\n" +
@@ -6088,7 +6088,7 @@ public void testBug388281_03() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=388281
 // Do inherit even if one parameter/return is annotated
 // also features some basic overloading
-public void testBug388281_04() {
+public void testBug388281_04() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_INHERIT_NULL_ANNOTATIONS, JavaCore.ENABLED);
 	runNegativeTestWithLibs(
@@ -6116,7 +6116,7 @@ public void testBug388281_04() {
 			"}\n"
 		},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in ctest\\C.java (at line 5)\n" +
 		"	System.out.println(s2.toString());   // (1)\n" +
 		"	                   ^^\n" +
@@ -6138,8 +6138,8 @@ public void testBug388281_04() {
 // Test whether null annotations from a super interface trigger an error against the overriding implementation
 // Class from source, its super interface from binary
 // Super interface subject to package level @NonNullByDefault
-public void testBug388281_05() {
-	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX;
+public void testBug388281_05() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String[] libs = new String[this.LIBS.length + 1];
 	System.arraycopy(this.LIBS, 0, libs, 0, this.LIBS.length);
 	libs[this.LIBS.length] = path;
@@ -6191,8 +6191,8 @@ public void testBug388281_05() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=388281
 // Conflicting annotations from several indirect super interfaces must be detected
-public void testBug388281_06() {
-	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX;
+public void testBug388281_06() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String[] libs = new String[this.LIBS.length + 1];
 	System.arraycopy(this.LIBS, 0, libs, 0, this.LIBS.length);
 	libs[this.LIBS.length] = path;
@@ -6238,7 +6238,7 @@ public void testBug388281_06() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=388281
 // report conflict between inheritance and default
-public void testBug388281_07() {
+public void testBug388281_07() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_INHERIT_NULL_ANNOTATIONS, JavaCore.ENABLED);
 	runNegativeTestWithLibs(
@@ -6271,7 +6271,7 @@ public void testBug388281_07() {
 			"}\n"
 		},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in p2\\Sub.java (at line 6)\n" +
 		"	public Object m(Object arg) { // (a)+(b) conflict at arg and return\n" +
 		"	       ^^^^^^\n" +
@@ -6297,8 +6297,8 @@ public void testBug388281_07() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=388281
 // report conflict between inheritance and default - binary types
-public void testBug388281_08() {
-	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX;
+public void testBug388281_08() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	String path = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "Test388281"+this.TEST_JAR_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String[] libs = new String[this.LIBS.length + 1];
 	System.arraycopy(this.LIBS, 0, libs, 0, this.LIBS.length);
 	libs[this.LIBS.length] = path;
@@ -6329,7 +6329,7 @@ public void testBug388281_08() {
 			"    }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in ctest\\Ctest.java (at line 8)\n" +
 		"	public String m2(Object a2) { // (a) conflict at return\n" +
 		"	       ^^^^^^\n" +
@@ -6363,7 +6363,7 @@ public void testBug388281_08() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=388281
 // difference between inherited abstract & non-abstract methods
-public void testBug388281_09() {
+public void testBug388281_09() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_INHERIT_NULL_ANNOTATIONS, JavaCore.ENABLED);
 	runNegativeTestWithLibs(
@@ -6423,7 +6423,7 @@ public void testBug388281_09() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=388281
 // respect inherited @NonNull also inside the method body, see comment 28
-public void testBug388281_10() {
+public void testBug388281_10() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_INHERIT_NULL_ANNOTATIONS, JavaCore.ENABLED);
 	runNegativeTestWithLibs(
@@ -6454,7 +6454,7 @@ public void testBug388281_10() {
 
 // https://bugs.eclipse.org/382069 - [null] Make the null analysis consider JUnit's assertNotNull similarly to assertions
 // junit's assertNull vs. a @NonNull field / expression
-public void testBug382069_j() {
+public void testBug382069_j() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.ERROR);
 	runNegativeTestWithLibs(
@@ -6499,7 +6499,7 @@ public void testBug382069_j() {
 
 // https://bugs.eclipse.org/382069 - [null] Make the null analysis consider JUnit's assertNotNull similarly to assertions
 // junit's assertNonNull et al. affecting a @Nullable field using syntactic analysis
-public void testBug382069_k() {
+public void testBug382069_k() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	options.put(JavaCore.COMPILER_PB_DEAD_CODE, JavaCore.ERROR);
@@ -6530,7 +6530,7 @@ public void testBug382069_k() {
 			"  }\n" +
 			"}\n"},
 			options,
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in X.java (at line 11)\n" +
 			"	return o1.length(); // no longer protected\n" +
 			"	       ^^\n" +
@@ -6538,7 +6538,7 @@ public void testBug382069_k() {
 			"----------\n");
 }
 //https://bugs.eclipse.org/400761: [compiler][null] null may be return as boolean without a diagnostic
-public void test_conditional_expression_1() {
+public void test_conditional_expression_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -6561,7 +6561,7 @@ public void test_conditional_expression_1() {
 }
 
 // Bug 403086 - [compiler][null] include the effect of 'assert' in syntactic null analysis for fields
-public void testBug403086_1() {
+public void testBug403086_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	customOptions.put(JavaCore.COMPILER_PB_INCLUDE_ASSERTS_IN_NULL_ANALYSIS, JavaCore.ENABLED);
@@ -6591,7 +6591,7 @@ public void testBug403086_1() {
 }
 
 //Bug 403086 - [compiler][null] include the effect of 'assert' in syntactic null analysis for fields
-public void testBug403086_2() {
+public void testBug403086_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
 	customOptions.put(JavaCore.COMPILER_PB_INCLUDE_ASSERTS_IN_NULL_ANALYSIS, JavaCore.ENABLED);
@@ -6621,7 +6621,7 @@ public void testBug403086_2() {
 }
 
 // https://bugs.eclipse.org/412076 - [compiler] @NonNullByDefault doesn't work for varargs parameter when in generic interface
-public void testBug412076() {
+public void testBug412076() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_MISSING_OVERRIDE_ANNOTATION, JavaCore.IGNORE);
 	runConformTestWithLibs(
@@ -6640,7 +6640,7 @@ public void testBug412076() {
 		false /*flush*/,
 		new String[] {
 			"FooImpl.java",
-			"import org.eclipse.jdt.annotation.*;\n" +
+			"import org.eclipse.jdt.annotation.*;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			(useDeclarationAnnotations()
 			? "@NonNullByDefault\n"
 			: "@NonNullByDefault({DefaultLocation.PARAMETER,DefaultLocation.RETURN_TYPE})\n" // avoid @NonNull on type argument <String>
@@ -6658,7 +6658,7 @@ public void testBug412076() {
 		"");
 }
 
-public void testBug413460() {
+public void testBug413460() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Class2.java",
@@ -6719,7 +6719,7 @@ public void testBug413460() {
 }
 
 // missing type in constructor declaration must not cause NPE in QAE#resolveType(..)
-public void testBug415850_a() {
+public void testBug415850_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 			new String[] {
 				"X.java", //-----------------------------------------------------------------------
@@ -6751,7 +6751,7 @@ public void testBug415850_a() {
 }
 
 // avoid NPE in BinaryTypeBinding.getField(..) due to recursive dependency enum->package-info->annotation->enum
-public void testBug415850_b() {
+public void testBug415850_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"p/package-info.java",
@@ -6796,7 +6796,7 @@ public void testBug415850_b() {
 		"",
 		"class test180.Test");
 }
-public void testBug417295_5() {
+public void testBug417295_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"AllAreNonNull.java",
@@ -6815,7 +6815,7 @@ public void testBug417295_5() {
 		"Null type mismatch: required \'@NonNull String\' but the provided value is null\n" +
 		"----------\n");
 }
-public void testBug417295_7() {
+public void testBug417295_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 			new String[] {
 				"p1/AllAreNonNull.java",
@@ -6846,7 +6846,7 @@ public void testBug417295_7() {
 			"----------\n");
 }
 // Bug 415413 - [compiler][null] NullpointerException in Null Analysis caused by interaction of LoopingFlowContext and FinallyFlowContext
-public void testBug415413() {
+public void testBug415413() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	runNegativeTestWithLibs(
 		new String[]{
@@ -6880,7 +6880,7 @@ public void testBug415413() {
 }
 // Bug 415413 - [compiler][null] NullpointerException in Null Analysis caused by interaction of LoopingFlowContext and FinallyFlowContext
 // Variant: non-null before the loop and at the end of the loop body
-public void testBug415413a() {
+public void testBug415413a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  Map options = getCompilerOptions();
  runConformTestWithLibs(
      new String[]{
@@ -6910,7 +6910,7 @@ public void testBug415413a() {
 }
 // Bug 415413 - [compiler][null] NullpointerException in Null Analysis caused by interaction of LoopingFlowContext and FinallyFlowContext
 // Variant: null before the loop and non-null at the end of the loop body
-public void testBug415413b() {
+public void testBug415413b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  Map options = getCompilerOptions();
  runNegativeTestWithLibs(
      new String[]{
@@ -6945,7 +6945,7 @@ public void testBug415413b() {
 }
 // Bug 415413 - [compiler][null] NullpointerException in Null Analysis caused by interaction of LoopingFlowContext and FinallyFlowContext
 // Variant: non-null before the loop and null at the end of the loop body
-public void testBug415413c() {
+public void testBug415413c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  Map options = getCompilerOptions();
  runNegativeTestWithLibs(
      new String[]{
@@ -6978,7 +6978,7 @@ public void testBug415413c() {
      "Null type mismatch: required \'@NonNull Object\' but the provided value is inferred as @Nullable\n" +
      "----------\n");
 }
-public void testBug_415269() {
+public void testBug_415269() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	runConformTestWithLibs(
 		new String[]{
@@ -7002,7 +7002,7 @@ public void testBug_415269() {
 		options,
 		"");
 }
-public void testBug416267() {
+public void testBug416267() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7028,7 +7028,7 @@ public void testBug416267() {
 		null /*options*/);
 }
 //duplicate of bug 416267
-public void testBug418843() {
+public void testBug418843() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"TestEnum.java",
@@ -7046,7 +7046,7 @@ public void testBug418843() {
 		true,/*flush*/
 		null/*options*/);
 }
-public void testBug418235() {
+public void testBug418235() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] testFiles =
             new String[] {
                     "GenericInterface.java",
@@ -7079,7 +7079,7 @@ public void testBug418235() {
 				testFiles, getCompilerOptions(), "");
 	}
 }
-public void testBug418235b() {
+public void testBug418235b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (useDeclarationAnnotations())
 		return;
 	runNegativeTestWithLibs(
@@ -7107,7 +7107,7 @@ public void testBug418235b() {
 	        "----------\n");
 }
 
-public void testTypeAnnotationProblemNotIn17() {
+public void testTypeAnnotationProblemNotIn17() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"import org.eclipse.jdt.annotation.*;\n" +
 			"public class X {\n" +
@@ -7150,7 +7150,7 @@ public void testTypeAnnotationProblemNotIn17() {
 			true, // flush
 			getCompilerOptions());
 }
-public void testBug420313() {
+public void testBug420313() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true, /*flush*/
 		new String[] {
@@ -7194,7 +7194,7 @@ public void testBug420313() {
 		"----------\n");
 }
 // original test
-public void testBug424624() {
+public void testBug424624() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Test3.java",
@@ -7236,11 +7236,11 @@ public void testBug424624() {
 		"");
 }
 // other nesting levels, binary case
-public void testBug424624a() {
+public void testBug424624a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/Test3.java",
-			"package test;\n" +
+			"package test;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"import org.eclipse.jdt.annotation.NonNull;\n" +
 			"import java.lang.annotation.*;\n" +
 			"@Target(ElementType.TYPE_USE) @interface Marker {}\n" +
@@ -7300,11 +7300,11 @@ public void testBug424624a() {
 		"");
 }
 // same as previous, source case for reference
-public void testBug424624b() {
+public void testBug424624b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Test3.java",
-			"import org.eclipse.jdt.annotation.NonNull;\n" +
+			"import org.eclipse.jdt.annotation.NonNull;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"import java.lang.annotation.*;\n" +
 			"@Target(ElementType.TYPE_USE) @interface Marker {}\n" +
 			"\n" +
@@ -7355,7 +7355,7 @@ public void testBug424624b() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug430084() {
+public void testBug430084() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -7375,7 +7375,7 @@ public void testBug430084() {
 		true, /*flush*/
 		null /*options*/);
 }
-public void testBug432348() {
+public void testBug432348() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String sourceString =
 		"import org.eclipse.jdt.annotation.NonNull;\n" +
 		"import java.lang.annotation.*;\n" +
@@ -7409,7 +7409,7 @@ public void testBug432348() {
 }
 // Bug 403674 - [compiler][null] Switching on @Nullable enum value does not trigger "Potential null pointer access" warning
 // String value being used in switch condition.
-public void testBug403674() {
+public void testBug403674() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	runNegativeTestWithLibs(
 			new String[]{
@@ -7433,7 +7433,7 @@ public void testBug403674() {
 }
 // Bug 403674 - [compiler][null] Switching on @Nullable enum value does not trigger "Potential null pointer access" warning
 // Enum value being used in switch condition.
-public void testBug403674a() {
+public void testBug403674a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	runNegativeTestWithLibs(
 			new String[]{
@@ -7453,7 +7453,7 @@ public void testBug403674a() {
 				"}\n"
 			},
 			options,
-			"----------\n" +
+			"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"1. ERROR in X.java (at line 6)\n" +
 			"	switch (computeEnumValue()) {}\n" +
 			"	        ^^^^^^^^^^^^^^^^^^\n" +
@@ -7471,7 +7471,7 @@ public void testBug403674a() {
 			"----------\n");
 }
 // original test
-public void testBug422796() {
+public void testBug422796() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"NullExprTest.java",
@@ -7497,7 +7497,7 @@ public void testBug422796() {
 		"");
 }
 // inverted logic:
-public void testBug422796a() {
+public void testBug422796a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"NullExprTest.java",
@@ -7523,7 +7523,7 @@ public void testBug422796a() {
 		"");
 }
 // negative tests:
-public void testBug422796b() {
+public void testBug422796b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"NullExprTest.java",
@@ -7560,7 +7560,7 @@ public void testBug422796b() {
 		"Potential null pointer access: This expression of type Boolean may be null but requires auto-unboxing\n" +
 		"----------\n");
 }
-public void testBug434374() {
+public void testBug434374() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"bal/AdapterService.java",
@@ -7626,7 +7626,7 @@ public void testBug434374() {
 		"");
 }
 // test return type compatibility
-public void testBug434374a() {
+public void testBug434374a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"bug434374/AdapterService.java",
@@ -7657,7 +7657,7 @@ public void testBug434374a() {
 		"");
 }
 // original (broken) test (second part):
-public void testBug434374b() {
+public void testBug434374b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"bal/TestGeneric.java",
@@ -7698,7 +7698,7 @@ public void testBug434374c() {
 }
 
 // @NNBD should not affect implicit constructor
-public void testBug443347() {
+public void testBug443347() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -7724,7 +7724,7 @@ public void testBug443347() {
 }
 
 // explicit annotation on super ctor should be inherited
-public void testBug443347b() {
+public void testBug443347b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -7746,7 +7746,7 @@ public void testBug443347b() {
 			"}\n"
 		},
 		getCompilerOptions(),
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 11)\n" +
 		"	new Super(s) {\n" +
 		"	          ^\n" +
@@ -7757,7 +7757,7 @@ public void testBug443347b() {
 }
 
 // @NNBD on super ctor should be inherited
-public void testBug443347c() {
+public void testBug443347c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -7780,7 +7780,7 @@ public void testBug443347c() {
 			"}\n"
 		},
 		getCompilerOptions(),
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 12)\n" +
 		"	new Super(s) {\n" +
 		"	          ^\n" +
@@ -7790,7 +7790,7 @@ public void testBug443347c() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=444024, Type mismatch error in annotation generics assignment which happens "sometimes"
-public void test444024() {
+public void test444024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 		   new String[] {
 			   "ViewpointOrganisationEntity.java",
@@ -7820,7 +7820,7 @@ public void test444024() {
 		   },
 		   "");
 }
-public void testBug435805() {
+public void testBug435805() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo.NonNull");
 	options.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.Nullable");
@@ -7874,7 +7874,7 @@ public void testBug445147() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug445708() {
+public void testBug445708() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"SwitchTest.java",
@@ -7931,7 +7931,7 @@ public void testBug445708() {
 			"   }\n" +
 			"}\n"
 		},
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in SwitchTest.java (at line 12)\n" +
 		"	switch (computeStringValue())\n" +
 		"	        ^^^^^^^^^^^^^^^^^^^^\n" +
@@ -7961,7 +7961,7 @@ public void testBug445708() {
 		"----------\n");
 }
 // same as above but 1.8 with declaration annotations
-public void testBug445708b() {
+public void testBug445708b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (useDeclarationAnnotations()) return; // only one combination tested
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo.NonNull");
@@ -8052,7 +8052,7 @@ public void testBug445708b() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=452780 - Internal compiler error: arrayIndexOutOfBounds
-public void testBug452780() {
+public void testBug452780() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (useDeclarationAnnotations()) return;
 	runConformTestWithLibs(
 		new String[] {
@@ -8083,7 +8083,7 @@ public void testBug452780() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug455557() {
+public void testBug455557() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runWarningTestWithLibs(
 		true, /*flush*/
 		new String[] {
@@ -8105,7 +8105,7 @@ public void testBug455557() {
 			"}\n"
 		},
 		null,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in X.java (at line 10)\n" +
 		"	for (@NonNull Object y : list) { \n" +
 		"	                         ^^^^\n" +
@@ -8115,7 +8115,7 @@ public void testBug455557() {
 		) +
 		"----------\n");
 }
-public void testBug455723() {
+public void testBug455723() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Problem.java",
@@ -8141,7 +8141,7 @@ public void testBug455723() {
 		null,
 		"");
 }
-public void testBug455723b() {
+public void testBug455723b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"Problem.java",
@@ -8163,7 +8163,7 @@ public void testBug455723b() {
 		"");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=436486
-public void test_null_with_apt() {
+public void test_null_with_apt() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean apt = this.enableAPT;
 	this.enableAPT = true;
 	Map customOptions = getCompilerOptions();
@@ -8184,7 +8184,7 @@ public void test_null_with_apt() {
 	this.enableAPT = apt;
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=436486#c4
-public void test_null_with_apt_comment4() {
+public void test_null_with_apt_comment4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	boolean apt = this.enableAPT;
 	this.enableAPT = true;
 	Map customOptions = getCompilerOptions();
@@ -8206,7 +8206,7 @@ public void test_null_with_apt_comment4() {
 			"}\n"
 		},
 		customOptions,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in Test.java (at line 6)\n" +
 		"	public static final Test t = new Test(Integer.valueOf(0));\n" +
 		"	                                      ^^^^^^^^^^^^^^^^^^\n" +
@@ -8217,7 +8217,7 @@ public void test_null_with_apt_comment4() {
 		"----------\n");
 	this.enableAPT = apt;
 }
-public void testBug457210() {
+public void testBug457210() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo.NonNull");
@@ -8259,7 +8259,7 @@ public void testBug457210() {
 		true,
 		customOptions);
 }
-public void testBug462790() {
+public void testBug462790() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String,String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.IGNORE);
 	runWarningTestWithLibs(
@@ -8283,7 +8283,7 @@ public void testBug462790() {
 			"}"
 		},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. WARNING in EclipseBug.java (at line 5)\n" +
 		"	String command = (String)getCommand(commandType);\n" +
 		"	                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
@@ -8324,7 +8324,7 @@ public void testBug459967_Enum_valueOf() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug459967_Enum_valueOf_binary() {
+public void testBug459967_Enum_valueOf_binary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"MyEnum.java",
@@ -8344,12 +8344,12 @@ public void testBug459967_Enum_valueOf_binary() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug459967_Enum_values() {
+public void testBug459967_Enum_values() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] testFiles = new String[] {
 		"MyEnum.java",
 		"public enum MyEnum { V1, V2 }\n",
 		"X.java",
-		"import org.eclipse.jdt.annotation.*;\n" +
+		"import org.eclipse.jdt.annotation.*;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"public class X {\n" +
 		(useDeclarationAnnotations()
 		?
@@ -8382,10 +8382,10 @@ public void testBug459967_Enum_values() {
 				"");
 	}
 }
-public void testBug459967_Enum_values_binary() {
+public void testBug459967_Enum_values_binary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] testFiles = new String[] {
 		"X.java",
-		"import org.eclipse.jdt.annotation.*;\n" +
+		"import org.eclipse.jdt.annotation.*;\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"public class X {\n" +
 		(useDeclarationAnnotations()
 		?
@@ -8427,7 +8427,7 @@ public void testBug459967_Enum_values_binary() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=407414
 // Incorrect warning on a primitive type being null.
-public void test407414a()  {
+public void test407414a()  { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 String testCode = "package p1;\n" +
 			 "public class Test {\n" +
 			 "	void fooI(int i) { \n" +
@@ -8478,7 +8478,7 @@ public void test407414a()  {
 // and therefore there cannot be null values in i2 is
 // not flowing down to access of i2.
 // The test case also illustrates array access and Qualified access.
-public void test407414b() {
+public void test407414b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 String testCode = "package p1;\n" +
 			 "  public class Test {\n" +
 			 "  class Y {\n" +
@@ -8519,7 +8519,7 @@ public void test407414b() {
 		"");
 }
 
-public void test407414b2() {
+public void test407414b2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 String testCode = "package p1;\n" +
 			 "  public class Test {\n" +
 			 "  int a[];\n" +
@@ -8547,7 +8547,7 @@ public void test407414b2() {
 }
 
 // FieldReference.
-public void test407414b3() {
+public void test407414b3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 String testCode = "package p1;\n" +
 			 "public class Test {\n" +
 			 "  class Z {\n" +
@@ -8583,7 +8583,7 @@ public void test407414b3() {
 }
 
 // arrayRefrence
-public void test407414b4() {
+public void test407414b4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 String testCode = "package p1;\n" +
 			 "public class Test {\n" +
 			 "  class Y {\n" +
@@ -8662,7 +8662,7 @@ public void testBug407414e() {
 }
 
 // operators
-public void testBug407414f() {
+public void testBug407414f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"X.java",
@@ -8687,7 +8687,7 @@ public void testBug407414f() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428104
 // Null annotation heuristics does not understand autoboxed primitives to be non-null.
-public void test428104() {
+public void test428104() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 String testCode = "package p1;\n" +
 			 "import org.eclipse.jdt.annotation.NonNull;\n" +
 			 "public class Test {\n" +
@@ -8713,7 +8713,7 @@ public void test428104() {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=424702
 // Warning at an assignment of a boolean-Variable to an Boolean-Variable
-public void test424702() {
+public void test424702() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	 String testCode = "package p1;\n" +
 			 "import org.eclipse.jdt.annotation.NonNull;\n" +
 			 "public class Test {\n" +
@@ -8750,7 +8750,7 @@ public void testBug237236() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug418236() {
+public void testBug418236() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"MyClass.java",
@@ -8770,7 +8770,7 @@ public void testBug418236() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug461878() {
+public void testBug461878() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map compilerOptions = getCompilerOptions();
 	compilerOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "javax.annotation.Nonnull");
 	runNegativeTest(
@@ -8799,7 +8799,7 @@ public void testBug461878() {
 		"----------\n",
 		JavacTestOptions.Excuse.EclipseHasSomeMoreWarnings);
 }
-public void testBug467610() {
+public void testBug467610() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"SuperClass.java",
@@ -8842,7 +8842,7 @@ public void testBug477719() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug482075() {
+public void testBug482075() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS, JavaCore.ENABLED);
 	options.put(JavaCore.COMPILER_PB_NULL_UNCHECKED_CONVERSION, JavaCore.ERROR);
@@ -8877,8 +8877,8 @@ public void testBug482075() {
 		""
 	);
 }
-public void testMultipleAnnotations() {
-	Map options1 = new HashMap<>(getCompilerOptions());
+public void testMultipleAnnotations() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map options1 = new HashMap<>(getCompilerOptions()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	options1.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo1.NonNull");
 	options1.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo1.Nullable");
 	runConformTest(
@@ -8907,7 +8907,7 @@ public void testMultipleAnnotations() {
 			"}"
 		},
 		options1);
-	Map options2 = new HashMap<>(getCompilerOptions());
+	Map options2 = new HashMap<>(getCompilerOptions()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	options2.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "org.foo2.NonNull2");
 	options2.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "org.foo2.Nullable2");
 	options2.put(JavaCore.COMPILER_NONNULL_BY_DEFAULT_ANNOTATION_NAME, "org.foo2.NoNulls2");
@@ -8998,7 +8998,7 @@ public void testMultipleAnnotations() {
 				"}\n"
 			},
 			options3,
-				"----------\n" +
+				"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"1. ERROR in p3\\Test.java (at line 8)\n" +
 				"	return test.weaken(input);\n" +
 				"	       ^^^^^^^^^^^^^^^^^^\n" +
@@ -9031,7 +9031,7 @@ public void testMultipleAnnotations() {
 				"----------\n");
 }
 
-public void testBug489486conform() {
+public void testBug489486conform() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/DurationAdapter.java",
@@ -9057,7 +9057,7 @@ public void testBug489486conform() {
 	);
 }
 
-public void testBug489486negative() {
+public void testBug489486negative() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"test/DurationAdapter.java",
@@ -9089,7 +9089,7 @@ public void testBug489486negative() {
 		getCompilerOptions()
 	);
 }
-public void testBug502113() {
+public void testBug502113() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/I.java",
@@ -9119,7 +9119,7 @@ public void testBug502113() {
 		""
 	);
 }
-public void testBug502113b() {
+public void testBug502113b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/I.java",
@@ -9167,7 +9167,7 @@ public void testBug502113b() {
 		"----------\n"
 	);
 }
-public void testBug502214() {
+public void testBug502214() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"test/X.java",
@@ -9229,7 +9229,7 @@ public void testBug502214() {
 }
 
 //apply null default to parameters:
-public void testBug530970_param() {
+public void testBug530970_param() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -9310,7 +9310,7 @@ public void testBug530970_param() {
 }
 
 //apply null default to return type - annotation at method:
-public void testBug530970_return() {
+public void testBug530970_return() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -9373,7 +9373,7 @@ public void testBug530970_return() {
 }
 
 //apply null default to field
-public void testBug530970_field() {
+public void testBug530970_field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -9432,7 +9432,7 @@ public void testBug530970_field() {
 }
 
 //default default
-public void testBug530970_default() {
+public void testBug530970_default() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -9497,7 +9497,7 @@ public void testBug530970_default() {
 }
 
 //apply null default to parameters:
-public void testBug530970_param_bin() {
+public void testBug530970_param_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -9576,7 +9576,7 @@ public void testBug530970_param_bin() {
 }
 
 //apply null default to return type - annotation at method:
-public void testBug530970_return_bin() {
+public void testBug530970_return_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -9660,7 +9660,7 @@ public void testBug530970_return_bin() {
 }
 
 //apply null default to field
-public void testBug530970_field_bin() {
+public void testBug530970_field_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -9743,7 +9743,7 @@ public void testBug530970_field_bin() {
 		"----------\n");}
 
 //default default
-public void testBug530970_default_bin() {
+public void testBug530970_default_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -9829,7 +9829,7 @@ public void testBug530970_default_bin() {
 		"Null type mismatch: required \'@NonNull Number\' but the provided value is null\n" +
 		"----------\n");}
 
-public void testBug530970_on_field_and_local() {
+public void testBug530970_on_field_and_local() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -10129,7 +10129,7 @@ public void testBug530970_on_field_and_local() {
 		"----------\n"
 	);
 }
-public void testBug530970_on_field_bin() {
+public void testBug530970_on_field_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
 	customOptions.put(JavaCore.COMPILER_NONNULL_ANNOTATION_NAME, "annotation.NonNull");
@@ -10463,7 +10463,7 @@ public void testBug530970_on_field_bin() {
 		"----------\n"
 	);
 }
-public void testBug542707_001() {
+public void testBug542707_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return;
 	Map options = getCompilerOptions();
@@ -10506,7 +10506,7 @@ public void testBug542707_001() {
 			"}\n"
 				},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 0)\n" +
 		"	import java.io.IOException;\n" +
 		"	^\n" +
@@ -10517,7 +10517,7 @@ public void testBug542707_001() {
 /**
  * should not throw IOOBE while building - a safety check test case.
  */
-public void testBug542707_002() {
+public void testBug542707_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel != ClassFileConstants.JDK14)
 		return;
 	Map options = getCompilerOptions();
@@ -10547,7 +10547,7 @@ public void testBug542707_002() {
 			"}\n"
 				},
 		options,
-		"----------\n" +
+		"----------\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"1. ERROR in X.java (at line 0)\n" +
 		"	import org.eclipse.jdt.annotation.*;\n" +
 		"	^\n" +
@@ -10555,7 +10555,7 @@ public void testBug542707_002() {
 		"----------\n"
 	);
 }
-public void testBug542707_003() {
+public void testBug542707_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// outer expected type (from assignment) is propagated deeply into a switch expression
 	Runner runner = new Runner();
@@ -10585,7 +10585,7 @@ public void testBug542707_003() {
 	runner.runNegativeTest();
 }
 
-public void testBug542707_003_1() {
+public void testBug542707_003_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// outer expected type (from assignment) is propagated deeply into a switch expression
 	Runner runner = new Runner();
@@ -10615,7 +10615,7 @@ public void testBug542707_003_1() {
 	runner.runNegativeTest();
 }
 
-public void testBug542707_003_2() {
+public void testBug542707_003_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// no expected type due to LVTI
 	Runner runner = new Runner();
@@ -10657,7 +10657,7 @@ public void testBug542707_003_2() {
 	runner.runNegativeTest();
 }
 
-public void testBug542707_003_3() {
+public void testBug542707_003_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// no expected type due to LVTI
 	Runner runner = new Runner();
@@ -10699,7 +10699,7 @@ public void testBug542707_003_3() {
 	runner.runNegativeTest();
 }
 
-public void testBug542707_003_4() {
+public void testBug542707_003_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// no expected type due to LVTI
 	Runner runner = new Runner();
@@ -10741,7 +10741,7 @@ public void testBug542707_003_4() {
 	runner.runNegativeTest();
 }
 
-public void testBug542707_003_5() {
+public void testBug542707_003_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// no expected type due to LVTI
 	Runner runner = new Runner();
@@ -10784,7 +10784,7 @@ public void testBug542707_003_5() {
 }
 
 // failing, see https://bugs.eclipse.org/543860
-public void _testBug542707_004() {
+public void _testBug542707_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14) return; // switch expression
 	// outer expected type (from method parameter) is propagated deeply into a switch expression
 	Runner runner = new Runner();
@@ -10815,7 +10815,7 @@ public void _testBug542707_004() {
 			"----------\n";
 	runner.runNegativeTest();
 }
-public void testBug542707_005() {
+public void testBug542707_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// switch value must not be null (@Nullable)
 	Runner runner = new Runner();
@@ -10844,7 +10844,7 @@ public void testBug542707_005() {
 			"----------\n";
 	runner.runNegativeTest();
 }
-public void testBug542707_006() {
+public void testBug542707_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14) return; // switch expression
 	// switch value must not be null (pot-null by flow analysis)
 	Runner runner = new Runner();
@@ -10890,7 +10890,7 @@ public void testBug545715() {
 		},
 	    "");
 }
-public void testBug548418_001a() {
+public void testBug548418_001a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return;
 	runNegativeTestWithLibs(
 			new String[] {
@@ -10946,7 +10946,7 @@ public void testBug548418_001a() {
 			"Null type mismatch: required '@NonNull X' but the provided value is null\n" +
 			"----------\n");
 }
-public void testBug548418_001b() {
+public void testBug548418_001b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return;
 	runNegativeTestWithLibs(
 			new String[] {
@@ -10993,7 +10993,7 @@ public void testBug548418_001b() {
 		"----------\n"
 	);
 }
-public void testBug548418_002a() {
+public void testBug548418_002a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14) return;
 	runNegativeTestWithLibs(
 			new String[] {
@@ -11032,7 +11032,7 @@ public void testBug548418_002a() {
 		"----------\n"
 	);
 }
-public void testBug548418_002b() {
+public void testBug548418_002b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14) return;
 	runNegativeTestWithLibs(
 			new String[] {
@@ -11061,7 +11061,7 @@ public void testBug548418_002b() {
 		"----------\n"
 			);
 }
-public void testBug499714() {
+public void testBug499714() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/X.java",
@@ -11095,7 +11095,7 @@ public void testBug499714() {
 		getCompilerOptions(),
 		"");
 }
-public void testBug481931_source() {
+public void testBug481931_source() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"X.java",
@@ -11144,7 +11144,7 @@ public void testBug481931_source() {
 		"Dead code\n" +
 		"----------\n");
 }
-public void testBug481931_binary() {
+public void testBug481931_binary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTestWithLibs(
 		new String[] {
 			"test/X.java",
@@ -11210,7 +11210,7 @@ public void testBug481931_binary() {
 	runner.javacTestOptions = Excuse.EclipseWarningConfiguredAsError;
 	runner.runNegativeTest();
 }
-public void testBug459397() {
+public void testBug459397() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"NonNullBug.java",
@@ -11314,7 +11314,7 @@ public void testBug459397() {
 		"Redundant null check: The variable dc cannot be null at this location\n" +
 		"----------\n");
 }
-public void testBug466477() {
+public void testBug466477() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTestWithLibs(
 		new String[] {
 			"SuperI.java",
@@ -11345,7 +11345,7 @@ public void testBug466477() {
 		"Parameter 1 of method testNN(String) lacks a @NonNull annotation as specified in type SuperI\n" +
 		"----------\n");
 }
-public void testBug565246() {
+public void testBug565246() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -11436,7 +11436,7 @@ public void testBug565246() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3319
 // [Enhanced Switch][Null] Inconsistent nullness propagation
-public void _testIssue3319() {
+public void _testIssue3319() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -11521,7 +11521,7 @@ public void _testIssue3319() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
-public void testIssue3971_1a() {
+public void testIssue3971_1a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	runNegativeTest(
@@ -11549,7 +11549,7 @@ public void testIssue3971_1a() {
 			this.LIBS,
 			false/*shouldFlush*/);
 }
-public void testIssue3971_1b() {
+public void testIssue3971_1b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	runConformTestWithLibs(
@@ -11573,7 +11573,7 @@ public void testIssue3971_1b() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
-public void testIssue3971_2() {
+public void testIssue3971_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -11647,7 +11647,7 @@ public void testIssue3971_2() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
-public void testIssue3971_3() {
+public void testIssue3971_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	Map options = getCompilerOptions();
@@ -11673,7 +11673,7 @@ public void testIssue3971_3() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
-public void testIssue3971_4() {
+public void testIssue3971_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -11741,7 +11741,7 @@ public void testIssue3971_4() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
-public void testIssue3971_5() {
+public void testIssue3971_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -11809,7 +11809,7 @@ public void testIssue3971_5() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
-public void testIssue3971_6() {
+public void testIssue3971_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	runNegativeTest(
@@ -11841,7 +11841,7 @@ public void testIssue3971_6() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
-public void testIssue3971_7() {
+public void testIssue3971_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -11910,7 +11910,7 @@ public void testIssue3971_7() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971#issuecomment-2863645113
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
-public void testIssue3971_8() {
+public void testIssue3971_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	runNegativeTest(
@@ -11958,7 +11958,7 @@ public void testIssue3971_8() {
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 //[Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
-public void testIssue3971_9a() {
+public void testIssue3971_9a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	runNegativeTest(
@@ -11987,7 +11987,7 @@ public void testIssue3971_9a() {
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 //[Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
-public void testIssue3971_9b() {
+public void testIssue3971_9b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK16)
 		return;
 	Map customOptions = getCompilerOptions();

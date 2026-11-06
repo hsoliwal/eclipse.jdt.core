@@ -41,7 +41,7 @@ public class MirrorTests extends APTTestBase {
 	 * Runs the MirrorTestAnnotationProcessor, which contains
 	 * the actual tests
 	 */
-	public void testMirror() throws Exception {
+	public void testMirror() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.reset();
 
 		IProject project = env.getProject( getProjectName() );
@@ -64,8 +64,8 @@ public class MirrorTests extends APTTestBase {
 		assertEquals(ProcessorTestStatus.NO_ERRORS, ProcessorTestStatus.getErrors());
 	}
 
-	public void testTypeParmaterAPI() throws Exception{
-		final String projName = MirrorTests.class.getName() + "TypeParameter.Project"; //$NON-NLS-1$
+	public void testTypeParmaterAPI() throws Exception{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		final String projName = MirrorTests.class.getName() + "TypeParameter.Project"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IPath projectPath = env.addProject( projName, CompilerOptions.getFirstSupportedJavaVersion() ); //$NON-NLS-1$
 		env.addExternalJars( projectPath, Util.getJavaClassLibs() );
 

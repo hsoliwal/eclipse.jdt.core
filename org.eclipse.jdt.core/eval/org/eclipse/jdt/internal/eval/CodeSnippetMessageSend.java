@@ -50,7 +50,7 @@ public CodeSnippetMessageSend(EvaluationContext evaluationContext) {
  * @param codeStream org.eclipse.jdt.internal.compiler.codegen.CodeStream
  * @param valueRequired boolean
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void generateCode(BlockScope currentScope, CodeStream codeStream, boolean valueRequired) {
 	int pc = codeStream.position;
 	MethodBinding codegenBinding = this.binding.original();
@@ -115,7 +115,7 @@ public void generateCode(BlockScope currentScope, CodeStream codeStream, boolean
 			codeStream.generateInlinedValue(argsLength);
 			codeStream.newArray(currentScope.createArrayType(currentScope.getType(TypeConstants.JAVA_LANG_OBJECT, 3), 1));
 			codeStream.dup();
-			for (int i = 0; i < argsLength; i++) {
+			for (int i = 0; i < argsLength; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				codeStream.generateInlinedValue(i);
 				this.arguments[i].generateCode(currentScope, codeStream, true);
 				TypeBinding parameterBinding = codegenBinding.parameters[i];
@@ -185,7 +185,7 @@ public void manageSyntheticAccessIfNecessary(BlockScope currentScope, FlowInfo f
 		}
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public TypeBinding resolveType(BlockScope scope) {
 	// Answer the signature return type
 	// Base type promotion
@@ -209,7 +209,7 @@ public TypeBinding resolveType(BlockScope scope) {
 			int length = this.typeArguments.length;
 			this.argumentsHaveErrors = false; // typeChecks all arguments
 			this.genericTypeArguments = new TypeBinding[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if ((this.genericTypeArguments[i] = this.typeArguments[i].resolveType(scope, true /* check bounds*/)) == null) {
 					this.argumentsHaveErrors = true;
 				}
@@ -223,7 +223,7 @@ public TypeBinding resolveType(BlockScope scope) {
 			this.argumentsHaveErrors = false; // typeChecks all arguments
 			int length = this.arguments.length;
 			this.argumentTypes = new TypeBinding[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Expression argument = this.arguments[i];
 				if (argument instanceof CastExpression) {
 					argument.bits |= DisableUnnecessaryCastCheck; // will check later on

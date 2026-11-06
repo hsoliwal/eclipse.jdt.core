@@ -66,13 +66,13 @@ public class NullAnnotationTests9 extends AbstractNullAnnotationTest {
 			int len = defaultLibs.length;
 			this.LIBS = new String[len+1];
 			System.arraycopy(defaultLibs, 0, this.LIBS, 0, len);
-			this.LIBS[len] = createAnnotation_2_4_jar(Util.getOutputDirectory() + File.separator, null);
+			this.LIBS[len] = createAnnotation_2_4_jar(Util.getOutputDirectory() + File.separator, null); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
-	public static String createAnnotation_2_4_jar(String dirName, String jcl9Path) throws IOException {
+	public static String createAnnotation_2_4_jar(String dirName, String jcl9Path) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// role our own annotation library supporting location MODULE whereas o.e.j.annotation is still at BREE 1.8:
-		String jarFileName = dirName + "org.eclipse.jdt.annotation_2.4.0.jar";
+		String jarFileName = dirName + "org.eclipse.jdt.annotation_2.4.0.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createJar(new String[] {
 				"module-info.java",
 				"module org.eclipse.jdt.annotation {\n" +
@@ -138,14 +138,14 @@ public class NullAnnotationTests9 extends AbstractNullAnnotationTest {
 
 	// -------- internal infrastructure ------------
 
-	Map<String,IModule> moduleMap = new HashMap<>(); // by name
-	Map<String,String> file2module = new HashMap<>();
+	Map<String,IModule> moduleMap = new HashMap<>(); // by name //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+	Map<String,String> file2module = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 	@Override
 	protected INameEnvironment getNameEnvironment(final String[] testFiles, String[] classPaths, Map<String, String> options) {
 		this.classpaths = classPaths == null ? getDefaultClassPaths() : classPaths;
 		INameEnvironment[] classLibs = getClassLibs(classPaths == null, options);
-		for (INameEnvironment nameEnvironment : classLibs) {
+		for (INameEnvironment nameEnvironment : classLibs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((FileSystem) nameEnvironment).scanForModules(createParser());
 		}
 		return new InMemoryNameEnvironment9(testFiles, this.moduleMap, classLibs);
@@ -153,12 +153,12 @@ public class NullAnnotationTests9 extends AbstractNullAnnotationTest {
 
 	// --- same as AbstractRegressionTest9, just in a different inheritance hierarchy:
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected CompilationUnit[] getCompilationUnits(String[] testFiles) {
-		Map<String,char[]> moduleFiles= new HashMap<>(); // filename -> modulename
+		Map<String,char[]> moduleFiles= new HashMap<>(); // filename -> modulename //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 		// scan for all module-info.java:
-		for (int i = 0; i < testFiles.length; i+=2) {
+		for (int i = 0; i < testFiles.length; i+=2) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IModule module = extractModuleDesc(testFiles[i], testFiles[i+1]);
 			if (module != null) {
 				this.moduleMap.put(String.valueOf(module.name()), module);
@@ -167,7 +167,7 @@ public class NullAnnotationTests9 extends AbstractNullAnnotationTest {
 		}
 		// record module information in CUs:
 		CompilationUnit[] compilationUnits = Util.compilationUnits(testFiles);
-		for (int i = 0; i < compilationUnits.length; i++) {
+		for (int i = 0; i < compilationUnits.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] fileName = compilationUnits[i].getFileName();
 			String fileNameString = String.valueOf(compilationUnits[i].getFileName());
 			if (CharOperation.endsWith(fileName, TypeConstants.MODULE_INFO_FILE_NAME)) {
@@ -197,7 +197,7 @@ public class NullAnnotationTests9 extends AbstractNullAnnotationTest {
 	}
 
 	Parser createParser() {
-		Map<String,String> opts = new HashMap<>();
+		Map<String,String> opts = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		opts.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_9);
 		return new Parser(
 				new ProblemReporter(getErrorHandlingPolicy(), new CompilerOptions(opts), getProblemFactory()),
@@ -208,7 +208,7 @@ public class NullAnnotationTests9 extends AbstractNullAnnotationTest {
 
 	/** Use in tests to associate the CU in file 'fileName' to the module of the given name. */
 	void associateToModule(String moduleName, String... fileNames) {
-		for (String fileName : fileNames)
+		for (String fileName : fileNames) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.file2module.put(fileName, moduleName);
 	}
 
@@ -221,7 +221,7 @@ public class NullAnnotationTests9 extends AbstractNullAnnotationTest {
 		return runner;
 	}
 
-	public void test_nnbd_in_module_01() {
+	public void test_nnbd_in_module_01() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		associateToModule("my.mod", "my.mod/p/X.java");
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
@@ -250,9 +250,9 @@ public class NullAnnotationTests9 extends AbstractNullAnnotationTest {
 		runner.runNegativeTest();
 	}
 
-	public void test_nnbd_in_module_02() throws IOException {
+	public void test_nnbd_in_module_02() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
-		String jarPath = OUTPUT_DIR+"/mod.one.jar";
+		String jarPath = OUTPUT_DIR+"/mod.one.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		createJar(
 			new String[] {
 				"module-info.java",
@@ -308,7 +308,7 @@ public class NullAnnotationTests9 extends AbstractNullAnnotationTest {
 		runner.runNegativeTest();
 	}
 
-	public void test_redundant_nnbd_vs_module() {
+	public void test_redundant_nnbd_vs_module() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		associateToModule("my.mod", "my.mod/p/X.java", "my.mod/p2/package-info.java");
 		Runner runner = getDefaultRunner();
 		runner.testFiles = new String[] {
@@ -377,7 +377,7 @@ public class NullAnnotationTests9 extends AbstractNullAnnotationTest {
 			"");
 		this.verifier.shutDown();
 	}
-	public void testBug536037b() {
+	public void testBug536037b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// tests combination of declaration null-annotations & 'var':
 		if (this.complianceLevel < ClassFileConstants.JDK10) return;
 		Map<String, String> options = getCompilerOptions();

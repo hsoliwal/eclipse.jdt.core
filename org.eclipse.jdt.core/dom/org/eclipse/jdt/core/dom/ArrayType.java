@@ -86,12 +86,12 @@ public class ArrayType extends Type {
 	private static final List PROPERTY_DESCRIPTORS_8_0;
 
 	static {
-		List propertyList = new ArrayList(2);
+		List propertyList = new ArrayList(2); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(ArrayType.class, propertyList);
 		addProperty(COMPONENT_TYPE_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(3);
+		propertyList = new ArrayList(3); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(ArrayType.class, propertyList);
 		addProperty(ELEMENT_TYPE_PROPERTY, propertyList);
 		addProperty(DIMENSIONS_PROPERTY, propertyList);
@@ -169,7 +169,7 @@ public class ArrayType extends Type {
 		super(ast);
 		unsupportedIn2_3_4();
 		this.dimensions = new ASTNode.NodeList(DIMENSIONS_PROPERTY);
-		for (int i = 0; i < dimensions; ++i) {
+		for (int i = 0; i < dimensions; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.dimensions().add(this.ast.newDimension());
 		}
 	}
@@ -188,7 +188,7 @@ public class ArrayType extends Type {
 		return super.internalGetChildListProperty(property);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == COMPONENT_TYPE_PROPERTY) {
 			if (get) {
@@ -322,7 +322,7 @@ public class ArrayType extends Type {
 	public Type getElementType() {
 		if (this.ast.apiLevel() < AST.JLS8_INTERNAL) {
 			Type t = getComponentType();
-			while (t.isArrayType()) {
+			while (t.isArrayType()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				t = ((ArrayType) t).getComponentType();
 			}
 			return t;
@@ -369,7 +369,7 @@ public class ArrayType extends Type {
 		}
 		Type t = getComponentType();
 		int dimension = 1; // always include this array type
-		while (t.isArrayType()) {
+		while (t.isArrayType()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			dimension++;
 			t = ((ArrayType) t).getComponentType();
 		}

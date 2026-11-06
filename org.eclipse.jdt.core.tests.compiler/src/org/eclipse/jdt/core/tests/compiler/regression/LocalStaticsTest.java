@@ -98,14 +98,14 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 		}
 	}
 	private static String getClassfileContent(String classFileName) throws IOException, ClassFormatException {
-		File f = new File(OUTPUT_DIR + File.separator + classFileName);
+		File f = new File(OUTPUT_DIR + File.separator + classFileName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 		String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.SYSTEM);
 		return result;
 	}
 
-	public void testBug566284_001() {
+	public void testBug566284_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -132,7 +132,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 	}
 
 
-	public void testBug566284_002() {
+	public void testBug566284_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -157,7 +157,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			},
 			"0");
 	}
-	public void testBug566284_003() {
+	public void testBug566284_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -215,7 +215,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 
-	public void testBug566518_001() {
+	public void testBug566518_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -245,7 +245,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"5");
 	}
 
-	public void testBug566518_002() {
+	public void testBug566518_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -271,7 +271,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"0");
 	}
 
-	public void testBug566518_003() {
+	public void testBug566518_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -297,7 +297,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"0");
 	}
 
-	public void testBug566518_004() {
+	public void testBug566518_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -323,7 +323,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"0");
 	}
 
-	public void testBug566518_005() {
+	public void testBug566518_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 					"X.java",
@@ -362,7 +362,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 
-	public void testBug566518_006() {
+	public void testBug566518_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -393,7 +393,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"");
 	}
 	// 6.5.5.1
-	public void testBug566715_001() {
+	public void testBug566715_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -419,7 +419,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 6.5.5.1
-	public void testBug566715_002() {
+	public void testBug566715_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -445,7 +445,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 6.5.5.1
-	public void testBug566715_003() {
+	public void testBug566715_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -464,7 +464,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 9.1.1/14.3
-	public void testBug566720_001() {
+	public void testBug566720_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -483,7 +483,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 9.1.1/14.3
-	public void testBug566720_002() {
+	public void testBug566720_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -502,7 +502,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 9.1.1
-	public void testBug566720_003() {
+	public void testBug566720_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -521,7 +521,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 9.1.1
-	public void testBug566720_004() {
+	public void testBug566720_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -557,7 +557,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"Illegal modifier for the local interface I; abstract and strictfp are the only modifiers allowed explicitly \n" +
 			"----------\n");
 	}
-	public void testBug566748_001() {
+	public void testBug566748_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -632,7 +632,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 		 	"----------\n"
 			);
 	}
-	public void testBug566748_002() {
+	public void testBug566748_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -706,7 +706,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 9.6
-	public void testBug564557AnnotInterface_001() {
+	public void testBug564557AnnotInterface_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -728,7 +728,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 9.6
-	public void testBug564557AnnotInterface_002() {
+	public void testBug564557AnnotInterface_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -750,7 +750,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 9.4 && 15.12.3
-	public void testBug564557MethodInvocation_003() {
+	public void testBug564557MethodInvocation_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -779,7 +779,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 9.4 && 15.12.3
-	public void testBug564557MethodInvocation_004() {
+	public void testBug564557MethodInvocation_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -822,7 +822,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 13.1
-	public void testBug564557BinaryForm_005() throws Exception {
+	public void testBug564557BinaryForm_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -841,7 +841,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 		LocalStaticsTest.verifyClassFile(expectedOutput, "X$1I.class");
 	}
 	// 14.3 for enum
-	public void testBug564557BinaryForm_006() throws Exception {
+	public void testBug564557BinaryForm_006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -860,7 +860,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 		LocalStaticsTest.verifyClassFile(expectedOutput, "X$1I.class");
 	}
 	// 15.8.3
-	public void testBug564557thisInStatic_007() {
+	public void testBug564557thisInStatic_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -894,7 +894,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			);
 	}
 	// 15.8.3
-	public void testBug564557thisInStatic_008() {
+	public void testBug564557thisInStatic_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -922,7 +922,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 		 	"----------\n"
 			);
 	}
-	public void testBug568514LocalEnums_001() {
+	public void testBug568514LocalEnums_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -940,7 +940,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"----------\n"
 		);
 	}
-	public void testBug568514LocalEnums_002() {
+	public void testBug568514LocalEnums_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_EnablePreviews, CompilerOptions.DISABLED);
 		this.runNegativeTest(
@@ -963,7 +963,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			options
 		);
 	}
-	public void testBug568514LocalEnums_003() {
+	public void testBug568514LocalEnums_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -983,7 +983,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 		);
 	}
 
-	public void testBug568514LocalEnums_004() {
+	public void testBug568514LocalEnums_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1003,7 +1003,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 		);
 	}
 
-	public void testBug566579_001() {
+	public void testBug566579_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1056,7 +1056,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			},
 			"");
 	}
-	public void testBug566579_003() {
+	public void testBug566579_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1074,7 +1074,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			},
 			"");
 	}
-	public void testBug566579_004() {
+	public void testBug566579_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1095,7 +1095,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			},
 			"");
 	}
-	public void testBug569444_001() {
+	public void testBug569444_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1116,7 +1116,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			},
 			"hello");
 	}
-	public void testBug569444_002() {
+	public void testBug569444_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1136,7 +1136,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			},
 			"hello");
 	}
-	public void testBug569444_003() {
+	public void testBug569444_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1167,7 +1167,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			},
 			"hello");
 	}
-	public void testBug569444_004() {
+	public void testBug569444_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1188,7 +1188,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"Illegal modifier for the local class zzz; only abstract or final is permitted\n" +
 			"----------\n");
 	}
-	public void testBug569444_005() {
+	public void testBug569444_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1220,7 +1220,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"Illegal modifier for the local interface I; abstract and strictfp are the only modifiers allowed explicitly \n" +
 			"----------\n");
 	}
-	public void testBug569444_006() {
+	public void testBug569444_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1252,7 +1252,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"Illegal modifier for the local interface I; abstract and strictfp are the only modifiers allowed explicitly \n" +
 			"----------\n");
 	}
-	public void testBug571163_001() {
+	public void testBug571163_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1285,7 +1285,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"Cannot use this in a static context\n" +
 			"----------\n");
 	}
-	public void testBug571300_001() {
+	public void testBug571300_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 				"X.java",
@@ -1308,7 +1308,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			},
 			"I.Z");
 	}
-	public void testBug571274_001() {
+	public void testBug571274_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1341,7 +1341,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"Cannot make a static reference to the non-static type T\n" +
 			"----------\n");
 	}
-	public void testBug566774_001() {
+	public void testBug566774_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1360,7 +1360,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 				"Cannot make a static reference to the non-static field b\n" +
 				"----------\n");
 	}
-	public void testBug566774_002() {
+	public void testBug566774_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1391,7 +1391,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 				"----------\n");
 	}
 
-	public void testBug566774_003() {
+	public void testBug566774_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 					"X.java",
@@ -1421,7 +1421,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 				"Local variable i is required to be final or effectively final based on its usage\n" +
 				"----------\n");
 	}
-	public void testBug566774_004() {
+	public void testBug566774_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 				new String[] {
 						"X.java",
@@ -1458,7 +1458,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 				"Local variable i is required to be final or effectively final based on its usage\n" +
 				"----------\n");
 	}
-	public void testBug572994_001() {
+	public void testBug572994_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 					"X.java",
@@ -1486,7 +1486,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 				"No enclosing instance of type X is accessible. Must qualify the allocation with an enclosing instance of type X (e.g. x.new A() where x is an instance of X).\n" +
 				"----------\n");
 	}
-	public void testBug572994_002() {
+	public void testBug572994_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 					"X.java",
@@ -1514,7 +1514,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 				"Cannot use this in a static context\n" +
 				"----------\n");
 	}
-	public void testBug572994_003() {
+	public void testBug572994_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(
 			new String[] {
 					"X.java",
@@ -1543,7 +1543,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 				"----------\n");
 	}
 	// Test that static field inside inner types are properly initialized
-	public void testBug574791_1() {
+	public void testBug574791_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"EnumTester.java",
@@ -1601,7 +1601,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 	}
 	// Test that the static initializer is generated only when required
 	// i.e., when the (anonymous) inner class contains a static field
-	public void testBug574791_2() throws Exception {
+	public void testBug574791_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1643,7 +1643,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			content = getClassfileContent("Test$2.class");
 			assertTrue("Unexpected code found", content.indexOf(expectedOutput) == -1);
 	}
-	public void testBug574791_3() {
+	public void testBug574791_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"EnumTester.java",
@@ -1707,7 +1707,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 	}
 	// ECJ reports about non-existing modifiers on a local class in a switch expression
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4584
-	public void testIssue4584() throws Exception {
+	public void testIssue4584() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1732,7 +1732,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"OK!");
 	}
 	// JLS 16 8.1.3: an inner class (here an anonymous class) may declare static members.
-	public void testIssue2860StaticMembersInAnonymousClass() throws Exception {
+	public void testIssue2860StaticMembersInAnonymousClass() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1758,7 +1758,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"true");
 	}
 	// JLS 16 8.1.3: an inner class (here a named local class) may declare static members.
-	public void testIssue2860StaticMembersInLocalClass() throws Exception {
+	public void testIssue2860StaticMembersInLocalClass() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(
 			new String[] {
 					"X.java",
@@ -1787,7 +1787,7 @@ public class LocalStaticsTest extends AbstractRegressionTest {
 			"true");
 	}
 	// A static class member of a local/anonymous class is illegal before source 16.
-	public void testIssue2860StaticMembersInLocalClassPre16() throws Exception {
+	public void testIssue2860StaticMembersInLocalClassPre16() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_15);
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_15);

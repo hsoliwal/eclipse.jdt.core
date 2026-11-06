@@ -27,12 +27,12 @@ public class JavaModelInfo extends OpenableElementInfo {
 /**
  * Compute the non-java resources contained in this java project.
  */
-private Object[] computeNonJavaResources() {
+private Object[] computeNonJavaResources() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
 	int length = projects.length;
 	Object[] resources = null;
 	int index = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IProject project = projects[i];
 		if (!JavaProject.hasJavaNature(project)) {
 			if (resources == null) {

@@ -66,7 +66,7 @@ public class ASTConverterSuperAfterStatements extends ConverterTestSetup {
 		System.err.println("Test "+getName()+" requires a JRE 25");
 	}
 
-	public void test001() throws JavaModelException {
+	public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE25) {
 			printJREError();
 			return;
@@ -85,7 +85,7 @@ public class ASTConverterSuperAfterStatements extends ConverterTestSetup {
 				}
 				""";
 
-		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/X.java", true/*resolve*/);
+		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/X.java", true/*resolve*/); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ASTNode node = buildAST(contents, this.workingCopy);
 		assertEquals("Wrong type of statement", ASTNode.COMPILATION_UNIT, node.getNodeType());
 		CompilationUnit compilationUnit = (CompilationUnit) node;
@@ -103,7 +103,7 @@ public class ASTConverterSuperAfterStatements extends ConverterTestSetup {
 		assertEquals("super Constructor", node.getNodeType(), ASTNode.SUPER_CONSTRUCTOR_INVOCATION);
 	}
 
-	public void test002() throws JavaModelException {
+	public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE25) {
 			printJREError();
 			return;
@@ -125,7 +125,7 @@ public class ASTConverterSuperAfterStatements extends ConverterTestSetup {
 					}
 				""";
 
-		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/X.java", true/*resolve*/);
+		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/X.java", true/*resolve*/); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ASTNode node = buildAST(contents, this.workingCopy);
 		assertEquals("Wrong type of statement", ASTNode.COMPILATION_UNIT, node.getNodeType());
 		CompilationUnit compilationUnit = (CompilationUnit) node;
@@ -142,7 +142,7 @@ public class ASTConverterSuperAfterStatements extends ConverterTestSetup {
 		assertEquals("Super constructor invocation", superConstructorInvocation.getNodeType(), ASTNode.SUPER_CONSTRUCTOR_INVOCATION);
 	}
 
-	public void test003() throws JavaModelException {
+	public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE25) {
 			printJREError();
 			return;
@@ -173,7 +173,7 @@ public class ASTConverterSuperAfterStatements extends ConverterTestSetup {
 					}
 				}
 				""";
-		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/X.java", true/*resolve*/);
+		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/X.java", true/*resolve*/); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ASTNode node = buildAST(contents, this.workingCopy);
 		assertEquals("Wrong type of statement", ASTNode.COMPILATION_UNIT, node.getNodeType());
 		CompilationUnit compilationUnit = (CompilationUnit) node;
@@ -195,7 +195,7 @@ public class ASTConverterSuperAfterStatements extends ConverterTestSetup {
 
 	}
 
-	public void test004() throws JavaModelException {
+	public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!isJRE25) {
 			printJREError();
 			return;
@@ -213,7 +213,7 @@ public class ASTConverterSuperAfterStatements extends ConverterTestSetup {
 				class S {}
 				""";
 
-		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/X.java", true/*resolve*/);
+		this.workingCopy = getWorkingCopy("/" + CONV_PREFIX + "/src/X.java", true/*resolve*/); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		ASTNode node = buildAST(contents, this.workingCopy);
 		assertEquals("Wrong type of statement", ASTNode.COMPILATION_UNIT, node.getNodeType());
 		CompilationUnit compilationUnit = (CompilationUnit) node;

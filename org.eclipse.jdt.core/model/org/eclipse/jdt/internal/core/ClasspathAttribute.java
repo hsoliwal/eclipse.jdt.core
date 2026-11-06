@@ -50,7 +50,7 @@ public class ClasspathAttribute implements IClasspathAttribute {
 
     @Override
 	public String toString() {
-    	return this.name + "=" + this.value; //$NON-NLS-1$
+    	return this.name + "=" + this.value; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     }
 
 }

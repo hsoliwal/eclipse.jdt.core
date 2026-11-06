@@ -106,7 +106,7 @@ public class SearchableEnvironment
 	 * See {@link NameLookup#findType(String, String, boolean, int, boolean, boolean, boolean, IProgressMonitor, IPackageFragmentRoot[], int)}.
 	 * </p>
 	 */
-	public SearchableEnvironment(JavaProject project, org.eclipse.jdt.core.ICompilationUnit[] workingCopies, boolean excludeTestCode, int release) throws JavaModelException {
+	public SearchableEnvironment(JavaProject project, org.eclipse.jdt.core.ICompilationUnit[] workingCopies, boolean excludeTestCode, int release) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.project = project;
 		this.excludeTestCode = excludeTestCode;
 		this.release = release;
@@ -118,7 +118,7 @@ public class SearchableEnvironment
 		boolean java9plus = release >=JavaProject.FIRST_MULTI_RELEASE || JavaCore.callReadOnly(() -> CompilerOptions
 				.versionToJdkLevel(project.getOption(JavaCore.COMPILER_COMPLIANCE, true)) >= ClassFileConstants.JDK9);
 		if (java9plus) {
-			this.knownModuleLocations = new HashMap<>();
+			this.knownModuleLocations = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 
 			this.moduleUpdater = new ModuleUpdater(project);
 			if (!excludeTestCode) {
@@ -127,14 +127,14 @@ public class SearchableEnvironment
 					this.moduleUpdater.addReadUnnamedForNonEmptyClasspath(project, expandedClasspath);
 				}
 			}
-			for (IClasspathEntry entry : project.getRawClasspath())
+			for (IClasspathEntry entry : project.getRawClasspath()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(!excludeTestCode || !entry.isTest()) {
 					this.moduleUpdater.computeModuleUpdates(entry);
 				}
 
-			this.unnamedModulePackageFragmentRoots = new ArrayList<>();
+			this.unnamedModulePackageFragmentRoots = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			IPackageFragmentRoot[] packageFragmentRoots = project.getAllPackageFragmentRoots();
-			for (IPackageFragmentRoot packageFragmentRoot : packageFragmentRoots) {
+			for (IPackageFragmentRoot packageFragmentRoot : packageFragmentRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				IModuleDescription moduleDescription = packageFragmentRoot.getModuleDescription();
 				if (moduleDescription == null) {
 					this.unnamedModulePackageFragmentRoots.add(packageFragmentRoot);
@@ -159,7 +159,7 @@ public class SearchableEnvironment
 		this.owner = owner;
 	}
 
-	private static int convertSearchFilterToModelFilter(int searchFilter) {
+	private static int convertSearchFilterToModelFilter(int searchFilter) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (searchFilter) {
 			case IJavaSearchConstants.CLASS:
 				return NameLookup.ACCEPT_CLASSES;
@@ -181,7 +181,7 @@ public class SearchableEnvironment
 	 * Returns the given type in the the given package if it exists,
 	 * otherwise <code>null</code>.
 	 */
-	protected NameEnvironmentAnswer find(String typeName, String packageName, IPackageFragmentRoot[] moduleContext) {
+	protected NameEnvironmentAnswer find(String typeName, String packageName, IPackageFragmentRoot[] moduleContext) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (packageName == null)
 			packageName = IPackageFragment.DEFAULT_PACKAGE_NAME;
 		if (this.owner != null) {
@@ -191,7 +191,7 @@ public class SearchableEnvironment
 				ICompilationUnit cu = new BasicCompilationUnit(
 						source.toCharArray(),
 						CharOperation.splitOn('.', packageName.toCharArray()),
-						typeName + Util.defaultJavaExtension(),
+						typeName + Util.defaultJavaExtension(), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						moduleElement);
 				return new NameEnvironmentAnswer(cu, null);
 			}
@@ -214,7 +214,7 @@ public class SearchableEnvironment
 					// retrieve the requested type
 					SourceTypeElementInfo sourceType = (SourceTypeElementInfo)((SourceType) answer.type).getElementInfo();
 					ISourceType topLevelType = sourceType;
-					while (topLevelType.getEnclosingType() != null) {
+					while (topLevelType.getEnclosingType() != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						topLevelType = topLevelType.getEnclosingType();
 					}
 					// find all siblings (other types declared in same unit, since may be used for name resolution)
@@ -224,7 +224,7 @@ public class SearchableEnvironment
 					// in the resulting collection, ensure the requested type is the first one
 					sourceTypes[0] = sourceType;
 					int length = types.length;
-					for (int i = 0, index = 1; i < length; i++) {
+					for (int i = 0, index = 1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						ISourceType otherType =
 							(ISourceType) ((JavaElement) types[i]).getElementInfo();
 						if (!otherType.equals(topLevelType) && index < length) // check that the index is in bounds (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=62861)
@@ -254,21 +254,21 @@ public class SearchableEnvironment
 		return path.toOSString();
 	}
 
-	private NameEnvironmentAnswer createAnswer(Answer lookupAnswer, String packageName, String typeName, BinaryType binaryType) {
+	private NameEnvironmentAnswer createAnswer(Answer lookupAnswer, String packageName, String typeName, BinaryType binaryType) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] moduleName = lookupAnswer.module != null ? lookupAnswer.module.getElementName().toCharArray() : null;
 		try {
 			IBinaryType iBinaryType = binaryType.getElementInfo();
 			if (iBinaryType.getExternalAnnotationStatus() == ExternalAnnotationStatus.NOT_EEA_CONFIGURED
 					&& JavaCore.ENABLED.equals(this.project.getOption(JavaCore.CORE_JAVA_BUILD_EXTERNAL_ANNOTATIONS_FROM_ALL_LOCATIONS, true)))
 			{
-				String soughtName = typeName+ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX;
+				String soughtName = typeName+ExternalAnnotationProvider.ANNOTATION_FILE_SUFFIX; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				boolean isAnnotated = false;
 				IPackageFragment[] packageFragments = this.nameLookup.findPackageFragments(packageName, false);
 				if (packageFragments != null) {
 					String packageNameSlash = packageName.replace('.', '/');
-					for (IPackageFragment fragment : packageFragments) {
+					for (IPackageFragment fragment : packageFragments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (fragment.exists()) {
-							for (Object rc : fragment.getNonJavaResources()) {
+							for (Object rc : fragment.getNonJavaResources()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (rc instanceof IStorage && soughtName.equals(((IStorage) rc).getName())) {
 									if (isAnnotated) {
 										// TODO: if merging at method granularity should be supported, this is where to implement it.
@@ -277,7 +277,7 @@ public class SearchableEnvironment
 									}
 									try {
 										iBinaryType = new ExternalAnnotationDecorator(iBinaryType,
-												new ExternalAnnotationProvider(((IStorage) rc).getContents(), packageNameSlash+'/'+typeName));
+												new ExternalAnnotationProvider(((IStorage) rc).getContents(), packageNameSlash+'/'+typeName)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 										isAnnotated = true;
 										break;
 									} catch (IOException | CoreException e) {
@@ -359,7 +359,7 @@ public class SearchableEnvironment
 	 * The packages found are passed to:
 	 *    ISearchRequestor.acceptPackage(char[][] packageName)
 	 */
-	public void findPackages(char[] prefix, ISearchRequestor requestor, IPackageFragmentRoot[] moduleContext, boolean followRequires) {
+	public void findPackages(char[] prefix, ISearchRequestor requestor, IPackageFragmentRoot[] moduleContext, boolean followRequires) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.nameLookup.seekPackageFragments(
 			new String(prefix),
 			true,
@@ -367,17 +367,17 @@ public class SearchableEnvironment
 		if (followRequires && this.knownModuleLocations != null) {
 			try {
 				boolean isMatchAllPrefix = CharOperation.equals(CharOperation.ALL_PREFIX, prefix);
-				Set<IModuleDescription> modDescs = new HashSet<>();
-				for (IPackageFragmentRoot root : moduleContext) {
+				Set<IModuleDescription> modDescs = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+				for (IPackageFragmentRoot root : moduleContext) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IModuleDescription desc = root.getJavaProject().getModuleDescription();
 					if (desc instanceof AbstractModule)
 						modDescs.add(desc);
 				}
-				for (IModuleDescription md : modDescs) {
+				for (IModuleDescription md : modDescs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					IModuleReference[] reqModules = ((AbstractModule) md).getRequiredModules();
 					char[] modName = md.getElementName().toCharArray();
-					Set<IModuleReference> visited = new HashSet<>();
-					for (IModuleReference moduleReference : reqModules) {
+					Set<IModuleReference> visited = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+					for (IModuleReference moduleReference : reqModules) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						findPackagesFromRequires(prefix, isMatchAllPrefix, requestor, moduleReference, modName, visited);
 					}
 				}
@@ -387,26 +387,26 @@ public class SearchableEnvironment
 		}
 	}
 
-	private void findPackagesFromRequires(char[] prefix, boolean isMatchAllPrefix, ISearchRequestor requestor, IModuleReference moduleReference, char[] clientModuleName, Set<IModuleReference> visited) {
+	private void findPackagesFromRequires(char[] prefix, boolean isMatchAllPrefix, ISearchRequestor requestor, IModuleReference moduleReference, char[] clientModuleName, Set<IModuleReference> visited) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!visited.add(moduleReference)) {
 			return;
 		}
 		IPackageFragmentRoot[] fragmentRoots = findModuleContext(moduleReference.name());
 		if (fragmentRoots == null) return;
-		for (IPackageFragmentRoot root : fragmentRoots) {
+		for (IPackageFragmentRoot root : fragmentRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IJavaProject requiredProject = root.getJavaProject();
 			try {
 				IModuleDescription module = requiredProject.getModuleDescription();
 				if (module instanceof AbstractModule) {
 					AbstractModule requiredModule = (AbstractModule) module;
-					for (IPackageExport packageExport : requiredModule.getExportedPackages()) {
+					for (IPackageExport packageExport : requiredModule.getExportedPackages()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (!packageExport.isQualified() || CharOperation.containsEqual(packageExport.targets(), clientModuleName)) {
 							char[] exportName = packageExport.name();
 							if (isMatchAllPrefix || CharOperation.prefixEquals(prefix, exportName))
 								requestor.acceptPackage(exportName);
 						}
 					}
-					for (IModuleReference ref : requiredModule.getRequiredModules()) {
+					for (IModuleReference ref : requiredModule.getRequiredModules()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (ref.isTransitive())
 							findPackagesFromRequires(prefix, isMatchAllPrefix, requestor, ref, clientModuleName, visited);
 					}
@@ -429,7 +429,7 @@ public class SearchableEnvironment
 	 * This method can not be used to find member types... member
 	 * types are found relative to their enclosing type.
 	 */
-	public void findExactTypes(char[] name, final boolean findMembers, int searchFor, final ISearchRequestor storage) {
+	public void findExactTypes(char[] name, final boolean findMembers, int searchFor, final ISearchRequestor storage) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		try {
 			final String excludePath;
@@ -539,7 +539,7 @@ public class SearchableEnvironment
 		if (answer != null)
 			return answer;
 		if (LookupStrategy.get(nameForLookup) == LookupStrategy.Named) {
-			for (ModuleBinding required : module.getAllRequiredModules()) {
+			for (ModuleBinding required : module.getAllRequiredModules()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				answer = findType(compoundTypeName, required.nameForLookup());
 				if (answer != null)
 					return answer;
@@ -551,7 +551,7 @@ public class SearchableEnvironment
 	/**
 	 * @see org.eclipse.jdt.internal.compiler.env.IModuleAwareNameEnvironment#findType(char[][],char[])
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public NameEnvironmentAnswer findType(char[][] compoundTypeName, char[] moduleName) {
 		if (compoundTypeName == null) return null;
 
@@ -647,7 +647,7 @@ public class SearchableEnvironment
 	 * This method can not be used to find member types... member
 	 * types are found relative to their enclosing type.
 	 */
-	public void findTypes(char[] prefix, final boolean findMembers, int matchRule, int searchFor, final boolean resolveDocumentName, final ISearchRequestor storage, IProgressMonitor monitor) {
+	public void findTypes(char[] prefix, final boolean findMembers, int matchRule, int searchFor, final boolean resolveDocumentName, final ISearchRequestor storage, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		long start = -1;
 		if (NameLookup.VERBOSE)
 			start = System.currentTimeMillis();
@@ -829,7 +829,7 @@ public class SearchableEnvironment
 	 * The constructors found are passed to one of the following methods:
 	 *    ISearchRequestor.acceptConstructor(...)
 	 */
-	public void findConstructorDeclarations(char[] prefix, int matchRule, final boolean resolveDocumentName, final ISearchRequestor storage, IProgressMonitor monitor) {
+	public void findConstructorDeclarations(char[] prefix, int matchRule, final boolean resolveDocumentName, final ISearchRequestor storage, IProgressMonitor monitor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			final String excludePath;
 			if (this.unitToSkip != null && this.unitToSkip instanceof IJavaElement) {
@@ -992,7 +992,7 @@ public class SearchableEnvironment
 	 * If the <code>prefix</code> is unqualified, all types whose simple name matches
 	 * the <code>prefix</code> are returned.
 	 */
-	private void findTypes(String prefix, ISearchRequestor storage, int type) {
+	private void findTypes(String prefix, ISearchRequestor storage, int type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//TODO (david) should add camel case support
 		SearchableEnvironmentRequestor requestor =
 			new SearchableEnvironmentRequestor(storage, this.unitToSkip, this.project, this.nameLookup);
@@ -1006,7 +1006,7 @@ public class SearchableEnvironment
 			IPackageFragment[] fragments = elementRequestor.getPackageFragments();
 			if (fragments != null) {
 				String className = prefix.substring(index + 1);
-				for (IPackageFragment fragment : fragments)
+				for (IPackageFragment fragment : fragments) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (fragment != null)
 						this.nameLookup.seekTypes(className, fragment, true, type, requestor);
 			}
@@ -1028,7 +1028,7 @@ public class SearchableEnvironment
 	/**
 	 * @see org.eclipse.jdt.internal.compiler.env.IModuleAwareNameEnvironment#getModulesDeclaringPackage(char[][], char[])
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public char[][] getModulesDeclaringPackage(char[][] packageName, char[] moduleName) {
 		long start = -1;
 		if (NameLookup.VERBOSE)
@@ -1064,7 +1064,7 @@ public class SearchableEnvironment
 					IPackageFragmentRoot[] matchingRoots = this.nameLookup.findPackageFragementRoots(pkgName);
 					if(matchingRoots != null) {
 						boolean containsUnnamed = false;
-						for (IPackageFragmentRoot packageRoot : matchingRoots) {
+						for (IPackageFragmentRoot packageRoot : matchingRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							IPackageFragmentRoot[] singleton = { packageRoot };
 							if (strategy.matches(singleton, locs -> locs[0] instanceof JrtPackageFragmentRoot || getModuleDescription(locs) != null)) {
 								if (this.nameLookup.isPackage(pkgName, singleton)) {
@@ -1095,14 +1095,14 @@ public class SearchableEnvironment
 					}
 					return names == CharOperation.NO_CHAR_CHAR ? null : names;
 				default:
-					throw new IllegalArgumentException("Unexpected LookupStrategy "+strategy); //$NON-NLS-1$
+					throw new IllegalArgumentException("Unexpected LookupStrategy "+strategy); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		} finally {
 			if (NameLookup.VERBOSE)
 				this.timeSpentInGetModulesDeclaringPackage += System.currentTimeMillis()-start;
 		}
 	}
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean hasCompilationUnit(char[][] pkgName, char[] moduleName, boolean checkCUs) {
 		LookupStrategy strategy = LookupStrategy.get(moduleName);
 		switch (strategy) {
@@ -1129,7 +1129,7 @@ public class SearchableEnvironment
 				String[] splittedName = Util.toStrings(pkgName);
 				IPackageFragmentRoot[] packageRoots = this.nameLookup.findPackageFragementRoots(splittedName);
 				if(packageRoots != null) {
-					for (IPackageFragmentRoot packageRoot : packageRoots) {
+					for (IPackageFragmentRoot packageRoot : packageRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IPackageFragmentRoot[] singleton = { packageRoot };
 						if (strategy.matches(singleton, locs -> locs[0] instanceof JrtPackageFragmentRoot || getModuleDescription(locs) != null)) {
 							if (this.nameLookup.hasCompilationUnit(pkgName, singleton))
@@ -1139,15 +1139,15 @@ public class SearchableEnvironment
 				}
 				return false;
 			default:
-				throw new IllegalArgumentException("Unexpected LookupStrategy "+strategy); //$NON-NLS-1$
+				throw new IllegalArgumentException("Unexpected LookupStrategy "+strategy); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	private IModuleDescription getModuleDescription(IPackageFragmentRoot[] roots) {
 		if (this.rootToModule == null) {
-			this.rootToModule = new HashMap<>();
+			this.rootToModule = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		}
-		for (IPackageFragmentRoot root : roots) {
+		for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IModuleDescription moduleDescription = NameLookup.getModuleDescription(this.project, root, this.rootToModule, this.nameLookup.rootToResolvedEntries::get, this.release);
 			if (moduleDescription != null)
 				return moduleDescription;
@@ -1155,7 +1155,7 @@ public class SearchableEnvironment
 		return null;
 	}
 
-	private IPackageFragmentRoot[] findModuleContext(char[] moduleName) {
+	private IPackageFragmentRoot[] findModuleContext(char[] moduleName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragmentRoot[] moduleContext = null;
 		if (this.knownModuleLocations != null && moduleName != null && moduleName.length > 0) {
 			moduleContext = this.knownModuleLocations.get(String.valueOf(moduleName));
@@ -1164,7 +1164,7 @@ public class SearchableEnvironment
 				if (moduleAnswer != null) {
 					IProject currentProject = moduleAnswer.module.getJavaProject().getProject();
 					IJavaElement current = moduleAnswer.module.getParent();
-					while (moduleContext == null && current != null) {
+					while (moduleContext == null && current != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						switch (current.getElementType()) {
 							case IJavaElement.PACKAGE_FRAGMENT_ROOT:
 								if (!((IPackageFragmentRoot) current).isExternal() && !(current instanceof JarPackageFragmentRoot)) {
@@ -1196,7 +1196,7 @@ public class SearchableEnvironment
 											}
 										}
 									} catch (JavaModelException e) {
-										Util.log(e, "Failed to find package fragment root for " + current); //$NON-NLS-1$
+										Util.log(e, "Failed to find package fragment root for " + current); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 									}
 								}
 						}
@@ -1212,7 +1212,7 @@ public class SearchableEnvironment
 	 * Returns a printable string for the array.
 	 */
 	protected String toStringChar(char[] name) {
-		return "["  //$NON-NLS-1$
+		return "["  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ new String(name) + "]" ; //$NON-NLS-1$
 	}
 
@@ -1220,9 +1220,9 @@ public class SearchableEnvironment
 	 * Returns a printable string for the array.
 	 */
 	protected String toStringCharChar(char[][] names) {
-		StringBuilder result = new StringBuilder();
-		for (char[] name : names) {
-			result.append(toStringChar(name));
+		StringBuilder result = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (char[] name : names) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			result.append(toStringChar(name)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return result.toString();
 	}
@@ -1253,14 +1253,14 @@ public class SearchableEnvironment
 			this.moduleUpdater.applyModuleUpdates(module, kind);
 	}
 
-	private IPackageFragmentRoot[] getRootsForOutputLocation(IJavaProject otherJavaProject, IResource outputLocation) throws JavaModelException {
+	private IPackageFragmentRoot[] getRootsForOutputLocation(IJavaProject otherJavaProject, IResource outputLocation) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath outputPath = outputLocation.getFullPath();
-		List<IPackageFragmentRoot> result = new ArrayList<>();
+		List<IPackageFragmentRoot> result = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		if (outputPath.equals(otherJavaProject.getOutputLocation())) {
 			// collect roots reporting to the default output location:
-			for (IClasspathEntry classpathEntry : otherJavaProject.getRawClasspath()) {
+			for (IClasspathEntry classpathEntry : otherJavaProject.getRawClasspath()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (classpathEntry.getOutputLocation() == null) {
-					for (IPackageFragmentRoot root : otherJavaProject.findPackageFragmentRoots(classpathEntry)) {
+					for (IPackageFragmentRoot root : otherJavaProject.findPackageFragmentRoots(classpathEntry)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						IResource rootResource = root.getResource();
 						if (rootResource == null || !rootResource.getProject().equals(otherJavaProject.getProject()))
 							continue; // outside this project
@@ -1272,18 +1272,18 @@ public class SearchableEnvironment
 		if (!result.isEmpty())
 			return result.toArray(new IPackageFragmentRoot[result.size()]);
 		// search an entry that specifically (and exclusively) reports to the output location:
-		for (IClasspathEntry classpathEntry : otherJavaProject.getRawClasspath()) {
+		for (IClasspathEntry classpathEntry : otherJavaProject.getRawClasspath()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (outputPath.equals(classpathEntry.getOutputLocation()))
 				return otherJavaProject.findPackageFragmentRoots(classpathEntry);
 		}
 		return null;
 	}
 
-	public static IPackageFragmentRoot[] getOwnedPackageFragmentRoots(IJavaProject javaProject) throws JavaModelException {
+	public static IPackageFragmentRoot[] getOwnedPackageFragmentRoots(IJavaProject javaProject) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragmentRoot[] allRoots = javaProject.getPackageFragmentRoots();
 		IPackageFragmentRoot[] sourceRoots = Arrays.copyOf(allRoots, allRoots.length);
 		int count = 0;
-		for (IPackageFragmentRoot root : allRoots) {
+		for (IPackageFragmentRoot root : allRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (root.getKind() == IPackageFragmentRoot.K_BINARY) {
 				if(root instanceof JarPackageFragmentRoot) {
 					// don't treat jars in a project as part of the project's module
@@ -1300,21 +1300,21 @@ public class SearchableEnvironment
 		return sourceRoots;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public char[][] listPackages(char[] moduleName) {
 		switch (LookupStrategy.get(moduleName)) {
 			case Named:
 				IPackageFragmentRoot[] packageRoots = findModuleContext(moduleName);
-				Set<String> packages = new HashSet<>();
+				Set<String> packages = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 				if (packageRoots != null) {
-					for (IPackageFragmentRoot packageRoot : packageRoots) {
+					for (IPackageFragmentRoot packageRoot : packageRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						try {
-							for (IJavaElement javaElement : packageRoot.getChildren()) {
+							for (IJavaElement javaElement : packageRoot.getChildren()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 								if (javaElement instanceof IPackageFragment && !((IPackageFragment) javaElement).isDefaultPackage())
 									packages.add(javaElement.getElementName());
 							}
 						} catch (JavaModelException e) {
-							Util.log(e, "Failed to retrieve packages from " + packageRoot); //$NON-NLS-1$
+							Util.log(e, "Failed to retrieve packages from " + packageRoot); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						}
 					}
 				}
@@ -1329,27 +1329,27 @@ public class SearchableEnvironment
 			return;
 
 		JavaModelManager.trace(" TIME SPENT SearchableEnvironment");  //$NON-NLS-1$
-		JavaModelManager.trace(" -> getModulesDeclaringPackage..." +  this.timeSpentInGetModulesDeclaringPackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
-		JavaModelManager.trace(" -> findTypes...................." +  this.timeSpentInFindTypes + "ms");  //$NON-NLS-1$ //$NON-NLS-2$
+		JavaModelManager.trace(" -> getModulesDeclaringPackage..." +  this.timeSpentInGetModulesDeclaringPackage + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		JavaModelManager.trace(" -> findTypes...................." +  this.timeSpentInFindTypes + "ms");  //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		this.nameLookup.printTimeSpent();
 	}
 
-	private boolean hasSubPackageInUnnamedModule(String[] pkgName) {
+	private boolean hasSubPackageInUnnamedModule(String[] pkgName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List<IPackageFragmentRoot> packageFragmentRoots = this.unnamedModulePackageFragmentRoots;
 		if (packageFragmentRoots != null) {
 			String name = String.join(".", pkgName); //$NON-NLS-1$
-			for (IPackageFragmentRoot packageFragmentRoot : packageFragmentRoots) {
+			for (IPackageFragmentRoot packageFragmentRoot : packageFragmentRoots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					IJavaElement[] children = packageFragmentRoot.getChildren();
-					for (IJavaElement child : children) {
+					for (IJavaElement child : children) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						String childName = child.getElementName();
 						if (childName.startsWith(name)) {
 							return true;
 						}
 					}
 				} catch (JavaModelException e) {
-					Util.log(e, "Failed to retrieve children for " + packageFragmentRoot); //$NON-NLS-1$
+					Util.log(e, "Failed to retrieve children for " + packageFragmentRoot); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		}

@@ -82,17 +82,17 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
     @Override
 	public ITypeBinding getTypeBinding(){ return (ITypeBinding)_binding; }
 
-	private void getASTFields(
+	private void getASTFields( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     		final AbstractTypeDeclaration typeDecl,
     		final List<FieldDeclaration> results){
     	final List<?> bodyDecls = typeDecl.bodyDeclarations();
-    	for( int i=0, len=bodyDecls.size(); i<len; i++ ){
+    	for( int i=0, len=bodyDecls.size(); i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     		final BodyDeclaration bodyDecl = (BodyDeclaration)bodyDecls.get(i);
     		IFile file = null;
     		if( bodyDecl.getNodeType() == ASTNode.FIELD_DECLARATION ){
     			final List<VariableDeclarationFragment> fragments =
                     ((org.eclipse.jdt.core.dom.FieldDeclaration)bodyDecl).fragments();
-    			for( VariableDeclarationFragment frag : fragments ){
+    			for( VariableDeclarationFragment frag : fragments ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     				final IBinding fieldBinding = frag.resolveBinding();
     				if( fieldBinding == null ){
     					if( file == null )
@@ -106,10 +106,10 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
     	}
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Collection<FieldDeclaration> getFields()
     {
-    	final List<FieldDeclaration> results = new ArrayList<>();
+    	final List<FieldDeclaration> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
     	final ITypeBinding typeBinding = getDeclarationBinding();
     	if( isFromSource() ){
     		final ASTNode node =
@@ -127,7 +127,7 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
     				break;
     			default:
     				// the ast node for a type binding should be a AbstractTypeDeclaration.
-    				throw new IllegalStateException("expecting a AbstractTypeDeclaration but got "  //$NON-NLS-1$
+    				throw new IllegalStateException("expecting a AbstractTypeDeclaration but got "  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     						+ node.getClass().getName() );
     			}
     		}
@@ -135,7 +135,7 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
     	// either type is binary or
     	// constructing the binding based fields for source type.
         final IVariableBinding[] fields = typeBinding.getDeclaredFields();
-        for( IVariableBinding field : fields ){
+        for( IVariableBinding field : fields ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
         	// note that the name HAS_INCONSISTENT_TYPE_HIERACHY is not a legal java identifier
         	// so there is no chance that we are filtering out actual declared fields.
         	if( field.isSynthetic() || HAS_INCONSISTENT_TYPE_HIERACHY.equals(field.getName()))
@@ -151,8 +151,8 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
 	public Collection<TypeDeclaration> getNestedTypes()
     {
         final ITypeBinding[] memberTypes = getDeclarationBinding().getDeclaredTypes();
-        final List<TypeDeclaration> results = new ArrayList<>(memberTypes.length);
-        for( ITypeBinding type : memberTypes ){
+        final List<TypeDeclaration> results = new ArrayList<>(memberTypes.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+        for( ITypeBinding type : memberTypes ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             Declaration mirrorDecl = Factory.createReferenceType(type, _env);
             if( mirrorDecl != null )
                 results.add((TypeDeclaration)mirrorDecl);
@@ -164,8 +164,8 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
 	public Collection<TypeParameterDeclaration> getFormalTypeParameters()
     {
         final ITypeBinding[] typeParams = getDeclarationBinding().getTypeParameters();
-        final List<TypeParameterDeclaration> results = new ArrayList<>(typeParams.length);
-        for( ITypeBinding typeParam : typeParams ){
+        final List<TypeParameterDeclaration> results = new ArrayList<>(typeParams.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+        for( ITypeBinding typeParam : typeParams ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             Declaration mirrorDecl = Factory.createDeclaration(typeParam, _env);
             if( mirrorDecl != null )
                 results.add( (TypeParameterDeclaration)mirrorDecl );
@@ -191,8 +191,8 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
         if( typeArgs == null || typeArgs.length == 0 )
     		return Collections.emptyList();
 
-        final Collection<TypeMirror> result = new ArrayList<>(typeArgs.length);
-        for( ITypeBinding arg : typeArgs ){
+        final Collection<TypeMirror> result = new ArrayList<>(typeArgs.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+        for( ITypeBinding arg : typeArgs ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             final TypeMirror mirror = Factory.createTypeMirror(arg, _env);
             if (mirror == null)
                 result.add(Factory.createErrorClassType(arg));
@@ -224,8 +224,8 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
         final ITypeBinding[] superInterfaceBindings = getDeclarationBinding().getInterfaces();
         if( superInterfaceBindings == null || superInterfaceBindings.length == 0 )
             return Collections.emptyList();
-        final List<InterfaceType> results = new ArrayList<>(superInterfaceBindings.length);
-        for( ITypeBinding binding : superInterfaceBindings ){
+        final List<InterfaceType> results = new ArrayList<>(superInterfaceBindings.length); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+        for( ITypeBinding binding : superInterfaceBindings ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             if( binding.isInterface() ){
                 final TypeDeclarationImpl mirrorDecl = Factory.createReferenceType(binding, _env);
                 if( mirrorDecl != null && mirrorDecl.kind() == MirrorKind.TYPE_INTERFACE ){
@@ -250,13 +250,13 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
     /**
      * create mirror methods that does not have a binding represention.
      */
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings("rawtypes") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void getASTMethods(
     		final AbstractTypeDeclaration typeDecl,
     		final List<MethodDeclaration> results){
     	final List bodyDecls = typeDecl.bodyDeclarations();
     	IFile file = null;
-    	for( int i=0, len=bodyDecls.size(); i<len; i++ ){
+    	for( int i=0, len=bodyDecls.size(); i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
     		final BodyDeclaration bodyDecl = (BodyDeclaration)bodyDecls.get(i);
     		switch(bodyDecl.getNodeType()){
     		case ASTNode.METHOD_DECLARATION:
@@ -294,9 +294,9 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
     	}
     }
 
-    protected List<? extends MethodDeclaration> _getMethods()
+    protected List<? extends MethodDeclaration> _getMethods() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     {
-    	final List<MethodDeclaration> results = new ArrayList<>();
+    	final List<MethodDeclaration> results = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
     	if( isFromSource() ){
     		// need to consult the ast since methods with broken signature
     		// do not appear in bindings.
@@ -316,7 +316,7 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
     				break;
     			default:
     				// the ast node for a type binding should be a AbstractTypeDeclaration.
-    				throw new IllegalStateException("expecting a AbstractTypeDeclaration but got "  //$NON-NLS-1$
+    				throw new IllegalStateException("expecting a AbstractTypeDeclaration but got "  //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     						+ node.getClass().getName() );
     			}
     		}
@@ -324,7 +324,7 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
         // build methods for binding type or
     	// build the binding based method for source type.
     	final IMethodBinding[] methods = getDeclarationBinding().getDeclaredMethods();
-        for( IMethodBinding method : methods ){
+        for( IMethodBinding method : methods ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             if( method.isConstructor() || method.isSynthetic() ) continue;
             Declaration mirrorDecl = Factory.createDeclaration(method, _env);
             if( mirrorDecl != null)
@@ -356,7 +356,7 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
 		return isSubTypeCompatible(left);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean isSubTypeCompatible(EclipseMirrorType type) {
 		// Operate on erasures - ignore generics for now
 		// Also ignore boxing for now
@@ -383,7 +383,7 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
 		if (eq(t1,t2)) return true;
 		ITypeBinding[] intfs = t1.getInterfaces();
 
-		for (ITypeBinding intf : intfs) {
+		for (ITypeBinding intf : intfs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (isImplementorOf(intf.getErasure(), t2))
 				return true;
 		}
@@ -397,7 +397,7 @@ public abstract class TypeDeclarationImpl extends MemberDeclarationImpl
 	}
 
 	private static boolean isSubClassOf(ITypeBinding t1, ITypeBinding t2) {
-		while(t1 != null) {
+		while(t1 != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (eq(t1, t2))	return true;
 			t1 = t1.getSuperclass();
 		}

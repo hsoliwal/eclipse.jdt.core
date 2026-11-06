@@ -35,7 +35,7 @@ public class JavaCorePreferenceInitializer extends AbstractPreferenceInitializer
 	/**
 	 * @see org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer#initializeDefaultPreferences()
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void initializeDefaultPreferences() {
 		// If modified, also modify the method JavaModelManager#getDefaultOptionsNoInitialization()
 		// and also consider updating org.eclipse.jdt.internal.compiler.batch.Main#initializeWarnings(String)
@@ -84,7 +84,7 @@ public class JavaCorePreferenceInitializer extends AbstractPreferenceInitializer
 
 		// Formatter settings
 		Map<String, String> codeFormatterOptionsMap = DefaultCodeFormatterConstants.getEclipseDefaultSettings(); // code formatter defaults
-		for (Map.Entry<String, String> entry : codeFormatterOptionsMap.entrySet()) {
+		for (Map.Entry<String, String> entry : codeFormatterOptionsMap.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String optionName = entry.getKey();
 			defaultOptionsMap.put(optionName, entry.getValue());
 			optionNames.add(optionName);
@@ -117,7 +117,7 @@ public class JavaCorePreferenceInitializer extends AbstractPreferenceInitializer
 
 		// Store default values to default preferences
 	 	IEclipsePreferences defaultPreferences = DefaultScope.INSTANCE.getNode(JavaCore.PLUGIN_ID);
-		for (Map.Entry<String, String> entry : defaultOptionsMap.entrySet()) {
+		for (Map.Entry<String, String> entry : defaultOptionsMap.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String optionName = entry.getKey();
 			defaultPreferences.put(optionName, entry.getValue());
 			optionNames.add(optionName);
@@ -133,7 +133,7 @@ public class JavaCorePreferenceInitializer extends AbstractPreferenceInitializer
 	 *
 	 * @deprecated As using deprecated options
 	 */
-	private void initializeDeprecatedOptions() {
+	private void initializeDeprecatedOptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String[]> deprecatedOptions = JavaModelManager.getJavaModelManager().deprecatedOptions;
 		deprecatedOptions.put(DefaultCodeFormatterConstants.FORMATTER_INSERT_NEW_LINE_AFTER_ANNOTATION_ON_MEMBER,
 			new String[] {

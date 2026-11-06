@@ -49,7 +49,7 @@ public class TypeParameterPattern extends JavaSearchPattern {
 	protected char[] methodDeclaringClassName;
 	protected char[][] methodArgumentTypes;
 
-	public TypeParameterPattern(boolean findDeclarations, boolean findReferences, ITypeParameter typeParameter, int matchRule) {
+	public TypeParameterPattern(boolean findDeclarations, boolean findReferences, ITypeParameter typeParameter, int matchRule) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super(TYPE_PARAM_PATTERN, matchRule);
 
 		this.findDeclarations = findDeclarations; // set to find declarations & all occurences
@@ -66,7 +66,7 @@ public class TypeParameterPattern extends JavaSearchPattern {
 			String[] parameters = method.getParameterTypes();
 			int length = parameters.length;
 			this.methodArgumentTypes = new char[length][];
-			for (int i=0; i<length; i++) {
+			for (int i=0; i<length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.methodArgumentTypes[i] = Signature.toCharArray(parameters[i].toCharArray());
 			}
 		}
@@ -75,21 +75,21 @@ public class TypeParameterPattern extends JavaSearchPattern {
 	/*
 	 * Same than LocalVariablePattern.
 	 */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void findIndexMatches(Index index, IndexQueryRequestor requestor, SearchParticipant participant, IJavaSearchScope scope, IProgressMonitor progressMonitor) {
 	    IPackageFragmentRoot root = (IPackageFragmentRoot) this.typeParameter.getAncestor(IJavaElement.PACKAGE_FRAGMENT_ROOT);
 		String documentPath;
 		String relativePath;
 	    if (root.isArchive()) {
  	    	IType type = (IType) this.typeParameter.getAncestor(IJavaElement.TYPE);
-    	    relativePath = (type.getFullyQualifiedName('$')).replace('.', '/') + SuffixConstants.SUFFIX_STRING_class;
+    	    relativePath = (type.getFullyQualifiedName('$')).replace('.', '/') + SuffixConstants.SUFFIX_STRING_class; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     	    IModuleDescription md = root.getModuleDescription();
             if(md != null) {
             	String module = md.getElementName();
-            	documentPath = root.getPath() + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR
+            	documentPath = root.getPath() + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             			+ module + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR + relativePath;
             } else {
-            	documentPath = root.getPath() + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR + relativePath;
+            	documentPath = root.getPath() + IJavaSearchScope.JAR_FILE_ENTRY_SEPARATOR + relativePath; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             }
 	    } else {
 			IPath path = this.typeParameter.getPath();
@@ -120,13 +120,13 @@ public class TypeParameterPattern extends JavaSearchPattern {
 	@Override
 	protected StringBuilder print(StringBuilder output) {
 		if (this.findDeclarations) {
-			output.append(this.findReferences
+			output.append(this.findReferences //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				? "TypeParamCombinedPattern: " //$NON-NLS-1$
 				: "TypeParamDeclarationPattern: "); //$NON-NLS-1$
 		} else {
-			output.append("TypeParamReferencePattern: "); //$NON-NLS-1$
+			output.append("TypeParamReferencePattern: "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		output.append(this.typeParameter.toString());
+		output.append(this.typeParameter.toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return super.print(output);
 	}
 

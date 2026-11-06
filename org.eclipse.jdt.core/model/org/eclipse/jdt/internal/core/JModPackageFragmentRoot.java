@@ -45,7 +45,7 @@ public class JModPackageFragmentRoot extends JarPackageFragmentRoot {
 	 */
 	@Override
 	public String getClassFilePath(String entryName) {
-		return ClasspathJMod.CLASSES_FOLDER + entryName;
+		return ClasspathJMod.CLASSES_FOLDER + entryName; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	@Override
 	protected String getClassNameSubFolder() {

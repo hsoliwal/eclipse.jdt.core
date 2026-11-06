@@ -67,7 +67,7 @@ public class JavaNonLanguageTests extends AbstractRegressionTest9 {
 	protected INameEnvironment getNameEnvironment(final String[] testFiles, String[] classPaths, Map<String, String> options) {
 		this.classpaths = classPaths == null ? getDefaultClassPaths() : classPaths;
 		INameEnvironment[] classLibs = getClassLibs(false, options);
-		for (INameEnvironment nameEnvironment : classLibs) {
+		for (INameEnvironment nameEnvironment : classLibs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			((FileSystem) nameEnvironment).scanForModules(createParser());
 		}
 		return new InMemoryNameEnvironment9(testFiles, this.moduleMap, classLibs);
@@ -82,7 +82,7 @@ public class JavaNonLanguageTests extends AbstractRegressionTest9 {
 			return;
 		runConformTest(testFiles, expectedOutput, customOptions, VMARGS, JAVAC_OPTIONS);
 	}
-	protected void runConformTest(
+	protected void runConformTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String[] testFiles,
 			String expectedOutputString,
 			String[] classLibraries,
@@ -135,7 +135,7 @@ public class JavaNonLanguageTests extends AbstractRegressionTest9 {
 		runner.runNegativeTest();
 	}
 
-	public void testStable_001() {
+	public void testStable_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 			"X.java",
 				"""
@@ -159,7 +159,7 @@ public class JavaNonLanguageTests extends AbstractRegressionTest9 {
 			"true\n" +
 		    "false");
 	}
-	public void testStable_002() {
+	public void testStable_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String,String> options = getCompilerOptions(false);
 		String old = options.get(CompilerOptions.OPTION_EnablePreviews);
 		options.put(CompilerOptions.OPTION_EnablePreviews, CompilerOptions.DISABLED);

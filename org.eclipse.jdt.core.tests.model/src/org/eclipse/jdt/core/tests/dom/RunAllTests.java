@@ -25,10 +25,11 @@ public class RunAllTests extends junit.framework.TestCase {
 public RunAllTests(String name) {
 	super(name);
 }
-public static Class[] getAllTestClasses() {
+public static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	return new Class[] {
 		RunConverterTests.class,
 		ASTTest.class,
+		ASTNodeListArrayTest.class,
 		ASTVisitorTest.class,
 		ASTMatcherTest.class,
 		ASTStructuralPropertyTest.class,
@@ -45,7 +46,7 @@ public static Class[] getAllTestClasses() {
 		// should always be the last one, to cleanup environment after messy tests
 		CleanupAfterSuiteTests.class
 	};
-}
+} //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public static Test suite() {
 	TestSuite ts = new TestSuite(RunAllTests.class.getName());
 
@@ -56,7 +57,7 @@ public static Test suite() {
 	TestCase.TESTS_NUMBERS = null;
 	TestCase.TESTS_RANGE = null;
 	TestCase.RUN_ONLY_ID = null;
-
+ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	for (int i = 0; i < testClasses.length; i++) {
 		Class testClass = testClasses[i];
 

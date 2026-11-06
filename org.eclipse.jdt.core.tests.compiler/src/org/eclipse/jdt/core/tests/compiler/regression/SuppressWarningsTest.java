@@ -40,7 +40,7 @@ public class SuppressWarningsTest extends AbstractBatchCompilerTest {
 		return options;
 	}
 
-	public void testSimpleSuppressWarnings() {
+	public void testSimpleSuppressWarnings() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String firstSupportedVersion = CompilerOptions.getFirstSupportedJavaVersion();
 		this.runTest(true,
 			new String[] {
@@ -53,14 +53,14 @@ public class SuppressWarningsTest extends AbstractBatchCompilerTest {
 				"  return result;\n" +
 				"}\n}\n"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "p/SuppressTest.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "p/SuppressTest.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:+unused -warn:+boxing "
 			+ " -" + firstSupportedVersion + " -g -preserveAllLocals"
 			+ " -d \"" + OUTPUT_DIR + "\" ",
 			"", "", true, null);
 	}
 
-	public void testNestedSuppressWarnings() {
+	public void testNestedSuppressWarnings() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String firstSupportedVersion = CompilerOptions.getFirstSupportedJavaVersion();
 		this.runTest(true,
 			new String[] {
@@ -75,14 +75,14 @@ public class SuppressWarningsTest extends AbstractBatchCompilerTest {
 				"  return result;\n" +
 				"}\n}\n"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "p/SuppressTest.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "p/SuppressTest.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:+unused -warn:+boxing "
 			+ " -" + firstSupportedVersion + " -g -preserveAllLocals"
 			+ " -d \"" + OUTPUT_DIR + "\" ",
 			"", "", true, null);
 	}
 
-	public void testUnrelatedSuppressWarnings() {
+	public void testUnrelatedSuppressWarnings() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String firstSupportedVersion = CompilerOptions.getFirstSupportedJavaVersion();
 		this.runTest(true,
 			new String[] {
@@ -96,7 +96,7 @@ public class SuppressWarningsTest extends AbstractBatchCompilerTest {
 				"  return result;\n" +
 				"}\n}\n"
 			},
-			"\"" + OUTPUT_DIR +  File.separator + "p/SuppressTest.java\""
+			"\"" + OUTPUT_DIR +  File.separator + "p/SuppressTest.java\"" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ " -warn:+unused -warn:+boxing "
 			+ " -" + firstSupportedVersion + " -g -preserveAllLocals"
 			+ " -d \"" + OUTPUT_DIR + "\" ",

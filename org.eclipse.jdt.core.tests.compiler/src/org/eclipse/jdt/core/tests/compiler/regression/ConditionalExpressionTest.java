@@ -58,7 +58,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=107193
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -78,7 +78,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426078, Bug 426078 - [1.8] VerifyError when conditional expression passed as an argument
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -99,7 +99,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=423685, - [1.8] poly conditional expression must not use lub
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -138,7 +138,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 				);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426315, - [1.8][compiler] UnsupportedOperationException with conditional expression
-	public void test006() {
+	public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 					"X.java",
@@ -159,7 +159,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 				);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426680, - [1.8][compiler] Incorrect handling of poly conditional leads to CCE
-	public void test007() {
+	public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -187,7 +187,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 				);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=426680, - [1.8][compiler] Incorrect handling of poly conditional leads to CCE
-	public void test008() {
+	public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -216,7 +216,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427207, - [1.8][bytecode] Runtime type problem: Instruction type does not match stack map
 	// Reference poly conditional in assignment context
-	public void test009() {
+	public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -244,7 +244,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427207, - [1.8][bytecode] Runtime type problem: Instruction type does not match stack map
 	// Reference poly conditional in poly invocation context
-	public void test010() {
+	public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -275,7 +275,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427207, - [1.8][bytecode] Runtime type problem: Instruction type does not match stack map
 	// Reference poly conditional in assignment context, order reversed.
-	public void test011() {
+	public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -307,7 +307,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427207, - [1.8][bytecode] Runtime type problem: Instruction type does not match stack map
 	// Reference poly conditional in poly invocation context, order reversed.
-	public void test012() {
+	public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -342,7 +342,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427207, - [1.8][bytecode] Runtime type problem: Instruction type does not match stack map
 	// Reference poly conditional in poly invocation context, interface types
-	public void test013() {
+	public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 				new String[] {
 						"X.java",
@@ -372,7 +372,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 				"SomeInt instance");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427438, - NPE at org.eclipse.jdt.internal.compiler.ast.ConditionalExpression.generateCode
-	public void test014() {
+	public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -398,7 +398,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 					"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427438, - NPE at org.eclipse.jdt.internal.compiler.ast.ConditionalExpression.generateCode
-	public void test015() {
+	public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 				new String[] {
 						"X.java",
@@ -424,7 +424,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 					"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=427625, - NPE at org.eclipse.jdt.internal.compiler.ast.ConditionalExpression.generateCode
-	public void test427625() {
+	public void test427625() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String,String> options = getCompilerOptions();
 		options.put(CompilerOptions.OPTION_ReportDeprecation, CompilerOptions.IGNORE);
 		this.runNegativeTest(
@@ -449,7 +449,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 				null, true, options);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=432487,  NullPointerException during compilation using jdk1.8.0
-	public void testBug432487() {
+	public void testBug432487() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -567,7 +567,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3042
 	// java.util.EmptyStackException: null when invoking a static method on a null string literal in a ternary operator
-	public void testIssue3042() {
+	public void testIssue3042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -594,7 +594,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 				"Bar!\nBar!");
 	}
 
-	public void testIssue3042_2() {
+	public void testIssue3042_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(
@@ -625,7 +625,7 @@ public class ConditionalExpressionTest extends AbstractRegressionTest {
 				"Bar!\nNPE!");
 	}
 
-	public void testIssue3042_3() {
+	public void testIssue3042_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK14)
 			return;
 		this.runConformTest(

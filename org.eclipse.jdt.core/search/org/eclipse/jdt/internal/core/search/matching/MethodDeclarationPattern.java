@@ -42,7 +42,7 @@ public class MethodDeclarationPattern extends MethodPattern {
 	 * 		{@link ExtraFlags#HasNonPrivateStaticMemberTypes}
 	 * 		{@link ExtraFlags#ParameterTypesStoredAsSignature}
 	 */
-	public static char[] createDeclarationIndexKey(
+	public static char[] createDeclarationIndexKey( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] typeName,
 			char[] declaringQualification,
 			char[] methodName,
@@ -100,7 +100,7 @@ public class MethodDeclarationPattern extends MethodPattern {
 		return CharOperation.concatWithAll(tmp, '/');
 	}
 
-	private static int encodeExtraFlags(int extraFlags) {
+	private static int encodeExtraFlags(int extraFlags) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int encodedExtraFlags = 0;
 
 		if ((extraFlags & ExtraFlags.ParameterTypesStoredAsSignature) != 0) {
@@ -120,7 +120,7 @@ public class MethodDeclarationPattern extends MethodPattern {
 
 		return encodedExtraFlags;
 	}
-	private static char[] getTypeErasure(char[] typeName) {
+	private static char[] getTypeErasure(char[] typeName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int index;
 		if ((index = CharOperation.indexOf('<', typeName)) == -1) return typeName;
 
@@ -130,7 +130,7 @@ public class MethodDeclarationPattern extends MethodPattern {
 		System.arraycopy(typeName, 0, typeErasurename, 0, index);
 
 		int depth = 1;
-		for (int i = index + 1; i < length; i++) {
+		for (int i = index + 1; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (typeName[i]) {
 				case '<':
 					depth++;
@@ -176,7 +176,7 @@ public MethodDeclarationPattern(int matchRule) {
 	super(matchRule);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void decodeIndexKey(char[] key) {
 
 	int start = 0;
@@ -189,7 +189,7 @@ public void decodeIndexKey(char[] key) {
 
 	this.parameterCount = 0;
 	int power = 1;
-	for (int i = last; i >= start; i--) {
+	for (int i = last; i >= start; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (i == last) {
 			this.parameterCount = key[i] - '0';
 		} else {

@@ -45,7 +45,7 @@ import org.eclipse.jdt.internal.core.util.Util;
  *  <li>
   * </ul>
  */
-public class CreateCompilationUnitOperation extends JavaModelOperation {
+public class CreateCompilationUnitOperation extends JavaModelOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 
 	/**
 	 * The name of the compilation unit being created.
@@ -69,7 +69,7 @@ public CreateCompilationUnitOperation(IPackageFragment parentElement, String nam
  *
  * @exception JavaModelException if unable to create the compilation unit.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void executeOperation() throws JavaModelException {
 	try {
 		beginTask(Messages.operation_createUnitProgress, 2);
@@ -89,7 +89,7 @@ protected void executeOperation() throws JavaModelException {
 				this.resultElements = new IJavaElement[] {unit};
 				if (!Util.isExcluded(unit)
 						&& unit.getParent().exists()) {
-					for (IJavaElement resultElement : this.resultElements) {
+					for (IJavaElement resultElement : this.resultElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						delta.changed(resultElement, IJavaElementDelta.F_CONTENT);
 					}
 					addDelta(delta);
@@ -113,7 +113,7 @@ protected void executeOperation() throws JavaModelException {
 				this.resultElements = new IJavaElement[] {unit};
 				if (!Util.isExcluded(unit)
 						&& unit.getParent().exists()) {
-					for (IJavaElement resultElement : this.resultElements) {
+					for (IJavaElement resultElement : this.resultElements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						delta.added(resultElement);
 					}
 					addDelta(delta);

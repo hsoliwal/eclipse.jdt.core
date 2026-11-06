@@ -38,17 +38,17 @@ public class HelloWorldAnnotationProcessor extends BaseProcessor {
 		super(env);
 	}
 
-	public void process()
+	public void process() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		ProcessorTestStatus.setProcessorRan();
 		Filer f = _env.getFiler();
 		AnnotationTypeDeclaration annoDecl = (AnnotationTypeDeclaration) _env.getTypeDeclaration(HelloWorldAnnotation.class.getName());
 		Collection<Declaration> annotatedDecls = _env.getDeclarationsAnnotatedWith(annoDecl);
 		try {
-			for (Declaration annotatedDecl : annotatedDecls) {
+			for (Declaration annotatedDecl : annotatedDecls) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String typeName = getTypeName(annotatedDecl);
 				PrintWriter writer = f.createSourceFile(
-						PACKAGENAME + "." + typeName);
+						PACKAGENAME + "." + typeName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				writer.print(getCode(typeName));
 				writer.close();
 			}
@@ -68,7 +68,7 @@ public class HelloWorldAnnotationProcessor extends BaseProcessor {
 	}
 
 	private String getCode(String typeName) {
-		return "package " + PACKAGENAME + ";" + "\n"
+		return "package " + PACKAGENAME + ";" + "\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ "public class "+ typeName	+ "\n"
 		+ "{" + "\n"
 		+ "    public static void helloWorld()"	+ "\n"

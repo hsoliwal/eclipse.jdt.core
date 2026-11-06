@@ -25,16 +25,16 @@ import org.eclipse.jdt.internal.compiler.util.ObjectVector;
  */
 public class PossibleMatchSet {
 
-private Map<IPath, ObjectVector> rootsToPossibleMatches = new HashMap<>();
+private Map<IPath, ObjectVector> rootsToPossibleMatches = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 private int elementCount = 0;
 
-public void add(PossibleMatch possibleMatch) {
+public void add(PossibleMatch possibleMatch) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath path = possibleMatch.openable.getPackageFragmentRoot().getPath();
 	ObjectVector possibleMatches = this.rootsToPossibleMatches.get(path);
 	if (possibleMatches != null) {
 		PossibleMatch storedMatch = (PossibleMatch) possibleMatches.find(possibleMatch);
 		if (storedMatch != null) {
-			while (storedMatch.getSimilarMatch() != null) {
+			while (storedMatch.getSimilarMatch() != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				storedMatch = storedMatch.getSimilarMatch();
 			}
 			storedMatch.setSimilarMatch(possibleMatch);
@@ -50,8 +50,8 @@ public void add(PossibleMatch possibleMatch) {
 public PossibleMatch[] getPossibleMatches(IPackageFragmentRoot[] roots) {
 	PossibleMatch[] result = new PossibleMatch[this.elementCount];
 	int index = 0;
-	HashSet<IPath> processedHash = new HashSet<>();
-	for (IPackageFragmentRoot root : roots) {
+	HashSet<IPath> processedHash = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	for (IPackageFragmentRoot root : roots) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IPath path = root.getPath();
 		ObjectVector possibleMatches = this.rootsToPossibleMatches.get(path);
 		if (possibleMatches != null && !processedHash.contains(path)) {
@@ -65,7 +65,7 @@ public PossibleMatch[] getPossibleMatches(IPackageFragmentRoot[] roots) {
 	return result;
 }
 public void reset() {
-	this.rootsToPossibleMatches = new HashMap<>();
+	this.rootsToPossibleMatches = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	this.elementCount = 0;
 }
 }

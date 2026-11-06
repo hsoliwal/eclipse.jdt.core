@@ -28,7 +28,7 @@ public static Test suite() {
 /*
  * Regression test for 1FTZCIG.
  */
-public void test1FTZCIG() {
+public void test1FTZCIG() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -66,7 +66,7 @@ public void test1FTZCIG() {
 /*
  * Block ::= OpenBlock '{' <BlockStatementsopt> '}'
  */
-public void testBlock() {
+public void testBlock() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -102,7 +102,7 @@ public void testBlock() {
 /*
  * BlockStatements ::= BlockStatements <BlockStatement>
  */
-public void testBlockStatements() {
+public void testBlockStatements() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -135,7 +135,7 @@ public void testBlockStatements() {
 /*
  * CatchClause ::= 'catch' '(' <FormalParameter> ')' Block
  */
-public void testCatchClause1() {
+public void testCatchClause1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -175,7 +175,7 @@ public void testCatchClause1() {
 /*
  * CatchClause ::= 'catch' '(' <FormalParameter> ')' Block
  */
-public void testCatchClause2() {
+public void testCatchClause2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -215,7 +215,7 @@ public void testCatchClause2() {
 /*
  * CatchClause ::= 'catch' '(' <FormalParameter> ')' Block
  */
-public void testCatchClause3() {
+public void testCatchClause3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -255,7 +255,7 @@ public void testCatchClause3() {
 /*
  * ClassBody ::= '{' <ClassBodyDeclarationsopt> '}'
  */
-public void testClassBody() {
+public void testClassBody() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -283,7 +283,7 @@ public void testClassBody() {
 /*
  * ClassBodyDeclarations ::= ClassBodyDeclarations <ClassBodyDeclaration>
  */
-public void testClassBodyDeclarations() {
+public void testClassBodyDeclarations() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -313,7 +313,7 @@ public void testClassBodyDeclarations() {
 /*
  * ClassInstanceCreationExpression ::= 'new' <ClassType> '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpression1() {
+public void testClassInstanceCreationExpression1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -344,7 +344,7 @@ public void testClassInstanceCreationExpression1() {
 /*
  * ClassInstanceCreationExpression ::= 'new' <ClassType> '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpression2() {
+public void testClassInstanceCreationExpression2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -375,7 +375,7 @@ public void testClassInstanceCreationExpression2() {
 /*
  * ClassInstanceCreationExpression ::= 'new' <ClassType> '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpression3() {
+public void testClassInstanceCreationExpression3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -406,7 +406,7 @@ public void testClassInstanceCreationExpression3() {
 /*
  * ClassInstanceCreationExpression ::= 'new' <ClassType> '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpression4() {
+public void testClassInstanceCreationExpression4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -437,7 +437,7 @@ public void testClassInstanceCreationExpression4() {
 /*
  * ClassInstanceCreationExpression ::= ClassInstanceCreationExpressionName 'new' SimpleName '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpressionName1() {
+public void testClassInstanceCreationExpressionName1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"public class Bar {								\n" +
@@ -478,7 +478,7 @@ public void testClassInstanceCreationExpressionName1() {
 /*
  * ClassInstanceCreationExpression ::= ClassInstanceCreationExpressionName 'new' SimpleName '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpressionName2() {
+public void testClassInstanceCreationExpressionName2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"public class Bar {								\n" +
@@ -519,7 +519,7 @@ public void testClassInstanceCreationExpressionName2() {
 /*
  * ClassInstanceCreationExpression ::= ClassInstanceCreationExpressionName 'new' SimpleName '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpressionName3() {
+public void testClassInstanceCreationExpressionName3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"public class Bar {								\n" +
@@ -560,7 +560,7 @@ public void testClassInstanceCreationExpressionName3() {
 /*
  * ClassInstanceCreationExpression ::= ClassInstanceCreationExpressionName 'new' SimpleName '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpressionName4() {
+public void testClassInstanceCreationExpressionName4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"public class Bar {								\n" +
@@ -601,7 +601,7 @@ public void testClassInstanceCreationExpressionName4() {
 /*
  * ClassInstanceCreationExpression ::= Primary '.' 'new' SimpleName '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpressionPrimary1() {
+public void testClassInstanceCreationExpressionPrimary1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"public class Bar {								\n" +
@@ -638,7 +638,7 @@ public void testClassInstanceCreationExpressionPrimary1() {
 /*
  * ClassInstanceCreationExpression ::= Primary '.' 'new' SimpleName '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpressionPrimary2() {
+public void testClassInstanceCreationExpressionPrimary2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"public class Bar {								\n" +
@@ -675,7 +675,7 @@ public void testClassInstanceCreationExpressionPrimary2() {
 /*
  * ClassInstanceCreationExpression ::= Primary '.' 'new' SimpleName '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpressionPrimary3() {
+public void testClassInstanceCreationExpressionPrimary3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"public class Bar {								\n" +
@@ -712,7 +712,7 @@ public void testClassInstanceCreationExpressionPrimary3() {
 /*
  * ClassInstanceCreationExpression ::= Primary '.' 'new' SimpleName '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testClassInstanceCreationExpressionPrimary4() {
+public void testClassInstanceCreationExpressionPrimary4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"public class Bar {								\n" +
@@ -749,7 +749,7 @@ public void testClassInstanceCreationExpressionPrimary4() {
 /*
  * ClassTypeList ::= ClassTypeList ',' <ClassTypeElt>
  */
-public void testClassTypeList() {
+public void testClassTypeList() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -778,7 +778,7 @@ public void testClassTypeList() {
 /*
  * ConstructorBody ::= NestedMethod '{' <BlockStatementsopt> '}'
  */
-public void testConstructorBody() {
+public void testConstructorBody() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -808,7 +808,7 @@ public void testConstructorBody() {
 /*
  * ConstructorDeclarator ::= 'Identifier' '(' <FormalParameterListopt> ')'
  */
-public void testConstructorDeclarator() {
+public void testConstructorDeclarator() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -835,7 +835,7 @@ public void testConstructorDeclarator() {
 /*
  * The reference type is burried in several blocks
  */
-public void testDeepReference() {
+public void testDeepReference() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -885,7 +885,7 @@ public void testDeepReference() {
 /*
  * Super ::= 'extends' <ClassType>
  */
-public void testExtendsClass() {
+public void testExtendsClass() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar extends Xxx {					\n" +
@@ -910,7 +910,7 @@ public void testExtendsClass() {
 /*
  * ExtendsInterfaces ::= 'extends' <InterfaceTypeList>
  */
-public void testExtendsInterface() {
+public void testExtendsInterface() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"interface Bar extends Xxx {				\n" +
@@ -934,7 +934,7 @@ public void testExtendsInterface() {
  * FieldDeclaration ::= Modifiersopt <Type> VariableDeclarators ';'
  * where Modifiersopt is not empty
  */
-public void testFieldDeclarationWithModifiers() {
+public void testFieldDeclarationWithModifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -962,7 +962,7 @@ public void testFieldDeclarationWithModifiers() {
  * FieldDeclaration ::= Modifiersopt <Type> VariableDeclarators ';'
  * where Modifiersopt is empty
  */
-public void testFieldDeclarationWithoutModifiers() {
+public void testFieldDeclarationWithoutModifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -989,7 +989,7 @@ public void testFieldDeclarationWithoutModifiers() {
 /*
  * FormalParameter ::= Modifiers <Type> VariableDeclaratorId
  */
-public void testFormalParameter() {
+public void testFormalParameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -1018,7 +1018,7 @@ public void testFormalParameter() {
 /*
  * FormalParameterList ::= FormalParameterList ',' <FormalParameter>
  */
-public void testFormalParameterList() {
+public void testFormalParameterList() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -1049,7 +1049,7 @@ public void testFormalParameterList() {
  * or
  * ForStatementNoShortIf ::= 'for' '(' <ForInitopt> ';' Expressionopt ';' ForUpdateopt ')' StatementNoShortIf
  */
-public void testForStatement() {
+public void testForStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -1081,7 +1081,7 @@ public void testForStatement() {
 /*
  * Interfaces ::= 'implements' <InterfaceTypeList>
  */
-public void testImplements() {
+public void testImplements() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar implements Xxx {					\n" +
@@ -1106,7 +1106,7 @@ public void testImplements() {
 /*
  * RelationalExpression ::= RelationalExpression 'instanceof' <ReferenceType>
  */
-public void testInstanceOf() {
+public void testInstanceOf() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -1137,7 +1137,7 @@ public void testInstanceOf() {
 /*
  * InterfaceBody ::= '{' <InterfaceMemberDeclarationsopt> '}'
  */
-public void testInterfaceBody() {
+public void testInterfaceBody() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"interface Bar {							\n" +
@@ -1162,7 +1162,7 @@ public void testInterfaceBody() {
 /*
  * InterfaceMemberDeclarations ::= InterfaceMemberDeclarations <InterfaceMemberDeclaration>
  */
-public void testInterfaceMemberDeclarations() {
+public void testInterfaceMemberDeclarations() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"interface Bar {							\n" +
@@ -1191,7 +1191,7 @@ public void testInterfaceMemberDeclarations() {
 /*
  * InterfaceTypeList ::= InterfaceTypeList ',' <InterfaceType>
  */
-public void testInterfaceTypeList() {
+public void testInterfaceTypeList() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"interface Bar extends Comparable, Xxx {	\n" +
@@ -1214,7 +1214,7 @@ public void testInterfaceTypeList() {
 /*
  * LocalVariableDeclaration ::= Modifiers <Type> VariableDeclarators
  */
-public void testLocalVariableDeclaration() {
+public void testLocalVariableDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {									\n" +
@@ -1245,7 +1245,7 @@ public void testLocalVariableDeclaration() {
 /*
  * MethodBody ::= NestedMethod '{' <BlockStatementsopt> '}'
  */
-public void testMethodBody() {
+public void testMethodBody() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -1276,7 +1276,7 @@ public void testMethodBody() {
 /*
  * MethodDeclarator ::= 'Identifier' '(' <FormalParameterListopt> ')' Dimsopt
  */
-public void testMethodDeclarator() {
+public void testMethodDeclarator() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -1306,7 +1306,7 @@ public void testMethodDeclarator() {
  * MethodHeader ::= Modifiersopt <Type> MethodDeclarator Throwsopt
  * where Modifiersopt is not empty
  */
-public void testMethodHeaderWithModifiers() {
+public void testMethodHeaderWithModifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -1335,7 +1335,7 @@ public void testMethodHeaderWithModifiers() {
  * MethodHeader ::= Modifiersopt <Type> MethodDeclarator Throwsopt
  * where Modifiersopt is empty
  */
-public void testMethodHeaderWithoutModifiers() {
+public void testMethodHeaderWithoutModifiers() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -1364,7 +1364,7 @@ public void testMethodHeaderWithoutModifiers() {
  * Completion on a qualified type reference, where the cursor is in the
  * first type reference.
  */
-public void testQualifiedTypeReferenceShrinkAll() {
+public void testQualifiedTypeReferenceShrinkAll() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -1397,7 +1397,7 @@ public void testQualifiedTypeReferenceShrinkAll() {
 /*
  * Completion on a qualified type reference, where the cursor is right after the first dot.
  */
-public void testQualifiedTypeReferenceShrinkAllButOne() {
+public void testQualifiedTypeReferenceShrinkAllButOne() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -1431,7 +1431,7 @@ public void testQualifiedTypeReferenceShrinkAllButOne() {
  * Completion on a qualified type reference, where the cursor is right after the end
  * of the last type reference.
  */
-public void testQualifiedTypeReferenceShrinkNone() {
+public void testQualifiedTypeReferenceShrinkNone() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -1465,7 +1465,7 @@ public void testQualifiedTypeReferenceShrinkNone() {
  * Completion on a qualified type reference, where the cursor is right after the
  * last dot.
  */
-public void testQualifiedTypeReferenceShrinkOne() {
+public void testQualifiedTypeReferenceShrinkOne() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -1498,7 +1498,7 @@ public void testQualifiedTypeReferenceShrinkOne() {
 /*
  * SwitchBlockStatement ::= SwitchLabels <BlockStatements>
  */
-public void testSwitchBlockStatement() {
+public void testSwitchBlockStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -1541,7 +1541,7 @@ public void testSwitchBlockStatement() {
 /*
  * Throws ::= 'throws' <ClassTypeList>
  */
-public void testThrows() {
+public void testThrows() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTestCheckDietParse(
 		// compilationUnit:
 		"class Bar {								\n" +

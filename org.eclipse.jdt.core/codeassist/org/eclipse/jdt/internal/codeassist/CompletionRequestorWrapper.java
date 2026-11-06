@@ -33,7 +33,7 @@ public class CompletionRequestorWrapper extends CompletionRequestor {
 		this.requestor = requestor;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void accept(CompletionProposal proposal) {
 		InternalCompletionProposal internalCompletionProposal = (InternalCompletionProposal) proposal;
 		switch(internalCompletionProposal.getKind()) {
@@ -325,7 +325,7 @@ public class CompletionRequestorWrapper extends CompletionRequestor {
 		char[][] parameterQualifiedTypes = Signature.getParameterTypes(methodSignature);
 		int length = parameterQualifiedTypes == null ? 0 : parameterQualifiedTypes.length;
 		char[][] parameterPackages = new char[length][];
-		for(int i = 0; i < length; i++) {
+		for(int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parameterPackages[i] = Signature.getSignatureQualifier(parameterQualifiedTypes[i]);
 		}
 
@@ -336,7 +336,7 @@ public class CompletionRequestorWrapper extends CompletionRequestor {
 		char[][] parameterQualifiedTypes = Signature.getParameterTypes(methodSignature);
 		int length = parameterQualifiedTypes == null ? 0 : parameterQualifiedTypes.length;
 		char[][] parameterPackages = new char[length][];
-		for(int i = 0; i < length; i++) {
+		for(int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			parameterPackages[i] = Signature.getSignatureSimpleName(parameterQualifiedTypes[i]);
 		}
 

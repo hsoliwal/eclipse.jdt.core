@@ -55,7 +55,7 @@ private static final String[] source_classic = JEP181NestTest.getTestSeriesClass
 public static Test suite() {
 	return buildMinimalComplianceTestSuite(testClass(), F_11);
 }
-private static String[] getTestSeriesClassic() {
+private static String[] getTestSeriesClassic() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	return new String[] {
 			"pack1/X.java",
 			"package pack1;\n" +
@@ -79,7 +79,7 @@ private static String[] getTestSeriesClassic() {
 
 private String getClassFileContents( String classFileName, int mode) throws IOException,
 ClassFormatException {
-	File f = new File(OUTPUT_DIR + File.separator + classFileName);
+	File f = new File(OUTPUT_DIR + File.separator + classFileName); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", mode);
@@ -107,7 +107,7 @@ private void verifyOutput(String result, String expectedOutput, boolean positive
 		}
 	}
 }
-public void testBug535851_001() throws Exception {
+public void testBug535851_001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 
@@ -169,7 +169,7 @@ public void testBug535851_004() throws Exception {
 	verifyClassFile(expectedPartialOutput, "pack1/X$Y$Z.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // vanilla anonymous declaration
-public void testBug535851_005() throws Exception {
+public void testBug535851_005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	String[] files = new String[] {
@@ -206,7 +206,7 @@ public void testBug535851_005() throws Exception {
 	verifyNegativeClassFile(expectedPartialOutput, "pack1/Y.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // anonymous declaration inside another anonymous declaration
-public void testBug535851_006() throws Exception {
+public void testBug535851_006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	String[] files = new String[] {
@@ -252,7 +252,7 @@ public void testBug535851_006() throws Exception {
 }
 
 // lambda with anonymous inside anonymous
-public void testBug535851_007() throws Exception {
+public void testBug535851_007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	String[] files = new String[] {
@@ -306,7 +306,7 @@ public void testBug535851_007() throws Exception {
 	verifyNegativeClassFile(expectedPartialOutput, "pack1/Y.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // type declaration in method
-public void testBug535851_008() throws Exception {
+public void testBug535851_008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	String[] files = new String[] {
@@ -341,7 +341,7 @@ public void testBug535851_008() throws Exception {
 	verifyClassFile(expectedPartialOutput, "pack1/X$1Y.class", ClassFileBytesDisassembler.SYSTEM);
 }
 // testing the inner private instance field access from enclosing type
-public void testBug535918_001a() throws Exception {
+public void testBug535918_001a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -383,7 +383,7 @@ public void testBug535918_001a() throws Exception {
 		verifyNegativeClassFile(unExpectedPartialOutput, "pack1/X$Y.class", ClassFileBytesDisassembler.SYSTEM);
 }
 //testing the inner private static field access from enclosing type
-public void testBug535918_001b() throws Exception {
+public void testBug535918_001b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -435,7 +435,7 @@ public void testBug535918_001b() throws Exception {
 	verifyNegativeClassFile(unExpectedPartialOutput, "pack1/X$Y.class", ClassFileBytesDisassembler.SYSTEM);
 }
 //testing the nested private field access from enclosing type
-public void testBug535918_001c() throws Exception {
+public void testBug535918_001c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -474,7 +474,7 @@ public void testBug535918_001c() throws Exception {
 		verifyNegativeClassFile(unExpectedPartialOutput, "pack1/X$Y.class", ClassFileBytesDisassembler.SYSTEM);
 }
 //testing the nested private method access from same type (implicit nesting/nest host)
-public void testBug535918_002() throws Exception {
+public void testBug535918_002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -508,7 +508,7 @@ public void testBug535918_002() throws Exception {
 }
 
 // sibling access: private static field
-public void testBug535918_003a() throws Exception {
+public void testBug535918_003a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_11);
@@ -558,7 +558,7 @@ public void testBug535918_003a() throws Exception {
 	verifyOutputNegative(XZFile, "invokestatic pack1.X$Y.access$0");
 }
 //sibling access: private instance field
-public void testBug535918_003b() throws Exception {
+public void testBug535918_003b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_11);
@@ -610,7 +610,7 @@ public void testBug535918_003b() throws Exception {
 }
 //sibling access: private instance field via Allocation Expression Field reference
 // note: internally this follows a different code path
-public void testBug535918_003c() throws Exception {
+public void testBug535918_003c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_11);
@@ -661,7 +661,7 @@ public void testBug535918_003c() throws Exception {
 }
 //sibling and super: private static field access of a super-type is accessed from a sub-type with
 //both super-type and sub-type being nestmates.
-public void testBug535918_003d() throws Exception {
+public void testBug535918_003d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_11);
@@ -712,7 +712,7 @@ public void testBug535918_003d() throws Exception {
 }
 //sibling and super: private instance field of a super-type is accessed from a sub-type with
 //both super-type and sub-type being nestmates.
-public void testBug535918_003e() throws Exception {
+public void testBug535918_003e() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_11);
@@ -764,7 +764,7 @@ public void testBug535918_003e() throws Exception {
 }
 //sibling and super with super keyword: private instance field of a super-type is accessed from a sub-type
 // user keyword super with both super-type and sub-type being nestmates.
-public void testBug535918_003f() throws Exception {
+public void testBug535918_003f() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_11);
@@ -814,7 +814,7 @@ public void testBug535918_003f() throws Exception {
 	verifyOutputNegative(XZFile, "invokestatic pack1.X$Y.access$0");
 }
 //vanilla field access of enclosing type: private static field of enclosing type accessed in inner type
-public void testBug535918_004a() throws Exception {
+public void testBug535918_004a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_11);
@@ -854,7 +854,7 @@ public void testBug535918_004a() throws Exception {
 
 }
 //vanilla field access of enclosing type: private instance field of enclosing type accessed in inner type
-public void testBug535918_004b() throws Exception {
+public void testBug535918_004b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_11);
@@ -894,7 +894,7 @@ public void testBug535918_004b() throws Exception {
 
 }
 //nestmate inner constructor call from outer - no synthetic and appropriate call site params
-public void testBug535918_005a() throws Exception {
+public void testBug535918_005a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -942,7 +942,7 @@ public void testBug535918_005a() throws Exception {
 	verifyOutputNegative(XYFile, "invokespecial pack1.X$Y$Z(pack1.X$Y, pack1.X$Y$Z)");
 }
 //nestmate sibling constructor call - no synthetic and appropriate call site params
-public void testBug535918_005b() throws Exception {
+public void testBug535918_005b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -990,7 +990,7 @@ public void testBug535918_005b() throws Exception {
 	verifyOutputNegative(XYFile, "invokespecial pack1.X$Z(pack1.X$Y, pack1.X$Z)");
 }
 //nestmate outer constructor call from inner - no synthetic and appropriate call site params
-public void testBug535918_005c() throws Exception {
+public void testBug535918_005c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -1038,7 +1038,7 @@ public void testBug535918_005c() throws Exception {
 	verifyOutputNegative(XYZFile, "invokespecial pack1.X$Y(pack1.X, pack1.X$Y)");
 }
 //nestmate super call to private constructor from sibling nestmate which is a subtype - no synthetic and appropriate call site params
-public void testBug535918_005d() throws Exception {
+public void testBug535918_005d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -1083,7 +1083,7 @@ public void testBug535918_005d() throws Exception {
 }
 // nestmate super call to private constructor from sibling nestmate which is a subtype
 // super is a parameterized type
-public void testBug535918_005e() throws Exception {
+public void testBug535918_005e() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -1130,7 +1130,7 @@ public void testBug535918_005e() throws Exception {
 	verifyOutputNegative(XZFile, "2  invokespecial pack1.X$Y(pack1.X$Y)");
 }
 //nestmate constructor reference
-public void testBug535918_005f() throws Exception {
+public void testBug535918_005f() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -1177,7 +1177,7 @@ public void testBug535918_005f() throws Exception {
 	verifyOutputNegative(X1YFile, "synthetic X$Y(pack1.X.Y arg0)");
 }
 //testing the nested private method access from enclosing type
-public void testBug535918_005g() throws Exception {
+public void testBug535918_005g() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -1220,7 +1220,7 @@ public void testBug535918_005g() throws Exception {
 	verifyClassFile(expectedPartialOutput, "pack1/X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 //negative testing the nested private method access from enclosing type is not via invokespecial
-public void testBug535918_005h() throws Exception {
+public void testBug535918_005h() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -1263,7 +1263,7 @@ public void testBug535918_005h() throws Exception {
 	verifyNegativeClassFile(unExpectedPartialOutput, "pack1/X.class", ClassFileBytesDisassembler.SYSTEM);
 }
 //negative testing the synthetic method - access - not present in nested class
-public void testBug535918_005i() throws Exception {
+public void testBug535918_005i() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -1306,7 +1306,7 @@ public void testBug535918_005i() throws Exception {
 		verifyNegativeClassFile(unExpectedPartialOutput, "pack1/X$Y.class", ClassFileBytesDisassembler.SYSTEM);
 }
 //private interface method invoked from a method inside the same interface should be invokeinterface
-public void testBug535918_005j() throws Exception {
+public void testBug535918_005j() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -1335,7 +1335,7 @@ public void testBug535918_005j() throws Exception {
 	verifyOutputPositive(IFile, partialOutput);
 }
 //private interface method invoked from a nestmate interface should be invokeinterface
-public void testBug535918_005k() throws Exception {
+public void testBug535918_005k() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -1366,7 +1366,7 @@ public void testBug535918_005k() throws Exception {
 	verifyOutputPositive(IFile, partialOutput);
 }
 //test for SyntheticMethodBinding.SuperField*Access
-public void testBug535918_0056a() throws Exception {
+public void testBug535918_0056a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -1410,7 +1410,7 @@ public void testBug535918_0056a() throws Exception {
 	verifyOutputNegative(XYZFile, "invokestatic X.access$0(X, int)");
 }
 
-public void testBug545387_01() throws Exception {
+public void testBug545387_01() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_11);
 	options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_11);
@@ -1452,7 +1452,7 @@ public void testBug545387_01() throws Exception {
 	verifyOutputPositive(XSub1Sub2, "Nest Host: #29 pack1/X");
 }
 
-public void testBug572190_01() throws Exception {
+public void testBug572190_01() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 			new String[] {
@@ -1485,7 +1485,7 @@ public void testBug572190_01() throws Exception {
 	verifyOutputNegative(XFile, unexpectedOutput);
 }
 
-public void testBug572190_02() throws Exception {
+public void testBug572190_02() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 			new String[] {

@@ -45,7 +45,7 @@ public class IncrementalTests extends BuilderTests {
 	 * Ensures that the source range for a duplicate secondary type error is correct
 	 * (regression test for https://bugs.eclipse.org/bugs/show_bug.cgi?id=77283)
 	 */
-	public void testAddDuplicateSecondaryType() throws JavaModelException {
+	public void testAddDuplicateSecondaryType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -77,7 +77,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 
-	public void testDefaultPackage() throws JavaModelException {
+	public void testDefaultPackage() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, ""); //$NON-NLS-1$
@@ -99,7 +99,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 
-	public void testDefaultPackage2() throws JavaModelException {
+	public void testDefaultPackage2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "bin"); //$NON-NLS-1$
@@ -121,7 +121,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 
-	public void testNewJCL() {
+	public void testNewJCL() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -162,7 +162,7 @@ public class IncrementalTests extends BuilderTests {
 	/*
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=17329
 	 */
-	public void testRenameMainType() throws JavaModelException {
+	public void testRenameMainType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -224,7 +224,7 @@ public class IncrementalTests extends BuilderTests {
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=17807
 	 * case 1
 	 */
-	public void testRemoveSecondaryType() throws JavaModelException {
+	public void testRemoveSecondaryType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -295,7 +295,7 @@ public class IncrementalTests extends BuilderTests {
 	 * http://bugs.eclipse.org/bugs/show_bug.cgi?id=17807
 	 * case 2
 	 */
-	public void testRemoveSecondaryType2() throws JavaModelException {
+	public void testRemoveSecondaryType2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -362,7 +362,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 
-	public void testMoveSecondaryType() throws JavaModelException {
+	public void testMoveSecondaryType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -416,7 +416,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 
-	public void testMoveMemberType() throws JavaModelException {
+	public void testMoveMemberType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -487,7 +487,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 
-	public void testMovePackage() throws JavaModelException {
+	public void testMovePackage() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -513,7 +513,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 
-	public void testMovePackage2() throws JavaModelException {
+	public void testMovePackage2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.removePackageFragmentRoot(projectPath, ""); //$NON-NLS-1$
@@ -551,7 +551,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 
-	public void testMemberTypeFromClassFile() throws JavaModelException {
+	public void testMemberTypeFromClassFile() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -605,7 +605,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=372418
-	public void testMemberTypeOfOtherProject() throws JavaModelException {
+	public void testMemberTypeOfOtherProject() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath1 = env.addProject("Project1", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		env.addExternalJars(projectPath1, Util.getJavaClassLibs());
 
@@ -666,7 +666,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=377401
-	public void test$InTypeName() throws JavaModelException {
+	public void test$InTypeName() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath1 = env.addProject("Project1", CompilerOptions.getFirstSupportedJavaVersion()); //$NON-NLS-1$
 		env.addExternalJars(projectPath1, Util.getJavaClassLibs());
 
@@ -723,7 +723,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 	// http://dev.eclipse.org/bugs/show_bug.cgi?id=27658
-	public void testObjectWithSuperInterfaces() throws JavaModelException {
+	public void testObjectWithSuperInterfaces() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 			env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -782,7 +782,7 @@ public class IncrementalTests extends BuilderTests {
 	 * Bugs 6461
 	 * TODO excluded test
 	 */
-	public void _testWrongCompilationUnitLocation() throws JavaModelException {
+	public void _testWrongCompilationUnitLocation() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//----------------------------
 		//           Step 1
 		//----------------------------
@@ -817,7 +817,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=100631
-	public void testMemberTypeCollisionWithBinary() throws JavaModelException {
+	public void testMemberTypeCollisionWithBinary() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int max = org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.MAX_AT_ONCE;
 		try {
 			IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
@@ -865,7 +865,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=191739
-	public void testMemberTypeCollisionWithBinary2() throws JavaModelException {
+	public void testMemberTypeCollisionWithBinary2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int max = org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.MAX_AT_ONCE;
 		try {
 			IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
@@ -927,7 +927,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 
-	public void test129316() throws JavaModelException {
+	public void test129316() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, ""); //$NON-NLS-1$
@@ -971,7 +971,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 
-	public void testSecondaryType() throws JavaModelException {
+	public void testSecondaryType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1000,7 +1000,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 	// http://dev.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-	public void testMissingType001() throws JavaModelException {
+	public void testMissingType001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -1042,7 +1042,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 	// http://dev.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-	public void testMissingType002() throws JavaModelException {
+	public void testMissingType002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -1087,7 +1087,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 	// http://dev.eclipse.org/bugs/show_bug.cgi?id=196200 - variation
-	public void testMissingType003() throws JavaModelException {
+	public void testMissingType003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -1131,7 +1131,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=334377
-	public void testBug334377() throws JavaModelException {
+	public void testBug334377() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int max = org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.MAX_AT_ONCE;
 		Hashtable options = null;
 		try {
@@ -1203,7 +1203,7 @@ public class IncrementalTests extends BuilderTests {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=364450
 	// Incremental build should not generate buildpath error
 	// NOT generated by full build.
-	public void testBug364450() throws JavaModelException {
+	public void testBug364450() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		env.setOutputFolder(projectPath, "bin"); //$NON-NLS-1$
@@ -1238,7 +1238,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=520640
-	public void testRemovePackageInDependencyProject() throws JavaModelException {
+	public void testRemovePackageInDependencyProject() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath1 = env.addProject("Project1");
 		env.addExternalJars(projectPath1, Util.getJavaClassLibs());
 
@@ -1261,7 +1261,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath1);
 	}
 
-	public void testBug526376() throws JavaModelException {
+	public void testBug526376() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1288,7 +1288,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1497
-	public void testBinaryRecordClass() throws JavaModelException {
+	public void testBinaryRecordClass() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "16");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1313,7 +1313,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1497
-	public void testBinaryRecordClassWithGenericSuper() throws JavaModelException {
+	public void testBinaryRecordClassWithGenericSuper() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "16");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1340,7 +1340,7 @@ public class IncrementalTests extends BuilderTests {
 	}
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1497
-	public void testBinaryInnerRecordClass() throws JavaModelException {
+	public void testBinaryInnerRecordClass() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "16");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1367,7 +1367,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1497
-	public void testBinaryInnerRecordClassWithGenericSuper() throws JavaModelException {
+	public void testBinaryInnerRecordClassWithGenericSuper() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "16");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1397,7 +1397,7 @@ public class IncrementalTests extends BuilderTests {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577872
 	// [17] Incremental builder problems with sealed types: Bogus error: The type C that implements a sealed interface Types.B should be a permitted subtype of Types.B
-	public void testBug577872() throws JavaModelException {
+	public void testBug577872() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "19");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1440,7 +1440,7 @@ public class IncrementalTests extends BuilderTests {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577872
 	// [17] Incremental builder problems with sealed types: Bogus error: The type C that implements a sealed interface Types.B should be a permitted subtype of Types.B
 	// Test with null analysis and external; annotations involved.
-	public void testBug577872_2() throws JavaModelException {
+	public void testBug577872_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "19");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1487,7 +1487,7 @@ public class IncrementalTests extends BuilderTests {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577872
 	// [17] Incremental builder problems with sealed types: Bogus error: The type C that implements a sealed interface Types.B should be a permitted subtype of Types.B
 	// original test case as is.
-	public void testBug577872_original() throws JavaModelException {
+	public void testBug577872_original() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "19");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1549,7 +1549,7 @@ public class IncrementalTests extends BuilderTests {
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577872
 	// [17] Incremental builder problems with sealed types: Bogus error: The type C that implements a sealed interface Types.B should be a permitted subtype of Types.B
 	// original test case with null analysis and external annotations
-	public void testBug577872_original_with_null_analysis() throws JavaModelException {
+	public void testBug577872_original_with_null_analysis() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "19");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1614,7 +1614,7 @@ public class IncrementalTests extends BuilderTests {
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=577787
 	// [17] False positive error for explicitly permitted class extending a sealed class
-	public void testBug577787() throws JavaModelException {
+	public void testBug577787() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "19");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1664,7 +1664,7 @@ public class IncrementalTests extends BuilderTests {
 		env.removeProject(projectPath);
 	}
 
-	public void testExhaustiveness() throws JavaModelException {
+	public void testExhaustiveness() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String javaVersion = System.getProperty("java.version");
 		if (javaVersion != null && JavaCore.compareJavaVersions(javaVersion, "18") < 0)
 			return;
@@ -1727,7 +1727,7 @@ public class IncrementalTests extends BuilderTests {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3488
 	// [Sealed types] Proper sealing of hierarchy rejected in incremental builds if permitted class is generic
-	public void testIssue3488() throws JavaModelException {
+	public void testIssue3488() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "19");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1783,7 +1783,7 @@ public class IncrementalTests extends BuilderTests {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4622
 	// Inconsistent classfile encountered on annotated generic types
-	public void testIssue4622() throws JavaModelException {
+	public void testIssue4622() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "19");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -1838,7 +1838,7 @@ public class IncrementalTests extends BuilderTests {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4632
 	// The type ... from the descriptor computed for the target context is not visible here
-	public void testIssue4632() throws JavaModelException {
+	public void testIssue4632() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project", "19");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 

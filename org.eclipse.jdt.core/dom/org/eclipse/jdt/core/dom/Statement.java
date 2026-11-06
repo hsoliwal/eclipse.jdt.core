@@ -130,7 +130,7 @@ public abstract class Statement extends ASTNode {
 	 * only a partial, and inadequate, solution to the issue of associating
 	 * comments with statements.
 	 */
-	public void setLeadingComment(String comment) {
+	public void setLeadingComment(String comment) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (comment != null) {
 			char[] source = comment.toCharArray();
 			Scanner scanner = this.ast.scanner;
@@ -139,7 +139,7 @@ public abstract class Statement extends ASTNode {
 			try {
 				TerminalToken token;
 				boolean onlyOneComment = false;
-				while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) {
+				while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					switch(token) {
 						case TokenNameCOMMENT_BLOCK :
 						case TokenNameCOMMENT_JAVADOC :

@@ -51,10 +51,10 @@ public abstract class AbstractJavaModelCompletionTests extends AbstractJavaModel
 public AbstractJavaModelCompletionTests(String name) {
 	super(name);
 }
-protected void addLibrary(String projectName, String jarName, String sourceZipName, String docZipName, boolean exported) throws JavaModelException {
+protected void addLibrary(String projectName, String jarName, String sourceZipName, String docZipName, boolean exported) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IJavaProject javaProject = getJavaProject(projectName);
 	IProject project = javaProject.getProject();
-	String projectPath = '/' + project.getName() + '/';
+	String projectPath = '/' + project.getName() + '/'; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	IClasspathAttribute[] extraAttributes;
 	if(docZipName == null) {
@@ -64,13 +64,13 @@ protected void addLibrary(String projectName, String jarName, String sourceZipNa
 			new IClasspathAttribute[]{
 				JavaCore.newClasspathAttribute(
 						IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME,
-						"jar:platform:/resource"+projectPath+docZipName+"!/")};
+						"jar:platform:/resource"+projectPath+docZipName+"!/")}; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	addLibraryEntry(
 			javaProject,
-			new Path(projectPath + jarName),
-			sourceZipName == null ? null : new Path(projectPath + sourceZipName),
+			new Path(projectPath + jarName), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			sourceZipName == null ? null : new Path(projectPath + sourceZipName), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			sourceZipName == null ? null : new Path(""),
 			null,
 			null,
@@ -80,8 +80,8 @@ protected void addLibrary(String projectName, String jarName, String sourceZipNa
 protected void removeLibrary(String projectName, String jarName) throws CoreException, IOException {
 	IJavaProject javaProject = getJavaProject(projectName);
 	IProject project = javaProject.getProject();
-	String projectPath = '/' + project.getName() + '/';
-	removeClasspathEntry(javaProject, new Path(projectPath + jarName));
+	String projectPath = '/' + project.getName() + '/'; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	removeClasspathEntry(javaProject, new Path(projectPath + jarName)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 @Override
 public ICompilationUnit getWorkingCopy(String path, String source) throws JavaModelException {
@@ -93,7 +93,7 @@ protected CompletionResult complete(String path, String source, String completeB
 protected CompletionResult complete(String path, String source, boolean showPositions, String completeBehind) throws JavaModelException {
 	return this.complete(path,source,showPositions, completeBehind, null, null);
 }
-protected CompletionResult complete(String path, String source, boolean showPositions, String completeBehind, String tokenStartBehind, String token) throws JavaModelException {
+protected CompletionResult complete(String path, String source, boolean showPositions, String completeBehind, String tokenStartBehind, String token) throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(path, source);
 
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(true, false, showPositions);
@@ -188,7 +188,7 @@ protected void setUp() throws Exception {
 	super.setUp();
 	this.wcOwner = new WorkingCopyOwner(){};
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void tearDownSuite() throws Exception {
 	if (this.oldOptions != null) {
 		JavaCore.setOptions(this.oldOptions);
@@ -234,17 +234,17 @@ protected void assertResults(String expected, String actual) {
 
 protected void assertContains(String message, String expected, String containsIn) {
 	if (!containsIn.contains(expected)) {
-		StringBuilder formatted = new StringBuilder();
+		StringBuilder formatted = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		if (message != null) {
-			formatted.append(message).append('.');
+			formatted.append(message).append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		final String expectedWithLineSeparators = showLineSeparators(expected);
 		final String actualWithLineSeparators = showLineSeparators(containsIn);
-		formatted.append("\n----------- Expected to contain ------------\n"); //$NON-NLS-1$
-		formatted.append(expectedWithLineSeparators);
-		formatted.append("\n------------ but was ------------\n"); //$NON-NLS-1$
-		formatted.append(actualWithLineSeparators);
-		formatted.append("\n--------- Difference is ----------\n"); //$NON-NLS-1$
+		formatted.append("\n----------- Expected to contain ------------\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		formatted.append(expectedWithLineSeparators); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		formatted.append("\n------------ but was ------------\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		formatted.append(actualWithLineSeparators); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		formatted.append("\n--------- Difference is ----------\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		throw new ComparisonFailure(formatted.toString(), expectedWithLineSeparators, actualWithLineSeparators);
 	}
 }

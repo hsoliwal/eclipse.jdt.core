@@ -98,19 +98,19 @@ public boolean isSuperType(){
 public StringBuilder printExpression(int indent, StringBuilder output){
 	switch (this.kind) {
 		case K_CLASS :
-			output.append("<CompleteOnClass:");//$NON-NLS-1$
+			output.append("<CompleteOnClass:");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case K_INTERFACE :
-			output.append("<CompleteOnInterface:");//$NON-NLS-1$
+			output.append("<CompleteOnInterface:");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case K_EXCEPTION :
-			output.append("<CompleteOnException:");//$NON-NLS-1$
+			output.append("<CompleteOnException:");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		default :
-			output.append("<CompleteOnType:");//$NON-NLS-1$
+			output.append("<CompleteOnType:");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 	}
-	return output.append(this.token).append('>');
+	return output.append(this.token).append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 }
 @Override
 public TypeBinding resolveTypeEnclosing(BlockScope scope, ReferenceBinding enclosingType) {

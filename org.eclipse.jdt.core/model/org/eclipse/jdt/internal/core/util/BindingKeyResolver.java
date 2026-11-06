@@ -45,11 +45,11 @@ public class BindingKeyResolver extends BindingKeyParser {
 		public char[] computeUniqueKey() {
 			if (this.key == null) {
 				// have no scope to find the enclosing method, so use the captured method:
-				StringBuilder buf = new StringBuilder().append(this.enclosingMethod.computeUniqueKey());
-				buf.append('#');
-				buf.append(this.name);
-				buf.append("#0#"); //$NON-NLS-1$
-				buf.append(this.paramPosition);
+				StringBuilder buf = new StringBuilder().append(this.enclosingMethod.computeUniqueKey()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buf.append('#'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buf.append(this.name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buf.append("#0#"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buf.append(this.paramPosition); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				int length = buf.length();
 				this.key = new char[length];
 				buf.getChars(0, length, this.key, 0);
@@ -91,7 +91,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 	BlockScope scope;
 	TypeBinding typeBinding;
 	TypeDeclaration typeDeclaration;
-	ArrayList types = new ArrayList();
+	ArrayList types = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 	int wildcardRank;
 
@@ -131,7 +131,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 		return this.moduleName;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void consumeAnnotation() {
 		int size = this.types.size();
 		if (size == 0) return;
@@ -146,7 +146,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 		} else {
 			return;
 		}
-		for (AnnotationBinding binding : annotationBindings) {
+		for (AnnotationBinding binding : annotationBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (binding.getAnnotationType() == annotationType) {
 				this.annotationBinding = binding;
 				break;
@@ -177,21 +177,21 @@ public class BindingKeyResolver extends BindingKeyParser {
 	public void consumeCapture(final int position) {
 		consumeAnyCapture(-1, position);
 	}
-	public void consumeAnyCapture(final int capture18id, final int position) {
+	public void consumeAnyCapture(final int capture18id, final int position) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompilationUnitDeclaration outerParsedUnit = this.outerMostParsedUnit == null ? this.parsedUnit : this.outerMostParsedUnit;
 		if (outerParsedUnit == null) return;
 		final Binding wildcardBinding = this.types.size() > 0  // 0 may happen for CaptureBinding18
 				? ((BindingKeyResolver) this.types.get(0)).compilerBinding : null;
 		class CaptureFinder extends ASTVisitor {
 			CaptureBinding capture;
-			boolean checkType(TypeBinding binding) {
+			boolean checkType(TypeBinding binding) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				if (binding == null)
 					return false;
 				switch (binding.kind()) {
 					case Binding.PARAMETERIZED_TYPE:
 						TypeBinding[] arguments = ((ParameterizedTypeBinding) binding).arguments;
 						if (arguments == null) return false;
-						for (TypeBinding argument : arguments) {
+						for (TypeBinding argument : arguments) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (checkType(argument))
 								return true;
 						}
@@ -203,7 +203,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 							return true;
 						TypeBinding[] otherBounds = ((WildcardBinding) binding).otherBounds;
 						// per construction, otherBounds is never null
-						for (TypeBinding otherBound : otherBounds) {
+						for (TypeBinding otherBound : otherBounds) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							if (checkType(otherBound))
 								return true;
 						}
@@ -244,7 +244,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 					return false;
 				MethodBinding mBinding = messageSend.binding;
 				if (mBinding.isValidBinding()) {
-					for (TypeBinding parameter : mBinding.parameters) {
+					for (TypeBinding parameter : mBinding.parameters) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (checkType(parameter))
 							return false;
 					}
@@ -289,7 +289,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 
 	@Override
 	public void consumeException() {
-		this.types = new ArrayList();
+		this.types = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	}
 
 	@Override
@@ -297,7 +297,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 		if (this.typeBinding == null)
 			return;
 		FieldBinding[] fields = ((ReferenceBinding) this.typeBinding).availableFields(); // resilience
-	 	for (FieldBinding field : fields) {
+	 	for (FieldBinding field : fields) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(fieldName, field.name)) {
 				this.typeBinding = null;
 				this.compilerBinding = field;
@@ -329,7 +329,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 			this.typeBinding = null;
 			return;
 		}
- 		for (LocalTypeBinding localTypeBinding : this.parsedUnit.localTypes.values()) {
+ 		for (LocalTypeBinding localTypeBinding : this.parsedUnit.localTypes.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
  			if (CharOperation.equals(uniqueKey, localTypeBinding.computeUniqueKey(false/*not a leaf*/))) {
  				this.typeBinding = localTypeBinding;
  				return;
@@ -337,7 +337,7 @@ public class BindingKeyResolver extends BindingKeyParser {
  		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void consumeLocalVar(char[] varName, int occurrenceCount, int argumentPosition) {
 		if (this.scope == null) {
 			if (this.methodBinding == null)
@@ -351,7 +351,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 				if (parameterNames.length == 0) {
 					paramPosition = argumentPosition;
 				} else {
-					for (int i = 0; i < parameterNames.length; i++) {
+					for (int i = 0; i < parameterNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (CharOperation.equals(parameterNames[i], varName)) {
 							paramPosition = i;
 							break;
@@ -367,7 +367,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 			}
 		}
 		if (this.scope != null) {
-		 	for (int i = 0; i < this.scope.localIndex; i++) {
+		 	for (int i = 0; i < this.scope.localIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				LocalVariableBinding local = this.scope.locals[i];
 				if (CharOperation.equals(local.name, varName)
 						&& occurrenceCount-- == 0) {
@@ -379,12 +379,12 @@ public class BindingKeyResolver extends BindingKeyParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void consumeMethod(char[] selector, char[] signature) {
 		if (this.typeBinding == null)
 			return;
 		MethodBinding[] methods = ((ReferenceBinding) this.typeBinding).availableMethods(); // resilience
-	 	for (MethodBinding method : methods) {
+	 	for (MethodBinding method : methods) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(selector, method.selector) || (selector.length == 0 && method.isConstructor())) {
 				char[] methodSignature = method.genericSignature();
 				if (methodSignature == null)
@@ -401,7 +401,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 					char[][] typeParameters = Signature.getParameterTypes(signature);
 					int length = typeParameters.length;
 					TypeBinding[] parameterTypes = new TypeBinding[length];
-					for (int j = 0; j < length; j++) {
+					for (int j = 0; j < length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						parameterTypes[j] = getType(typeParameters[j]);
 					}
 					PolymorphicMethodBinding polymorphicMethod = this.environment.createPolymorphicMethod(method, parameterTypes, this.scope);
@@ -416,7 +416,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 		}
 	}
 
-	private TypeBinding getType(char[] type) {
+	private TypeBinding getType(char[] type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeBinding binding = null;
 		int length = type.length;
 		switch(length) {
@@ -454,7 +454,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 			default:
 				int dimensions = 0;
 				int start = 0;
-				while (type[start] == '[') {
+				while (type[start] == '[') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					start++;
 					dimensions++;
 				}
@@ -476,7 +476,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 		this.compilerBinding = new PlainPackageBinding(this.compoundName, null, this.environment, this.environment.module); //TODO(SHMOD) enclosingModule
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void consumeParameterizedType(char[] simpleTypeName, boolean isRaw) {
 		if (this.typeBinding == null)
 			return;
@@ -565,7 +565,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void consumeTypeVariable(char[] position, char[] typeVariableName) {
 		if (position.length > 0) {
 			if (this.typeBinding == null)
@@ -584,7 +584,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 	 	} else {
 	 		return;
 	 	}
-	 	for (TypeVariableBinding typeVariableBinding : typeVariableBindings) {
+	 	for (TypeVariableBinding typeVariableBinding : typeVariableBindings) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(typeVariableName, typeVariableBinding.sourceName())) {
 				this.typeBinding = typeVariableBinding;
 				return;
@@ -603,7 +603,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 		this.wildcardRank = aRank;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void consumeWildCard(int kind) {
 		switch (kind) {
 			case Wildcard.EXTENDS:
@@ -645,7 +645,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 		return this.environment.createArrayType(binding, dim);
 	}
 
-	private TypeBinding getBaseTypeBinding(char[] signature) {
+	private TypeBinding getBaseTypeBinding(char[] signature) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch (signature[0]) {
 			case 'I' :
 				return TypeBinding.INT;
@@ -686,7 +686,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 	 * Returns null if no compilation unit declaration could be found.
 	 * This key's scanner should be positioned on the package token.
 	 */
-	public CompilationUnitDeclaration getCompilationUnitDeclaration() {
+	public CompilationUnitDeclaration getCompilationUnitDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] name = this.compoundName;
 		if (name.length == 0) return null;
 		if (this.environment == null) return null;
@@ -718,7 +718,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 			parse();
 			return this.compilerBinding;
 		} catch (RuntimeException e) {
-			Util.log(e, "Could not create binding from binding key: " + getKey()); //$NON-NLS-1$
+			Util.log(e, "Could not create binding from binding key: " + getKey()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			return null;
 		}
 	}
@@ -732,7 +732,7 @@ public class BindingKeyResolver extends BindingKeyParser {
 				(this.parsedUnit == null ? null : this.parsedUnit.types) :
 				this.typeDeclaration.memberTypes;
 		if (typeDeclarations == null) return null;
-		for (TypeDeclaration declaration : typeDeclarations) {
+		for (TypeDeclaration declaration : typeDeclarations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (CharOperation.equals(simpleTypeName, declaration.name)) {
 				this.typeDeclaration = declaration;
 				return declaration.binding;
@@ -744,16 +744,16 @@ public class BindingKeyResolver extends BindingKeyParser {
 	private TypeBinding[] getTypeBindingArguments() {
 		int size = this.types.size();
 		TypeBinding[] arguments = new TypeBinding[size];
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BindingKeyResolver resolver = (BindingKeyResolver) this.types.get(i);
 			TypeBinding compilerBinding2 = (TypeBinding) resolver.compilerBinding;
 			if (compilerBinding2 == null) {
-				this.types = new ArrayList();
+				this.types = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				return null;
 			}
 			arguments[i] = compilerBinding2;
 		}
-		this.types = new ArrayList();
+		this.types = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		return arguments;
 	}
 

@@ -40,7 +40,7 @@ public class ASTBasedMethodDeclarationImpl
         visitor.visitMethodDeclaration(this);
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeMirror getReturnType()
     {
     	final org.eclipse.jdt.core.dom.MethodDeclaration methodAstNode = getMethodAstNode();

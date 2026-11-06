@@ -38,7 +38,7 @@ import org.eclipse.jdt.internal.core.hierarchy.TypeHierarchy;
  * @see ITypeHierarchy
  */
 
-public class CreateTypeHierarchyOperation extends JavaModelOperation {
+public class CreateTypeHierarchyOperation extends JavaModelOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 	/**
 	 * The generated type hierarchy
 	 */

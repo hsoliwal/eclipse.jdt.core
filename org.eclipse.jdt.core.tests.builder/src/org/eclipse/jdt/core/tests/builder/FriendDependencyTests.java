@@ -47,7 +47,7 @@ public void testIncludes() {
 }
 
 // this is a compilation only test to verify that this method still exists since API Tooling is using it
-public void testInternSimpleNames() {
+public void testInternSimpleNames() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ReferenceCollection.internSimpleNames(new StringSet(1), true);
 
 	try {
@@ -75,7 +75,7 @@ public void testInternSimpleNames() {
 }
 
 //this is a compilation only test to verify that this method still exists since API Tooling is using it
-public void testInternQualifiedNames() {
+public void testInternQualifiedNames() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ReferenceCollection.internQualifiedNames(new StringSet(1));
 
 	try {
@@ -101,7 +101,7 @@ public void testInternQualifiedNames() {
 	}
 }
 //this is a compilation only test to verify that this method still exists since API Tooling is using it
-public void testGetReferences() {
+public void testGetReferences() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		State state = (State) JavaModelManager.getJavaModelManager().getLastBuiltState(null, null);
 		state.getReferences();
@@ -127,7 +127,7 @@ public void testGetReferences() {
 	}
 }
 //this is a compilation only test to verify that this method still exists since API Tooling is using it
-public void testStringSetAdd() {
+public void testStringSetAdd() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringSet s = new StringSet(3);
 	s.add("");
 
@@ -153,7 +153,7 @@ public void testStringSetAdd() {
 	}
 }
 //this is a compilation only test to verify that this method still exists since API Tooling is using it
-public void testStringSetclear() {
+public void testStringSetclear() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringSet s = new StringSet(3);
 	s.clear();
 
@@ -176,7 +176,7 @@ public void testStringSetclear() {
 	}
 }
 //this is a compilation only test to verify that this method still exists since API Tooling is using it
-public void testStringSetNew() {
+public void testStringSetNew() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	new StringSet(3);
 
 	try {
@@ -200,7 +200,7 @@ public void testStringSetNew() {
 	}
 }
 //this is a compilation only test to verify that this field still exists since API Tooling is using it
-public void testStringSetElementSize() {
+public void testStringSetElementSize() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringSet s = new StringSet(3);
 	assertEquals("Not expected", 0, s.elementSize);
 
@@ -223,7 +223,7 @@ public void testStringSetElementSize() {
 	}
 }
 //this is a compilation only test to verify that this field still exists since API Tooling is using it
-public void testSimpleLookupTableKeyTable() {
+public void testSimpleLookupTableKeyTable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SimpleLookupTable t = new SimpleLookupTable(3);
 	assertNotNull("Null", t.keyTable);
 
@@ -246,7 +246,7 @@ public void testSimpleLookupTableKeyTable() {
 	}
 }
 //this is a compilation only test to verify that this field still exists since API Tooling is using it
-public void testSimpleLookupTableValueTable() {
+public void testSimpleLookupTableValueTable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	SimpleLookupTable t = new SimpleLookupTable(3);
 	assertNotNull("Null", t.valueTable);
 
@@ -269,7 +269,7 @@ public void testSimpleLookupTableValueTable() {
 	}
 }
 //this is a compilation only test to verify that this method still exists since API Tooling is using it
-public void testJavaModelManagerGetJavaModelManager() {
+public void testJavaModelManagerGetJavaModelManager() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	JavaModelManager.getJavaModelManager();
 	try {
 		String className = "org.eclipse.jdt.internal.core.JavaModelManager";
@@ -290,7 +290,7 @@ public void testJavaModelManagerGetJavaModelManager() {
 	}
 }
 //this is a compilation only test to verify that this method still exists since API Tooling is using it
-public void testJavaModelManagerGetLastBuiltState() {
+public void testJavaModelManagerGetLastBuiltState() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		JavaModelManager.getJavaModelManager().getLastBuiltState(null, null);
 	} catch (NullPointerException e) {

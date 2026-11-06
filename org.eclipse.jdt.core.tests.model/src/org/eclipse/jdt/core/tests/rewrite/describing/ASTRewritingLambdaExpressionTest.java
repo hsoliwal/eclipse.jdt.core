@@ -35,20 +35,20 @@ public class ASTRewritingLambdaExpressionTest extends ASTRewritingTest {
 		return createSuite(ASTRewritingLambdaExpressionTest.class);
 	}
 
-	public void testLambdaExpressions_since_8() throws Exception {
+	public void testLambdaExpressions_since_8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("interface I {\n");
-		buf.append("	int foo(int x);\n");
-		buf.append("}\n");
-		buf.append("interface J {\n");
-		buf.append("	int foo();\n");
-		buf.append("}\n");
-		buf.append("public class X {\n");
-		buf.append(" I i =  vlambda -> {return 200;};\n");
-		buf.append(" J j =  () -> 1729;\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface I {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	int foo(int x);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface J {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	int foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" I i =  vlambda -> {return 200;};\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" J j =  () -> 1729;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -125,45 +125,45 @@ public class ASTRewritingLambdaExpressionTest extends ASTRewritingTest {
 		}
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("interface I {\n");
-		buf.append("	float foo(int x, int y);\n");
-		buf.append("}\n");
-		buf.append("interface J {\n");
-		buf.append("	int foo(int x);\n");
-		buf.append("}\n");
-		buf.append("public class X {\n");
-		buf.append(" I i =  (vlambda, wlambda) -> 3.14;\n");
-		buf.append(" J j =  (vlambda) -> 1729;\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface I {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	float foo(int x, int y);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface J {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	int foo(int x);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" I i =  (vlambda, wlambda) -> 3.14;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" J j =  (vlambda) -> 1729;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 
-	public void testLambdaExpressions_Parentheses_since_8() throws Exception {
+	public void testLambdaExpressions_Parentheses_since_8() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPackageFragment pack1= this.sourceFolder.createPackageFragment("test1", false, null);
-		StringBuilder buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("interface I {\n");
-		buf.append("	int foo(int x);\n");
-		buf.append("}\n");
-		buf.append("interface J {\n");
-		buf.append("	int foo();\n");
-		buf.append("}\n");
-		buf.append("interface K {\n");
-		buf.append("	int foo(int x, int y);\n");
-		buf.append("}\n");
-		buf.append("interface L {\n");
-		buf.append("	int foo(int x);\n");
-		buf.append("}\n");
-		buf.append("public class X {\n");
-		buf.append(" I i =  vlambda -> 22121887;\n");
-		buf.append(" I idash =  (vlambda) -> 1729;\n");
-		buf.append(" J j =  () -> 26041920;\n");
-		buf.append(" K k =  (x, y) -> 1729;\n");
-		buf.append(" K kdash =  (int x, int y) -> 1729;\n");
-		buf.append(" L l =  vlambda -> 1729;\n");
-		buf.append("}\n");
+		StringBuilder buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface I {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	int foo(int x);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface J {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	int foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface K {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	int foo(int x, int y);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface L {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	int foo(int x);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" I i =  vlambda -> 22121887;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" I idash =  (vlambda) -> 1729;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" J j =  () -> 26041920;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" K k =  (x, y) -> 1729;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" K kdash =  (int x, int y) -> 1729;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" L l =  vlambda -> 1729;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ICompilationUnit cu= pack1.createCompilationUnit("X.java", buf.toString(), false, null);
 
 		CompilationUnit astRoot= createAST(cu);
@@ -240,7 +240,7 @@ public class ASTRewritingLambdaExpressionTest extends ASTRewritingTest {
 			lambdaExpression = (LambdaExpression)fragment.getInitializer();
 			List parameters = lambdaExpression.parameters();
 
-			for (int i = 0; i < parameters.size(); ++i) {
+			for (int i = 0; i < parameters.size(); ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				SingleVariableDeclaration param = (SingleVariableDeclaration)parameters.get(i);
 				VariableDeclarationFragment newParam= ast.newVariableDeclarationFragment();
 				newParam.setName(ast.newSimpleName(new String(param.getName().toString())));
@@ -260,28 +260,28 @@ public class ASTRewritingLambdaExpressionTest extends ASTRewritingTest {
 
 		String preview= evaluateRewrite(cu, rewrite);
 
-		buf= new StringBuilder();
-		buf.append("package test1;\n");
-		buf.append("interface I {\n");
-		buf.append("	int foo(int x);\n");
-		buf.append("}\n");
-		buf.append("interface J {\n");
-		buf.append("	int foo();\n");
-		buf.append("}\n");
-		buf.append("interface K {\n");
-		buf.append("	int foo(int x, int y);\n");
-		buf.append("}\n");
-		buf.append("interface L {\n");
-		buf.append("	int foo();\n");
-		buf.append("}\n");
-		buf.append("public class X {\n");
-		buf.append(" I i =  (vlambda) -> 22121887;\n");
-		buf.append(" I idash =  vlambda -> 1729;\n");
-		buf.append(" J j =  () -> 26041920;\n");
-		buf.append(" K k =  (int x, int y) -> 1729;\n");
-		buf.append(" K kdash =  (x, y) -> 1729;\n");
-		buf.append(" L l =  () -> 1729;\n");
-		buf.append("}\n");
+		buf= new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("package test1;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface I {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	int foo(int x);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface J {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	int foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface K {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	int foo(int x, int y);\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("interface L {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("	int foo();\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("public class X {\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" I i =  (vlambda) -> 22121887;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" I idash =  vlambda -> 1729;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" J j =  () -> 26041920;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" K k =  (int x, int y) -> 1729;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" K kdash =  (x, y) -> 1729;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append(" L l =  () -> 1729;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buf.append("}\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		assertEqualString(preview, buf.toString());
 	}
 }

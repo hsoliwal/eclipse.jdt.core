@@ -106,7 +106,7 @@ public SelectionParser(ProblemReporter problemReporter) {
 public char[] assistIdentifier(){
 	return ((SelectionScanner)this.scanner).selectionIdentifier;
 }
-protected void attachOrphanCompletionNode(){
+protected void attachOrphanCompletionNode(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.isOrphanCompletionNode){
 		ASTNode orphan = this.assistNode;
 		this.isOrphanCompletionNode = false;
@@ -142,7 +142,7 @@ protected void attachOrphanCompletionNode(){
 		}
 	}
 }
-private void buildMoreCompletionContext(Expression expression) {
+private void buildMoreCompletionContext(Expression expression) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	Statement parentNode = null;
 	Statement orphan = expression;
@@ -157,7 +157,7 @@ private void buildMoreCompletionContext(Expression expression) {
 
 	int kind;
 
-	for (int i = this.elementPtr; i > -1; i--) {
+	for (int i = this.elementPtr; i > -1; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (kind = this.elementKindStack[i]) {
 			case K_INSIDE_WHILE:
 				if (whileBody == null) // selection inside while (<here>)
@@ -301,7 +301,7 @@ private void buildMoreCompletionContext(Expression expression) {
 		}
 	}
 }
-private boolean checkRecoveredType() {
+private boolean checkRecoveredType() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.currentElement instanceof RecoveredType){
 		/* check if current awaiting identifier is the completion identifier */
 		if (this.indexOfAssistIdentifier() < 0) return false;
@@ -321,7 +321,7 @@ private boolean checkRecoveredType() {
 	}
 	return false;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void classInstanceCreation(boolean hasClassBody) {
 
 	// ClassInstanceCreationExpression ::= 'new' ClassType '(' ArgumentListopt ')' ClassBodyopt
@@ -450,7 +450,7 @@ protected void consumeCastExpressionWithQualifiedGenericsArray() {
 	popElement(K_CAST_STATEMENT);
 	super.consumeCastExpressionWithQualifiedGenericsArray();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeCatchFormalParameter() {
 	if (this.indexOfAssistIdentifier() < 0) {
 		super.consumeCatchFormalParameter();
@@ -507,7 +507,7 @@ protected void consumeCatchFormalParameter() {
 		this.listLength++;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeClassInstanceCreationExpressionQualifiedWithTypeArguments() {
 	// ClassInstanceCreationExpression ::= Primary '.' 'new' TypeArguments SimpleName '(' ArgumentListopt ')' ClassBodyopt
 	// ClassInstanceCreationExpression ::= ClassInstanceCreationExpressionName 'new' TypeArguments SimpleName '(' ArgumentListopt ')' ClassBodyopt
@@ -573,7 +573,7 @@ protected void consumeClassInstanceCreationExpressionQualifiedWithTypeArguments(
 	this.expressionStack[this.expressionPtr] = qae;
 	qae.sourceStart = qae.enclosingInstance.sourceStart;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeClassInstanceCreationExpressionWithTypeArguments() {
 	// ClassInstanceCreationExpression ::= 'new' TypeArguments ClassType '(' ArgumentListopt ')' ClassBodyopt
 	AllocationExpression alloc;
@@ -631,7 +631,7 @@ protected void consumeClassInstanceCreationExpressionWithTypeArguments() {
 		super.consumeClassInstanceCreationExpressionWithTypeArguments();
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeEnterAnonymousClassBody(boolean qualified) {
 	// EnterAnonymousClassBody ::= $empty
 
@@ -703,7 +703,7 @@ protected void consumeEnterAnonymousClassBody(boolean qualified) {
 		this.lastIgnoredToken = TokenNameInvalid;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeEnterVariable() {
 	// EnterVariable ::= $empty
 	// do nothing by default
@@ -742,7 +742,7 @@ protected void consumeExitVariableWithInitialization() {
 	triggerRecoveryUponLambdaClosure(variable, false);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeFieldAccess(boolean isSuperAccess) {
 	// FieldAccess ::= Primary '.' 'Identifier'
 	// FieldAccess ::= 'super' '.' 'Identifier'
@@ -774,7 +774,7 @@ protected void consumeFieldAccess(boolean isSuperAccess) {
 	}
 	this.isOrphanCompletionNode = true;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeSingleVariableDeclarator(boolean isVarArgs) {
 	if (this.indexOfAssistIdentifier() < 0 || this.parsingRecordComponents) {
 		super.consumeSingleVariableDeclarator(isVarArgs);
@@ -1011,7 +1011,7 @@ protected void consumeSwitchRule(SwitchRuleKind kind) {
 		popElement(K_SWITCH_EXPRESSION_DELIMITTER);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeInstanceOfExpressionWithName() {
 	if (indexOfAssistIdentifier() < 0) {
 		super.consumeInstanceOfExpressionWithName();
@@ -1041,7 +1041,7 @@ protected void consumeInstanceOfExpressionWithName() {
 		this.lastIgnoredToken = TokenNameInvalid;
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeLambdaExpression() {
 	super.consumeLambdaExpression();
 	LambdaExpression expression = (LambdaExpression) this.expressionStack[this.expressionPtr];
@@ -1129,7 +1129,7 @@ protected void consumeBlock() {
 		this.selectionNodeFoundLevel--;
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeMarkerAnnotation(boolean isTypeAnnotation) {
 	int index;
 
@@ -1181,7 +1181,7 @@ protected void consumeMarkerAnnotation(boolean isTypeAnnotation) {
 		pushOnExpressionStack(markerAnnotation);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeMemberValuePair() {
 	if (this.indexOfAssistIdentifier() < 0) {
 		super.consumeMemberValuePair();
@@ -1203,7 +1203,7 @@ protected void consumeMemberValuePair() {
 
 
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeMethodInvocationName() {
 	// MethodInvocation ::= Name '(' ArgumentListopt ')'
 
@@ -1267,7 +1267,7 @@ protected void consumeMethodInvocationName() {
 	this.lastCheckPoint = constructorCall.sourceEnd + 1;
 	this.isOrphanCompletionNode = true;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeMethodInvocationPrimary() {
 	//optimize the push/pop
 	//MethodInvocation ::= Primary '.' 'Identifier' '(' ArgumentListopt ')'
@@ -1320,7 +1320,7 @@ protected void consumeMethodInvocationPrimary() {
 	this.lastCheckPoint = constructorCall.sourceEnd + 1;
 	this.isOrphanCompletionNode = true;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeNormalAnnotation(boolean isTypeAnnotation) {
 	int index;
 
@@ -1380,7 +1380,7 @@ protected void consumeNormalAnnotation(boolean isTypeAnnotation) {
 		pushOnExpressionStack(normalAnnotation);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeSingleMemberAnnotation(boolean isTypeAnnotation) {
 	int index;
 
@@ -1434,7 +1434,7 @@ protected void consumeSingleMemberAnnotation(boolean isTypeAnnotation) {
 		pushOnExpressionStack(singleMemberAnnotation);
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeStaticImportOnDemandDeclarationName() {
 	// TypeImportOnDemandDeclarationName ::= 'import' 'static' Name '.' '*'
 	/* push an ImportRef build from the last name
@@ -1489,7 +1489,7 @@ protected void consumeStaticImportOnDemandDeclarationName() {
 		this.restartRecovery = true; // used to avoid branching back into the regular automaton
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeToken(TerminalToken token) {
 	TerminalToken lastToken = this.previousToken; // before super.consumeToken tramples on it
 	boolean betweenCaseAndColonOrArrow = topKnownElementKind(SELECTION_OR_ASSIST_PARSER) == K_BETWEEN_CASE_AND_COLONORARROW; // before super.consumeToken tramples on it
@@ -1562,7 +1562,7 @@ protected void consumeToken(TerminalToken token) {
 		}
 	}
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void consumeTypeImportOnDemandDeclarationName() {
 	// TypeImportOnDemandDeclarationName ::= 'import' Name '.' '*'
 	/* push an ImportRef build from the last name
@@ -1695,7 +1695,7 @@ public CompilationUnitDeclaration dietParse(ICompilationUnit sourceUnit, Compila
 	selectionScanner.selectionEnd = end;
 	return this.dietParse(sourceUnit, compilationResult);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected NameReference getUnspecifiedReference(boolean rejectTypeAnnotations) {
 	/* build a (unspecified) NameReference which may be qualified*/
 
@@ -1719,7 +1719,7 @@ protected NameReference getUnspecifiedReference(boolean rejectTypeAnnotations) {
 			int ptr = this.identifierPtr -= (length - completionIndex);
 			pushOnGenericsLengthStack(0);
 			pushOnGenericsIdentifiersLengthStack(this.identifierLengthStack[this.identifierLengthPtr]);
-			for (int i = 0; i < completionIndex; i++) {
+			for (int i = 0; i < completionIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				pushOnTypeAnnotationLengthStack(0);
 			}
 			reference =
@@ -1807,7 +1807,7 @@ public ReferenceExpression newReferenceExpression() {
 	this.assistNode = referenceExpression;
 	return referenceExpression;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected MessageSend newMessageSend() {
 	// '(' ArgumentListopt ')'
 	// the arguments are on the expression stack
@@ -1838,7 +1838,7 @@ protected MessageSend newMessageSend() {
 	this.isOrphanCompletionNode = true;
 	return messageSend;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected MessageSend newMessageSendWithTypeArguments() {
 	char[] selector = this.identifierStack[this.identifierPtr];
 	if (selector != assistIdentifier()){
@@ -1881,12 +1881,12 @@ public CompilationUnitDeclaration parse(ICompilationUnit sourceUnit, Compilation
 	return super.parse(sourceUnit, compilationResult, -1, -1/*parse without reseting the scanner*/);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected boolean restartRecovery() {
 	if (requireExtendedRecovery() || this.selectionNodeFoundLevel > 0 || this.parsingEmbeddedExpression)
 		return false;
 	boolean deferRestartOnLocalType = false;
-	for (int i = 0; i <= this.elementPtr; i++) {
+	for (int i = 0; i <= this.elementPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (this.elementKindStack[i]) {
 			case K_INSIDE_STATEMENT_SWITCH:
 			case K_INSIDE_EXPRESSION_SWITCH:
@@ -1907,7 +1907,7 @@ protected boolean restartRecovery() {
 
 @Override
 protected int cookedAstPtr() {
-	for (int i = 0; i <= this.elementPtr; i++) {
+	for (int i = 0; i <= this.elementPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		switch (this.elementKindStack[i]) {
 			case K_INSIDE_STATEMENT_SWITCH:
 			case K_INSIDE_EXPRESSION_SWITCH:
@@ -1928,7 +1928,7 @@ protected int cookedAstPtr() {
  * Move checkpoint location, reset internal stacks and
  * decide which grammar goal is activated.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected int resumeAfterRecovery() {
 
 	/* if reached assist node inside method body, but still inside nested type,
@@ -1973,7 +1973,7 @@ public void setAssistIdentifier(char[] assistIdent){
 /*
  * Update recovery state based on current parser/scanner state
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void updateRecoveryState() {
 
 	/* expose parser state to recovery state */
@@ -1995,7 +1995,7 @@ protected void updateRecoveryState() {
 	*/
 	recoveryTokenCheck();
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected Argument typeElidedArgument() {
 	char[] selector = this.identifierStack[this.identifierPtr];
 	if (selector != assistIdentifier()){
@@ -2019,17 +2019,17 @@ protected Argument typeElidedArgument() {
 @Override
 public  String toString() {
 	String s = Util.EMPTY_STRING;
-	s = s + "elementKindStack : int[] = {"; //$NON-NLS-1$
-	for (int i = 0; i <= this.elementPtr; i++) {
-		s = s + String.valueOf(this.elementKindStack[i]) + ","; //$NON-NLS-1$
+	s = s + "elementKindStack : int[] = {"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	for (int i = 0; i <= this.elementPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		s = s + String.valueOf(this.elementKindStack[i]) + ","; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	s = s + "}\n"; //$NON-NLS-1$
-	s = s + "elementInfoStack : int[] = {"; //$NON-NLS-1$
-	for (int i = 0; i <= this.elementPtr; i++) {
-		s = s + String.valueOf(this.elementInfoStack[i]) + ","; //$NON-NLS-1$
+	s = s + "}\n"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	s = s + "elementInfoStack : int[] = {"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	for (int i = 0; i <= this.elementPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		s = s + String.valueOf(this.elementInfoStack[i]) + ","; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	s = s + "}\n"; //$NON-NLS-1$
-	return s + super.toString();
+	s = s + "}\n"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	return s + super.toString(); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 @Override
 public ModuleReference createAssistModuleReference(int index) {

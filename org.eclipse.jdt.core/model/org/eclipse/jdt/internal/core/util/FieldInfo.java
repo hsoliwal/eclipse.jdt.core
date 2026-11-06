@@ -46,7 +46,7 @@ public class FieldInfo extends ClassFileStruct implements IFieldInfo {
 	 * @param constantPool IConstantPool
 	 * @param offset int
 	 */
-	public FieldInfo(byte classFileBytes[], IConstantPool constantPool, int offset)
+	public FieldInfo(byte classFileBytes[], IConstantPool constantPool, int offset) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws ClassFormatException {
 		final int flags = u2At(classFileBytes, 0, offset);
 		this.accessFlags = flags;
@@ -74,7 +74,7 @@ public class FieldInfo extends ClassFileStruct implements IFieldInfo {
 			this.attributes = new IClassFileAttribute[this.attributesCount];
 		}
 		int attributesIndex = 0;
-		for (int i = 0; i < this.attributesCount; i++) {
+		for (int i = 0; i < this.attributesCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			constantPoolEntry = constantPool.decodeEntry(u2At(classFileBytes, readOffset, offset));
 			if (constantPoolEntry.getKind() != IConstantPoolConstant.CONSTANT_Utf8) {
 				throw new ClassFormatException(ClassFormatException.INVALID_CONSTANT_POOL_ENTRY);

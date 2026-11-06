@@ -189,7 +189,7 @@ public class CorrectionEngine {
 	 * 	when the correction failed is kept for later.
 	 * @since 2.0
 	 */
-	private void computeCorrections(ICompilationUnit unit, int id, int start, int end, String[] arguments, ICorrectionRequestor requestor) {
+	private void computeCorrections(ICompilationUnit unit, int id, int start, int end, String[] arguments, ICorrectionRequestor requestor) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		if(id == -1 || arguments == null || start == -1 || end == -1)
 			return;
@@ -240,7 +240,7 @@ public class CorrectionEngine {
 		}
 	}
 
-	private void correct(char[] argument) {
+	private void correct(char[] argument) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			String source = this.compilationUnit.getSource();
 			Map<String,String> currentProjectOptions = this.compilationUnit.getJavaProject().getOptions(true);
@@ -265,7 +265,7 @@ public class CorrectionEngine {
 			char[] argumentSource = CharOperation.NO_CHAR;
 
 			// search last segment position
-			while(true) {
+			while(true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				token = scanner.getNextToken();
 				if (token == TerminalToken.TokenNameEOF) return;
 
@@ -289,7 +289,7 @@ public class CorrectionEngine {
 			scanner.resetTo(completionPosition, this.correctionEnd);
 			int position = completionPosition;
 
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i < 4; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(scanner.getNextCharAsJavaIdentifierPart()) {
 					completionPosition = position;
 					position = scanner.currentPosition;
@@ -320,7 +320,7 @@ public class CorrectionEngine {
 	 * This field is not intended to be used by client.
 	 */
 	protected CompletionRequestor completionRequestor = new CompletionRequestor() {
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void accept(CompletionProposal proposal) {
 			switch (proposal.getKind()) {
 				case CompletionProposal.TYPE_REF:
@@ -385,7 +385,7 @@ public class CorrectionEngine {
 						int length = parameterTypeSignatures.length;
 						char[][] parameterPackageNames = new char[length][];
 						char[][] parameterTypeNames = new char[length][];
-						for (int i = 0; i < length; i++) {
+						for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							parameterPackageNames[i] = Signature.getSignatureQualifier(parameterTypeSignatures[i]);
 							parameterTypeNames[i] = Signature.getSignatureSimpleName(parameterTypeSignatures[i]);
 						}

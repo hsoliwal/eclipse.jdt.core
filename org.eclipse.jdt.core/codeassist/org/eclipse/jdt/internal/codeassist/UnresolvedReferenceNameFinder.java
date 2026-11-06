@@ -105,7 +105,7 @@ public class UnresolvedReferenceNameFinder extends ASTVisitor {
 		if (fakeMethod != null) fakeMethod.traverse(this, classScope);
 	}
 
-	private MethodDeclaration findAfter(
+	private MethodDeclaration findAfter( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] startWith,
 			Scope s,
 			int from,
@@ -173,7 +173,7 @@ public class UnresolvedReferenceNameFinder extends ASTVisitor {
 		if (fakeMethod != null) fakeMethod.traverse(this, classScope);
 	}
 
-	private MethodDeclaration findBefore(
+	private MethodDeclaration findBefore( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			char[] startWith,
 			Scope s,
 			int from,
@@ -219,7 +219,7 @@ public class UnresolvedReferenceNameFinder extends ASTVisitor {
 		return fakeMethod;
 	}
 
-	private boolean initPotentialNamesTables(char[][] discouragedNames) {
+	private boolean initPotentialNamesTables(char[][] discouragedNames) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[][] pvns = this.parser.potentialVariableNames;
 		int[] pvnss = this.parser.potentialVariableNameStarts;
 		int pvnsPtr = this.parser.potentialVariableNamesPtr;
@@ -229,12 +229,12 @@ public class UnresolvedReferenceNameFinder extends ASTVisitor {
 		// remove null and discouragedNames
 		int discouragedNamesCount = discouragedNames == null ? 0 : discouragedNames.length;
 		int j = -1;
-		next : for (int i = 0; i <= pvnsPtr; i++) {
+		next : for (int i = 0; i <= pvnsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] temp = pvns[i];
 
 			if (temp == null) continue next;
 
-			for (int k = 0; k < discouragedNamesCount; k++) {
+			for (int k = 0; k < discouragedNamesCount; k++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (CharOperation.equals(temp, discouragedNames[k], false)) {
 					continue next;
 				}
@@ -268,7 +268,7 @@ public class UnresolvedReferenceNameFinder extends ASTVisitor {
 
 	private ASTNode getEnclosingDeclaration() {
 		int i = this.parentsPtr;
-		while (i > -1) {
+		while (i > -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode parent = this.parents[i];
 			if (parent instanceof AbstractMethodDeclaration) {
 				return parent;
@@ -409,11 +409,11 @@ public class UnresolvedReferenceNameFinder extends ASTVisitor {
 		popParent();
 	}
 
-	private int indexOfFisrtNameAfter(int position) {
+	private int indexOfFisrtNameAfter(int position) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int left = 0;
 		int right = this.potentialVariableNamesPtr;
 
-		next : while (true) {
+		next : while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (right < left) return -1;
 
 			int mid = left + (right - left) / 2;
@@ -456,9 +456,9 @@ public class UnresolvedReferenceNameFinder extends ASTVisitor {
 		}
 	}
 
-	private int indexOfNextName(int index) {
+	private int indexOfNextName(int index) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int nextIndex = index + 1;
-		while (nextIndex <= this.potentialVariableNamesPtr &&
+		while (nextIndex <= this.potentialVariableNamesPtr && //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.potentialVariableNames[nextIndex] == null) {
 			int jumpIndex = -this.potentialVariableNameStarts[nextIndex];
 			if (jumpIndex > 0) {
@@ -492,7 +492,7 @@ public class UnresolvedReferenceNameFinder extends ASTVisitor {
 
 	private void endVisitPreserved(int start, int end) {
 		int i = indexOfFisrtNameAfter(start);
-		done : while (i != -1) {
+		done : while (i != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int nameStart = this.potentialVariableNameStarts[i];
 			if (start < nameStart && nameStart < end) {
 				acceptName(this.potentialVariableNames[i]);
@@ -506,7 +506,7 @@ public class UnresolvedReferenceNameFinder extends ASTVisitor {
 
 	private void endVisitRemoved(int start, int end) {
 		int i = indexOfFisrtNameAfter(start);
-		done : while (i != -1) {
+		done : while (i != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int nameStart = this.potentialVariableNameStarts[i];
 			if (start < nameStart && nameStart < end) {
 				removeNameAt(i);
@@ -517,13 +517,13 @@ public class UnresolvedReferenceNameFinder extends ASTVisitor {
 		}
 	}
 
-	private void removeLocals(Statement[] statements, int start, int end) {
+	private void removeLocals(Statement[] statements, int start, int end) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (statements != null) {
-			for (int i = 0; i < statements.length; i++) {
+			for (int i = 0; i < statements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (statements[i] instanceof LocalDeclaration) {
 					LocalDeclaration localDeclaration = (LocalDeclaration) statements[i];
 					int j = indexOfFisrtNameAfter(start);
-					done : while (j != -1) {
+					done : while (j != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						int nameStart = this.potentialVariableNameStarts[j];
 						if (start <= nameStart && nameStart <= end) {
 							if (CharOperation.equals(this.potentialVariableNames[j], localDeclaration.name, false)) {
@@ -540,15 +540,15 @@ public class UnresolvedReferenceNameFinder extends ASTVisitor {
 		}
 	}
 
-	private void removeFields(TypeDeclaration typeDeclaration) {
+	private void removeFields(TypeDeclaration typeDeclaration) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int start = typeDeclaration.declarationSourceStart;
 		int end = typeDeclaration.declarationSourceEnd;
 
 		FieldDeclaration[] fieldDeclarations = typeDeclaration.fields;
 		if (fieldDeclarations != null) {
-			for (int i = 0; i < fieldDeclarations.length; i++) {
+			for (int i = 0; i < fieldDeclarations.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				int j = indexOfFisrtNameAfter(start);
-				done : while (j != -1) {
+				done : while (j != -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					int nameStart = this.potentialVariableNameStarts[j];
 					if (start <= nameStart && nameStart <= end) {
 						if (CharOperation.equals(this.potentialVariableNames[j], fieldDeclarations[i].name, false)) {

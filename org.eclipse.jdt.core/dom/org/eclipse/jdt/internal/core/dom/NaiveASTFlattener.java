@@ -113,7 +113,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 	 * Creates a new AST printer.
 	 */
 	public NaiveASTFlattener() {
-		this.buffer = new StringBuilder();
+		this.buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 	}
 
 	/**
@@ -176,8 +176,8 @@ public class NaiveASTFlattener extends ASTVisitor {
 	}
 
 	void printIndent() {
-		for (int i = 0; i < this.indent; i++)
-			this.buffer.append("  "); //$NON-NLS-1$
+		for (int i = 0; i < this.indent; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			this.buffer.append("  "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
 	/**
@@ -186,45 +186,45 @@ public class NaiveASTFlattener extends ASTVisitor {
 	 *
 	 * @param modifiers the modifier flags
 	 */
-	void printModifiers(int modifiers) {
+	void printModifiers(int modifiers) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (Modifier.isPublic(modifiers)) {
-			this.buffer.append("public ");//$NON-NLS-1$
+			this.buffer.append("public ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isProtected(modifiers)) {
-			this.buffer.append("protected ");//$NON-NLS-1$
+			this.buffer.append("protected ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isPrivate(modifiers)) {
-			this.buffer.append("private ");//$NON-NLS-1$
+			this.buffer.append("private ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isStatic(modifiers)) {
-			this.buffer.append("static ");//$NON-NLS-1$
+			this.buffer.append("static ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isAbstract(modifiers)) {
-			this.buffer.append("abstract ");//$NON-NLS-1$
+			this.buffer.append("abstract ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isFinal(modifiers)) {
-			this.buffer.append("final ");//$NON-NLS-1$
+			this.buffer.append("final ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isSynchronized(modifiers)) {
-			this.buffer.append("synchronized ");//$NON-NLS-1$
+			this.buffer.append("synchronized ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isVolatile(modifiers)) {
-			this.buffer.append("volatile ");//$NON-NLS-1$
+			this.buffer.append("volatile ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isNative(modifiers)) {
-			this.buffer.append("native ");//$NON-NLS-1$
+			this.buffer.append("native ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isStrictfp(modifiers)) {
-			this.buffer.append("strictfp ");//$NON-NLS-1$
+			this.buffer.append("strictfp ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isTransient(modifiers)) {
-			this.buffer.append("transient ");//$NON-NLS-1$
+			this.buffer.append("transient ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isSealed(modifiers)) {
-			this.buffer.append("sealed ");//$NON-NLS-1$
+			this.buffer.append("sealed ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (Modifier.isNonSealed(modifiers)) {
-			this.buffer.append("non-sealed ");//$NON-NLS-1$
+			this.buffer.append("non-sealed ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -236,10 +236,10 @@ public class NaiveASTFlattener extends ASTVisitor {
 	 * (element type: <code>IExtendedModifiers</code>)
 	 */
 	void printModifiers(List ext) {
-		for (Object element : ext) {
+		for (Object element : ext) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode p = (ASTNode) element;
 			p.accept(this);
-			this.buffer.append(" ");//$NON-NLS-1$
+			this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -250,17 +250,17 @@ public class NaiveASTFlattener extends ASTVisitor {
 	 * @param typeArguments list of type arguments
 	 */
 	private void visitReferenceTypeArguments(List typeArguments) {
-		this.buffer.append("::");//$NON-NLS-1$
+		this.buffer.append("::");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (!typeArguments.isEmpty()) {
-			this.buffer.append('<');
-			for (Iterator it = typeArguments.iterator(); it.hasNext(); ) {
+			this.buffer.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (Iterator it = typeArguments.iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Type t = (Type) it.next();
 				t.accept(this);
 				if (it.hasNext()) {
-					this.buffer.append(',');
+					this.buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.buffer.append('>');
+			this.buffer.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -271,10 +271,10 @@ public class NaiveASTFlattener extends ASTVisitor {
 	}
 
 	private void visitAnnotationsList(List annotations) {
-		for (Object a : annotations) {
+		for (Object a : annotations) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Annotation annotation = (Annotation) a;
 			annotation.accept(this);
-			this.buffer.append(' ');
+			this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 
@@ -302,14 +302,14 @@ public class NaiveASTFlattener extends ASTVisitor {
 		}
 		printIndent();
 		printModifiers(node.modifiers());
-		this.buffer.append("@interface ");//$NON-NLS-1$
+		this.buffer.append("@interface ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
-		this.buffer.append(" {");//$NON-NLS-1$
-		for (Object element : node.bodyDeclarations()) {
+		this.buffer.append(" {");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Object element : node.bodyDeclarations()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BodyDeclaration d = (BodyDeclaration) element;
 			d.accept(this);
 		}
-		this.buffer.append("}\n");//$NON-NLS-1$
+		this.buffer.append("}\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -321,57 +321,57 @@ public class NaiveASTFlattener extends ASTVisitor {
 		printIndent();
 		printModifiers(node.modifiers());
 		node.getType().accept(this);
-		this.buffer.append(" ");//$NON-NLS-1$
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
-		this.buffer.append("()");//$NON-NLS-1$
+		this.buffer.append("()");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getDefault() != null) {
-			this.buffer.append(" default ");//$NON-NLS-1$
+			this.buffer.append(" default ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getDefault().accept(this);
 		}
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(AnonymousClassDeclaration node) {
-		this.buffer.append("{\n");//$NON-NLS-1$
+		this.buffer.append("{\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		this.indent++;
-		for (Object element : node.bodyDeclarations()) {
+		for (Object element : node.bodyDeclarations()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BodyDeclaration b = (BodyDeclaration) element;
 			b.accept(this);
 		}
 		this.indent--;
 		printIndent();
-		this.buffer.append("}\n");//$NON-NLS-1$
+		this.buffer.append("}\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ArrayAccess node) {
 		node.getArray().accept(this);
-		this.buffer.append("[");//$NON-NLS-1$
+		this.buffer.append("[");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getIndex().accept(this);
-		this.buffer.append("]");//$NON-NLS-1$
+		this.buffer.append("]");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ArrayCreation node) {
-		this.buffer.append("new ");//$NON-NLS-1$
+		this.buffer.append("new ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ArrayType at = node.getType();
 		int dims = at.getDimensions();
 		Type elementType = at.getElementType();
 		elementType.accept(this);
-		for (Object element : node.dimensions()) {
-			this.buffer.append("[");//$NON-NLS-1$
+		for (Object element : node.dimensions()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			this.buffer.append("[");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			Expression e = (Expression) element;
 			e.accept(this);
-			this.buffer.append("]");//$NON-NLS-1$
+			this.buffer.append("]");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			dims--;
 		}
 		// add empty "[]" for each extra array dimension
-		for (int i= 0; i < dims; i++) {
-			this.buffer.append("[]");//$NON-NLS-1$
+		for (int i= 0; i < dims; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			this.buffer.append("[]");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (node.getInitializer() != null) {
 			node.getInitializer().accept(this);
@@ -381,15 +381,15 @@ public class NaiveASTFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(ArrayInitializer node) {
-		this.buffer.append("{");//$NON-NLS-1$
-		for (Iterator it = node.expressions().iterator(); it.hasNext(); ) {
+		this.buffer.append("{");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.expressions().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Expression e = (Expression) it.next();
 			e.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(",");//$NON-NLS-1$
+				this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append("}");//$NON-NLS-1$
+		this.buffer.append("}");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -397,12 +397,12 @@ public class NaiveASTFlattener extends ASTVisitor {
 	public boolean visit(ArrayType node) {
 		if (node.getAST().apiLevel() < JLS8) {
 			visitComponentType(node);
-			this.buffer.append("[]");//$NON-NLS-1$
+			this.buffer.append("[]");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
 			node.getElementType().accept(this);
 			List dimensions = node.dimensions();
 			int size = dimensions.size();
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Dimension aDimension = (Dimension) dimensions.get(i);
 				aDimension.accept(this);
 			}
@@ -413,51 +413,51 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(AssertStatement node) {
 		printIndent();
-		this.buffer.append("assert ");//$NON-NLS-1$
+		this.buffer.append("assert ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getExpression().accept(this);
 		if (node.getMessage() != null) {
-			this.buffer.append(" : ");//$NON-NLS-1$
+			this.buffer.append(" : ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getMessage().accept(this);
 		}
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(Assignment node) {
 		node.getLeftHandSide().accept(this);
-		this.buffer.append(node.getOperator().toString());
+		this.buffer.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getRightHandSide().accept(this);
 		return false;
 	}
 
 	@Override
 	public boolean visit(Block node) {
-		this.buffer.append("{\n");//$NON-NLS-1$
+		this.buffer.append("{\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		this.indent++;
-		for (Object element : node.statements()) {
+		for (Object element : node.statements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Statement s = (Statement) element;
 			s.accept(this);
 		}
 		this.indent--;
 		printIndent();
-		this.buffer.append("}\n");//$NON-NLS-1$
+		this.buffer.append("}\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(BlockComment node) {
 		printIndent();
-		this.buffer.append("/* */");//$NON-NLS-1$
+		this.buffer.append("/* */");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(BooleanLiteral node) {
 		if (node.booleanValue() == true) {
-			this.buffer.append("true");//$NON-NLS-1$
+			this.buffer.append("true");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			this.buffer.append("false");//$NON-NLS-1$
+			this.buffer.append("false");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return false;
 	}
@@ -465,87 +465,87 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(BreakStatement node) {
 		printIndent();
-		this.buffer.append("break");//$NON-NLS-1$
+		this.buffer.append("break");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getLabel() != null) {
-			this.buffer.append(" ");//$NON-NLS-1$
+			this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getLabel().accept(this);
 		}
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(CaseDefaultExpression node) {
 		if (DOMASTUtil.isPatternSupported(node.getAST())) {
-			this.buffer.append("default");//$NON-NLS-1$
+			this.buffer.append("default");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return false;
 	}
 
 	@Override
 	public boolean visit(CastExpression node) {
-		this.buffer.append("(");//$NON-NLS-1$
+		this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getType().accept(this);
-		this.buffer.append(")");//$NON-NLS-1$
+		this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getExpression().accept(this);
 		return false;
 	}
 
 	@Override
 	public boolean visit(CatchClause node) {
-		this.buffer.append("catch (");//$NON-NLS-1$
+		this.buffer.append("catch (");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getException().accept(this);
-		this.buffer.append(") ");//$NON-NLS-1$
+		this.buffer.append(") ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getBody().accept(this);
 		return false;
 	}
 
 	@Override
 	public boolean visit(CharacterLiteral node) {
-		this.buffer.append(node.getEscapedValue());
+		this.buffer.append(node.getEscapedValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ClassInstanceCreation node) {
 		if (node.getExpression() != null) {
 			node.getExpression().accept(this);
-			this.buffer.append(".");//$NON-NLS-1$
+			this.buffer.append(".");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.buffer.append("new ");//$NON-NLS-1$
+		this.buffer.append("new ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() == JLS2) {
 			getName(node).accept(this);
 		}
 		if (node.getAST().apiLevel() >= JLS3) {
 			if (!node.typeArguments().isEmpty()) {
-				this.buffer.append("<");//$NON-NLS-1$
-				for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) {
+				this.buffer.append("<");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Type t = (Type) it.next();
 					t.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(",");//$NON-NLS-1$
+						this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(">");//$NON-NLS-1$
+				this.buffer.append(">");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			node.getType().accept(this);
 		}
-		this.buffer.append("(");//$NON-NLS-1$
-		for (Iterator it = node.arguments().iterator(); it.hasNext(); ) {
+		this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.arguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Expression e = (Expression) it.next();
 			e.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(",");//$NON-NLS-1$
+				this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(")");//$NON-NLS-1$
+		this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAnonymousClassDeclaration() != null) {
 			node.getAnonymousClassDeclaration().accept(this);
 		}
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(CompilationUnit node) {
 		if (node.getAST().apiLevel() >= JLS9) {
 			if (node.getModule() != null) {
@@ -555,11 +555,11 @@ public class NaiveASTFlattener extends ASTVisitor {
 		if (node.getPackage() != null) {
 			node.getPackage().accept(this);
 		}
-		for (Object element : node.imports()) {
+		for (Object element : node.imports()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportDeclaration d = (ImportDeclaration) element;
 			d.accept(this);
 		}
-		for (Object element : node.types()) {
+		for (Object element : node.types()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			AbstractTypeDeclaration d = (AbstractTypeDeclaration) element;
 			d.accept(this);
 		}
@@ -569,50 +569,50 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(ConditionalExpression node) {
 		node.getExpression().accept(this);
-		this.buffer.append(" ? ");//$NON-NLS-1$
+		this.buffer.append(" ? ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getThenExpression().accept(this);
-		this.buffer.append(" : ");//$NON-NLS-1$
+		this.buffer.append(" : ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getElseExpression().accept(this);
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ConstructorInvocation node) {
 		printIndent();
 		if (node.getAST().apiLevel() >= JLS3) {
 			if (!node.typeArguments().isEmpty()) {
-				this.buffer.append("<");//$NON-NLS-1$
-				for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) {
+				this.buffer.append("<");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Type t = (Type) it.next();
 					t.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(",");//$NON-NLS-1$
+						this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(">");//$NON-NLS-1$
+				this.buffer.append(">");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append("this(");//$NON-NLS-1$
-		for (Iterator it = node.arguments().iterator(); it.hasNext(); ) {
+		this.buffer.append("this(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.arguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Expression e = (Expression) it.next();
 			e.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(",");//$NON-NLS-1$
+				this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(");\n");//$NON-NLS-1$
+		this.buffer.append(");\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ContinueStatement node) {
 		printIndent();
-		this.buffer.append("continue");//$NON-NLS-1$
+		this.buffer.append("continue");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getLabel() != null) {
-			this.buffer.append(" ");//$NON-NLS-1$
+			this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getLabel().accept(this);
 		}
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -620,7 +620,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 	public boolean visit(CreationReference node) {
 		node.getType().accept(this);
 		visitReferenceTypeArguments(node.typeArguments());
-		this.buffer.append("new");//$NON-NLS-1$
+		this.buffer.append("new");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -628,43 +628,43 @@ public class NaiveASTFlattener extends ASTVisitor {
 	public boolean visit(Dimension node) {
 		List annotations = node.annotations();
 		if (annotations.size() > 0)
-			this.buffer.append(' ');
+			this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitAnnotationsList(annotations);
-		this.buffer.append("[]"); //$NON-NLS-1$
+		this.buffer.append("[]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(DoStatement node) {
 		printIndent();
-		this.buffer.append("do ");//$NON-NLS-1$
+		this.buffer.append("do ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getBody().accept(this);
-		this.buffer.append(" while (");//$NON-NLS-1$
+		this.buffer.append(" while (");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getExpression().accept(this);
-		this.buffer.append(");\n");//$NON-NLS-1$
+		this.buffer.append(");\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(EmptyStatement node) {
 		printIndent();
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(EnhancedForStatement node) {
 		printIndent();
-		this.buffer.append("for (");//$NON-NLS-1$
+		this.buffer.append("for (");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getParameter().accept(this);
-		this.buffer.append(" : ");//$NON-NLS-1$
+		this.buffer.append(" : ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getExpression().accept(this);
-		this.buffer.append(") ");//$NON-NLS-1$
+		this.buffer.append(") ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getBody().accept(this);
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(EnumConstantDeclaration node) {
 		if (node.getJavadoc() != null) {
 			node.getJavadoc().accept(this);
@@ -673,15 +673,15 @@ public class NaiveASTFlattener extends ASTVisitor {
 		printModifiers(node.modifiers());
 		node.getName().accept(this);
 		if (!node.arguments().isEmpty()) {
-			this.buffer.append("(");//$NON-NLS-1$
-			for (Iterator it = node.arguments().iterator(); it.hasNext(); ) {
+			this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (Iterator it = node.arguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Expression e = (Expression) it.next();
 				e.accept(this);
 				if (it.hasNext()) {
-					this.buffer.append(",");//$NON-NLS-1$
+					this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.buffer.append(")");//$NON-NLS-1$
+			this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (node.getAnonymousClassDeclaration() != null) {
 			node.getAnonymousClassDeclaration().accept(this);
@@ -689,46 +689,46 @@ public class NaiveASTFlattener extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(EnumDeclaration node) {
 		if (node.getJavadoc() != null) {
 			node.getJavadoc().accept(this);
 		}
 		printIndent();
 		printModifiers(node.modifiers());
-		this.buffer.append("enum ");//$NON-NLS-1$
+		this.buffer.append("enum ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
-		this.buffer.append(" ");//$NON-NLS-1$
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (!node.superInterfaceTypes().isEmpty()) {
-			this.buffer.append("implements ");//$NON-NLS-1$
-			for (Iterator it = node.superInterfaceTypes().iterator(); it.hasNext(); ) {
+			this.buffer.append("implements ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (Iterator it = node.superInterfaceTypes().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Type t = (Type) it.next();
 				t.accept(this);
 				if (it.hasNext()) {
-					this.buffer.append(", ");//$NON-NLS-1$
+					this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.buffer.append(" ");//$NON-NLS-1$
+			this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.buffer.append("{");//$NON-NLS-1$
-		for (Iterator it = node.enumConstants().iterator(); it.hasNext(); ) {
+		this.buffer.append("{");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.enumConstants().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			EnumConstantDeclaration d = (EnumConstantDeclaration) it.next();
 			d.accept(this);
 			// enum constant declarations do not include punctuation
 			if (it.hasNext()) {
 				// enum constant declarations are separated by commas
-				this.buffer.append(", ");//$NON-NLS-1$
+				this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (!node.bodyDeclarations().isEmpty()) {
-			this.buffer.append("; ");//$NON-NLS-1$
-			for (Object element : node.bodyDeclarations()) {
+			this.buffer.append("; ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (Object element : node.bodyDeclarations()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				BodyDeclaration d = (BodyDeclaration) element;
 				d.accept(this);
 				// other body declarations include trailing punctuation
 			}
 		}
-		this.buffer.append("}\n");//$NON-NLS-1$
+		this.buffer.append("}\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -749,19 +749,19 @@ public class NaiveASTFlattener extends ASTVisitor {
 	public boolean visit(ExpressionStatement node) {
 		printIndent();
 		node.getExpression().accept(this);
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(FieldAccess node) {
 		node.getExpression().accept(this);
-		this.buffer.append(".");//$NON-NLS-1$
+		this.buffer.append(".");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(FieldDeclaration node) {
 		if (node.getJavadoc() != null) {
 			node.getJavadoc().accept(this);
@@ -774,38 +774,38 @@ public class NaiveASTFlattener extends ASTVisitor {
 			printModifiers(node.modifiers());
 		}
 		node.getType().accept(this);
-		this.buffer.append(" ");//$NON-NLS-1$
-		for (Iterator it = node.fragments().iterator(); it.hasNext(); ) {
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.fragments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			VariableDeclarationFragment f = (VariableDeclarationFragment) it.next();
 			f.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(", ");//$NON-NLS-1$
+				this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ForStatement node) {
 		printIndent();
-		this.buffer.append("for (");//$NON-NLS-1$
-		for (Iterator it = node.initializers().iterator(); it.hasNext(); ) {
+		this.buffer.append("for (");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.initializers().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Expression e = (Expression) it.next();
 			e.accept(this);
-			if (it.hasNext()) this.buffer.append(", ");//$NON-NLS-1$
+			if (it.hasNext()) this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.buffer.append("; ");//$NON-NLS-1$
+		this.buffer.append("; ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getExpression() != null) {
 			node.getExpression().accept(this);
 		}
-		this.buffer.append("; ");//$NON-NLS-1$
-		for (Iterator it = node.updaters().iterator(); it.hasNext(); ) {
+		this.buffer.append("; ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.updaters().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Expression e = (Expression) it.next();
 			e.accept(this);
-			if (it.hasNext()) this.buffer.append(", ");//$NON-NLS-1$
+			if (it.hasNext()) this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.buffer.append(") ");//$NON-NLS-1$
+		this.buffer.append(") ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getBody().accept(this);
 		return false;
 	}
@@ -814,7 +814,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 	public boolean visit(GuardedPattern node) {
 		if (DOMASTUtil.isPatternSupported(node.getAST())) {
 			node.getPattern().accept(this);
-			this.buffer.append(" when ");//$NON-NLS-1$
+			this.buffer.append(" when ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getExpression().accept(this);
 		}
 		return false;
@@ -823,50 +823,50 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(IfStatement node) {
 		printIndent();
-		this.buffer.append("if (");//$NON-NLS-1$
+		this.buffer.append("if (");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getExpression().accept(this);
-		this.buffer.append(") ");//$NON-NLS-1$
+		this.buffer.append(") ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getThenStatement().accept(this);
 		if (node.getElseStatement() != null) {
-			this.buffer.append(" else ");//$NON-NLS-1$
+			this.buffer.append(" else ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getElseStatement().accept(this);
 		}
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ImportDeclaration node) {
 		printIndent();
-		this.buffer.append("import ");//$NON-NLS-1$
+		this.buffer.append("import ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() >= JLS23) {
 			if (node.modifiers().size() == 1) {
-				this.buffer.append(((Modifier) node.modifiers().get(0)).getKeyword().toString()).append(' ');
+				this.buffer.append(((Modifier) node.modifiers().get(0)).getKeyword().toString()).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else if (node.getAST().apiLevel() >= JLS3) {
 			if (node.isStatic()) {
-				this.buffer.append("static ");//$NON-NLS-1$
+				this.buffer.append("static ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		node.getName().accept(this);
 		if (node.isOnDemand()) {
-			this.buffer.append(".*");//$NON-NLS-1$
+			this.buffer.append(".*");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(InfixExpression node) {
 		node.getLeftOperand().accept(this);
-		this.buffer.append(' ');  // for cases like x= i - -1; or x= i++ + ++i;
-		this.buffer.append(node.getOperator().toString());
-		this.buffer.append(' ');
+		this.buffer.append(' ');  // for cases like x= i - -1; or x= i++ + ++i; //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getRightOperand().accept(this);
 		final List extendedOperands = node.extendedOperands();
 		if (extendedOperands.size() != 0) {
-			this.buffer.append(' ');
-			for (Object extendedOperand : extendedOperands) {
-				this.buffer.append(node.getOperator().toString()).append(' ');
+			this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (Object extendedOperand : extendedOperands) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				this.buffer.append(node.getOperator().toString()).append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				Expression e = (Expression) extendedOperand;
 				e.accept(this);
 			}
@@ -892,7 +892,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(InstanceofExpression node) {
 		node.getLeftOperand().accept(this);
-		this.buffer.append(" instanceof ");//$NON-NLS-1$
+		this.buffer.append(" instanceof ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getRightOperand().accept(this);
 		return false;
 	}
@@ -902,7 +902,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(PatternInstanceofExpression node) {
 		node.getLeftOperand().accept(this);
-		this.buffer.append(" instanceof ");//$NON-NLS-1$
+		this.buffer.append(" instanceof ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() >= JLS21) {
 			node.getPattern().accept(this);
 		} else {
@@ -913,11 +913,11 @@ public class NaiveASTFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(IntersectionType node) {
-		for (Iterator it = node.types().iterator(); it.hasNext(); ) {
+		for (Iterator it = node.types().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Type t = (Type) it.next();
 			t.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(" & "); //$NON-NLS-1$
+				this.buffer.append(" & "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return false;
@@ -926,12 +926,12 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(Javadoc node) {
 		printIndent();
-		this.buffer.append("/** ");//$NON-NLS-1$
-		for (Object element : node.tags()) {
+		this.buffer.append("/** ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Object element : node.tags()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode e = (ASTNode) element;
 			e.accept(this);
 		}
-		this.buffer.append("\n */\n");//$NON-NLS-1$
+		this.buffer.append("\n */\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -943,7 +943,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(JavaDocTextElement node) {
-		this.buffer.append(node.getText());
+		this.buffer.append(node.getText()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -951,7 +951,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 	public boolean visit(LabeledStatement node) {
 		printIndent();
 		node.getLabel().accept(this);
-		this.buffer.append(": ");//$NON-NLS-1$
+		this.buffer.append(": ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getBody().accept(this);
 		return false;
 	}
@@ -960,30 +960,30 @@ public class NaiveASTFlattener extends ASTVisitor {
 	public boolean visit(LambdaExpression node) {
 		boolean hasParentheses = node.hasParentheses();
 		if (hasParentheses)
-			this.buffer.append('(');
-		for (Iterator it = node.parameters().iterator(); it.hasNext(); ) {
+			this.buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.parameters().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			VariableDeclaration v = (VariableDeclaration) it.next();
 			v.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(",");//$NON-NLS-1$
+				this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (hasParentheses)
-			this.buffer.append(')');
-		this.buffer.append(" -> "); //$NON-NLS-1$
+			this.buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append(" -> "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getBody().accept(this);
 		return false;
 	}
 
 	@Override
 	public boolean visit(LineComment node) {
-		this.buffer.append("//\n");//$NON-NLS-1$
+		this.buffer.append("//\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(MarkerAnnotation node) {
-		this.buffer.append("@");//$NON-NLS-1$
+		this.buffer.append("@");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getTypeName().accept(this);
 		return false;
 	}
@@ -993,7 +993,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 		if (node.getQualifier() != null) {
 			node.getQualifier().accept(this);
 		}
-		this.buffer.append("#");//$NON-NLS-1$
+		this.buffer.append("#");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
 		return false;
 	}
@@ -1001,12 +1001,12 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(MemberValuePair node) {
 		node.getName().accept(this);
-		this.buffer.append("=");//$NON-NLS-1$
+		this.buffer.append("=");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getValue().accept(this);
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MethodDeclaration node) {
 		if (node.getJavadoc() != null) {
 			node.getJavadoc().accept(this);
@@ -1018,15 +1018,15 @@ public class NaiveASTFlattener extends ASTVisitor {
 		if (node.getAST().apiLevel() >= JLS3) {
 			printModifiers(node.modifiers());
 			if (!node.typeParameters().isEmpty()) {
-				this.buffer.append("<");//$NON-NLS-1$
-				for (Iterator it = node.typeParameters().iterator(); it.hasNext(); ) {
+				this.buffer.append("<");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.typeParameters().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					TypeParameter t = (TypeParameter) it.next();
 					t.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(",");//$NON-NLS-1$
+						this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(">");//$NON-NLS-1$
+				this.buffer.append(">");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (!node.isConstructor()){
@@ -1037,112 +1037,112 @@ public class NaiveASTFlattener extends ASTVisitor {
 					node.getReturnType2().accept(this);
 				} else {
 					// methods really ought to have a return type
-					this.buffer.append("void");//$NON-NLS-1$
+					this.buffer.append("void");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.buffer.append(" ");//$NON-NLS-1$
+			this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		node.getName().accept(this);
 		if (!(DOMASTUtil.isRecordDeclarationSupported(node.getAST()) && node.isCompactConstructor())) {
-			this.buffer.append("(");//$NON-NLS-1$
+			this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (node.getAST().apiLevel() >= JLS8) {
 				Type receiverType = node.getReceiverType();
 				if (receiverType != null) {
 					receiverType.accept(this);
-					this.buffer.append(' ');
+					this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					SimpleName qualifier = node.getReceiverQualifier();
 					if (qualifier != null) {
 						qualifier.accept(this);
-						this.buffer.append('.');
+						this.buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
-					this.buffer.append("this"); //$NON-NLS-1$
+					this.buffer.append("this"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (node.parameters().size() > 0) {
-						this.buffer.append(',');
+						this.buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
 			}
-			for (Iterator it = node.parameters().iterator(); it.hasNext(); ) {
+			for (Iterator it = node.parameters().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				SingleVariableDeclaration v = (SingleVariableDeclaration) it.next();
 				v.accept(this);
 				if (it.hasNext()) {
-					this.buffer.append(",");//$NON-NLS-1$
+					this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.buffer.append(")");//$NON-NLS-1$
+			this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		int size = node.getExtraDimensions();
 		if (node.getAST().apiLevel() >= JLS8) {
 			List dimensions = node.extraDimensions();
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				visit((Dimension) dimensions.get(i));
 			}
 		} else {
-			for (int i = 0; i < size; i++) {
-				this.buffer.append("[]"); //$NON-NLS-1$
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				this.buffer.append("[]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (node.getAST().apiLevel() < JLS8) {
 			if (!thrownExceptions(node).isEmpty()) {
-				this.buffer.append(" throws ");//$NON-NLS-1$
-				for (Iterator it = thrownExceptions(node).iterator(); it.hasNext(); ) {
+				this.buffer.append(" throws ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = thrownExceptions(node).iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Name n = (Name) it.next();
 					n.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(", ");//$NON-NLS-1$
+						this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(" ");//$NON-NLS-1$
+				this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		} else {
 			if (!node.thrownExceptionTypes().isEmpty()) {
-				this.buffer.append(" throws ");//$NON-NLS-1$
-				for (Iterator it = node.thrownExceptionTypes().iterator(); it.hasNext(); ) {
+				this.buffer.append(" throws ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.thrownExceptionTypes().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Type n = (Type) it.next();
 					n.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(", ");//$NON-NLS-1$
+						this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(" ");//$NON-NLS-1$
+				this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (node.getBody() == null) {
-			this.buffer.append(";\n");//$NON-NLS-1$
+			this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
 			node.getBody().accept(this);
 		}
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MethodInvocation node) {
 		if (node.getExpression() != null) {
 			node.getExpression().accept(this);
-			this.buffer.append(".");//$NON-NLS-1$
+			this.buffer.append(".");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (node.getAST().apiLevel() >= JLS3) {
 			if (!node.typeArguments().isEmpty()) {
-				this.buffer.append("<");//$NON-NLS-1$
-				for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) {
+				this.buffer.append("<");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Type t = (Type) it.next();
 					t.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(",");//$NON-NLS-1$
+						this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(">");//$NON-NLS-1$
+				this.buffer.append(">");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		node.getName().accept(this);
-		this.buffer.append("(");//$NON-NLS-1$
-		for (Iterator it = node.arguments().iterator(); it.hasNext(); ) {
+		this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.arguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Expression e = (Expression) it.next();
 			e.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(",");//$NON-NLS-1$
+				this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(")");//$NON-NLS-1$
+		this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1151,17 +1151,17 @@ public class NaiveASTFlattener extends ASTVisitor {
 		if (node.getQualifier() != null) {
 			node.getQualifier().accept(this);
 		}
-		this.buffer.append("#");//$NON-NLS-1$
+		this.buffer.append("#");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
-		this.buffer.append("(");//$NON-NLS-1$
-		for (Iterator it = node.parameters().iterator(); it.hasNext(); ) {
+		this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.parameters().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			MethodRefParameter e = (MethodRefParameter) it.next();
 			e.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(",");//$NON-NLS-1$
+				this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(")");//$NON-NLS-1$
+		this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1170,11 +1170,11 @@ public class NaiveASTFlattener extends ASTVisitor {
 		node.getType().accept(this);
 		if (node.getAST().apiLevel() >= JLS3) {
 			if (node.isVarargs()) {
-				this.buffer.append("...");//$NON-NLS-1$
+				this.buffer.append("...");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (node.getName() != null) {
-			this.buffer.append(" ");//$NON-NLS-1$
+			this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getName().accept(this);
 		}
 		return false;
@@ -1182,28 +1182,28 @@ public class NaiveASTFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(Modifier node) {
-		this.buffer.append(node.getKeyword().toString());
+		this.buffer.append(node.getKeyword().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ModuleDeclaration node) {
 		if (node.getJavadoc() != null) {
 			node.getJavadoc().accept(this);
 		}
 		printModifiers(node.annotations());
 		if (node.isOpen())
-			this.buffer.append("open "); //$NON-NLS-1$
-		this.buffer.append("module"); //$NON-NLS-1$
-		this.buffer.append(" "); //$NON-NLS-1$
+			this.buffer.append("open "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append("module"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append(" "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
-		this.buffer.append(" {\n"); //$NON-NLS-1$
+		this.buffer.append(" {\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		this.indent++;
-		for (ModuleDirective stmt : (List<ModuleDirective>)node.moduleStatements()) {
+		for (ModuleDirective stmt : (List<ModuleDirective>)node.moduleStatements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			stmt.accept(this);
 		}
 		this.indent--;
-		this.buffer.append("}"); //$NON-NLS-1$
+		this.buffer.append("}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1213,27 +1213,27 @@ public class NaiveASTFlattener extends ASTVisitor {
 	 * @since 3.14
 	 */
 	public boolean visit(ModuleModifier node) {
-		this.buffer.append(node.getKeyword().toString());
+		this.buffer.append(node.getKeyword().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	private boolean visit(ModulePackageAccess node, String keyword) {
-		this.buffer.append(keyword);
+	private boolean visit(ModulePackageAccess node, String keyword) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		this.buffer.append(keyword); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getName() != null) {
-	        this.buffer.append(' ');
+	        this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	        node.getName().accept(this);
 	    }
 		// Handle target modules as Names instead of Types
 		if (!node.modules().isEmpty()) {
-	        this.buffer.append(" to "); //$NON-NLS-1$
-	        for (Iterator it = node.modules().iterator(); it.hasNext(); ) {
+	        this.buffer.append(" to "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	        for (Iterator it = node.modules().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            Name moduleName = (Name) it.next();
 	            moduleName.accept(this);
 	            if (it.hasNext()) {
-	                this.buffer.append(","); //$NON-NLS-1$
+	                this.buffer.append(","); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	            }
 	        }
-	        this.buffer.append(";\n"); //$NON-NLS-1$
+	        this.buffer.append(";\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return false;
 	}
@@ -1241,7 +1241,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(NameQualifiedType node) {
 		node.getQualifier().accept(this);
-		this.buffer.append('.');
+		this.buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitTypeAnnotations(node);
 		node.getName().accept(this);
 		return false;
@@ -1249,37 +1249,37 @@ public class NaiveASTFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(NormalAnnotation node) {
-		this.buffer.append("@");//$NON-NLS-1$
+		this.buffer.append("@");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getTypeName().accept(this);
-		this.buffer.append("(");//$NON-NLS-1$
-		for (Iterator it = node.values().iterator(); it.hasNext(); ) {
+		this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.values().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			MemberValuePair p = (MemberValuePair) it.next();
 			p.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(",");//$NON-NLS-1$
+				this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(")");//$NON-NLS-1$
+		this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(NullLiteral node) {
-		this.buffer.append("null");//$NON-NLS-1$
+		this.buffer.append("null");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(NullPattern node) {
 		if (DOMASTUtil.isPatternSupported(node.getAST())) {
-			this.buffer.append("null");//$NON-NLS-1$
+			this.buffer.append("null");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return false;
 	}
 
 	@Override
 	public boolean visit(NumberLiteral node) {
-		this.buffer.append(node.getToken());
+		this.buffer.append(node.getToken()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1294,52 +1294,52 @@ public class NaiveASTFlattener extends ASTVisitor {
 			if (node.getJavadoc() != null) {
 				node.getJavadoc().accept(this);
 			}
-			for (Object element : node.annotations()) {
+			for (Object element : node.annotations()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Annotation p = (Annotation) element;
 				p.accept(this);
-				this.buffer.append(" ");//$NON-NLS-1$
+				this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		printIndent();
-		this.buffer.append("package ");//$NON-NLS-1$
+		this.buffer.append("package ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ParameterizedType node) {
 		node.getType().accept(this);
-		this.buffer.append("<");//$NON-NLS-1$
-		for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) {
+		this.buffer.append("<");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Type t = (Type) it.next();
 			t.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(",");//$NON-NLS-1$
+				this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(">");//$NON-NLS-1$
+		this.buffer.append(">");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ParenthesizedExpression node) {
-		this.buffer.append("(");//$NON-NLS-1$
+		this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getExpression().accept(this);
-		this.buffer.append(")");//$NON-NLS-1$
+		this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(PostfixExpression node) {
 		node.getOperand().accept(this);
-		this.buffer.append(node.getOperator().toString());
+		this.buffer.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(PrefixExpression node) {
-		this.buffer.append(node.getOperator().toString());
+		this.buffer.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getOperand().accept(this);
 		return false;
 	}
@@ -1347,38 +1347,38 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(PrimitiveType node) {
 		visitTypeAnnotations(node);
-		this.buffer.append(node.getPrimitiveTypeCode().toString());
+		this.buffer.append(node.getPrimitiveTypeCode().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ProvidesDirective node) {
 		printIndent();
-		this.buffer.append("provides");//$NON-NLS-1$
-		this.buffer.append(" ");//$NON-NLS-1$
+		this.buffer.append("provides");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
 
 		// Replace printTypes() with proper Name handling
 	    List implementations = node.implementations();
 	    if (!implementations.isEmpty()) {
-	        this.buffer.append(" with ");//$NON-NLS-1$
-	        for (Iterator it = implementations.iterator(); it.hasNext(); ) {
+	        this.buffer.append(" with ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	        for (Iterator it = implementations.iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 	            Name implName = (Name) it.next();
 	            implName.accept(this);
 	            if (it.hasNext()) {
-	                this.buffer.append(", ");//$NON-NLS-1$
+	                this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	            }
 	        }
 	    }
 
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ModuleQualifiedName node) {
 		node.getModuleQualifier().accept(this);
-		this.buffer.append("/");//$NON-NLS-1$
+		this.buffer.append("/");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		ASTNode cNode = node.getName();
 		if (cNode != null) {
 			cNode.accept(this);
@@ -1389,7 +1389,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(QualifiedName node) {
 		node.getQualifier().accept(this);
-		this.buffer.append(".");//$NON-NLS-1$
+		this.buffer.append(".");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
 		return false;
 	}
@@ -1397,69 +1397,69 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(QualifiedType node) {
 		node.getQualifier().accept(this);
-		this.buffer.append(".");//$NON-NLS-1$
+		this.buffer.append(".");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitTypeAnnotations(node);
 		node.getName().accept(this);
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(RecordDeclaration node) {
 		if (node.getJavadoc() != null) {
 			node.getJavadoc().accept(this);
 		}
 		printIndent();
 		printModifiers(node.modifiers());
-		this.buffer.append("record ");//$NON-NLS-1$
+		this.buffer.append("record ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
-		this.buffer.append(" ");//$NON-NLS-1$
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		if (!node.typeParameters().isEmpty()) {
-			this.buffer.append("<");//$NON-NLS-1$
-			for (Iterator it = node.typeParameters().iterator(); it.hasNext(); ) {
+			this.buffer.append("<");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (Iterator it = node.typeParameters().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TypeParameter t = (TypeParameter) it.next();
 				t.accept(this);
 				if (it.hasNext()) {
-					this.buffer.append(",");//$NON-NLS-1$
+					this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.buffer.append(">");//$NON-NLS-1$
+			this.buffer.append(">");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.buffer.append(" ");//$NON-NLS-1$
-		this.buffer.append("(");//$NON-NLS-1$
-		for (Iterator it = node.recordComponents().iterator(); it.hasNext(); ) {
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.recordComponents().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			SingleVariableDeclaration v = (SingleVariableDeclaration) it.next();
 			v.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(",");//$NON-NLS-1$
+				this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(")");//$NON-NLS-1$
+		this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (!node.superInterfaceTypes().isEmpty()) {
-			this.buffer.append(" implements ");//$NON-NLS-1$
-			for (Iterator it = node.superInterfaceTypes().iterator(); it.hasNext(); ) {
+			this.buffer.append(" implements ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (Iterator it = node.superInterfaceTypes().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Type t = (Type) it.next();
 				t.accept(this);
 				if (it.hasNext()) {
-					this.buffer.append(", ");//$NON-NLS-1$
+					this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
-			this.buffer.append(" ");//$NON-NLS-1$
+			this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.buffer.append("{");//$NON-NLS-1$
+		this.buffer.append("{");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (!node.bodyDeclarations().isEmpty()) {
-			this.buffer.append("\n");//$NON-NLS-1$
-			for (Object element : node.bodyDeclarations()) {
+			this.buffer.append("\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (Object element : node.bodyDeclarations()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				BodyDeclaration d = (BodyDeclaration) element;
 				d.accept(this);
 				// other body declarations include trailing punctuation
 			}
 		}
-		this.buffer.append("}\n");//$NON-NLS-1$
+		this.buffer.append("}\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(RecordPattern node) {
 		if (DOMASTUtil.isPatternSupported(node.getAST())) {
 
@@ -1468,18 +1468,18 @@ public class NaiveASTFlattener extends ASTVisitor {
 			}
 			boolean addBraces = node.patterns().size() >= 1;
 			if (addBraces) {
-				this.buffer.append("(");//$NON-NLS-1$
+				this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			int size = 1;
-			for (Pattern pattern : node.patterns()) {
+			for (Pattern pattern : node.patterns()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					visitPattern(pattern);
 					if (addBraces && size < node.patterns().size()) {
-						this.buffer.append(", ");//$NON-NLS-1$
+						this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					size++;
 			}
 			if (addBraces) {
-				this.buffer.append(")");//$NON-NLS-1$
+				this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return false;
@@ -1489,10 +1489,10 @@ public class NaiveASTFlattener extends ASTVisitor {
 	public boolean visit(EitherOrMultiPattern node) {
 		if (DOMASTUtil.isEitherOrMultiPatternSupported(node.getAST())) {
 			int size = 1;
-			for (Pattern pattern : node.patterns()) {
+			for (Pattern pattern : node.patterns()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				visitPattern(pattern);
 				if (size < node.patterns().size()) {
-					this.buffer.append(", ");//$NON-NLS-1$
+					this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				size++;
 			}
@@ -1500,7 +1500,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 		return false;
 	}
 
-	private boolean visitPattern(Pattern node) {
+	private boolean visitPattern(Pattern node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!DOMASTUtil.isPatternSupported(node.getAST())) {
 			return false;
 		}
@@ -1523,29 +1523,29 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(RequiresDirective node) {
 		printIndent();
-		this.buffer.append("requires");//$NON-NLS-1$
-		this.buffer.append(" ");//$NON-NLS-1$
+		this.buffer.append("requires");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		printModifiers(node.modifiers());
 		node.getName().accept(this);
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ReturnStatement node) {
 		printIndent();
-		this.buffer.append("return");//$NON-NLS-1$
+		this.buffer.append("return");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getExpression() != null) {
-			this.buffer.append(" ");//$NON-NLS-1$
+			this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getExpression().accept(this);
 		}
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(SimpleName node) {
-		this.buffer.append(node.getIdentifier());
+		this.buffer.append(node.getIdentifier()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1558,15 +1558,15 @@ public class NaiveASTFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(SingleMemberAnnotation node) {
-		this.buffer.append("@");//$NON-NLS-1$
+		this.buffer.append("@");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getTypeName().accept(this);
-		this.buffer.append("(");//$NON-NLS-1$
+		this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getValue().accept(this);
-		this.buffer.append(")");//$NON-NLS-1$
+		this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SingleVariableDeclaration node) {
 		printIndent();
 		if (node.getAST().apiLevel() == JLS2) {
@@ -1581,28 +1581,28 @@ public class NaiveASTFlattener extends ASTVisitor {
 				if (node.getAST().apiLevel() >= JLS8) {
 					List annotations = node.varargsAnnotations();
 					if (annotations.size() > 0) {
-						this.buffer.append(' ');
+						this.buffer.append(' '); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 					visitAnnotationsList(annotations);
 				}
-				this.buffer.append("...");//$NON-NLS-1$
+				this.buffer.append("...");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(" ");//$NON-NLS-1$
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
 		int size = node.getExtraDimensions();
 		if (node.getAST().apiLevel() >= JLS8) {
 			List dimensions = node.extraDimensions();
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				visit((Dimension) dimensions.get(i));
 			}
 		} else {
-			for (int i = 0; i < size; i++) {
-				this.buffer.append("[]"); //$NON-NLS-1$
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				this.buffer.append("[]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (node.getInitializer() != null) {
-			this.buffer.append("=");//$NON-NLS-1$
+			this.buffer.append("=");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getInitializer().accept(this);
 		}
 		return false;
@@ -1610,39 +1610,39 @@ public class NaiveASTFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(StringLiteral node) {
-		this.buffer.append(node.getEscapedValue());
+		this.buffer.append(node.getEscapedValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SuperConstructorInvocation node) {
 		printIndent();
 		if (node.getExpression() != null) {
 			node.getExpression().accept(this);
-			this.buffer.append(".");//$NON-NLS-1$
+			this.buffer.append(".");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if (node.getAST().apiLevel() >= JLS3) {
 			if (!node.typeArguments().isEmpty()) {
-				this.buffer.append("<");//$NON-NLS-1$
-				for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) {
+				this.buffer.append("<");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Type t = (Type) it.next();
 					t.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(",");//$NON-NLS-1$
+						this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(">");//$NON-NLS-1$
+				this.buffer.append(">");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append("super(");//$NON-NLS-1$
-		for (Iterator it = node.arguments().iterator(); it.hasNext(); ) {
+		this.buffer.append("super(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.arguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Expression e = (Expression) it.next();
 			e.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(",");//$NON-NLS-1$
+				this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(");\n");//$NON-NLS-1$
+		this.buffer.append(");\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1650,43 +1650,43 @@ public class NaiveASTFlattener extends ASTVisitor {
 	public boolean visit(SuperFieldAccess node) {
 		if (node.getQualifier() != null) {
 			node.getQualifier().accept(this);
-			this.buffer.append(".");//$NON-NLS-1$
+			this.buffer.append(".");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.buffer.append("super.");//$NON-NLS-1$
+		this.buffer.append("super.");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SuperMethodInvocation node) {
 		if (node.getQualifier() != null) {
 			node.getQualifier().accept(this);
-			this.buffer.append(".");//$NON-NLS-1$
+			this.buffer.append(".");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.buffer.append("super.");//$NON-NLS-1$
+		this.buffer.append("super.");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() >= JLS3) {
 			if (!node.typeArguments().isEmpty()) {
-				this.buffer.append("<");//$NON-NLS-1$
-				for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) {
+				this.buffer.append("<");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.typeArguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Type t = (Type) it.next();
 					t.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(",");//$NON-NLS-1$
+						this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(">");//$NON-NLS-1$
+				this.buffer.append(">");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		node.getName().accept(this);
-		this.buffer.append("(");//$NON-NLS-1$
-		for (Iterator it = node.arguments().iterator(); it.hasNext(); ) {
+		this.buffer.append("(");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.arguments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Expression e = (Expression) it.next();
 			e.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(",");//$NON-NLS-1$
+				this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(")");//$NON-NLS-1$
+		this.buffer.append(")");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1699,37 +1699,37 @@ public class NaiveASTFlattener extends ASTVisitor {
 	public boolean visit(SuperMethodReference node) {
 		if (node.getQualifier() != null) {
 			node.getQualifier().accept(this);
-			this.buffer.append('.');
+			this.buffer.append('.'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.buffer.append("super");//$NON-NLS-1$
+		this.buffer.append("super");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		visitReferenceTypeArguments(node.typeArguments());
 		node.getName().accept(this);
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SwitchCase node) {
 		if ((node.getAST().apiLevel() >= JLS14)) {
 			if (node.isDefault() && !isCaseDefaultExpression(node)) {
-				this.buffer.append("default");//$NON-NLS-1$
-				this.buffer.append(node.isSwitchLabeledRule() ? " ->" : ":");//$NON-NLS-1$ //$NON-NLS-2$
+				this.buffer.append("default");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				this.buffer.append(node.isSwitchLabeledRule() ? " ->" : ":");//$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				this.buffer.append("case ");//$NON-NLS-1$
-				for (Iterator it = node.expressions().iterator(); it.hasNext(); ) {
+				this.buffer.append("case ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.expressions().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Expression t = (Expression) it.next();
 						t.accept(this);
-						this.buffer.append(it.hasNext() ? ", " : //$NON-NLS-1$
+						this.buffer.append(it.hasNext() ? ", " : //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							node.isSwitchLabeledRule() ? " ->" : ":");//$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 		}
 		else {
 			if (node.isDefault() && !isCaseDefaultExpression(node)) {
-				this.buffer.append("default :\n");//$NON-NLS-1$
+				this.buffer.append("default :\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				this.buffer.append("case ");//$NON-NLS-1$
+				this.buffer.append("case ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				getSwitchExpression(node).accept(this);
-				this.buffer.append(":\n");//$NON-NLS-1$
+				this.buffer.append(":\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		this.indent++; //decremented in visit(SwitchStatement)
@@ -1749,24 +1749,24 @@ public class NaiveASTFlattener extends ASTVisitor {
 		return node.getExpression();
 	}
 
-	private void visitSwitchNode(ASTNode node) {
-		this.buffer.append("switch (");//$NON-NLS-1$
+	private void visitSwitchNode(ASTNode node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		this.buffer.append("switch (");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node instanceof SwitchExpression) {
 			((SwitchExpression)node).getExpression().accept(this);
 		} else if (node instanceof SwitchStatement) {
 			((SwitchStatement)node).getExpression().accept(this);
 		}
-		this.buffer.append(") ");//$NON-NLS-1$
-		this.buffer.append("{\n");//$NON-NLS-1$
+		this.buffer.append(") ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append("{\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		this.indent++;
 		if (node instanceof SwitchExpression) {
-			for (Object element : ((SwitchExpression)node).statements()) {
+			for (Object element : ((SwitchExpression)node).statements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Statement s = (Statement) element;
 				s.accept(this);
 				this.indent--; // incremented in visit(SwitchCase)
 			}
 		} else if (node instanceof SwitchStatement) {
-			for (Object element : ((SwitchStatement)node).statements()) {
+			for (Object element : ((SwitchStatement)node).statements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Statement s = (Statement) element;
 				s.accept(this);
 				this.indent--; // incremented in visit(SwitchCase)
@@ -1774,7 +1774,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 		}
 		this.indent--;
 		printIndent();
-		this.buffer.append("}\n");//$NON-NLS-1$
+		this.buffer.append("}\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 	}
 	@Override
@@ -1791,29 +1791,29 @@ public class NaiveASTFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(SynchronizedStatement node) {
-		this.buffer.append("synchronized (");//$NON-NLS-1$
+		this.buffer.append("synchronized (");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getExpression().accept(this);
-		this.buffer.append(") ");//$NON-NLS-1$
+		this.buffer.append(") ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getBody().accept(this);
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TagElement node) {
 		if (node.isNested()) {
 			// nested tags are always enclosed in braces
-			this.buffer.append("{");//$NON-NLS-1$
+			this.buffer.append("{");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
 			// top-level tags always begin on a new line
-			this.buffer.append("\n * ");//$NON-NLS-1$
+			this.buffer.append("\n * ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		boolean previousRequiresWhiteSpace = false;
 		if (node.getTagName() != null) {
-			this.buffer.append(node.getTagName());
+			this.buffer.append(node.getTagName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			previousRequiresWhiteSpace = true;
 		}
 		boolean previousRequiresNewLine = false;
-		for (Object element : node.fragments()) {
+		for (Object element : node.fragments()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode e = (ASTNode) element;
 			// Name, MemberRef, MethodRef, and nested TagElement do not include white space.
 			// TextElements don't always include whitespace, see <https://bugs.eclipse.org/206518>.
@@ -1825,37 +1825,37 @@ public class NaiveASTFlattener extends ASTVisitor {
 				}
 			}
 			if (previousRequiresNewLine && currentIncludesWhiteSpace) {
-				this.buffer.append("\n * ");//$NON-NLS-1$
+				this.buffer.append("\n * ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			previousRequiresNewLine = currentIncludesWhiteSpace;
 			// add space if required to separate
 			if (previousRequiresWhiteSpace && !currentIncludesWhiteSpace) {
-				this.buffer.append(" "); //$NON-NLS-1$
+				this.buffer.append(" "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			e.accept(this);
 			previousRequiresWhiteSpace = !currentIncludesWhiteSpace && !(e instanceof TagElement);
 		}
 		if (DOMASTUtil.isJavaDocCodeSnippetSupported(node.getAST().apiLevel())) {
-			for (Object element : node.tagProperties()) {
+			for (Object element : node.tagProperties()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				TagProperty tagProperty = (TagProperty) element;
 				tagProperty.accept(this);
 			}
 
 		}
 		if (node.isNested()) {
-			this.buffer.append("}");//$NON-NLS-1$
+			this.buffer.append("}");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return false;
 	}
 
 	@Override
 	public boolean visit(TagProperty node) {
-		this.buffer.append("\n{"); //$NON-NLS-1$
-		this.buffer.append(node.getName());
-		this.buffer.append(" = "); //$NON-NLS-1$
-		this.buffer.append(node.getStringValue());
+		this.buffer.append("\n{"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append(node.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append(" = "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append(node.getStringValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getNodeValue().accept(this);
-		this.buffer.append("}"); //$NON-NLS-1$
+		this.buffer.append("}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1863,13 +1863,13 @@ public class NaiveASTFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(TextBlock node) {
-		this.buffer.append(node.getEscapedValue());
+		this.buffer.append(node.getEscapedValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(TextElement node) {
-		this.buffer.append(node.getText());
+		this.buffer.append(node.getText()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -1877,47 +1877,47 @@ public class NaiveASTFlattener extends ASTVisitor {
 	public boolean visit(ThisExpression node) {
 		if (node.getQualifier() != null) {
 			node.getQualifier().accept(this);
-			this.buffer.append(".");//$NON-NLS-1$
+			this.buffer.append(".");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		this.buffer.append("this");//$NON-NLS-1$
+		this.buffer.append("this");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(ThrowStatement node) {
 		printIndent();
-		this.buffer.append("throw ");//$NON-NLS-1$
+		this.buffer.append("throw ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getExpression().accept(this);
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TryStatement node) {
 		printIndent();
-		this.buffer.append("try ");//$NON-NLS-1$
+		this.buffer.append("try ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() >= JLS4) {
 			List resources = node.resources();
 			if (!resources.isEmpty()) {
-				this.buffer.append('(');
-				for (Iterator it = resources.iterator(); it.hasNext(); ) {
+				this.buffer.append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = resources.iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Expression variable = (Expression) it.next();
 					variable.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(';');
+						this.buffer.append(';'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(')');
+				this.buffer.append(')'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		node.getBody().accept(this);
-		this.buffer.append(" ");//$NON-NLS-1$
-		for (Object element : node.catchClauses()) {
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Object element : node.catchClauses()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			CatchClause cc = (CatchClause) element;
 			cc.accept(this);
 		}
 		if (node.getFinally() != null) {
-			this.buffer.append(" finally ");//$NON-NLS-1$
+			this.buffer.append(" finally ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getFinally().accept(this);
 		}
 		return false;
@@ -1932,7 +1932,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 
 		//bodyDeclaration
 		this.indent++;
-		for (Object element : node.bodyDeclarations()) {
+		for (Object element : node.bodyDeclarations()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BodyDeclaration d = (BodyDeclaration) element;
 			d.accept(this);
 		}
@@ -1942,7 +1942,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TypeDeclaration node) {
 		if (node.getJavadoc() != null) {
 			node.getJavadoc().accept(this);
@@ -1953,80 +1953,80 @@ public class NaiveASTFlattener extends ASTVisitor {
 		if (node.getAST().apiLevel() >= JLS3) {
 			printModifiers(node.modifiers());
 		}
-		this.buffer.append(node.isInterface() ? "interface " : "class ");//$NON-NLS-2$//$NON-NLS-1$
+		this.buffer.append(node.isInterface() ? "interface " : "class ");//$NON-NLS-2$//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
 		if (node.getAST().apiLevel() >= JLS3) {
 			if (!node.typeParameters().isEmpty()) {
-				this.buffer.append("<");//$NON-NLS-1$
-				for (Iterator it = node.typeParameters().iterator(); it.hasNext(); ) {
+				this.buffer.append("<");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.typeParameters().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					TypeParameter t = (TypeParameter) it.next();
 					t.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(",");//$NON-NLS-1$
+						this.buffer.append(",");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(">");//$NON-NLS-1$
+				this.buffer.append(">");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(" ");//$NON-NLS-1$
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getAST().apiLevel() == JLS2) {
 			if (getSuperclass(node) != null) {
-				this.buffer.append("extends ");//$NON-NLS-1$
+				this.buffer.append("extends ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				getSuperclass(node).accept(this);
-				this.buffer.append(" ");//$NON-NLS-1$
+				this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			if (!superInterfaces(node).isEmpty()) {
-				this.buffer.append(node.isInterface() ? "extends " : "implements ");//$NON-NLS-2$//$NON-NLS-1$
-				for (Iterator it = superInterfaces(node).iterator(); it.hasNext(); ) {
+				this.buffer.append(node.isInterface() ? "extends " : "implements ");//$NON-NLS-2$//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = superInterfaces(node).iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Name n = (Name) it.next();
 					n.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(", ");//$NON-NLS-1$
+						this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(" ");//$NON-NLS-1$
+				this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (node.getAST().apiLevel() >= JLS3) {
 			if (node.getSuperclassType() != null) {
-				this.buffer.append("extends ");//$NON-NLS-1$
+				this.buffer.append("extends ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				node.getSuperclassType().accept(this);
-				this.buffer.append(" ");//$NON-NLS-1$
+				this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			if (!node.superInterfaceTypes().isEmpty()) {
-				this.buffer.append(node.isInterface() ? "extends " : "implements ");//$NON-NLS-2$//$NON-NLS-1$
-				for (Iterator it = node.superInterfaceTypes().iterator(); it.hasNext(); ) {
+				this.buffer.append(node.isInterface() ? "extends " : "implements ");//$NON-NLS-2$//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.superInterfaceTypes().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Type t = (Type) it.next();
 					t.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(", ");//$NON-NLS-1$
+						this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(" ");//$NON-NLS-1$
+				this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (DOMASTUtil.isFeatureSupportedinAST(node.getAST(), Modifier.SEALED)) {
 			if (!node.permittedTypes().isEmpty()) {
-				this.buffer.append("permits ");//$NON-NLS-1$
-				for (Iterator it = node.permittedTypes().iterator(); it.hasNext(); ) {
+				this.buffer.append("permits ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (Iterator it = node.permittedTypes().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					Type t = (Type) it.next();
 					t.accept(this);
 					if (it.hasNext()) {
-						this.buffer.append(", ");//$NON-NLS-1$
+						this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					}
 				}
-				this.buffer.append(" ");//$NON-NLS-1$
+				this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append("{\n");//$NON-NLS-1$
+		this.buffer.append("{\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		this.indent++;
-		for (Object element : node.bodyDeclarations()) {
+		for (Object element : node.bodyDeclarations()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			BodyDeclaration d = (BodyDeclaration) element;
 			d.accept(this);
 		}
 		this.indent--;
 		printIndent();
-		this.buffer.append("}\n");//$NON-NLS-1$
+		this.buffer.append("}\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -2044,7 +2044,7 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(TypeLiteral node) {
 		node.getType().accept(this);
-		this.buffer.append(".class");//$NON-NLS-1$
+		this.buffer.append(".class");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
@@ -2068,12 +2068,12 @@ public class NaiveASTFlattener extends ASTVisitor {
 		}
 		node.getName().accept(this);
 		if (!node.typeBounds().isEmpty()) {
-			this.buffer.append(" extends ");//$NON-NLS-1$
-			for (Iterator it = node.typeBounds().iterator(); it.hasNext(); ) {
+			this.buffer.append(" extends ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (Iterator it = node.typeBounds().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Type t = (Type) it.next();
 				t.accept(this);
 				if (it.hasNext()) {
-					this.buffer.append(" & ");//$NON-NLS-1$
+					this.buffer.append(" & ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 			}
 		}
@@ -2095,11 +2095,11 @@ public class NaiveASTFlattener extends ASTVisitor {
 
 	@Override
 	public boolean visit(UnionType node) {
-		for (Iterator it = node.types().iterator(); it.hasNext(); ) {
+		for (Iterator it = node.types().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Type t = (Type) it.next();
 			t.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append('|');
+				this.buffer.append('|'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return false;
@@ -2108,14 +2108,14 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(UsesDirective node) {
 		printIndent();
-		this.buffer.append("uses");//$NON-NLS-1$
-		this.buffer.append(" ");//$NON-NLS-1$
+		this.buffer.append("uses");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getName().accept(this);
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(VariableDeclarationExpression node) {
 		if (node.getAST().apiLevel() == JLS2) {
 			printModifiers(node.getModifiers());
@@ -2124,39 +2124,39 @@ public class NaiveASTFlattener extends ASTVisitor {
 			printModifiers(node.modifiers());
 		}
 		node.getType().accept(this);
-		this.buffer.append(" ");//$NON-NLS-1$
-		for (Iterator it = node.fragments().iterator(); it.hasNext(); ) {
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.fragments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			VariableDeclarationFragment f = (VariableDeclarationFragment) it.next();
 			f.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(", ");//$NON-NLS-1$
+				this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(VariableDeclarationFragment node) {
 		node.getName().accept(this);
 		int size = node.getExtraDimensions();
 		if (node.getAST().apiLevel() >= JLS8) {
 			List dimensions = node.extraDimensions();
-			for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				visit((Dimension) dimensions.get(i));
 			}
 		} else {
-			for (int i = 0; i < size; i++) {
-				this.buffer.append("[]");//$NON-NLS-1$
+			for (int i = 0; i < size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				this.buffer.append("[]");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 		if (node.getInitializer() != null) {
-			this.buffer.append("=");//$NON-NLS-1$
+			this.buffer.append("=");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getInitializer().accept(this);
 		}
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(VariableDeclarationStatement node) {
 		printIndent();
 		if (node.getAST().apiLevel() == JLS2) {
@@ -2166,24 +2166,24 @@ public class NaiveASTFlattener extends ASTVisitor {
 			printModifiers(node.modifiers());
 		}
 		node.getType().accept(this);
-		this.buffer.append(" ");//$NON-NLS-1$
-		for (Iterator it = node.fragments().iterator(); it.hasNext(); ) {
+		this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for (Iterator it = node.fragments().iterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			VariableDeclarationFragment f = (VariableDeclarationFragment) it.next();
 			f.accept(this);
 			if (it.hasNext()) {
-				this.buffer.append(", ");//$NON-NLS-1$
+				this.buffer.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 
 	@Override
 	public boolean visit(WhileStatement node) {
 		printIndent();
-		this.buffer.append("while (");//$NON-NLS-1$
+		this.buffer.append("while (");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getExpression().accept(this);
-		this.buffer.append(") ");//$NON-NLS-1$
+		this.buffer.append(") ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		node.getBody().accept(this);
 		return false;
 	}
@@ -2191,13 +2191,13 @@ public class NaiveASTFlattener extends ASTVisitor {
 	@Override
 	public boolean visit(WildcardType node) {
 		visitTypeAnnotations(node);
-		this.buffer.append("?");//$NON-NLS-1$
+		this.buffer.append("?");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		Type bound = node.getBound();
 		if (bound != null) {
 			if (node.isUpperBound()) {
-				this.buffer.append(" extends ");//$NON-NLS-1$
+				this.buffer.append(" extends ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				this.buffer.append(" super ");//$NON-NLS-1$
+				this.buffer.append(" super ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			bound.accept(this);
 		}
@@ -2210,12 +2210,12 @@ public class NaiveASTFlattener extends ASTVisitor {
 			return false;
 		}
 		printIndent();
-		this.buffer.append("yield"); //$NON-NLS-1$
+		this.buffer.append("yield"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (node.getExpression() != null) {
-			this.buffer.append(" ");//$NON-NLS-1$
+			this.buffer.append(" ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			node.getExpression().accept(this);
 		}
-		this.buffer.append(";\n");//$NON-NLS-1$
+		this.buffer.append(";\n");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		return false;
 	}
 	/**

@@ -45,7 +45,7 @@ class DOMToIndexVisitor extends ASTVisitor {
 		return false;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TypeDeclaration type) {
 		char[][] enclosing = type.isLocalTypeDeclaration() ? IIndexConstants.ONE_ZERO_CHAR :
 				this.enclosingTypes.stream().map(AbstractTypeDeclaration::getName).map(SimpleName::getIdentifier).map(String::toCharArray).toArray(char[][]::new);
@@ -109,7 +109,7 @@ class DOMToIndexVisitor extends ASTVisitor {
 
 	private boolean isSecondary(AbstractTypeDeclaration type) {
 		return type.getParent() instanceof CompilationUnit &&
-			!Objects.equals(type.getName().getIdentifier() + ".java", Path.of(this.sourceIndexer.document.getPath()).getFileName().toString()); //$NON-NLS-1$
+			!Objects.equals(type.getName().getIdentifier() + ".java", Path.of(this.sourceIndexer.document.getPath()).getFileName().toString()); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
@@ -126,7 +126,7 @@ class DOMToIndexVisitor extends ASTVisitor {
 	}
 
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MethodDeclaration method) {
 		char[] methodName = method.getName().getIdentifier().toCharArray();
 		char[][] parameterTypes = ((List<VariableDeclaration>)method.parameters()).stream()
@@ -186,7 +186,7 @@ class DOMToIndexVisitor extends ASTVisitor {
 	@Override
 	public boolean visit(FieldDeclaration field) {
 		char[] typeName = field.getType() == null ? null : field.getType().toString().toCharArray();
-		for (VariableDeclarationFragment fragment: (List<VariableDeclarationFragment>)field.fragments()) {
+		for (VariableDeclarationFragment fragment: (List<VariableDeclarationFragment>)field.fragments()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.sourceIndexer.addFieldDeclaration(typeName, fragment.getName().getIdentifier().toCharArray());
 		}
 		return true;
@@ -271,7 +271,7 @@ class DOMToIndexVisitor extends ASTVisitor {
 		return true;
 	}
 
-	private char[] name(Type type) {
+	private char[] name(Type type) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (type == null) {
 			return null;
 		}
@@ -399,7 +399,7 @@ class DOMToIndexVisitor extends ASTVisitor {
 	@Override
 	public boolean visit(ExportsDirective node) {
 		this.sourceIndexer.addModuleExportedPackages(node.getName().getFullyQualifiedName().toCharArray());
-		for (Name moduleName : (List<Name>)node.modules()) {
+		for (Name moduleName : (List<Name>)node.modules()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.sourceIndexer.addModuleReference(moduleName.getFullyQualifiedName().toCharArray());
 		}
 		return true;
@@ -407,7 +407,7 @@ class DOMToIndexVisitor extends ASTVisitor {
 	@Override
 	public boolean visit(ProvidesDirective node) {
 		this.sourceIndexer.addTypeReference(node.getName().getFullyQualifiedName().toCharArray());
-		for (var n : (List<Name>)node.implementations()) {
+		for (var n : (List<Name>)node.implementations()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.sourceIndexer.addTypeReference(n.getFullyQualifiedName().toCharArray());
 		}
 		return true;
@@ -420,7 +420,7 @@ class DOMToIndexVisitor extends ASTVisitor {
 	@Override
 	public boolean visit(OpensDirective node) {
 		this.sourceIndexer.addModuleExportedPackages(node.getName().getFullyQualifiedName().toCharArray());
-		for (Name moduleName : (List<Name>)node.modules()) {
+		for (Name moduleName : (List<Name>)node.modules()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.sourceIndexer.addModuleReference(moduleName.getFullyQualifiedName().toCharArray());
 		}
 		return true;

@@ -169,7 +169,7 @@ public class TypeDeclaration extends AbstractTypeDeclaration {
 	private static final List PROPERTY_DESCRIPTORS_15;
 
 	static {
-		List propertyList = new ArrayList(8);
+		List propertyList = new ArrayList(8); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TypeDeclaration.class, propertyList);
 		addProperty(JAVADOC_PROPERTY, propertyList);
 		addProperty(MODIFIERS_PROPERTY, propertyList);
@@ -180,7 +180,7 @@ public class TypeDeclaration extends AbstractTypeDeclaration {
 		addProperty(BODY_DECLARATIONS_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS_2_0 = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(9);
+		propertyList = new ArrayList(9); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TypeDeclaration.class, propertyList);
 		addProperty(JAVADOC_PROPERTY, propertyList);
 		addProperty(MODIFIERS2_PROPERTY, propertyList);
@@ -192,7 +192,7 @@ public class TypeDeclaration extends AbstractTypeDeclaration {
 		addProperty(BODY_DECLARATIONS_PROPERTY, propertyList);
 		PROPERTY_DESCRIPTORS_3_0 = reapPropertyList(propertyList);
 
-		propertyList = new ArrayList(10);
+		propertyList = new ArrayList(10); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(TypeDeclaration.class, propertyList);
 		addProperty(JAVADOC_PROPERTY, propertyList);
 		addProperty(MODIFIERS2_PROPERTY, propertyList);
@@ -343,7 +343,7 @@ public class TypeDeclaration extends AbstractTypeDeclaration {
 		return super.internalGetSetBooleanProperty(property, get, value);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == JAVADOC_PROPERTY) {
 			if (get) {
@@ -381,7 +381,7 @@ public class TypeDeclaration extends AbstractTypeDeclaration {
 		return super.internalGetSetChildProperty(property, get, child);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final List internalGetChildListProperty(ChildListPropertyDescriptor property) {
 		if (property == MODIFIERS2_PROPERTY) {
 			return modifiers();
@@ -435,7 +435,7 @@ public class TypeDeclaration extends AbstractTypeDeclaration {
 		return TYPE_DECLARATION;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTNode clone0(AST target) {
 		TypeDeclaration result = new TypeDeclaration(target);
 		result.setSourceRange(getStartPosition(), getLength());
@@ -475,7 +475,7 @@ public class TypeDeclaration extends AbstractTypeDeclaration {
 		return matcher.match(this, other);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	void accept0(ASTVisitor visitor) {
 		boolean visitChildren = visitor.visit(this);
 		if (visitChildren) {
@@ -746,17 +746,17 @@ public class TypeDeclaration extends AbstractTypeDeclaration {
 	 *
 	 * @return the (possibly empty) list of field declarations
 	 */
-	public FieldDeclaration[] getFields() {
+	public FieldDeclaration[] getFields() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List bd = bodyDeclarations();
 		int fieldCount = 0;
-		for (Iterator it = bd.listIterator(); it.hasNext(); ) {
+		for (Iterator it = bd.listIterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (it.next() instanceof FieldDeclaration) {
 				fieldCount++;
 			}
 		}
 		FieldDeclaration[] fields = new FieldDeclaration[fieldCount];
 		int next = 0;
-		for (Iterator it = bd.listIterator(); it.hasNext(); ) {
+		for (Iterator it = bd.listIterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object decl = it.next();
 			if (decl instanceof FieldDeclaration) {
 				fields[next++] = (FieldDeclaration) decl;
@@ -777,17 +777,17 @@ public class TypeDeclaration extends AbstractTypeDeclaration {
 	 * @return the (possibly empty) list of method (and constructor)
 	 *    declarations
 	 */
-	public MethodDeclaration[] getMethods() {
+	public MethodDeclaration[] getMethods() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List bd = bodyDeclarations();
 		int methodCount = 0;
-		for (Iterator it = bd.listIterator(); it.hasNext(); ) {
+		for (Iterator it = bd.listIterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (it.next() instanceof MethodDeclaration) {
 				methodCount++;
 			}
 		}
 		MethodDeclaration[] methods = new MethodDeclaration[methodCount];
 		int next = 0;
-		for (Iterator it = bd.listIterator(); it.hasNext(); ) {
+		for (Iterator it = bd.listIterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object decl = it.next();
 			if (decl instanceof MethodDeclaration) {
 				methods[next++] = (MethodDeclaration) decl;
@@ -807,17 +807,17 @@ public class TypeDeclaration extends AbstractTypeDeclaration {
 	 *
 	 * @return the (possibly empty) list of member type declarations
 	 */
-	public TypeDeclaration[] getTypes() {
+	public TypeDeclaration[] getTypes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		List bd = bodyDeclarations();
 		int typeCount = 0;
-		for (Iterator it = bd.listIterator(); it.hasNext(); ) {
+		for (Iterator it = bd.listIterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (it.next() instanceof TypeDeclaration) {
 				typeCount++;
 			}
 		}
 		TypeDeclaration[] memberTypes = new TypeDeclaration[typeCount];
 		int next = 0;
-		for (Iterator it = bd.listIterator(); it.hasNext(); ) {
+		for (Iterator it = bd.listIterator(); it.hasNext(); ) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object decl = it.next();
 			if (decl instanceof TypeDeclaration) {
 				memberTypes[next++] = (TypeDeclaration) decl;

@@ -67,7 +67,7 @@ protected void tearDown() throws Exception {
 /*
  * Multi constant case statement with ':', selection node is the string constant
  */
-public void test001() throws JavaModelException {
+public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"static final String ONE=\"One\", TWO = \"Two\", THREE=\"Three\";\n" +
 	"  public static void foo(String num) {\n" +
@@ -93,7 +93,7 @@ public void test001() throws JavaModelException {
 /*
  * Multi constant case statement with ':', selection node is the first enum constant
  */
-public void test002() throws JavaModelException {
+public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"  public static void foo(Num num) {\n" +
 	" 	 switch (num) {\n" +
@@ -118,7 +118,7 @@ public void test002() throws JavaModelException {
 /*
  * Multi constant case statement with ':', selection node is the second string constant
  */
-public void test003() throws JavaModelException {
+public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"static final String ONE=\"One\", TWO = \"Two\", THREE=\"Three\";\n" +
 	"  public static void foo(String num) {\n" +
@@ -143,7 +143,7 @@ public void test003() throws JavaModelException {
 /*
  * Multi constant case statement with ':', selection node is the second enum constant
  */
-public void test004() throws JavaModelException {
+public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"  public static void foo(Num num) {\n" +
 	" 	 switch (num) {\n" +
@@ -168,7 +168,7 @@ public void test004() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection node is the string constant
  */
-public void test005() throws JavaModelException {
+public void test005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"static final String ONE=\"One\", TWO = \"Two\", THREE=\"Three\";\n" +
 	"  public static void foo(String num) {\n" +
@@ -192,7 +192,7 @@ public void test005() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection node is the first enum constant
  */
-public void test006() throws JavaModelException {
+public void test006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"  public static void foo(Num num) {\n" +
 	" 	 switch (num) {\n" +
@@ -217,7 +217,7 @@ public void test006() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection node is the second string constant
  */
-public void test007() throws JavaModelException {
+public void test007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"static final String ONE=\"One\", TWO = \"Two\", THREE=\"Three\";\n" +
 	"  public static void foo(String num) {\n" +
@@ -242,7 +242,7 @@ public void test007() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection node is the second enum constant
  */
-public void test008() throws JavaModelException {
+public void test008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"  public static void foo(Num num) {\n" +
 	" 	 switch (num) {\n" +
@@ -268,7 +268,7 @@ public void test008() throws JavaModelException {
  * Multi constant case statement with '->', selection is a reference in the case block
  * which same as the switch's expression
  */
-public void test009() throws JavaModelException {
+public void test009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"  public static void foo(Num num_) {\n" +
 	" 	 switch (num_) {\n" +
@@ -294,7 +294,7 @@ public void test009() throws JavaModelException {
  * Multi constant case statement with '->', selection is a reference in the case block
  * which is referencing a local variable defined in the case block
  */
-public void test010() throws JavaModelException {
+public void test010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java","public class X {\n" +
 	"  public static void foo(Num num_) {\n" +
 	" 	 switch (num_) {\n" +
@@ -321,7 +321,7 @@ public void test010() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type enum in switch expression
  */
-public void test011() throws JavaModelException {
+public void test011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"  public static void foo(Num num_) {\n" +
 	" 	 switch (num_) {\n" +
@@ -346,7 +346,7 @@ public void test011() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type int in switch expression
  */
-public void test012() throws JavaModelException {
+public void test012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"  public static void foo(int num_) {\n" +
 	" 	 switch (num_ + 1) {\n" +
@@ -370,7 +370,7 @@ public void test012() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type int in switch expression
  */
-public void test013() throws JavaModelException {
+public void test013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"  public static void foo(int num_) {\n" +
 	" 	 int i = switch (num_) {\n" +
@@ -393,7 +393,7 @@ public void test013() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type int in switch expression
  */
-public void test014() throws JavaModelException {
+public void test014() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"  public static void foo(int num_) {\n" +
 	" 	 int i = switch (num_) {\n" +
@@ -416,7 +416,7 @@ public void test014() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type int in switch expression
  */
-public void test015() throws JavaModelException {
+public void test015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 	"  public static void foo(int num_) {\n" +
 	" 	 int i = switch (num_) {\n" +
@@ -439,7 +439,7 @@ public void test015() throws JavaModelException {
 /*
  * Multi constant case statement with '->', selection is a referenced name of type int in switch expression
  */
-public void test016() throws JavaModelException {
+public void test016() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 			"	public void bar(int s) {\n" +
 			"		int i_j = switch (s) {\n" +
@@ -459,7 +459,7 @@ public void test016() throws JavaModelException {
 		elements
 	);
 }
-public void test017() throws JavaModelException {
+public void test017() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java","public class X {\n" +
 			"	public void bar(int s) {\n" +
 			"		int i_j = switch (s) {\n" +
@@ -479,7 +479,7 @@ public void test017() throws JavaModelException {
 		elements
 	);
 }
-public void test018() throws JavaModelException {
+public void test018() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			 "interface Supplier<T> {\n" +
 			"    T get();\n" +
@@ -508,7 +508,7 @@ public void test018() throws JavaModelException {
 		elements
 	);
 }
-public void test019() throws JavaModelException {
+public void test019() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java",
 			"import java.util.function.*;\n" +
 			"interface IN0 {} \n" +
@@ -535,7 +535,7 @@ public void test019() throws JavaModelException {
 		elements
 	);
 }
-public void test020() throws JavaModelException {
+public void test020() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java",
 			"import java.util.function.*;\n" +
 			"interface IN0 {} \n" +
@@ -561,7 +561,7 @@ public void test020() throws JavaModelException {
 		elements
 	);
 }
-public void test021() throws JavaModelException {
+public void test021() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java",
 			"import java.util.function.*;\n" +
 			"interface IN0 {} \n" +
@@ -587,7 +587,7 @@ public void test021() throws JavaModelException {
 		elements
 	);
 }
-public void test022() throws JavaModelException {
+public void test022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve/src/X.java",
 			"import java.util.function.*;\n" +
 			"interface IN0 {} \n" +
@@ -613,7 +613,7 @@ public void test022() throws JavaModelException {
 		elements
 	);
 }
-public void testBug553149_1() throws JavaModelException {
+public void testBug553149_1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"public class X {\n"
 					+ "    protected Object x_ = \"FIELD X\";\n"
@@ -635,7 +635,7 @@ public void testBug553149_1() throws JavaModelException {
 		elements
 	);
 }
-public void testBug553149_2() throws JavaModelException {
+public void testBug553149_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"public class X {\n"
 					+ "    protected Object x_ = \"FIELD X\";\n"
@@ -657,7 +657,7 @@ public void testBug553149_2() throws JavaModelException {
 		elements
 	);
 }
-public void testBug553149_3() throws JavaModelException {
+public void testBug553149_3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"public class X {\n"
 					+ "    protected Object x_ = \"FIELD X\";\n"
@@ -679,7 +679,7 @@ public void testBug553149_3() throws JavaModelException {
 		elements
 	);
 }
-public void testBug553149_4() throws JavaModelException {
+public void testBug553149_4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"public class X {\n"
 					+ "    protected Object x_ = \"FIELD X\";\n"
@@ -701,7 +701,7 @@ public void testBug553149_4() throws JavaModelException {
 		elements
 	);
 }
-public void testBug553149_5() throws JavaModelException {
+public void testBug553149_5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"public class X {\n"
 					+ "    protected Object x_ = \"FIELD X\";\n"
@@ -724,7 +724,7 @@ public void testBug553149_5() throws JavaModelException {
 		elements
 	);
 }
-public void testBug553149_6() throws JavaModelException {
+public void testBug553149_6() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"public class X {\n"
 					+ "    @SuppressWarnings(\"preview\")\n"
@@ -745,7 +745,7 @@ public void testBug553149_6() throws JavaModelException {
 		elements
 	);
 }
-public void testBug574697() throws JavaModelException {
+public void testBug574697() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/Test2.java",
@@ -776,7 +776,7 @@ public void testBug574697() throws JavaModelException {
 			"getGreeting() [in Test2 [in [Working copy] Test2.java [in <default> [in src [in Resolve]]]]]",
 			elements);
 }
-public void testBugDiamond() throws JavaModelException {
+public void testBugDiamond() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Resolve/src/Test2.java",
@@ -804,7 +804,7 @@ public void testBugDiamond() throws JavaModelException {
 			"s2 [in <anonymous #1> [in test() [in Test2 [in [Working copy] Test2.java [in <default> [in src [in Resolve]]]]]]]",
 			elements);
 }
-public void testBug577508_1() throws JavaModelException {
+public void testBug577508_1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"public class X {\n"
 					+ "    public X () {\n"
@@ -830,7 +830,7 @@ public void testBug577508_1() throws JavaModelException {
 		elements
 	);
 }
-public void testBug577508_2() throws JavaModelException {
+public void testBug577508_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"public class X {\n"
 					+ "    public X () {\n"
@@ -855,7 +855,7 @@ public void testBug577508_2() throws JavaModelException {
 		elements
 	);
 }
-public void testBug577508_3() throws JavaModelException {
+public void testBug577508_3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"public class X {\n"
 			+ "  public static void main(String[] args) {\n"
@@ -881,11 +881,11 @@ public void testBug577508_3() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
-public void testBug577508_4() throws JavaModelException {
+public void testBug577508_4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"public class X {\n"
 			+ "  static public void main (String[] args) {\n"
@@ -903,7 +903,7 @@ public void testBug577508_4() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"println(java.lang.String) [in PrintStream [in PrintStream.class [in java.io [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"println(java.lang.String) [in PrintStream [in PrintStream.class [in java.io [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 
@@ -913,13 +913,13 @@ public void testBug577508_4() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"println(java.lang.String) [in PrintStream [in PrintStream.class [in java.io [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"println(java.lang.String) [in PrintStream [in PrintStream.class [in java.io [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1278
 // Wrong method redirect
-public void testGH1278() throws JavaModelException {
+public void testGH1278() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/TestSelect.java",
 					"public class TestSelect {\n" +
 	                "    class Integer {}\n" +
@@ -958,7 +958,7 @@ public void testGH1278() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1288
 // Open Declaration (F3) sometimes not working for "Pattern Matching for instanceof
-public void testGH1288() throws JavaModelException {
+public void testGH1288() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/DetectVMInstallationsJob.java",
 					"public class X {\n" +
 					"	public void test(Object s) {\n" +
@@ -1001,7 +1001,7 @@ public void testGH1288() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	selection = "/*fails2*/length";
@@ -1009,7 +1009,7 @@ public void testGH1288() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	selection = "/*fails3*/length";
@@ -1017,7 +1017,7 @@ public void testGH1288() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	selection = "/*fails4*/length";
@@ -1025,7 +1025,7 @@ public void testGH1288() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	selection = "/*fails5*/length";
@@ -1033,7 +1033,7 @@ public void testGH1288() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	selection = "/*works1*/length";
@@ -1041,7 +1041,7 @@ public void testGH1288() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	selection = "/*works2*/length";
@@ -1049,7 +1049,7 @@ public void testGH1288() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	selection = "/*works3*/length";
@@ -1057,7 +1057,7 @@ public void testGH1288() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	selection = "/*works4*/length";
@@ -1065,7 +1065,7 @@ public void testGH1288() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	selection = "/*works5*/length";
@@ -1073,13 +1073,13 @@ public void testGH1288() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1288
 // Open Declaration (F3) sometimes not working for "Pattern Matching for instanceof
-public void testGH1288_while() throws JavaModelException {
+public void testGH1288_while() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 					"public class X {\n" +
 					"	public void test(Object s) {\n" +
@@ -1105,7 +1105,7 @@ public void testGH1288_while() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	start = str.lastIndexOf(selection);
@@ -1113,7 +1113,7 @@ public void testGH1288_while() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]",
+		"length() [in String [in String.class [in java.lang [in "+ getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 
@@ -1129,7 +1129,7 @@ public void testGH1288_while() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1288
 // Open Declaration (F3) sometimes not working for "Pattern Matching for instanceof
-public void testGH1288_do_while() throws JavaModelException {
+public void testGH1288_do_while() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"import java.util.ArrayList;\n" +
 					"\n" +
@@ -1164,7 +1164,7 @@ public void testGH1288_do_while() throws JavaModelException {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=573257
 // Errors when using instanceof pattern inside enum
-public void testBug573257() throws JavaModelException {
+public void testBug573257() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 					"public enum ASD {\n" +
 					"\n" +
@@ -1183,7 +1183,7 @@ public void testBug573257() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"System [in System.class [in java.lang [in " + getExternalPath() + "jclMin14.jar]]]",
+		"System [in System.class [in java.lang [in " + getExternalPath() + "jclMin14.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	selection = "out";
@@ -1192,7 +1192,7 @@ public void testBug573257() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"out [in System [in System.class [in java.lang [in " + getExternalPath() + "jclMin14.jar]]]]",
+		"out [in System [in System.class [in java.lang [in " + getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 	selection = "println";
@@ -1201,13 +1201,13 @@ public void testBug573257() throws JavaModelException {
 	elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"println(java.lang.String) [in PrintStream [in PrintStream.class [in java.io [in " + getExternalPath() + "jclMin14.jar]]]]",
+		"println(java.lang.String) [in PrintStream [in PrintStream.class [in java.io [in " + getExternalPath() + "jclMin14.jar]]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=576794
 // Class rename fails with ClassCastException
-public void testBug576794() throws JavaModelException {
+public void testBug576794() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/RenameFails.java",
 					"import java.lang.annotation.Annotation;\n" +
 					"\n" +
@@ -1233,13 +1233,13 @@ public void testBug576794() throws JavaModelException {
 	IJavaElement[] elements = this.wc.codeSelect(start, length);
 	assertElementsEqual(
 		"Unexpected elements",
-		"Deprecated [in Deprecated.class [in java.lang [in " + getExternalPath() + "jclMin14.jar]]]",
+		"Deprecated [in Deprecated.class [in java.lang [in " + getExternalPath() + "jclMin14.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		elements
 	);
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1263
 // CCE: LocalDeclaration cannot be cast to class ForeachStatement
-public void testGH1263() throws JavaModelException {
+public void testGH1263() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/DetectVMInstallationsJob.java",
 					"import java.util.Set;\n" +
 					"import java.util.function.Predicate;\n" +
@@ -1293,7 +1293,7 @@ public void testGH1263() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1364
 // SelectionParser behavior erratic wrt to live pattern variables upon loop exit
-public void testGH1364() throws JavaModelException {
+public void testGH1364() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 					"public class X {\n" +
 					"	String xx = \"Hello\";\n" +
@@ -1329,7 +1329,7 @@ public void testGH1364() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1360
 // SelectionParser miscomputes type of variable
-public void testGH1360() throws JavaModelException {
+public void testGH1360() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 					"public class X {\n" +
 					"	String xx = \"Hello\";\n" +
@@ -1363,7 +1363,7 @@ public void testGH1360() throws JavaModelException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=567497
 //  [15] Search for declaration of pattern variable not working
-public void testBug567497() throws JavaModelException {
+public void testBug567497() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"public class X {\n" +
 					"    protected Object y = \"FIELD X\";\n" +
@@ -1387,7 +1387,7 @@ public void testBug567497() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1420
 // Sporadic errors reported for Java hover or Ctrl+Click
-public void testGH1420() throws JavaModelException {
+public void testGH1420() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 					"""
                     public class X {\n" +
@@ -1421,7 +1421,7 @@ public void testGH1420() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1420
 // Sporadic errors reported for Java hover or Ctrl+Click
-public void testGH1420_2() throws JavaModelException {
+public void testGH1420_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 					"""
                  public class X {\n" +
@@ -1457,7 +1457,7 @@ public void testGH1420_2() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1420
 // Sporadic errors reported for Java hover or Ctrl+Click
-public void testGH1420_3() throws JavaModelException {
+public void testGH1420_3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 					"""
               public class X {\n" +
@@ -1493,7 +1493,7 @@ public void testGH1420_3() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/860
 // Field assignment to anonymous type breaks selection
-public void testGH860() throws JavaModelException {
+public void testGH860() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/eclipse_bug/CurrentTextSelectionCannotBeOpened.java",
 					"""
            			package eclipse_bug;
@@ -1528,7 +1528,7 @@ public void testGH860() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1568
 // Current text selection cannot be opened in an editor
-public void testGH1568() throws JavaModelException {
+public void testGH1568() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/RowRenderData.java",
 			"""
 			import java.util.ArrayList;
@@ -1569,7 +1569,7 @@ public void testGH1568() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1568
 // Current text selection cannot be opened in an editor
-public void testGH1568_2() throws JavaModelException {
+public void testGH1568_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"""
 			public class X {
@@ -1601,7 +1601,7 @@ public void testGH1568_2() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1568
 // Current text selection cannot be opened in an editor
-public void testGH1568_3() throws JavaModelException {
+public void testGH1568_3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"""
 			public class X {
@@ -1635,7 +1635,7 @@ public void testGH1568_3() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1568
 // Current text selection cannot be opened in an editor
-public void testGH1568_4() throws JavaModelException {
+public void testGH1568_4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"""
 			public class X {
@@ -1664,7 +1664,7 @@ public void testGH1568_4() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1568
 // Current text selection cannot be opened in an editor
-public void testGH1568_5() throws JavaModelException {
+public void testGH1568_5() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"""
 			import java.util.ArrayList;
@@ -1705,7 +1705,7 @@ public void testGH1568_5() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2443
 // ArrayStoreException in SelectionParser.buildMoreCompletionContext
-public void testGH2443() throws JavaModelException {
+public void testGH2443() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 					"""
 					 public class X {
@@ -1736,7 +1736,7 @@ public void testGH2443() throws JavaModelException {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3777
 // [Code select] NPE in SwitchExpression: Cannot invoke "org.eclipse.jdt.internal.compiler.lookup.TypeBinding.unboxedType()" because "rxpressionType" is null
-public void testIssue3777() throws JavaModelException {
+public void testIssue3777() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy("/Resolve15/src/X.java",
 			"""
 			public interface X <T, U> {

@@ -55,7 +55,7 @@ public abstract class APTTestBase extends BuilderTests{
 	 * - add java class library into the build class path
 	 * - create and add an annotation jar.
 	 */
-	public void setUp() throws Exception
+	public void setUp() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		runFinalizers();
 		ProcessorTestStatus.reset();
@@ -119,7 +119,7 @@ public abstract class APTTestBase extends BuilderTests{
 	protected void tearDown()
 		throws Exception
 	{
-		AptPlugin.trace("Tearing down " + getProjectName() );
+		AptPlugin.trace("Tearing down " + getProjectName() ); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		runFinalizers();
 		GenericFactory.PROCESSOR = null;
 		super.tearDown();
@@ -149,25 +149,25 @@ public abstract class APTTestBase extends BuilderTests{
 
 	private String concate(String[] messages){
 		final int len = messages == null ? 0 : messages.length;
-		StringBuilder buffer = new StringBuilder();
-		for(int i=0; i<len; i++ ){
-			buffer.append(messages[i]);
-			buffer.append('\n');
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for(int i=0; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(messages[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buffer.toString();
 	}
 
 	private String concate(IMarker[] markers){
 		final int len = markers == null ? 0 : markers.length;
-		StringBuilder buffer = new StringBuilder();
-		for(int i=0; i<len; i++ ){
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for(int i=0; i<len; i++ ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try{
-				buffer.append(markers[i].getAttribute(IMarker.MESSAGE));
+				buffer.append(markers[i].getAttribute(IMarker.MESSAGE)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			catch(CoreException ce){
-				assertTrue("unexpected core exception" + ce.getMessage(), false); //$NON-NLS-1$
+				assertTrue("unexpected core exception" + ce.getMessage(), false); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
-			buffer.append('\n');
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buffer.toString();
 	}
@@ -203,13 +203,13 @@ public abstract class APTTestBase extends BuilderTests{
 		return result;
 	}
 
-	protected void expectingMarkers(String[] messages)
+	protected void expectingMarkers(String[] messages) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		final IMarker[] markers = getAllAPTMarkers(env.getWorkspaceRootPath());
 		final Set<String> expectedMessages = Stream.of(messages).collect(Collectors.toSet());
 		boolean fail = false;
 		try{
-			for( IMarker marker : markers ){
+			for( IMarker marker : markers ){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				final String markerMsg = (String)marker.getAttribute(IMarker.MESSAGE);
 				if( expectedMessages.contains(markerMsg) )
 					expectedMessages.remove(markerMsg);
@@ -221,7 +221,7 @@ public abstract class APTTestBase extends BuilderTests{
 			if( !expectedMessages.isEmpty() )
 				fail = true;
 		}catch(CoreException ce){
-			assertTrue("unexpected core exception" + ce.getMessage(), false); //$NON-NLS-1$
+			assertTrue("unexpected core exception" + ce.getMessage(), false); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		if( fail )
 			assertEquals(concate(messages), concate(markers));
@@ -237,15 +237,15 @@ public abstract class APTTestBase extends BuilderTests{
 
 		if( markers != null && markers.length != 0 ){
 			try{
-				assertTrue("unexpected marker(s) : " + markers[0].getAttribute(IMarker.MESSAGE), false); //$NON-NLS-1$
+				assertTrue("unexpected marker(s) : " + markers[0].getAttribute(IMarker.MESSAGE), false); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			catch(CoreException ce){
-				assertTrue("unexpected core exception" + ce.getMessage(), false); //$NON-NLS-1$
+				assertTrue("unexpected core exception" + ce.getMessage(), false); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 
-	protected IMarker[] getAllAPTMarkers(IPath path){
+	protected IMarker[] getAllAPTMarkers(IPath path){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IResource resource;
 		if(path.equals(env.getWorkspaceRootPath())){
 			resource = env.getWorkspace().getRoot();
@@ -302,16 +302,16 @@ public abstract class APTTestBase extends BuilderTests{
 	 * Verifies that the given element has specifics problems and
 	 * only the given problems.
 	 */
-	protected void expectingOnlySpecificProblemsFor(IPath root, ExpectedProblem[] expectedProblems) {
+	protected void expectingOnlySpecificProblemsFor(IPath root, ExpectedProblem[] expectedProblems) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (DEBUG)
 			printProblemsFor(root);
 
 		Problem[] rootProblems = env.getProblemsFor(root);
 
-		for (int i = 0; i < expectedProblems.length; i++) {
+		for (int i = 0; i < expectedProblems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ExpectedProblem expectedProblem = expectedProblems[i];
 			boolean found = false;
-			for (int j = 0; j < rootProblems.length; j++) {
+			for (int j = 0; j < rootProblems.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if(expectedProblem.equalsProblem(rootProblems[j])) {
 					found = true;
 					rootProblems[j] = null;
@@ -321,26 +321,26 @@ public abstract class APTTestBase extends BuilderTests{
 			if (!found) {
 				printProblemsFor(root);
 			}
-			assertTrue("problem not found: " + expectedProblem.toString(), found); //$NON-NLS-1$
+			assertTrue("problem not found: " + expectedProblem.toString(), found); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		for (int i = 0; i < rootProblems.length; i++) {
+		for (int i = 0; i < rootProblems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if(rootProblems[i] != null) {
 				printProblemsFor(root);
-				assertTrue("unexpected problem: " + rootProblems[i].toString(), false); //$NON-NLS-1$
+				assertTrue("unexpected problem: " + rootProblems[i].toString(), false); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 	}
 
 	/** Verifies that the given element has specific problems.
 	 */
-	protected void expectingSpecificProblemsFor(IPath root, ExpectedProblem[] problems) {
+	protected void expectingSpecificProblemsFor(IPath root, ExpectedProblem[] problems) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (DEBUG)
 			printProblemsFor(root);
 
 		Problem[] rootProblems = env.getProblemsFor(root);
-		next : for (int i = 0; i < problems.length; i++) {
+		next : for (int i = 0; i < problems.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ExpectedProblem problem = problems[i];
-			for (int j = 0; j < rootProblems.length; j++) {
+			for (int j = 0; j < rootProblems.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Problem rootProblem = rootProblems[j];
 				if (rootProblem != null) {
 					if (problem.equalsProblem(rootProblem)) {
@@ -349,14 +349,14 @@ public abstract class APTTestBase extends BuilderTests{
 					}
 				}
 			}
-			for (int j = 0; j < rootProblems.length; j++) {
+			for (int j = 0; j < rootProblems.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Problem pb = rootProblems[j];
 				if (pb == null) continue;
-				System.out.print("got pb:		new Problem(\"" + pb.getLocation() + "\", \"" + pb.getMessage() + "\", \"" + pb.getResourcePath() + "\"");
-				System.out.print(", " + pb.getStart() + ", " + pb.getEnd() +  ", " + pb.getCategoryId());
+				System.out.print("got pb:		new Problem(\"" + pb.getLocation() + "\", \"" + pb.getMessage() + "\", \"" + pb.getResourcePath() + "\""); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				System.out.print(", " + pb.getStart() + ", " + pb.getEnd() +  ", " + pb.getCategoryId()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				System.out.println(")");
 			}
-			assertTrue("missing expected problem : " + problem, false);
+			assertTrue("missing expected problem : " + problem, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 

@@ -73,7 +73,7 @@ public class Bug549457Test extends BuilderTests {
 	 *
 	 * We expect that a JDT compiler setting change triggers a build, resulting in a build problem.
 	 */
-	public void testBug549457() throws Exception {
+	public void testBug549457() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFolder srcPackageFolder = env.getWorkspace().getRoot().getFolder(this.srcPackage);
 		assertTrue("package in source must exist", srcPackageFolder.exists());
 
@@ -82,7 +82,7 @@ public class Bug549457Test extends BuilderTests {
 		fullBuild(this.project);
 		// For this test, the default is not Java 17. If this changes, we can expect no problems here. The test cares only that the source was compiled.
 		String firstSupportedJavaVersion = CompilerOptions.getFirstSupportedJavaVersion();
-		String expectedProblemMessage = "'permits' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java "
+		String expectedProblemMessage = "'permits' is not a valid type name; it is a restricted identifier and not allowed as a type identifier in Java " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ firstSupportedJavaVersion + ","
 		+ " Syntax error on token \"permits\", extends expected,"
 		+ " Syntax error on token \"sealed\", invalid Modifiers";
@@ -99,14 +99,14 @@ public class Bug549457Test extends BuilderTests {
 		fullBuild(this.project);
 		expectNoCompileProblems(this.project);
 
-		String jdtCorePreferencesFile = JavaProject.DEFAULT_PREFERENCES_DIRNAME + IPath.SEPARATOR + JavaProject.JAVA_CORE_PREFS_FILE;
+		String jdtCorePreferencesFile = JavaProject.DEFAULT_PREFERENCES_DIRNAME + IPath.SEPARATOR + JavaProject.JAVA_CORE_PREFS_FILE; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		IFile settingsFile = testProject.getFile(jdtCorePreferencesFile);
-		assertTrue("expected \"" + jdtCorePreferencesFile + "\" to exist after setting compiler compliance to Java " + firstSupportedJavaVersion, settingsFile.exists());
+		assertTrue("expected \"" + jdtCorePreferencesFile + "\" to exist after setting compiler compliance to Java " + firstSupportedJavaVersion, settingsFile.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		String newContents = String.join(
-				CompilerOptions.OPTION_Compliance + "=" + firstSupportedJavaVersion + "\n",
-				CompilerOptions.OPTION_Source + "=" + firstSupportedJavaVersion + "\n",
-				CompilerOptions.OPTION_TargetPlatform + "=" + firstSupportedJavaVersion + "\n");
+				CompilerOptions.OPTION_Compliance + "=" + firstSupportedJavaVersion + "\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				CompilerOptions.OPTION_Source + "=" + firstSupportedJavaVersion + "\n", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				CompilerOptions.OPTION_TargetPlatform + "=" + firstSupportedJavaVersion + "\n"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		settingsFile.setContents(newContents.getBytes(), IResource.FORCE, new NullProgressMonitor());
 		waitForAutoBuild();

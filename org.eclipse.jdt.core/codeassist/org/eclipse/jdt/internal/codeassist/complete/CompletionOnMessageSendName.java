@@ -37,7 +37,7 @@ public class CompletionOnMessageSendName extends MessageSend implements Completi
 		this.nextIsCast = nextIsCast;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public TypeBinding resolveType(BlockScope scope) {
 
 		this.constant = Constant.NotAConstant;
@@ -50,7 +50,7 @@ public class CompletionOnMessageSendName extends MessageSend implements Completi
 		if (this.typeArguments != null) {
 			int length = this.typeArguments.length;
 			this.genericTypeArguments = new TypeBinding[length];
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.genericTypeArguments[i] = this.typeArguments[i].resolveType(scope, true /* check bounds*/);
 			}
 		}
@@ -61,19 +61,19 @@ public class CompletionOnMessageSendName extends MessageSend implements Completi
 	@Override
 	public StringBuilder printExpression(int indent, StringBuilder output) {
 
-		output.append("<CompleteOnMessageSendName:"); //$NON-NLS-1$
+		output.append("<CompleteOnMessageSendName:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (!this.receiver.isImplicitThis()) this.receiver.printExpression(0, output).append('.');
 		if (this.typeArguments != null) {
-			output.append('<');
+			output.append('<'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			int max = this.typeArguments.length - 1;
-			for (int j = 0; j < max; j++) {
+			for (int j = 0; j < max; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.typeArguments[j].print(0, output);
-				output.append(", ");//$NON-NLS-1$
+				output.append(", ");//$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			this.typeArguments[max].print(0, output);
-			output.append('>');
+			output.append('>'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		output.append(this.selector).append('(');
-		return output.append(")>"); //$NON-NLS-1$
+		output.append(this.selector).append('('); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		return output.append(")>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }

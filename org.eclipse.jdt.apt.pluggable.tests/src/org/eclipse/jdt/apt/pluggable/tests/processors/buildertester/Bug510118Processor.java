@@ -60,14 +60,14 @@ public class Bug510118Processor extends AbstractProcessor {
 
 		@Override
 		protected T defaultAction(TypeMirror e, Void v) {
-			throw new IllegalArgumentException(e + " does not represent a " + label);
+			throw new IllegalArgumentException(e + " does not represent a " + label); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
 	public Bug510118Processor() {
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 		if (!roundEnv.processingOver()) {
 			TypeElement testClass = null;
@@ -87,7 +87,7 @@ public class Bug510118Processor extends AbstractProcessor {
 					}
 				}
 			} catch (Exception e) {
-				messager.printMessage(Diagnostic.Kind.ERROR, ("Exception: " + e), testClass);
+				messager.printMessage(Diagnostic.Kind.ERROR, ("Exception: " + e), testClass); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 		return false;

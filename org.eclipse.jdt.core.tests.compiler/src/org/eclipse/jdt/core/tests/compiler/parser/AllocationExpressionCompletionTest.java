@@ -28,7 +28,7 @@ public static Test suite() {
 /*
  * Completion inside an if statement.
  */
-public void testInIfStatement1() {
+public void testInIfStatement1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -61,7 +61,7 @@ public void testInIfStatement1() {
 		"<complete inside an if statement>"
 	);
 }
-public void testInIfStatement2() {
+public void testInIfStatement2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -100,7 +100,7 @@ public void testInIfStatement2() {
  * ie. ClassInstanceCreationExpression ::= 'new' ClassType '(' ArgumentListopt ')' ClassBodyopt
  *		where ClassType is a qualified type name
  */
-public void testNoQualificationQualifiedTypeName1() {
+public void testNoQualificationQualifiedTypeName1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -128,7 +128,7 @@ public void testNoQualificationQualifiedTypeName1() {
 		"<complete on non qualified instance creation with qualified type name>"
 	);
 }
-public void testNoQualificationQualifiedTypeName2() {
+public void testNoQualificationQualifiedTypeName2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -162,7 +162,7 @@ public void testNoQualificationQualifiedTypeName2() {
  * ie. ClassInstanceCreationExpression ::= 'new' ClassType '(' ArgumentListopt ')' ClassBodyopt
  *		where ClassType is a simple type name
  */
-public void testNoQualificationSimpleTypeName1() {
+public void testNoQualificationSimpleTypeName1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -190,7 +190,7 @@ public void testNoQualificationSimpleTypeName1() {
 		"<complete on non qualified instance creation with simple type name>"
 	);
 }
-public void testNoQualificationSimpleTypeName2() {
+public void testNoQualificationSimpleTypeName2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -223,7 +223,7 @@ public void testNoQualificationSimpleTypeName2() {
  *
  * ie. ClassInstanceCreationExpression ::= ClassInstanceCreationExpressionName 'new' SimpleName '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testQualifiedWithName1() {
+public void testQualifiedWithName1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {\n" +
@@ -251,7 +251,7 @@ public void testQualifiedWithName1() {
 		"<complete on name qualified instance creation>"
 	);
 }
-public void testQualifiedWithName2() {
+public void testQualifiedWithName2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {\n" +
@@ -284,7 +284,7 @@ public void testQualifiedWithName2() {
  *
  * ie. ClassInstanceCreationExpression ::= Primary '.' 'new' SimpleName '(' ArgumentListopt ')' ClassBodyopt
  */
-public void testQualifiedWithPrimary1() {
+public void testQualifiedWithPrimary1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +
@@ -312,7 +312,7 @@ public void testQualifiedWithPrimary1() {
 		"<complete on primary qualified instance creation>"
 	);
 }
-public void testQualifiedWithPrimary2() {
+public void testQualifiedWithPrimary2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runTestCheckMethodParse(
 		// compilationUnit:
 		"class Bar {								\n" +

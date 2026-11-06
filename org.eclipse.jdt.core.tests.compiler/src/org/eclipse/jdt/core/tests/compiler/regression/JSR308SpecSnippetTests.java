@@ -55,7 +55,7 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 		return defaultOptions;
 	}
 
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -89,10 +89,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        target type = 0x13 FIELD\n" +
 				"        location = [TYPE_ARGUMENT(1), TYPE_ARGUMENT(0)]\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// note, javac 8b100 emits offset incorrectly.
-	public void test002() throws Exception {
+	public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -120,10 +120,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        offset = 3\n" +
 				"        type argument index = 0\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void test003() throws Exception {
+	public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -167,9 +167,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      target type = 0x11 CLASS_TYPE_PARAMETER_BOUND\n" +
 				"      type parameter index = 0 type parameter bound index = 0\n" +
 				"    )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test004() throws Exception {
+	public void test004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -188,7 +188,7 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 		"");
 		String pos = "23";
 		String expectedOutput =
-				"  RuntimeInvisibleTypeAnnotations: \n" +
+				"  RuntimeInvisibleTypeAnnotations: \n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"    #" + pos + " @Readonly(\n" +
 				"      target type = 0x10 CLASS_EXTENDS\n" +
 				"      type index = 0\n" +
@@ -198,9 +198,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      type index = 0\n" +
 				"      location = [TYPE_ARGUMENT(0)]\n" +
 				"    )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test005() throws Exception {
+	public void test005() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -225,9 +225,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        target type = 0x17 THROWS\n" +
 				"        throws index = 0\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test006() throws Exception {
+	public void test006() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -273,9 +273,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        offset = 12\n" +
 				"        location = [INNER_TYPE]\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test007() throws Exception {
+	public void test007() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -304,9 +304,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      #8 @NonNull(\n" +
 				"        target type = 0x13 FIELD\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test008() throws Exception {
+	public void test008() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -352,9 +352,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        type argument index = 0\n" +
 				"      )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test009() throws Exception {
+	public void test009() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -387,9 +387,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        target type = 0x43 INSTANCEOF\n" +
 				"        offset = 1\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test010() throws Exception {
+	public void test010() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -444,10 +444,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        offset = 12\n" +
 				"        type argument index = 0\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void test011() throws Exception {
+	public void test011() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -580,9 +580,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      Local variable table:\n" +
 				"        [pc: 0, pc: 5] local: this index: 0 type: X\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test012() throws Exception {
+	public void test012() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -665,9 +665,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        offset = 30\n" +
 				"        location = [ARRAY]\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test013() throws Exception {
+	public void test013() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -723,9 +723,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        target type = 0x14 METHOD_RETURN\n" +
 				"      )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test014() throws Exception {
+	public void test014() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -789,7 +789,7 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 		"The declared type of the explicit \'this\' parameter is expected to be Y<T>\n" +
 		"----------\n");
 	}
-	public void test015() throws Exception {
+	public void test015() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -820,9 +820,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        target type = 0x15 METHOD_RECEIVER\n" +
 				"        location = [INNER_TYPE]\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X$Y.class", "Y", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X$Y.class", "Y", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test016() throws Exception {
+	public void test016() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -857,9 +857,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        target type = 0x15 METHOD_RECEIVER\n" +
 				"        location = [INNER_TYPE, INNER_TYPE]\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "Outer$Middle$Inner.class", "Inner", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "Outer$Middle$Inner.class", "Inner", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test017() throws Exception {
+	public void test017() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -885,9 +885,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      #22 @Receiver(\n" +
 				"        target type = 0x15 METHOD_RECEIVER\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X$Y.class", "Y", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X$Y.class", "Y", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test018() throws Exception {
+	public void test018() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -917,7 +917,7 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 			"Annotation types that do not specify explicit target element types cannot be applied here\n" +
 			"----------\n");
 	}
-	public void test019() throws Exception {
+	public void test019() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -935,9 +935,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      target type = 0x0 CLASS_TYPE_PARAMETER\n" +
 				"      type parameter index = 0\n" +
 				"    )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test020() throws Exception {
+	public void test020() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1004,7 +1004,7 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 		"Type annotations are not allowed on type names used to access static members\n" +
 		"----------\n");
 	}
-	public void test021() throws Exception {
+	public void test021() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1090,7 +1090,7 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 		"Syntax error, type annotations are illegal here\n" +
 		"----------\n");
 	}
-	public void test022() throws Exception {
+	public void test022() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1114,9 +1114,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      #17 @Readonly(\n" +
 				"        target type = 0x14 METHOD_RETURN\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test023() throws Exception {
+	public void test023() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1140,9 +1140,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      #13 @Readonly(\n" +
 				"        target type = 0x14 METHOD_RETURN\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test024() throws Exception {
+	public void test024() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1172,9 +1172,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        target type = 0x42 EXCEPTION_PARAMETER\n" +
 				"        exception table index = 1\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test025() throws Exception {
+	public void test025() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1202,9 +1202,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        method parameter index = 0\n" +
 				"        location = [ARRAY, ARRAY]\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test026() throws Exception {
+	public void test026() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1232,9 +1232,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        method parameter index = 0\n" +
 				"        location = [ARRAY, ARRAY]\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test027() throws Exception {
+	public void test027() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1260,9 +1260,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        target type = 0x13 FIELD\n" +
 				"        location = [ARRAY]\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test028() throws Exception {
+	public void test028() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1364,9 +1364,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      type parameter index = 0\n" +
 				"    )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test029() throws Exception {
+	public void test029() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1428,7 +1428,7 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 		"The annotation @MAnno is disallowed for this location\n" +
 		"----------\n");
 	}
-	public void test030() throws Exception {
+	public void test030() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1484,10 +1484,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"    #18 @TypeAnnotation(\n" +
 				"    )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void test030a() throws Exception {
+	public void test030a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1541,10 +1541,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"    #18 @TypeAnnotation(\n" +
 				"    )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void test030b() throws Exception {
+	public void test030b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runNegativeTest(
 			new String[] {
 				"X.java",
@@ -1565,7 +1565,7 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 		"The annotation @TypeAnnotation is disallowed for this location\n" +
 		"----------\n");
 	}
-	public void test030c() throws Exception {
+	public void test030c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1619,10 +1619,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"    #18 @TypeAnnotation(\n" +
 				"    )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// Test that annotations in initializer code are not attached to the field.
-	public void test031() throws Exception {
+	public void test031() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1656,10 +1656,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        offset = 5\n" +
 				"      )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// Test co-existence of parameter annotations and type annotations.
-	public void test032() throws Exception {
+	public void test032() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1693,10 +1693,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      #20 @NonNull(\n" +
 				"        target type = 0x15 METHOD_RECEIVER\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// Test type annotations in initializer code.
-	public void test033() throws Exception {
+	public void test033() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1819,9 +1819,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        offset = 4\n" +
 				"      )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test034() throws Exception {
+	public void test034() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -1882,11 +1882,11 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      type parameter index = 0 type parameter bound index = 1\n" +
 				"    )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// Bug 415543 - Incorrect bound index in RuntimeInvisibleTypeAnnotations attribute
-	public void test034b() throws Exception {
+	public void test034b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2068,9 +2068,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      type parameter index = 0 type parameter bound index = 2\n" +
 				"    )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test035() throws Exception {
+	public void test035() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2109,10 +2109,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"          [pc: 6, pc: 14] index: 1\n" +
 				"        location = [ARRAY]\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// test that parameter index does not include explicit this parameter.
-	public void test036() throws Exception {
+	public void test036() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2141,9 +2141,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      #18 @NonNull(\n" +
 				"        target type = 0x15 METHOD_RECEIVER\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test037() throws Exception {
+	public void test037() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2184,10 +2184,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        offset = 7\n" +
 				"      )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// test anonymous class, the class itself should have class_extends target ?
-	public void test038() throws Exception {
+	public void test038() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2225,9 +2225,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        target type = 0x44 NEW\n" +
 				"        offset = 5\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test039() throws Exception {
+	public void test039() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2261,9 +2261,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        location = [TYPE_ARGUMENT(0)]\n" +
 				"      )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test040() throws Exception {
+	public void test040() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2294,9 +2294,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        local variable entries:\n" +
 				"          [pc: 8, pc: 21] index: 1\n" +
 				"      )\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test041() throws Exception {
+	public void test041() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2332,10 +2332,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      type parameter index = 1 type parameter bound index = 1\n" +
 				"    )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// type path tests.
-	public void test042() throws Exception {
+	public void test042() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2390,11 +2390,11 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        location = [TYPE_ARGUMENT(1), TYPE_ARGUMENT(0)]\n" +
 				"      )\n" +
 				"  \n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// Bug 414384 - [1.8] type annotation on abbreviated inner class is not marked as inner type
-	public void test043() throws Exception {
+	public void test043() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"pkg/Clazz.java",
@@ -2470,10 +2470,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"    [inner class info: #24 pkg/Clazz$Inner, outer class info: #1 pkg/Clazz\n" +
 				"     inner name: #26 Inner, accessflags: 1 public]\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "pkg" + File.separator + "Clazz.class", "pkg.Clazz", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "pkg" + File.separator + "Clazz.class", "pkg.Clazz", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// More type path tests
-	public void test044() throws Exception {
+	public void test044() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2520,10 +2520,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        location = [ARRAY, ARRAY]\n" +
 				"      )\n" +
 				"  \n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// More type path tests
-	public void test045() throws Exception {
+	public void test045() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2577,10 +2577,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        location = [INNER_TYPE, INNER_TYPE, INNER_TYPE]\n" +
 				"      )\n" +
 				"  \n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// More type path tests
-	public void test046() throws Exception {
+	public void test046() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2661,10 +2661,10 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        location = [TYPE_ARGUMENT(1), TYPE_ARGUMENT(0)]\n" +
 				"      )\n" +
 				"  \n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	// More type path tests
-	public void test047() throws Exception {
+	public void test047() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2756,9 +2756,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 			"        location = [INNER_TYPE, INNER_TYPE, INNER_TYPE, TYPE_ARGUMENT(1)]\n" +
 			"      )\n" +
 			"  \n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test048() throws Exception {
+	public void test048() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2829,9 +2829,9 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"      location = [TYPE_ARGUMENT(1), TYPE_ARGUMENT(0)]\n" +
 				"    )\n" +
 				"}";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void test049() throws Exception {
+	public void test049() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2915,6 +2915,6 @@ public class JSR308SpecSnippetTests extends AbstractRegressionTest {
 				"        location = [INNER_TYPE]\n" +
 				"      )\n" +
 				"\n";
-		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM);
+		checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "Z", expectedOutput, ClassFileBytesDisassembler.SYSTEM); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }

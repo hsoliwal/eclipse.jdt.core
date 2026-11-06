@@ -88,7 +88,7 @@ public class NegativeTests extends TestCase {
 			// test fail on JDK7
 			return;
 		}
-		internalTestNegativeModel(compiler, 0, Collections.singletonList("-A" + IGNOREJAVACBUGS));
+		internalTestNegativeModel(compiler, 0, Collections.singletonList("-A" + IGNOREJAVACBUGS)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class NegativeTests extends TestCase {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=328575
 	 */
-	public void _testNegativeModel10WithEclipseCompiler() throws IOException {
+	public void _testNegativeModel10WithEclipseCompiler() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler compiler = BatchTestUtils.getEclipseCompiler();
 		System.clearProperty(NEGATIVEMODELPROCNAME);
 		System.clearProperty(INHERITED_PROCNAME);
@@ -186,7 +186,7 @@ public class NegativeTests extends TestCase {
 		ByteArrayOutputStream errBuffer = new ByteArrayOutputStream();
 		PrintWriter printWriter = new PrintWriter(errBuffer);
 		TestDiagnosticListener diagnosticListener = new TestDiagnosticListener(printWriter);
-		boolean success = BatchTestUtils.compileTreeWithErrors(compiler, new ArrayList<>(), targetFolder, diagnosticListener);
+		boolean success = BatchTestUtils.compileTreeWithErrors(compiler, new ArrayList<>(), targetFolder, diagnosticListener); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		assertTrue("Compilation should have failed due to expected errors, but it didn't", !success);
 		assertEquals("Two errors should be reported", 2, diagnosticListener.errorCounter);
@@ -205,7 +205,7 @@ public class NegativeTests extends TestCase {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=328575
 	 */
-	public void testNegativeModel10WithSystemCompiler() throws IOException {
+	public void testNegativeModel10WithSystemCompiler() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 		if (compiler == null) {
 			System.out.println("No system java compiler available");
@@ -220,7 +220,7 @@ public class NegativeTests extends TestCase {
 		ByteArrayOutputStream errBuffer = new ByteArrayOutputStream();
 		PrintWriter printWriter = new PrintWriter(errBuffer);
 		TestDiagnosticListener diagnosticListener = new TestDiagnosticListener(printWriter);
-		boolean success = BatchTestUtils.compileTreeWithErrors(compiler, new ArrayList<>(), targetFolder, diagnosticListener);
+		boolean success = BatchTestUtils.compileTreeWithErrors(compiler, new ArrayList<>(), targetFolder, diagnosticListener); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 
 		assertTrue("Compilation should have failed due to expected errors, but it didn't", !success);
 		assertEquals("Two errors should be reported", 2, diagnosticListener.errorCounter);
@@ -235,14 +235,14 @@ public class NegativeTests extends TestCase {
 	/**
 	 * Attempt to report errors on various elements.
 	 */
-	private void internalTestNegativeModel(JavaCompiler compiler, int test, Collection<String> extraOptions) throws IOException {
+	private void internalTestNegativeModel(JavaCompiler compiler, int test, Collection<String> extraOptions) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		System.clearProperty(NEGATIVEMODELPROCNAME);
 		File targetFolder = TestUtils.concatPath(BatchTestUtils.getSrcFolderName(), "targets", "negative");
 		BatchTestUtils.copyResources("targets/negative", targetFolder);
 
 		// Turn on the NegativeModelProc - without this, it will just return without doing anything
-		List<String> options = new ArrayList<>();
-		options.add("-A" + NEGATIVEMODELPROCNAME + "=" + test);
+		List<String> options = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		options.add("-A" + NEGATIVEMODELPROCNAME + "=" + test); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		if (null != extraOptions)
 			options.addAll(extraOptions);
 

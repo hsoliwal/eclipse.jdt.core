@@ -77,7 +77,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 	@Override
 	public String getSourceWorkspacePath() {
 		// we read individual projects from within this folder:
-		return super.getSourceWorkspacePathBase()+"/ExternalAnnotations17";
+		return super.getSourceWorkspacePathBase()+"/ExternalAnnotations17"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 	}
 
 	/** Perform full build, annotations are found relative to a variable. */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void test1FullBuildWithVariable() throws Exception {
 		setupJavaProject("Test1");
 		this.project.setOption(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
@@ -122,7 +122,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 		}
 	}
 
-	public void test1Full_ProjectRoot() throws Exception {
+	public void test1Full_ProjectRoot() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// cf. testLibsWithFields but with annotations at the project root:
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "/TestLibs", new String[] {
@@ -168,7 +168,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 		}, new int[] { 8 });
 	}
 
-	public void testTwoProjects_a() throws Exception {
+	public void testTwoProjects_a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject prj2 = null;
 		try {
 			//  create project #1:
@@ -254,7 +254,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 	}
 
 	// same as above but swapped order
-	public void testTwoProjects_b() throws Exception {
+	public void testTwoProjects_b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IJavaProject prj2 = null;
 		try {
 			//  create project #1:
@@ -341,7 +341,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 	}
 
 	/** Reconcile an individual CU. */
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void test1Reconcile() throws Exception {
 		setupJavaProject("Test1");
 		this.project.setOption(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
@@ -364,7 +364,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 
 	// ===== Full round trip: detect problem - annotated - detect problem change =====
 
-	public void testAnnotateFieldOfNested() throws Exception {
+	public void testAnnotateFieldOfNested() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
 				"/UnannotatedLib/libs/Lib1.java",
@@ -428,7 +428,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 	}
 
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testAnnotateFieldWithParameterizedType() throws Exception {
 		myCreateJavaProject("TestLibs");
 		addLibraryWithExternalAnnotations(this.project, "lib1.jar", "annots", new String[] {
@@ -493,7 +493,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 		}, new int[] { 8 });
 	}
 
-	public void testAnnotateMethodReturn() throws Exception {
+	public void testAnnotateMethodReturn() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestLibs");
 		String lib1Content =
 				"package libs;\n" +
@@ -566,7 +566,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 	// ==== error scenarii: ====
 
 	// annotation file is empty
-	public void testBogusAnnotationFile1() throws Exception {
+	public void testBogusAnnotationFile1() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		LogListener listener = new LogListener();
 		try {
 			Platform.addLogListener(listener);
@@ -614,7 +614,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 	}
 
 	// wrong class header
-	public void testBogusAnnotationFile2() throws Exception {
+	public void testBogusAnnotationFile2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		LogListener listener = new LogListener();
 		try {
 			Platform.addLogListener(listener);
@@ -661,7 +661,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 		}
 	}
 	// wrong selector
-	public void testBogusAnnotationFile3() throws Exception {
+	public void testBogusAnnotationFile3() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		LogListener listener = new LogListener();
 		try {
 			Platform.addLogListener(listener);
@@ -711,7 +711,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 		}
 	}
 	// invalid raw signature
-	public void testBogusAnnotationFile4() throws Exception {
+	public void testBogusAnnotationFile4() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		LogListener listener = new LogListener();
 		try {
 			Platform.addLogListener(listener);
@@ -761,7 +761,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 		}
 	}
 	// invalid annotated signature
-	public void testBogusAnnotationFile5() throws Exception {
+	public void testBogusAnnotationFile5() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		LogListener listener = new LogListener();
 		try {
 			Platform.addLogListener(listener);
@@ -812,7 +812,7 @@ public class ExternalAnnotations17Test extends ExternalAnnotations18Test {
 		}
 	}
 
-	public void testBug565246() throws Exception {
+	public void testBug565246() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		myCreateJavaProject("TestForloop");
 		this.project.setOption(JavaCore.COMPILER_PB_INCLUDE_ASSERTS_IN_NULL_ANALYSIS, JavaCore.ENABLED);
 

@@ -77,7 +77,7 @@ class DefaultCommentMapper {
 	 *		< 0: return index of the comment before the given position
 	 *		> 0: return index of the comment after the given position
 	 */
-	private int getCommentIndex(int start, int position, int exact) {
+	private int getCommentIndex(int start, int position, int exact) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (position == 0) {
 			if (this.comments.length > 0 && this.comments[0].getStartPosition() == 0) {
 				return 0;
@@ -87,7 +87,7 @@ class DefaultCommentMapper {
 		int bottom = start, top = this.comments.length - 1;
 		int i = 0, index = -1;
 		Comment comment = null;
-		while (bottom <= top) {
+		while (bottom <= top) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			i = bottom + (top - bottom) /2;
 			comment = this.comments[i];
 			int commentStart = comment.getStartPosition();
@@ -126,7 +126,7 @@ class DefaultCommentMapper {
 	public int getExtendedStartPosition(ASTNode node) {
 		if (this.leadingPtr >= 0) {
 			long range = -1;
-			for (int i=0; range<0 && i<=this.leadingPtr; i++) {
+			for (int i=0; range<0 && i<=this.leadingPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.leadingNodes[i] == node) range = this.leadingIndexes[i];
 			}
 			if (range >= 0) {
@@ -156,7 +156,7 @@ class DefaultCommentMapper {
 		int end = node.getStartPosition() + node.getLength();
 		if (this.trailingPtr >= 0) {
 			long range = -1;
-			for (int i=0; range<0 && i<=this.trailingPtr; i++) {
+			for (int i=0; range<0 && i<=this.trailingPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.trailingNodes[i] == node) range = this.trailingIndexes[i];
 			}
 			if (range >= 0) {
@@ -191,7 +191,7 @@ class DefaultCommentMapper {
 	 */
 	int firstLeadingCommentIndex(ASTNode node) {
 		if (this.leadingPtr >= 0) {
-			for (int i=0; i<=this.leadingPtr; i++) {
+			for (int i=0; i<=this.leadingPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.leadingNodes[i] == node) {
 					return (int) (this.leadingIndexes[i]>>32);
 				}
@@ -207,7 +207,7 @@ class DefaultCommentMapper {
 	 */
 	int lastTrailingCommentIndex(ASTNode node) {
 		if (this.trailingPtr >= 0) {
-			for (int i=0; i<=this.trailingPtr; i++) {
+			for (int i=0; i<=this.trailingPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.trailingNodes[i] == node) {
 					return (int) this.trailingIndexes[i];
 				}
@@ -222,7 +222,7 @@ class DefaultCommentMapper {
 	 * Scanner is necessary to scan between nodes and comments and verify if there's
 	 * nothing else than white spaces.
 	 */
-	void initialize(CompilationUnit unit, Scanner sc) {
+	void initialize(CompilationUnit unit, Scanner sc) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Init array pointers
 		this.leadingPtr = -1;
@@ -256,7 +256,7 @@ class DefaultCommentMapper {
 		// Reduce trailing arrays if necessary
 		if (this.trailingPtr >= 0) {
 			// remove last remaining unresolved nodes
-			while (this.trailingIndexes[this.trailingPtr] == -1) {
+			while (this.trailingIndexes[this.trailingPtr] == -1) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.trailingPtr--;
 				if (this.trailingPtr < 0) {
 					this.trailingIndexes = null;
@@ -298,7 +298,7 @@ class DefaultCommentMapper {
 	 * If finally there's leading still comments, then stores indexes of the first and last one
 	 * in leading comments table.
 	 */
-	int storeLeadingComments(ASTNode node, int previousEnd, int[] parentLineRange) {
+	int storeLeadingComments(ASTNode node, int previousEnd, int[] parentLineRange) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// Init extended position
 		int nodeStart = node.getStartPosition();
 		int extended = nodeStart;
@@ -317,7 +317,7 @@ class DefaultCommentMapper {
 		int startIdx = -1;
 		int endIdx = idx;
 		int previousStart = nodeStart;
-		while (idx >= 0 && previousStart  >= previousEnd) {
+		while (idx >= 0 && previousStart  >= previousEnd) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// Verify for each comment that there's only white spaces between end and start of {following comment|node}
 			Comment comment = this.comments[idx];
 			int commentStart = comment.getStartPosition();
@@ -346,7 +346,7 @@ class DefaultCommentMapper {
 				char[] gap = this.scanner.getCurrentIdentifierSource();
 				int nbrLine = 0;
 				int pos = -1;
-				while ((pos=CharOperation.indexOf('\n', gap,pos+1)) >= 0) {
+				while ((pos=CharOperation.indexOf('\n', gap,pos+1)) >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					nbrLine++;
 				}
 				if (nbrLine > 1) {
@@ -365,7 +365,7 @@ class DefaultCommentMapper {
 				int lastTokenEnd = previousEnd;
 				this.scanner.resetTo(previousEnd, commentStart);
 				try {
-					while (this.scanner.currentPosition < commentStart) {
+					while (this.scanner.currentPosition < commentStart) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						if (this.scanner.getNextToken() != TerminalToken.TokenNameWHITESPACE) {
 							lastTokenEnd =  this.scanner.getCurrentTokenEndPosition();
 						}
@@ -375,7 +375,7 @@ class DefaultCommentMapper {
 				}
 				int lastTokenLine = getLineNumber(lastTokenEnd, parentLineRange);
 				int length = this.comments.length;
-				while (startIdx<length && lastTokenLine == getLineNumber(this.comments[startIdx].getStartPosition(), parentLineRange) && nodeStartLine != lastTokenLine) {
+				while (startIdx<length && lastTokenLine == getLineNumber(this.comments[startIdx].getStartPosition(), parentLineRange) && nodeStartLine != lastTokenLine) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					startIdx++;
 				}
 			}
@@ -418,7 +418,7 @@ class DefaultCommentMapper {
 	 * If finally there's still trailing comments, then stores indexes of the first and last one
 	 * in trailing comments table.
 	 */
-	int storeTrailingComments(ASTNode node, int nextStart,  boolean lastChild, int[] parentLineRange) {
+	int storeTrailingComments(ASTNode node, int nextStart,  boolean lastChild, int[] parentLineRange) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Init extended position
 		int nodeEnd = node.getStartPosition()+node.getLength()-1;
@@ -455,7 +455,7 @@ class DefaultCommentMapper {
 		int commentStart = extended+1;
 		int previousEnd = nodeEnd+1;
 		int sameLineIdx = -1;
-		while (idx<length && commentStart < nextStart) {
+		while (idx<length && commentStart < nextStart) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// get comment and leave if next starting position has been reached
 			Comment comment = this.comments[idx];
 			commentStart = comment.getStartPosition();
@@ -484,7 +484,7 @@ class DefaultCommentMapper {
 				char[] gap = this.scanner.getCurrentIdentifierSource();
 				int nbrLine = 0;
 				int pos = -1;
-				while ((pos=CharOperation.indexOf('\n', gap,pos+1)) >= 0) {
+				while ((pos=CharOperation.indexOf('\n', gap,pos+1)) >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					nbrLine++;
 				}
 				if (nbrLine > 1) {
@@ -529,7 +529,7 @@ class DefaultCommentMapper {
 			// Look for children unresolved extended end
 			ASTNode previousNode = node;
 			int ptr = this.trailingPtr - 1; // children extended end were stored before
-			while (ptr >= 0) {
+			while (ptr >= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				long range = this.trailingIndexes[ptr];
 				if (range != -1) break; // there's no more unresolved nodes
 				ASTNode unresolved = this.trailingNodes[ptr];
@@ -541,7 +541,7 @@ class DefaultCommentMapper {
 			// Remove remaining unresolved nodes
 			if (ptr > this.lastTrailingPtr) {
 				int offset = ptr - this.lastTrailingPtr;
-				for (int i=ptr+1; i<=this.trailingPtr; i++) {
+				for (int i=ptr+1; i<=this.trailingPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					this.trailingNodes[i-offset] = this.trailingNodes[i];
 					this.trailingIndexes[i-offset] = this.trailingIndexes[i];
 				}
@@ -559,7 +559,7 @@ class DefaultCommentMapper {
 		int[][] parentLineRange = new int[10][];
 		int siblingPtr = -1;
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected boolean visitNode(ASTNode node) {
 
 			// Get default previous end
@@ -619,7 +619,7 @@ class DefaultCommentMapper {
 			return true;
 		}
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		protected void endVisitNode(ASTNode node) {
 
 			// Look if a child node is waiting for trailing comments computing

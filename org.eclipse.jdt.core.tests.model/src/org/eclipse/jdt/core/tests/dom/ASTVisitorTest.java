@@ -33,7 +33,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 
 		Class c = ASTVisitorTest.class;
 		Method[] methods = c.getMethods();
-		for (int i = 0, max = methods.length; i < max; i++) {
+		for (int i = 0, max = methods.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (methods[i].getName().startsWith("test")) { //$NON-NLS-1$
 				suite.addTest(new ASTVisitorTest(methods[i].getName(), AST.JLS8));
 				suite.addTest(new ASTVisitorTest(methods[i].getName(), AST.JLS11));
@@ -134,7 +134,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 	Type T4;
 	String T4S;
 
-	final StringBuilder b = new StringBuilder();
+	final StringBuilder b = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 	int API_LEVEL;
 
@@ -159,7 +159,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 	 * @deprecated (not really - just suppressing the warnings
 	 * that come from testing Javadoc.getComment())
 	 */
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		super.setUp();
 
 		this.ast = AST.newAST(this.API_LEVEL, true);
@@ -341,340 +341,340 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		// NAMES
 
 		public boolean visit(SimpleName node) {
-			ASTVisitorTest.this.b.append("(nS"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getIdentifier());
+			ASTVisitorTest.this.b.append("(nS"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getIdentifier()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(SimpleName node) {
-			ASTVisitorTest.this.b.append(node.getIdentifier());
-			ASTVisitorTest.this.b.append("nS)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getIdentifier()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("nS)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public boolean visit(QualifiedName node) {
-			ASTVisitorTest.this.b.append("(nQ"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(nQ"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(QualifiedName node) {
-			ASTVisitorTest.this.b.append("nQ)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("nQ)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		// TYPES
 
 		public boolean visit(SimpleType node) {
-			ASTVisitorTest.this.b.append("(tS"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(tS"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(SimpleType node) {
-			ASTVisitorTest.this.b.append("tS)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("tS)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public boolean visit(ArrayType node) {
-			ASTVisitorTest.this.b.append("(tA"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(tA"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ArrayType node) {
-			ASTVisitorTest.this.b.append("tA)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("tA)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public boolean visit(PrimitiveType node) {
-			ASTVisitorTest.this.b.append("(tP"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getPrimitiveTypeCode().toString());
+			ASTVisitorTest.this.b.append("(tP"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getPrimitiveTypeCode().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(PrimitiveType node) {
-			ASTVisitorTest.this.b.append(node.getPrimitiveTypeCode().toString());
-			ASTVisitorTest.this.b.append("tP)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getPrimitiveTypeCode().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("tP)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public boolean visit(NameQualifiedType node) {
-			ASTVisitorTest.this.b.append("(tPQ"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(tPQ"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(NameQualifiedType node) {
-			ASTVisitorTest.this.b.append("tPQ)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("tPQ)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public boolean visit(ParameterizedType node) {
-			ASTVisitorTest.this.b.append("(tM"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(tM"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ParameterizedType node) {
-			ASTVisitorTest.this.b.append("tM)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("tM)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public boolean visit(QualifiedType node) {
-			ASTVisitorTest.this.b.append("(tQ"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(tQ"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(QualifiedType node) {
-			ASTVisitorTest.this.b.append("tQ)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("tQ)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public boolean visit(UnionType node) {
-			ASTVisitorTest.this.b.append("(tU"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(tU"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(UnionType node) {
-			ASTVisitorTest.this.b.append("tU)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("tU)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		public boolean visit(WildcardType node) {
-			ASTVisitorTest.this.b.append("(tW"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(tW"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(WildcardType node) {
-			ASTVisitorTest.this.b.append("tW)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("tW)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		// EXPRESSIONS and STATEMENTS
 
 
 		public boolean visit(ArrayAccess node) {
-			ASTVisitorTest.this.b.append("(eAA"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eAA"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ArrayAccess node) {
-			ASTVisitorTest.this.b.append("eAA)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eAA)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ArrayCreation node) {
-			ASTVisitorTest.this.b.append("(eAC"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eAC"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ArrayCreation node) {
-			ASTVisitorTest.this.b.append("eAC)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eAC)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ArrayInitializer node) {
-			ASTVisitorTest.this.b.append("(eAI"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eAI"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ArrayInitializer node) {
-			ASTVisitorTest.this.b.append("eAI)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eAI)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(AssertStatement node) {
-			ASTVisitorTest.this.b.append("(sAS"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sAS"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(AssertStatement node) {
-			ASTVisitorTest.this.b.append("sAS)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sAS)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(Assignment node) {
-			ASTVisitorTest.this.b.append("("); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getOperator().toString());
+			ASTVisitorTest.this.b.append("("); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(Assignment node) {
-			ASTVisitorTest.this.b.append(node.getOperator().toString());
-			ASTVisitorTest.this.b.append(")"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(")"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(Block node) {
-			ASTVisitorTest.this.b.append("(sB"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sB"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(Block node) {
-			ASTVisitorTest.this.b.append("sB)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sB)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(BooleanLiteral node) {
-			ASTVisitorTest.this.b.append("(eBL"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.booleanValue() ? "true" : "false"); //$NON-NLS-1$ //$NON-NLS-2$
+			ASTVisitorTest.this.b.append("(eBL"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.booleanValue() ? "true" : "false"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(BooleanLiteral node) {
-			ASTVisitorTest.this.b.append(node.booleanValue() ? "true" : "false"); //$NON-NLS-1$ //$NON-NLS-2$
-			ASTVisitorTest.this.b.append("eBL)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.booleanValue() ? "true" : "false"); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("eBL)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(BreakStatement node) {
-			ASTVisitorTest.this.b.append("(sBR"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sBR"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(BreakStatement node) {
-			ASTVisitorTest.this.b.append("sBR)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sBR)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(CastExpression node) {
-			ASTVisitorTest.this.b.append("(eCS"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eCS"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(CastExpression node) {
-			ASTVisitorTest.this.b.append("eCS)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eCS)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(CatchClause node) {
-			ASTVisitorTest.this.b.append("(cc"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(cc"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(CatchClause node) {
-			ASTVisitorTest.this.b.append("cc)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("cc)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(CharacterLiteral node) {
-			ASTVisitorTest.this.b.append("(eCL"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getEscapedValue());
+			ASTVisitorTest.this.b.append("(eCL"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getEscapedValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(CharacterLiteral node) {
-			ASTVisitorTest.this.b.append(node.getEscapedValue());
-			ASTVisitorTest.this.b.append("eCL)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getEscapedValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("eCL)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ClassInstanceCreation node) {
-			ASTVisitorTest.this.b.append("(eCI"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eCI"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ClassInstanceCreation node) {
-			ASTVisitorTest.this.b.append("eCI)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eCI)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(AnonymousClassDeclaration node) {
-			ASTVisitorTest.this.b.append("(ACD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(ACD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(AnonymousClassDeclaration node) {
-			ASTVisitorTest.this.b.append("ACD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("ACD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(CompilationUnit node) {
-			ASTVisitorTest.this.b.append("(CU"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(CU"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(CompilationUnit node) {
-			ASTVisitorTest.this.b.append("CU)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("CU)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ConditionalExpression node) {
-			ASTVisitorTest.this.b.append("(eCO"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eCO"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ConditionalExpression node) {
-			ASTVisitorTest.this.b.append("eCO)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eCO)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ConstructorInvocation node) {
-			ASTVisitorTest.this.b.append("(sCI"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sCI"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ConstructorInvocation node) {
-			ASTVisitorTest.this.b.append("sCI)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sCI)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ContinueStatement node) {
-			ASTVisitorTest.this.b.append("(sCN"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sCN"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ContinueStatement node) {
-			ASTVisitorTest.this.b.append("sCN)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sCN)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(DoStatement node) {
-			ASTVisitorTest.this.b.append("(sDO"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sDO"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(DoStatement node) {
-			ASTVisitorTest.this.b.append("sDO)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sDO)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(EmptyStatement node) {
-			ASTVisitorTest.this.b.append("(sEM"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sEM"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(EmptyStatement node) {
-			ASTVisitorTest.this.b.append("sEM)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sEM)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(EnhancedForStatement node) {
-			ASTVisitorTest.this.b.append("(sEFR"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sEFR"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(EnhancedForStatement node) {
-			ASTVisitorTest.this.b.append("sEFR)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sEFR)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(EnumConstantDeclaration node) {
-			ASTVisitorTest.this.b.append("(ECD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(ECD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(EnumConstantDeclaration node) {
-			ASTVisitorTest.this.b.append("ECD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("ECD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(EnumDeclaration node) {
-			ASTVisitorTest.this.b.append("(ED"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(ED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(EnumDeclaration node) {
-			ASTVisitorTest.this.b.append("ED)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("ED)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ExpressionStatement node) {
-			ASTVisitorTest.this.b.append("(sEX"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sEX"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ExpressionStatement node) {
-			ASTVisitorTest.this.b.append("sEX)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sEX)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(FieldAccess node) {
-			ASTVisitorTest.this.b.append("(eFA"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eFA"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(FieldAccess node) {
-			ASTVisitorTest.this.b.append("eFA)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eFA)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(FieldDeclaration node) {
-			ASTVisitorTest.this.b.append("(FD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(FD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(FieldDeclaration node) {
-			ASTVisitorTest.this.b.append("FD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("FD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ForStatement node) {
-			ASTVisitorTest.this.b.append("(sFR"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sFR"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ForStatement node) {
-			ASTVisitorTest.this.b.append("sFR)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sFR)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(IfStatement node) {
-			ASTVisitorTest.this.b.append("(sIF"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sIF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(IfStatement node) {
-			ASTVisitorTest.this.b.append("sIF)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sIF)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ImportDeclaration node) {
-			ASTVisitorTest.this.b.append("(ID"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(ID"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ImportDeclaration node) {
-			ASTVisitorTest.this.b.append("ID)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("ID)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(InfixExpression node) {
-			ASTVisitorTest.this.b.append("(eIN"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getOperator().toString());
+			ASTVisitorTest.this.b.append("(eIN"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(InfixExpression node) {
-			ASTVisitorTest.this.b.append(node.getOperator().toString());
-			ASTVisitorTest.this.b.append("eIN)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("eIN)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(InstanceofExpression node) {
-			ASTVisitorTest.this.b.append("(eIO"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eIO"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(InstanceofExpression node) {
-			ASTVisitorTest.this.b.append("eIO)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eIO)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(Initializer node) {
-			ASTVisitorTest.this.b.append("(IN"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(IN"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(Initializer node) {
-			ASTVisitorTest.this.b.append("IN)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("IN)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		/**
@@ -682,7 +682,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		 * that come from testing Javadoc.getComment())
 		 */
 		public boolean visit(Javadoc node) {
-			ASTVisitorTest.this.b.append("(JD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(JD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			// verify that children of Javadoc nodes are visited only if requested
 			if (this.visitDocTags) {
@@ -698,421 +698,421 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		 * that come from testing Javadoc.getComment())
 		 */
 		public void endVisit(Javadoc node) {
-			ASTVisitorTest.this.b.append("JD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("JD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(BlockComment node) {
-			ASTVisitorTest.this.b.append("(/*"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(/*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(BlockComment node) {
-			ASTVisitorTest.this.b.append("*/)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("*/)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(CreationReference node) {
-			ASTVisitorTest.this.b.append("(eCR"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eCR"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(CreationReference node) {
-			ASTVisitorTest.this.b.append("eCR)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eCR)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ExpressionMethodReference node) {
-			ASTVisitorTest.this.b.append("(eEMR"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eEMR"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ExpressionMethodReference node) {
-			ASTVisitorTest.this.b.append("eEMR)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eEMR)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(LineComment node) {
-			ASTVisitorTest.this.b.append("(//"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(//"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(LineComment node) {
-			ASTVisitorTest.this.b.append("//)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("//)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(TagElement node) {
-			ASTVisitorTest.this.b.append("(TG"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getTagName());
+			ASTVisitorTest.this.b.append("(TG"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getTagName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(TagElement node) {
-			ASTVisitorTest.this.b.append(node.getTagName());
-			ASTVisitorTest.this.b.append("TG)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getTagName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("TG)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(TextElement node) {
-			ASTVisitorTest.this.b.append("(TX"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getText());
+			ASTVisitorTest.this.b.append("(TX"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getText()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(TextElement node) {
-			ASTVisitorTest.this.b.append(node.getText());
-			ASTVisitorTest.this.b.append("TX)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getText()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("TX)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(MemberRef node) {
-			ASTVisitorTest.this.b.append("(MBREF"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(MBREF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(MemberRef node) {
-			ASTVisitorTest.this.b.append("MBREF)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("MBREF)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(MethodRef node) {
-			ASTVisitorTest.this.b.append("(MTHREF"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(MTHREF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(MethodRef node) {
-			ASTVisitorTest.this.b.append("MTHREF)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("MTHREF)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(MethodRefParameter node) {
-			ASTVisitorTest.this.b.append("(MPARM"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(MPARM"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(MethodRefParameter node) {
-			ASTVisitorTest.this.b.append("MPARM)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("MPARM)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(LabeledStatement node) {
-			ASTVisitorTest.this.b.append("(sLA"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sLA"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(LabeledStatement node) {
-			ASTVisitorTest.this.b.append("sLA)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sLA)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(MethodDeclaration node) {
-			ASTVisitorTest.this.b.append("(MD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(MD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(MethodDeclaration node) {
-			ASTVisitorTest.this.b.append("MD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("MD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(MethodInvocation node) {
-			ASTVisitorTest.this.b.append("(eMI"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eMI"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(MethodInvocation node) {
-			ASTVisitorTest.this.b.append("eMI)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eMI)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ModuleDeclaration node) {
-			ASTVisitorTest.this.b.append("(MoD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(MoD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ModuleDeclaration node) {
-			ASTVisitorTest.this.b.append("MoD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("MoD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(NullLiteral node) {
-			ASTVisitorTest.this.b.append("(eNL"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eNL"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(NullLiteral node) {
-			ASTVisitorTest.this.b.append("eNL)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eNL)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(NumberLiteral node) {
-			ASTVisitorTest.this.b.append("(eNU"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getToken());
+			ASTVisitorTest.this.b.append("(eNU"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getToken()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(NumberLiteral node) {
-			ASTVisitorTest.this.b.append(node.getToken());
-			ASTVisitorTest.this.b.append("eNU)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getToken()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("eNU)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(PackageDeclaration node) {
-			ASTVisitorTest.this.b.append("(PD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(PD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(PackageDeclaration node) {
-			ASTVisitorTest.this.b.append("PD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("PD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ParenthesizedExpression node) {
-			ASTVisitorTest.this.b.append("(ePA"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(ePA"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ParenthesizedExpression node) {
-			ASTVisitorTest.this.b.append("ePA)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("ePA)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(PostfixExpression node) {
-			ASTVisitorTest.this.b.append("(ePO"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getOperator().toString());
+			ASTVisitorTest.this.b.append("(ePO"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(PostfixExpression node) {
-			ASTVisitorTest.this.b.append(node.getOperator().toString());
-			ASTVisitorTest.this.b.append("ePO)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("ePO)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(PrefixExpression node) {
-			ASTVisitorTest.this.b.append("(ePR"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getOperator().toString());
+			ASTVisitorTest.this.b.append("(ePR"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(PrefixExpression node) {
-			ASTVisitorTest.this.b.append(node.getOperator().toString());
-			ASTVisitorTest.this.b.append("ePR)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getOperator().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("ePR)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ReturnStatement node) {
-			ASTVisitorTest.this.b.append("(sRT"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sRT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ReturnStatement node) {
-			ASTVisitorTest.this.b.append("sRT)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sRT)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(SingleVariableDeclaration node) {
-			ASTVisitorTest.this.b.append("(VD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(VD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(SingleVariableDeclaration node) {
-			ASTVisitorTest.this.b.append("VD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("VD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(StringLiteral node) {
-			ASTVisitorTest.this.b.append("(eSL"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getLiteralValue());
+			ASTVisitorTest.this.b.append("(eSL"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getLiteralValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(StringLiteral node) {
-			ASTVisitorTest.this.b.append(node.getLiteralValue());
-			ASTVisitorTest.this.b.append("eSL)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getLiteralValue()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("eSL)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(SuperConstructorInvocation node) {
-			ASTVisitorTest.this.b.append("(sSC"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sSC"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(SuperConstructorInvocation node) {
-			ASTVisitorTest.this.b.append("sSC)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sSC)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(SuperFieldAccess node) {
-			ASTVisitorTest.this.b.append("(eSF"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eSF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(SuperFieldAccess node) {
-			ASTVisitorTest.this.b.append("eSF)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eSF)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(SuperMethodInvocation node) {
-			ASTVisitorTest.this.b.append("(eSM"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eSM"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(SuperMethodInvocation node) {
-			ASTVisitorTest.this.b.append("eSM)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eSM)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(SuperMethodReference node) {
-			ASTVisitorTest.this.b.append("(eSMR"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eSMR"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(SuperMethodReference node) {
-			ASTVisitorTest.this.b.append("eSMR)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eSMR)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(SwitchCase node) {
-			ASTVisitorTest.this.b.append("(sSC"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sSC"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(SwitchCase node) {
-			ASTVisitorTest.this.b.append("sSC)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sSC)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(SwitchStatement node) {
-			ASTVisitorTest.this.b.append("(sSW"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sSW"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(SwitchStatement node) {
-			ASTVisitorTest.this.b.append("sSW)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sSW)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(SynchronizedStatement node) {
-			ASTVisitorTest.this.b.append("(sSY"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sSY"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(SynchronizedStatement node) {
-			ASTVisitorTest.this.b.append("sSY)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sSY)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ThisExpression node) {
-			ASTVisitorTest.this.b.append("(eTH"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eTH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ThisExpression node) {
-			ASTVisitorTest.this.b.append("eTH)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eTH)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(ThrowStatement node) {
-			ASTVisitorTest.this.b.append("(sTR"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sTR"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(ThrowStatement node) {
-			ASTVisitorTest.this.b.append("sTR)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sTR)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(TryStatement node) {
-			ASTVisitorTest.this.b.append("(sTY"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sTY"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(TryStatement node) {
-			ASTVisitorTest.this.b.append("sTY)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sTY)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(TypeDeclaration node) {
-			ASTVisitorTest.this.b.append("(TD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(TD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(TypeDeclaration node) {
-			ASTVisitorTest.this.b.append("TD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("TD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(TypeDeclarationStatement node) {
-			ASTVisitorTest.this.b.append("(sTD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sTD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(TypeDeclarationStatement node) {
-			ASTVisitorTest.this.b.append("sTD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sTD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(TypeLiteral node) {
-			ASTVisitorTest.this.b.append("(eTL"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eTL"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(TypeLiteral node) {
-			ASTVisitorTest.this.b.append("eTL)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eTL)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(TypeMethodReference node) {
-			ASTVisitorTest.this.b.append("(eTMR"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eTMR"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(TypeMethodReference node) {
-			ASTVisitorTest.this.b.append("eTMR)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eTMR)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(TypeParameter node) {
-			ASTVisitorTest.this.b.append("(tTP"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(tTP"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(TypeParameter node) {
-			ASTVisitorTest.this.b.append("tTP)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("tTP)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(VariableDeclarationExpression node) {
-			ASTVisitorTest.this.b.append("(eVD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(eVD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(VariableDeclarationExpression node) {
-			ASTVisitorTest.this.b.append("eVD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("eVD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(VariableDeclarationFragment node) {
-			ASTVisitorTest.this.b.append("(VS"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(VS"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(VariableDeclarationFragment node) {
-			ASTVisitorTest.this.b.append("VS)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("VS)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(VariableDeclarationStatement node) {
-			ASTVisitorTest.this.b.append("(sVD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sVD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(VariableDeclarationStatement node) {
-			ASTVisitorTest.this.b.append("sVD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sVD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(WhileStatement node) {
-			ASTVisitorTest.this.b.append("(sWH"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(sWH"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(WhileStatement node) {
-			ASTVisitorTest.this.b.append("sWH)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("sWH)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(AnnotationTypeDeclaration node) {
-			ASTVisitorTest.this.b.append("(@TD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(@TD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(AnnotationTypeDeclaration node) {
-			ASTVisitorTest.this.b.append("@TD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("@TD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(AnnotationTypeMemberDeclaration node) {
-			ASTVisitorTest.this.b.append("(@MD"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(@MD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(AnnotationTypeMemberDeclaration node) {
-			ASTVisitorTest.this.b.append("@MD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("@MD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(NormalAnnotation node) {
-			ASTVisitorTest.this.b.append("(@NAN"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(@NAN"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(NormalAnnotation node) {
-			ASTVisitorTest.this.b.append("@NAN)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("@NAN)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(MarkerAnnotation node) {
-			ASTVisitorTest.this.b.append("(@MAN"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(@MAN"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(MarkerAnnotation node) {
-			ASTVisitorTest.this.b.append("@MAN)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("@MAN)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(SingleMemberAnnotation node) {
-			ASTVisitorTest.this.b.append("(@SMAN"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(@SMAN"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(SingleMemberAnnotation node) {
-			ASTVisitorTest.this.b.append("@SMAN)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("@SMAN)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(MemberValuePair node) {
-			ASTVisitorTest.this.b.append("(@MVP"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(@MVP"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(MemberValuePair node) {
-			ASTVisitorTest.this.b.append("@MVP)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("@MVP)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(Modifier node) {
-			ASTVisitorTest.this.b.append("(MOD"); //$NON-NLS-1$
-			ASTVisitorTest.this.b.append(node.getKeyword().toString());
+			ASTVisitorTest.this.b.append("(MOD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append(node.getKeyword().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(Modifier node) {
-			ASTVisitorTest.this.b.append(node.getKeyword().toString());
-			ASTVisitorTest.this.b.append("MOD)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append(node.getKeyword().toString()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			ASTVisitorTest.this.b.append("MOD)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public boolean visit(Dimension node) {
-			ASTVisitorTest.this.b.append("(@ED"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("(@ED"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			return isVisitingChildren();
 		}
 		public void endVisit(Dimension node) {
-			ASTVisitorTest.this.b.append("@ED)"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("@ED)"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public void preVisit(ASTNode node) {
-			ASTVisitorTest.this.b.append("["); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		public void postVisit(ASTNode node) {
-			ASTVisitorTest.this.b.append("]"); //$NON-NLS-1$
+			ASTVisitorTest.this.b.append("]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 	}
@@ -1173,7 +1173,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(tPQ"+"[(nQ"+this.N2S+this.N3S+"nQ)]"+this.N1S+"tPQ)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(tPQ"+"[(nQ"+this.N2S+this.N3S+"nQ)]"+this.N1S+"tPQ)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** @deprecated using deprecated code */
@@ -1188,7 +1188,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(tM"+this.T1S+this.T2S+this.PT1S+"tM)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(tM"+this.T1S+this.T2S+this.PT1S+"tM)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** @deprecated using deprecated code */
@@ -1201,7 +1201,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(tQ"+this.T1S+this.N1S+"tQ)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(tQ"+this.T1S+this.N1S+"tQ)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** @deprecated using deprecated code */
@@ -1215,7 +1215,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(tW"+this.T1S+"tW)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(tW"+this.T1S+"tW)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** @deprecated using deprecated code */
@@ -1230,7 +1230,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(tU"+this.T1S+this.T2S+"tU)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(tU"+this.T1S+this.T2S+"tU)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	// EXPRESSIONS and STATEMENTS
@@ -1243,7 +1243,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eAA"+this.E1S+this.E2S+"eAA)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eAA"+this.E1S+this.E2S+"eAA)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testArrayCreation() {
@@ -1257,7 +1257,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.accept(v1);
 		String result = this.b.toString();
 		String dim = "[(@ED@ED)]";
-		assertTrue(result.equals("[(eAC"+"[(tA"+this.T1S+ dim +"tA)]"+this.E1S+this.E2S+"[(eAIeAI)]eAC)]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		assertTrue(result.equals("[(eAC"+"[(tA"+this.T1S+ dim +"tA)]"+this.E1S+this.E2S+"[(eAIeAI)]eAC)]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testArrayInitializer() {
 		ArrayInitializer x1 = this.ast.newArrayInitializer();
@@ -1267,7 +1267,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eAI"+this.E1S+this.E2S+"eAI)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eAI"+this.E1S+this.E2S+"eAI)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testAssertStatement() {
 		AssertStatement x1 = this.ast.newAssertStatement();
@@ -1277,7 +1277,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sAS"+this.E1S+this.E2S+"sAS)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sAS"+this.E1S+this.E2S+"sAS)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testAssignment() {
 		Assignment x1 = this.ast.newAssignment();
@@ -1287,7 +1287,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(="+this.E1S+this.E2S+"=)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(="+this.E1S+this.E2S+"=)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testBlock() {
 		Block x1 = this.ast.newBlock();
@@ -1297,7 +1297,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sB"+this.S1S+this.S2S+"sB)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sB"+this.S1S+this.S2S+"sB)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// check that visiting children can be cut off
 		v1.setVisitingChildren(false);
@@ -1331,7 +1331,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sBR"+this.N1S+"sBR)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sBR"+this.N1S+"sBR)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testCastExpression() {
 		CastExpression x1 = this.ast.newCastExpression();
@@ -1341,7 +1341,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eCS"+this.T1S+this.E1S+"eCS)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eCS"+this.T1S+this.E1S+"eCS)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testCatchClause() {
 		CatchClause x1 = this.ast.newCatchClause();
@@ -1351,7 +1351,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(cc"+this.V1S+this.B1S+"cc)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(cc"+this.V1S+this.B1S+"cc)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testCharacterLiteral() {
 		CharacterLiteral x1 = this.ast.newCharacterLiteral();
@@ -1362,13 +1362,13 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		String result = this.b.toString();
 		assertTrue(result.equals("[(eCL'q''q'eCL)]")); //$NON-NLS-1$
 	}
-	public void testCharacterLiteralConcurrent() throws Exception {
+	public void testCharacterLiteralConcurrent() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CharacterLiteral x1 = this.ast.newCharacterLiteral();
 		x1.setCharValue('q');
 
 		ExecutorService executorService = Executors.newFixedThreadPool(10);
-		List<CompletableFuture<Void>> futures = new ArrayList<>();
-		for (int i = 0; i < 100; i++) {
+		List<CompletableFuture<Void>> futures = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int i = 0; i < 100; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
 				try {
 					x1.charValue();
@@ -1382,7 +1382,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		executorService.shutdown();
 	}
 	/** @deprecated using deprecated code */
-	public void testClassInstanceCreation() {
+	public void testClassInstanceCreation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ClassInstanceCreation x1 = this.ast.newClassInstanceCreation();
 		x1.setExpression(this.E1);
 		if (this.ast.apiLevel() == AST.JLS2) {
@@ -1397,9 +1397,9 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.accept(v1);
 		String result = this.b.toString();
 		if (this.ast.apiLevel() == AST.JLS2) {
-			assertTrue(result.equals("[(eCI"+this.E1S+this.N1S+this.ACD1S+"eCI)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(eCI"+this.E1S+this.N1S+this.ACD1S+"eCI)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			assertTrue(result.equals("[(eCI"+this.E1S+this.PT1S+this.T1S+this.ACD1S+"eCI)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(eCI"+this.E1S+this.PT1S+this.T1S+this.ACD1S+"eCI)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public void testAnonymousClassDeclaration() {
@@ -1410,9 +1410,9 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(ACD"+this.FD1S+this.FD2S+"ACD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(ACD"+this.FD1S+this.FD2S+"ACD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
-	public void testCompilationUnit() {
+	public void testCompilationUnit() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompilationUnit x1 = this.ast.newCompilationUnit();
 		x1.setPackage(this.PD1);
 		x1.imports().add(this.ID1);
@@ -1423,7 +1423,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(CU"+this.PD1S+this.ID1S+this.ID2S+this.TD1S+this.TD2S+"CU)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(CU"+this.PD1S+this.ID1S+this.ID2S+this.TD1S+this.TD2S+"CU)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 		// check that visiting children can be cut off
 		v1.setVisitingChildren(false);
@@ -1441,7 +1441,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eCO"+this.E1S+this.E2S+this.N1S+"eCO)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eCO"+this.E1S+this.E2S+this.N1S+"eCO)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/** @deprecated using deprecated code */
 	public void testConstructorInvocation() {
@@ -1456,9 +1456,9 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.accept(v1);
 		String result = this.b.toString();
 		if (this.ast.apiLevel() == AST.JLS2) {
-			assertTrue(result.equals("[(sCI"+this.E1S+this.E2S+"sCI)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(sCI"+this.E1S+this.E2S+"sCI)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			assertTrue(result.equals("[(sCI"+this.PT1S+this.E1S+this.E2S+"sCI)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(sCI"+this.PT1S+this.E1S+this.E2S+"sCI)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public void testContinueStatement() {
@@ -1468,7 +1468,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sCN"+this.N1S+"sCN)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sCN"+this.N1S+"sCN)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testCreationReference() {
@@ -1478,7 +1478,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eCR"+this.T1S+"eCR)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eCR"+this.T1S+"eCR)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testDoStatement() {
@@ -1489,7 +1489,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sDO"+this.S1S+this.E1S+"sDO)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sDO"+this.S1S+this.E1S+"sDO)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testEmptyStatement() {
 		EmptyStatement x1 = this.ast.newEmptyStatement();
@@ -1501,7 +1501,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 	}
 	/** @deprecated Only to suppress warnings for refs to bodyDeclarations. */
 	// TODO (jeem) - remove deprecation after 3.1 M4
-	public void testEnumConstantDeclaration() {
+	public void testEnumConstantDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			return;
 		}
@@ -1517,10 +1517,10 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(ECD"+this.JD1S+this.MOD1S+this.MOD2S+this.N1S+this.E1S+this.E2S+this.ACD1S+"ECD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(ECD"+this.JD1S+this.MOD1S+this.MOD2S+this.N1S+this.E1S+this.E2S+this.ACD1S+"ECD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/** @deprecated using deprecated code */
-	public void testEnumDeclaration() {
+	public void testEnumDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.ast.apiLevel() == AST.JLS2) {
 			return;
 		}
@@ -1539,7 +1539,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(ED"+this.JD1S+this.MOD1S+this.MOD2S+this.N1S+this.T1S+this.T2S+this.EC1S+this.EC2S+this.FD1S+this.FD2S+"ED)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(ED"+this.JD1S+this.MOD1S+this.MOD2S+this.N1S+this.T1S+this.T2S+this.EC1S+this.EC2S+this.FD1S+this.FD2S+"ED)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testExpressionMethodReference() {
 		ExpressionMethodReference x1 = this.ast.newExpressionMethodReference();
@@ -1549,7 +1549,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eEMR"+this.E1S+this.N1S+"eEMR)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eEMR"+this.E1S+this.N1S+"eEMR)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testExpressionStatement() {
@@ -1558,7 +1558,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sEX"+this.E1S+"sEX)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sEX"+this.E1S+"sEX)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testExtraDimension() {
 		Dimension x1 = this.ast.newDimension();
@@ -1568,7 +1568,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertEquals("[(@ED"+this.ANO1S+this.ANO2S+"@ED)]", result); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals("[(@ED"+this.ANO1S+this.ANO2S+"@ED)]", result); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testFieldAccess() {
@@ -1579,10 +1579,10 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eFA"+this.E1S+this.N1S+"eFA)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eFA"+this.E1S+this.N1S+"eFA)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/** @deprecated using deprecated code */
-	public void testFieldDeclaration() {
+	public void testFieldDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		FieldDeclaration x1 = this.ast.newFieldDeclaration(this.W1);
 		x1.setJavadoc(this.JD1);
 		if (this.ast.apiLevel() >= AST.JLS3) {
@@ -1596,9 +1596,9 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.accept(v1);
 		String result = this.b.toString();
 		if (this.ast.apiLevel() == AST.JLS2) {
-			assertTrue(result.equals("[(FD"+this.JD1S+this.T1S+this.W1S+this.W2S+"FD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(FD"+this.JD1S+this.T1S+this.W1S+this.W2S+"FD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			assertTrue(result.equals("[(FD"+this.JD1S+this.MOD1S+this.MOD2S+this.T1S+this.W1S+this.W2S+"FD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(FD"+this.JD1S+this.MOD1S+this.MOD2S+this.T1S+this.W1S+this.W2S+"FD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public void testForStatement() {
@@ -1613,7 +1613,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sFR"+this.E1S+this.E2S+this.N1S+this.N2S+this.N3S+this.S1S+"sFR)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sFR"+this.E1S+this.E2S+this.N1S+this.N2S+this.N3S+this.S1S+"sFR)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/** @deprecated using deprecated code */
 	public void testEnhancedForStatement() {
@@ -1628,7 +1628,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sEFR"+this.V1S+this.E1S+this.S1S+"sEFR)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sEFR"+this.V1S+this.E1S+this.S1S+"sEFR)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testIfStatement() {
 		IfStatement x1 = this.ast.newIfStatement();
@@ -1639,7 +1639,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sIF"+this.E1S+this.S1S+this.S2S+"sIF)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sIF"+this.E1S+this.S1S+this.S2S+"sIF)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testImportDeclaration() {
 		ImportDeclaration x1 = this.ast.newImportDeclaration();
@@ -1648,7 +1648,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(ID"+this.N1S+"ID)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(ID"+this.N1S+"ID)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testInfixExpression() {
 		InfixExpression x1 = this.ast.newInfixExpression();
@@ -1661,7 +1661,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eIN+"+this.E1S+this.E2S+this.N1S+this.N2S+"+eIN)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eIN+"+this.E1S+this.E2S+this.N1S+this.N2S+"+eIN)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testInstanceofExpression() {
 		InstanceofExpression x1 = this.ast.newInstanceofExpression();
@@ -1671,10 +1671,10 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eIO"+this.E1S+this.T1S+"eIO)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eIO"+this.E1S+this.T1S+"eIO)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/** @deprecated using deprecated code */
-	public void testInitializer() {
+	public void testInitializer() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Initializer x1 = this.ast.newInitializer();
 		x1.setJavadoc(this.JD1);
 		if (this.ast.apiLevel() >= AST.JLS3) {
@@ -1687,9 +1687,9 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.accept(v1);
 		String result = this.b.toString();
 		if (this.ast.apiLevel() == AST.JLS2) {
-			assertTrue(result.equals("[(IN"+this.JD1S+this.B1S+"IN)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(IN"+this.JD1S+this.B1S+"IN)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			assertTrue(result.equals("[(IN"+this.JD1S+this.MOD1S+this.MOD2S+this.B1S+"IN)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(IN"+this.JD1S+this.MOD1S+this.MOD2S+this.B1S+"IN)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -1697,7 +1697,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 	 * @deprecated (not really - just suppressing the warnings
 	 * that come from testing Javadoc.getComment())
 	 */
-	public void testJavadoc() {
+	public void testJavadoc() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Javadoc x1 = this.ast.newJavadoc();
 		x1.tags().add(this.TAG1);
 
@@ -1725,7 +1725,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 			this.b.setLength(0);
 			x1.accept(v1);
 			String result = this.b.toString();
-			assertTrue(("[(JD"+this.TAG1S+"JD)]").equals(result)); //$NON-NLS-1$
+			assertTrue(("[(JD"+this.TAG1S+"JD)]").equals(result)); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -1737,7 +1737,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sLA"+this.N1S+this.S1S+"sLA)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sLA"+this.N1S+this.S1S+"sLA)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testLineComment() {
@@ -1757,10 +1757,10 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(MBREF"+this.N1S+this.N2S+"MBREF)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(MBREF"+this.N1S+this.N2S+"MBREF)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void testMethodDeclaration() {
+	public void testMethodDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		MethodDeclaration x1 = this.ast.newMethodDeclaration();
 		x1.setJavadoc(this.JD1);
 		x1.modifiers().add(this.MOD1);
@@ -1777,7 +1777,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertEquals("[(MD"+this.JD1S+this.MOD1S+this.MOD2S+this.TP1S+this.T1S+this.N1S+this.V1S+this.V2S+this.T3S+this.T4S+this.B1S+"MD)]", result); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals("[(MD"+this.JD1S+this.MOD1S+this.MOD2S+this.TP1S+this.T1S+this.N1S+this.V1S+this.V2S+this.T3S+this.T4S+this.B1S+"MD)]", result); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testMethodInvocation() {
 		MethodInvocation x1 = this.ast.newMethodInvocation();
@@ -1790,7 +1790,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eMI"+this.N1S+this.PT1S+this.N2S+this.E1S+this.E2S+"eMI)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eMI"+this.N1S+this.PT1S+this.N2S+this.E1S+this.E2S+"eMI)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testMethodRef() {
@@ -1802,7 +1802,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(MTHREF"+this.N1S+this.N2S+this.MPARM1S+"MTHREF)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(MTHREF"+this.N1S+this.N2S+this.MPARM1S+"MTHREF)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testMethodRefParameter() {
@@ -1813,7 +1813,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(MPARM"+this.T1S+this.N1S+"MPARM)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(MPARM"+this.T1S+this.N1S+"MPARM)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** @deprecated using deprecated code */
@@ -1842,7 +1842,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(@NAN"+this.N1S+this.MVP1S+this.MVP2S+"@NAN)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(@NAN"+this.N1S+this.MVP1S+this.MVP2S+"@NAN)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** @deprecated using deprecated code */
@@ -1857,7 +1857,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(@MVP"+this.N1S+this.E1S+"@MVP)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(@MVP"+this.N1S+this.E1S+"@MVP)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** @deprecated using deprecated code */
@@ -1871,7 +1871,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(@MAN"+this.N1S+"@MAN)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(@MAN"+this.N1S+"@MAN)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** @deprecated using deprecated code */
@@ -1886,7 +1886,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(@SMAN"+this.N1S+this.E1S+"@SMAN)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(@SMAN"+this.N1S+this.E1S+"@SMAN)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** @deprecated using deprecated code */
@@ -1905,7 +1905,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(@TD"+this.JD1S+this.MOD1S+this.MOD2S+this.N1S+this.FD1S+this.FD2S+"@TD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertTrue(result.equals("[(@TD"+this.JD1S+this.MOD1S+this.MOD2S+this.N1S+this.FD1S+this.FD2S+"@TD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** @deprecated using deprecated code */
@@ -1924,7 +1924,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(@MD"+this.JD1S+this.MOD1S+this.MOD2S+this.T1S+this.N1S+this.E1S+"@MD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(@MD"+this.JD1S+this.MOD1S+this.MOD2S+this.T1S+this.N1S+this.E1S+"@MD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testNullLiteral() {
@@ -1944,7 +1944,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		assertTrue(result.equals("[(eNU1.01.0eNU)]")); //$NON-NLS-1$
 	}
 	/** @deprecated using deprecated code */
-	public void testPackageDeclaration() {
+	public void testPackageDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		PackageDeclaration x1 = this.ast.newPackageDeclaration();
 		if (this.ast.apiLevel() >= AST.JLS3) {
 			x1.setJavadoc(this.JD1);
@@ -1957,9 +1957,9 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.accept(v1);
 		String result = this.b.toString();
 		if (this.ast.apiLevel() == AST.JLS2) {
-			assertTrue(result.equals("[(PD"+this.N1S+"PD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(PD"+this.N1S+"PD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			assertTrue(result.equals("[(PD"+this.JD1S+this.ANO1S+this.ANO2S+this.N1S+"PD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(PD"+this.JD1S+this.ANO1S+this.ANO2S+this.N1S+"PD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public void testParenthesizedExpression() {
@@ -1969,7 +1969,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(ePA"+this.E1S+"ePA)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(ePA"+this.E1S+"ePA)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testPostfixExpression() {
 		PostfixExpression x1 = this.ast.newPostfixExpression();
@@ -1979,7 +1979,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(ePO++"+this.E1S+"++ePO)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(ePO++"+this.E1S+"++ePO)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testPrefixExpression() {
 		PrefixExpression x1 = this.ast.newPrefixExpression();
@@ -1989,7 +1989,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(ePR++"+this.E1S+"++ePR)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(ePR++"+this.E1S+"++ePR)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testReturnStatement() {
 		ReturnStatement x1 = this.ast.newReturnStatement();
@@ -1998,7 +1998,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sRT"+this.E1S+"sRT)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sRT"+this.E1S+"sRT)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testStringLiteral() {
 		StringLiteral x1 = this.ast.newStringLiteral();
@@ -2009,13 +2009,13 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		String result = this.b.toString();
 		assertTrue(result.equals("[(eSLHHeSL)]")); //$NON-NLS-1$
 	}
-	public void testStringLiteralConcurrent() throws Exception {
+	public void testStringLiteralConcurrent() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		StringLiteral x1 = this.ast.newStringLiteral();
 		x1.setEscapedValue("\"hello\\nworld\""); //$NON-NLS-1$
 
 		ExecutorService executorService = Executors.newFixedThreadPool(10);
-		List<CompletableFuture<Void>> futures = new ArrayList<>();
-		for (int i = 0; i < 100; i++) {
+		List<CompletableFuture<Void>> futures = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (int i = 0; i < 100; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
 				try {
 					x1.getLiteralValue();
@@ -2030,7 +2030,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 	}
 
 	/** @deprecated using deprecated code */
-	public void testSuperConstructorInvocation() {
+	public void testSuperConstructorInvocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SuperConstructorInvocation x1 = this.ast.newSuperConstructorInvocation();
 		x1.setExpression(this.N1);
 		if (this.ast.apiLevel() >= AST.JLS3) {
@@ -2043,9 +2043,9 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.accept(v1);
 		String result = this.b.toString();
 		if (this.ast.apiLevel() == AST.JLS2) {
-			assertTrue(result.equals("[(sSC"+this.N1S+this.E1S+this.E2S+"sSC)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(sSC"+this.N1S+this.E1S+this.E2S+"sSC)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			assertTrue(result.equals("[(sSC"+this.N1S+this.PT1S+this.E1S+this.E2S+"sSC)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(sSC"+this.N1S+this.PT1S+this.E1S+this.E2S+"sSC)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public void testSuperFieldAccess() {
@@ -2056,10 +2056,10 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eSF"+this.N1S+this.N2S+"eSF)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eSF"+this.N1S+this.N2S+"eSF)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/** @deprecated using deprecated code */
-	public void testSuperMethodInvocation() {
+	public void testSuperMethodInvocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SuperMethodInvocation x1 = this.ast.newSuperMethodInvocation();
 		x1.setQualifier(this.N1);
 		if (this.ast.apiLevel() >= AST.JLS3) {
@@ -2073,9 +2073,9 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.accept(v1);
 		String result = this.b.toString();
 		if (this.ast.apiLevel() == AST.JLS2) {
-			assertTrue(result.equals("[(eSM"+this.N1S+this.N2S+this.E1S+this.E2S+"eSM)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(eSM"+this.N1S+this.N2S+this.E1S+this.E2S+"eSM)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			assertTrue(result.equals("[(eSM"+this.N1S+this.PT1S+this.N2S+this.E1S+this.E2S+"eSM)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(eSM"+this.N1S+this.PT1S+this.N2S+this.E1S+this.E2S+"eSM)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public void testSuperMethodReference() {
@@ -2086,7 +2086,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eSMR"+this.N1S+this.N2S+"eSMR)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eSMR"+this.N1S+this.N2S+"eSMR)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	@SuppressWarnings("deprecation")
 	public void testSwitchCase() {
@@ -2100,7 +2100,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertEquals("[(sSC"+this.E1S+"sSC)]", result); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals("[(sSC"+this.E1S+"sSC)]", result); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testSwitchStatement() {
 		SwitchStatement x1 = this.ast.newSwitchStatement();
@@ -2111,7 +2111,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sSW"+this.E1S+this.S1S+this.S2S+"sSW)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sSW"+this.E1S+this.S1S+this.S2S+"sSW)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testSynchronizedStatement() {
 		SynchronizedStatement x1 = this.ast.newSynchronizedStatement();
@@ -2121,7 +2121,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sSY"+this.E1S+this.B1S+"sSY)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sSY"+this.E1S+this.B1S+"sSY)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testTagElement() {
@@ -2132,7 +2132,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(("[(TGx"+this.TAG1S+"xTG)]").equals(result)); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(("[(TGx"+this.TAG1S+"xTG)]").equals(result)); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public void testTextElement() {
@@ -2152,7 +2152,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eTH"+this.N1S+"eTH)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eTH"+this.N1S+"eTH)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testThrowStatement() {
 		ThrowStatement x1 = this.ast.newThrowStatement();
@@ -2161,10 +2161,10 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sTR"+this.E1S+"sTR)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sTR"+this.E1S+"sTR)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/** @deprecated using deprecated code */
-	public void testTryStatement() {
+	public void testTryStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TryStatement x1 = this.ast.newTryStatement();
 		int level = this.ast.apiLevel();
 		if (level >= AST.JLS4) {
@@ -2189,12 +2189,12 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertEquals("[(sTY"
-				+(level >= AST.JLS4 ? "[(eVD"+this.T1S+this.W1S+"eVD)]"+"[(eVD"+this.T2S+this.W2S+"eVD)]" : "")
+		assertEquals("[(sTY" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				+(level >= AST.JLS4 ? "[(eVD"+this.T1S+this.W1S+"eVD)]"+"[(eVD"+this.T2S+this.W2S+"eVD)]" : "") //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+this.B1S+"[(cc"+this.V1S+"[(sBsB)]"+"cc)]"+"[(cc"+this.V2S+"[(sBsB)]"+"cc)]"+"[(sBsB)]"+"sTY)]", result); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$
 	}
 	/** @deprecated using deprecated code */
-	public void testTypeDeclaration() {
+	public void testTypeDeclaration() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		TypeDeclaration x1 = this.ast.newTypeDeclaration();
 		x1.setJavadoc(this.JD1);
 		x1.setName(this.N1);
@@ -2217,9 +2217,9 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.accept(v1);
 		String result = this.b.toString();
 		if (this.ast.apiLevel() == AST.JLS2) {
-			assertTrue(result.equals("[(TD"+this.JD1S+this.N1S+this.N2S+this.N3S+this.N4S+this.FD1S+this.FD2S+"TD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			assertTrue(result.equals("[(TD"+this.JD1S+this.N1S+this.N2S+this.N3S+this.N4S+this.FD1S+this.FD2S+"TD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			assertTrue(result.equals("[(TD"+this.JD1S+this.MOD1S+this.MOD2S+this.N1S+this.TP1S+this.PT1S+this.T1S+this.T2S+this.FD1S+this.FD2S+"TD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			assertTrue(result.equals("[(TD"+this.JD1S+this.MOD1S+this.MOD2S+this.N1S+this.TP1S+this.PT1S+this.T1S+this.T2S+this.FD1S+this.FD2S+"TD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public void testTypeDeclarationStatement() {
@@ -2228,7 +2228,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sTD"+this.TD1S+"sTD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sTD"+this.TD1S+"sTD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testTypeLiteral() {
 		TypeLiteral x1 = this.ast.newTypeLiteral();
@@ -2237,7 +2237,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eTL"+this.T1S+"eTL)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eTL"+this.T1S+"eTL)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testTypeMethodReference() {
 		TypeMethodReference x1 = this.ast.newTypeMethodReference();
@@ -2247,7 +2247,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(eTMR"+this.T1S+this.N1S+"eTMR)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(eTMR"+this.T1S+this.N1S+"eTMR)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	/** @deprecated using deprecated code */
@@ -2262,7 +2262,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(VD"+this.MOD1S+this.MOD2S+this.T1S+this.N1S+this.E1S+"VD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(VD"+this.MOD1S+this.MOD2S+this.T1S+this.N1S+this.E1S+"VD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	public void testVariableDeclarationFragment() {
 		VariableDeclarationFragment x1 = this.ast.newVariableDeclarationFragment();
@@ -2272,10 +2272,10 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(VS"+this.N1S+this.E1S+"VS)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(VS"+this.N1S+this.E1S+"VS)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	/** @deprecated using deprecated code */
-	public void testVariableDeclarationExpression() {
+	public void testVariableDeclarationExpression() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		VariableDeclarationExpression x1 = this.ast.newVariableDeclarationExpression(this.W1);
 		if (this.ast.apiLevel() >= AST.JLS3) {
 			x1.modifiers().add(this.MOD1);
@@ -2288,13 +2288,13 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.accept(v1);
 		String result = this.b.toString();
 		if (this.ast.apiLevel() == AST.JLS2) {
-			assertTrue(result.equals("[(eVD"+this.T1S+this.W1S+this.W2S+"eVD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(eVD"+this.T1S+this.W1S+this.W2S+"eVD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			assertTrue(result.equals("[(eVD"+this.MOD1S+this.MOD2S+this.T1S+this.W1S+this.W2S+"eVD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(eVD"+this.MOD1S+this.MOD2S+this.T1S+this.W1S+this.W2S+"eVD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	/** @deprecated using deprecated code */
-	public void testVariableDeclarationStatement() {
+	public void testVariableDeclarationStatement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		VariableDeclarationStatement x1 = this.ast.newVariableDeclarationStatement(this.W1);
 		if (this.ast.apiLevel() >= AST.JLS3) {
 			x1.modifiers().add(this.MOD1);
@@ -2307,9 +2307,9 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		x1.accept(v1);
 		String result = this.b.toString();
 		if (this.ast.apiLevel() == AST.JLS2) {
-			assertTrue(result.equals("[(sVD"+this.T1S+this.W1S+this.W2S+"sVD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(sVD"+this.T1S+this.W1S+this.W2S+"sVD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
-			assertTrue(result.equals("[(sVD"+this.MOD1S+this.MOD2S+this.T1S+this.W1S+this.W2S+"sVD)]")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertTrue(result.equals("[(sVD"+this.MOD1S+this.MOD2S+this.T1S+this.W1S+this.W2S+"sVD)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 	public void testWhileStatement() {
@@ -2320,23 +2320,23 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		this.b.setLength(0);
 		x1.accept(v1);
 		String result = this.b.toString();
-		assertTrue(result.equals("[(sWH"+this.E1S+this.S1S+"sWH)]")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertTrue(result.equals("[(sWH"+this.E1S+this.S1S+"sWH)]")); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
-	public void testPrePost() {
+	public void testPrePost() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		SimpleName n1 = this.ast.newSimpleName("a"); //$NON-NLS-1$
 		SimpleName n2 = this.ast.newSimpleName("b"); //$NON-NLS-1$
 		QualifiedName q = this.ast.newQualifiedName(n1, n2);
 		TestVisitor v1 = new TestVisitor() {
 			@Override
 			public void preVisit(ASTNode node) {
-				ASTVisitorTest.this.b.append("["); //$NON-NLS-1$
+				ASTVisitorTest.this.b.append("["); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				switch (node.getNodeType()) {
 					case ASTNode.QUALIFIED_NAME :
-						ASTVisitorTest.this.b.append("q"); //$NON-NLS-1$
+						ASTVisitorTest.this.b.append("q"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case ASTNode.SIMPLE_NAME :
-						ASTVisitorTest.this.b.append(((SimpleName) node).getIdentifier());
+						ASTVisitorTest.this.b.append(((SimpleName) node).getIdentifier()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 				}
 			}
@@ -2345,13 +2345,13 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 			public void postVisit(ASTNode node) {
 				switch (node.getNodeType()) {
 					case ASTNode.QUALIFIED_NAME :
-						ASTVisitorTest.this.b.append("q"); //$NON-NLS-1$
+						ASTVisitorTest.this.b.append("q"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 					case ASTNode.SIMPLE_NAME :
-						ASTVisitorTest.this.b.append(((SimpleName) node).getIdentifier());
+						ASTVisitorTest.this.b.append(((SimpleName) node).getIdentifier()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 						break;
 				}
-				ASTVisitorTest.this.b.append("]"); //$NON-NLS-1$
+				ASTVisitorTest.this.b.append("]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		};
 
@@ -2360,7 +2360,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		String result = this.b.toString();
 		assertTrue(result.equals("[q(nQ" + "[a(nSaanS)a]" + "[b(nSbbnS)b]" + "nQ)q]")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 	}
-	public void testTraverseAndModify() {
+	public void testTraverseAndModify() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final TypeDeclaration typeDeclaration = this.ast.newTypeDeclaration();
 		typeDeclaration.setName(this.N1);
 		MethodDeclaration methodDeclaration = this.ast.newMethodDeclaration();
@@ -2389,7 +2389,7 @@ public class ASTVisitorTest extends org.eclipse.jdt.core.tests.junit.extension.T
 		assertEquals("wrong output", "[(TD[(nSNNnS)][(MD[(tPvoidvoidtP)][(nSM1M1nS)]MD)][(MD[(tPvoidvoidtP)][(nSM2M2nS)]MD)][(MD[(tPvoidvoidtP)][(nSM3M3nS)]MD)]TD)]", this.b.toString()); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public void testTraverseAndModify_2() {
+	public void testTraverseAndModify_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		final TypeDeclaration typeDeclaration = this.ast.newTypeDeclaration();
 		typeDeclaration.setName(this.N1);
 		MethodDeclaration methodDeclaration = this.ast.newMethodDeclaration();

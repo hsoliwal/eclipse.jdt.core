@@ -36,31 +36,31 @@ public class SpacePreparator extends ASTVisitor {
 	private static final Map<Operator, Predicate<DefaultCodeFormatterOptions>> SPACE_AFTER_OPERATOR;
 
 	static {
-		Map<Operator, Predicate<DefaultCodeFormatterOptions>> spaceBeforeOperator = new HashMap<>();
-		Map<Operator, Predicate<DefaultCodeFormatterOptions>> spaceAfterOperator = new HashMap<>();
-		for (Operator op : Arrays.asList(Operator.TIMES, Operator.DIVIDE, Operator.REMAINDER)) {
+		Map<Operator, Predicate<DefaultCodeFormatterOptions>> spaceBeforeOperator = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		Map<Operator, Predicate<DefaultCodeFormatterOptions>> spaceAfterOperator = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (Operator op : Arrays.asList(Operator.TIMES, Operator.DIVIDE, Operator.REMAINDER)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			spaceBeforeOperator.put(op, o -> o.insert_space_before_multiplicative_operator);
 			spaceAfterOperator.put(op, o -> o.insert_space_after_multiplicative_operator);
 		}
-		for (Operator op : Arrays.asList(Operator.PLUS, Operator.MINUS)) {
+		for (Operator op : Arrays.asList(Operator.PLUS, Operator.MINUS)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			spaceBeforeOperator.put(op, o -> o.insert_space_before_additive_operator);
 			spaceAfterOperator.put(op, o -> o.insert_space_after_additive_operator);
 		}
-		for (Operator op : Arrays.asList(Operator.LEFT_SHIFT, Operator.RIGHT_SHIFT_SIGNED,
+		for (Operator op : Arrays.asList(Operator.LEFT_SHIFT, Operator.RIGHT_SHIFT_SIGNED, //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Operator.RIGHT_SHIFT_UNSIGNED)) {
 			spaceBeforeOperator.put(op, o -> o.insert_space_before_shift_operator);
 			spaceAfterOperator.put(op, o -> o.insert_space_after_shift_operator);
 		}
-		for (Operator op : Arrays.asList(Operator.LESS, Operator.GREATER, Operator.LESS_EQUALS,
+		for (Operator op : Arrays.asList(Operator.LESS, Operator.GREATER, Operator.LESS_EQUALS, //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Operator.GREATER_EQUALS, Operator.EQUALS, Operator.NOT_EQUALS)) {
 			spaceBeforeOperator.put(op, o -> o.insert_space_before_relational_operator);
 			spaceAfterOperator.put(op, o -> o.insert_space_after_relational_operator);
 		}
-		for (Operator op : Arrays.asList(Operator.AND, Operator.XOR, Operator.OR)) {
+		for (Operator op : Arrays.asList(Operator.AND, Operator.XOR, Operator.OR)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			spaceBeforeOperator.put(op, o -> o.insert_space_before_bitwise_operator);
 			spaceAfterOperator.put(op, o -> o.insert_space_after_bitwise_operator);
 		}
-		for (Operator op : Arrays.asList(Operator.CONDITIONAL_AND, Operator.CONDITIONAL_OR)) {
+		for (Operator op : Arrays.asList(Operator.CONDITIONAL_AND, Operator.CONDITIONAL_OR)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			spaceBeforeOperator.put(op, o -> o.insert_space_before_logical_operator);
 			spaceAfterOperator.put(op, o -> o.insert_space_after_logical_operator);
 		}
@@ -94,7 +94,7 @@ public class SpacePreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TypeDeclaration node) {
 		if (this.tm.isFake(node))
 			return true;
@@ -131,7 +131,7 @@ public class SpacePreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(EnumConstantDeclaration node) {
 		List<Expression> arguments = node.arguments();
 		Token openingParen = null;
@@ -147,7 +147,7 @@ public class SpacePreparator extends ASTVisitor {
 			AnonymousClassDeclaration classDeclaration = node.getAnonymousClassDeclaration();
 			int to = classDeclaration != null ? this.tm.firstIndexBefore(classDeclaration, ANY)
 					: this.tm.lastIndexIn(node, ANY);
-			for (int i = from; i <= to; i++) {
+			for (int i = from; i <= to; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.tm.get(i).tokenType == TokenNameLPAREN) {
 					openingParen = this.tm.get(i);
 					if (this.options.insert_space_between_empty_parens_in_enum_constant)
@@ -172,7 +172,7 @@ public class SpacePreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(RecordDeclaration node) {
 		handleToken(node.getName(), TokenNameIdentifier, true, false);
 
@@ -201,7 +201,7 @@ public class SpacePreparator extends ASTVisitor {
 		return true;
 	}
 
-	private void handleRecordComponents(List<? extends ASTNode> components, ASTNode name, List<TypeParameter> typeParameters) {
+	private void handleRecordComponents(List<? extends ASTNode> components, ASTNode name, List<TypeParameter> typeParameters) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ASTNode nodeBeforeLParen = typeParameters.isEmpty() ? name
 				: typeParameters.get(typeParameters.size() - 1);
 		ASTNode nodeBeforeRParen = components.isEmpty() ? nodeBeforeLParen
@@ -220,7 +220,7 @@ public class SpacePreparator extends ASTVisitor {
 				this.options.insert_space_after_comma_in_record_components);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MethodDeclaration node) {
 		handleToken(node.getName(), TokenNameIdentifier, true, false);
 
@@ -256,7 +256,7 @@ public class SpacePreparator extends ASTVisitor {
 					? this.options.insert_space_after_comma_in_constructor_declaration_parameters
 					: this.options.insert_space_after_comma_in_method_declaration_parameters;
 			if (node.getReceiverType() != null) {
-				params = new ArrayList<>(params);
+				params = new ArrayList<>(params); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 				params.add(0, null); // space for explicit receiver, null OK - first value not read in handleCommas
 			}
 			handleCommas(params, beforeComma, afterComma);
@@ -376,7 +376,7 @@ public class SpacePreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SwitchCase node) {
 		if (node.isSwitchLabeledRule()) {
 			handleToken(this.tm.lastTokenIn(node, TokenNameARROW),
@@ -449,7 +449,7 @@ public class SpacePreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TryStatement node) {
 		List<Expression> resources = node.resources();
 		if (!resources.isEmpty()) {
@@ -457,14 +457,14 @@ public class SpacePreparator extends ASTVisitor {
 					this.options.insert_space_after_opening_paren_in_try);
 			handleTokenBefore(node.getBody(), TokenNameRPAREN, this.options.insert_space_before_closing_paren_in_try,
 					false);
-			for (int i = 1; i < resources.size(); i++) {
+			for (int i = 1; i < resources.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				handleTokenBefore(resources.get(i), TokenNameSEMICOLON,
 						this.options.insert_space_before_semicolon_in_try_resources,
 						this.options.insert_space_after_semicolon_in_try_resources);
 			}
 			// there can be a semicolon after the last resource
 			int index = this.tm.firstIndexAfter(resources.get(resources.size() - 1), ANY);
-			while (index < this.tm.size()) {
+			while (index < this.tm.size()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token token = this.tm.get(index++);
 				if (token.tokenType == TokenNameSEMICOLON) {
 					handleToken(token, this.options.insert_space_before_semicolon_in_try_resources, false);
@@ -641,7 +641,7 @@ public class SpacePreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ForStatement node) {
 		handleToken(node, TokenNameLPAREN, this.options.insert_space_before_opening_paren_in_for,
 				this.options.insert_space_after_opening_paren_in_for);
@@ -784,13 +784,13 @@ public class SpacePreparator extends ASTVisitor {
 		}
 		handleOperator(operator.toString(), node.getRightOperand(), spaceBefore, spaceAfter);
 		List<Expression> extendedOperands = node.extendedOperands();
-		for (Expression operand : extendedOperands) {
+		for (Expression operand : extendedOperands) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			handleOperator(operator.toString(), operand, spaceBefore, spaceAfter);
 		}
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(PrefixExpression node) {
 		PrefixExpression.Operator operator = node.getOperator();
 		if (operator.equals(PrefixExpression.Operator.INCREMENT)
@@ -815,7 +815,7 @@ public class SpacePreparator extends ASTVisitor {
 		if (this.options.insert_space_before_postfix_operator || this.options.insert_space_after_postfix_operator) {
 			String operator = node.getOperator().toString();
 			int i = this.tm.firstIndexAfter(node.getOperand(), ANY);
-			while (!operator.equals(this.tm.toString(i))) {
+			while (!operator.equals(this.tm.toString(i))) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				i++;
 			}
 			handleToken(this.tm.get(i), this.options.insert_space_before_postfix_operator,
@@ -827,7 +827,7 @@ public class SpacePreparator extends ASTVisitor {
 	private void handleOperator(String operator, ASTNode nodeAfter, boolean spaceBefore, boolean spaceAfter) {
 		if (spaceBefore || spaceAfter) {
 			int i = this.tm.firstIndexBefore(nodeAfter, ANY);
-			while (!operator.equals(this.tm.toString(i))) {
+			while (!operator.equals(this.tm.toString(i))) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				i--;
 			}
 			handleToken(this.tm.get(i), spaceBefore, spaceAfter);
@@ -856,7 +856,7 @@ public class SpacePreparator extends ASTVisitor {
 	@Override
 	public boolean visit(IntersectionType node) {
 		List<Type> types = node.types();
-		for (int i = 1; i < types.size(); i++)
+		for (int i = 1; i < types.size(); i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			handleTokenBefore(types.get(i), TokenNameAND, this.options.insert_space_before_bitwise_operator,
 					this.options.insert_space_after_bitwise_operator);
 		return true;
@@ -885,7 +885,7 @@ public class SpacePreparator extends ASTVisitor {
 			spaceBetween = this.options.insert_space_between_brackets_in_array_type_reference;
 		}
 		List<Dimension> dimensions = node.dimensions();
-		for (Dimension dimension : dimensions) {
+		for (Dimension dimension : dimensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			handleToken(dimension, TokenNameLBRACKET, spaceBeofreOpening, false);
 			handleEmptyBrackets(dimension, spaceBetween);
 		}
@@ -905,7 +905,7 @@ public class SpacePreparator extends ASTVisitor {
 	@Override
 	public boolean visit(ArrayCreation node) {
 		List<Expression> dimensions = node.dimensions();
-		for (Expression dimension : dimensions) {
+		for (Expression dimension : dimensions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			handleTokenBefore(dimension, TokenNameLBRACKET, false,
 					this.options.insert_space_after_opening_bracket_in_array_allocation_expression);
 			handleTokenAfter(dimension, TokenNameRBRACKET,
@@ -914,7 +914,7 @@ public class SpacePreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ArrayInitializer node) {
 		int openingBraceIndex = this.tm.firstIndexIn(node, TokenNameLBRACE);
 		int closingBraceIndex = this.tm.lastIndexIn(node, TokenNameRBRACE);
@@ -966,7 +966,7 @@ public class SpacePreparator extends ASTVisitor {
 	@Override
 	public boolean visit(TypeParameter node) {
 		List<Type> typeBounds = node.typeBounds();
-		for (int i = 1; i < typeBounds.size(); i++) {
+		for (int i = 1; i < typeBounds.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			handleTokenBefore(typeBounds.get(i), TokenNameAND,
 					this.options.insert_space_before_and_in_type_parameter,
 					this.options.insert_space_after_and_in_type_parameter);
@@ -984,7 +984,7 @@ public class SpacePreparator extends ASTVisitor {
 	@Override
 	public boolean visit(UnionType node) {
 		List<Type> types = node.types();
-		for (int i = 1; i < types.size(); i++)
+		for (int i = 1; i < types.size(); i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			handleTokenBefore(types.get(i), TokenNameOR, this.options.insert_space_before_bitwise_operator,
 					this.options.insert_space_after_bitwise_operator);
 		return true;
@@ -1080,7 +1080,7 @@ public class SpacePreparator extends ASTVisitor {
 
 	private void handleCommas(List<? extends ASTNode> nodes, boolean spaceBefore, boolean spaceAfter) {
 		if (spaceBefore || spaceAfter) {
-			for (int i = 1; i < nodes.size(); i++) {
+			for (int i = 1; i < nodes.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				handleTokenBefore(nodes.get(i), TokenNameCOMMA, spaceBefore, spaceAfter);
 			}
 		}
@@ -1101,15 +1101,15 @@ public class SpacePreparator extends ASTVisitor {
 		}
 	}
 
-	private void handleTokenAfter(ASTNode node, TerminalToken tokenType, boolean spaceBefore, boolean spaceAfter) {
+	private void handleTokenAfter(ASTNode node, TerminalToken tokenType, boolean spaceBefore, boolean spaceAfter) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (tokenType == TokenNameGREATER) {
 			// there could be ">>" or ">>>" instead, get rid of them
 			int index = this.tm.lastIndexIn(node, ANY);
-			for (int i = index; i < index + 2; i++) {
+			for (int i = index; i < index + 2; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token token = this.tm.get(i);
 				if (token.tokenType == TokenNameRIGHT_SHIFT || token.tokenType == TokenNameUNSIGNED_RIGHT_SHIFT) {
 					this.tm.remove(i);
-					for (int j = 0; j < (token.tokenType == TokenNameRIGHT_SHIFT ? 2 : 3); j++) {
+					for (int j = 0; j < (token.tokenType == TokenNameRIGHT_SHIFT ? 2 : 3); j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						this.tm.insert(i + j, new Token(token.originalStart + j, token.originalStart + j,
 								TokenNameGREATER));
 					}
@@ -1159,7 +1159,7 @@ public class SpacePreparator extends ASTVisitor {
 
 	private void handleSemicolon(List<ASTNode> nodes) {
 		if (this.options.insert_space_before_semicolon) {
-			for (ASTNode node : nodes)
+			for (ASTNode node : nodes) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				handleSemicolon(node);
 		}
 	}
@@ -1173,11 +1173,11 @@ public class SpacePreparator extends ASTVisitor {
 		}
 	}
 
-	public void finishUp() {
+	public void finishUp() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.tm.traverse(0, new TokenTraverser() {
 			boolean isPreviousJIDP = false;
 
-			@Override
+			@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			protected boolean token(Token token, int index) {
 				// put space between consecutive keywords, numbers or identifiers
 				char c = SpacePreparator.this.tm.charAt(token.originalStart);

@@ -30,7 +30,7 @@ import org.eclipse.jdt.internal.core.util.Messages;
  * It does not delete resources which do not belong to the Java Model
  * (eg GIF files).
  */
-public class DeleteResourceElementsOperation extends MultiOperation {
+public class DeleteResourceElementsOperation extends MultiOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 /**
  * When executed, this operation will delete the given elements. The elements
  * to delete cannot be <code>null</code> or empty, and must have a corresponding
@@ -44,7 +44,7 @@ protected DeleteResourceElementsOperation(IJavaElement[] elementsToProcess, bool
  * (K_SOURCE or K_BINARY), and deletes the corresponding folder if it is then
  * empty.
  */
-private void deletePackageFragment(IPackageFragment frag)
+private void deletePackageFragment(IPackageFragment frag) //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	throws JavaModelException {
 	IResource res = ((JavaElement) frag).resource();
 	if (res != null) {
@@ -53,7 +53,7 @@ private void deletePackageFragment(IPackageFragment frag)
 		if (childrenOfInterest.length > 0) {
 			IResource[] resources = new IResource[childrenOfInterest.length];
 			// remove the children
-			for (int i = 0; i < childrenOfInterest.length; i++) {
+			for (int i = 0; i < childrenOfInterest.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				resources[i] = ((JavaElement) childrenOfInterest[i]).resource();
 			}
 			deleteResources(resources, this.force);
@@ -62,11 +62,11 @@ private void deletePackageFragment(IPackageFragment frag)
 		// Discard non-java resources
 		Object[] nonJavaResources = frag.getNonJavaResources();
 		int actualResourceCount = 0;
-		for (Object resource : nonJavaResources) {
+		for (Object resource : nonJavaResources) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (resource instanceof IResource) actualResourceCount++;
 		}
 		IResource[] actualNonJavaResources = new IResource[actualResourceCount];
-		for (int i = 0, max = nonJavaResources.length, index = 0; i < max; i++){
+		for (int i = 0, max = nonJavaResources.length, index = 0; i < max; i++){ //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (nonJavaResources[i] instanceof IResource) actualNonJavaResources[index++] = (IResource)nonJavaResources[i];
 		}
 		deleteResources(actualNonJavaResources, this.force);
@@ -79,7 +79,7 @@ private void deletePackageFragment(IPackageFragment frag)
 			throw new JavaModelException(ce);
 		}
 		boolean isEmpty = true;
-		for (IResource file : remainingFiles) {
+		for (IResource file : remainingFiles) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (file instanceof IFile && org.eclipse.jdt.internal.compiler.util.Util.isClassFileName(file.getName())) {
 				deleteResource(file, IResource.FORCE | IResource.KEEP_HISTORY);
 			} else {

@@ -194,7 +194,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 			search("Foo", TYPE, DECLARATIONS, scope, resultCollector);
 		}
 		if (DEBUG) {
-			System.out.println("Time to clean category table cache [ms]: " + (System.nanoTime() - startNanos) / 1_000_000L);
+			System.out.println("Time to clean category table cache [ms]: " + (System.nanoTime() - startNanos) / 1_000_000L); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 
@@ -204,7 +204,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	 * First wait that already started indexing jobs ends before performing test and measure.
 	 * Consider this initial indexing jobs as warm-up for this test.
 	 */
-	public void testIndexing() throws CoreException {
+	public void testIndexing() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Indexing all workspace projects", false); // do NOT put in fingerprint
 
 		// Wait for indexing end (we use initial indexing as warm-up)
@@ -219,7 +219,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 
 		// Restart brand new indexing
 		INDEX_MANAGER.request(new Measuring(true/*start measuring*/));
-		for (int j=0, length=ALL_PROJECTS.length; j<length; j++) {
+		for (int j=0, length=ALL_PROJECTS.length; j<length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			INDEX_MANAGER.indexAll(ALL_PROJECTS[j].getProject());
 		}
 		waitUntilIndexesReady();
@@ -236,18 +236,18 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	/**
 	 * Performance tests for search: Indexing one project (JDT/Core).
 	 */
-	public void testIndexingOneProject() throws CoreException {
+	public void testIndexingOneProject() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Indexing JDT/Core project", true); // put in fingerprint
 
 		// Warm-up
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			INDEX_MANAGER.removeIndexFamily(JDT_CORE_PROJECT.getPath());
 			INDEX_MANAGER.indexAll(JDT_CORE_PROJECT.getProject());
 			waitUntilIndexesReady();
 		}
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			runGc();
 			INDEX_MANAGER.removeIndexFamily(JDT_CORE_PROJECT.getPath());
 			INDEX_MANAGER.request(new Measuring(true/*start measuring*/));
@@ -267,7 +267,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	 *
 	 * @deprecated As we use deprecated API
 	 */
-	public void testSearchAllTypeNames() throws CoreException {
+	public void testSearchAllTypeNames() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsGlobalSummary("Search all type names", true); // put in global fingerprint
 		OldSearchTypeNameRequestor requestor = new OldSearchTypeNameRequestor();
 
@@ -276,7 +276,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 
 		// Warm up
 		IJavaSearchScope scope = SearchEngine.createWorkspaceScope();
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			new SearchEngine().searchAllTypeNames(
 				null,
 				null,
@@ -287,7 +287,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 				WAIT_UNTIL_READY_TO_SEARCH,
 				null);
 			if (i==0) {
-				System.out.println("	All type names = "+INT_FORMAT.format(requestor.count));
+				System.out.println("	All type names = "+INT_FORMAT.format(requestor.count)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (SEARCH_ALL_TYPE_NAMES_COUNT == -1) {
 					SEARCH_ALL_TYPE_NAMES_COUNT = requestor.count;
 				} else {
@@ -298,11 +298,11 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 
 		// Measures
 		JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cleanCategoryTableCache(true, scope, resultCollector);
 			runGc();
 			startMeasuring();
-			for (int j=0; j<ITERATIONS_COUNT; j++) {
+			for (int j=0; j<ITERATIONS_COUNT; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				new SearchEngine().searchAllTypeNames(
 					null,
 					null,
@@ -324,7 +324,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	/**
 	 * Performance tests for search: Search All Types Names.
 	 */
-	public void testNewSearchAllTypeNames() throws CoreException {
+	public void testNewSearchAllTypeNames() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Cold search all type names", true);	// put in fingerprint
 		SearchTypeNameRequestor requestor = new SearchTypeNameRequestor();
 
@@ -333,7 +333,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 
 		// Warm up
 		IJavaSearchScope scope = SearchEngine.createWorkspaceScope();
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			new SearchEngine().searchAllTypeNames(
 				null,
 				SearchPattern.R_PATTERN_MATCH | SearchPattern.R_CASE_SENSITIVE,
@@ -345,7 +345,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 				WAIT_UNTIL_READY_TO_SEARCH,
 				null);
 			if (i == 0) {
-				System.out.println("	All type names = "+INT_FORMAT.format(requestor.count));
+				System.out.println("	All type names = "+INT_FORMAT.format(requestor.count)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (SEARCH_ALL_TYPE_NAMES_COUNT == -1) {
 					SEARCH_ALL_TYPE_NAMES_COUNT = requestor.count;
 				} else {
@@ -356,7 +356,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 
 		// Measures
 		JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cleanCategoryTableCache(true, scope, resultCollector);
 			runGc();
 			startMeasuring();
@@ -383,7 +383,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	 *
 	 * This test use a collector which accepts IType.
 	 */
-	public void testSearchAllTypeNameMatches() throws CoreException {
+	public void testSearchAllTypeNameMatches() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Search all type name matches", false); // do NOT put in fingerprint
 		SearchTypeNameMatchRequestor requestor = new SearchTypeNameMatchRequestor();
 
@@ -392,7 +392,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 
 		// Warm up
 		IJavaSearchScope scope = SearchEngine.createWorkspaceScope();
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			new SearchEngine().searchAllTypeNames(
 				null,
 				SearchPattern.R_PATTERN_MATCH | SearchPattern.R_CASE_SENSITIVE,
@@ -404,7 +404,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 				WAIT_UNTIL_READY_TO_SEARCH,
 				null);
 			if (i == 0) {
-				System.out.println("	All type names = "+INT_FORMAT.format(requestor.count));
+				System.out.println("	All type names = "+INT_FORMAT.format(requestor.count)); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if (SEARCH_ALL_TYPE_NAMES_COUNT == -1) {
 					SEARCH_ALL_TYPE_NAMES_COUNT = requestor.count;
 				} else {
@@ -415,7 +415,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 
 		// Measures
 		JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cleanCategoryTableCache(true, scope, resultCollector);
 			runGc();
 			startMeasuring();
@@ -446,7 +446,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	 *		- ""IResource":	5886 macthes
 	 *		- "JavaCore":		2145 matches
 	 */
-	public void testSearchType() throws CoreException {
+	public void testSearchType() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Search type occurences", true); // put in fingerprint
 
 		// Wait for indexing end
@@ -456,15 +456,15 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { JDT_CORE_PROJECT }, IJavaSearchScope.SOURCES);
 		String name = "JavaCore";
 		JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			search(name, TYPE, ALL_OCCURRENCES, scope, resultCollector);
 			if (i==0) {
-				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" occurences for type '"+name+"' in project "+JDT_CORE_PROJECT.getElementName());
+				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" occurences for type '"+name+"' in project "+JDT_CORE_PROJECT.getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cleanCategoryTableCache(true, scope, resultCollector);
 			runGc();
 			startMeasuring();
@@ -480,7 +480,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	/**
 	 * Performance tests for search: Fields occurrences.
 	 */
-	public void testSearchField() throws CoreException {
+	public void testSearchField() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Search field occurences", true); // put in fingerprint
 
 		// Wait for indexing end
@@ -490,15 +490,15 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { JDT_CORE_PROJECT }, IJavaSearchScope.SOURCES);
 		String name = "TYPE";
 		JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			search(name, FIELD, ALL_OCCURRENCES, scope, resultCollector);
 			if (i==0) {
-				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" occurences for field '"+name+"' in project "+JDT_CORE_PROJECT.getElementName());
+				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" occurences for field '"+name+"' in project "+JDT_CORE_PROJECT.getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cleanCategoryTableCache(false, scope, resultCollector);
 			runGc();
 			startMeasuring();
@@ -515,7 +515,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	 * Performance tests for search: Methods occurrences.
 	 * This search do NOT use binding resolution.
 	 */
-	public void testSearchMethod() throws CoreException {
+	public void testSearchMethod() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Search method occurences (no resolution)", false); // do NOT put in fingerprint
 
 		// Wait for indexing end
@@ -525,15 +525,15 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { JDT_CORE_PROJECT }, IJavaSearchScope.SOURCES);
 		String name = "equals";
 		JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			search(name, METHOD, ALL_OCCURRENCES, scope, resultCollector);
 			if (i==0) {
-				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" occurences for method '"+name+"' in project "+JDT_CORE_PROJECT.getElementName());
+				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" occurences for method '"+name+"' in project "+JDT_CORE_PROJECT.getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// clean before test
 			cleanCategoryTableCache(false, scope, resultCollector);
 			runGc();
@@ -553,7 +553,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	 * Performance tests for search: Methods occurrences.
 	 * This search use binding resolution.
 	 */
-	public void testSearchBinaryMethod() throws CoreException {
+	public void testSearchBinaryMethod() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Search method occurences", true); // put in fingerprint
 
 		// Wait for indexing end
@@ -563,15 +563,15 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { JDT_CORE_PROJECT }, IJavaSearchScope.SOURCES);
 		String name = "java.lang.Object.hashCode()";
 		JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			search(name, METHOD, ALL_OCCURRENCES, scope, resultCollector);
 			if (i==0) {
-				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" occurences for method '"+name+"' in project "+JDT_CORE_PROJECT.getElementName());
+				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" occurences for method '"+name+"' in project "+JDT_CORE_PROJECT.getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			// clean before test
 			cleanCategoryTableCache(false, scope, resultCollector);
 			runGc();
@@ -590,7 +590,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	/**
 	 * Performance tests for search: Constructors occurrences.
 	 */
-	public void testSearchConstructor() throws CoreException {
+	public void testSearchConstructor() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Search constructor occurences", false); // do NOT put in fingerprint
 
 		// Wait for indexing end
@@ -600,15 +600,15 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { JDT_CORE_PROJECT }, IJavaSearchScope.SOURCES);
 		String name = "String";
 		JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			search(name, CONSTRUCTOR, ALL_OCCURRENCES, scope, resultCollector);
 			if (i==0) {
-				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" occurences for constructor '"+name+"' in project "+JDT_CORE_PROJECT.getElementName());
+				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" occurences for constructor '"+name+"' in project "+JDT_CORE_PROJECT.getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cleanCategoryTableCache(false, scope, resultCollector);
 			runGc();
 			startMeasuring();
@@ -628,7 +628,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	 * 	valid test to ensure that no regression occurs while searching for package
 	 * 	declarations
 	 */
-	public void _testSearchPackageDeclarations() throws CoreException {
+	public void _testSearchPackageDeclarations() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Search package declarations", false); // do NOT put in fingerprint
 
 		// Wait for indexing end
@@ -638,15 +638,15 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { JDT_CORE_PROJECT }, IJavaSearchScope.SOURCES);
 		String name = "*";
 		JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			search(name, PACKAGE, DECLARATIONS, scope, resultCollector);
 			if (i==0) {
-				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" package declarations in project "+JDT_CORE_PROJECT.getElementName());
+				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" package declarations in project "+JDT_CORE_PROJECT.getElementName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cleanCategoryTableCache(false, scope, resultCollector);
 			runGc();
 			startMeasuring();
@@ -664,7 +664,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	/**
 	 * Performance tests for search: Package Declarations on workspace scope.
 	 */
-	public void testSearchPackageDeclarationsWorkspace() throws CoreException {
+	public void testSearchPackageDeclarationsWorkspace() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		tagAsSummary("Search workspace package declarations", false); // do NOT put in fingerprint
 
 		// Wait for indexing end
@@ -674,19 +674,19 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 		IJavaSearchScope scope = SearchEngine.createWorkspaceScope();
 		String name = "*";
 		JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			search(name, PACKAGE, DECLARATIONS, scope, resultCollector);
 			if (i==0) {
-				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" package declarations in workspace.");
+				System.out.println("	- "+INT_FORMAT.format(resultCollector.count)+" package declarations in workspace."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cleanCategoryTableCache(false, scope, resultCollector);
 			runGc();
 			startMeasuring();
-			for (int j=0; j<10; j++)
+			for (int j=0; j<10; j++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				search(name, PACKAGE, DECLARATIONS, scope, resultCollector);
 			stopMeasuring();
 		}
@@ -703,7 +703,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 	 * to keep a trace in the repository...
 	 * @deprecated
 	 */
-	public void _testGotoPackage() throws CoreException {
+	public void _testGotoPackage() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		// Wait for indexing end
 		waitUntilIndexesReady();
@@ -711,7 +711,7 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 		// Warm up
 		IJavaSearchScope scope = SearchEngine.createWorkspaceScope();
 		String name = "*";
-		final List packageList= new ArrayList();
+		final List packageList= new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		SearchRequestor requestor = new SearchRequestor() {
 			public void acceptSearchMatch(SearchMatch match) throws CoreException {
 				IJavaElement enclosingElement= (IJavaElement) match.getElement();
@@ -723,15 +723,15 @@ public class FullSourceWorkspaceSearchTests extends FullSourceWorkspaceTests imp
 				packageList.add(enclosingElement);
 			}
 		};
-		for (int i=0 ; i<WARMUP_COUNT; i++) {
+		for (int i=0 ; i<WARMUP_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			search(name, PACKAGE, DECLARATIONS, scope, requestor);
 			if (i==0) {
-				System.out.println("	- "+INT_FORMAT.format(packageList.size())+" package declarations in workspace.");
+				System.out.println("	- "+INT_FORMAT.format(packageList.size())+" package declarations in workspace."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 		}
 
 		// Measures
-		for (int i=0; i<MEASURES_COUNT; i++) {
+		for (int i=0; i<MEASURES_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			cleanCategoryTableCache(false, scope, new JavaSearchResultCollector());
 			runGc();
 			startMeasuring();

@@ -123,8 +123,8 @@ public class ScannerTest extends AbstractRegressionTest {
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=43437
 	 */
 	public void test005() {
-		StringBuilder buf = new StringBuilder();
-		buf.append("\"Hello\"");
+		StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buf.append("\"Hello\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		String str = buf.toString();
 		IScanner scanner = ToolFactory.createScanner(true, false, false, false);
 		scanner.setSource(str.toCharArray());
@@ -213,7 +213,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		int counter = 0;
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				counter++;
 			}
 		} catch (InvalidInputException e) {
@@ -232,7 +232,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		int counter = 0;
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				counter++;
 			}
 		} catch (InvalidInputException e) {
@@ -251,7 +251,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		int counter = 0;
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				counter++;
 			}
 		} catch (InvalidInputException e) {
@@ -269,7 +269,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.setSource(source);
 		scanner.resetTo(0, source.length - 1);
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// ignore
 			}
 		} catch (InvalidInputException e) {
@@ -288,7 +288,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.setSource(source);
 		scanner.resetTo(0, source.length - 1);
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// ignore
 			}
 		} catch (InvalidInputException e) {
@@ -308,7 +308,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		int counter = 0;
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				counter++;
 			}
 		} catch (InvalidInputException e) {
@@ -327,7 +327,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		int counter = 0;
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				counter++;
 			}
 		} catch (InvalidInputException e) {
@@ -346,7 +346,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		int counter = 0;
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				counter++;
 			}
 		} catch (InvalidInputException e) {
@@ -365,7 +365,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		int counter = 0;
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				counter++;
 			}
 		} catch (InvalidInputException e) {
@@ -383,7 +383,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.setSource(source);
 		scanner.resetTo(0, source.length - 1);
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// ignore
 			}
 		} catch (InvalidInputException e) {
@@ -402,7 +402,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.setSource(source);
 		scanner.resetTo(0, source.length - 1);
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// ignore
 			}
 		} catch (InvalidInputException e) {
@@ -422,7 +422,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		int counter = 0;
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				counter++;
 			}
 		} catch (InvalidInputException e) {
@@ -441,7 +441,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		int counter = 0;
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				counter++;
 			}
 		} catch (InvalidInputException e) {
@@ -459,7 +459,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.setSource(source);
 		scanner.resetTo(0, source.length - 1);
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			}
 			assertTrue(false);
 		} catch (InvalidInputException e) {
@@ -470,13 +470,13 @@ public class ScannerTest extends AbstractRegressionTest {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=84398
 	 */
-	public void test024() {
+	public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScanner scanner = ToolFactory.createScanner(false, false, true, CompilerOptions.getFirstSupportedJavaVersion());
 		char[] source = "public class X {\n\n}".toCharArray(); //$NON-NLS-1$
 		scanner.setSource(source);
 		int counter = 0;
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				counter++;
 			}
 		} catch (InvalidInputException e) {
@@ -494,7 +494,7 @@ public class ScannerTest extends AbstractRegressionTest {
 
 		counter = 0;
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				counter++;
 			}
 		} catch (InvalidInputException e) {
@@ -514,7 +514,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.setSource("String\r\nwith\r\nmany\r\nmany\r\nline\r\nbreaks".toCharArray());
 
 		try {
-			while(scanner.getNextToken()!=ITerminalSymbols.TokenNameEOF){}
+			while(scanner.getNextToken()!=ITerminalSymbols.TokenNameEOF){} //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		} catch (InvalidInputException e) {
 			assertTrue(false);
 		}
@@ -534,7 +534,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.setSource(source);
 		scanner.resetTo(0, source.length - 1);
 		try {
-			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) {
+			while (scanner.getNextToken() != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			}
 			assertTrue(false);
 		} catch (InvalidInputException e) {
@@ -542,7 +542,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=90414
-	public void test027() {
+	public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] source = ("class Test {\n" +
 				"  char  C = \"\\u005Cn\";\n" +
 				"}").toCharArray();
@@ -551,14 +551,14 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			TerminalToken token;
-			StringBuilder buffer = new StringBuilder();
-			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					switch(token) {
 						case TerminalToken.TokenNameEOF :
 							break;
 						default :
-							buffer.append(scanner.getCurrentTokenSource());
+							buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
@@ -571,7 +571,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=90414
-	public void test028() {
+	public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] source = ("class Test {\n" +
 				"  char  C = \'\\u005Cn\';\n" +
 				"}").toCharArray();
@@ -580,17 +580,17 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			TerminalToken token;
-			StringBuilder buffer = new StringBuilder();
-			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					switch(token) {
 						case TerminalToken.TokenNameStringLiteral :
-							buffer.append(new String(scanner.getCurrentTokenSourceString()));
+							buffer.append(new String(scanner.getCurrentTokenSourceString())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case TerminalToken.TokenNameEOF :
 							break;
 						default :
-							buffer.append(scanner.getCurrentTokenSource());
+							buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
@@ -603,7 +603,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=90414
-	public void test029() {
+	public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] source = ("class Test {\n" +
 				"  char  C = \"\\n\";\n" +
 				"}").toCharArray();
@@ -612,14 +612,14 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			TerminalToken token;
-			StringBuilder buffer = new StringBuilder();
-			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					switch(token) {
 						case TerminalToken.TokenNameEOF :
 							break;
 						default :
-							buffer.append(scanner.getCurrentTokenSource());
+							buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
@@ -716,7 +716,7 @@ public class ScannerTest extends AbstractRegressionTest {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=90414
-	public void test035() {
+	public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/*
 		 * Corresponding source:
 		 *
@@ -762,7 +762,7 @@ public class ScannerTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=106403
-	public void test037() {
+	public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IScanner s = ToolFactory.createScanner(true, true, true, CompilerOptions.getFirstSupportedJavaVersion(), CompilerOptions.getFirstSupportedJavaVersion());
 			char[] source = { ';', ' ' };
@@ -785,7 +785,7 @@ public class ScannerTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=106403
-	public void test038() {
+	public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IScanner s = ToolFactory.createScanner(true, true, true, CompilerOptions.getFirstSupportedJavaVersion(), CompilerOptions.getFirstSupportedJavaVersion());
 			char[] source = { ';', ' ' };
@@ -842,7 +842,7 @@ public class ScannerTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=106403
-	public void test041() {
+	public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IScanner s = ToolFactory.createScanner(true, true, true, CompilerOptions.getFirstSupportedJavaVersion(), CompilerOptions.getFirstSupportedJavaVersion());
 			char[] source = "\\u003B\\u0020".toCharArray();
@@ -862,20 +862,20 @@ public class ScannerTest extends AbstractRegressionTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=112223
-	public void test042() {
+	public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScanner scanner = ToolFactory.createScanner(true, true, true, CompilerOptions.getFirstSupportedJavaVersion(), CompilerOptions.getFirstSupportedJavaVersion());
 		final char[] source = "\"a\\u000D\"".toCharArray();
 		scanner.setSource(source);
-		final StringBuilder buffer = new StringBuilder();
+		final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					switch(token) {
 						case ITerminalSymbols.TokenNameEOF :
 							break;
 						default :
-							buffer.append(scanner.getCurrentTokenSource());
+							buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
@@ -884,27 +884,27 @@ public class ScannerTest extends AbstractRegressionTest {
 			}
 			assertTrue("Should have failed", false);
 		} catch (InvalidInputException e) {
-			buffer.append(scanner.getRawTokenSource());
+			buffer.append(scanner.getRawTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			assertEquals("Unexpected contents", "\"a\\u000D\"", String.valueOf(buffer));
 			assertEquals("Wrong exception", Scanner.INVALID_CHAR_IN_STRING, e.getMessage());
 		}
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=112223
-	public void test043() {
+	public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScanner scanner = ToolFactory.createScanner(true, true, true, CompilerOptions.getFirstSupportedJavaVersion(), CompilerOptions.getFirstSupportedJavaVersion());
 		final char[] source = "\"\\u004Ca\\u000D\"".toCharArray();
 		scanner.setSource(source);
-		final StringBuilder buffer = new StringBuilder();
+		final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					switch(token) {
 						case ITerminalSymbols.TokenNameEOF :
 							break;
 						default :
-							buffer.append(scanner.getCurrentTokenSource());
+							buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
@@ -913,26 +913,26 @@ public class ScannerTest extends AbstractRegressionTest {
 			}
 			assertTrue("Should have failed", false);
 		} catch (InvalidInputException e) {
-			buffer.append(scanner.getRawTokenSource());
+			buffer.append(scanner.getRawTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			assertEquals("Unexpected contents", "\"\\u004Ca\\u000D\"", String.valueOf(buffer));
 			assertEquals("Wrong exception", Scanner.INVALID_CHAR_IN_STRING, e.getMessage());
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=112223
-	public void test044() {
+	public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScanner scanner = ToolFactory.createScanner(true, true, true, CompilerOptions.getFirstSupportedJavaVersion(), CompilerOptions.getFirstSupportedJavaVersion());
 		final char[] source = "\"\\u004Ca\\u000D\\u0022".toCharArray();
 		scanner.setSource(source);
-		final StringBuilder buffer = new StringBuilder();
+		final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					switch(token) {
 						case ITerminalSymbols.TokenNameEOF :
 							break;
 						default :
-							buffer.append(scanner.getCurrentTokenSource());
+							buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
@@ -941,13 +941,13 @@ public class ScannerTest extends AbstractRegressionTest {
 			}
 			assertTrue("Should have failed", false);
 		} catch (InvalidInputException e) {
-			buffer.append(scanner.getRawTokenSource());
+			buffer.append(scanner.getRawTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			assertEquals("Unexpected contents", "\"\\u004Ca\\u000D\\u0022", String.valueOf(buffer));
 			assertEquals("Wrong exception", Scanner.INVALID_CHAR_IN_STRING, e.getMessage());
 		}
 	}
 
-	public void test045() {
+	public void test045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		/*
 		 * Corresponding source:
 		 *
@@ -1111,7 +1111,7 @@ public class ScannerTest extends AbstractRegressionTest {
 				"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=264950
-	public void test046() {
+	public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScanner scanner = ToolFactory.createScanner(
 				true,
 				true,
@@ -1130,7 +1130,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=294529
-	public void test047() {
+	public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScanner scanner = ToolFactory.createScanner(
 				true,
 				true,
@@ -1167,7 +1167,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=294529
-	public void test049() {
+	public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScanner scanner = ToolFactory.createScanner(
 				true,
 				true,
@@ -1261,7 +1261,7 @@ public class ScannerTest extends AbstractRegressionTest {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=340513
 	 */
-	public void test055() {
+	public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScanner scanner = ToolFactory.createScanner(false, false, false, CompilerOptions.getFirstSupportedJavaVersion(), CompilerOptions.getFirstSupportedJavaVersion());
 		char[] source =
 				("class X {\n" +
@@ -1274,7 +1274,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertFalse("found error token", token == ITerminalSymbols.TokenNameERROR);
 			}
 		} catch (InvalidInputException e) {
@@ -1285,7 +1285,7 @@ public class ScannerTest extends AbstractRegressionTest {
 	/*
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=340513
 	 */
-	public void test057() {
+	public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScanner scanner = ToolFactory.createScanner(false, false, false, CompilerOptions.getFirstSupportedJavaVersion(), CompilerOptions.getFirstSupportedJavaVersion());
 		char[] source =
 				("class X {\n" +
@@ -1298,7 +1298,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				assertFalse("found error token", token == ITerminalSymbols.TokenNameERROR);
 			}
 		} catch (InvalidInputException e) {
@@ -1306,7 +1306,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=352014
-	public void test058() {
+	public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"public class X {\n" +
 				"	void foo() {\n" +
@@ -1357,7 +1357,7 @@ public class ScannerTest extends AbstractRegressionTest {
 			"----------\n");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=387146
-	@SuppressWarnings("deprecation") // concerns ITerminalSymbols.TokenNameIdentifier
+	@SuppressWarnings("deprecation") // concerns ITerminalSymbols.TokenNameIdentifier //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void test061() {
 		IScanner scanner = ToolFactory.createScanner(
 				true,
@@ -1421,7 +1421,7 @@ public class ScannerTest extends AbstractRegressionTest {
 	}
 
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=443854
-	public void test064() {
+	public void test064() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"public enum X {\n" +
 				"	Hello\\u205fworld;\n" +
@@ -1510,7 +1510,7 @@ public class ScannerTest extends AbstractRegressionTest {
 						source
 				});
 	}
-	public void testBug531716_001_since_13() {
+	public void testBug531716_001_since_13() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] source = ("class X {\n" +
 				"  String  s = \"\"\"This is the new String\"\"\";\n" +
 				"}").toCharArray();
@@ -1519,12 +1519,12 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			TerminalToken token;
-			StringBuilder buffer = new StringBuilder();
-			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					switch(token) {
 						case TerminalToken.TokenNameTextBlock :
-							buffer.append( new String(scanner.getCurrentTextBlock()));
+							buffer.append( new String(scanner.getCurrentTextBlock())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case TerminalToken.TokenNameStringLiteral :
 							break;
@@ -1542,7 +1542,7 @@ public class ScannerTest extends AbstractRegressionTest {
 			assertTrue(false);
 		}
 	}
-	public void testBug531716_001_since_13_1() {
+	public void testBug531716_001_since_13_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] source = ("class X {\n" +
 				"  String  s = \"\"\"\nThis is the new String\"\"\";\n" +
 				"}").toCharArray();
@@ -1552,12 +1552,12 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			TerminalToken token;
-			StringBuilder buffer = new StringBuilder();
-			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					switch(token) {
 						case TerminalToken.TokenNameTextBlock :
-							buffer.append( new String(scanner.getCurrentTextBlock()));
+							buffer.append( new String(scanner.getCurrentTextBlock())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case TerminalToken.TokenNameStringLiteral :
 							break;
@@ -1618,7 +1618,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void testIssue2338_001_since_14() {
+	public void testIssue2338_001_since_14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] source = ("class X {\n" +
 				"  String  s = \"\"\"\nThis is the new\\\n String\"\"\";\n" +
 				"}").toCharArray();
@@ -1629,12 +1629,12 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			TerminalToken token;
-			StringBuilder buffer = new StringBuilder();
-			while ((token = scanner.getNextToken()) != TokenNameEOF) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while ((token = scanner.getNextToken()) != TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					switch(token) {
 						case TokenNameTextBlock :
-							buffer.append( new String(scanner.getCurrentTextBlock()));
+							buffer.append( new String(scanner.getCurrentTextBlock())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case TokenNameStringLiteral :
 							break;
@@ -1654,7 +1654,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void testIssue3666_001_since_14() {
+	public void testIssue3666_001_since_14() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char[] source = ("class X {\n" +
 				"  String  s = \"\"\"\nThis is the new String\\\n\"\"\";\n" +
 				"}").toCharArray();
@@ -1665,12 +1665,12 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			TerminalToken token;
-			StringBuilder buffer = new StringBuilder();
-			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) {
+			StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			while ((token = scanner.getNextToken()) != TerminalToken.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					switch(token) {
 						case TerminalToken.TokenNameTextBlock :
-							buffer.append( new String(scanner.getCurrentTextBlock()));
+							buffer.append( new String(scanner.getCurrentTextBlock())); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 						case TerminalToken.TokenNameStringLiteral :
 							break;
@@ -1703,7 +1703,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testPermits() {
 		char[] source = ("sealed class X permits Y { }").toCharArray();
 		IScanner scanner = ToolFactory.createScanner(false, true, false, "17", "17", false);
@@ -1711,7 +1711,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (token) {
 					case ITerminalSymbols.TokenNameclass:
 					case ITerminalSymbols.TokenNameWHITESPACE:
@@ -1721,7 +1721,7 @@ public class ScannerTest extends AbstractRegressionTest {
 					case ITerminalSymbols.TokenNameRestrictedIdentifierpermits:
 						return; // success
 					default:
-						fail("Unexpected token "+token);
+						fail("Unexpected token "+token); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			fail("TokenNameRestrictedIdentifierpermits was not detected");
@@ -1757,7 +1757,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testRestrictedIdentifierYield() {
 		char[] source = ("class X {\n" +
 				"	int m(int i) {\n" +
@@ -1769,7 +1769,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (token) {
 					case ITerminalSymbols.TokenNameclass:
 					case ITerminalSymbols.TokenNameWHITESPACE:
@@ -1787,7 +1787,7 @@ public class ScannerTest extends AbstractRegressionTest {
 					case ITerminalSymbols.TokenNameRestrictedIdentifierYield:
 						return; // success
 					default:
-						fail("Unexpected token "+token);
+						fail("Unexpected token "+token); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			fail("TokenNameRestrictedIdentifierYield was not detected");
@@ -1796,7 +1796,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testYieldNOK() { // insufficient context
 		String source = "class X {\n" +
 				"	int m(int i) {\n" +
@@ -1808,7 +1808,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(source.indexOf("yield")-1, source.length() - 1); // start directly at "yield"
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (token) {
 					case ITerminalSymbols.TokenNameIdentifier:
 					case ITerminalSymbols.TokenNameWHITESPACE:
@@ -1817,7 +1817,7 @@ public class ScannerTest extends AbstractRegressionTest {
 					case ITerminalSymbols.TokenNameSEMICOLON: // past the word 'yield'
 						return; // success
 					default:
-						fail("Unexpected token "+token);
+						fail("Unexpected token "+token); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			fail("TokenNameSEMICOLON was not detected");
@@ -1840,7 +1840,7 @@ public class ScannerTest extends AbstractRegressionTest {
 	}
 
 	// here the internal scanner could theoretically produce TokenNameAt308, which, however, doesn't happen without an active parser
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testAt308() {
 		char[] source = ("class X<@Marker T> { }").toCharArray();
 		IScanner scanner = ToolFactory.createScanner(false, true, false, "17", "17", false);
@@ -1848,7 +1848,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length - 1);
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (token) {
 					case ITerminalSymbols.TokenNameclass:
 					case ITerminalSymbols.TokenNameWHITESPACE:
@@ -1858,7 +1858,7 @@ public class ScannerTest extends AbstractRegressionTest {
 					case ITerminalSymbols.TokenNameAT:
 						return; // success
 					default:
-						fail("Unexpected token "+token);
+						fail("Unexpected token "+token); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			fail("TokenNameAT was not detected");
@@ -1868,7 +1868,7 @@ public class ScannerTest extends AbstractRegressionTest {
 	}
 
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testModule() { // insufficient context, all module words are identifiers
 		String source =
 				"open module m1 {\n" +
@@ -1881,7 +1881,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(0, source.length() - 1);
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (token) {
 					case ITerminalSymbols.TokenNameIdentifier:
 					case ITerminalSymbols.TokenNameWHITESPACE:
@@ -1891,14 +1891,14 @@ public class ScannerTest extends AbstractRegressionTest {
 					case ITerminalSymbols.TokenNameSEMICOLON:
 						break;
 					default:
-						fail("Unexpected token "+token);
+						fail("Unexpected token "+token); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 		} catch (InvalidInputException e) {
 			assertTrue(false);
 		}
 	}
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public void testWhenKO() {
 		String source = ("public void foo(Object obj) {\n switch(obj) {\n case String s when s.length() > 0 -> {}\n}\n}");
 		IScanner scanner = ToolFactory.createScanner(false, true, false, "19", "19", false);
@@ -1906,7 +1906,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.resetTo(source.indexOf("when")-1, source.length() - 1); // start directly at "when"
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				switch (token) {
 					case ITerminalSymbols.TokenNameWHITESPACE:
 						break;
@@ -1914,7 +1914,7 @@ public class ScannerTest extends AbstractRegressionTest {
 						return; // success
 					case ITerminalSymbols.TokenNameRestrictedIdentifierWhen:
 					default:
-						fail("Unexpected token "+token);
+						fail("Unexpected token "+token); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			}
 			fail("TokenNameRestrictedIdentifierYield was not detected");
@@ -1923,7 +1923,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void testWhenAsIdentifier() {
+	public void testWhenAsIdentifier() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source =
 				"public void when(Object when) {\n" +
 				"	Predicate<Object> condition = o -> when(o);\n" +
@@ -1934,7 +1934,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		scanner.setSource(source.toCharArray());
 		try {
 			int token;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (token == ITerminalSymbols.TokenNameRestrictedIdentifierWhen) {
 					fail("TokenNameRestrictedIdentifierWhen must not be detected");
 				}
@@ -1944,7 +1944,7 @@ public class ScannerTest extends AbstractRegressionTest {
 		}
 	}
 
-	public void testTerminalTokensAPIs() {
+	public void testTerminalTokensAPIs() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		char [][] ids = { "when".toCharArray(), "record".toCharArray(), "sealed".toCharArray(),
 				"permits".toCharArray(), "yield".toCharArray()};
 		TerminalToken [] reskw = { TerminalToken.TokenNameRestrictedIdentifierWhen,
@@ -1953,7 +1953,7 @@ public class ScannerTest extends AbstractRegressionTest {
 							TerminalToken.TokenNameRestrictedIdentifierpermits,
 							TerminalToken.TokenNameRestrictedIdentifierYield,};
 		int i = -1;
-		for (char [] id : ids) {
+		for (char [] id : ids) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			i++;
 			TerminalToken t = TerminalToken.getRestrictedKeyword(id);
 			assertTrue(t != TerminalToken.TokenNameNotAToken);
@@ -1965,16 +1965,16 @@ public class ScannerTest extends AbstractRegressionTest {
 	}
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4674
-	public void testIssue4674() {
+	public void testIssue4674() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IScanner scanner = ToolFactory.createScanner(true, true, true, "23", "23");
 		final char[] source = "/// @return a string".toCharArray();
 		scanner.setSource(source);
-		final StringBuilder buffer = new StringBuilder();
+		final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		try {
 			int token;
 			boolean foundMarkdown = false;
 			boolean foundOther = false;
-			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) {
+			while ((token = scanner.getNextToken()) != ITerminalSymbols.TokenNameEOF) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					switch(token) {
 						case ITerminalSymbols.TokenNameCOMMENT_MARKDOWN :
@@ -1982,7 +1982,7 @@ public class ScannerTest extends AbstractRegressionTest {
 							break;
 						default :
 							foundOther = true;
-							buffer.append(scanner.getCurrentTokenSource());
+							buffer.append(scanner.getCurrentTokenSource()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 							break;
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
@@ -1996,7 +1996,7 @@ public class ScannerTest extends AbstractRegressionTest {
 			assertTrue("Should not have InvalidInputException", false);
 		}
 	}
-	public void testIssue4001_1() {
+	public void testIssue4001_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2030,7 +2030,7 @@ public class ScannerTest extends AbstractRegressionTest {
 			"Method not found.\n" +
 			"Field not found.");
 	}
-	public void testIssue4001_2() {
+	public void testIssue4001_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2070,7 +2070,7 @@ public class ScannerTest extends AbstractRegressionTest {
 			"Hello\n" +
 			"Field found: fieldWithUnicodeChar");
 	}
-	public void testIssue4001_3() {
+	public void testIssue4001_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",

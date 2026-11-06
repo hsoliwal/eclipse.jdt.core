@@ -29,7 +29,7 @@ public SelectionParserTest9(String testName) {
 	super(testName);
 }
 
-public void test510339_001_since_9() throws JavaModelException {
+public void test510339_001_since_9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "module my.mod {\n"
 			+ "  exports pack1;\n"
 			+ "}\n";
@@ -37,11 +37,11 @@ public void test510339_001_since_9() throws JavaModelException {
 
 	String selection = "pack1";
 	String selectKey = "<SelectOnPackageVisibility:";
-	String expectedCompletionNodeToString = selectKey + selection + ">";
+	String expectedCompletionNodeToString = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String completionIdentifier = "pack1";
 	String expectedUnitDisplayString =
-			"module my.mod {\n"
+			"module my.mod {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "  exports " + expectedCompletionNodeToString +";\n"
 			+ "}\n";
 	String expectedReplacedSource = "pack1";
@@ -60,7 +60,7 @@ public void test510339_001_since_9() throws JavaModelException {
 		expectedReplacedSource,
 		testName);
 }
-public void test510339_002_since_9() throws JavaModelException {
+public void test510339_002_since_9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "module my.mod {\n"
 			+ "  exports pack1 to second;\n"
 			+ "}\n";
@@ -68,11 +68,11 @@ public void test510339_002_since_9() throws JavaModelException {
 
 	String selection = "second";
 
-	String expectedCompletionNodeToString = "<SelectOnModuleReference:" + selection + ">";
+	String expectedCompletionNodeToString = "<SelectOnModuleReference:" + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String completionIdentifier = "second";
 	String expectedUnitDisplayString =
-			"module my.mod {\n"
+			"module my.mod {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "  exports pack1 to "+ expectedCompletionNodeToString + ";\n"
 			+ "}\n";
 	String expectedReplacedSource = "second";
@@ -91,7 +91,7 @@ public void test510339_002_since_9() throws JavaModelException {
 		expectedReplacedSource,
 		testName);
 }
-public void test510339_003_since_9() throws JavaModelException {
+public void test510339_003_since_9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "module my.mod {\n"
 			+ "  opens pack1;\n"
 			+ "}\n";
@@ -99,11 +99,11 @@ public void test510339_003_since_9() throws JavaModelException {
 
 	String selection = "pack1";
 	String selectKey = "<SelectOnPackageVisibility:";
-	String expectedCompletionNodeToString = selectKey + selection + ">";
+	String expectedCompletionNodeToString = selectKey + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String completionIdentifier = "pack1";
 	String expectedUnitDisplayString =
-			"module my.mod {\n"
+			"module my.mod {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "  opens " + expectedCompletionNodeToString +";\n"
 			+ "}\n";
 	String expectedReplacedSource = "pack1";
@@ -122,7 +122,7 @@ public void test510339_003_since_9() throws JavaModelException {
 		expectedReplacedSource,
 		testName);
 }
-public void test510339_004_since_9() throws JavaModelException {
+public void test510339_004_since_9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "module my.mod {\n"
 			+ "  opens pack1 to second;\n"
 			+ "}\n";
@@ -130,11 +130,11 @@ public void test510339_004_since_9() throws JavaModelException {
 
 	String selection = "second";
 
-	String expectedCompletionNodeToString = "<SelectOnModuleReference:" + selection + ">";
+	String expectedCompletionNodeToString = "<SelectOnModuleReference:" + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String completionIdentifier = "second";
 	String expectedUnitDisplayString =
-			"module my.mod {\n"
+			"module my.mod {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "  opens pack1 to "+ expectedCompletionNodeToString + ";\n"
 			+ "}\n";
 	String expectedReplacedSource = "second";
@@ -153,7 +153,7 @@ public void test510339_004_since_9() throws JavaModelException {
 		expectedReplacedSource,
 		testName);
 }
-public void test510339_005_since_9() throws JavaModelException {
+public void test510339_005_since_9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "module my.mod {\n"
 			+ "  requires second;\n"
 			+ "}\n";
@@ -161,11 +161,11 @@ public void test510339_005_since_9() throws JavaModelException {
 
 	String selection = "second";
 
-	String expectedCompletionNodeToString = "<SelectOnModuleReference:" + selection + ">";
+	String expectedCompletionNodeToString = "<SelectOnModuleReference:" + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String completionIdentifier = "second";
 	String expectedUnitDisplayString =
-			"module my.mod {\n"
+			"module my.mod {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "  requires "+ expectedCompletionNodeToString + ";\n"
 			+ "}\n";
 	String expectedReplacedSource = "second";
@@ -184,7 +184,7 @@ public void test510339_005_since_9() throws JavaModelException {
 		expectedReplacedSource,
 		testName);
 }
-public void test510339_006_since_9() throws JavaModelException {
+public void test510339_006_since_9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "module my.mod {\n"
 			+ "  uses Z;\n"
 			+ "}\n";
@@ -192,11 +192,11 @@ public void test510339_006_since_9() throws JavaModelException {
 
 	String selection = "Z";
 
-	String expectedCompletionNodeToString = "<SelectOnType:" + selection + ">";
+	String expectedCompletionNodeToString = "<SelectOnType:" + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String completionIdentifier = "Z";
 	String expectedUnitDisplayString =
-			"module my.mod {\n"
+			"module my.mod {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "  uses "+ expectedCompletionNodeToString + ";\n"
 			+ "}\n";
 	String expectedReplacedSource = "Z";
@@ -215,7 +215,7 @@ public void test510339_006_since_9() throws JavaModelException {
 		expectedReplacedSource,
 		testName);
 }
-public void test510339_007_since_9() throws JavaModelException {
+public void test510339_007_since_9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "module my.mod {\n"
 			+ "  uses pack1.Z;\n"
 			+ "}\n";
@@ -245,7 +245,7 @@ public void test510339_007_since_9() throws JavaModelException {
 		expectedReplacedSource,
 		testName);
 }
-public void test510339_008_since_9() throws JavaModelException {
+public void test510339_008_since_9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "module my.mod {\n"
 			+ "  provides Y with Z;\n"
 			+ "}\n";
@@ -253,11 +253,11 @@ public void test510339_008_since_9() throws JavaModelException {
 
 	String selection = "Y";
 
-	String expectedCompletionNodeToString = "<SelectOnType:" + selection + ">";
+	String expectedCompletionNodeToString = "<SelectOnType:" + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String completionIdentifier = "Y";
 	String expectedUnitDisplayString =
-			"module my.mod {\n"
+			"module my.mod {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "  provides "+ expectedCompletionNodeToString + " with Z;\n"
 			+ "}\n";
 	String expectedReplacedSource = "Y";
@@ -276,7 +276,7 @@ public void test510339_008_since_9() throws JavaModelException {
 		expectedReplacedSource,
 		testName);
 }
-public void test510339_009_since_9() throws JavaModelException {
+public void test510339_009_since_9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "module my.mod {\n"
 			+ "  provides pack1.Y with Z;\n"
 			+ "}\n";
@@ -307,7 +307,7 @@ public void test510339_009_since_9() throws JavaModelException {
 		expectedReplacedSource,
 		testName);
 }
-public void test510339_010_since_9() throws JavaModelException {
+public void test510339_010_since_9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "module my.mod {\n"
 			+ "  provides Y with Z;\n"
 			+ "}\n";
@@ -315,11 +315,11 @@ public void test510339_010_since_9() throws JavaModelException {
 
 	String selection = "Z";
 
-	String expectedCompletionNodeToString = "<SelectOnType:" + selection + ">";
+	String expectedCompletionNodeToString = "<SelectOnType:" + selection + ">"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	String completionIdentifier = "Z";
 	String expectedUnitDisplayString =
-			"module my.mod {\n"
+			"module my.mod {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "  provides Y with "+ expectedCompletionNodeToString + ";\n"
 			+ "}\n";
 	String expectedReplacedSource = "Z";
@@ -338,7 +338,7 @@ public void test510339_010_since_9() throws JavaModelException {
 		expectedReplacedSource,
 		testName);
 }
-public void test510339_011_since_9() throws JavaModelException {
+public void test510339_011_since_9() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String string =  "module my.mod {\n"
 			+ "  provides Y with pack1.Z;\n"
 			+ "}\n";
@@ -350,7 +350,7 @@ public void test510339_011_since_9() throws JavaModelException {
 
 	String completionIdentifier = "Z";
 	String expectedUnitDisplayString =
-			"module my.mod {\n"
+			"module my.mod {\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "  provides Y with "+ expectedCompletionNodeToString + ";\n"
 			+ "}\n";
 	String expectedReplacedSource = "pack1.Z";

@@ -76,22 +76,22 @@ private static Class testClass() {
 /*
  * Verify VM arguments when full tests are run (should be -Xmx512M)
  */
-private static void verifyVmArguments() {
+private static void verifyVmArguments() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringBuilder buffer = null;
 	NumberFormat floatFormat = NumberFormat.getNumberInstance();
 	floatFormat.setMaximumFractionDigits(1);
 	long maxMem = Runtime.getRuntime().maxMemory(); // -Xmx
 	boolean tooMuch = false;
 	if (maxMem < (MAX_MEM*0.98) || (tooMuch = maxMem > (MAX_MEM*1.02))) {
-		if (buffer == null) buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n");
-		buffer.append("	- ");
-		buffer.append(tooMuch ? "too much " : "not enough ");
-		buffer.append("max memory allocated (");
-		buffer.append(floatFormat.format(((maxMem/1024.0)/1024.0)));
-		buffer.append("M)!\n");
-		buffer.append("		=> -Xmx");
-		buffer.append(floatFormat.format(((MAX_MEM/1024.0)/1024.0)));
-		buffer.append("M should have been specified.\n");
+		if (buffer == null) buffer = new StringBuilder("WARNING: Performance tests results may be invalid !!!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		buffer.append("	- "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(tooMuch ? "too much " : "not enough "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("max memory allocated ("); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(floatFormat.format(((maxMem/1024.0)/1024.0))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("M)!\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("		=> -Xmx"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(floatFormat.format(((MAX_MEM/1024.0)/1024.0))); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("M should have been specified.\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }
 
@@ -208,7 +208,7 @@ protected void cleanCategoryTableCache(boolean type, JavaSearchResultCollector r
 		search("Foo", TYPE, DECLARATIONS, resultCollector);
 	}
 	if (DEBUG) {
-		System.out.println("Time to clean category table cache [ms]: " + (System.nanoTime() - startNanos) / 1_000_000L);
+		System.out.println("Time to clean category table cache [ms]: " + (System.nanoTime() - startNanos) / 1_000_000L); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 
@@ -221,7 +221,7 @@ protected void cleanCategoryTableCache(boolean type, JavaSearchResultCollector r
  * <li>references using java element pattern</li>
  * </ul>
  */
-public void testSearchStringTypeDeclarations() throws CoreException {
+public void testSearchStringTypeDeclarations() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -231,10 +231,10 @@ public void testSearchStringTypeDeclarations() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(name, TYPE, DECLARATIONS, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for type '"+name+"' in workspace.");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for type '"+name+"' in workspace."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		cleanCategoryTableCache(true, resultCollector);
 		runGc();
 		startMeasuring();
@@ -246,7 +246,7 @@ public void testSearchStringTypeDeclarations() throws CoreException {
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchStringTypeReferences() throws CoreException {
+public void testSearchStringTypeReferences() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -256,10 +256,10 @@ public void testSearchStringTypeReferences() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(name, TYPE, REFERENCES, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for type '"+name+"' in workspace.");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for type '"+name+"' in workspace."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		cleanCategoryTableCache(true, resultCollector);
 		runGc();
 		startMeasuring();
@@ -271,7 +271,7 @@ public void testSearchStringTypeReferences() throws CoreException {
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchJavaElementTypeDeclarations() throws CoreException {
+public void testSearchJavaElementTypeDeclarations() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -285,10 +285,10 @@ public void testSearchJavaElementTypeDeclarations() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(type, DECLARATIONS, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for type '"+type.getElementName()+"' in workspace.");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for type '"+type.getElementName()+"' in workspace."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		cleanCategoryTableCache(true, resultCollector);
 		runGc();
 		startMeasuring();
@@ -300,7 +300,7 @@ public void testSearchJavaElementTypeDeclarations() throws CoreException {
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchJavaElementTypeReferences() throws CoreException {
+public void testSearchJavaElementTypeReferences() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -314,10 +314,10 @@ public void testSearchJavaElementTypeReferences() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(type, REFERENCES, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for type '"+type.getElementName()+"' in workspace.");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for type '"+type.getElementName()+"' in workspace."); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		cleanCategoryTableCache(true, resultCollector);
 		runGc();
 		startMeasuring();
@@ -339,7 +339,7 @@ public void testSearchJavaElementTypeReferences() throws CoreException {
  * <li>references using java element pattern</li>
  * </ul>
  */
-public void testSearchStringFieldDeclarations() throws CoreException {
+public void testSearchStringFieldDeclarations() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -349,10 +349,10 @@ public void testSearchStringFieldDeclarations() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(name, FIELD, DECLARATIONS, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for field '"+name+"' in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for field '"+name+"' in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();
@@ -367,7 +367,7 @@ public void testSearchStringFieldDeclarations() throws CoreException {
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchStringFieldReferences() throws CoreException {
+public void testSearchStringFieldReferences() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -377,10 +377,10 @@ public void testSearchStringFieldReferences() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(name, FIELD, REFERENCES, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for field '"+name+"' in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for field '"+name+"' in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();
@@ -395,7 +395,7 @@ public void testSearchStringFieldReferences() throws CoreException {
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchJavaElementFieldDeclarations() throws CoreException {
+public void testSearchJavaElementFieldDeclarations() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -410,10 +410,10 @@ public void testSearchJavaElementFieldDeclarations() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(field, DECLARATIONS, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for field '"+field.getElementName()+"' in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for field '"+field.getElementName()+"' in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();
@@ -428,7 +428,7 @@ public void testSearchJavaElementFieldDeclarations() throws CoreException {
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchJavaElementFieldReferences() throws CoreException {
+public void testSearchJavaElementFieldReferences() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -443,10 +443,10 @@ public void testSearchJavaElementFieldReferences() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(field, REFERENCES, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for field '"+field.getElementName()+"' in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for field '"+field.getElementName()+"' in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();
@@ -471,7 +471,7 @@ public void testSearchJavaElementFieldReferences() throws CoreException {
  * <li>references using java element pattern</li>
  * </ul>
  */
-public void testSearchStringMethodDeclarations() throws CoreException {
+public void testSearchStringMethodDeclarations() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -481,10 +481,10 @@ public void testSearchStringMethodDeclarations() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(name, METHOD, DECLARATIONS, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for method '"+name+"' in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for method '"+name+"' in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();
@@ -499,7 +499,7 @@ public void testSearchStringMethodDeclarations() throws CoreException {
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchStringMethodReferences() throws CoreException {
+public void testSearchStringMethodReferences() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -509,10 +509,10 @@ public void testSearchStringMethodReferences() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(name, METHOD, REFERENCES, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for method '"+name+"' in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for method '"+name+"' in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();
@@ -527,7 +527,7 @@ public void testSearchStringMethodReferences() throws CoreException {
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchJavaElementMethodDeclarations() throws CoreException {
+public void testSearchJavaElementMethodDeclarations() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -542,10 +542,10 @@ public void testSearchJavaElementMethodDeclarations() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(method, DECLARATIONS, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for method '"+method.getElementName()+"' in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for method '"+method.getElementName()+"' in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();
@@ -560,7 +560,7 @@ public void testSearchJavaElementMethodDeclarations() throws CoreException {
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchJavaElementMethodReferences() throws CoreException {
+public void testSearchJavaElementMethodReferences() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -575,10 +575,10 @@ public void testSearchJavaElementMethodReferences() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(method, REFERENCES, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for method '"+method.getElementName()+"' in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for method '"+method.getElementName()+"' in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();
@@ -603,7 +603,7 @@ public void testSearchJavaElementMethodReferences() throws CoreException {
  * <li>references using java element pattern</li>
  * </ul>
  */
-public void testSearchStringConstructorDeclarations() throws CoreException {
+public void testSearchStringConstructorDeclarations() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -613,10 +613,10 @@ public void testSearchStringConstructorDeclarations() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(name, CONSTRUCTOR, DECLARATIONS, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for default constructor in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for default constructor in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();
@@ -631,7 +631,7 @@ public void testSearchStringConstructorDeclarations() throws CoreException {
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchStringConstructorReferences() throws CoreException {
+public void testSearchStringConstructorReferences() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -641,10 +641,10 @@ public void testSearchStringConstructorReferences() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(name, CONSTRUCTOR, REFERENCES, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for default constructor in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for default constructor in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();
@@ -659,7 +659,7 @@ public void testSearchStringConstructorReferences() throws CoreException {
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchJavaElementConstructorDeclarations() throws CoreException {
+public void testSearchJavaElementConstructorDeclarations() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -674,10 +674,10 @@ public void testSearchJavaElementConstructorDeclarations() throws CoreException 
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(constructor, DECLARATIONS, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for default constructor in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" declarations for default constructor in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();
@@ -692,7 +692,7 @@ public void testSearchJavaElementConstructorDeclarations() throws CoreException 
 	commitMeasurements();
 	assertPerformance();
 }
-public void testSearchJavaElementConstructorReferences() throws CoreException {
+public void testSearchJavaElementConstructorReferences() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	// Wait for indexing end
 	waitUntilIndexesReady();
@@ -707,10 +707,10 @@ public void testSearchJavaElementConstructorReferences() throws CoreException {
 	JavaSearchResultCollector resultCollector = new JavaSearchResultCollector();
 	search(constructor, REFERENCES, resultCollector);
 	NumberFormat intFormat = NumberFormat.getIntegerInstance();
-	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for default constructor in workspace");
+	System.out.println("	- "+intFormat.format(resultCollector.count)+" references for default constructor in workspace"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 
 	// Measures
-	for (int i=0; i<ITERATIONS_COUNT; i++) {
+	for (int i=0; i<ITERATIONS_COUNT; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		// clean before test
 		cleanCategoryTableCache(false, resultCollector);
 		runGc();

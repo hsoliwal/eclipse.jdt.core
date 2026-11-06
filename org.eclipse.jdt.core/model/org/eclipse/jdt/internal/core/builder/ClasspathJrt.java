@@ -57,7 +57,7 @@ protected ClasspathJrt(String zipFilename) {
 	try {
 		system = JRTUtil.getJrtSystem(new File(zipFilename), null);
 	} catch (IOException e) {
-		Util.log(e, "Failed to init packages for " + zipFilename); //$NON-NLS-1$
+		Util.log(e, "Failed to init packages for " + zipFilename); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	this.jrtFileSystem = system;
 }
@@ -84,14 +84,14 @@ static Set<String> getModuleNames(final ClasspathJrt jrt) {
 	return null;
 }
 
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public static void loadModules(final ClasspathJrt jrt) {
 	String jrtKey = jrt.getKey();
 	if (jrtKey == null) {
 		return;
 	}
 	modulesCache.computeIfAbsent(jrtKey, key -> {
-		Map<String, IModule> newCache = new HashMap<>();
+		Map<String, IModule> newCache = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		try {
 			JRTUtil.walkModuleImage(jrt.jrtFileSystem, new JrtFileVisitor<Path>() {
 				@Override
@@ -101,7 +101,7 @@ public static void loadModules(final ClasspathJrt jrt) {
 				}
 			}, JRTUtil.NOTIFY_MODULES);
 		} catch (IOException e) {
-			Util.log(e, "Failed to init packages for " + jrt); //$NON-NLS-1$
+			Util.log(e, "Failed to init packages for " + jrt); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 		return newCache.isEmpty() ? null : Map.copyOf(newCache);
 	});
@@ -122,7 +122,7 @@ void acceptModule(byte[] content, String name, Map<String, IModule> cache) {
 			cache.put(name, moduleDecl);
 		}
 	} catch (ClassFormatException e) {
-		Util.log(e, "Failed to read module-info.class for " + name + " in " + this.toString()); //$NON-NLS-1$ //$NON-NLS-2$
+		Util.log(e, "Failed to read module-info.class for " + name + " in " + this.toString()); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 }
 
@@ -148,7 +148,7 @@ public boolean equals(Object o) {
 	return this.zipFilename.endsWith(jar.zipFilename) && areAllModuleOptionsEqual(jar);
 }
 
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public NameEnvironmentAnswer findClass(String binaryFileName, String qualifiedPackageName, String moduleName, String qualifiedBinaryFileName,
 										boolean asBinaryOnly, Predicate<String> moduleNameFilter) {
 	if (!isPackage(qualifiedPackageName, moduleName)) {
@@ -194,7 +194,7 @@ public boolean isPackage(String qualifiedPackageName, String moduleName) {
 
 @Override
 public String toString() {
-	String start = "Classpath jrt file " + this.zipFilename; //$NON-NLS-1$
+	String start = "Classpath jrt file " + this.zipFilename; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	return start;
 }
 
@@ -237,16 +237,16 @@ public Collection<String> getModuleNames(Collection<String> limitModules) {
 protected Collection<String> selectModules(Set<String> keySet, Collection<String> limitModules) {
 	Collection<String> rootModules;
 	if (limitModules == NO_LIMIT_MODULES) {
-		rootModules = new HashSet<>(keySet);
+		rootModules = new HashSet<>(keySet); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	} else if (limitModules != null) {
-		Set<String> result = new HashSet<>(keySet);
+		Set<String> result = new HashSet<>(keySet); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		result.retainAll(limitModules);
 		rootModules = result;
 	} else {
 		rootModules = JavaProject.internalDefaultRootModules(keySet, s -> s, this::getModule, getReleaseVersion());
 	}
-	Set<String> allModules = new HashSet<>(rootModules);
-	for (String mod : rootModules)
+	Set<String> allModules = new HashSet<>(rootModules); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+	for (String mod : rootModules) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		addRequired(mod, allModules);
 	return allModules;
 }
@@ -260,7 +260,7 @@ protected void addRequired(String mod, Set<String> allModules) {
 	if(iMod == null) {
 		return;
 	}
-	for (IModuleReference requiredRef : iMod.requires()) {
+	for (IModuleReference requiredRef : iMod.requires()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String moduleName = String.valueOf(requiredRef.name());
 		IModule reqMod = getModule(moduleName);
 		if (reqMod != null) {

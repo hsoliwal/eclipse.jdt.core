@@ -37,7 +37,7 @@ public SearchPattern getBlankPattern() {
 }
 @Override
 protected StringBuilder print(StringBuilder output) {
-	output.append("Secondary"); //$NON-NLS-1$
+	output.append("Secondary"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.print(output);
 }
 

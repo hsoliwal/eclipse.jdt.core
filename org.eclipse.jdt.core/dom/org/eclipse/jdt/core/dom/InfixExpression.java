@@ -133,7 +133,7 @@ public class InfixExpression extends Expression {
 		 */
 		private static final Map CODES;
 		static {
-			CODES = new HashMap(20);
+			CODES = new HashMap(20); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 			Operator[] ops = {
 					TIMES,
 					DIVIDE,
@@ -155,7 +155,7 @@ public class InfixExpression extends Expression {
 					CONDITIONAL_OR,
 					CONDITIONAL_AND,
 				};
-			for (Operator op : ops) {
+			for (Operator op : ops) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				CODES.put(op.toString(), op);
 			}
 		}
@@ -214,7 +214,7 @@ public class InfixExpression extends Expression {
 	private static final List PROPERTY_DESCRIPTORS;
 
 	static {
-		List properyList = new ArrayList(5);
+		List properyList = new ArrayList(5); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		createPropertyList(InfixExpression.class, properyList);
 		addProperty(LEFT_OPERAND_PROPERTY, properyList);
 		addProperty(OPERATOR_PROPERTY, properyList);
@@ -291,7 +291,7 @@ public class InfixExpression extends Expression {
 		return super.internalGetSetObjectProperty(property, get, value);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	final ASTNode internalGetSetChildProperty(ChildPropertyDescriptor property, boolean get, ASTNode child) {
 		if (property == LEFT_OPERAND_PROPERTY) {
 			if (get) {

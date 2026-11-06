@@ -165,7 +165,7 @@ protected void appendMemberBodyContents(CharArrayBuffer buffer) {
 /**
  * @see DOMMember#appendMemberDeclarationContents(CharArrayBuffer)
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void appendMemberDeclarationContents(CharArrayBuffer buffer) {
 
 	if (isVariableDeclarator()) {
@@ -234,7 +234,7 @@ protected void appendSimpleContents(CharArrayBuffer buffer) {
  * @exception DOMException if unable to generate detailed source indexes
  * 	for this node
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected void becomeDetailed() throws DOMException {
 	if (!isDetailed()) {
 		if (isVariableDeclarator() || hasMultipleVariableDeclarators()) {
@@ -242,7 +242,7 @@ protected void becomeDetailed() throws DOMException {
 			DOMNode last = getLastFieldDeclaration();
 			DOMNode node= first;
 			String source= first.getContents();
-			while (node != last) {
+			while (node != last) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				node= node.fNextNode;
 				source+=node.getContents();
 			}
@@ -252,7 +252,7 @@ protected void becomeDetailed() throws DOMException {
 				throw new DOMException(Messages.dom_cannotDetail);
 			} else {
 				node= this;
-				for (IDOMField detail : details) {
+				for (IDOMField detail : details) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					node.shareContents((DOMNode)detail);
 					node= node.fNextNode;
 				}
@@ -283,7 +283,7 @@ protected void expand() {
 		Enumeration siblings= new SiblingEnumeration(getFirstFieldDeclaration());
 		DOMField field= (DOMField)siblings.nextElement();
 		DOMNode next= field.fNextNode;
-		while (siblings.hasMoreElements() && (next instanceof DOMField) && (((DOMField)next).isVariableDeclarator())) {
+		while (siblings.hasMoreElements() && (next instanceof DOMField) && (((DOMField)next).isVariableDeclarator())) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			field.localizeContents();
 			if (field.fParent != null) {
 				field.fParent.fragment();
@@ -348,7 +348,7 @@ public IJavaElement getJavaElement(IJavaElement parent) throws IllegalArgumentEx
  */
 protected DOMField getLastFieldDeclaration() {
 	DOMField field = this;
-	while (field.isVariableDeclarator() || field.hasMultipleVariableDeclarators()) {
+	while (field.isVariableDeclarator() || field.hasMultipleVariableDeclarators()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		if (field.fNextNode instanceof DOMField && ((DOMField)field.fNextNode).isVariableDeclarator()) {
 			field= (DOMField)field.fNextNode;
 		} else {
@@ -375,7 +375,7 @@ public int getNodeType() {
  * Returns a String representing this field declaration as a field
  * declaration with one variable declarator.
  */
-protected char[] getSingleVariableDeclaratorContents() {
+protected char[] getSingleVariableDeclaratorContents() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 
 	CharArrayBuffer buffer= new CharArrayBuffer();
@@ -485,7 +485,7 @@ protected DOMNode newDOMNode() {
 /**
  * Normalizes this <code>DOMNode</code>'s end position.
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 void normalizeEndPosition(ILineStartFinder finder, DOMNode next) {
 	if (next == null) {
 		// this node's end position includes all of the characters up
@@ -648,6 +648,6 @@ protected void shareContents(DOMNode node) {
  */
 @Override
 public String toString() {
-	return "FIELD: " + getName(); //$NON-NLS-1$
+	return "FIELD: " + getName(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

@@ -48,16 +48,16 @@ public class JavaSearchGenericMethodTests extends AbstractJavaSearchGenericTests
 	 * Remove last type arguments from a line of an expected result.
 	 * This line contains one search match print out.
 	 */
-	long removeFirstTypeArgument(char[] line) {
+	long removeFirstTypeArgument(char[] line) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int idx=0;
 		int length = line.length;
-		while (line[idx++] != '[') {
+		while (line[idx++] != '[') { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (idx == length) return -1;
 		}
 		if (line[idx++] != '<') return -1;
 		int start = idx;
 		int n = 1;
-		while(idx < length && n!= 0) {
+		while(idx < length && n!= 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			switch (line[idx++]) {
 				case '<': n++; break;
 				case '>': n--; break;
@@ -73,14 +73,14 @@ public class JavaSearchGenericMethodTests extends AbstractJavaSearchGenericTests
 	@Override
 	void addResultLine(StringBuilder buffer, char[] line) {
 		long positions = removeFirstTypeArgument(line);
-		if (buffer.length() > 0) buffer.append('\n');
+		if (buffer.length() > 0) buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if (positions != -1) {
 			int stop = (int) (positions >>> 32) - 1;
 			int restart = (int) positions;
-			buffer.append(line, 0, stop);
-			buffer.append(line, restart, line.length-restart);
+			buffer.append(line, 0, stop); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(line, restart, line.length-restart); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append(line);
+			buffer.append(line); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 

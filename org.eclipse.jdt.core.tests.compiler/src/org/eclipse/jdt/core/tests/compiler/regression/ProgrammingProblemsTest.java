@@ -60,7 +60,7 @@ protected Map getCompilerOptions() {
 	compilerOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal,  CompilerOptions.OPTIMIZE_OUT);
 	return compilerOptions;
 }
-void runTest(
+void runTest( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] testFiles,
 		String[] errorOptions,
 		String[] warningOptions,
@@ -79,20 +79,20 @@ void runTest(
 	if (errorOptions != null || warningOptions != null ||
 			ignoreOptions != null) {
 		if (compilerOptions == null) {
-			compilerOptions = new HashMap();
+			compilerOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		}
 		if (errorOptions != null) {
-		    for (int i = 0; i < errorOptions.length; i++) {
+		    for (int i = 0; i < errorOptions.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		    	compilerOptions.put(errorOptions[i], CompilerOptions.ERROR);
 		    }
 		}
 		if (warningOptions != null) {
-		    for (int i = 0; i < warningOptions.length; i++) {
+		    for (int i = 0; i < warningOptions.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		    	compilerOptions.put(warningOptions[i], CompilerOptions.WARNING);
 		    }
 		}
 		if (ignoreOptions != null) {
-		    for (int i = 0; i < ignoreOptions.length; i++) {
+		    for (int i = 0; i < ignoreOptions.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		    	compilerOptions.put(ignoreOptions[i], CompilerOptions.IGNORE);
 		    }
 		}
@@ -112,7 +112,7 @@ void runTest(
 }
 
 // default behavior upon unread parameters
-public void test0001_unread_parameters() {
+public void test0001_unread_parameters() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -137,7 +137,7 @@ public void test0001_unread_parameters() {
 }
 
 // reporting unread paramaters as warning
-public void test0002_unread_parameters() {
+public void test0002_unread_parameters() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -170,8 +170,8 @@ public void test0002_unread_parameters() {
 
 // disabling the reporting of unread parameters using the Javadoc
 // @param disables by default
-public void test0003_unread_parameters() {
-	Map customOptions = new HashMap();
+public void test0003_unread_parameters() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_DocCommentSupport,
 			CompilerOptions.ENABLED);
 	runTest(
@@ -202,8 +202,8 @@ public void test0003_unread_parameters() {
 
 // disabling the reporting of unread parameters using the Javadoc
 // @param disabling can be disabled
-public void test0004_unread_parameters() {
-	Map customOptions = new HashMap();
+public void test0004_unread_parameters() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_DocCommentSupport,
 			CompilerOptions.ENABLED);
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedParameterIncludeDocCommentReference,
@@ -240,7 +240,7 @@ public void test0004_unread_parameters() {
 }
 
 // disabling the reporting of unread parameters using SuppressWarnings
-public void test0005_unread_parameters() {
+public void test0005_unread_parameters() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -271,7 +271,7 @@ public void test0005_unread_parameters() {
 }
 
 // reporting unread paramaters as error
-public void test0006_unread_parameters() {
+public void test0006_unread_parameters() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -303,7 +303,7 @@ public void test0006_unread_parameters() {
 }
 
 // default behavior upon unnecessary declaration of thrown checked exceptions
-public void test0007_declared_thrown_checked_exceptions() {
+public void test0007_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -329,7 +329,7 @@ public void test0007_declared_thrown_checked_exceptions() {
 }
 
 // reporting unnecessary declaration of thrown checked exceptions as warning
-public void test0008_declared_thrown_checked_exceptions() {
+public void test0008_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -365,8 +365,8 @@ public void test0008_declared_thrown_checked_exceptions() {
 // exceptions using the Javadoc
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=73244
 // @throws disables by default
-public void test0009_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0009_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_DocCommentSupport,
 			CompilerOptions.ENABLED);
 	runTest(
@@ -400,8 +400,8 @@ public void test0009_declared_thrown_checked_exceptions() {
 // exceptions using the Javadoc
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=73244
 // @throws disabling can be disabled
-public void test0010_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0010_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_DocCommentSupport,
 			CompilerOptions.ENABLED);
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionIncludeDocCommentReference,
@@ -440,7 +440,7 @@ public void test0010_declared_thrown_checked_exceptions() {
 
 // disabling the reporting of unnecessary declaration of thrown checked
 // exceptions using SuppressWarnings
-public void test0011_declared_thrown_checked_exceptions() {
+public void test0011_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -469,7 +469,7 @@ public void test0011_declared_thrown_checked_exceptions() {
 }
 
 // reporting unnecessary declaration of thrown checked exceptions as error
-public void test0012_declared_thrown_checked_exceptions() {
+public void test0012_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -505,8 +505,8 @@ public void test0012_declared_thrown_checked_exceptions() {
 // exceptions using the Javadoc
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=73244
 // @throws disables by default, but only exact matches work
-public void test0013_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0013_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_DocCommentSupport,
 			CompilerOptions.ENABLED);
 	runTest(
@@ -543,7 +543,7 @@ public void test0013_declared_thrown_checked_exceptions() {
 }
 // interaction between errors and warnings
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=203721
-public void test0014_declared_thrown_checked_exceptions_unread_parameters() {
+public void test0014_declared_thrown_checked_exceptions_unread_parameters() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -583,7 +583,7 @@ public void test0014_declared_thrown_checked_exceptions_unread_parameters() {
 // interaction between errors and warnings
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=203721
 // variant: both warnings show up
-public void test0015_declared_thrown_checked_exceptions_unread_parameters() {
+public void test0015_declared_thrown_checked_exceptions_unread_parameters() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -621,7 +621,7 @@ public void test0015_declared_thrown_checked_exceptions_unread_parameters() {
 }
 
 // reporting unread paramaters as error on a constructor
-public void test0016_unread_parameters_constructor() {
+public void test0016_unread_parameters_constructor() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -653,7 +653,7 @@ public void test0016_unread_parameters_constructor() {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=208001
-public void test0017_shadowing_package_visible_methods() {
+public void test0017_shadowing_package_visible_methods() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"p/X.java",
@@ -698,7 +698,7 @@ public void test0017_shadowing_package_visible_methods() {
 		true /* skipJavac */);
 }
 // default behavior upon unnecessary declaration of thrown unchecked exceptions
-public void test0018_declared_thrown_unchecked_exceptions() {
+public void test0018_declared_thrown_unchecked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -722,7 +722,7 @@ public void test0018_declared_thrown_unchecked_exceptions() {
 		true /* skipJavac */);
 }
 // default behavior upon unnecessary declaration of thrown unchecked exceptions
-public void test0019_declared_thrown_unchecked_exceptions() {
+public void test0019_declared_thrown_unchecked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -746,7 +746,7 @@ public void test0019_declared_thrown_unchecked_exceptions() {
 		true /* skipJavac */);
 }
 // default behavior upon unnecessary declaration of Exception
-public void test0020_declared_thrown_checked_exceptions() {
+public void test0020_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -770,7 +770,7 @@ public void test0020_declared_thrown_checked_exceptions() {
 		true /* skipJavac */);
 }
 // default behavior upon unnecessary declaration of Throwable
-public void test0021_declared_thrown_checked_exceptions() {
+public void test0021_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -798,8 +798,8 @@ public void test0021_declared_thrown_checked_exceptions() {
 // reporting unnecessary declaration of thrown unchecked exceptions as warning
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // suppressed the warning
-public void test0022_declared_thrown_unchecked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0022_declared_thrown_unchecked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
 			CompilerOptions.DISABLED);
 	runTest(
@@ -831,8 +831,8 @@ public void test0022_declared_thrown_unchecked_exceptions() {
 // the external API uses another string literal - had it wrong in first attempt
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // suppressed the warning for unchecked exceptions, using Exception instead
-public void test0023_declared_thrown_unchecked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0023_declared_thrown_unchecked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(JavaCore.COMPILER_PB_UNUSED_DECLARED_THROWN_EXCEPTION_EXEMPT_EXCEPTION_AND_THROWABLE,
 			CompilerOptions.DISABLED);
 	runTest(
@@ -868,8 +868,8 @@ public void test0023_declared_thrown_unchecked_exceptions() {
 // reporting unnecessary declaration of thrown unchecked exceptions as warning
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // suppressed the warning
-public void test0024_declared_thrown_unchecked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0024_declared_thrown_unchecked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
 			CompilerOptions.DISABLED);
 	runTest(
@@ -901,8 +901,8 @@ public void test0024_declared_thrown_unchecked_exceptions() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // focused on Exception and Throwable, which are not unchecked but can catch
 // unchecked exceptions
-public void test0025_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0025_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
 			CompilerOptions.DISABLED);
 	runTest(
@@ -939,8 +939,8 @@ public void test0025_declared_thrown_checked_exceptions() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // focused on Exception and Throwable, which are not unchecked but can catch
 // unchecked exceptions
-public void test0026_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0026_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
 			CompilerOptions.DISABLED);
 	runTest(
@@ -978,8 +978,8 @@ public void test0026_declared_thrown_checked_exceptions() {
 // @throws disables by default
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // suppressed the warning for unchecked exceptions, using Exception instead
-public void test0027_declared_thrown_unchecked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0027_declared_thrown_unchecked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_DocCommentSupport,
 			CompilerOptions.ENABLED);
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
@@ -1015,8 +1015,8 @@ public void test0027_declared_thrown_unchecked_exceptions() {
 // @throws disabling can be disabled
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // suppressed the warning for unchecked exceptions, using Exception instead
-public void test0028_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0028_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_DocCommentSupport,
 			CompilerOptions.ENABLED);
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionIncludeDocCommentReference,
@@ -1058,8 +1058,8 @@ public void test0028_declared_thrown_checked_exceptions() {
 // exceptions using SuppressWarnings
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // suppressed the warning for unchecked exceptions, using Exception instead
-public void test0029_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0029_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
 			CompilerOptions.DISABLED);
 	runTest(
@@ -1091,8 +1091,8 @@ public void test0029_declared_thrown_checked_exceptions() {
 // reporting unnecessary declaration of thrown unchecked exceptions as error
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // suppressed the error for unchecked exceptions, using Exception instead
-public void test0030_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0030_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
 			CompilerOptions.DISABLED);
 	runTest(
@@ -1130,8 +1130,8 @@ public void test0030_declared_thrown_checked_exceptions() {
 // @throws disables by default, but only exact matches work
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // suppressed the warning for unchecked exceptions, using Exception instead
-public void test0031_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0031_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_DocCommentSupport,
 			CompilerOptions.ENABLED);
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
@@ -1170,8 +1170,8 @@ public void test0031_declared_thrown_checked_exceptions() {
 // reporting unnecessary declaration of thrown unchecked exceptions as warning
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // suppressed the warning for unchecked exceptions
-public void test0032_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0032_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
 			CompilerOptions.DISABLED);
 	runTest(
@@ -1202,8 +1202,8 @@ public void test0032_declared_thrown_checked_exceptions() {
 // reporting unnecessary declaration of thrown unchecked exceptions as warning
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
 // suppressed the warning for unchecked exceptions, using Exception instead
-public void test0033_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0033_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
 			CompilerOptions.DISABLED);
 	runTest(
@@ -1239,8 +1239,8 @@ public void test0033_declared_thrown_checked_exceptions() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=216897
 // reporting unnecessary declaration of thrown unchecked exceptions as warning
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
-public void test0034_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0034_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
 			CompilerOptions.DISABLED);
 	runTest(
@@ -1281,8 +1281,8 @@ public void test0034_declared_thrown_checked_exceptions() {
 		true /* skipJavac */);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
-public void test0035_declared_thrown_checked_exceptions() {
-	Map customOptions = new HashMap();
+public void test0035_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	Map customOptions = new HashMap(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedDeclaredThrownExceptionExemptExceptionAndThrowable,
 			CompilerOptions.DISABLED);
 	runTest(
@@ -1314,7 +1314,7 @@ public void test0035_declared_thrown_checked_exceptions() {
 		true /* skipJavac */);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=219461
-public void test0036_declared_thrown_checked_exceptions() {
+public void test0036_declared_thrown_checked_exceptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 		new String[] {
 			"X.java",
@@ -1347,7 +1347,7 @@ public void test0036_declared_thrown_checked_exceptions() {
 		true /* skipJavac */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=115814
-public void test0037() {
+public void test0037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1410,7 +1410,7 @@ public void test0037() {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=276740"
  */
-public void test0038() {
+public void test0038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1505,7 +1505,7 @@ public void test0038() {
 /**
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=276741"
  */
-public void test0039() {
+public void test0039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1541,7 +1541,7 @@ public void test0039() {
  * We now tolerate comparison of float and double entities against
  * themselves as a legitimate idiom for NaN checking.
  */
-public void test0040() {
+public void test0040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1567,7 +1567,7 @@ public void test0040() {
 			"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=251227
-public void test0041() {
+public void test0041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1591,7 +1591,7 @@ public void test0041() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=248897
-public void test0042() {
+public void test0042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runTest(
 			new String[] {
 				"Test.java",
@@ -1643,7 +1643,7 @@ public void test0043() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=310264
-public void test0044() {
+public void test0044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1664,7 +1664,7 @@ public void test0044() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=310264
-public void test0045() {
+public void test0045() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1688,7 +1688,7 @@ public void test0045() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=185682
-public void test0046() {
+public void test0046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -1726,7 +1726,7 @@ public void test0046() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=185682
 // variant with private fields instead of locals
-public void test0046_field() {
+public void test0046_field() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -1763,7 +1763,7 @@ public void test0046_field() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=185682
 // variant with private fields instead of locals - this-qualified access
-public void test0046_field_this_qualified() {
+public void test0046_field_this_qualified() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -1801,7 +1801,7 @@ public void test0046_field_this_qualified() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=185682
 // variant with private fields instead of locals - regular qualified access
-public void test0046_field_qualified() {
+public void test0046_field_qualified() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -1839,7 +1839,7 @@ public void test0046_field_qualified() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=185682
 // variant with fields inside a private type
-public void test0046_field_in_private_type() {
+public void test0046_field_in_private_type() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -1879,7 +1879,7 @@ public void test0046_field_in_private_type() {
 			customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=185682
-public void test0047() {
+public void test0047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedParameter, CompilerOptions.WARNING);
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
@@ -1922,7 +1922,7 @@ public void test0047() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=185682
 // To verify that unused parameter warning is not shown for an implementing method's parameter when
 // CompilerOptions.OPTION_ReportUnusedParameterWhenImplementingAbstract is disabled
-public void test0048() {
+public void test0048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedParameter, CompilerOptions.WARNING);
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedParameterWhenImplementingAbstract, CompilerOptions.DISABLED);
@@ -1985,7 +1985,7 @@ public void test0048() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=185682
 // To verify that unused parameter warning is not shown for an overriding method's parameter when
 // CompilerOptions.OPTION_ReportUnusedParameterWhenOverridingConcrete is disabled
-public void test0049() {
+public void test0049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedParameter, CompilerOptions.WARNING);
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedParameterWhenOverridingConcrete, CompilerOptions.DISABLED);
@@ -2041,7 +2041,7 @@ public void test0049() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=185682
 // To verify that unused local warning is not shown for locals declared in unreachable code
-public void test0050() {
+public void test0050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -2083,7 +2083,7 @@ public void test0050() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=185682
 // To verify that a constructor argument is handled correctly
-public void test0051() {
+public void test0051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedParameter, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -2106,7 +2106,7 @@ public void test0051() {
 			customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=328281
-public void test0052() {
+public void test0052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedPrivateMember, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -2132,7 +2132,7 @@ public void test0052() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=328281
 // multi-level inheritance
-public void test0052a() {
+public void test0052a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedPrivateMember, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportSyntheticAccessEmulation, CompilerOptions.IGNORE);
@@ -2156,7 +2156,7 @@ public void test0052a() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=328281
 // member type of private
-public void test0052b() {
+public void test0052b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedPrivateMember, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportSyntheticAccessEmulation, CompilerOptions.IGNORE);
@@ -2179,7 +2179,7 @@ public void test0052b() {
 			null/*requestor*/);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=328519
-public void test0053() throws Exception {
+public void test0053() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	this.runConformTest(
@@ -2209,10 +2209,10 @@ public void test0053() throws Exception {
 		"        [pc: 0, line: 5]\n" +
 		"      Local variable table:\n" +
 		"        [pc: 0, pc: 2] local: this index: 0 type: X\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=328519
-public void test0054() throws Exception {
+public void test0054() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -2246,12 +2246,12 @@ public void test0054() throws Exception {
 		"      Local variable table:\n" +
 		"        [pc: 0, pc: 7] local: this index: 0 type: X\n" +
 		"        [pc: 2, pc: 7] local: i index: 1 type: int\n";
-	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput);
+	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=329613
 // regression caused by https://bugs.eclipse.org/bugs/show_bug.cgi?id=328519
-public void test0055() {
+public void test0055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedPrivateMember, CompilerOptions.IGNORE);
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
@@ -2283,7 +2283,7 @@ public void test0055() {
 			customOptions);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=328519
-public void test0056() throws Exception {
+public void test0056() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -2308,7 +2308,7 @@ public void test0056() throws Exception {
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=328519
-public void test0057() throws Exception {
+public void test0057() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.IGNORE);
 	this.runConformTest(
@@ -2333,7 +2333,7 @@ public void test0057() throws Exception {
 		null);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=336648
-public void _test0058() {
+public void _test0058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	this.runNegativeTest(
@@ -2364,7 +2364,7 @@ public void _test0058() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=339139
 // Issue local variable not used warning inside deadcode
-public void test0059() throws Exception {
+public void test0059() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
 	customOptions.put(CompilerOptions.OPTION_ReportDeadCode, CompilerOptions.WARNING);
@@ -2401,7 +2401,7 @@ public void test0059() throws Exception {
 		customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=417803,  [internal] Build a build environment compiler to warn on TypeBinding comparisons
-public void test0060() throws Exception {
+public void test0060() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUninternedIdentityComparison, CompilerOptions.ENABLED);
 	this.runNegativeTest(
@@ -2483,7 +2483,7 @@ public void test0060() throws Exception {
 		customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=417803,  [internal] Build a build environment compiler to warn on TypeBinding comparisons
-public void test0061() throws Exception {
+public void test0061() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUninternedIdentityComparison, CompilerOptions.ENABLED);
 	this.runNegativeTest(
@@ -2540,7 +2540,7 @@ public void test0061() throws Exception {
 		customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=417803,  [internal] Build a build environment compiler to warn on TypeBinding comparisons
-public void test0062() throws Exception {
+public void test0062() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	this.runNegativeTest(
 		new String[] {
@@ -2596,7 +2596,7 @@ public void test0062() throws Exception {
 		customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=417803,  [internal] Build a build environment compiler to warn on TypeBinding comparisons
-public void test0063() throws Exception {
+public void test0063() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUninternedIdentityComparison, CompilerOptions.ENABLED);
 	this.runNegativeTest(
@@ -2680,7 +2680,7 @@ public void test0063() throws Exception {
 		customOptions);
 }
 // Collection: contains & remove & get
-public void testBug410218a() {
+public void testBug410218a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2728,7 +2728,7 @@ public void testBug410218a() {
 		"----------\n");
 }
 // HashSet vs. TreeSet
-public void testBug410218b() {
+public void testBug410218b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2757,7 +2757,7 @@ public void testBug410218b() {
 		"----------\n");
 }
 // HashSet vs. TreeSet or: strict
-public void testBug410218b2() {
+public void testBug410218b2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_UNLIKELY_COLLECTION_METHOD_ARGUMENT_TYPE_STRICT, JavaCore.ENABLED);
 	runNegativeTest(
@@ -2801,7 +2801,7 @@ public void testBug410218b2() {
 		customOptions);
 }
 // Map: contains* & remove & get
-public void testBug410218c() {
+public void testBug410218c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2851,7 +2851,7 @@ public void testBug410218c() {
 		"----------\n");
 }
 // Collection: {contains,remove,retain}All, non-generic sub type of Collection, configured to be ERROR
-public void testBug410218d() {
+public void testBug410218d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_UNLIKELY_COLLECTION_METHOD_ARGUMENT_TYPE, JavaCore.ERROR);
 	runNegativeTest(
@@ -2881,7 +2881,7 @@ public void testBug410218d() {
 		customOptions);
 }
 // List.indexOf: w/ and w/o @SuppressWarnings
-public void testBug410218e() {
+public void testBug410218e() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_UNLIKELY_COLLECTION_METHOD_ARGUMENT_TYPE, JavaCore.WARNING);
 	runNegativeTest(
@@ -2912,7 +2912,7 @@ public void testBug410218e() {
 }
 
 // Method references, equals, wildcards
-public void testBug410218f() {
+public void testBug410218f() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_UNLIKELY_COLLECTION_METHOD_ARGUMENT_TYPE, JavaCore.WARNING);
 	customOptions.put(JavaCore.COMPILER_PB_UNLIKELY_EQUALS_ARGUMENT_TYPE, JavaCore.INFO);
@@ -3182,7 +3182,7 @@ public void testBug410218f() {
 		true/*shouldFlushOutputDirectory*/,
 		customOptions);
 }
-public void testBug514956a() {
+public void testBug514956a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_UNLIKELY_COLLECTION_METHOD_ARGUMENT_TYPE, JavaCore.WARNING);
 	customOptions.put(JavaCore.COMPILER_PB_UNNECESSARY_TYPE_CHECK, JavaCore.ERROR);
@@ -3217,7 +3217,7 @@ public void testBug514956b() {
 		},
 		customOptions);
 }
-public void testBug514956c() {
+public void testBug514956c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_UNLIKELY_EQUALS_ARGUMENT_TYPE, JavaCore.WARNING);
 	customOptions.put(JavaCore.COMPILER_PB_UNNECESSARY_TYPE_CHECK, JavaCore.ERROR);
@@ -3257,7 +3257,7 @@ public void testBug514956c() {
 		customOptions);
 }
 // mixture of raw type an parametrized type
-public void testBug513310() {
+public void testBug513310() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		new String[] {
 			"test/Test.java",
@@ -3277,7 +3277,7 @@ public void testBug513310() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/567
 // Report unused variable for variables declared in instanceof pattern
-public void testGH567() {
+public void testGH567() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -3345,7 +3345,7 @@ public void testGH567() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3051
 // [Enhancement] Add warnings for unused patterns
-public void testIssue3051() {
+public void testIssue3051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK22)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -3393,7 +3393,7 @@ public void testIssue3051() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3051
 // [Enhancement] Add warnings for unused patterns
-public void testIssue3051_2() {
+public void testIssue3051_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -3456,7 +3456,7 @@ public void testIssue3051_2() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3054
 // Add warnings for structurally required but otherwise unused local variables
-public void testIssue3054() {
+public void testIssue3054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -3597,7 +3597,7 @@ public void testIssue3054() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3054
 // Add warnings for structurally required but otherwise unused local variables
-public void testIssue3054_2() {
+public void testIssue3054_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -3721,7 +3721,7 @@ public void testIssue3054_2() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3054
 // Add warnings for structurally required but otherwise unused local variables
-public void testIssue3054_3() {
+public void testIssue3054_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -3845,7 +3845,7 @@ public void testIssue3054_3() {
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3054
 // Add warnings for structurally required but otherwise unused local variables
 // Check that suppress warning works
-public void testIssue3054_4() {
+public void testIssue3054_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK22)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -3942,7 +3942,7 @@ public void testIssue3054_4() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3054
 // Add warnings for structurally required but otherwise unused local variables
-public void testIssue3054_5() {
+public void testIssue3054_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK22)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -4018,7 +4018,7 @@ public void testIssue3054_5() {
 			true/*shouldFlushOutputDirectory*/,
 			customOptions);
 }
-public void testGH3660() {
+public void testGH3660() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_PB_UNLIKELY_EQUALS_ARGUMENT_TYPE, JavaCore.ERROR);
@@ -4040,7 +4040,7 @@ public void testGH3660() {
 	runner.expectedOutputString = "truetrue";
 	runner.runConformTest();
 }
-public void testGH3870a() {
+public void testGH3870a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(JavaCore.COMPILER_PB_UNLIKELY_EQUALS_ARGUMENT_TYPE, JavaCore.WARNING);
@@ -4168,7 +4168,7 @@ public void testGH3870a() {
 				s.equals(args)""";
 	runner.runConformTest();
 }
-public void testGH3870b() {
+public void testGH3870b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"Dc.java",
@@ -4211,7 +4211,7 @@ public void testGH3870b() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4065
 // [Null][Record] Invalid "dead code" warning for record pattern with null-guard on component
-public void testIssue4065() {
+public void testIssue4065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -4272,7 +4272,7 @@ public void testIssue4065() {
 			customOptions);
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4328
-public void testIssue4328() {
+public void testIssue4328() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK14)
 		return;
 	Map customOptions = getCompilerOptions();

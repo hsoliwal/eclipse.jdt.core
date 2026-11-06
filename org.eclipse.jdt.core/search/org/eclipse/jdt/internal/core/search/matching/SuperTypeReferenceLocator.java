@@ -95,7 +95,7 @@ protected void matchReportReference(ASTNode reference, IJavaElement element, Bin
 protected int referenceType() {
 	return IJavaElement.TYPE;
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int resolveLevel(ASTNode node) {
 	TypeBinding typeBinding = null;
 	if (node instanceof LambdaExpression) {
@@ -115,7 +115,7 @@ public int resolveLevel(ASTNode node) {
 	if (typeBinding == null || !typeBinding.isValidBinding()) return INACCURATE_MATCH;
 	return resolveLevelForType(this.pattern.superSimpleName, this.pattern.superQualification, typeBinding);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public int resolveLevel(Binding binding) {
 	if (binding == null) return INACCURATE_MATCH;
 	if (!(binding instanceof ReferenceBinding)) return IMPOSSIBLE_MATCH;
@@ -129,7 +129,7 @@ public int resolveLevel(Binding binding) {
 
 	if (this.pattern.superRefKind != SuperTypeReferencePattern.ONLY_SUPER_CLASSES) {
 		ReferenceBinding[] superInterfaces = type.superInterfaces();
-		for (ReferenceBinding superInterface : superInterfaces) {
+		for (ReferenceBinding superInterface : superInterfaces) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int newLevel = resolveLevelForType(this.pattern.superSimpleName, this.pattern.superQualification, superInterface);
 			if (newLevel > level) {
 				if (newLevel == ACCURATE_MATCH) return ACCURATE_MATCH;
@@ -141,6 +141,6 @@ public int resolveLevel(Binding binding) {
 }
 @Override
 public String toString() {
-	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$
+	return "Locator for " + this.pattern.toString(); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 }

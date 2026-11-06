@@ -73,7 +73,7 @@ public class ValueBasedAnnotationTests extends AbstractRegressionTest {
 			JavacTestOptions.forReleaseWithPreview("16", javacAdditionalTestOptions);
 		runner.runConformTest();
 	}
-	public void testBug571507_001() {
+	public void testBug571507_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runWarningTest(
 			new String[] {
 				"X.java",
@@ -93,7 +93,7 @@ public class ValueBasedAnnotationTests extends AbstractRegressionTest {
 			"Integer is a value-based type which is a discouraged argument for the synchronized statement\n" +
 			"----------\n");
 	}
-	public void testBug571507_002() {
+	public void testBug571507_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runWarningTest(
 			new String[] {
 				"X.java",

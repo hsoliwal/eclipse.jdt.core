@@ -70,7 +70,7 @@ public class MirrorDeclarationTests extends APTTestBase {
 		assertEquals(ProcessorTestStatus.NO_ERRORS, ProcessorTestStatus.getErrors());
 	}
 
-	public void testFieldConstant() throws Exception
+	public void testFieldConstant() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath();
@@ -100,7 +100,7 @@ public class MirrorDeclarationTests extends APTTestBase {
 
 	// TODO: Disabled due to Bugzilla 124388 -theodora
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=124388
-	public void DISABLED_testDefault() throws Exception
+	public void DISABLED_testDefault() throws Exception //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	{
 		IProject project = env.getProject( getProjectName() );
 		IPath srcRoot = getSourcePath();
@@ -142,7 +142,7 @@ public class MirrorDeclarationTests extends APTTestBase {
 	 *
 	 * This test focus on declarations from file in context.
 	 */
-	public void testUnresolvableDeclarations0()
+	public void testUnresolvableDeclarations0() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws Exception
 	{
 		IProject project = env.getProject( getProjectName() );
@@ -185,7 +185,7 @@ public class MirrorDeclarationTests extends APTTestBase {
 	 * This test focus on declarations from file outside of processor
 	 * environment context.
 	 */
-	public void testUnresolvableDeclarations1()
+	public void testUnresolvableDeclarations1() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws Exception
 	{
 		IProject project = env.getProject( getProjectName() );
@@ -224,7 +224,7 @@ public class MirrorDeclarationTests extends APTTestBase {
 		);
 	}
 
-	public void testLocation() {
+	public void testLocation() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		TestLocationProc p = new TestLocationProc();
 		GenericFactory.setProcessor(p);
@@ -260,7 +260,7 @@ public class MirrorDeclarationTests extends APTTestBase {
 		assertTrue("Processor not invoked", p.called);
 	}
 
-	public void testPackageInfo() {
+	public void testPackageInfo() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		PackageInfoProc p = new PackageInfoProc();
 		GenericFactory.setProcessor(p);
 
@@ -309,15 +309,15 @@ public class MirrorDeclarationTests extends APTTestBase {
 		@Override
 		public void _process() {
 			called = true;
-			TypeDeclaration tdCode = env.getTypeDeclaration(SourceMirrorCodeExample.CODE_PACKAGE + "." + SourceMirrorCodeExample.CODE_CLASS_NAME);
-			for (AnnotationMirror am : tdCode.getAnnotationMirrors()) {
+			TypeDeclaration tdCode = env.getTypeDeclaration(SourceMirrorCodeExample.CODE_PACKAGE + "." + SourceMirrorCodeExample.CODE_CLASS_NAME); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			for (AnnotationMirror am : tdCode.getAnnotationMirrors()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if ("GenericAnnotation".equals(am.getAnnotationType().getDeclaration().getSimpleName())) {
 					continue;
 				}
 				assertNotNull(am.getPosition());
 				AnnotationTypeDeclaration atd = am.getAnnotationType().getDeclaration();
 				assertNotNull(atd.getPosition());
-				for (Map.Entry<AnnotationTypeElementDeclaration, AnnotationValue> entry : am.getElementValues().entrySet()) {
+				for (Map.Entry<AnnotationTypeElementDeclaration, AnnotationValue> entry : am.getElementValues().entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					assertNotNull(entry.getKey().getPosition());
 					assertNotNull(entry.getKey().getDefaultValue().getPosition());
 				}
@@ -329,7 +329,7 @@ public class MirrorDeclarationTests extends APTTestBase {
 
 		boolean called;
 
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void _process() {
 			called = true;
 			AnnotationTypeDeclaration annoDecl = (AnnotationTypeDeclaration)env.getTypeDeclaration("pkg.PkgAnnotation");
@@ -356,7 +356,7 @@ public class MirrorDeclarationTests extends APTTestBase {
 		}
 	}
 
-	public void testEnvFactory() throws JavaModelException {
+	public void testEnvFactory() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IProject project = env.getProject(getProjectName());
 		IPath srcRoot = getSourcePath();

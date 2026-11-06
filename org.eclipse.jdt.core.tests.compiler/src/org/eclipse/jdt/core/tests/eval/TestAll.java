@@ -25,7 +25,7 @@ public TestAll(String name) {
 	super(name);
 }
 public static Test suite() {
-	ArrayList testClasses = new ArrayList();
+	ArrayList testClasses = new ArrayList(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 	testClasses.add(SanityTestEvaluationContext.class);
 	testClasses.add(SanityTestEvaluationResult.class);
 	testClasses.add(VariableTest.class);

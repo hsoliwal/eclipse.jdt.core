@@ -57,7 +57,7 @@ public class ModuleAttributeTests extends AbstractRegressionTest9 {
 
 	private IModuleAttribute getModuleAttribute(String[] contents) {
 		this.runConformTest(contents);
-		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES);
+		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull("Error reading module-info.class", cfr);
 		IClassFileAttribute attr = Arrays.stream(cfr.getAttributes())
 			.filter(e -> new String(e.getAttributeName()).equals("Module"))
@@ -69,18 +69,18 @@ public class ModuleAttributeTests extends AbstractRegressionTest9 {
 	}
 
 	// basic test to check for presence of module attribute in module-info.class
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"module-info.java",
 				"module test {\n" +
 				"}\n",
 				});
-		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES);
+		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull("Error reading module-info.class", cfr);
 		IClassFileAttribute moduleAttribute = null;
 		IClassFileAttribute[] attrs = cfr.getAttributes();
-		for (int i=0,max=attrs.length;i<max;i++) {
+		for (int i=0,max=attrs.length;i<max;i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (new String(attrs[i].getAttributeName()).equals("Module")) {
 				moduleAttribute = attrs[i];
 			}
@@ -95,7 +95,7 @@ public class ModuleAttributeTests extends AbstractRegressionTest9 {
 				"module first {\n" +
 				"}\n",
 				});
-		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES);
+		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull("Error reading module-info.class", cfr);
 		long count = Arrays.stream(cfr.getAttributes())
 			.filter(e -> new String(e.getAttributeName()).equals("Module"))
@@ -103,7 +103,7 @@ public class ModuleAttributeTests extends AbstractRegressionTest9 {
 		assertEquals("Unexpected number of module attributes", 1,  count);
 	}
 	// Module Atrribute sanity
-	public void _testBug508889_003() throws Exception {
+	public void _testBug508889_003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String[] contents = {
 			"module-info.java",
 			"module first {\n" +
@@ -129,7 +129,7 @@ public class ModuleAttributeTests extends AbstractRegressionTest9 {
 				"module test {\n" +
 				"}\n",
 				});
-		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES);
+		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull("Error reading module-info.class", cfr);
 		int flags = cfr.getAccessFlags();
 		assertTrue("Invalid access flags", (flags & ~ClassFileConstants.AccModule) == 0);
@@ -141,13 +141,13 @@ public class ModuleAttributeTests extends AbstractRegressionTest9 {
 				"open module test {\n" +
 				"}\n",
 				});
-		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES);
+		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull("Error reading module-info.class", cfr);
 		int flags = cfr.getAccessFlags();
 		assertTrue("Invalid access flags", (flags & ~ClassFileConstants.AccModule) == 0);
 	}
 
-	public void testModuleCompile() throws Exception {
+	public void testModuleCompile() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String pack1_x11java = "pack1/X11.java";
 		String pack2_x21java = "pack2/X21.java";
 		associateToModule("first", pack1_x11java, pack2_x21java);
@@ -166,7 +166,7 @@ public class ModuleAttributeTests extends AbstractRegressionTest9 {
 		};
 		this.runConformTest(contents);
 	}
-	public void testBug495967() throws Exception {
+	public void testBug495967() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String pack1_x11java = "pack1/pack2/pack3/pack4/X11.java";
 		String pack2_x21java = "pack21/pack22/pack23/pack24/X21.java";
 		String pack3_x31java = "pack31/pack32/pack33/pack34/X31.java";
@@ -237,12 +237,12 @@ public class ModuleAttributeTests extends AbstractRegressionTest9 {
 			"}\n",
 			};
 		this.runConformTest(contents);
-		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES);
+		IClassFileReader cfr = ToolFactory.createDefaultClassFileReader(OUTPUT_DIR + File.separator + "module-info.class", IClassFileReader.CLASSFILE_ATTRIBUTES); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		assertNotNull("Error reading module-info.class", cfr);
 		IClassFileAttribute[] attrs = cfr.getAttributes();
-		for (IClassFileAttribute attr : attrs) {
+		for (IClassFileAttribute attr : attrs) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			String name = new String(attr.getAttributeName());
-			assertTrue("Attribute " + name + " is not allowed", Stream.of(allowedAttributes).anyMatch(a -> a.equals(name)));
+			assertTrue("Attribute " + name + " is not allowed", Stream.of(allowedAttributes).anyMatch(a -> a.equals(name))); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 }

@@ -33,13 +33,13 @@ public class ConflictIdentifier {
 		final Set<String> staticConflicts;
 
 		Conflicts(Set<String> typeConflicts, Set<String> staticConflicts) {
-			this.typeConflicts = Collections.unmodifiableSet(new HashSet<>(typeConflicts));
-			this.staticConflicts = Collections.unmodifiableSet(new HashSet<>(staticConflicts));
+			this.typeConflicts = Collections.unmodifiableSet(new HashSet<>(typeConflicts)); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+			this.staticConflicts = Collections.unmodifiableSet(new HashSet<>(staticConflicts)); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 		}
 
 		@Override
 		public String toString() {
-			return String.format(
+			return String.format( //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 					"Conflicts(type: %s; static: %s)", this.typeConflicts, this.staticConflicts); //$NON-NLS-1$
 		}
 	}
@@ -78,7 +78,7 @@ public class ConflictIdentifier {
 	 * @return a {@link Conflicts} object encapsulating the found conflicting type and static names
 	 * @throws JavaModelException if an error occurs while searching for declarations
 	 */
-	Conflicts identifyConflicts(
+	Conflicts identifyConflicts( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			Set<ImportName> imports,
 			Set<ImportName> addedImports,
 			Set<String> typeExplicitSimpleNames,
@@ -87,8 +87,8 @@ public class ConflictIdentifier {
 		Collection<OnDemandReduction> onDemandCandidates = this.onDemandComputer.identifyPossibleReductions(
 				imports, addedImports, typeExplicitSimpleNames, staticExplicitSimpleNames);
 
-		Set<String> typeOnDemandContainers = new HashSet<>(extractContainerNames(onDemandCandidates, false));
-		Set<String> staticOnDemandContainers = new HashSet<>(extractContainerNames(onDemandCandidates, true));
+		Set<String> typeOnDemandContainers = new HashSet<>(extractContainerNames(onDemandCandidates, false)); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		Set<String> staticOnDemandContainers = new HashSet<>(extractContainerNames(onDemandCandidates, true)); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 
 		if (!typeOnDemandContainers.isEmpty()) {
 			// Existing on-demands might conflict with new or existing on-demands.
@@ -117,8 +117,8 @@ public class ConflictIdentifier {
 
 	private Collection<String> extractContainerNames(
 			Collection<OnDemandReduction> onDemandCandidates, boolean isStatic) {
-		Collection<String> containerNames = new ArrayList<>(onDemandCandidates.size());
-		for (OnDemandReduction onDemandCandidate : onDemandCandidates) {
+		Collection<String> containerNames = new ArrayList<>(onDemandCandidates.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (OnDemandReduction onDemandCandidate : onDemandCandidates) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ImportName containerOnDemand = onDemandCandidate.containerOnDemand;
 			if (containerOnDemand.isStatic == isStatic) {
 				containerNames.add(containerOnDemand.containerName);
@@ -130,8 +130,8 @@ public class ConflictIdentifier {
 
 	private Collection<String> extractOnDemandContainerNames(
 			Collection<ImportName> imports, boolean isStatic) {
-		Collection<String> onDemandContainerNames = new ArrayList<>(imports.size());
-		for (ImportName importName : imports) {
+		Collection<String> onDemandContainerNames = new ArrayList<>(imports.size()); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		for (ImportName importName : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (importName.isOnDemand() && importName.isStatic == isStatic) {
 				onDemandContainerNames.add(importName.containerName);
 			}
@@ -150,8 +150,8 @@ public class ConflictIdentifier {
 			return Collections.emptySet();
 		}
 
-		Set<String> simpleNames = new HashSet<>();
-		for (ImportName currentImport : imports) {
+		Set<String> simpleNames = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
+		for (ImportName currentImport : imports) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentImport.isStatic == isStatic) {
 				simpleNames.add(currentImport.simpleName);
 			}

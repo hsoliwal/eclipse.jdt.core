@@ -41,9 +41,9 @@ public class CompletionOnBreakStatement extends BreakStatement implements Comple
 	@Override
 	public StringBuilder printStatement(int indent, StringBuilder output) {
 		printIndent(indent, output);
-		output.append("break "); //$NON-NLS-1$
-		output.append("<CompleteOnLabel:"); //$NON-NLS-1$
-		output.append(this.label);
-		return output.append(">;"); //$NON-NLS-1$
+		output.append("break "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append("<CompleteOnLabel:"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		output.append(this.label); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		return output.append(">;"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 }

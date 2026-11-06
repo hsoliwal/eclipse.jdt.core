@@ -44,7 +44,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 		super.runConformTest(files, expectedOutput, null, null);
 	}
 
-	public void testAllSnippetsFromUnnamedVariablesAndPatternsProposal() {
+	public void testAllSnippetsFromUnnamedVariablesAndPatternsProposal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "X.java", """
 				import java.util.Queue;
 				import java.util.LinkedList;
@@ -278,7 +278,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 				"""}, "Hello");
 	}
 
-	public void testLambdaBiFunctionUnbracketedWithNoNamedParam() {
+	public void testLambdaBiFunctionUnbracketedWithNoNamedParam() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] { "A.java", """
 				import java.util.function.BiFunction;
 				public class A {
@@ -438,7 +438,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 				"""}, "2");
 	}
 
-	public void testEnhancedForLoopVariableWithModifier() {
+	public void testEnhancedForLoopVariableWithModifier() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] { "A.java", """
 				import java.util.List;
 				public class A {
@@ -534,7 +534,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 				"""}, "1");
 	}
 
-	public void testUnnamedVariableWithoutInitializer() {
+	public void testUnnamedVariableWithoutInitializer() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] { "A.java", """
 				import java.io.BufferedReader;
 				import java.io.IOException;
@@ -591,7 +591,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 	}
 
 	// Test that pattern variables are allowed for the nested patterns (not just the outermost record pattern)
-	public void test002() {
+	public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")\n" +
@@ -611,7 +611,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 			"0");
 	}
 
-	public void test003() {
+	public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")\n" +
@@ -633,7 +633,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 				"----------\n");
 	}
 
-	public void test004() {
+	public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")\n" +
@@ -657,7 +657,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 				""");
 	}
 
-	public void test005() {
+	public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeTest(new String[] {
 				"X.java",
 				"@SuppressWarnings(\"preview\")\n" +
@@ -680,7 +680,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2024
 	// [Patterns][Unnamed] VerifyError with unnamed pattern variable in instanceof
-	public void testIssue2024() {
+	public void testIssue2024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -700,7 +700,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2024
 	// [Patterns][Unnamed] VerifyError with unnamed pattern variable in instanceof
-	public void testIssue2024_2() {
+	public void testIssue2024_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -720,7 +720,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2024
 	// [Patterns][Unnamed] VerifyError with unnamed pattern variable in instanceof
-	public void testIssue2024_3() {
+	public void testIssue2024_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""
@@ -743,7 +743,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2020
 	// [Patterns][Unnamed] Wasteful allocation and assignment into unnamed pattern variables.
-    public void testIssue2020() throws ClassFormatException, IOException {
+    public void testIssue2020() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	String source =
     			"""
     			public class X {
@@ -829,7 +829,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
     }
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2020
 	// [Patterns][Unnamed] Wasteful allocation and assignment into unnamed pattern variables.
-    public void testIssue2020_2() throws ClassFormatException, IOException {
+    public void testIssue2020_2() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	String source =
     			"""
     			public class X {
@@ -915,7 +915,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
     }
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2020
 	// [Patterns][Unnamed] Wasteful allocation and assignment into unnamed pattern variables.
-    public void testIssue2020_3() throws ClassFormatException, IOException {
+    public void testIssue2020_3() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	String source =
     			"""
     			public class X {
@@ -1000,7 +1000,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
     }
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2020
 	// [Patterns][Unnamed] Wasteful allocation and assignment into unnamed pattern variables.
-    public void testIssue2020_4() throws ClassFormatException, IOException {
+    public void testIssue2020_4() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	String source =
     			"""
     			interface I {}
@@ -1099,7 +1099,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
     }
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2020
 	// [Patterns][Unnamed] Wasteful allocation and assignment into unnamed pattern variables.
-    public void testIssue2020_5() throws ClassFormatException, IOException {
+    public void testIssue2020_5() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     	String source =
     			"""
     			interface I {}
@@ -1129,7 +1129,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2020
  	// [Patterns][Unnamed] Wasteful allocation and assignment into unnamed pattern variables.
-     public void testIssue2020_6() throws ClassFormatException, IOException {
+     public void testIssue2020_6() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
      	String source =
      			"""
      			interface I {}
@@ -1155,7 +1155,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
                  "Y is of class: class X");
      }
  	// Test for regression caused by fix for https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2020
- 	public void testIssue1889_2() {
+ 	public void testIssue1889_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  		runConformTest(
  				new String[] {
  						"X.java",
@@ -1184,7 +1184,7 @@ public class UnnamedPatternsAndVariablesTest extends AbstractBatchCompilerTest {
  	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2007
 	// [Patterns][Unnamed] VerifyError with unnamed pattern variable in instanceof
-	public void testIssue2007() {
+	public void testIssue2007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformTest(new String[] {
 				"X.java",
 				"""

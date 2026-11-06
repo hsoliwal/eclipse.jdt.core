@@ -40,7 +40,7 @@ public class ArrayTypeImpl implements ArrayType, EclipseMirrorType
         visitor.visitArrayType(this);
     }
 
-    @Override
+    @Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public EclipseMirrorType getComponentType()
     {
 		final ITypeBinding elementType = _arrayBinding.getElementType();
@@ -54,7 +54,7 @@ public class ArrayTypeImpl implements ArrayType, EclipseMirrorType
 			final String componentKey = BindingKey.createArrayTypeBindingKey(elementType.getKey(), dimension - 1);
 			result = _env.getTypeBindingFromKey(componentKey);
             if( result == null )
-				throw new IllegalStateException("unknown component type for " + _arrayBinding); //$NON-NLS-1$
+				throw new IllegalStateException("unknown component type for " + _arrayBinding); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
         }
 
         final EclipseMirrorType mirror = Factory.createTypeMirror(result, _env);
@@ -66,11 +66,11 @@ public class ArrayTypeImpl implements ArrayType, EclipseMirrorType
     @Override
 	public String toString(){
     	final ITypeBinding elementType = _arrayBinding.getElementType();
-    	final StringBuilder buffer = new StringBuilder();
+    	final StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
     	String name = elementType.getQualifiedName();
-    	buffer.append(name);
-		for( int i=0, dim = _arrayBinding.getDimensions(); i<dim; i++ )
-			buffer.append("[]"); //$NON-NLS-1$
+    	buffer.append(name); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		for( int i=0, dim = _arrayBinding.getDimensions(); i<dim; i++ ) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append("[]"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		return buffer.toString();
     }

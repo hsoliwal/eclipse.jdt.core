@@ -26,7 +26,7 @@ static {
 public static Test suite() {
 	return buildAllCompliancesTestSuite(CompletionParserTest.class);
 }
-public void testA() {
+public void testA() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class A {\n" +
@@ -69,7 +69,7 @@ public void testA() {
 		expectedReplacedSource,
 		testName);
 }
-public void testAA_1() {
+public void testAA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"import something; \n" +
@@ -119,7 +119,7 @@ public void testAA_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testAA_2() {
+public void testAA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"import something; \n" +
@@ -169,7 +169,7 @@ public void testAA_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testAA_3() {
+public void testAA_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"import something; \n" +
@@ -219,7 +219,7 @@ public void testAA_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testAA_4() {
+public void testAA_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"import something; \n" +
@@ -269,7 +269,7 @@ public void testAA_4() {
 		expectedReplacedSource,
 		testName);
 }
-public void testAB_1FHU9LU() {
+public void testAB_1FHU9LU() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -321,7 +321,7 @@ public void testAB_1FHU9LU() {
 		expectedReplacedSource,
 		testName);
 }
-public void testAC_1FJ8D9Z_1() {
+public void testAC_1FJ8D9Z_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -372,7 +372,7 @@ public void testAC_1FJ8D9Z_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testAC_1FJ8D9Z_2() {
+public void testAC_1FJ8D9Z_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -423,7 +423,7 @@ public void testAC_1FJ8D9Z_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testAC_1FJ8D9Z_3() {
+public void testAC_1FJ8D9Z_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -472,7 +472,7 @@ public void testAC_1FJ8D9Z_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testB() {
+public void testB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class B {\n" +
@@ -501,7 +501,7 @@ public void testB() {
 		expectedReplacedSource,
 		testName);
 }
-public void testBA_1() {
+public void testBA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class BA {\n" +
@@ -537,7 +537,7 @@ public void testBA_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testBA_2() {
+public void testBA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class BA {\n" +
@@ -572,7 +572,7 @@ public void testBA_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testBB_1FHJ8H9() {
+public void testBB_1FHJ8H9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -608,7 +608,7 @@ public void testBB_1FHJ8H9() {
 		expectedReplacedSource,
 		testName);
 }
-public void testBC_1FJ4GSG_1() {
+public void testBC_1FJ4GSG_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -664,7 +664,7 @@ public void testBC_1FJ4GSG_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testBC_1FJ4GSG_2() {
+public void testBC_1FJ4GSG_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -720,7 +720,7 @@ public void testBC_1FJ4GSG_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testBC_1FJ4GSG_3() {
+public void testBC_1FJ4GSG_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -777,7 +777,7 @@ public void testBC_1FJ4GSG_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testC() {
+public void testC() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class C {\n" +
@@ -811,7 +811,7 @@ public void testC() {
 		expectedReplacedSource,
 		testName);
 }
-public void testCA_1FGPJQZ() {
+public void testCA_1FGPJQZ() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"import p2.X; \n" +
@@ -849,7 +849,7 @@ public void testCA_1FGPJQZ() {
 		expectedReplacedSource,
 		testName);
 }
-public void testCB_1FHSKQ9_1() {
+public void testCB_1FHSKQ9_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -893,7 +893,7 @@ public void testCB_1FHSKQ9_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testCB_1FHSKQ9_2() {
+public void testCB_1FHSKQ9_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -932,7 +932,7 @@ public void testCB_1FHSKQ9_2() {
 		assertEquals("invalid cursor location: ", e.irritant, InvalidCursorLocation.NO_COMPLETION_INSIDE_NUMBER);
 	}
 }
-public void testCC_1FJ64I9() {
+public void testCC_1FJ64I9() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -992,7 +992,7 @@ public void testCC_1FJ64I9() {
 		expectedReplacedSource,
 		testName);
 }
-public void testD_1() {
+public void testD_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"import java.util.*;\n" +
@@ -1048,7 +1048,7 @@ public void testD_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testD_2() {
+public void testD_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"import java.util.*;\n" +
@@ -1107,7 +1107,7 @@ public void testD_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testDA_1() {
+public void testDA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class DA {\n" +
@@ -1150,7 +1150,7 @@ public void testDA_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testDA_2() {
+public void testDA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class DA {\n" +
@@ -1192,7 +1192,7 @@ public void testDA_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testDA_3() {
+public void testDA_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class DA {\n" +
@@ -1232,7 +1232,7 @@ public void testDA_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testDA_4() {
+public void testDA_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class DA {\n" +
@@ -1274,7 +1274,7 @@ public void testDA_4() {
 		expectedReplacedSource,
 		testName);
 }
-public void testDA_5() {
+public void testDA_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class DA {\n" +
@@ -1317,7 +1317,7 @@ public void testDA_5() {
 		expectedReplacedSource,
 		testName);
 }
-public void testDB_1FHSLDR() {
+public void testDB_1FHSLDR() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -1356,7 +1356,7 @@ public void testDB_1FHSLDR() {
 		expectedReplacedSource,
 		testName);
 }
-public void testDC_1FJJ0JR_1() {
+public void testDC_1FJJ0JR_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -1399,7 +1399,7 @@ public void testDC_1FJJ0JR_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testE_1FG1YDS_1() {
+public void testE_1FG1YDS_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -1451,7 +1451,7 @@ public void testE_1FG1YDS_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testE_1FG1YDS_2() {
+public void testE_1FG1YDS_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -1503,7 +1503,7 @@ public void testE_1FG1YDS_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testE_1FG1YDS_3() {
+public void testE_1FG1YDS_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -1554,7 +1554,7 @@ public void testE_1FG1YDS_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testEA_1() {
+public void testEA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class EA {\n" +
@@ -1597,7 +1597,7 @@ public void testEA_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testEA_2() {
+public void testEA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class EA {\n" +
@@ -1637,7 +1637,7 @@ public void testEA_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testEB_1FI74S3() {
+public void testEB_1FI74S3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -1675,7 +1675,7 @@ public void testEB_1FI74S3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testEC_1FSBZ2Y() {
+public void testEC_1FSBZ2Y() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -1718,7 +1718,7 @@ public void testEC_1FSBZ2Y() {
 		expectedReplacedSource,
 		testName);
 }
-public void testF() {
+public void testF() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class F {\n" +
@@ -1761,7 +1761,7 @@ public void testF() {
 		expectedReplacedSource,
 		testName);
 }
-public void testFA_1() {
+public void testFA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class FA {\n" +
@@ -1797,7 +1797,7 @@ public void testFA_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testFA_2() {
+public void testFA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class FA {\n" +
@@ -1833,7 +1833,7 @@ public void testFA_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testFB_1FI74S3() {
+public void testFB_1FI74S3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -1871,7 +1871,7 @@ public void testFB_1FI74S3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testFC_1FSBZ9B() {
+public void testFC_1FSBZ9B() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -1910,7 +1910,7 @@ public void testFC_1FSBZ9B() {
 		expectedReplacedSource,
 		testName);
 }
-public void testG() {
+public void testG() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class G {\n" +
@@ -1953,7 +1953,7 @@ public void testG() {
 		expectedReplacedSource,
 		testName);
 }
-public void testGA() {
+public void testGA() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class GA {\n" +
@@ -1987,7 +1987,7 @@ public void testGA() {
 		expectedReplacedSource,
 		testName);
 }
-public void testGB_1FI74S3() {
+public void testGB_1FI74S3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2025,7 +2025,7 @@ public void testGB_1FI74S3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testGC_1FSHLHV_1() {
+public void testGC_1FSHLHV_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2073,7 +2073,7 @@ public void testGC_1FSHLHV_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testGC_1FSHLHV_2() {
+public void testGC_1FSHLHV_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2127,7 +2127,7 @@ public void testGC_1FSHLHV_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testGC_1FSHLHV_3() {
+public void testGC_1FSHLHV_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2183,7 +2183,7 @@ public void testGC_1FSHLHV_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testGC_1FSHLHV_4() {
+public void testGC_1FSHLHV_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2240,7 +2240,7 @@ public void testGC_1FSHLHV_4() {
 		expectedReplacedSource,
 		testName);
 }
-public void testH() {
+public void testH() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class H {\n" +
@@ -2277,7 +2277,7 @@ public void testH() {
 		expectedReplacedSource,
 		testName);
 }
-public void testHA_1() {
+public void testHA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class HA {\n" +
@@ -2311,7 +2311,7 @@ public void testHA_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testHA_2() {
+public void testHA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class HA {\n" +
@@ -2345,7 +2345,7 @@ public void testHA_2() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testHB_1FHSLDR() {
+public void testHB_1FHSLDR() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2398,7 +2398,7 @@ public void testHB_1FHSLDR() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testHC_1FMPYO3_1() {
+public void testHC_1FMPYO3_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2435,7 +2435,7 @@ public void testHC_1FMPYO3_1() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testHC_1FMPYO3_2() {
+public void testHC_1FMPYO3_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2472,7 +2472,7 @@ public void testHC_1FMPYO3_2() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testI() {
+public void testI() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class I {\n" +
@@ -2500,7 +2500,7 @@ public void testI() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testIA_1FGNBPR_1() {
+public void testIA_1FGNBPR_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2553,7 +2553,7 @@ public void testIA_1FGNBPR_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testIA_1FGNBPR_2() {
+public void testIA_1FGNBPR_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2608,7 +2608,7 @@ public void testIA_1FGNBPR_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testIB() {
+public void testIB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class IB {\n" +
@@ -2642,7 +2642,7 @@ public void testIB() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testIC_1FMGUPR() {
+public void testIC_1FMGUPR() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2678,7 +2678,7 @@ public void testIC_1FMGUPR() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testJ() {
+public void testJ() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class J {\n" +
@@ -2714,7 +2714,7 @@ public void testJ() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testJA_1FGQVW2_1() {
+public void testJA_1FGQVW2_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2749,7 +2749,7 @@ public void testJA_1FGQVW2_1() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testJA_1FGQVW2_2() {
+public void testJA_1FGQVW2_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2784,7 +2784,7 @@ public void testJA_1FGQVW2_2() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testJB() {
+public void testJB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class JB\n" +
@@ -2818,7 +2818,7 @@ public void testJB() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testJC_1FLG1ZC() {
+public void testJC_1FLG1ZC() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -2854,7 +2854,7 @@ public void testJC_1FLG1ZC() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testK_1() {
+public void testK_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"class Other {\n" +
@@ -2909,7 +2909,7 @@ public void testK_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testK_2() {
+public void testK_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"class Other {\n" +
@@ -2956,7 +2956,7 @@ public void testK_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testK_3() {
+public void testK_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"class Other {\n" +
@@ -3003,7 +3003,7 @@ public void testK_3() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testK_4() {
+public void testK_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"class Other {\n" +
@@ -3050,7 +3050,7 @@ public void testK_4() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testKA_1FH5SU5() {
+public void testKA_1FH5SU5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -3099,7 +3099,7 @@ public void testKA_1FH5SU5() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testKB() {
+public void testKB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class KB {\n" +
@@ -3129,7 +3129,7 @@ public void testKB() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testKC_1FLG1ZC() {
+public void testKC_1FLG1ZC() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -3192,7 +3192,7 @@ public void testKC_1FLG1ZC() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testL_1() {
+public void testL_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class L {\n" +
@@ -3228,7 +3228,7 @@ public void testL_1() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testL_2() {
+public void testL_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class L {\n" +
@@ -3265,7 +3265,7 @@ public void testL_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testL_3() {
+public void testL_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class L {\n" +
@@ -3303,7 +3303,7 @@ public void testL_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testLA_1FGLMOF() {
+public void testLA_1FGLMOF() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -3342,7 +3342,7 @@ public void testLA_1FGLMOF() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testLB() {
+public void testLB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class LB {\n" +
@@ -3382,7 +3382,7 @@ public void testLB() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testLC_1FLG1E2() {
+public void testLC_1FLG1E2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -3420,7 +3420,7 @@ public void testLC_1FLG1E2() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testM_1FGGLMT() {
+public void testM_1FGGLMT() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -3471,7 +3471,7 @@ public void testM_1FGGLMT() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testMA_1() {
+public void testMA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class MA {\n" +
@@ -3552,7 +3552,7 @@ public void testMA_1() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testMA_2() {
+public void testMA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class MA {\n" +
@@ -3633,7 +3633,7 @@ public void testMA_2() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testMA_3() {
+public void testMA_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class MA {\n" +
@@ -3714,7 +3714,7 @@ public void testMA_3() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testMB_1FHSLMQ_1() {
+public void testMB_1FHSLMQ_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -3757,7 +3757,7 @@ public void testMB_1FHSLMQ_1() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testMB_1FHSLMQ_2() {
+public void testMB_1FHSLMQ_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -3800,7 +3800,7 @@ public void testMB_1FHSLMQ_2() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testMC_1FJ8D9Z() {
+public void testMC_1FJ8D9Z() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -3838,7 +3838,7 @@ public void testMC_1FJ8D9Z() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testN() {
+public void testN() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class N extends p.M {\n" +
@@ -3908,7 +3908,7 @@ public void testN() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testNA_1() {
+public void testNA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"class NException2\n" +
@@ -3992,7 +3992,7 @@ public void testNA_1() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testNA_2() {
+public void testNA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"class NException2\n" +
@@ -4076,7 +4076,7 @@ public void testNA_2() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testNA_3() {
+public void testNA_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"class NException2\n" +
@@ -4160,7 +4160,7 @@ public void testNA_3() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testNB() {
+public void testNB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class NB {\n" +
@@ -4204,7 +4204,7 @@ public void testNB() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testNC_1FJ8D9Z() {
+public void testNC_1FJ8D9Z() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -4235,7 +4235,7 @@ public void testNC_1FJ8D9Z() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testO_1FG1YU0() {
+public void testO_1FG1YU0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -4271,7 +4271,7 @@ public void testO_1FG1YU0() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testOA_1() {
+public void testOA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class OA {\n" +
@@ -4323,7 +4323,7 @@ public void testOA_1() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testOA_2() {
+public void testOA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class OA {\n" +
@@ -4377,7 +4377,7 @@ public void testOA_2() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testOB_1() {
+public void testOB_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class OB {\n" +
@@ -4416,7 +4416,7 @@ public void testOB_1() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testOB_2() {
+public void testOB_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class OB {\n" +
@@ -4452,7 +4452,7 @@ public void testOB_2() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testOC_1FM7J7F() {
+public void testOC_1FM7J7F() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -4484,7 +4484,7 @@ public void testOC_1FM7J7F() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testP_1FG1YU0() {
+public void testP_1FG1YU0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -4526,7 +4526,7 @@ public void testP_1FG1YU0() {
 		completionIdentifier,
 		expectedReplacedSource,
 		testName); }
-public void testPA_1() {
+public void testPA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"class PAHelper {\n" +
@@ -4575,7 +4575,7 @@ public void testPA_1() {
 		assertEquals("invalid cursor location: ", e.irritant, InvalidCursorLocation.NO_COMPLETION_INSIDE_COMMENT);
 	}
 }
-public void testPA_2() {
+public void testPA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"class PAHelper {\n" +
@@ -4644,7 +4644,7 @@ public void testPA_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testPB() {
+public void testPB() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class PB {\n" +
@@ -4718,7 +4718,7 @@ public void testPB() {
 		expectedReplacedSource,
 		testName);
 }
-public void testPC_1FSU4EF() {
+public void testPC_1FSU4EF() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -4771,7 +4771,7 @@ public void testPC_1FSU4EF() {
 		expectedReplacedSource,
 		testName);
 }
-public void testQ_1FG1YU0() {
+public void testQ_1FG1YU0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -4807,7 +4807,7 @@ public void testQ_1FG1YU0() {
 		expectedReplacedSource,
 		testName);
 }
-public void testQA_1() {
+public void testQA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"class QAHelper {\n" +
@@ -4889,7 +4889,7 @@ public void testQA_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testQA_2() {
+public void testQA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"class QAHelper {\n" +
@@ -4971,7 +4971,7 @@ public void testQA_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testQA_3() {
+public void testQA_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"class QAHelper {\n" +
@@ -5053,7 +5053,7 @@ public void testQA_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testQA_4() {
+public void testQA_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"class QAHelper {\n" +
@@ -5135,7 +5135,7 @@ public void testQA_4() {
 		expectedReplacedSource,
 		testName);
 }
-public void testQB_1FIK820() {
+public void testQB_1FIK820() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -5173,7 +5173,7 @@ public void testQB_1FIK820() {
 		expectedReplacedSource,
 		testName);
 }
-public void testR_1FGD31E() {
+public void testR_1FGD31E() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -5213,7 +5213,7 @@ public void testR_1FGD31E() {
 		expectedReplacedSource,
 		testName);
 }
-public void testRA_1() {
+public void testRA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class RA extends A {\n" +
@@ -5279,7 +5279,7 @@ public void testRA_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testRA_2() {
+public void testRA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class RA extends A {\n" +
@@ -5345,7 +5345,7 @@ public void testRA_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testRA_3() {
+public void testRA_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class RA extends A {\n" +
@@ -5410,7 +5410,7 @@ public void testRA_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testRB_1FI74S3() {
+public void testRB_1FI74S3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -5448,7 +5448,7 @@ public void testRB_1FI74S3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testS_1FGF64P_1() {
+public void testS_1FGF64P_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -5496,7 +5496,7 @@ public void testS_1FGF64P_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testS_1FGF64P_2() {
+public void testS_1FGF64P_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -5542,7 +5542,7 @@ public void testS_1FGF64P_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testS_1FGF64P_3() {
+public void testS_1FGF64P_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -5590,7 +5590,7 @@ public void testS_1FGF64P_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testSA() {
+public void testSA() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class SA {\n" +
@@ -5623,7 +5623,7 @@ public void testSA() {
 		expectedReplacedSource,
 		testName);
 }
-public void testSB_1FILFDG() {
+public void testSB_1FILFDG() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -5661,7 +5661,7 @@ public void testSB_1FILFDG() {
 		expectedReplacedSource,
 		testName);
 }
-public void testT_1FGF64P() {
+public void testT_1FGF64P() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -5707,7 +5707,7 @@ public void testT_1FGF64P() {
 		expectedReplacedSource,
 		testName);
 }
-public void testTA_1FHISJJ_1() {
+public void testTA_1FHISJJ_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -5749,7 +5749,7 @@ public void testTA_1FHISJJ_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testTA_1FHISJJ_2() {
+public void testTA_1FHISJJ_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -5797,7 +5797,7 @@ public void testTA_1FHISJJ_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testTA_1FHISJJ_3() {
+public void testTA_1FHISJJ_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -5840,7 +5840,7 @@ public void testTA_1FHISJJ_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testTB_1FHSLMQ() {
+public void testTB_1FHSLMQ() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -5878,7 +5878,7 @@ public void testTB_1FHSLMQ() {
 		expectedReplacedSource,
 		testName);
 }
-public void testU_1FGGUME() {
+public void testU_1FGGUME() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -5911,7 +5911,7 @@ public void testU_1FGGUME() {
 		assertEquals("invalid cursor location: ", e.irritant, InvalidCursorLocation.NO_COMPLETION_INSIDE_NUMBER);
 	}
 }
-public void testUA_1FHISJJ_1() {
+public void testUA_1FHISJJ_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -5958,7 +5958,7 @@ public void testUA_1FHISJJ_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testUA_1FHISJJ_2() {
+public void testUA_1FHISJJ_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -6001,7 +6001,7 @@ public void testUA_1FHISJJ_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testUB_1FSBZ02() {
+public void testUB_1FSBZ02() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -6052,7 +6052,7 @@ public void testUB_1FSBZ02() {
 		expectedReplacedSource,
 		testName);
 }
-public void testV_1FGGUOO_1() {
+public void testV_1FGGUOO_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -6087,7 +6087,7 @@ public void testV_1FGGUOO_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testV_1FGGUOO_2() {
+public void testV_1FGGUOO_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package x.y.z; \n" +
 		"/**\n" +
@@ -6119,7 +6119,7 @@ public void testV_1FGGUOO_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testVA_1FHISJJ_1() {
+public void testVA_1FHISJJ_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -6175,7 +6175,7 @@ public void testVA_1FHISJJ_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testVA_1FHISJJ_2() {
+public void testVA_1FHISJJ_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -6218,7 +6218,7 @@ public void testVA_1FHISJJ_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testVB_1() {
+public void testVB_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class VB {\n" +
@@ -6263,7 +6263,7 @@ public void testVB_1() {
 		testName);
 }
 // TODO excluded test (completion on field access on anonymous inner class with syntax error)
-public void _testVB_2() {
+public void _testVB_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class VB {\n" +
@@ -6318,7 +6318,7 @@ public void _testVB_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testVB_3() {
+public void testVB_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class VB {\n" +
@@ -6358,7 +6358,7 @@ public void testVB_3() {
 		testName);
 }
 // TODO excluded test (completion on field access on anonymous inner class with syntax error)
-public void _testVB_4() {
+public void _testVB_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class VB {\n" +
@@ -6417,7 +6417,7 @@ public void _testVB_4() {
 		testName);
 }
 // TODO excluded test (completion on field access on anonymous inner class with syntax error)
-public void _testVB_5() {
+public void _testVB_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"public class VB {\n" +
@@ -6472,7 +6472,7 @@ public void _testVB_5() {
 		expectedReplacedSource,
 		testName);
 }
-public void testW_1FGGUS4() {
+public void testW_1FGGUS4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -6517,7 +6517,7 @@ public void testW_1FGGUS4() {
 		expectedReplacedSource,
 		testName);
 }
-public void testWA_1() {
+public void testWA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class WA {\n" +
@@ -6552,7 +6552,7 @@ public void testWA_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testWA_2() {
+public void testWA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"public class WA {\n" +
@@ -6587,7 +6587,7 @@ public void testWA_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testWB_1FI313C() {
+public void testWB_1FI313C() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/*\n" +
@@ -6667,7 +6667,7 @@ public void testWB_1FI313C() {
 		expectedReplacedSource,
 		testName);
 }
-public void testX_1FGGV8C_1() {
+public void testX_1FGGV8C_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"import p2.Y; \n" +
@@ -6772,7 +6772,7 @@ public void testX_1FGGV8C_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testX_1FGGV8C_2() {
+public void testX_1FGGV8C_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"import p2.YZA; \n" +
@@ -6873,7 +6873,7 @@ public void testX_1FGGV8C_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testX_1FGGV8C_3() {
+public void testX_1FGGV8C_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"import p2.YZA; \n" +
@@ -6974,7 +6974,7 @@ public void testX_1FGGV8C_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testX_1FGGV8C_4() {
+public void testX_1FGGV8C_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"import p2.Y; \n" +
@@ -7075,7 +7075,7 @@ public void testX_1FGGV8C_4() {
 		expectedReplacedSource,
 		testName);
 }
-public void testX_1FGPE8E() {
+public void testX_1FGPE8E() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"import p2.Y; \n" +
@@ -7177,7 +7177,7 @@ public void testX_1FGPE8E() {
 		testName);
 }
 // Disabled since javadoc completion has been implemented
-public void _testXA_1FGGUQF_1FHSL8H_1() {
+public void _testXA_1FGGUQF_1FHSL8H_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"// int\n" +
 			"package p; \n" +
@@ -7251,7 +7251,7 @@ public void _testXA_1FGGUQF_1FHSL8H_1() {
 		assertEquals("invalid cursor location: ", e.irritant, InvalidCursorLocation.NO_COMPLETION_INSIDE_COMMENT);
 	}
 }
-public void testXA_1FGGUQF_1FHSL8H_2() {
+public void testXA_1FGGUQF_1FHSL8H_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"// int\n" +
 			"package p; \n" +
@@ -7325,7 +7325,7 @@ public void testXA_1FGGUQF_1FHSL8H_2() {
 		assertEquals("invalid cursor location: ", e.irritant, InvalidCursorLocation.NO_COMPLETION_INSIDE_COMMENT);
 	}
 }
-public void testXA_1FGGUQF_1FHSL8H_3() {
+public void testXA_1FGGUQF_1FHSL8H_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"// int\n" +
 			"package p; \n" +
@@ -7398,7 +7398,7 @@ public void testXA_1FGGUQF_1FHSL8H_3() {
 		assertEquals("invalid cursor location: ", e.irritant, InvalidCursorLocation.NO_COMPLETION_INSIDE_COMMENT);
 	}
 }
-public void testXA_1FGGUQF_1FHSL8H_4() {
+public void testXA_1FGGUQF_1FHSL8H_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"// int\n" +
 			"package p; \n" +
@@ -7471,7 +7471,7 @@ public void testXA_1FGGUQF_1FHSL8H_4() {
 		assertEquals("invalid cursor location: ", e.irritant, InvalidCursorLocation.NO_COMPLETION_INSIDE_COMMENT);
 	}
 }
-public void testXB_1FIYM5I_1() {
+public void testXB_1FIYM5I_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/*\n" +
@@ -7516,7 +7516,7 @@ public void testXB_1FIYM5I_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testXB_1FIYM5I_2() {
+public void testXB_1FIYM5I_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/*\n" +
@@ -7561,7 +7561,7 @@ public void testXB_1FIYM5I_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testXB_1FIYM5I_3() {
+public void testXB_1FIYM5I_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/*\n" +
@@ -7606,7 +7606,7 @@ public void testXB_1FIYM5I_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testXB_1FIYM5I_4() {
+public void testXB_1FIYM5I_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/*\n" +
@@ -7651,7 +7651,7 @@ public void testXB_1FIYM5I_4() {
 		expectedReplacedSource,
 		testName);
 }
-public void testY_1FGPESI() {
+public void testY_1FGPESI() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"import p2.; \n" +
@@ -7684,7 +7684,7 @@ public void testY_1FGPESI() {
 		expectedReplacedSource,
 		testName);
 }
-public void testYA_1FGRIUH() {
+public void testYA_1FGRIUH() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -7754,7 +7754,7 @@ public void testYA_1FGRIUH() {
 		expectedReplacedSource,
 		testName);
 }
-public void testYB_1FJ4D46_1() {
+public void testYB_1FJ4D46_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -7790,7 +7790,7 @@ public void testYB_1FJ4D46_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testZ_1FGPF3D_1() {
+public void testZ_1FGPF3D_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -7824,7 +7824,7 @@ public void testZ_1FGPF3D_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testZ_1FGPF3D_2() {
+public void testZ_1FGPF3D_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p; \n" +
 		"/**\n" +
@@ -7856,7 +7856,7 @@ public void testZ_1FGPF3D_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testZA_1() {
+public void testZA_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"import java.util.Vector;\n";
@@ -7880,7 +7880,7 @@ public void testZA_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testZA_2() {
+public void testZA_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"import java.util.Vector;\n";
@@ -7904,7 +7904,7 @@ public void testZA_2() {
 		expectedReplacedSource,
 		testName);
 }
-public void testZA_3() {
+public void testZA_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"import java.util.Vector;\n";
@@ -7928,7 +7928,7 @@ public void testZA_3() {
 		expectedReplacedSource,
 		testName);
 }
-public void testZB_1FJ4D46_1() {
+public void testZB_1FJ4D46_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -7974,7 +7974,7 @@ public void testZB_1FJ4D46_1() {
 		expectedReplacedSource,
 		testName);
 }
-public void testZB_1FJ4D46_2() {
+public void testZB_1FJ4D46_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package p; \n" +
 			"/**\n" +
@@ -8022,7 +8022,7 @@ public void testZB_1FJ4D46_2() {
 /**
  * Complete in initializer
  */
-public void test001(){
+public void test001(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p;\n" +
 		"public class X {\n" +
@@ -8065,7 +8065,7 @@ public void test001(){
 /**
  * Complete after initializer
  */
-public void test002(){
+public void test002(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p;\n" +
 		"public class X {\n" +
@@ -8107,7 +8107,7 @@ public void test002(){
 /**
  * Complete in initializer
  */
-public void test003(){
+public void test003(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"package p;\n" +
 		"public class X {\n" +
@@ -8151,7 +8151,7 @@ public void test003(){
 /**
  * Complete in switch
  */
-public void test004(){
+public void test004(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  final static int ZZZ = 1;\n"+
@@ -8196,7 +8196,7 @@ public void test004(){
 /**
  * Complete in method type.
  */
-public void test005(){
+public void test005(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  clon foo(){\n" +
@@ -8228,7 +8228,7 @@ public void test005(){
 /**
  * Complete in method type.
  */
-public void test006(){
+public void test006(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  clon\n" +
@@ -8261,7 +8261,7 @@ public void test006(){
 /**
  * Complete in field type.
  */
-public void test007(){
+public void test007(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  clon  x;\n" +
@@ -8292,7 +8292,7 @@ public void test007(){
 /**
  * Complete in field type.
  */
-public void test008(){
+public void test008(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  clon\n" +
@@ -8324,7 +8324,7 @@ public void test008(){
 /**
  * Complete in field type.
  */
-public void test009(){
+public void test009(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  clon\n" +
@@ -8357,7 +8357,7 @@ public void test009(){
 /**
  * Complete in method type.
  */
-public void test010(){
+public void test010(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  clon\n" +
@@ -8391,7 +8391,7 @@ public void test010(){
 /**
  * http://dev.eclipse.org/bugs/show_bug.cgi?id=25233
  */
-public void test011(){
+public void test011(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  void foo() {\n" +
@@ -8428,7 +8428,7 @@ public void test011(){
 /**
  * http://dev.eclipse.org/bugs/show_bug.cgi?id=27370
  */
-public void test012(){
+public void test012(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class X {\n" +
 		"  public X() {\n" +
@@ -8462,7 +8462,7 @@ public void test012(){
 /**
  * http://dev.eclipse.org/bugs/show_bug.cgi?id=27735
  */
-public void test013(){
+public void test013(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Bar {\n" +
 		"  #\n" +
@@ -8502,7 +8502,7 @@ public void test013(){
 /**
  * http://dev.eclipse.org/bugs/show_bug.cgi?id=27941
  */
-public void test014(){
+public void test014(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Bar {\n" +
 		"  void foo() {\n" +
@@ -8539,7 +8539,7 @@ public void test014(){
 /**
  * http://dev.eclipse.org/bugs/show_bug.cgi?id=39502
  */
-public void test015(){
+public void test015(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Bar {\n" +
 		"  void foo() {\n" +
@@ -8576,7 +8576,7 @@ public void test015(){
 /**
  * http://dev.eclipse.org/bugs/show_bug.cgi?id=39502
  */
-public void test016(){
+public void test016(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Bar {\n" +
 		"  void foo() {\n" +
@@ -8611,7 +8611,7 @@ public void test016(){
 		testName);
 }
 
-public void test017(){
+public void test017(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Bar {\n" +
 		"  String s;\n" +
@@ -8645,7 +8645,7 @@ public void test017(){
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=310423
 // To verify that assist node parent is set to the the type declaration
 // when completion is requested after implements in a type declaration.
-public void testBug310423(){
+public void testBug310423(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"import java.lang.annotation.Annotation;\n" +
 		"interface In {}\n" +
@@ -8697,7 +8697,7 @@ public void testBug310423(){
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=338789
-public void testBug338789(){
+public void testBug338789(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"	public void throwing() throws IZZBException, IZZException {}\n" +
@@ -8764,7 +8764,7 @@ public void testBug338789(){
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=338789
 // Qualified assist type reference
-public void testBug338789b(){
+public void testBug338789b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"	public void throwing() throws java.lang.IllegalArgumentException, java.lang.IndexOutOfBoundsException {}\n" +
@@ -8813,7 +8813,7 @@ public void testBug338789b(){
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=343637
 // Check that the whole union type ref is part of the completion node parent
-public void testBug343637(){
+public void testBug343637(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"	public void throwing() throws java.lang.IllegalArgumentException, java.lang.IndexOutOfBoundsException, java.lang.IOException {}\n" +
@@ -8865,7 +8865,7 @@ public void testBug343637(){
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=346454
-public void testBug346454(){
+public void testBug346454(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test<T> {\n" +
 		"	public void foo() {\n" +
@@ -8898,7 +8898,7 @@ public void testBug346454(){
 		testName);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=346454
-public void testBug346454b(){
+public void testBug346454b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test<T> {\n" +
 		"	public class T2<Z>{}\n" +
@@ -8935,7 +8935,7 @@ public void testBug346454b(){
 		expectedReplacedSource,
 		testName);
 }
-public void testBug346454b2(){
+public void testBug346454b2(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// TODO: unsuccessful attempt to show that completion would work right after "<>" but for that
 	// CompletionParser.checkClassInstanceCreation would need to handle parameterized types, which it never did
 	String str =
@@ -8975,7 +8975,7 @@ public void testBug346454b2(){
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=346415
 // To make sure that all catch blocks before the one in which we're invoking assist are avaiable in the ast.
-public void testBug346415(){
+public void testBug346415(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 		"public class Test {\n" +
 		"	public void throwing() throws java.lang.IllegalArgumentException, java.lang.IndexOutOfBoundsException, java.lang.IOException {}\n" +
@@ -9032,7 +9032,7 @@ public void testBug346415(){
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292087
 // To verify that the completion node is found inside a field initializer
 // that contains an anonymous class.
-public void testBug292087a(){
+public void testBug292087a(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package test;\n" +
 			"class MyClass{\n" +
@@ -9090,7 +9090,7 @@ public void testBug292087a(){
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=292087
 // To verify that anonymous class inside an array initializer of a recovered field
 // doesn't end up at a bogus location.
-public void testBug292087b(){
+public void testBug292087b(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str =
 			"package test;\n" +
 			"class MyClass{\n" +

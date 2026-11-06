@@ -48,7 +48,7 @@ static {
 /*
  * check extra checkcast (interface->same interface)
  */
-public void test001() throws Exception {
+public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -63,7 +63,7 @@ public void test001() throws Exception {
 		"SUCCESS");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -101,7 +101,7 @@ public void test001() throws Exception {
 	}
 }
 
-public void test002() {
+public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -142,7 +142,7 @@ public void test002() {
 		// javac options
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
-public void test003() {
+public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -179,7 +179,7 @@ public void test003() {
 		// javac options
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
-public void test004() {
+public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -217,7 +217,7 @@ public void test004() {
 		// javac options
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
-public void test005() {
+public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -268,7 +268,7 @@ public void test005() {
 		// javac options
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
-public void _test006() { // TODO (philippe) add support to conditional expression for unnecessary cast
+public void _test006() { // TODO (philippe) add support to conditional expression for unnecessary cast //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -302,7 +302,7 @@ public void _test006() { // TODO (philippe) add support to conditional expressio
 		customOptions);
 }
 
-public void test007() {
+public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -358,7 +358,7 @@ public void test007() {
 		// javac options
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
-public void test008() {
+public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -388,7 +388,7 @@ public void test008() {
 		// javac options
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
-public void test009() {
+public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -423,7 +423,7 @@ public void test009() {
 		// javac options
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
-public void test010() {
+public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -458,7 +458,7 @@ public void test010() {
 		// javac options
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
-public void test011() {
+public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -488,7 +488,7 @@ public void test011() {
 		// javac options
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
-public void test012() {
+public void test012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -529,7 +529,7 @@ public void test012() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=42289
-public void test013() {
+public void test013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -568,7 +568,7 @@ public void test013() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 // 39925 - Unnecessary instanceof checking leads to a NullPointerException
-public void test014() {
+public void test014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -594,7 +594,7 @@ public void test014() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 // narrowing cast on base types may change value, thus necessary
-public void test015() {
+public void test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -625,7 +625,7 @@ public void test015() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 // narrowing cast on base types may change value, thus necessary
-public void test016() {
+public void test016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -657,7 +657,7 @@ public void test016() {
 		JavacTestOptions.Excuse.EclipseWarningConfiguredAsError /* javac test options */);
 }
 //fault tolerance (40288)
-public void test017() {
+public void test017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -688,7 +688,7 @@ public void test017() {
 		customOptions);
 }
 //fault tolerance (40423)
-public void test018() {
+public void test018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -716,7 +716,7 @@ public void test018() {
 		customOptions);
 }
 //fault tolerance (40288)
-public void tes019() {
+public void tes019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -745,7 +745,7 @@ public void tes019() {
 		customOptions);
 }
 //fault tolerance
-public void test020() {
+public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -769,7 +769,7 @@ public void test020() {
 }
 
 // unnecessary cast diagnosis should also consider receiver type (40572)
-public void test021() {
+public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	this.runNegativeTest(
@@ -865,7 +865,7 @@ public void test021() {
 		customOptions);
 }
 // unnecessary cast diagnosis should tolerate array receiver type (40752)
-public void test022() {
+public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	customOptions.put(CompilerOptions.OPTION_ReportUncheckedTypeOperation, CompilerOptions.IGNORE);
@@ -897,7 +897,7 @@ public void test022() {
 }
 
 // unnecessary cast diagnosis should tolerate array receiver type (40752)
-public void test023() {
+public void test023() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -932,7 +932,7 @@ public void test023() {
 }
 
 // unnecessary cast diagnosis for message receiver (44400)
-public void test024() {
+public void test024() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -962,7 +962,7 @@ public void test024() {
 
 // unnecessary cast diagnosis for message receiver (44400)
 // variation with field access
-public void test025() {
+public void test025() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -993,7 +993,7 @@ public void test025() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=47074
  */
-public void test026() {
+public void test026() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	this.runConformTest(
 		new String[] {
@@ -1017,7 +1017,7 @@ public void test026() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=47074
  */
-public void test027() {
+public void test027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1039,7 +1039,7 @@ public void test027() {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=47074
  */
-public void test028() {
+public void test028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1065,7 +1065,7 @@ public void test028() {
  * verify error when assigning null to array
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26903
  */
-public void test029() {
+public void test029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1106,7 +1106,7 @@ public void test029() {
  * verify error when assigning null to array
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26903
  */
-public void test030() {
+public void test030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1143,7 +1143,7 @@ public void test030() {
  * verify error when assigning null to array
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26903
  */
-public void test031() {
+public void test031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1181,7 +1181,7 @@ public void test031() {
  * verify error when assigning null to array
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=26903
  */
-public void test032() {
+public void test032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1204,7 +1204,7 @@ public void test032() {
  * unused cast diagnosis
  * http://bugs.eclipse.org/bugs/show_bug.cgi?id=54763
  */
-public void test033() {
+public void test033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runNegativeTest(
@@ -1284,7 +1284,7 @@ public void test033() {
  * check non insertion of checkcast for unnecessary cast to interfaces
  * (same test case as test033)
  */
-public void test034() throws Exception {
+public void test034() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1307,7 +1307,7 @@ public void test034() throws Exception {
 		"SUCCESS");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -1360,7 +1360,7 @@ public void test034() throws Exception {
 	}
 }
 // javac incorrectly accepts it
-public void test035() {
+public void test035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] sources = {
 			"Test231.java",
 			"public class Test231 implements Test231i\n" +
@@ -1396,7 +1396,7 @@ public void test035() {
 		runConformTest(sources, "");
 	}
 }
-public void test036() {
+public void test036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runConformTest(
 		// test directory preparation
 		true /* flush output directory */,
@@ -1440,7 +1440,7 @@ public void test036() {
 		// javac options
 		JavacTestOptions.JavacHasABug.JavacBugFixed_7 /* javac test options */);
 }
-public void test037() {
+public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1459,7 +1459,7 @@ public void test037() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=101208
-public void test038() {
+public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1478,7 +1478,7 @@ public void test038() {
 		"----------\n");
 }
 //unnecessary cast warnings in assignment (Object o = (String) something).
-public void test039() {
+public void test039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1534,7 +1534,7 @@ public void test039() {
 		"----------\n");
 }
 //http://bugs.eclipse.org/bugs/show_bug.cgi?id=116647
-public void test040() {
+public void test040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1560,7 +1560,7 @@ public void test040() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158855
-public void test041() {
+public void test041() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1598,7 +1598,7 @@ public void test041() {
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=159654
-public void test042() {
+public void test042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1618,7 +1618,7 @@ public void test042() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=159654
-public void test043() {
+public void test043() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1638,7 +1638,7 @@ public void test043() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=159822
-public void test044() {
+public void test044() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -1673,7 +1673,7 @@ public void test045() {
 		"3");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=282869
-public void test046() {
+public void test046() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		true,
 		new String[] {
@@ -1701,7 +1701,7 @@ public void test046() {
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=287676
 // Test to make sure that an unnecessary cast warning is produced in case of
 // wrapper types like Integer, Character, Short, Byte, etc.
-public void test047() {
+public void test047() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1734,7 +1734,7 @@ public void test047() {
 		"----------\n"
 	);
 }
-public void testBug418795() {
+public void testBug418795() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runConformTest(
@@ -1783,7 +1783,7 @@ public void testBug329437() {
 		},
 		options);
 }
-public void testBug521778() {
+public void testBug521778() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	runConformTest(
@@ -1806,7 +1806,7 @@ public void testBug521778() {
 		options);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=302919
-public void test048() {
+public void test048() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"A.java",
@@ -1833,7 +1833,7 @@ public void test048() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=302919
-public void test049() {
+public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles =
 		new String[] {
@@ -1865,7 +1865,7 @@ public void test049() {
 	runner.runWarningTest();
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=302919
-public void test050() {
+public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"A.java",
@@ -1892,7 +1892,7 @@ public void test050() {
 	);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test051() {
+public void test051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1913,7 +1913,7 @@ public void test051() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test052() {
+public void test052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1934,7 +1934,7 @@ public void test052() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test053() {
+public void test053() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1956,7 +1956,7 @@ public void test053() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
 // Also confirm that a check cast and unboxing conversion are generated.
-public void test054() throws Exception {
+public void test054() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -1999,7 +1999,7 @@ public void test054() throws Exception {
 			"        [pc: 4, pc: 20] local: x index: 1 type: java.lang.Object\n" +
 			"        [pc: 12, pc: 20] local: y index: 2 type: int\n" +
 			"  \n";
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -2012,7 +2012,7 @@ public void test054() throws Exception {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test055() {
+public void test055() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2033,7 +2033,7 @@ public void test055() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test056() {
+public void test056() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2054,7 +2054,7 @@ public void test056() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test057() {
+public void test057() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2075,7 +2075,7 @@ public void test057() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test058() {
+public void test058() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2096,7 +2096,7 @@ public void test058() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test059() {
+public void test059() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2122,7 +2122,7 @@ public void test059() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test059b() {
+public void test059b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2148,7 +2148,7 @@ public void test059b() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test059c() {
+public void test059c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2174,7 +2174,7 @@ public void test059c() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test060() {
+public void test060() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2195,7 +2195,7 @@ public void test060() {
 		);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=353085
-public void test061() {
+public void test061() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class X {\n" +
 			"	public static void main(String[] args) {\n" +
@@ -2222,7 +2222,7 @@ public void test061() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=359284
 // Verify that checkcast is emitted for a cast expression.
-public void test061b() throws Exception {
+public void test061b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 		"public class X {\n" +
 	    "public X() {\n" +
@@ -2256,7 +2256,7 @@ public void test061b() throws Exception {
 			"        [pc: 0, pc: 10] local: this index: 0 type: X\n" +
 			"        [pc: 9, pc: 10] local: x index: 1 type: java.lang.Object[]\n" +
 			"}";
-	File f = new File(OUTPUT_DIR + File.separator + "X.class");
+	File f = new File(OUTPUT_DIR + File.separator + "X.class"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(f);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
 	String result = disassembler.disassemble(classFileBytes, "\n", ClassFileBytesDisassembler.DETAILED);
@@ -2269,7 +2269,7 @@ public void test061b() throws Exception {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=420283, [1.8] Wrong error "Type is not visible" for cast to intersection type
-public void test420283() {
+public void test420283() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -2288,7 +2288,7 @@ public void test420283() {
 		);
 }
 
-public void testBug428274() {
+public void testBug428274() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class Junk4 {\n" +
 			"    static void setValue(Number n) {\n" +
@@ -2307,7 +2307,7 @@ public void testBug428274() {
 		},
 		"3\n4");
 }
-public void testBug428274b() {
+public void testBug428274b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"Junk4.java",
@@ -2329,7 +2329,7 @@ public void testBug428274b() {
 	runner.runConformTest();
 }
 // note: spec allows all reference types, but neither javac nor common sense accept arrays :)
-public void testBug428274c() {
+public void testBug428274c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String source =
 			"public class Junk4 {\n" +
 			"    static void setValue(Object[] n) {\n" +
@@ -2371,7 +2371,7 @@ public void test428388() {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428388, [1.8][compiler] Casting to primitives is over tolerant - probable regression since bug 428274
-public void test428388a() throws Exception {
+public void test428388a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2389,7 +2389,7 @@ public void test428388a() throws Exception {
 		"3\n4");
 
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -2427,7 +2427,7 @@ public void test428388a() throws Exception {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428388, [1.8][compiler] Casting to primitives is over tolerant - probable regression since bug 428274
-public void test428388b() throws Exception {
+public void test428388b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2450,7 +2450,7 @@ public void test428388b() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428388, [1.8][compiler] Casting to primitives is over tolerant - probable regression since bug 428274
-public void test428388c() throws Exception {
+public void test428388c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2472,7 +2472,7 @@ public void test428388c() throws Exception {
 		"CCE\nCCE");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428388, [1.8][compiler] Casting to primitives is over tolerant - probable regression since bug 428274
-public void test428388d() throws Exception {
+public void test428388d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2495,7 +2495,7 @@ public void test428388d() throws Exception {
 		"CCE\n-1");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428388, [1.8][compiler] Casting to primitives is over tolerant - probable regression since bug 428274
-public void test428388e() throws Exception {
+public void test428388e() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2518,7 +2518,7 @@ public void test428388e() throws Exception {
 		"CCE\n-1");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428388, [1.8][compiler] Casting to primitives is over tolerant - probable regression since bug 428274
-public void test428388f() throws Exception {
+public void test428388f() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2541,7 +2541,7 @@ public void test428388f() throws Exception {
 		"1234");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428388, [1.8][compiler] Casting to primitives is over tolerant - probable regression since bug 428274
-public void test428388g() throws Exception {
+public void test428388g() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2575,7 +2575,7 @@ public void test428388g() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428388, [1.8][compiler] Casting to primitives is over tolerant - probable regression since bug 428274
-public void test428388h() throws Exception {
+public void test428388h() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2603,7 +2603,7 @@ public void test428388h() throws Exception {
 		"----------\n");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428388, [1.8][compiler] Casting to primitives is over tolerant - probable regression since bug 428274
-public void test428388i() throws Exception {
+public void test428388i() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -2625,7 +2625,7 @@ public void test428388i() throws Exception {
 		},
 		"1234");
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -2674,7 +2674,7 @@ public void test428388j() throws Exception {
 		"10101010");
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428522,  [1.8] VerifyError when a non primitive type cast to primitive type
-public void test428522() throws Exception {
+public void test428522() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -2689,7 +2689,7 @@ public void test428522() throws Exception {
 		},
 		"OK", customOptions);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -2725,7 +2725,7 @@ public void test428522() throws Exception {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428522,  [1.8] VerifyError when a non primitive type cast to primitive type
-public void test428522a() throws Exception {
+public void test428522a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.PRESERVE);
 	this.runConformTest(
@@ -2740,7 +2740,7 @@ public void test428522a() throws Exception {
 		},
 		"OK", customOptions);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -2777,7 +2777,7 @@ public void test428522a() throws Exception {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428522,  [1.8] VerifyError when a non primitive type cast to primitive type
-public void test428522b() throws Exception {
+public void test428522b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -2797,7 +2797,7 @@ public void test428522b() throws Exception {
 
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428522,  [1.8] VerifyError when a non primitive type cast to primitive type
-public void test428522c() throws Exception {
+public void test428522c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -2812,7 +2812,7 @@ public void test428522c() throws Exception {
 		},
 		"OK", customOptions);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -2849,7 +2849,7 @@ public void test428522c() throws Exception {
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=441731 JDT reports unnecessary cast, using the Quickfix to remove it creates syntax error
-public void test441731() {
+public void test441731() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -2869,7 +2869,7 @@ public void test441731() {
 		customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=448112, [compiler] Compiler crash (ArrayIndexOutOfBoundsException at StackMapFrame.addStackItem()) with unused variable
-public void test448112() throws Exception {
+public void test448112() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_PreserveUnusedLocal, CompilerOptions.OPTIMIZE_OUT);
 	this.runConformTest(
@@ -2900,7 +2900,7 @@ public void test448112() throws Exception {
 		},
 		"100", customOptions);
 	ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class"));
+	byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	String actualOutput =
 		disassembler.disassemble(
 			classFileBytes,
@@ -2936,7 +2936,7 @@ public void test448112() throws Exception {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=461706 [1.8][compiler] "Unnecessary cast" problems for necessary cast in lambda expression
-public void test461706() {
+public void test461706() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -2970,7 +2970,7 @@ public void test461706() {
 		customOptions);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=461706 [1.8][compiler] "Unnecessary cast" problems for necessary cast in lambda expression
-public void test461706a() {
+public void test461706a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.WARNING);
@@ -3011,7 +3011,7 @@ public void test461706a() {
 		"----------\n";
 	runner.runWarningTest();
 }
-public void testAnonymous_bug520727() {
+public void testAnonymous_bug520727() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String[] source = {
 		"O.java",
 		"import java.io.Serializable;\n" +
@@ -3037,7 +3037,7 @@ public void testAnonymous_bug520727() {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=543727 False positive "Unnecessary cast"
-public void test543727() {
+public void test543727() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -3057,7 +3057,7 @@ public void test543727() {
 		},
 		"SUCCESS");
 }
-public void test543727_notequals() {
+public void test543727_notequals() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -3078,7 +3078,7 @@ public void test543727_notequals() {
 		"SUCCESS");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=548647 JDT reports unnecessary cast, using the Quickfix to remove it creates syntax error
-public void test548647() {
+public void test548647() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
 	this.runConformTest(
@@ -3105,7 +3105,7 @@ public void test548647() {
 		},
 		customOptions);
 }
-public void test548647a() {
+public void test548647a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.WARNING);
@@ -3149,7 +3149,7 @@ public void test548647a() {
 	runner.runWarningTest();
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=472466 [compiler] bogus warning "unnecessary cast"
-public void test472466() {
+public void test472466() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.WARNING);
@@ -3183,7 +3183,7 @@ public void test472466() {
 	runner.runWarningTest();
 }
 
-public void testBug561167() {
+public void testBug561167() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel < ClassFileConstants.JDK10)
 		return;
 	Map customOptions = getCompilerOptions();
@@ -3222,7 +3222,7 @@ public void testBug561167() {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=572534
 // ClassCastException LocalTypeBinding cannot be cast to ParameterizedTypeBinding in inferDiamondConstructor
-public void testBug572534() {
+public void testBug572534() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if (this.complianceLevel > ClassFileConstants.JDK1_8) {
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
@@ -3280,7 +3280,7 @@ public void testBug572534() {
 	}
 }
 
-public void testGH2470() {
+public void testGH2470() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"UnnecessaryCasts.java",
@@ -3324,7 +3324,7 @@ public void testGH2470() {
 	runner.runWarningTest();
 }
 
-public void testGH2470_generic() {
+public void testGH2470_generic() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
@@ -3354,7 +3354,7 @@ public void testGH2470_generic() {
 	runner.runNegativeTest();
 }
 
-public void testGH2470_generic2() {
+public void testGH2470_generic2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
@@ -3405,7 +3405,7 @@ public void testGH2470_generic2() {
 	runner.runNegativeTest();
 }
 
-public void testGH2470_overload() {
+public void testGH2470_overload() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
 	runner.customOptions.put(CompilerOptions.OPTION_ReportUnnecessaryTypeCheck, CompilerOptions.ERROR);
@@ -3442,7 +3442,7 @@ public void testGH2470_overload() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4375
 // JDT generates invalid "Unnecessary cast" warning on ambiguous reference
-public void testIssue4375() {
+public void testIssue4375() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"Test.java",
@@ -3474,7 +3474,7 @@ public void testIssue4375() {
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4101
 // False positive "Unnecessary cast" warning in Eclipse 2025-06
-public void testIssue4101() {
+public void testIssue4101() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"Test.java",

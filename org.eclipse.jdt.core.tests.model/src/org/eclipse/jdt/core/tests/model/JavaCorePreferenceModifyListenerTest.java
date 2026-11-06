@@ -38,7 +38,7 @@ public class JavaCorePreferenceModifyListenerTest extends AbstractJavaModelTests
 		super(name);
 	}
 
-	public void testPreApply() throws BackingStoreException, CoreException {
+	public void testPreApply() throws BackingStoreException, CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// create a dummy node and export it to a stream
 		IEclipsePreferences toExport = ConfigurationScope.INSTANCE.getNode(NODE_NAME);
 		toExport.put(KEY, VALUE);

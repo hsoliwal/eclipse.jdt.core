@@ -42,7 +42,7 @@ public class Bug531382Test extends BuilderTests {
 		return buildTestSuite(Bug531382Test.class);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	protected void setUp() throws Exception {
 		super.setUp();
 
@@ -84,12 +84,12 @@ public class Bug531382Test extends BuilderTests {
 	 * We expect that this generated source is also compiled after the build.
 	 * To check this we generate the source with an error for it, and we check for the error.
 	 */
-	public void testBug531382() throws Exception {
+	public void testBug531382() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IFolder srcPackageFolder = env.getWorkspace().getRoot().getFolder(this.srcPackage);
 		assertTrue("package in source must exist", srcPackageFolder.exists());
 
-		for (int i = 0; i < AbstractImageBuilder.MAX_AT_ONCE; ++i) {
-			env.addClass(this.src, "p", "X" + i, "package p;\n public class X" + i + " {}");
+		for (int i = 0; i < AbstractImageBuilder.MAX_AT_ONCE; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			env.addClass(this.src, "p", "X" + i, "package p;\n public class X" + i + " {}"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 
 		final IFile generatedFile = srcPackageFolder.getFile("Generated.java");

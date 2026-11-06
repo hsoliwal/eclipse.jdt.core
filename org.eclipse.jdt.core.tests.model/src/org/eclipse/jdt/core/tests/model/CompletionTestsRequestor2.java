@@ -123,8 +123,8 @@ public class CompletionTestsRequestor2 extends CompletionRequestor {
 	}
 
 	public void allowAllRequiredProposals() {
-		for (int i = CompletionProposal.ANONYMOUS_CLASS_DECLARATION; i <= CompletionProposal.ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION; i++) {
-			for (int j = CompletionProposal.ANONYMOUS_CLASS_DECLARATION; j <= CompletionProposal.ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION; j++) {
+		for (int i = CompletionProposal.ANONYMOUS_CLASS_DECLARATION; i <= CompletionProposal.ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			for (int j = CompletionProposal.ANONYMOUS_CLASS_DECLARATION; j <= CompletionProposal.ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				setAllowsRequiredProposals(i, j, true);
 			}
 		}
@@ -134,136 +134,136 @@ public class CompletionTestsRequestor2 extends CompletionRequestor {
 		this.problem = p;
 	}
 
-	public String getContext() {
+	public String getContext() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(this.context == null) return "";
 
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 
 		if(!this.shortContext) {
-			buffer.append("completion offset=");
-			buffer.append(this.context.getOffset());
-			buffer.append('\n');
+			buffer.append("completion offset="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.context.getOffset()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-			buffer.append("completion range=[");
-			buffer.append(this.context.getTokenStart());
-			buffer.append(", ");
-			buffer.append(this.context.getTokenEnd());
-			buffer.append("]\n");
+			buffer.append("completion range=["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.context.getTokenStart()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(this.context.getTokenEnd()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("]\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			char[] token = this.context.getToken();
-			buffer.append("completion token=");
+			buffer.append("completion token="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if(token == null) {
-				buffer.append("null");
+				buffer.append("null"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append('\"');
-				buffer.append(token);
-				buffer.append('\"');
+				buffer.append('\"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(token); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('\"'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append('\n');
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
-			buffer.append("completion token kind=");
+			buffer.append("completion token kind="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			int tokenKind = this.context.getTokenKind();
 			if(tokenKind == CompletionContext.TOKEN_KIND_STRING_LITERAL) {
-				buffer.append("TOKEN_KIND_STRING_LITERAL");
+				buffer.append("TOKEN_KIND_STRING_LITERAL"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if(tokenKind == CompletionContext.TOKEN_KIND_NAME) {
-				buffer.append("TOKEN_KIND_NAME");
+				buffer.append("TOKEN_KIND_NAME"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append("TOKEN_KIND_UNKNOWN");
+				buffer.append("TOKEN_KIND_UNKNOWN"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
-			buffer.append('\n');
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		char[][] expectedTypesSignatures = this.context.getExpectedTypesSignatures();
-		buffer.append("expectedTypesSignatures=");
+		buffer.append("expectedTypesSignatures="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if(expectedTypesSignatures == null) {
-			buffer.append(this.NULL_LITERAL);
+			buffer.append(this.NULL_LITERAL); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append('{');
-			for (int i = 0; i < expectedTypesSignatures.length; i++) {
-				if(i > 0) buffer.append(',');
-				buffer.append(expectedTypesSignatures[i]);
+			buffer.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < expectedTypesSignatures.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				if(i > 0) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(expectedTypesSignatures[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			}
-			buffer.append('}');
+			buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append('\n');
+		buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		char[][] expectedTypesKeys = this.context.getExpectedTypesKeys();
-		buffer.append("expectedTypesKeys=");
+		buffer.append("expectedTypesKeys="); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if(expectedTypesSignatures == null) {
-			buffer.append(this.NULL_LITERAL);
+			buffer.append(this.NULL_LITERAL); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			buffer.append('{');
-			for (int i = 0; i < expectedTypesKeys.length; i++) {
-				if(i > 0) buffer.append(',');
-				buffer.append(expectedTypesKeys[i]);
+			buffer.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			for (int i = 0; i < expectedTypesKeys.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+				if(i > 0) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(expectedTypesKeys[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			}
-			buffer.append('}');
+			buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		if(!this.shortContext) {
-			buffer.append('\n');
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			int locationType = this.context.getTokenLocation();
 			if (locationType == 0) {
-				buffer.append("completion token location=UNKNOWN"); //$NON-NLS-1$
+				buffer.append("completion token location=UNKNOWN"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append("completion token location={"); //$NON-NLS-1$
+				buffer.append("completion token location={"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				boolean first = true;
 				if ((locationType & CompletionContext.TL_MEMBER_START) != 0) {
-					if (!first) buffer.append(',');
-					buffer.append("MEMBER_START"); //$NON-NLS-1$
+					if (!first) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append("MEMBER_START"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					first = false;
 				}
 				if ((locationType & CompletionContext.TL_STATEMENT_START) != 0) {
-					if (!first) buffer.append(',');
-					buffer.append("STATEMENT_START"); //$NON-NLS-1$
+					if (!first) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append("STATEMENT_START"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					first = false;
 				}
 				if ((locationType & CompletionContext.TL_CONSTRUCTOR_START) != 0) {
-					if (!first) buffer.append(',');
-					buffer.append("CONSTRUCTOR_START"); //$NON-NLS-1$
+					if (!first) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append("CONSTRUCTOR_START"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					first = false;
 				}
 				if ((locationType & CompletionContext.TL_IN_IMPORT) != 0) {
-					if (!first) buffer.append(',');
-					buffer.append("IN_IMPORT"); //$NON-NLS-1$
+					if (!first) buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append("IN_IMPORT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					first = false;
 				}
-				buffer.append('}');
+				buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 
 		if (this.computeEnclosingElement) {
-			buffer.append('\n');
-			buffer.append("enclosingElement="); //$NON-NLS-1$
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("enclosingElement="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			JavaElement enclosingElement = (JavaElement)this.context.getEnclosingElement();
 			if (enclosingElement == null) {
-				buffer.append("null"); //$NON-NLS-1$
+				buffer.append("null"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append(enclosingElement.toStringWithAncestors(true /*show resolved info*/));
+				buffer.append(enclosingElement.toStringWithAncestors(true /*show resolved info*/)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 
 		if (this.computeVisibleElements) {
-			buffer.append('\n');
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 			IJavaElement[] visibleElements = this.context.getVisibleElements(this.assignableType);
-			buffer.append("visibleElements="); //$NON-NLS-1$
+			buffer.append("visibleElements="); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (visibleElements == null) {
-				buffer.append("null"); //$NON-NLS-1$
+				buffer.append("null"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else if (visibleElements.length == 0) {
-				buffer.append("{}"); //$NON-NLS-1$
+				buffer.append("{}"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append('{');
-				buffer.append('\n');
-				for (int i = 0; i < visibleElements.length; i++) {
+				buffer.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i = 0; i < visibleElements.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					JavaElement element = (JavaElement) visibleElements[i];
-					buffer.append('\t');
-					buffer.append(element.toStringWithAncestors(true /*show resolved info*/));
-					buffer.append(",\n"); //$NON-NLS-1$
+					buffer.append('\t'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(element.toStringWithAncestors(true /*show resolved info*/)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(",\n"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append('}');
+				buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 
@@ -304,7 +304,7 @@ public class CompletionTestsRequestor2 extends CompletionRequestor {
 	public String getReversedResults() {
 		return getReversedResults(null);
 	}
-	public String getReversedResults(ProposalTextSupplier supplier) {
+	public String getReversedResults(ProposalTextSupplier supplier) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if(this.proposalsPtr < 0) return "";
 		Arrays.sort(this.proposals, new Comparator() {
 			@Override
@@ -336,9 +336,9 @@ public class CompletionTestsRequestor2 extends CompletionRequestor {
 	public String getResultsWithoutSorting(ProposalTextSupplier supplier) {
 		if(this.proposalsPtr < 0) return "";
 		StringBuilder buffer = printProposal(this.proposals[0], supplier);
-		for(int i = 1; i <=this.proposalsPtr; i++) {
-			if(i > 0) buffer.append('\n');
-			buffer.append(printProposal(this.proposals[i], supplier));
+		for(int i = 1; i <=this.proposalsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			if(i > 0) buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(printProposal(this.proposals[i], supplier)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		return buffer.toString();
 	}
@@ -350,222 +350,222 @@ public class CompletionTestsRequestor2 extends CompletionRequestor {
 			return new String[0];
 		}
 		String[] strings = new String[this.proposalsPtr+1];
-		for (int i=0; i<=this.proposalsPtr; i++) {
+		for (int i=0; i<=this.proposalsPtr; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			strings[i] =  printProposal(this.proposals[i]).toString();
 		}
 		return strings;
 	}
 	protected StringBuilder printProposal(CompletionProposal proposal) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		return printProposal(proposal, null, 0, buffer);
 	}
 	protected StringBuilder printProposal(CompletionProposal proposal, ProposalTextSupplier supplier) {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		return printProposal(proposal, supplier, 0, buffer);
 	}
 
 	protected StringBuilder printProposal(CompletionProposal proposal, int tab, StringBuilder buffer) {
 		return printProposal(proposal, null, tab, buffer);
 	}
-	protected StringBuilder printProposal(CompletionProposal proposal, ProposalTextSupplier textSupplier, int tab, StringBuilder buffer) {
+	protected StringBuilder printProposal(CompletionProposal proposal, ProposalTextSupplier textSupplier, int tab, StringBuilder buffer) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (textSupplier == null) {
 			textSupplier = DEFAULT_PROPOSAL_TEXT_SUPPLIER;
 		}
-		for (int i = 0; i < tab; i++) {
-			buffer.append("   "); //$NON-NLS-1$
+		for (int i = 0; i < tab; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append("   "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append(getElementName(proposal));
-		buffer.append('[');
+		buffer.append(getElementName(proposal)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append('['); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		switch(proposal.getKind()) {
 			case CompletionProposal.ANONYMOUS_CLASS_DECLARATION :
-				buffer.append("ANONYMOUS_CLASS_DECLARATION"); //$NON-NLS-1$
+				buffer.append("ANONYMOUS_CLASS_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.FIELD_REF :
-				buffer.append("FIELD_REF"); //$NON-NLS-1$
+				buffer.append("FIELD_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.FIELD_REF_WITH_CASTED_RECEIVER :
-				buffer.append("FIELD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$
+				buffer.append("FIELD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.KEYWORD :{
 				if(isRestrictedIdentifier(textSupplier.getProposalText(proposal)))
-						buffer.append("RESTRICTED_IDENTIFIER");
+						buffer.append("RESTRICTED_IDENTIFIER"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					else
-						buffer.append("KEYWORD"); //$NON-NLS-1$
+						buffer.append("KEYWORD"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 				break;
 			case CompletionProposal.LABEL_REF :
-				buffer.append("LABEL_REF"); //$NON-NLS-1$
+				buffer.append("LABEL_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.LOCAL_VARIABLE_REF :
-				buffer.append("LOCAL_VARIABLE_REF"); //$NON-NLS-1$
+				buffer.append("LOCAL_VARIABLE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_DECLARATION :
-				buffer.append("METHOD_DECLARATION"); //$NON-NLS-1$
+				buffer.append("METHOD_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if(proposal.isConstructor()) {
-					buffer.append("<CONSTRUCTOR>"); //$NON-NLS-1$
+					buffer.append("<CONSTRUCTOR>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			case CompletionProposal.METHOD_REF :
-				buffer.append("METHOD_REF"); //$NON-NLS-1$
+				buffer.append("METHOD_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if(proposal.isConstructor()) {
-					buffer.append("<CONSTRUCTOR>"); //$NON-NLS-1$
+					buffer.append("<CONSTRUCTOR>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			case CompletionProposal.METHOD_REF_WITH_CASTED_RECEIVER :
-				buffer.append("METHOD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$
+				buffer.append("METHOD_REF_WITH_CASTED_RECEIVER"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if(proposal.isConstructor()) {
-					buffer.append("<CONSTRUCTOR>"); //$NON-NLS-1$
+					buffer.append("<CONSTRUCTOR>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			case CompletionProposal.MODULE_DECLARATION :
-				buffer.append("MODULE_DECLARATION"); //$NON-NLS-1$
+				buffer.append("MODULE_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.MODULE_REF :
-				buffer.append("MODULE_REF"); //$NON-NLS-1$
+				buffer.append("MODULE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.PACKAGE_REF :
-				buffer.append("PACKAGE_REF"); //$NON-NLS-1$
+				buffer.append("PACKAGE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.TYPE_REF :
-				buffer.append("TYPE_REF"); //$NON-NLS-1$
+				buffer.append("TYPE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (proposal.getArrayDimensions() > 0) {
-					buffer.append("<ARRAY>"); //$NON-NLS-1$
+					buffer.append("<ARRAY>"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
 				break;
 			case CompletionProposal.VARIABLE_DECLARATION :
-				buffer.append("VARIABLE_DECLARATION"); //$NON-NLS-1$
+				buffer.append("VARIABLE_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.POTENTIAL_METHOD_DECLARATION :
-				buffer.append("POTENTIAL_METHOD_DECLARATION"); //$NON-NLS-1$
+				buffer.append("POTENTIAL_METHOD_DECLARATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_NAME_REFERENCE :
-				buffer.append("METHOD_NAME_REFERENCE"); //$NON-NLS-1$
+				buffer.append("METHOD_NAME_REFERENCE"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.ANNOTATION_ATTRIBUTE_REF :
-				buffer.append("ANNOTATION_ATTRIBUTE_REF"); //$NON-NLS-1$
+				buffer.append("ANNOTATION_ATTRIBUTE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_BLOCK_TAG :
-				buffer.append("JAVADOC_BLOCK_TAG"); //$NON-NLS-1$
+				buffer.append("JAVADOC_BLOCK_TAG"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_INLINE_TAG :
-				buffer.append("JAVADOC_INLINE_TAG"); //$NON-NLS-1$
+				buffer.append("JAVADOC_INLINE_TAG"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_FIELD_REF:
-				buffer.append("JAVADOC_FIELD_REF"); //$NON-NLS-1$
+				buffer.append("JAVADOC_FIELD_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_METHOD_REF :
-				buffer.append("JAVADOC_METHOD_REF"); //$NON-NLS-1$
+				buffer.append("JAVADOC_METHOD_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_TYPE_REF :
-				buffer.append("JAVADOC_TYPE_REF"); //$NON-NLS-1$
+				buffer.append("JAVADOC_TYPE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_PARAM_REF :
-				buffer.append("JAVADOC_PARAM_REF"); //$NON-NLS-1$
+				buffer.append("JAVADOC_PARAM_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.JAVADOC_VALUE_REF :
-				buffer.append("JAVADOC_VALUE_REF"); //$NON-NLS-1$
+				buffer.append("JAVADOC_VALUE_REF"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.FIELD_IMPORT :
-				buffer.append("FIELD_IMPORT"); //$NON-NLS-1$
+				buffer.append("FIELD_IMPORT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.METHOD_IMPORT :
-				buffer.append("METHOD_IMPORT"); //$NON-NLS-1$
+				buffer.append("METHOD_IMPORT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.TYPE_IMPORT :
-				buffer.append("TYPE_IMPORT"); //$NON-NLS-1$
+				buffer.append("TYPE_IMPORT"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.CONSTRUCTOR_INVOCATION :
-				buffer.append("CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$
+				buffer.append("CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION :
-				buffer.append("ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$
+				buffer.append("ANONYMOUS_CLASS_CONSTRUCTOR_INVOCATION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			case CompletionProposal.LAMBDA_EXPRESSION :
-				buffer.append("LAMBDA_EXPRESSION"); //$NON-NLS-1$
+				buffer.append("LAMBDA_EXPRESSION"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 			default :
-				buffer.append("PROPOSAL"); //$NON-NLS-1$
+				buffer.append("PROPOSAL"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				break;
 
 		}
-		buffer.append("]{");
-		buffer.append(textSupplier.getProposalText(proposal) == null ? this.NULL_LITERAL : textSupplier.getProposalText(proposal));
-		buffer.append(", ");
-		buffer.append(proposal.getDeclarationSignature() == null ? this.NULL_LITERAL : proposal.getDeclarationSignature());
-		buffer.append(", ");
-		buffer.append(proposal.getSignature() == null ? this.NULL_LITERAL : proposal.getSignature());
+		buffer.append("]{"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(textSupplier.getProposalText(proposal) == null ? this.NULL_LITERAL : textSupplier.getProposalText(proposal)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(proposal.getDeclarationSignature() == null ? this.NULL_LITERAL : proposal.getDeclarationSignature()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(proposal.getSignature() == null ? this.NULL_LITERAL : proposal.getSignature()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		char[] receiverSignature = proposal.getReceiverSignature();
 		if (receiverSignature != null) {
-			buffer.append(", ");
-			buffer.append(receiverSignature);
+			buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(receiverSignature); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 
 		if(this.showUniqueKeys) {
-			buffer.append(", ");
-			buffer.append(proposal.getDeclarationKey() == null ? this.NULL_LITERAL : proposal.getDeclarationKey());
-			buffer.append(", ");
-			buffer.append(proposal.getKey() == null ? this.NULL_LITERAL : proposal.getKey());
+			buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(proposal.getDeclarationKey() == null ? this.NULL_LITERAL : proposal.getDeclarationKey()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(proposal.getKey() == null ? this.NULL_LITERAL : proposal.getKey()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		buffer.append(", ");
-		buffer.append(proposal.getName() == null ? this.NULL_LITERAL : proposal.getName());
+		buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(proposal.getName() == null ? this.NULL_LITERAL : proposal.getName()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if(this.showParameterNames) {
 			char[][] parameterNames = proposal.findParameterNames(null);
-			buffer.append(", ");
+			buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if(parameterNames == null || parameterNames.length <= 0) {
-				buffer.append(this.NULL_LITERAL);
+				buffer.append(this.NULL_LITERAL); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			} else {
-				buffer.append("(");
-				for (int i = 0; i < parameterNames.length; i++) {
-					if(i > 0) buffer.append(", ");
-					buffer.append(parameterNames[i]);
+				buffer.append("("); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int i = 0; i < parameterNames.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					if(i > 0) buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+					buffer.append(parameterNames[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append(")");
+				buffer.append(")"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
 
 		if(this.showPositions) {
-			buffer.append(", ");
-			if(this.showTokenPositions || receiverSignature != null) buffer.append("replace");
-			buffer.append("[");
-			buffer.append(proposal.getReplaceStart());
-			buffer.append(", ");
-			buffer.append(proposal.getReplaceEnd());
-			buffer.append("]");
+			buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			if(this.showTokenPositions || receiverSignature != null) buffer.append("replace"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(proposal.getReplaceStart()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(proposal.getReplaceEnd()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("]"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if(this.showTokenPositions) {
-			buffer.append(", token[");
-			buffer.append(proposal.getTokenStart());
-			buffer.append(", ");
-			buffer.append(proposal.getTokenEnd());
-			buffer.append("]");
+			buffer.append(", token["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(proposal.getTokenStart()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(proposal.getTokenEnd()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("]"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if(this.showPositions && receiverSignature != null) {
-			buffer.append(", receiver[");
-			buffer.append(proposal.getReceiverStart());
-			buffer.append(", ");
-			buffer.append(proposal.getReceiverEnd());
-			buffer.append("]");
+			buffer.append(", receiver["); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(proposal.getReceiverStart()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(proposal.getReceiverEnd()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append("]"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		if(this.showModifiers) {
 			int flags = proposal.getFlags();
-			buffer.append(", ");
-			buffer.append(Flags.toString(flags));
+			buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append(Flags.toString(flags)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			if (Flags.isDeprecated(flags)) {
-				buffer.append(" deprecated"); //$NON-NLS-1$
+				buffer.append(" deprecated"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		}
-		buffer.append(", ");
-		buffer.append(proposal.getRelevance());
-		buffer.append('}');
+		buffer.append(", "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(proposal.getRelevance()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append('}'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		if(this.showMissingTypes) {
 			CompletionProposal[] requiredProposals = proposal.getRequiredProposals();
 			if (requiredProposals != null) {
 				int length = requiredProposals.length;
 				System.arraycopy(requiredProposals, 0, requiredProposals = new CompletionProposal[length], 0, length);
 				quickSort(requiredProposals, 0, length - 1);
-				for (int i = 0; i < length; i++) {
-					buffer.append('\n');
+				for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					printProposal(requiredProposals[i], tab + 1, buffer);
 				}
 			}
@@ -585,15 +585,15 @@ public class CompletionTestsRequestor2 extends CompletionRequestor {
 
 		return false;
 	}
-	protected CompletionProposal[] quickSort(CompletionProposal[] collection, int left, int right) {
+	protected CompletionProposal[] quickSort(CompletionProposal[] collection, int left, int right) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int original_left = left;
 		int original_right = right;
 		CompletionProposal mid = collection[left + ((right - left)/2)];
-		do {
-			while (compare(mid, collection[left]) > 0)
+		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			while (compare(mid, collection[left]) > 0) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// s[left] >= mid
 				left++;
-			while (compare(mid, collection[right]) < 0)
+			while (compare(mid, collection[right]) < 0) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				// s[right] <= mid
 				right--;
 			if (left <= right) {
@@ -611,7 +611,7 @@ public class CompletionTestsRequestor2 extends CompletionRequestor {
 		return collection;
 	}
 
-	protected int compare(CompletionProposal proposal1, CompletionProposal proposal2) {
+	protected int compare(CompletionProposal proposal1, CompletionProposal proposal2) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int relDif = proposal1.getRelevance() - proposal2.getRelevance();
 		if(relDif != 0) return relDif;
 		String name1 = getElementName(proposal1);
@@ -645,7 +645,7 @@ public class CompletionTestsRequestor2 extends CompletionRequestor {
 		return 0;
 	}
 
-	protected String getElementName(CompletionProposal proposal) {
+	protected String getElementName(CompletionProposal proposal) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		switch(proposal.getKind()) {
 			case CompletionProposal.ANONYMOUS_CLASS_DECLARATION :
 				return new String(Signature.getSignatureSimpleName(proposal.getDeclarationSignature()));

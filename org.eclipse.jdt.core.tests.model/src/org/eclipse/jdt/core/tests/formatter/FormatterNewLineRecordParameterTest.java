@@ -92,7 +92,7 @@ public class FormatterNewLineRecordParameterTest extends AbstractJavaModelTests 
 	deleteProject(JAVA_PROJECT); // $NON-NLS-1$
 	JAVA_PROJECT = null;
 	if (DEBUG) {
-	    System.out.println("Time spent = " + (System.nanoTime() - this.startNanos) / 1_000_000L);//$NON-NLS-1$
+	    System.out.println("Time spent = " + (System.nanoTime() - this.startNanos) / 1_000_000L);//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 	super.tearDownSuite();
     }
@@ -101,14 +101,14 @@ public class FormatterNewLineRecordParameterTest extends AbstractJavaModelTests 
 	assertNotNull(compilationUnitName);
 	int dotIndex = compilationUnitName.indexOf('.');
 	assertTrue(dotIndex != -1);
-	return compilationUnitName.substring(0, dotIndex) + IN + compilationUnitName.substring(dotIndex);
+	return compilationUnitName.substring(0, dotIndex) + IN + compilationUnitName.substring(dotIndex); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     }
 
     private String getOut(String compilationUnitName) {
 	assertNotNull(compilationUnitName);
 	int dotIndex = compilationUnitName.indexOf('.');
 	assertTrue(dotIndex != -1);
-	return compilationUnitName.substring(0, dotIndex) + OUT + compilationUnitName.substring(dotIndex);
+	return compilationUnitName.substring(0, dotIndex) + OUT + compilationUnitName.substring(dotIndex); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     }
 
     void assertLineEquals(String actualContents, String originalSource, String expectedContents, boolean checkNull) {
@@ -121,7 +121,7 @@ public class FormatterNewLineRecordParameterTest extends AbstractJavaModelTests 
 		actualContents);
     }
 
-    String runFormatter(CodeFormatter codeFormatter, String source, int kind, int indentationLevel, int offset,
+    String runFormatter(CodeFormatter codeFormatter, String source, int kind, int indentationLevel, int offset, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    int length, String lineSeparator, boolean repeat) {
 //	long time = System.currentTimeMillis();
 	TextEdit edit = codeFormatter.format(kind, source, offset, length, indentationLevel, lineSeparator);// $NON-NLS-1$
@@ -164,7 +164,7 @@ public class FormatterNewLineRecordParameterTest extends AbstractJavaModelTests 
 		null);
     }
 
-    private void runTest(CodeFormatter codeFormatter, String packageName, String compilationUnitName, int kind,
+    private void runTest(CodeFormatter codeFormatter, String packageName, String compilationUnitName, int kind, //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	    int indentationLevel, boolean checkNull, int offset, int length, String lineSeparator) {
 	try {
 	    ICompilationUnit sourceUnit = getCompilationUnit(PROJECT_NAME, "", packageName, getIn(compilationUnitName)); //$NON-NLS-1$ //$NON-NLS-2$

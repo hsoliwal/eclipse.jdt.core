@@ -57,8 +57,8 @@ protected void assertResults(String expected, String actual) {
 		// TODO: after switching defaults from 1.4 to 1.8,
 		// source seem to format differently.
 		// Once it is understood what is breaking tests, the two lines below could be removed
-		expected = expected.replaceAll(" = ,", "=,");
-		actual = actual.replaceAll(" = ,", "=,");
+		expected = expected.replaceAll(" = ,", "=,"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		actual = actual.replaceAll(" = ,", "=,"); //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
 
 		assertEquals(expected, actual);
 	} catch(ComparisonFailure c) {
@@ -68,7 +68,7 @@ protected void assertResults(String expected, String actual) {
 	}
 }
 
-private ICompilationUnit[] getExternalQQTypes() throws JavaModelException {
+private ICompilationUnit[] getExternalQQTypes() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit[] units = new ICompilationUnit[6];
 
 	units[0] = getWorkingCopy(
@@ -152,7 +152,7 @@ public void test0001() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("should have one class",
-		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY),
+		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getResults());
 }
 public void test0002() throws JavaModelException {
@@ -165,7 +165,7 @@ public void test0002() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("should have one class",
-		"element:Object    completion:Object    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY),
+		"element:Object    completion:Object    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getResults());
 }
 public void test0003() throws JavaModelException {
@@ -178,7 +178,7 @@ public void test0003() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("should have one class",
-		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_JAVA_LIBRARY),
+		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_JAVA_LIBRARY), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getResults());
 }
 public void test0004() throws JavaModelException {
@@ -191,11 +191,11 @@ public void test0004() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("should have one class",
-		"element:XZX    completion:XZX    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"\n"+
+		"element:XZX    completion:XZX    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"element:XZXSuper    completion:XZXSuper    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED),
 		requestor.getResults());
 }
-public void test0005() throws JavaModelException {
+public void test0005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0005/Test.java",
             "package test0005;\n" +
@@ -218,10 +218,10 @@ public void test0005() throws JavaModelException {
             result.context);
 
     assertResults(
-            "String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY)+"}",
+            "String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0006() throws JavaModelException {
+public void test0006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0006/Test.java",
             "package test0006;\n" +
@@ -244,10 +244,10 @@ public void test0006() throws JavaModelException {
             result.context);
 
     assertResults(
-            "Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY) +"}",
+            "Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0007() throws JavaModelException {
+public void test0007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0007/Test.java",
             "package test0007;\n" +
@@ -270,10 +270,10 @@ public void test0007() throws JavaModelException {
             result.context);
 
     assertResults(
-            "String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_JAVA_LIBRARY) +"}",
+            "String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_JAVA_LIBRARY) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0008() throws JavaModelException {
+public void test0008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0008/Test.java",
             "package test0008;\n" +
@@ -302,7 +302,7 @@ public void test0008() throws JavaModelException {
             result.context);
 
     assertResults(
-            "XYX[TYPE_REF]{XYX, test0008, Ltest0008.XYX;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+
+            "XYX[TYPE_REF]{XYX, test0008, Ltest0008.XYX;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"XYXSuper[TYPE_REF]{XYXSuper, test0008, Ltest0008.XYXSuper;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED)+"}",
 			result.proposals);
 }
@@ -316,7 +316,7 @@ public void test0009() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("should have one class",
-		"element:T_1    completion:T_1    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"\n"+
+		"element:T_1    completion:T_1    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"element:T_2    completion:T_2    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED),
 		requestor.getResults());
 }
@@ -330,13 +330,13 @@ public void test0010() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("should have one class",
-		"element:T_1    completion:T_1    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"\n"+
+		"element:T_1    completion:T_1    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"element:T_2    completion:T_2    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"\n"+
 		"element:T_3    completion:T_3    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+"\n"+
 		"element:T_4    completion:T_4    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED),
 		requestor.getResults());
 }
-public void test0011() throws JavaModelException {
+public void test0011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0011/Test.java",
             "package test0011;\n"+
@@ -356,10 +356,10 @@ public void test0011() throws JavaModelException {
             result.context);
 
     assertResults(
-            "Z0011<java.lang.Object>.Y0011[TYPE_REF]{Y0011, test0011, Ltest0011.Z0011<Ljava.lang.Object;>.Y0011;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}",
+            "Z0011<java.lang.Object>.Y0011[TYPE_REF]{Y0011, test0011, Ltest0011.Z0011<Ljava.lang.Object;>.Y0011;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0012() throws JavaModelException {
+public void test0012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0012/Test.java",
             "package test0012;\n"+
@@ -379,10 +379,10 @@ public void test0012() throws JavaModelException {
             result.context);
 
     assertResults(
-            "Z0012<java.lang.Object>.Y0012[TYPE_REF]{Y0012, test0012, Ltest0012.Z0012<Ljava.lang.Object;>.Y0012;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}",
+            "Z0012<java.lang.Object>.Y0012[TYPE_REF]{Y0012, test0012, Ltest0012.Z0012<Ljava.lang.Object;>.Y0012;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0013() throws JavaModelException {
+public void test0013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0013/Test.java",
             "package test0013;\n"+
@@ -402,10 +402,10 @@ public void test0013() throws JavaModelException {
             result.context);
 
     assertResults(
-            "Z0013<java.lang.Object>.Y0013[TYPE_REF]{Y0013, test0013, Ltest0013.Z0013<Ljava.lang.Object;>.Y0013;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}",
+            "Z0013<java.lang.Object>.Y0013[TYPE_REF]{Y0013, test0013, Ltest0013.Z0013<Ljava.lang.Object;>.Y0013;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0014() throws JavaModelException {
+public void test0014() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0014/Test.java",
             "package test0014;\n" +
@@ -424,10 +424,10 @@ public void test0014() throws JavaModelException {
             result.context);
 
     assertResults(
-            "Z0014<java.lang.Object>.Y0014[TYPE_REF]{Y0014, test0014, Ltest0014.Z0014<Ljava.lang.Object;>.Y0014;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_CLASS + R_NON_RESTRICTED) +"}",
+            "Z0014<java.lang.Object>.Y0014[TYPE_REF]{Y0014, test0014, Ltest0014.Z0014<Ljava.lang.Object;>.Y0014;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_CLASS + R_NON_RESTRICTED) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0015() throws JavaModelException {
+public void test0015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0015/Test.java",
             "package test0015;\n" +
@@ -448,10 +448,10 @@ public void test0015() throws JavaModelException {
             result.context);
 
     assertResults(
-            "Z0015<java.lang.Object>.Y0015[TYPE_REF]{Y0015, test0015, Ltest0015.Z0015<Ljava.lang.Object;>.Y0015;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+            "Z0015<java.lang.Object>.Y0015[TYPE_REF]{Y0015, test0015, Ltest0015.Z0015<Ljava.lang.Object;>.Y0015;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0016() throws JavaModelException {
+public void test0016() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0016/Test.java",
             "package test0016;\n" +
@@ -473,10 +473,10 @@ public void test0016() throws JavaModelException {
             result.context);
 
     assertResults(
-            "Z0016<java.lang.Object>.Y0016[TYPE_REF]{Y0016, test0016, Ltest0016.Z0016<Ljava.lang.Object;>.Y0016;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}",
+            "Z0016<java.lang.Object>.Y0016[TYPE_REF]{Y0016, test0016, Ltest0016.Z0016<Ljava.lang.Object;>.Y0016;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0017() throws JavaModelException {
+public void test0017() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0017/Test.java",
             "package test0017;\n" +
@@ -498,10 +498,10 @@ public void test0017() throws JavaModelException {
             result.context);
 
     assertResults(
-            "Z0017<java.lang.Object>.Y0017[TYPE_REF]{Y0017, test0017, Ltest0017.Z0017<Ljava.lang.Object;>.Y0017;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}",
+            "Z0017<java.lang.Object>.Y0017[TYPE_REF]{Y0017, test0017, Ltest0017.Z0017<Ljava.lang.Object;>.Y0017;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0018() throws JavaModelException {
+public void test0018() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0018/Test.java",
             "package test0018;\n" +
@@ -523,10 +523,10 @@ public void test0018() throws JavaModelException {
             result.context);
 
     assertResults(
-            "Z0018<java.lang.Object>.Y0018[TYPE_REF]{Y0018, test0018, Ltest0018.Z0018<Ljava.lang.Object;>.Y0018;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}",
+            "Z0018<java.lang.Object>.Y0018[TYPE_REF]{Y0018, test0018, Ltest0018.Z0018<Ljava.lang.Object;>.Y0018;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0019() throws JavaModelException {
+public void test0019() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0019/Test.java",
             "package test0019;\n" +
@@ -546,10 +546,10 @@ public void test0019() throws JavaModelException {
             result.context);
 
     assertResults(
-            "Z0019<java.lang.Object>.Y0019[TYPE_REF]{Y0019, test0019, Ltest0019.Z0019<Ljava.lang.Object;>.Y0019;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}",
+            "Z0019<java.lang.Object>.Y0019[TYPE_REF]{Y0019, test0019, Ltest0019.Z0019<Ljava.lang.Object;>.Y0019;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0020() throws JavaModelException {
+public void test0020() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0020/Test.java",
             "package test0020;\n"+
@@ -571,10 +571,10 @@ public void test0020() throws JavaModelException {
             result.context);
 
     assertResults(
-            "Z0020<java.lang.Object>.Y0020[TYPE_REF]{Y0020, test0020, Ltest0020.Z0020<Ljava.lang.Object;>.Y0020;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}",
+            "Z0020<java.lang.Object>.Y0020[TYPE_REF]{Y0020, test0020, Ltest0020.Z0020<Ljava.lang.Object;>.Y0020;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0021() throws JavaModelException {
+public void test0021() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src3/test0021/Test.java",
@@ -599,11 +599,11 @@ public void test0021() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Z0021Z[TYPE_REF]{Z0021Z, test0021, Ltest0021.Z0021Z;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"Z0021Z[TYPE_REF]{Z0021Z, test0021, Ltest0021.Z0021Z;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Z0021ZZ[TYPE_REF]{Z0021ZZ, test0021, Ltest0021.Z0021ZZ;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
-public void test0022() throws JavaModelException {
+public void test0022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src3/test0022/Test.java",
@@ -631,7 +631,7 @@ public void test0022() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Z0022ZZZ[TYPE_REF]{Z0022ZZZ, test0022, Ltest0022.Z0022ZZZ;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"Z0022ZZZ[TYPE_REF]{Z0022ZZZ, test0022, Ltest0022.Z0022ZZZ;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Z0022ZZ[TYPE_REF]{Z0022ZZ, test0022, Ltest0022.Z0022ZZ;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
@@ -671,10 +671,10 @@ public void test0025() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("should have one class",
-		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY),
+		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getResults());
 }
-public void test0026() throws JavaModelException {
+public void test0026() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src3/test0026/Test.java",
@@ -698,10 +698,10 @@ public void test0026() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY) + "}",
+			"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0027() throws JavaModelException {
+public void test0027() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src3/test0026/Test.java",
@@ -725,7 +725,7 @@ public void test0027() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY) + "}",
+			"String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 
 
@@ -740,10 +740,10 @@ public void test0028() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("should have one class",
-		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_JAVA_LIBRARY),
+		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_JAVA_LIBRARY), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getResults());
 }
-public void test0029() throws JavaModelException {
+public void test0029() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0029/Test.java",
             "package test0029;\n"+
@@ -758,7 +758,7 @@ public void test0029() throws JavaModelException {
             "/**/Inner2");
 
     assertResults(
-            "Inner2[POTENTIAL_METHOD_DECLARATION]{Inner2, Ltest0029.Test$Inner;, ()V, Inner2, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED)+"}\n"+
+            "Inner2[POTENTIAL_METHOD_DECLARATION]{Inner2, Ltest0029.Test$Inner;, ()V, Inner2, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED)+"}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "Test.Inner2<T>[TYPE_REF]{Inner2, test0029, Ltest0029.Test$Inner2<TT;>;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
             result.proposals);
 }
@@ -772,14 +772,14 @@ public void test0030() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("unexpected result",
-		"element:ZZX    completion:ZZX    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+ "\n" +
+		"element:ZZX    completion:ZZX    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED)+ "\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"element:ZZY    completion:ZZY    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED),
 		requestor.getResults());
 }
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=72501
  */
-public void test0031() throws JavaModelException {
+public void test0031() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0031/Test.java",
             "package test0031;\n" +
@@ -815,7 +815,7 @@ public void test0032() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("unexpected result",
-		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY),
+		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getResults());
 }
 /*
@@ -831,7 +831,7 @@ public void test0033() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("unexpected result",
-		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY),
+		"element:String    completion:String    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getResults());
 }
 /*
@@ -933,7 +933,7 @@ public void test0039() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=59082
  */
-public void test0040() throws JavaModelException {
+public void test0040() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0040/Test.java",
             "package test0040;\n" +
@@ -954,13 +954,13 @@ public void test0040() throws JavaModelException {
             result.context);
 
     assertResults(
-            "String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE  + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY) +"}",
+            "String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE  + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=59082
  */
-public void test0041() throws JavaModelException {
+public void test0041() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0041/Test.java",
             "package test0041;\n" +
@@ -983,13 +983,13 @@ public void test0041() throws JavaModelException {
             result.context);
 
     assertResults(
-            "String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED  + R_NON_RESTRICTED + R_JAVA_LIBRARY) +"}",
+            "String[TYPE_REF]{String, java.lang, Ljava.lang.String;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED  + R_NON_RESTRICTED + R_JAVA_LIBRARY) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=59082
  */
-public void test0042() throws JavaModelException {
+public void test0042() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0042/Test.java",
             "package test0042;\n" +
@@ -1017,7 +1017,7 @@ public void test0042() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=59082
  */
-public void test0043() throws JavaModelException {
+public void test0043() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0043/Test.java",
             "package test0043;\n" +
@@ -1046,7 +1046,7 @@ public void test0043() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=59082
  */
-public void test0044() throws JavaModelException {
+public void test0044() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0044/Test.java",
             "package test0044;\n" +
@@ -1073,7 +1073,7 @@ public void test0044() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=59082
  */
-public void test0045() throws JavaModelException {
+public void test0045() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0045/Test.java",
             "package test0045;\n" +
@@ -1102,7 +1102,7 @@ public void test0045() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=59082
  */
-public void test0046() throws JavaModelException {
+public void test0046() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0046/Test.java",
             "package test0046;\n" +
@@ -1129,7 +1129,7 @@ public void test0046() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=59082
  */
-public void test0047() throws JavaModelException {
+public void test0047() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0047/Test.java",
             "package test0047;\n" +
@@ -1168,7 +1168,7 @@ public void test0048() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("unexpected result",
-		"element:bar    completion:bar()    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED),
+		"element:bar    completion:bar()    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getResults());
 }
 /*
@@ -1184,7 +1184,7 @@ public void test0049() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("unexpected result",
-		"element:bar    completion:bar()    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED),
+		"element:bar    completion:bar()    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getResults());
 }
 /*
@@ -1200,11 +1200,11 @@ public void test0050() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertEquals("unexpected result",
-		"element:T_0050    completion:T_0050    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED),
+		"element:T_0050    completion:T_0050    relevance:"+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getResults());
 }
 
-public void test0051() throws JavaModelException {
+public void test0051() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1233,7 +1233,7 @@ public void test0051() throws JavaModelException {
 		this.wc.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"QQType1.Inner2[TYPE_REF]{Inner2, pkgstaticimport, Lpkgstaticimport.QQType1$Inner2;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
 	} finally {
@@ -1242,7 +1242,7 @@ public void test0051() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0052() throws JavaModelException {
+public void test0052() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1286,7 +1286,7 @@ public void test0052() throws JavaModelException {
 		this.wc.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"QQType1.Inner2[TYPE_REF]{pkgstaticimport.QQType1.Inner2, pkgstaticimport, Lpkgstaticimport.QQType1$Inner2;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 				"QQType2.Inner1[TYPE_REF]{test0052.QQType2.Inner1, test0052, Ltest0052.QQType2$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 				"QQType2.Inner3[TYPE_REF]{test0052.QQType2.Inner3, test0052, Ltest0052.QQType2$Inner3;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
@@ -1304,7 +1304,7 @@ public void test0052() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0053() throws JavaModelException {
+public void test0053() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1333,7 +1333,7 @@ public void test0053() throws JavaModelException {
 		this.wc.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"QQType1.Inner1[TYPE_REF]{Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"QQType1.Inner1[TYPE_REF]{Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"QQType1.Inner2[TYPE_REF]{Inner2, pkgstaticimport, Lpkgstaticimport.QQType1$Inner2;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"QQType1.Inner3[TYPE_REF]{Inner3, pkgstaticimport, Lpkgstaticimport.QQType1$Inner3;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"QQType1.Inner4[TYPE_REF]{Inner4, pkgstaticimport, Lpkgstaticimport.QQType1$Inner4;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
@@ -1344,7 +1344,7 @@ public void test0053() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0054() throws JavaModelException {
+public void test0054() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1373,7 +1373,7 @@ public void test0054() throws JavaModelException {
 		this.wc.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"QQType1.Inner2[TYPE_REF]{Inner2, pkgstaticimport, Lpkgstaticimport.QQType1$Inner2;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
 	} finally {
@@ -1382,7 +1382,7 @@ public void test0054() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0055() throws JavaModelException {
+public void test0055() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1412,7 +1412,7 @@ public void test0055() throws JavaModelException {
 		this.wc.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"QQType1.Inner2[TYPE_REF]{Inner2, pkgstaticimport, Lpkgstaticimport.QQType1$Inner2;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
 	} finally {
@@ -1421,7 +1421,7 @@ public void test0055() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0056() throws JavaModelException {
+public void test0056() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1451,7 +1451,7 @@ public void test0056() throws JavaModelException {
 		this.wc.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"QQType1.Inner2[TYPE_REF]{Inner2, pkgstaticimport, Lpkgstaticimport.QQType1$Inner2;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
 	} finally {
@@ -1460,7 +1460,7 @@ public void test0056() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0057() throws JavaModelException {
+public void test0057() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1489,7 +1489,7 @@ public void test0057() throws JavaModelException {
 		this.wc.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"QQType1.Inner1[TYPE_REF]{pkgstaticimport.QQType1.Inner1, pkgstaticimport, Lpkgstaticimport.QQType1$Inner1;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"QQType1.Inner2[TYPE_REF]{Inner2, pkgstaticimport, Lpkgstaticimport.QQType1$Inner2;, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
 	} finally {
@@ -1498,7 +1498,7 @@ public void test0057() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0058() throws JavaModelException {
+public void test0058() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1527,7 +1527,7 @@ public void test0058() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"zzvarzz2[FIELD_REF]{zzvarzz2, Lpkgstaticimport.QQType4;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+				"zzvarzz2[FIELD_REF]{zzvarzz2, Lpkgstaticimport.QQType4;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 
 	} finally {
@@ -1536,7 +1536,7 @@ public void test0058() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0059() throws JavaModelException {
+public void test0059() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1581,7 +1581,7 @@ public void test0059() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"zzvarzz2[FIELD_REF]{zzvarzz2, Ltest0059.QQType5;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"zzvarzz2[FIELD_REF]{zzvarzz2, Ltest0059.QQType5;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"zzvarzz4[FIELD_REF]{zzvarzz4, Ltest0059.QQType5;, I, zzvarzz4, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzvarzz8[FIELD_REF]{zzvarzz8, Ltest0059.QQType5;, I, zzvarzz8, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
@@ -1593,7 +1593,7 @@ public void test0059() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0060() throws JavaModelException {
+public void test0060() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1613,7 +1613,7 @@ public void test0060() throws JavaModelException {
 		cu.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"zzvarzz1[FIELD_REF]{zzvarzz1, Lpkgstaticimport.QQType4;, I, zzvarzz1, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"zzvarzz1[FIELD_REF]{zzvarzz1, Lpkgstaticimport.QQType4;, I, zzvarzz1, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"zzvarzz2[FIELD_REF]{zzvarzz2, Lpkgstaticimport.QQType4;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzvarzz3[FIELD_REF]{zzvarzz3, Lpkgstaticimport.QQType4;, I, zzvarzz3, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzvarzz4[FIELD_REF]{zzvarzz4, Lpkgstaticimport.QQType4;, I, zzvarzz4, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
@@ -1624,7 +1624,7 @@ public void test0060() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0061() throws JavaModelException {
+public void test0061() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1653,7 +1653,7 @@ public void test0061() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"zzvarzz2[FIELD_REF]{zzvarzz2, Lpkgstaticimport.QQType4;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+				"zzvarzz2[FIELD_REF]{zzvarzz2, Lpkgstaticimport.QQType4;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		discardWorkingCopies(qqTypes);
@@ -1661,7 +1661,7 @@ public void test0061() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0062() throws JavaModelException {
+public void test0062() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1691,7 +1691,7 @@ public void test0062() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"zzvarzz2[FIELD_REF]{zzvarzz2, Lpkgstaticimport.QQType4;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+				"zzvarzz2[FIELD_REF]{zzvarzz2, Lpkgstaticimport.QQType4;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		discardWorkingCopies(qqTypes);
@@ -1699,7 +1699,7 @@ public void test0062() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0063() throws JavaModelException {
+public void test0063() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1729,7 +1729,7 @@ public void test0063() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"zzvarzz2[FIELD_REF]{zzvarzz2, Lpkgstaticimport.QQType4;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+				"zzvarzz2[FIELD_REF]{zzvarzz2, Lpkgstaticimport.QQType4;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		discardWorkingCopies(qqTypes);
@@ -1737,7 +1737,7 @@ public void test0063() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0064() throws JavaModelException {
+public void test0064() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1757,7 +1757,7 @@ public void test0064() throws JavaModelException {
 		cu.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"zzvarzz2[FIELD_REF]{zzvarzz2, Lpkgstaticimport.QQType4;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+				"zzvarzz2[FIELD_REF]{zzvarzz2, Lpkgstaticimport.QQType4;, I, zzvarzz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		discardWorkingCopies(qqTypes);
@@ -1765,7 +1765,7 @@ public void test0064() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0065() throws JavaModelException {
+public void test0065() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1794,7 +1794,7 @@ public void test0065() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"zzfoozz2[METHOD_REF]{zzfoozz2(), Lpkgstaticimport.QQType7;, ()V, zzfoozz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+				"zzfoozz2[METHOD_REF]{zzfoozz2(), Lpkgstaticimport.QQType7;, ()V, zzfoozz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		discardWorkingCopies(qqTypes);
@@ -1802,7 +1802,7 @@ public void test0065() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0066() throws JavaModelException {
+public void test0066() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1847,7 +1847,7 @@ public void test0066() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"zzfoozz2[METHOD_REF]{zzfoozz2(), Ltest0066.QQType8;, ()V, zzfoozz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"zzfoozz2[METHOD_REF]{zzfoozz2(), Ltest0066.QQType8;, ()V, zzfoozz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"zzfoozz4[METHOD_REF]{zzfoozz4(), Ltest0066.QQType8;, ()V, zzfoozz4, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzfoozz8[METHOD_REF]{zzfoozz8(), Ltest0066.QQType8;, ()V, zzfoozz8, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
@@ -1859,7 +1859,7 @@ public void test0066() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0067() throws JavaModelException {
+public void test0067() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1879,7 +1879,7 @@ public void test0067() throws JavaModelException {
 		cu.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"zzfoozz1[METHOD_REF]{zzfoozz1(), Lpkgstaticimport.QQType7;, ()V, zzfoozz1, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"zzfoozz1[METHOD_REF]{zzfoozz1(), Lpkgstaticimport.QQType7;, ()V, zzfoozz1, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"zzfoozz2[METHOD_REF]{zzfoozz2(), Lpkgstaticimport.QQType7;, ()V, zzfoozz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzfoozz3[METHOD_REF]{zzfoozz3(), Lpkgstaticimport.QQType7;, ()V, zzfoozz3, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzfoozz4[METHOD_REF]{zzfoozz4(), Lpkgstaticimport.QQType7;, ()V, zzfoozz4, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
@@ -1890,7 +1890,7 @@ public void test0067() throws JavaModelException {
 		JavaCore.setOptions(this.oldOptions);
 	}
 }
-public void test0068() throws JavaModelException {
+public void test0068() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	ICompilationUnit[] qqTypes = null;
@@ -1910,7 +1910,7 @@ public void test0068() throws JavaModelException {
 		cu.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"zzfoozz2[METHOD_REF]{zzfoozz2(), Lpkgstaticimport.QQType7;, ()V, zzfoozz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+				"zzfoozz2[METHOD_REF]{zzfoozz2(), Lpkgstaticimport.QQType7;, ()V, zzfoozz2, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				requestor.getResults());
 	} finally {
 		discardWorkingCopies(qqTypes);
@@ -1931,13 +1931,13 @@ public void test0069() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"putValue[METHOD_REF]{putValue(), Ltest0069.Test<Ljava.lang.String;>;, (Ljava.lang.String;)V, putValue, (value), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
+			"putValue[METHOD_REF]{putValue(), Ltest0069.Test<Ljava.lang.String;>;, (Ljava.lang.String;)V, putValue, (value), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=77573
  */
-public void test0070() throws JavaModelException {
+public void test0070() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit importedClass = null;
 	try {
 		importedClass = getWorkingCopy(
@@ -1957,7 +1957,7 @@ public void test0070() throws JavaModelException {
 		cu.codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"test0070.p[PACKAGE_REF]{test0070.p., test0070.p, null, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"test0070.p[PACKAGE_REF]{test0070.p., test0070.p, null, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"test0070[PACKAGE_REF]{test0070., test0070, null, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
 	} finally {
@@ -1970,7 +1970,7 @@ public void test0070() throws JavaModelException {
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=77573
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94303
  */
-public void test0071() throws JavaModelException {
+public void test0071() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit importedClass = null;
 	try {
 		importedClass = getWorkingCopy(
@@ -1999,7 +1999,7 @@ public void test0071() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"ImportedClass[TYPE_REF]{ImportedClass., test0071.p, Ltest0071.p.ImportedClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+				"ImportedClass[TYPE_REF]{ImportedClass., test0071.p, Ltest0071.p.ImportedClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(importedClass != null) {
@@ -2010,7 +2010,7 @@ public void test0071() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=77573
  */
-public void test0072() throws JavaModelException {
+public void test0072() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit importedClass = null;
 	try {
 		importedClass = getWorkingCopy(
@@ -2035,7 +2035,7 @@ public void test0072() throws JavaModelException {
 		int start = end - "ZZ".length();
 
 		assertResults(
-				"ZZZ1[FIELD_REF]{ZZZ1;, Ltest0072.p.ImportedClass;, I, ZZZ1, null, ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"ZZZ1[FIELD_REF]{ZZZ1;, Ltest0072.p.ImportedClass;, I, ZZZ1, null, ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZZ2[METHOD_NAME_REFERENCE]{ZZZ2;, Ltest0072.p.ImportedClass;, ()V, ZZZ2, null, ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 				"ZZZ2[METHOD_NAME_REFERENCE]{ZZZ2;, Ltest0072.p.ImportedClass;, (I)V, ZZZ2, (i), ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
@@ -2048,7 +2048,7 @@ public void test0072() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=77573
  */
-public void test0073() throws JavaModelException {
+public void test0073() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit importedClass = null;
 	try {
 		importedClass = getWorkingCopy(
@@ -2075,7 +2075,7 @@ public void test0073() throws JavaModelException {
 		int start = end - "ZZ".length();
 
 		assertResults(
-				"ZZZ1[FIELD_REF]{ZZZ1;, Ltest0073.p.ImportedClass$Inner;, I, ZZZ1, null, ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"ZZZ1[FIELD_REF]{ZZZ1;, Ltest0073.p.ImportedClass$Inner;, I, ZZZ1, null, ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZZ2[METHOD_NAME_REFERENCE]{ZZZ2;, Ltest0073.p.ImportedClass$Inner;, ()V, ZZZ2, null, ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 				"ZZZ2[METHOD_NAME_REFERENCE]{ZZZ2;, Ltest0073.p.ImportedClass$Inner;, (I)V, ZZZ2, (i), ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
@@ -2088,7 +2088,7 @@ public void test0073() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=77573
  */
-public void test0074() throws JavaModelException {
+public void test0074() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit importedClass = null;
 	try {
 		importedClass = getWorkingCopy(
@@ -2115,7 +2115,7 @@ public void test0074() throws JavaModelException {
 		int start = end - "ZZ".length();
 
 		assertResults(
-				"ZZZ1[FIELD_REF]{ZZZ1;, Ltest0074.p.ImportedClass$Inner;, I, ZZZ1, null, ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"ZZZ1[FIELD_REF]{ZZZ1;, Ltest0074.p.ImportedClass$Inner;, I, ZZZ1, null, ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZZ2[METHOD_NAME_REFERENCE]{ZZZ2;, Ltest0074.p.ImportedClass$Inner;, ()V, ZZZ2, null, ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 				"ZZZ2[METHOD_NAME_REFERENCE]{ZZZ2;, Ltest0074.p.ImportedClass$Inner;, (I)V, ZZZ2, (i), ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
@@ -2125,7 +2125,7 @@ public void test0074() throws JavaModelException {
 		}
 	}
 }
-public void test0075() throws JavaModelException {
+public void test0075() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test0075/Test.java",
@@ -2146,10 +2146,10 @@ public void test0075() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
+			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0076() throws JavaModelException {
+public void test0076() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test0076/Test.java",
@@ -2170,10 +2170,10 @@ public void test0076() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
+			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0077() throws JavaModelException {
+public void test0077() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test0077/Test.java",
@@ -2195,10 +2195,10 @@ public void test0077() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
+			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0078() throws JavaModelException {
+public void test0078() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test0078/Test.java",
@@ -2221,10 +2221,10 @@ public void test0078() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
+			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0079() throws JavaModelException {
+public void test0079() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test0078/Test.java",
@@ -2246,10 +2246,10 @@ public void test0079() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
+			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0080() throws JavaModelException {
+public void test0080() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test0078/Test.java",
@@ -2271,10 +2271,10 @@ public void test0080() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
+			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0081() throws JavaModelException {
+public void test0081() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test0078/Test.java",
@@ -2296,10 +2296,10 @@ public void test0081() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
+			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0082() throws JavaModelException {
+public void test0082() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test0078/Test.java",
@@ -2322,10 +2322,10 @@ public void test0082() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
+			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0083() throws JavaModelException {
+public void test0083() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test0078/Test.java",
@@ -2348,10 +2348,10 @@ public void test0083() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
+			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0084() throws JavaModelException {
+public void test0084() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit imported = null;
 	try {
 		imported = getWorkingCopy(
@@ -2374,7 +2374,7 @@ public void test0084() throws JavaModelException {
 				"foo");
 
 		assertResults(
-				"foo[METHOD_REF]{foo(), Lpkgstaticimport.MyClass0084;, ()I, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"foo[METHOD_REF]{foo(), Lpkgstaticimport.MyClass0084;, ()I, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"foo[METHOD_REF]{foo(), Lpkgstaticimport.MyClass0084;, (I)I, foo, (i), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
 	} finally {
@@ -2384,7 +2384,7 @@ public void test0084() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=85290
-public void test0085() throws JavaModelException {
+public void test0085() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0085/TestAnnotation.java",
 			"package test0085;\n" +
@@ -2402,11 +2402,11 @@ public void test0085() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"TestAnnotation[TYPE_REF]{TestAnnotation, test0085, Ltest0085.TestAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"TestAnnotation[TYPE_REF]{TestAnnotation, test0085, Ltest0085.TestAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=85290
-public void test0086() throws JavaModelException {
+public void test0086() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/TestAnnotation.java",
 			"public @interface TestAnnotation {\n" +
@@ -2423,11 +2423,11 @@ public void test0086() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"TestAnnotation[TYPE_REF]{TestAnnotation, , LTestAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"TestAnnotation[TYPE_REF]{TestAnnotation, , LTestAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=85402
-public void test0087() throws JavaModelException {
+public void test0087() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0087/TestAnnotation.java",
 			"package test0087;\n" +
@@ -2450,7 +2450,7 @@ public void test0087() throws JavaModelException {
 				requestor.getResults());
 	} else {
 		assertResults(
-				"interface[KEYWORD]{interface, null, null, interface, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+				"interface[KEYWORD]{interface, null, null, interface, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"YAAnnot[TYPE_REF]{testxxx.YAAnnot, testxxx, Ltestxxx.YAAnnot;, null, null, " + (R_NAME_PREFIX + R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
 				"_ConfigurationData[TYPE_REF]{test325481._ConfigurationData, test325481, Ltest325481._ConfigurationData;, null, null, " + (R_NAME_PREFIX + R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
 				"_Path[TYPE_REF]{test325481._Path, test325481, Ltest325481._Path;, null, null, " + (R_NAME_PREFIX + R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
@@ -2459,7 +2459,7 @@ public void test0087() throws JavaModelException {
 				requestor.getResults());
 	}
 }
-public void test0088() throws JavaModelException {
+public void test0088() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0088/TestAnnotation.java",
 			"package test0088;\n" +
@@ -2478,10 +2478,10 @@ public void test0088() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0088.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0088.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0089() throws JavaModelException {
+public void test0089() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0089/TestAnnotation.java",
 			"package test0089;\n" +
@@ -2501,10 +2501,10 @@ public void test0089() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0089.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0089.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0090() throws JavaModelException {
+public void test0090() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0090/TestAnnotation.java",
 			"package test0090;\n" +
@@ -2524,10 +2524,10 @@ public void test0090() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0090.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0090.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0091() throws JavaModelException {
+public void test0091() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0091/TestAnnotation.java",
 			"package test0091;\n" +
@@ -2549,10 +2549,10 @@ public void test0091() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0091.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0091.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0092() throws JavaModelException {
+public void test0092() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0092/TestAnnotation.java",
 			"package test0092;\n" +
@@ -2572,10 +2572,10 @@ public void test0092() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0092.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0092.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0093() throws JavaModelException {
+public void test0093() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0093/TestAnnotation.java",
 			"package test0093;\n" +
@@ -2596,10 +2596,10 @@ public void test0093() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0093.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0093.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0094() throws JavaModelException {
+public void test0094() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0094/TestAnnotation.java",
 			"package test0094;\n" +
@@ -2618,10 +2618,10 @@ public void test0094() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0094.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0094.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0095() throws JavaModelException {
+public void test0095() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0095/TestAnnotation.java",
 			"package test0095;\n" +
@@ -2641,10 +2641,10 @@ public void test0095() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0095.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0095.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0096() throws JavaModelException {
+public void test0096() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0096/TestAnnotation.java",
 			"package test0096;\n" +
@@ -2664,10 +2664,10 @@ public void test0096() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0096.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0096.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0097() throws JavaModelException {
+public void test0097() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0097/TestAnnotation.java",
 			"package test0097;\n" +
@@ -2689,10 +2689,10 @@ public void test0097() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0097.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0097.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0098() throws JavaModelException {
+public void test0098() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0098/TestAnnotation.java",
 			"package test0098;\n" +
@@ -2712,10 +2712,10 @@ public void test0098() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0098.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0098.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0099() throws JavaModelException {
+public void test0099() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0099/TestAnnotation.java",
 			"package test0099;\n" +
@@ -2736,10 +2736,10 @@ public void test0099() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0099.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0099.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0100() throws JavaModelException {
+public void test0100() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0100/TestAnnotation.java",
 			"package test0100;\n" +
@@ -2758,10 +2758,10 @@ public void test0100() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0100.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0100.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0101() throws JavaModelException {
+public void test0101() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0101/TestAnnotation.java",
 			"package test00101;\n" +
@@ -2781,10 +2781,10 @@ public void test0101() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0101.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0101.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0102() throws JavaModelException {
+public void test0102() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0102/TestAnnotation.java",
 			"package test0102;\n" +
@@ -2804,10 +2804,10 @@ public void test0102() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0102.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0102.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0103() throws JavaModelException {
+public void test0103() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0103/TestAnnotation.java",
 			"package test00103;\n" +
@@ -2829,10 +2829,10 @@ public void test0103() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0103.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0103.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0104() throws JavaModelException {
+public void test0104() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0104/TestAnnotation.java",
 			"package test0104;\n" +
@@ -2852,10 +2852,10 @@ public void test0104() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0104.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0104.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0105() throws JavaModelException {
+public void test0105() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0105/TestAnnotation.java",
 			"package test0105;\n" +
@@ -2876,10 +2876,10 @@ public void test0105() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0105.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0105.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0106() throws JavaModelException {
+public void test0106() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0106/TestAnnotation.java",
 			"package test0106;\n" +
@@ -2898,10 +2898,10 @@ public void test0106() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0106.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0106.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0107() throws JavaModelException {
+public void test0107() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0107/TestAnnotation.java",
 			"package test0107;\n" +
@@ -2921,10 +2921,10 @@ public void test0107() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0107.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0107.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0108() throws JavaModelException {
+public void test0108() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0108/TestAnnotation.java",
 			"package test0108;\n" +
@@ -2944,10 +2944,10 @@ public void test0108() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0108.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0108.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0109() throws JavaModelException {
+public void test0109() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0109/TestAnnotation.java",
 			"package test0109;\n" +
@@ -2969,10 +2969,10 @@ public void test0109() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0109.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0109.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0110() throws JavaModelException {
+public void test0110() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0110/TestAnnotation.java",
 			"package test0110;\n" +
@@ -2992,10 +2992,10 @@ public void test0110() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0110.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0110.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0111() throws JavaModelException {
+public void test0111() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0111/TestAnnotation.java",
 			"package test0111;\n" +
@@ -3016,10 +3016,10 @@ public void test0111() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0111.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0111.TestAnnotation;, Ljava.lang.String;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0112() throws JavaModelException {
+public void test0112() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0112/TestAnnotation.java",
 			"package test0112;\n" +
@@ -3039,10 +3039,10 @@ public void test0112() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0112.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0112.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0113() throws JavaModelException {
+public void test0113() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0113/TestAnnotation.java",
 			"package test0113;\n" +
@@ -3063,10 +3063,10 @@ public void test0113() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0113.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0113.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0114() throws JavaModelException {
+public void test0114() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0114/TestAnnotation.java",
 			"package test0114;\n" +
@@ -3087,10 +3087,10 @@ public void test0114() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0114.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0114.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0115() throws JavaModelException {
+public void test0115() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0115/TestAnnotation.java",
 			"package test0115;\n" +
@@ -3113,10 +3113,10 @@ public void test0115() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0115.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0115.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0116() throws JavaModelException {
+public void test0116() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0116/TestAnnotation.java",
 			"package test0116;\n" +
@@ -3137,10 +3137,10 @@ public void test0116() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0116.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0116.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0117() throws JavaModelException {
+public void test0117() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0117/TestAnnotation.java",
 			"package test0117;\n" +
@@ -3162,10 +3162,10 @@ public void test0117() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0117.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0117.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0118() throws JavaModelException {
+public void test0118() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0118/TestAnnotation.java",
 			"package test0118;\n" +
@@ -3185,10 +3185,10 @@ public void test0118() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0118.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0118.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0119() throws JavaModelException {
+public void test0119() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0119/TestAnnotation.java",
 			"package test0119;\n" +
@@ -3209,10 +3209,10 @@ public void test0119() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0119.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0119.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0120() throws JavaModelException {
+public void test0120() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0120/TestAnnotation.java",
 			"package test0120;\n" +
@@ -3233,10 +3233,10 @@ public void test0120() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0120.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0120.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0121() throws JavaModelException {
+public void test0121() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0121/TestAnnotation.java",
 			"package test0121;\n" +
@@ -3259,10 +3259,10 @@ public void test0121() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0121.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0121.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0122() throws JavaModelException {
+public void test0122() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0122/TestAnnotation.java",
 			"package test0122;\n" +
@@ -3283,10 +3283,10 @@ public void test0122() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0122.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0122.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0123() throws JavaModelException {
+public void test0123() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0123/TestAnnotation.java",
 			"package test0123;\n" +
@@ -3308,10 +3308,10 @@ public void test0123() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0123.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0123.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0124() throws JavaModelException {
+public void test0124() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0124/TestAnnotation.java",
 			"package test0124;\n" +
@@ -3331,10 +3331,10 @@ public void test0124() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0124.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0124.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0125() throws JavaModelException {
+public void test0125() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0125/TestAnnotation.java",
 			"package test0125;\n" +
@@ -3355,10 +3355,10 @@ public void test0125() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0125.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0125.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0126() throws JavaModelException {
+public void test0126() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0126/TestAnnotation.java",
 			"package test0126;\n" +
@@ -3379,10 +3379,10 @@ public void test0126() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0126.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0126.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0127() throws JavaModelException {
+public void test0127() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0127/TestAnnotation.java",
 			"package test0127;\n" +
@@ -3405,10 +3405,10 @@ public void test0127() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0127.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0127.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0128() throws JavaModelException {
+public void test0128() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0128/TestAnnotation.java",
 			"package test0128;\n" +
@@ -3429,10 +3429,10 @@ public void test0128() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0128.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0128.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0129() throws JavaModelException {
+public void test0129() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0129/TestAnnotation.java",
 			"package test0129;\n" +
@@ -3454,10 +3454,10 @@ public void test0129() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0129.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0129.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0130() throws JavaModelException {
+public void test0130() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0130/TestAnnotation.java",
 			"package test0130;\n" +
@@ -3477,10 +3477,10 @@ public void test0130() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0130.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0130.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0131() throws JavaModelException {
+public void test0131() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0131/TestAnnotation.java",
 			"package test0131;\n" +
@@ -3501,10 +3501,10 @@ public void test0131() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0131.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0131.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0132() throws JavaModelException {
+public void test0132() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0132/TestAnnotation.java",
 			"package test0132;\n" +
@@ -3525,10 +3525,10 @@ public void test0132() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0132.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0132.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0133() throws JavaModelException {
+public void test0133() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0133/TestAnnotation.java",
 			"package test0133;\n" +
@@ -3551,10 +3551,10 @@ public void test0133() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0133.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0133.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0134() throws JavaModelException {
+public void test0134() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.wc = getWorkingCopy(
 			"/Completion/src3/test0134/TestAnnotation.java",
 			"package test0134;\n" +
@@ -3575,10 +3575,10 @@ public void test0134() throws JavaModelException {
 	this.wc.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0134.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0134.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test0135() throws JavaModelException {
+public void test0135() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
 			"/Completion/src3/test0135/TestAnnotation.java",
 			"package test0135;\n" +
@@ -3594,11 +3594,11 @@ public void test0135() throws JavaModelException {
 			"foo");
 
 	assertResults(
-			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0135.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}",
+			"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0135.TestAnnotation;, Ljava.lang.String;, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0136() throws JavaModelException {
+public void test0136() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit enumeration = null;
 	try {
 		enumeration = getWorkingCopy(
@@ -3627,7 +3627,7 @@ public void test0136() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"RED[FIELD_REF]{RED, Ltest0136.Colors;, Ltest0136.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}",
+				"RED[FIELD_REF]{RED, Ltest0136.Colors;, Ltest0136.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(enumeration != null) {
@@ -3636,7 +3636,7 @@ public void test0136() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0137() throws JavaModelException {
+public void test0137() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit enumeration = null;
 	try {
 		enumeration = getWorkingCopy(
@@ -3666,7 +3666,7 @@ public void test0137() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"RED[FIELD_REF]{RED, Ltest0137.Colors;, Ltest0137.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}",
+				"RED[FIELD_REF]{RED, Ltest0137.Colors;, Ltest0137.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(enumeration != null) {
@@ -3675,7 +3675,7 @@ public void test0137() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0138() throws JavaModelException {
+public void test0138() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit enumeration = null;
 	try {
 		enumeration = getWorkingCopy(
@@ -3706,7 +3706,7 @@ public void test0138() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"RED[FIELD_REF]{RED, Ltest0138.Colors;, Ltest0138.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}",
+				"RED[FIELD_REF]{RED, Ltest0138.Colors;, Ltest0138.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(enumeration != null) {
@@ -3715,7 +3715,7 @@ public void test0138() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0139() throws JavaModelException {
+public void test0139() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit enumeration = null;
 	try {
 		enumeration = getWorkingCopy(
@@ -3745,7 +3745,7 @@ public void test0139() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"RED[FIELD_REF]{RED, Ltest0139.Colors;, Ltest0139.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}",
+				"RED[FIELD_REF]{RED, Ltest0139.Colors;, Ltest0139.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(enumeration != null) {
@@ -3754,7 +3754,7 @@ public void test0139() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0140() throws JavaModelException {
+public void test0140() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit enumeration = null;
 	try {
 		enumeration = getWorkingCopy(
@@ -3784,7 +3784,7 @@ public void test0140() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"RED[FIELD_REF]{RED, Ltest0140.Colors;, Ltest0140.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}",
+				"RED[FIELD_REF]{RED, Ltest0140.Colors;, Ltest0140.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(enumeration != null) {
@@ -3793,7 +3793,7 @@ public void test0140() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
-public void test0141() throws JavaModelException {
+public void test0141() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit enumeration = null;
 	try {
 		enumeration = getWorkingCopy(
@@ -3834,7 +3834,7 @@ public void test0141() throws JavaModelException {
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=84554
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=88295
-public void test0142() throws JavaModelException {
+public void test0142() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit enumeration = null;
 	try {
 		enumeration = getWorkingCopy(
@@ -3866,7 +3866,7 @@ public void test0142() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"RED[FIELD_REF]{RED, Ltest0142.Colors;, Ltest0142.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}",
+				"RED[FIELD_REF]{RED, Ltest0142.Colors;, Ltest0142.Colors;, RED, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED + R_ENUM + R_ENUM_CONSTANT + R_RESOLVED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(enumeration != null) {
@@ -3875,7 +3875,7 @@ public void test0142() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=88756
-public void test0143() throws JavaModelException {
+public void test0143() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable oldCurrentOptions = JavaCore.getOptions();
 	ICompilationUnit enumeration = null;
 	try {
@@ -3917,7 +3917,7 @@ public void test0143() throws JavaModelException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88845
-public void test0144() throws JavaModelException {
+public void test0144() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit aClass = null;
 	Hashtable oldCurrentOptions = JavaCore.getOptions();
 	try {
@@ -3946,7 +3946,7 @@ public void test0144() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"X.Y[TYPE_REF]{Y, test0144, Ltest0144.X$Y;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_CLASS + R_NON_RESTRICTED) + "}",
+				"X.Y[TYPE_REF]{Y, test0144, Ltest0144.X$Y;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_CLASS + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(aClass != null) {
@@ -3956,7 +3956,7 @@ public void test0144() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0145() throws JavaModelException {
+public void test0145() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -3989,7 +3989,7 @@ public void test0145() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0145, Ltest0145.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0145, Ltest0145.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0145, Ltest0145.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
 	} finally {
@@ -4002,7 +4002,7 @@ public void test0145() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0146() throws JavaModelException {
+public void test0146() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4035,7 +4035,7 @@ public void test0146() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0146, Ltest0146.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0146, Ltest0146.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0146, Ltest0146.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
 	} finally {
@@ -4048,7 +4048,7 @@ public void test0146() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0147() throws JavaModelException {
+public void test0147() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4081,7 +4081,7 @@ public void test0147() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0147, Ltest0147.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0147, Ltest0147.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0147, Ltest0147.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
 	} finally {
@@ -4094,7 +4094,7 @@ public void test0147() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0148() throws JavaModelException {
+public void test0148() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4127,7 +4127,7 @@ public void test0148() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0148, Ltest0148.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0148, Ltest0148.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0148, Ltest0148.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
 	} finally {
@@ -4140,7 +4140,7 @@ public void test0148() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0149() throws JavaModelException {
+public void test0149() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4173,7 +4173,7 @@ public void test0149() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0149, Ltest0149.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0149, Ltest0149.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0149, Ltest0149.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
 	} finally {
@@ -4186,7 +4186,7 @@ public void test0149() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0150() throws JavaModelException {
+public void test0150() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4219,7 +4219,7 @@ public void test0150() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0150, Ltest0150.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0150, Ltest0150.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0150, Ltest0150.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
 	} finally {
@@ -4232,7 +4232,7 @@ public void test0150() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0151() throws JavaModelException {
+public void test0151() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4265,7 +4265,7 @@ public void test0151() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0151, Ltest0151.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0151, Ltest0151.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0151, Ltest0151.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
 	} finally {
@@ -4278,7 +4278,7 @@ public void test0151() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0152() throws JavaModelException {
+public void test0152() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4312,7 +4312,7 @@ public void test0152() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0152, Ltest0152.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0152, Ltest0152.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0152, Ltest0152.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0152.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4326,7 +4326,7 @@ public void test0152() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0153() throws JavaModelException {
+public void test0153() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4360,7 +4360,7 @@ public void test0153() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0153, Ltest0153.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0153, Ltest0153.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0153, Ltest0153.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0153.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4374,7 +4374,7 @@ public void test0153() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0154() throws JavaModelException {
+public void test0154() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4408,7 +4408,7 @@ public void test0154() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0154, Ltest0154.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0154, Ltest0154.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0154, Ltest0154.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0154.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4422,7 +4422,7 @@ public void test0154() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0155() throws JavaModelException {
+public void test0155() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4456,7 +4456,7 @@ public void test0155() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0155, Ltest0155.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0155, Ltest0155.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0155, Ltest0155.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0155.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4470,7 +4470,7 @@ public void test0155() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0156() throws JavaModelException {
+public void test0156() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4504,7 +4504,7 @@ public void test0156() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0156, Ltest0156.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0156, Ltest0156.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0156, Ltest0156.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0156.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4518,7 +4518,7 @@ public void test0156() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0157() throws JavaModelException {
+public void test0157() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4552,7 +4552,7 @@ public void test0157() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0157, Ltest0157.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0157, Ltest0157.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0157, Ltest0157.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0157.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE +  R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4566,7 +4566,7 @@ public void test0157() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0158() throws JavaModelException {
+public void test0158() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4600,7 +4600,7 @@ public void test0158() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0158, Ltest0158.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0158, Ltest0158.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0158, Ltest0158.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0158.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4614,7 +4614,7 @@ public void test0158() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0159() throws JavaModelException {
+public void test0159() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4648,7 +4648,7 @@ public void test0159() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0159, Ltest0159.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0159, Ltest0159.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0159, Ltest0159.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0159.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4662,7 +4662,7 @@ public void test0159() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0160() throws JavaModelException {
+public void test0160() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4696,7 +4696,7 @@ public void test0160() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0160, Ltest0160.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0160, Ltest0160.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0160, Ltest0160.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0160.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4710,7 +4710,7 @@ public void test0160() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0161() throws JavaModelException {
+public void test0161() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4744,7 +4744,7 @@ public void test0161() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0161, Ltest0161.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0161, Ltest0161.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0161, Ltest0161.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED)  + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0161.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE +  R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4758,7 +4758,7 @@ public void test0161() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0162() throws JavaModelException {
+public void test0162() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4792,7 +4792,7 @@ public void test0162() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0162, Ltest0162.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0162, Ltest0162.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0162, Ltest0162.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0162.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4806,7 +4806,7 @@ public void test0162() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0163() throws JavaModelException {
+public void test0163() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4840,7 +4840,7 @@ public void test0163() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0163, Ltest0163.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0163, Ltest0163.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0163, Ltest0163.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0163.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4854,7 +4854,7 @@ public void test0163() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0164() throws JavaModelException {
+public void test0164() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4888,7 +4888,7 @@ public void test0164() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0164, Ltest0164.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0164, Ltest0164.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0164, Ltest0164.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0164.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE +  R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4902,7 +4902,7 @@ public void test0164() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0165() throws JavaModelException {
+public void test0165() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4936,7 +4936,7 @@ public void test0165() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0165, Ltest0165.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0165, Ltest0165.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0165, Ltest0165.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0165.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -4950,7 +4950,7 @@ public void test0165() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0166() throws JavaModelException {
+public void test0166() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -4986,7 +4986,7 @@ public void test0166() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0166, Ltest0166.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0166, Ltest0166.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0166, Ltest0166.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0166.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5000,7 +5000,7 @@ public void test0166() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0167() throws JavaModelException {
+public void test0167() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5036,7 +5036,7 @@ public void test0167() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0167, Ltest0167.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0167, Ltest0167.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0167, Ltest0167.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0167.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5050,7 +5050,7 @@ public void test0167() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0168() throws JavaModelException {
+public void test0168() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5086,7 +5086,7 @@ public void test0168() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0168, Ltest0168.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0168, Ltest0168.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0168, Ltest0168.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0168.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5100,7 +5100,7 @@ public void test0168() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0169() throws JavaModelException {
+public void test0169() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5136,7 +5136,7 @@ public void test0169() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0169, Ltest0169.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0169, Ltest0169.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0169, Ltest0169.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0169.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5150,7 +5150,7 @@ public void test0169() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0170() throws JavaModelException {
+public void test0170() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5186,7 +5186,7 @@ public void test0170() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0170, Ltest0170.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0170, Ltest0170.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0170, Ltest0170.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0170.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5200,7 +5200,7 @@ public void test0170() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0171() throws JavaModelException {
+public void test0171() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5236,7 +5236,7 @@ public void test0171() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0171, Ltest0171.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0171, Ltest0171.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0171, Ltest0171.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0171.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5250,7 +5250,7 @@ public void test0171() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0172() throws JavaModelException {
+public void test0172() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5286,7 +5286,7 @@ public void test0172() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0172, Ltest0172.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0172, Ltest0172.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0172, Ltest0172.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0172.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5300,7 +5300,7 @@ public void test0172() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0173() throws JavaModelException {
+public void test0173() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5334,7 +5334,7 @@ public void test0173() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0173, Ltest0173.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0173, Ltest0173.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0173, Ltest0173.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0173.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5348,7 +5348,7 @@ public void test0173() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0174() throws JavaModelException {
+public void test0174() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5382,7 +5382,7 @@ public void test0174() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0174, Ltest0174.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0174, Ltest0174.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0174, Ltest0174.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0174.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5396,7 +5396,7 @@ public void test0174() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0175() throws JavaModelException {
+public void test0175() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5430,7 +5430,7 @@ public void test0175() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0175, Ltest0175.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0175, Ltest0175.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0175, Ltest0175.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0175.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5444,7 +5444,7 @@ public void test0175() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0176() throws JavaModelException {
+public void test0176() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5478,7 +5478,7 @@ public void test0176() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0176, Ltest0176.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0176, Ltest0176.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0176, Ltest0176.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0176.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5492,7 +5492,7 @@ public void test0176() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0177() throws JavaModelException {
+public void test0177() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5526,7 +5526,7 @@ public void test0177() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0177, Ltest0177.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0177, Ltest0177.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0177, Ltest0177.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0177.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5540,7 +5540,7 @@ public void test0177() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0178() throws JavaModelException {
+public void test0178() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5574,7 +5574,7 @@ public void test0178() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0178, Ltest0178.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0178, Ltest0178.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0178, Ltest0178.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0178.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE +  R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5588,7 +5588,7 @@ public void test0178() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0179() throws JavaModelException {
+public void test0179() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5622,7 +5622,7 @@ public void test0179() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0179, Ltest0179.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0179, Ltest0179.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0179, Ltest0179.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0179.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5636,7 +5636,7 @@ public void test0179() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0180() throws JavaModelException {
+public void test0180() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5670,7 +5670,7 @@ public void test0180() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0180, Ltest0180.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0180, Ltest0180.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0180, Ltest0180.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0180.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5684,7 +5684,7 @@ public void test0180() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0181() throws JavaModelException {
+public void test0181() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5718,7 +5718,7 @@ public void test0181() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0181, Ltest0181.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0181, Ltest0181.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0181, Ltest0181.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0181.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5732,7 +5732,7 @@ public void test0181() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0182() throws JavaModelException {
+public void test0182() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5766,7 +5766,7 @@ public void test0182() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0182, Ltest0182.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0182, Ltest0182.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0182, Ltest0182.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0182.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5780,7 +5780,7 @@ public void test0182() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0183() throws JavaModelException {
+public void test0183() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5814,7 +5814,7 @@ public void test0183() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0183, Ltest0183.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0183, Ltest0183.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0183, Ltest0183.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0183.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5828,7 +5828,7 @@ public void test0183() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0184() throws JavaModelException {
+public void test0184() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5862,7 +5862,7 @@ public void test0184() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"zzint[FIELD_REF]{zzint, Ltest0184.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"zzint[FIELD_REF]{zzint, Ltest0184.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0184, Ltest0184.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"ZZClass[TYPE_REF]{ZZClass, test0184, Ltest0184.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5876,7 +5876,7 @@ public void test0184() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0185() throws JavaModelException {
+public void test0185() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5910,7 +5910,7 @@ public void test0185() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0185, Ltest0185.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0185, Ltest0185.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0185, Ltest0185.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0185.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5924,7 +5924,7 @@ public void test0185() throws JavaModelException {
 	}
 }
 // complete annotation attribute value
-public void test0186() throws JavaModelException {
+public void test0186() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit anAnnotation = null;
 	ICompilationUnit aClass = null;
 	try {
@@ -5958,7 +5958,7 @@ public void test0186() throws JavaModelException {
 				result.context);
 
 		assertResults(
-				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0186, Ltest0186.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"ZZAnnotation[TYPE_REF]{ZZAnnotation, test0186, Ltest0186.ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZClass[TYPE_REF]{ZZClass, test0186, Ltest0186.ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 				"zzint[FIELD_REF]{zzint, Ltest0186.Test;, I, zzint, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -5972,7 +5972,7 @@ public void test0186() throws JavaModelException {
 	}
 }
 // completion test with capture
-public void test0187() throws JavaModelException {
+public void test0187() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0187/Test.java",
             "package test0187;\n" +
@@ -5995,12 +5995,12 @@ public void test0187() throws JavaModelException {
             result.context);
 
     assertResults(
-            "zzz1[FIELD_REF]{zzz1, Ltest0187.ZZClass1<Ljava.lang.Object;>;, [Ltest0187.ZZClass2<Ljava.lang.Object;>;, zzz1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" +
+            "zzz1[FIELD_REF]{zzz1, Ltest0187.ZZClass1<Ljava.lang.Object;>;, [Ltest0187.ZZClass2<Ljava.lang.Object;>;, zzz1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "zzz2[METHOD_REF]{zzz2(), Ltest0187.ZZClass1<Ljava.lang.Object;>;, ()[Ltest0187.ZZClass2<Ljava.lang.Object;>;, zzz2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_NON_STATIC + R_NON_RESTRICTED) + "}",
             result.proposals);
 }
 // completion test with capture
-public void test0188() throws JavaModelException {
+public void test0188() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0188/Test.java",
             "package test0188;\n" +
@@ -6024,12 +6024,12 @@ public void test0188() throws JavaModelException {
             result.context);
 
     assertResults(
-            "var1[FIELD_REF]{var1, Ltest0188.Test<TU;>;, Ltest0188.ZZClass1<+TU;>;, var1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED+ R_NON_RESTRICTED) + "}\n" +
+            "var1[FIELD_REF]{var1, Ltest0188.Test<TU;>;, Ltest0188.ZZClass1<+TU;>;, var1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED+ R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "var2[LOCAL_VARIABLE_REF]{var2, null, Ltest0188.ZZClass1<+TU;>;, var2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
             result.proposals);
 }
 // completion test with capture
-public void test0189() throws JavaModelException {
+public void test0189() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0189/Test.java",
             "package test0189;\n" +
@@ -6051,11 +6051,11 @@ public void test0189() throws JavaModelException {
             result.context);
 
     assertResults(
-            "zzz1[FIELD_REF]{zzz1, Ltest0189.ZZClass3;, Ltest0189.ZZClass2<*>;, zzz1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_NON_STATIC + R_NON_RESTRICTED) + "}",
+            "zzz1[FIELD_REF]{zzz1, Ltest0189.ZZClass3;, Ltest0189.ZZClass2<*>;, zzz1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_NON_STATIC + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
 // completion test with capture
-public void test0190() throws JavaModelException {
+public void test0190() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0190/Test.java",
             "package test0190;\n" +
@@ -6084,12 +6084,12 @@ public void test0190() throws JavaModelException {
             result.context);
 
     assertResults(
-            "zzz1[FIELD_REF]{zzz1, Ltest0190.ZZClass1<Ljava.lang.Object;>;, [Ltest0190.ZZClass2<Ljava.lang.Object;>;, zzz1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC+ R_NON_RESTRICTED) + "}\n" +
+            "zzz1[FIELD_REF]{zzz1, Ltest0190.ZZClass1<Ljava.lang.Object;>;, [Ltest0190.ZZClass2<Ljava.lang.Object;>;, zzz1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC+ R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "zzz2[METHOD_REF]{zzz2(), Ltest0190.ZZClass1<Ljava.lang.Object;>;, ()[Ltest0190.ZZClass2<Ljava.lang.Object;>;, zzz2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_NON_STATIC + R_NON_RESTRICTED) + "}",
             result.proposals);
 }
 // completion test with capture
-public void test0191() throws JavaModelException {
+public void test0191() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0191/Test.java",
             "package test0191;\n" +
@@ -6113,11 +6113,11 @@ public void test0191() throws JavaModelException {
             result.context);
 
     assertResults(
-            "var1[FIELD_REF]{var1, Ltest0191.Test<TU;>;, Ltest0191.ZZClass1<+TU;>;, var1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}\n" +
+            "var1[FIELD_REF]{var1, Ltest0191.Test<TU;>;, Ltest0191.ZZClass1<+TU;>;, var1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "var2[LOCAL_VARIABLE_REF]{var2, null, Ltest0191.ZZClass1<+TU;>;, var2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + + R_UNQUALIFIED + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}",
             result.proposals);
 }
-public void test0192() throws JavaModelException {
+public void test0192() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0192/Test.java",
             "package test0192;\n" +
@@ -6134,10 +6134,10 @@ public void test0192() throws JavaModelException {
             result.context);
 
     assertResults(
-            "ZZClass1<X,Y>[TYPE_REF]{, test0192, Ltest0192.ZZClass1<TX;TY;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_EXACT_NAME+ R_UNQUALIFIED + + R_NON_RESTRICTED) + "}",
+            "ZZClass1<X,Y>[TYPE_REF]{, test0192, Ltest0192.ZZClass1<TX;TY;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_EXACT_NAME+ R_UNQUALIFIED + + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0193() throws JavaModelException {
+public void test0193() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0193/Test.java",
             "package test0193;\n" +
@@ -6156,10 +6156,10 @@ public void test0193() throws JavaModelException {
             result.context);
 
     assertResults(
-            "ZZClass1<X,Y>[TYPE_REF]{, test0193, Ltest0193.ZZClass1<TX;TY;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_EXACT_NAME + R_UNQUALIFIED + + R_NON_RESTRICTED) + "}",
+            "ZZClass1<X,Y>[TYPE_REF]{, test0193, Ltest0193.ZZClass1<TX;TY;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_EXACT_NAME + R_UNQUALIFIED + + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0194() throws JavaModelException {
+public void test0194() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0194/Test.java",
             "package test0194;\n" +
@@ -6176,10 +6176,10 @@ public void test0194() throws JavaModelException {
             result.context);
 
     assertResults(
-            "ZZClass1<X,Y>[TYPE_REF]{, test0194, Ltest0194.ZZClass1<TX;TY;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_EXACT_NAME+ R_UNQUALIFIED + + R_NON_RESTRICTED) + "}",
+            "ZZClass1<X,Y>[TYPE_REF]{, test0194, Ltest0194.ZZClass1<TX;TY;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_EXACT_NAME+ R_UNQUALIFIED + + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0195() throws JavaModelException {
+public void test0195() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0195/Test.java",
             "package test0195;\n" +
@@ -6198,10 +6198,10 @@ public void test0195() throws JavaModelException {
             result.context);
 
     assertResults(
-            "ZZClass1<X,Y>[TYPE_REF]{, test0195, Ltest0195.ZZClass1<TX;TY;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_EXACT_NAME + R_UNQUALIFIED + + R_NON_RESTRICTED) + "}",
+            "ZZClass1<X,Y>[TYPE_REF]{, test0195, Ltest0195.ZZClass1<TX;TY;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_EXACT_NAME + R_UNQUALIFIED + + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0196() throws JavaModelException {
+public void test0196() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0196/Test.java",
             "package test0196;\n" +
@@ -6223,7 +6223,7 @@ public void test0196() throws JavaModelException {
             "",
             result.proposals);
 }
-public void test0196b() throws JavaModelException {
+public void test0196b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0196/Test.java",
             "package test0196;\n" +
@@ -6242,11 +6242,11 @@ public void test0196b() throws JavaModelException {
             result.context);
 
     assertResults(
-    		"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0196.ZZAnnot;, I, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+    		"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0196.ZZAnnot;, I, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0196.ZZAnnot;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
             result.proposals);
 }
-public void test0197() throws JavaModelException {
+public void test0197() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0197/Test.java",
             "package test0197;\n" +
@@ -6269,7 +6269,7 @@ public void test0197() throws JavaModelException {
             "",
             result.proposals);
 }
-public void test0197b() throws JavaModelException {
+public void test0197b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0197/Test.java",
             "package test0197;\n" +
@@ -6289,11 +6289,11 @@ public void test0197b() throws JavaModelException {
             result.context);
 
     assertResults(
-    		"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0197.ZZAnnot;, I, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+    		"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0197.ZZAnnot;, I, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0197.ZZAnnot;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
             result.proposals);
 }
-public void test0198() throws JavaModelException {
+public void test0198() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0198/Test.java",
             "package test0198;\n" +
@@ -6316,7 +6316,7 @@ public void test0198() throws JavaModelException {
             "",
             result.proposals);
 }
-public void test0198b() throws JavaModelException {
+public void test0198b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0198/Test.java",
             "package test0198;\n" +
@@ -6336,11 +6336,11 @@ public void test0198b() throws JavaModelException {
             result.context);
 
     assertResults(
-    		"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0198.ZZAnnot;, I, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+    		"foo1[ANNOTATION_ATTRIBUTE_REF]{foo1 = , Ltest0198.ZZAnnot;, I, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0198.ZZAnnot;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
             result.proposals);
 }
-public void test0199() throws JavaModelException {
+public void test0199() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0199/Test.java",
             "package test0199;\n" +
@@ -6362,7 +6362,7 @@ public void test0199() throws JavaModelException {
             "",
             result.proposals);
 }
-public void test0199b() throws JavaModelException {
+public void test0199b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0199/Test.java",
             "package test0199;\n" +
@@ -6381,10 +6381,10 @@ public void test0199b() throws JavaModelException {
             result.context);
 
     assertResults(
-    		"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0199.ZZAnnot;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+    		"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0199.ZZAnnot;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0200() throws JavaModelException {
+public void test0200() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0200/Test.java",
             "package test0200;\n" +
@@ -6407,7 +6407,7 @@ public void test0200() throws JavaModelException {
             "",
             result.proposals);
 }
-public void test0200b() throws JavaModelException {
+public void test0200b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0200/Test.java",
             "package test0200;\n" +
@@ -6427,10 +6427,10 @@ public void test0200b() throws JavaModelException {
             result.context);
 
     assertResults(
-    		"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0200.ZZAnnot;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+    		"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0200.ZZAnnot;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0201() throws JavaModelException {
+public void test0201() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0201/Test.java",
             "package test0201;\n" +
@@ -6453,7 +6453,7 @@ public void test0201() throws JavaModelException {
             "",
             result.proposals);
 }
-public void test0201b() throws JavaModelException {
+public void test0201b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     CompletionResult result = complete(
             "/Completion/src3/test0201/Test.java",
             "package test0201;\n" +
@@ -6473,10 +6473,10 @@ public void test0201b() throws JavaModelException {
             result.context);
 
     assertResults(
-    		"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0201.ZZAnnot;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+    		"foo2[ANNOTATION_ATTRIBUTE_REF]{foo2 = , Ltest0201.ZZAnnot;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
-public void test0202() throws JavaModelException {
+public void test0202() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit aType = null;
 	try {
 		aType = getWorkingCopy(
@@ -6510,7 +6510,7 @@ public void test0202() throws JavaModelException {
 	            result.context);
 
 	    assertResults(
-	            "ZZType[TYPE_REF]{p.ZZType, p, Lp.ZZType;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+	            "ZZType[TYPE_REF]{p.ZZType, p, Lp.ZZType;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZType.ZZAnnotation[TYPE_REF]{p.ZZType.ZZAnnotation, p, Lp.ZZType$ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 				"ZZType.ZZClass[TYPE_REF]{p.ZZType.ZZClass, p, Lp.ZZType$ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 				"ZZType.ZZEnum[TYPE_REF]{p.ZZType.ZZEnum, p, Lp.ZZType$ZZEnum;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
@@ -6522,7 +6522,7 @@ public void test0202() throws JavaModelException {
 		}
 	}
 }
-public void test0203() throws JavaModelException {
+public void test0203() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit aType = null;
 	try {
 		aType = getWorkingCopy(
@@ -6553,7 +6553,7 @@ public void test0203() throws JavaModelException {
 	            result.context);
 
 	    assertResults(
-	            "ZZType[TYPE_REF]{p.ZZType, p, Lp.ZZType;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_CLASS + R_NON_RESTRICTED) + "}\n" +
+	            "ZZType[TYPE_REF]{p.ZZType, p, Lp.ZZType;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_CLASS + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZType.ZZClass[TYPE_REF]{p.ZZType.ZZClass, p, Lp.ZZType$ZZClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_CLASS + R_NON_RESTRICTED) + "}",
 	            result.proposals);
 	} finally {
@@ -6562,7 +6562,7 @@ public void test0203() throws JavaModelException {
 		}
 	}
 }
-public void test0204() throws JavaModelException {
+public void test0204() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit aType = null;
 	try {
 		aType = getWorkingCopy(
@@ -6593,7 +6593,7 @@ public void test0204() throws JavaModelException {
 	            result.context);
 
 	    assertResults(
-	            "ZZType.ZZAnnotation[TYPE_REF]{p.ZZType.ZZAnnotation, p, Lp.ZZType$ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_INTERFACE + R_NON_RESTRICTED) + "}\n" +
+	            "ZZType.ZZAnnotation[TYPE_REF]{p.ZZType.ZZAnnotation, p, Lp.ZZType$ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_INTERFACE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ZZType.ZZInterface[TYPE_REF]{p.ZZType.ZZInterface, p, Lp.ZZType$ZZInterface;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_INTERFACE + R_NON_RESTRICTED) + "}",
 	            result.proposals);
 	} finally {
@@ -6602,7 +6602,7 @@ public void test0204() throws JavaModelException {
 		}
 	}
 }
-public void test0205() throws JavaModelException {
+public void test0205() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit aType = null;
 	try {
 		aType = getWorkingCopy(
@@ -6633,7 +6633,7 @@ public void test0205() throws JavaModelException {
 	            result.context);
 
 	    assertResults(
-				"ZZType.ZZInterface[TYPE_REF]{p.ZZType.ZZInterface, p, Lp.ZZType$ZZInterface;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_INTERFACE + R_NON_RESTRICTED) + "}",
+				"ZZType.ZZInterface[TYPE_REF]{p.ZZType.ZZInterface, p, Lp.ZZType$ZZInterface;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_INTERFACE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	            result.proposals);
 	} finally {
 		if(aType != null) {
@@ -6641,7 +6641,7 @@ public void test0205() throws JavaModelException {
 		}
 	}
 }
-public void test0206() throws JavaModelException {
+public void test0206() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit aType = null;
 	try {
 		aType = getWorkingCopy(
@@ -6673,7 +6673,7 @@ public void test0206() throws JavaModelException {
 	            result.context);
 
 	    assertResults(
-	            "ZZType.ZZAnnotation[TYPE_REF]{p.ZZType.ZZAnnotation, p, Lp.ZZType$ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
+	            "ZZType.ZZAnnotation[TYPE_REF]{p.ZZType.ZZAnnotation, p, Lp.ZZType$ZZAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	            result.proposals);
 	} finally {
 		if(aType != null) {
@@ -6682,7 +6682,7 @@ public void test0206() throws JavaModelException {
 	}
 }
 // bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=93254
-public void test0207() throws JavaModelException {
+public void test0207() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit aType = null;
 	try {
 		aType = getWorkingCopy(
@@ -6704,7 +6704,7 @@ public void test0207() throws JavaModelException {
 	            result.context);
 
 	    assertResults(
-	            "Annot[TYPE_REF]{p.Annot, p, Lp.Annot;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_ANNOTATION + R_QUALIFIED + R_NON_RESTRICTED) + "}",
+	            "Annot[TYPE_REF]{p.Annot, p, Lp.Annot;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_ANNOTATION + R_QUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	            result.proposals);
 	} finally {
 		if(aType != null) {
@@ -6712,7 +6712,7 @@ public void test0207() throws JavaModelException {
 		}
 	}
 }
-public void test0208() throws JavaModelException {
+public void test0208() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit aType = null;
 	try {
 		aType = getWorkingCopy(
@@ -6743,7 +6743,7 @@ public void test0208() throws JavaModelException {
 	            result.context);
 
 	    assertResults(
-	            "BLACK[FIELD_REF]{BLACK, Lp.Colors;, Lp.Colors;, BLACK, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_ENUM + R_ENUM_CONSTANT + R_UNQUALIFIED + R_NON_RESTRICTED + R_RESOLVED) + "}\n" +
+	            "BLACK[FIELD_REF]{BLACK, Lp.Colors;, Lp.Colors;, BLACK, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_ENUM + R_ENUM_CONSTANT + R_UNQUALIFIED + R_NON_RESTRICTED + R_RESOLVED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"WHITE[FIELD_REF]{WHITE, Lp.Colors;, Lp.Colors;, WHITE, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_ENUM + R_ENUM_CONSTANT + R_UNQUALIFIED + R_NON_RESTRICTED + R_RESOLVED) + "}",
 	            result.proposals);
 	} finally {
@@ -6755,7 +6755,7 @@ public void test0208() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94303
  */
-public void test0209() throws JavaModelException {
+public void test0209() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit importedClass = null;
 	try {
 		importedClass = getWorkingCopy(
@@ -6785,7 +6785,7 @@ public void test0209() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"ImportedClass[TYPE_REF]{test0209.p.ImportedClass., test0209.p, Ltest0209.p.ImportedClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"ImportedClass[TYPE_REF]{test0209.p.ImportedClass., test0209.p, Ltest0209.p.ImportedClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"ImportedClass.ImportedMember[TYPE_REF]{test0209.p.ImportedClass.ImportedMember;, test0209.p, Ltest0209.p.ImportedClass$ImportedMember;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 				result.proposals);
 	} finally {
@@ -6797,7 +6797,7 @@ public void test0209() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94303
  */
-public void test0210() throws JavaModelException {
+public void test0210() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit importedClass = null;
 	try {
 		importedClass = getWorkingCopy(
@@ -6838,7 +6838,7 @@ public void test0210() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94303
  */
-public void test0211() throws JavaModelException {
+public void test0211() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit importedClass = null;
 	try {
 		importedClass = getWorkingCopy(
@@ -6868,7 +6868,7 @@ public void test0211() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"ImportedClass.ImportedMember[TYPE_REF]{ImportedMember;, test0211.p, Ltest0211.p.ImportedClass$ImportedMember;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+				"ImportedClass.ImportedMember[TYPE_REF]{ImportedMember;, test0211.p, Ltest0211.p.ImportedClass$ImportedMember;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(importedClass != null) {
@@ -6879,7 +6879,7 @@ public void test0211() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94303
  */
-public void test0212() throws JavaModelException {
+public void test0212() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit importedClass = null;
 	try {
 		importedClass = getWorkingCopy(
@@ -6909,7 +6909,7 @@ public void test0212() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"ImportedClass[TYPE_REF]{ImportedClass;, test0212.p, Ltest0212.p.ImportedClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+				"ImportedClass[TYPE_REF]{ImportedClass;, test0212.p, Ltest0212.p.ImportedClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(importedClass != null) {
@@ -6920,7 +6920,7 @@ public void test0212() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=94303
  */
-public void test0213() throws JavaModelException {
+public void test0213() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit importedClass = null;
 	try {
 		importedClass = getWorkingCopy(
@@ -6948,7 +6948,7 @@ public void test0213() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"ImportedClass[TYPE_REF]{ImportedClass;, test0213.p, Ltest0213.p.ImportedClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+				"ImportedClass[TYPE_REF]{ImportedClass;, test0213.p, Ltest0213.p.ImportedClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(importedClass != null) {
@@ -6959,7 +6959,7 @@ public void test0213() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93249
  */
-public void test0214() throws JavaModelException {
+public void test0214() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit paramClass1 = null;
 	ICompilationUnit paramClass2 = null;
 	ICompilationUnit superClass = null;
@@ -7005,7 +7005,7 @@ public void test0214() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest0214.Test<TZ;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+				"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest0214.Test<TZ;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"foo[METHOD_DECLARATION]{public <M extends AClass1> void foo(M p1), Ltest0214.SuperClass<TZ;>;, <M:Ltest0214.AClass1;>(TM;)V, foo, (p1), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_METHOD_OVERIDE + R_NON_RESTRICTED) + "}\n" +
 				"foo[METHOD_DECLARATION]{public <M extends AClass2> void foo(M p2), Ltest0214.SuperClass<TZ;>;, <M:Ltest0214.AClass2;>(TM;)V, foo, (p2), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_METHOD_OVERIDE + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -7024,7 +7024,7 @@ public void test0214() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93249
  */
-public void test0215() throws JavaModelException {
+public void test0215() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit paramClass = null;
 	ICompilationUnit superClass = null;
 	try {
@@ -7063,7 +7063,7 @@ public void test0215() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest0215.Test<TZ;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+				"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest0215.Test<TZ;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"foo[METHOD_DECLARATION]{public <M extends test0215.SuperClass<Z>> test0215.SuperClass<?> foo(test0215.p.ParamClass.MemberParamClass<? super Z> p1, int p2) throws Exception, Ltest0215.SuperClass<TZ;>;, <M:Ltest0215.SuperClass<TZ;>;>(Ltest0215.p.ParamClass$MemberParamClass<-TZ;>;I)Ltest0215.SuperClass<*>;, foo, (p1, p2), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_METHOD_OVERIDE + R_NON_RESTRICTED) + "}",
 				result.proposals);
 	} finally {
@@ -7078,7 +7078,7 @@ public void test0215() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93249
  */
-public void test0216() throws JavaModelException {
+public void test0216() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit paramClass1 = null;
 	ICompilationUnit paramClass2 = null;
 	ICompilationUnit superClass = null;
@@ -7124,7 +7124,7 @@ public void test0216() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest0216.Test<TZ;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+				"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest0216.Test<TZ;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"foo[METHOD_DECLARATION]{public void foo(test0216.p.ParamClass p1), Ltest0216.SuperClass<TZ;>;, (Ltest0216.p.ParamClass;)V, foo, (p1), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_METHOD_OVERIDE + R_NON_RESTRICTED) + "}\n" +
 				"foo[METHOD_DECLARATION]{public void foo(test0216.q.ParamClass p2), Ltest0216.SuperClass<TZ;>;, (Ltest0216.q.ParamClass;)V, foo, (p2), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_METHOD_OVERIDE + R_NON_RESTRICTED) + "}",
 				result.proposals);
@@ -7143,7 +7143,7 @@ public void test0216() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93119
  */
-public void test0217() throws JavaModelException {
+public void test0217() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit paramClass1 = null;
 	try {
 		paramClass1 = getWorkingCopy(
@@ -7171,7 +7171,7 @@ public void test0217() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+				"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(paramClass1 != null) {
@@ -7182,7 +7182,7 @@ public void test0217() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93119
  */
-public void test0218() throws JavaModelException {
+public void test0218() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit paramClass1 = null;
 	try {
 		paramClass1 = getWorkingCopy(
@@ -7210,7 +7210,7 @@ public void test0218() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"super[KEYWORD]{super, null, null, super, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+				"super[KEYWORD]{super, null, null, super, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(paramClass1 != null) {
@@ -7221,7 +7221,7 @@ public void test0218() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93119
  */
-public void test0219() throws JavaModelException {
+public void test0219() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit paramClass1 = null;
 	try {
 		paramClass1 = getWorkingCopy(
@@ -7251,7 +7251,7 @@ public void test0219() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+				"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(paramClass1 != null) {
@@ -7262,7 +7262,7 @@ public void test0219() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=93119
  */
-public void test0220() throws JavaModelException {
+public void test0220() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit paramClass1 = null;
 	try {
 		paramClass1 = getWorkingCopy(
@@ -7292,7 +7292,7 @@ public void test0220() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"super[KEYWORD]{super, null, null, super, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+				"super[KEYWORD]{super, null, null, super, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(paramClass1 != null) {
@@ -7300,7 +7300,7 @@ public void test0220() throws JavaModelException {
 		}
 	}
 }
-public void test0221() throws JavaModelException {
+public void test0221() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit paramClass1 = null;
 	try {
 		paramClass1 = getWorkingCopy(
@@ -7328,7 +7328,7 @@ public void test0221() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"AType[TYPE_REF]{AType, test0221, Ltest0221.AType;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+				"AType[TYPE_REF]{AType, test0221, Ltest0221.AType;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(paramClass1 != null) {
@@ -7339,7 +7339,7 @@ public void test0221() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=96918
  */
-public void test0222() throws JavaModelException {
+public void test0222() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit paramClass1 = null;
 	try {
 		paramClass1 = getWorkingCopy(
@@ -7369,7 +7369,7 @@ public void test0222() throws JavaModelException {
 	            result.context);
 
 		assertResults(
-				"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+				"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"super[KEYWORD]{super, null, null, super, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 				result.proposals);
 	} finally {
@@ -7381,7 +7381,7 @@ public void test0222() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=97307
  */
-public void test0223() throws JavaModelException {
+public void test0223() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ICompilationUnit paramClass1 = null;
 	try {
 		paramClass1 = getWorkingCopy(
@@ -7415,7 +7415,7 @@ public void test0223() throws JavaModelException {
 		int start = end - "va".length();
 
 		assertResults(
-				"VAR[FIELD_REF]{VAR;, Ltest0223.AType;, I, VAR, null, ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}",
+				"VAR[FIELD_REF]{VAR;, Ltest0223.AType;, I, VAR, null, ["+start+", "+end+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
 	} finally {
 		if(paramClass1 != null) {
@@ -7426,7 +7426,7 @@ public void test0223() throws JavaModelException {
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=85384
  */
-public void test0224() throws JavaModelException {
+public void test0224() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0224/Test.java",
             "package test0224;\n" +
@@ -7442,13 +7442,13 @@ public void test0224() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=85384
  */
-public void test0225() throws JavaModelException {
+public void test0225() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0225/Test.java",
             "package test0225;\n" +
@@ -7464,13 +7464,13 @@ public void test0225() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=85384
  */
-public void test0226() throws JavaModelException {
+public void test0226() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0226/Test.java",
             "package test0226;\n" +
@@ -7487,13 +7487,13 @@ public void test0226() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=85384
  */
-public void test0227() throws JavaModelException {
+public void test0227() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0227/Test.java",
             "package test0227;\n" +
@@ -7510,13 +7510,13 @@ public void test0227() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=97801
  */
-public void test0228() throws JavaModelException {
+public void test0228() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0228/Test.java",
             "package test0228;\n" +
@@ -7535,13 +7535,13 @@ public void test0228() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"class[FIELD_REF]{class, null, Ljava.lang.Class<Ltest0228.Test;>;, class, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_INHERITED + R_NON_RESTRICTED) + "}",
+			"class[FIELD_REF]{class, null, Ljava.lang.Class<Ltest0228.Test;>;, class, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_INHERITED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 /*
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=97801
  */
-public void test0229() throws JavaModelException {
+public void test0229() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0229/Test.java",
             "package test0229;\n" +
@@ -7560,11 +7560,11 @@ public void test0229() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"class[FIELD_REF]{class, null, Ljava.lang.Class<Ltest0229.Test;>;, class, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_INHERITED + R_NON_RESTRICTED) + "}",
+			"class[FIELD_REF]{class, null, Ljava.lang.Class<Ltest0229.Test;>;, class, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_INHERITED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=96944
-public void test0230() throws JavaModelException {
+public void test0230() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0230/Test.java",
             "package test0230;\n" +
@@ -7587,7 +7587,7 @@ public void test0230() throws JavaModelException {
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=96944
-public void test0231() throws JavaModelException {
+public void test0231() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0231/Test.java",
             "package test0231;\n" +
@@ -7610,7 +7610,7 @@ public void test0231() throws JavaModelException {
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=96944
-public void test0232() throws JavaModelException {
+public void test0232() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0232/Test.java",
             "package test0232;\n" +
@@ -7634,12 +7634,12 @@ public void test0232() throws JavaModelException {
 				result.proposals);
     } else {
     	assertResults(
-				"Test<ZT>[TYPE_REF]{Test, test0232, Ltest0232.Test<TZT;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_PACKAGE_EXPECTED_TYPE) + "}",
+				"Test<ZT>[TYPE_REF]{Test, test0232, Ltest0232.Test<TZT;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_PACKAGE_EXPECTED_TYPE) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				result.proposals);
     }
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=82560
-public void test0233() throws JavaModelException {
+public void test0233() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0233/Test0233Z.java",
             "package test0233;\n" +
@@ -7660,11 +7660,11 @@ public void test0233() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"Test0233Z<ZT>[TYPE_REF]{Test0233Z, test0233, Ltest0233.Test0233Z<TZT;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME+ R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+			"Test0233Z<ZT>[TYPE_REF]{Test0233Z, test0233, Ltest0233.Test0233Z<TZT;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME+ R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97860
-public void test0234() throws JavaModelException {
+public void test0234() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0234/Test.java",
             "package test0234;\n" +
@@ -7687,7 +7687,7 @@ public void test0234() throws JavaModelException {
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97860
-public void test0235() throws JavaModelException {
+public void test0235() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0235/Test.java",
             "package test0235;\n" +
@@ -7709,7 +7709,7 @@ public void test0235() throws JavaModelException {
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=94641
-public void test0236() throws JavaModelException {
+public void test0236() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0236/Test.java",
             "package test0236;\n" +
@@ -7728,12 +7728,12 @@ public void test0236() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"Test[METHOD_REF<CONSTRUCTOR>]{, Ltest0236.Test<Ljava.lang.String;>;, ()V, Test, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"Test[METHOD_REF<CONSTRUCTOR>]{, Ltest0236.Test<Ljava.lang.String;>;, ()V, Test, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Test<java.lang.String>[ANONYMOUS_CLASS_DECLARATION]{, Ltest0236.Test<Ljava.lang.String;>;, ()V, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}",
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
-public void test0237() throws JavaModelException {
+public void test0237() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0237/Test.java",
             "package test0237;\n" +
@@ -7749,11 +7749,11 @@ public void test0237() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
-public void test0238() throws JavaModelException {
+public void test0238() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0238/Test.java",
             "package test0238;\n" +
@@ -7769,11 +7769,11 @@ public void test0238() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"implements[KEYWORD]{implements, null, null, implements, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"implements[KEYWORD]{implements, null, null, implements, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
-public void test0239() throws JavaModelException {
+public void test0239() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0239/Test.java",
             "package test0239;\n" +
@@ -7793,7 +7793,7 @@ public void test0239() throws JavaModelException {
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
-public void test0240() throws JavaModelException {
+public void test0240() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0204/Test.java",
             "package test0240;\n" +
@@ -7809,11 +7809,11 @@ public void test0240() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"implements[KEYWORD]{implements, null, null, implements, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"implements[KEYWORD]{implements, null, null, implements, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
-public void test0241() throws JavaModelException {
+public void test0241() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0241/Test.java",
             "package test0241;\n" +
@@ -7829,11 +7829,11 @@ public void test0241() throws JavaModelException {
             result.context);
 
 	assertResults(
-			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"extends[KEYWORD]{extends, null, null, extends, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=94907
-public void test0242() throws JavaModelException {
+public void test0242() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionResult result = complete(
             "/Completion/src3/test0242/Test.java",
             "package test0242;\n" +
@@ -7853,7 +7853,7 @@ public void test0242() throws JavaModelException {
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=99686
-	public void test0243() throws JavaModelException {
+	public void test0243() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompletionResult result = complete(
 			"/Completion/src3/test0243/X.java",
 			"package test0243;\n" +
@@ -7873,7 +7873,7 @@ public void test0242() throws JavaModelException {
 			"foo(new Object() {}).b");
 
 		assertResults(
-			"bar[METHOD_REF]{bar(), Ltest0243.Y<LObject;>;, ()LObject;, bar, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
+			"bar[METHOD_REF]{bar(), Ltest0243.Y<LObject;>;, ()LObject;, bar, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=100009
@@ -7888,13 +7888,13 @@ public void test0244() throws JavaModelException {
 			"foo");
 
 		assertResults(
-			"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest0244.X;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest0244.X;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo[METHOD_DECLARATION]{public Object foo(Object t), Lgenerics.ZAGenericType;, (Ljava.lang.Object;)Ljava.lang.Object;, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_METHOD_OVERIDE + R_NON_RESTRICTED) + "}\n" +
 			"foo[METHOD_DECLARATION]{public Object foo(ZAGenericType var), Lgenerics.ZAGenericType;, (Lgenerics.ZAGenericType;)Ljava.lang.Object;, foo, (var), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_METHOD_OVERIDE + R_NON_RESTRICTED) + "}",
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=101456
-public void test0245() throws JavaModelException {
+public void test0245() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     this.wc = getWorkingCopy(
             "/Completion/src/test/SnapshotImpl.java",
             "class SnapshotImpl extends AbstractSnapshot<SnapshotImpl, ProviderImpl> {}");
@@ -7930,11 +7930,11 @@ public void test0246() throws JavaModelException {
 			"ann");
 
 		assertResults(
-			"Annotation[TYPE_REF]{java.lang.annotation.Annotation, java.lang.annotation, Ljava.lang.annotation.Annotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_JAVA_LIBRARY) + "}",
+			"Annotation[TYPE_REF]{java.lang.annotation.Annotation, java.lang.annotation, Ljava.lang.annotation.Annotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_JAVA_LIBRARY) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102284
-public void test0247() throws JavaModelException {
+public void test0247() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CompletionResult result = complete(
 			"/Completion/src3/test0245/X.java",
 			"package test0245;\n" +
@@ -7948,12 +7948,12 @@ public void test0247() throws JavaModelException {
 			"Type<String, String> (");
 
 		assertResults(
-			"Type[METHOD_REF<CONSTRUCTOR>]{, LType<Ljava.lang.String;Ljava.lang.String;>;, ()V, Type, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"Type[METHOD_REF<CONSTRUCTOR>]{, LType<Ljava.lang.String;Ljava.lang.String;>;, ()V, Type, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Type<java.lang.String,java.lang.String>[ANONYMOUS_CLASS_DECLARATION]{, LType<Ljava.lang.String;Ljava.lang.String;>;, ()V, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}",
 			result.proposals);
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102572
-public void test0248() throws JavaModelException {
+public void test0248() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 	try {
 		Hashtable options = new Hashtable(this.oldOptions);
@@ -7986,7 +7986,7 @@ public void test0248() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"oneTwoThree[METHOD_REF]{oneTwoThree(), Lcamelcase.ImportedType;, ()V, oneTwoThree, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CAMEL_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"oneTwoThree[METHOD_REF]{oneTwoThree(), Lcamelcase.ImportedType;, ()V, oneTwoThree, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CAMEL_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"oTTMethod[METHOD_REF]{oTTMethod(), Lcamelcase.ImportedType;, ()V, oTTMethod, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
 	} finally {
@@ -7994,7 +7994,7 @@ public void test0248() throws JavaModelException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102572
-public void test0249() throws JavaModelException {
+public void test0249() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 	try {
 		Hashtable options = new Hashtable(this.oldOptions);
@@ -8027,7 +8027,7 @@ public void test0249() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"oneTwoThree[FIELD_REF]{oneTwoThree, Lcamelcase.ImportedType;, I, oneTwoThree, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CAMEL_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"oneTwoThree[FIELD_REF]{oneTwoThree, Lcamelcase.ImportedType;, I, oneTwoThree, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CAMEL_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"oTTField[FIELD_REF]{oTTField, Lcamelcase.ImportedType;, I, oTTField, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
 	} finally {
@@ -8035,7 +8035,7 @@ public void test0249() throws JavaModelException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102572
-public void test0250() throws JavaModelException {
+public void test0250() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 	try {
 		Hashtable options = new Hashtable(this.oldOptions);
@@ -8065,7 +8065,7 @@ public void test0250() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"oneTwoThree[METHOD_NAME_REFERENCE]{oneTwoThree;, Lcamelcase.ImportedType;, ()V, oneTwoThree, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CAMEL_CASE + R_NON_RESTRICTED) + "}\n" +
+				"oneTwoThree[METHOD_NAME_REFERENCE]{oneTwoThree;, Lcamelcase.ImportedType;, ()V, oneTwoThree, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CAMEL_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"oTTMethod[METHOD_NAME_REFERENCE]{oTTMethod;, Lcamelcase.ImportedType;, ()V, oTTMethod, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
 	} finally {
@@ -8073,7 +8073,7 @@ public void test0250() throws JavaModelException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=102572
-public void test0260() throws JavaModelException {
+public void test0260() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 	try {
 		Hashtable options = new Hashtable(this.oldOptions);
@@ -8103,7 +8103,7 @@ public void test0260() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 		assertResults(
-				"oneTwoThree[ANNOTATION_ATTRIBUTE_REF]{oneTwoThree = , Lcamelcase.Annot;, Ljava.lang.String;, oneTwoThree, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CAMEL_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+				"oneTwoThree[ANNOTATION_ATTRIBUTE_REF]{oneTwoThree = , Lcamelcase.Annot;, Ljava.lang.String;, oneTwoThree, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CAMEL_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"oTTAttribute[ANNOTATION_ATTRIBUTE_REF]{oTTAttribute = , Lcamelcase.Annot;, Ljava.lang.String;, oTTAttribute, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 				requestor.getResults());
 	} finally {
@@ -8111,7 +8111,7 @@ public void test0260() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=113945
-public void test0261() throws JavaModelException {
+public void test0261() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8137,12 +8137,12 @@ public void test0261() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzfield[FIELD_REF]{zzfield, Ltest.SuperClass;, I, zzfield, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" +
+			"zzfield[FIELD_REF]{zzfield, Ltest.SuperClass;, I, zzfield, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"zzmethod[METHOD_REF]{zzmethod(), Ltest.SuperClass;, ()V, zzmethod, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=113945
-public void test0262() throws JavaModelException {
+public void test0262() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8168,13 +8168,13 @@ public void test0262() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzfield[FIELD_REF]{zzfield, Ltest.SuperInterface;, I, zzfield, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"zzfield[FIELD_REF]{zzfield, Ltest.SuperInterface;, I, zzfield, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"zzmethod[METHOD_REF]{zzmethod(), Ltest.SuperInterface;, ()V, zzmethod, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=113945
-public void test0263() throws JavaModelException {
+public void test0263() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8208,14 +8208,14 @@ public void test0263() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzfield2[FIELD_REF]{zzfield2, Ltest.SuperInterface;, I, zzfield2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"zzfield2[FIELD_REF]{zzfield2, Ltest.SuperInterface;, I, zzfield2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"zzfield[FIELD_REF]{zzfield, Ltest.SuperClass;, I, zzfield, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" +
 			"zzmethod[METHOD_REF]{zzmethod(), Ltest.SuperClass;, ()V, zzmethod, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" +
 			"zzmethod2[METHOD_REF]{zzmethod2(), Ltest.SuperInterface;, ()V, zzmethod2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=120522
-public void test0264() throws JavaModelException {
+public void test0264() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8247,11 +8247,11 @@ public void test0264() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"MyEnum[TYPE_REF]{MyEnum, test, Ltest.MyEnum;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_ENUM + R_EXACT_EXPECTED_TYPE + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+			"MyEnum[TYPE_REF]{MyEnum, test, Ltest.MyEnum;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_ENUM + R_EXACT_EXPECTED_TYPE + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=127323
-public void test0265() throws JavaModelException {
+public void test0265() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/enumbug/EnumBug.java",
@@ -8274,13 +8274,13 @@ public void test0265() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"bar[FIELD_REF]{bar, Lenumbug.EnumBug$Foo;, Lenumbug.EnumBug$Foo;, bar, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_ENUM + R_ENUM_CONSTANT + R_NON_RESTRICTED + R_RESOLVED) + "}\n" +
+			"bar[FIELD_REF]{bar, Lenumbug.EnumBug$Foo;, Lenumbug.EnumBug$Foo;, bar, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_ENUM + R_ENUM_CONSTANT + R_NON_RESTRICTED + R_RESOLVED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"baz[FIELD_REF]{baz, Lenumbug.EnumBug$Foo;, Lenumbug.EnumBug$Foo;, baz, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_ENUM + R_ENUM_CONSTANT + R_NON_RESTRICTED + R_RESOLVED) + "}\n" +
 			"foo[FIELD_REF]{foo, Lenumbug.EnumBug$Foo;, Lenumbug.EnumBug$Foo;, foo, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_ENUM + R_ENUM_CONSTANT + R_NON_RESTRICTED + R_RESOLVED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=128169
-public void test0266() throws JavaModelException {
+public void test0266() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8304,7 +8304,7 @@ public void test0266() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest.Test<TT;TU;TTU;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest.Test<TT;TU;TTU;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo[METHOD_DECLARATION]{public <V, W, TU2> V foo(test.SuperTest<V> t, test.SuperTest<W> u, test.SuperTest<TU2> tu, test.SuperTest<T> e), " +
 				"Ltest.SuperTest<TT;>;, <V:Ljava.lang.Object;W:Ljava.lang.Object;TU2:Ljava.lang.Object;>(Ltest.SuperTest<TV;>;Ltest.SuperTest<TW;>;" +
 				"Ltest.SuperTest<TTU2;>;Ltest.SuperTest<TT;>;)TV;, foo, (t, u, tu, e), " +
@@ -8313,7 +8313,7 @@ public void test0266() throws JavaModelException {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=128169
-public void test0267() throws JavaModelException {
+public void test0267() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8337,14 +8337,14 @@ public void test0267() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest.Test<TT;TU;TTU;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest.Test<TT;TU;TTU;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo[METHOD_DECLARATION]{public Object foo(SuperTest t, SuperTest u, SuperTest tu, SuperTest e), Ltest.SuperTest;, (Ltest.SuperTest;" +
 				"Ltest.SuperTest;Ltest.SuperTest;Ltest.SuperTest;)Ljava.lang.Object;, foo, (t, u, tu, e), " +
 				(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_METHOD_OVERIDE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=128169
-public void test0268() throws JavaModelException {
+public void test0268() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8368,13 +8368,13 @@ public void test0268() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest.Test<TT;TU;TTU;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest.Test<TT;TU;TTU;>;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo[METHOD_DECLARATION]{public <V, W, TU2> V foo(V t, W u, TU2 tu), Ltest.SuperTest;, <V:Ljava.lang.Object;W:Ljava.lang.Object;TU2:Ljava.lang.Object;>(TV;TW;TTU2;)TV;, foo, (t, u, tu), " +
 				(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_METHOD_OVERIDE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=131681
-public void test0269() throws JavaModelException {
+public void test0269() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8398,11 +8398,11 @@ public void test0269() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest.Test;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"foo[POTENTIAL_METHOD_DECLARATION]{foo, Ltest.Test;, ()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo[METHOD_DECLARATION]{public <T> void foo(), Ltest.SuperTest;, <T:Ljava.lang.Object;>()V, foo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_METHOD_OVERIDE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
-public void test0270() throws JavaModelException {
+public void test0270() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test270_2.java",
@@ -8430,12 +8430,12 @@ public void test0270() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test270_2[TYPE_REF]{Test270_2, test, Ltest.Test270_2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"Test270_2[TYPE_REF]{Test270_2, test, Ltest.Test270_2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Test270[TYPE_REF]{Test270, test, Ltest.Test270;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_EXACT_NAME + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0271() throws JavaModelException {
+public void test0271() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8462,11 +8462,11 @@ public void test0271() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzz2[METHOD_REF]{zzz2(), Ltest.TestCollections;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_INHERITED + R_NON_RESTRICTED) + "}",
+			"zzz2[METHOD_REF]{zzz2(), Ltest.TestCollections;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_INHERITED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0272() throws JavaModelException {
+public void test0272() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8493,12 +8493,12 @@ public void test0272() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzz2[METHOD_REF]{zzz2(), Ltest.TestCollections;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"zzz2[METHOD_REF]{zzz2(), Ltest.TestCollections;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"zzz1[METHOD_REF]{zzz1(), Ltest.TestCollections;, (Ljava.lang.Object;)V, zzz1, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0273() throws JavaModelException {
+public void test0273() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8528,12 +8528,12 @@ public void test0273() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzz2[METHOD_REF]{zzz2(), Ltest.TestCollections;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"zzz2[METHOD_REF]{zzz2(), Ltest.TestCollections;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"zzz1[METHOD_REF]{zzz1(), Ltest.TestCollections;, (Ljava.lang.Object;)V, zzz1, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0274() throws JavaModelException {
+public void test0274() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8564,7 +8564,7 @@ public void test0274() throws JavaModelException {
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0275() throws JavaModelException {
+public void test0275() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8595,7 +8595,7 @@ public void test0275() throws JavaModelException {
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0276() throws JavaModelException {
+public void test0276() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8629,7 +8629,7 @@ public void test0276() throws JavaModelException {
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0277() throws JavaModelException {
+public void test0277() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8660,7 +8660,7 @@ public void test0277() throws JavaModelException {
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0278() throws JavaModelException {
+public void test0278() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8681,12 +8681,12 @@ public void test0278() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzz2[METHOD_REF]{zzz2(), Ltest.Test;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"zzz2[METHOD_REF]{zzz2(), Ltest.Test;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"zzz1[METHOD_REF]{zzz1(), Ltest.Test;, (Ljava.lang.Object;)V, zzz1, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0279() throws JavaModelException {
+public void test0279() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8713,12 +8713,12 @@ public void test0279() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzz2[METHOD_REF]{zzz2(), Ltest.TestCollections;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"zzz2[METHOD_REF]{zzz2(), Ltest.TestCollections;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"zzz1[METHOD_REF]{zzz1(), Ltest.TestCollections;, (Ljava.lang.Object;)V, zzz1, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0280() throws JavaModelException {
+public void test0280() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8749,7 +8749,7 @@ public void test0280() throws JavaModelException {
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0281() throws JavaModelException {
+public void test0281() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8776,11 +8776,11 @@ public void test0281() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzz2[METHOD_REF]{zzz2(), Ltest.TestCollections;, <T:Ljava.lang.Object;>(TT;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_INHERITED + R_NON_RESTRICTED) + "}",
+			"zzz2[METHOD_REF]{zzz2(), Ltest.TestCollections;, <T:Ljava.lang.Object;>(TT;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_INHERITED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0282() throws JavaModelException {
+public void test0282() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8805,7 +8805,7 @@ public void test0282() throws JavaModelException {
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0283() throws JavaModelException {
+public void test0283() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8830,7 +8830,7 @@ public void test0283() throws JavaModelException {
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=106450
-public void test0284() throws JavaModelException {
+public void test0284() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8857,12 +8857,12 @@ public void test0284() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzz2[METHOD_REF]{zzz2(), Ltest.Test;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"zzz2[METHOD_REF]{zzz2(), Ltest.Test;, (Ljava.lang.Object;)V, zzz2, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"zzz1[METHOD_REF]{zzz1(), Ltest.Test;, (Ljava.lang.Object;)V, zzz1, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=133491
-public void test0285() throws JavaModelException {
+public void test0285() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/other/Test.java",
@@ -8897,11 +8897,11 @@ public void test0285() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZNeedsImportEnum[TYPE_REF]{ZZZNeedsImportEnum, pack, Lpack.ZZZNeedsImportEnum;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ENUM + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+			"ZZZNeedsImportEnum[TYPE_REF]{ZZZNeedsImportEnum, pack, Lpack.ZZZNeedsImportEnum;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ENUM + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=95829
-public void test0286() throws JavaModelException {
+public void test0286() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8934,11 +8934,11 @@ public void test0286() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.Test2<Ljava.lang.Object;>;, <T:Ljava.lang.Object;>([TT;)[TT;, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
+			"foo[METHOD_REF]{foo(), Ltest.Test2<Ljava.lang.Object;>;, <T:Ljava.lang.Object;>([TT;)[TT;, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=95829
-public void test0287() throws JavaModelException {
+public void test0287() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8969,12 +8969,12 @@ public void test0287() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"fo[POTENTIAL_METHOD_DECLARATION]{fo, Ltest.Test;, ()V, fo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"fo[POTENTIAL_METHOD_DECLARATION]{fo, Ltest.Test;, ()V, fo, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo[METHOD_DECLARATION]{public <T> T[] foo(T[] t), Ltest.Test2<Ljava.lang.Object;>;, <T:Ljava.lang.Object;>([TT;)[TT;, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_METHOD_OVERIDE + R_ABSTRACT_METHOD + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97085
-public void test0288() throws JavaModelException {
+public void test0288() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -8996,11 +8996,11 @@ public void test0288() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"test0.test1[PACKAGE_REF]{test0.test1.*;, test0.test1, null, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"test0.test1[PACKAGE_REF]{test0.test1.*;, test0.test1, null, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=97085
-public void test0289() throws JavaModelException {
+public void test0289() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -9022,11 +9022,11 @@ public void test0289() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"test0.test1[PACKAGE_REF]{test0.test1., test0.test1, null, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"test0.test1[PACKAGE_REF]{test0.test1., test0.test1, null, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=129983
-public void test0290() throws JavaModelException {
+public void test0290() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test0290/Test.java",
@@ -9049,7 +9049,7 @@ public void test0290() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"interface[KEYWORD]{interface, null, null, interface, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"interface[KEYWORD]{interface, null, null, interface, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"QQAnnotation[TYPE_REF]{pkgannotations.QQAnnotation, pkgannotations, Lpkgannotations.QQAnnotation;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
 			"YAAnnot[TYPE_REF]{testxxx.YAAnnot, testxxx, Ltestxxx.YAAnnot;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
 			"_ConfigurationData[TYPE_REF]{test325481._ConfigurationData, test325481, Ltest325481._ConfigurationData;, null, null, " + (R_NAME_PREFIX + R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
@@ -9058,7 +9058,7 @@ public void test0290() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=123225
-public void test0291() throws JavaModelException {
+public void test0291() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[5];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9102,11 +9102,11 @@ public void test0291() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.Test2<Ltest.Test4;>;, (Ltest.Test3;)V, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}",
+			"foo[METHOD_REF]{foo(), Ltest.Test2<Ltest.Test4;>;, (Ltest.Test3;)V, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=123225
-public void test0292() throws JavaModelException {
+public void test0292() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[6];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9157,12 +9157,12 @@ public void test0292() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.Test2<Ltest.Test4;>;, (Ltest.Test3;)V, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.Test2<Ltest.Test4;>;, (Ltest.Test3;)V, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo[METHOD_REF]{foo(), Ltest.Test5;, (Ltest.Test4;)V, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=123225
-public void test0293() throws JavaModelException {
+public void test0293() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[5];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9207,12 +9207,12 @@ public void test0293() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.Test2<Ltest.Test4;>;, (Ltest.Test3;)V, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.Test2<Ltest.Test4;>;, (Ltest.Test3;)V, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo[METHOD_REF]{foo(), Ltest.Test;, (Ltest.Test4;)V, foo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=161557
-public void test0294() throws JavaModelException {
+public void test0294() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9240,11 +9240,11 @@ public void test0294() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test2[TYPE_REF]{Test2, test, Ltest.Test2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+			"Test2[TYPE_REF]{Test2, test, Ltest.Test2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=99928
-public void test0295() throws JavaModelException {
+public void test0295() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[5];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9297,11 +9297,11 @@ public void test0295() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"compareTo[METHOD_REF]{compareTo(), Ltest.ComparableTest<*>;, (*)I, compareTo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
+			"compareTo[METHOD_REF]{compareTo(), Ltest.ComparableTest<*>;, (*)I, compareTo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=99928
-public void test0296() throws JavaModelException {
+public void test0296() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[5];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9352,11 +9352,11 @@ public void test0296() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"compareTo[METHOD_REF]{compareTo(), Ltest.ComparableTest<*>;, (*)I, compareTo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
+			"compareTo[METHOD_REF]{compareTo(), Ltest.ComparableTest<*>;, (*)I, compareTo, (t), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=154993
-public void test0297() throws JavaModelException {
+public void test0297() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9385,7 +9385,7 @@ public void test0297() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=164792
-public void test0298() throws JavaModelException {
+public void test0298() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9409,11 +9409,11 @@ public void test0298() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"clone[METHOD_REF]{clone(), [Ltest.ZZZ;, ()[Ltest.ZZZ;, clone, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
+			"clone[METHOD_REF]{clone(), [Ltest.ZZZ;, ()[Ltest.ZZZ;, clone, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=164792
-public void test0299() throws JavaModelException {
+public void test0299() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9437,11 +9437,11 @@ public void test0299() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}",
+			"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=157584
-public void test0300() throws JavaModelException {
+public void test0300() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -9481,11 +9481,11 @@ public void test0300() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Top<java.lang.Object>.IZZException[TYPE_REF]{test.Top.IZZException, test, Ltest.Top<Ljava.lang.Object;>.IZZException;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXCEPTION + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}",
+			"Top<java.lang.Object>.IZZException[TYPE_REF]{test.Top.IZZException, test, Ltest.Top<Ljava.lang.Object;>.IZZException;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXCEPTION + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0301() throws JavaModelException {
+public void test0301() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9515,12 +9515,12 @@ public void test0301() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0302() throws JavaModelException {
+public void test0302() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9551,12 +9551,12 @@ public void test0302() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0303() throws JavaModelException {
+public void test0303() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9591,12 +9591,12 @@ public void test0303() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"TOPZZZ1.ZZZ1[TYPE_REF]{p.TOPZZZ1.ZZZ1, p, Lp.TOPZZZ1$ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"TOPZZZ1.ZZZ1[TYPE_REF]{p.TOPZZZ1.ZZZ1, p, Lp.TOPZZZ1$ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"TOPZZZ2.ZZZ2[TYPE_REF]{p.TOPZZZ2.ZZZ2, p, Lp.TOPZZZ2$ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0304() throws JavaModelException {
+public void test0304() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9619,12 +9619,12 @@ public void test0304() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{ZZZ1, test, Ltest.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{ZZZ1, test, Ltest.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{ZZZ2, test, Ltest.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0305() throws JavaModelException {
+public void test0305() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9651,12 +9651,12 @@ public void test0305() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"TOPZZZ1.ZZZ1[TYPE_REF]{test.TOPZZZ1.ZZZ1, test, Ltest.TOPZZZ1$ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"TOPZZZ1.ZZZ1[TYPE_REF]{test.TOPZZZ1.ZZZ1, test, Ltest.TOPZZZ1$ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"TOPZZZ2.ZZZ2[TYPE_REF]{test.TOPZZZ2.ZZZ2, test, Ltest.TOPZZZ2$ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0306() throws JavaModelException {
+public void test0306() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9687,12 +9687,12 @@ public void test0306() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.TOPZZZ1.ZZZ1[TYPE_REF]{test.Test.TOPZZZ1.ZZZ1, test, Ltest.Test$TOPZZZ1$ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"Test.TOPZZZ1.ZZZ1[TYPE_REF]{test.Test.TOPZZZ1.ZZZ1, test, Ltest.Test$TOPZZZ1$ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Test.TOPZZZ2.ZZZ2[TYPE_REF]{test.Test.TOPZZZ2.ZZZ2, test, Ltest.Test$TOPZZZ2$ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0307() throws JavaModelException {
+public void test0307() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9715,12 +9715,12 @@ public void test0307() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.ZZZ1[TYPE_REF]{ZZZ1, test, Ltest.Test$ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"Test.ZZZ1[TYPE_REF]{ZZZ1, test, Ltest.Test$ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Test.ZZZ2[TYPE_REF]{ZZZ2, test, Ltest.Test$ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0308() throws JavaModelException {
+public void test0308() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9758,13 +9758,13 @@ public void test0308() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0309() throws JavaModelException {
+public void test0309() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9802,13 +9802,13 @@ public void test0309() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0310() throws JavaModelException {
+public void test0310() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9845,13 +9845,13 @@ public void test0310() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0311() throws JavaModelException {
+public void test0311() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9887,13 +9887,13 @@ public void test0311() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0312() throws JavaModelException {
+public void test0312() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9930,7 +9930,7 @@ public void test0312() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
@@ -9938,7 +9938,7 @@ public void test0312() throws JavaModelException {
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
 // When the completion is inside a method body the annotation cannot be accuratly attached to the correct node by completino recovery.
 // So relevance based on annotation target are ignored.
-public void test0313() throws JavaModelException {
+public void test0313() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -9977,13 +9977,13 @@ public void test0313() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0314() throws JavaModelException {
+public void test0314() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10020,13 +10020,13 @@ public void test0314() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0315() throws JavaModelException {
+public void test0315() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10061,12 +10061,12 @@ public void test0315() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0316() throws JavaModelException {
+public void test0316() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10103,13 +10103,13 @@ public void test0316() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0317() throws JavaModelException {
+public void test0317() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10146,13 +10146,13 @@ public void test0317() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0318() throws JavaModelException {
+public void test0318() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10182,12 +10182,12 @@ public void test0318() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0319() throws JavaModelException {
+public void test0319() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10218,12 +10218,12 @@ public void test0319() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0320() throws JavaModelException {
+public void test0320() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[5];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10269,14 +10269,14 @@ public void test0320() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ4[TYPE_REF]{p.ZZZ4, p, Lp.ZZZ4;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0321() throws JavaModelException {
+public void test0321() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10306,12 +10306,12 @@ public void test0321() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0321b() throws JavaModelException {
+public void test0321b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10341,12 +10341,12 @@ public void test0321b() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0322() throws JavaModelException {
+public void test0322() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10376,12 +10376,12 @@ public void test0322() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0323() throws JavaModelException {
+public void test0323() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10411,12 +10411,12 @@ public void test0323() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0324() throws JavaModelException {
+public void test0324() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10452,13 +10452,13 @@ public void test0324() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0325() throws JavaModelException {
+public void test0325() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10495,12 +10495,12 @@ public void test0325() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0326() throws JavaModelException {
+public void test0326() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10537,12 +10537,12 @@ public void test0326() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0327() throws JavaModelException {
+public void test0327() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10579,12 +10579,12 @@ public void test0327() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0328() throws JavaModelException {
+public void test0328() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10621,12 +10621,12 @@ public void test0328() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ2[TYPE_REF]{p.ZZZ2, p, Lp.ZZZ2;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=158985
-public void test0329() throws JavaModelException {
+public void test0329() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10663,12 +10663,12 @@ public void test0329() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" +
+			"ZZZ1[TYPE_REF]{p.ZZZ1, p, Lp.ZZZ1;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ZZZ3[TYPE_REF]{p.ZZZ3, p, Lp.ZZZ3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_TARGET + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=185318
-public void test0330() throws JavaModelException {
+public void test0330() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10684,12 +10684,12 @@ public void test0330() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo1[METHOD_NAME_REFERENCE]{foo1;, Ltest0330.q.Y;, ()Ltest0330.p.X;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"foo1[METHOD_NAME_REFERENCE]{foo1;, Ltest0330.q.Y;, ()Ltest0330.p.X;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo2[METHOD_NAME_REFERENCE]{foo2;, Ltest0330.q.Y;, ()V, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=185318
-public void test0331() throws JavaModelException {
+public void test0331() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10705,12 +10705,12 @@ public void test0331() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo1[METHOD_NAME_REFERENCE]{foo1;, Ltest0331.q.Y;, ()Ltest0331.p.X;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"foo1[METHOD_NAME_REFERENCE]{foo1;, Ltest0331.q.Y;, ()Ltest0331.p.X;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo2[METHOD_NAME_REFERENCE]{foo2;, Ltest0331.q.Y;, ()V, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=185318
-public void test0332() throws JavaModelException {
+public void test0332() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10726,12 +10726,12 @@ public void test0332() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo1[FIELD_REF]{foo1;, Ltest0332.q.Y;, Ltest0332.p.X;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"foo1[FIELD_REF]{foo1;, Ltest0332.q.Y;, Ltest0332.p.X;, foo1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo2[FIELD_REF]{foo2;, Ltest0332.q.Y;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=185318
-public void test0333() throws JavaModelException {
+public void test0333() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10747,11 +10747,11 @@ public void test0333() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo2[FIELD_REF]{foo2;, Ltest0333.q.Y;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"foo2[FIELD_REF]{foo2;, Ltest0333.q.Y;, I, foo2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=151967
-public void test0334() throws JavaModelException {
+public void test0334() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/ClassC.java",
@@ -10797,11 +10797,11 @@ public void test0334() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"a[METHOD_REF]{a, Ltest.EnumB;, ()V, a, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}",
+			"a[METHOD_REF]{a, Ltest.EnumB;, ()V, a, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=151967
-public void test0335() throws JavaModelException {
+public void test0335() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/ClassC.java",
@@ -10847,13 +10847,13 @@ public void test0335() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"B1[FIELD_REF]{B1, Ltest.EnumB;, Ltest.EnumB;, B1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"B1[FIELD_REF]{B1, Ltest.EnumB;, Ltest.EnumB;, B1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"B2[FIELD_REF]{B2, Ltest.EnumB;, Ltest.EnumB;, B2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
 			"b[METHOD_REF]{b, Ltest.InterfaceA;, ()V, b, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=99631
-public void test0336() throws JavaModelException {
+public void test0336() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -10875,11 +10875,11 @@ public void test0336() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"booleanClass[TYPE_REF]{booleanClass, test, Ltest.booleanClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_UNQUALIFIED + R_TARGET + R_NON_RESTRICTED) + "}",
+			"booleanClass[TYPE_REF]{booleanClass, test, Ltest.booleanClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_UNQUALIFIED + R_TARGET + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=99631
-public void test0337() throws JavaModelException {
+public void test0337() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -10901,11 +10901,11 @@ public void test0337() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"voidClass[TYPE_REF]{voidClass, test, Ltest.voidClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_UNQUALIFIED + R_TARGET + R_NON_RESTRICTED) + "}",
+			"voidClass[TYPE_REF]{voidClass, test, Ltest.voidClass;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_UNQUALIFIED + R_TARGET + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=212153
-public void test0338() throws JavaModelException {
+public void test0338() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -10933,7 +10933,7 @@ public void test0338() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0339() throws JavaModelException {
+public void test0339() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10962,12 +10962,12 @@ public void test0339() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ClassA.Member[TYPE_REF]{Member, test2, Ltest2.ClassA$Member;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_QUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"ClassA.Member[TYPE_REF]{Member, test2, Ltest2.ClassA$Member;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_QUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ClassA.MemberStatic<V>[TYPE_REF]{MemberStatic, test2, Ltest2.ClassA$MemberStatic<TV;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_QUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0340() throws JavaModelException {
+public void test0340() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -10995,14 +10995,14 @@ public void test0340() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ClassA.Member[TYPE_REF]{Member, test2, Ltest2.ClassA$Member;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_QUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"ClassA.Member[TYPE_REF]{Member, test2, Ltest2.ClassA$Member;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_QUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   ClassA[TYPE_REF]{test2.ClassA, test2, Ltest2.ClassA;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_QUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"ClassA.MemberStatic<V>[TYPE_REF]{MemberStatic, test2, Ltest2.ClassA$MemberStatic<TV;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_QUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"   ClassA[TYPE_REF]{test2.ClassA, test2, Ltest2.ClassA;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_QUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0341() throws JavaModelException {
+public void test0341() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -11031,11 +11031,11 @@ public void test0341() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ClassA<java.lang.Object>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ljava.lang.Object;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED) + "}",
+			"ClassA<java.lang.Object>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ljava.lang.Object;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0342() throws JavaModelException {
+public void test0342() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -11063,12 +11063,12 @@ public void test0342() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ClassA<java.lang.Object>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ljava.lang.Object;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}\n" +
+			"ClassA<java.lang.Object>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ljava.lang.Object;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   ClassA[TYPE_REF]{test2.ClassA, test2, Ltest2.ClassA;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0343() throws JavaModelException {
+public void test0343() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -11103,12 +11103,12 @@ public void test0343() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ClassA<test2.ClassB>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ltest2.ClassB;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}\n" +
+			"ClassA<test2.ClassB>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ltest2.ClassB;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   ClassB[TYPE_REF]{test2.ClassB, test2, Ltest2.ClassB;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0344() throws JavaModelException {
+public void test0344() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -11135,12 +11135,12 @@ public void test0344() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ClassA.Member[TYPE_REF]{Member, test2, Ltest2.ClassA$Member;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"ClassA.Member[TYPE_REF]{Member, test2, Ltest2.ClassA$Member;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ClassA.MemberStatic<V>[TYPE_REF]{MemberStatic, test2, Ltest2.ClassA$MemberStatic<TV;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0345() throws JavaModelException {
+public void test0345() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -11166,14 +11166,14 @@ public void test0345() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ClassA.Member[TYPE_REF]{Member, test2, Ltest2.ClassA$Member;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"ClassA.Member[TYPE_REF]{Member, test2, Ltest2.ClassA$Member;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   ClassA[TYPE_REF]{test2.ClassA, test2, Ltest2.ClassA;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED) + "}\n" +
 			"ClassA.MemberStatic<V>[TYPE_REF]{MemberStatic, test2, Ltest2.ClassA$MemberStatic<TV;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED) + "}\n" +
 			"   ClassA[TYPE_REF]{test2.ClassA, test2, Ltest2.ClassA;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0346() throws JavaModelException {
+public void test0346() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -11200,11 +11200,11 @@ public void test0346() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ClassA<java.lang.Object>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ljava.lang.Object;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED) + "}",
+			"ClassA<java.lang.Object>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ljava.lang.Object;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0347() throws JavaModelException {
+public void test0347() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -11230,12 +11230,12 @@ public void test0347() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ClassA<java.lang.Object>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ljava.lang.Object;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}\n" +
+			"ClassA<java.lang.Object>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ljava.lang.Object;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   ClassA[TYPE_REF]{test2.ClassA, test2, Ltest2.ClassA;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0348() throws JavaModelException {
+public void test0348() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -11268,12 +11268,12 @@ public void test0348() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ClassA<test2.ClassB>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ltest2.ClassB;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}\n" +
+			"ClassA<test2.ClassB>.Member<U>[TYPE_REF]{Member, test2, Ltest2.ClassA<Ltest2.ClassB;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   ClassB[TYPE_REF]{test2.ClassB, test2, Ltest2.ClassB;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_NON_RESTRICTED + R_NO_PROBLEMS) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0349() throws JavaModelException {
+public void test0349() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -11296,12 +11296,12 @@ public void test0349() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Test.MemberStatic<V>[TYPE_REF]{MemberStatic, test, Ltest.Test$MemberStatic<TV;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"Test.MemberStatic<V>[TYPE_REF]{MemberStatic, test, Ltest.Test$MemberStatic<TV;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Test<T>.Member<U>[TYPE_REF]{Member, test, Ltest.Test<TT;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=215331
-public void test0350() throws JavaModelException {
+public void test0350() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -11322,13 +11322,13 @@ public void test0350() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Mem[POTENTIAL_METHOD_DECLARATION]{Mem, Ltest.Test<TT;>;, ()V, Mem, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"Mem[POTENTIAL_METHOD_DECLARATION]{Mem, Ltest.Test<TT;>;, ()V, Mem, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Test.MemberStatic<V>[TYPE_REF]{MemberStatic, test, Ltest.Test$MemberStatic<TV;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"Test<T>.Member<U>[TYPE_REF]{Member, test, Ltest.Test<TT;>.Member<TU;>;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING  + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=96604
-public void test0351() throws JavaModelException {
+public void test0351() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11353,12 +11353,12 @@ public void test0351() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" +
+			"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"get[METHOD_REF]{get(), Ltest.util.List<Ljava.lang.String;>;, (I)Ljava.lang.String;, get, (i), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=96604
-public void test0352() throws JavaModelException {
+public void test0352() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11383,12 +11383,12 @@ public void test0352() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" +
+			"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"get[METHOD_REF]{get(), Ltest.util.List<Ljava.lang.String;>;, (I)Ljava.lang.String;, get, (i), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=96604
-public void test0353() throws JavaModelException {
+public void test0353() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11414,11 +11414,11 @@ public void test0353() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"xxxxx[LOCAL_VARIABLE_REF]{xxxxx, null, Ltest.X<Ljava.lang.String;*>;, xxxxx, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+			"xxxxx[LOCAL_VARIABLE_REF]{xxxxx, null, Ltest.X<Ljava.lang.String;*>;, xxxxx, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=96604
-public void test0354() throws JavaModelException {
+public void test0354() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11444,12 +11444,12 @@ public void test0354() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"xxxxx[LOCAL_VARIABLE_REF]{xxxxx, null, Ltest.X<Ljava.lang.String;*>;, xxxxx, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"xxxxx[LOCAL_VARIABLE_REF]{xxxxx, null, Ltest.X<Ljava.lang.String;*>;, xxxxx, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"[LAMBDA_EXPRESSION]{->, Ltest.util.List<Ljava.lang.String;>;, (I)Ljava.lang.String;, get, (i), 89}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=96604
-public void test0355() throws JavaModelException {
+public void test0355() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11475,11 +11475,11 @@ public void test0355() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"xxxxx[LOCAL_VARIABLE_REF]{xxxxx, null, Ltest.X<Ljava.lang.String;*>;, xxxxx, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+			"xxxxx[LOCAL_VARIABLE_REF]{xxxxx, null, Ltest.X<Ljava.lang.String;*>;, xxxxx, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=96604
-public void test0356() throws JavaModelException {
+public void test0356() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11506,12 +11506,12 @@ public void test0356() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" +
+			"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"get[METHOD_REF]{get(), Ltest.util.List<Ltest.util.List<TT;>;>;, (I)Ltest.util.List<TT;>;, get, (i), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=96604
-public void test0357() throws JavaModelException {
+public void test0357() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11538,12 +11538,12 @@ public void test0357() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" +
+			"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"get[METHOD_REF]{get(), Ltest.X<Ltest.X<Ljava.lang.Object;>;>;, ()Ltest.X<Ltest.X<Ljava.lang.Object;>;>;, get, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=96604
-public void test0358() throws JavaModelException {
+public void test0358() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11568,12 +11568,12 @@ public void test0358() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" +
+			"getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"get[METHOD_REF]{get(), Ltest.util.List<Ljava.lang.String;>;, (I)Ljava.lang.String;, get, (i), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_NON_STATIC + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=96604
-public void test0359() throws JavaModelException {
+public void test0359() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11598,12 +11598,12 @@ public void test0359() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Inner[METHOD_REF<CONSTRUCTOR>]{, Ltest.util.List<Ljava.lang.String;>.Inner;, ()V, Inner, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"Inner[METHOD_REF<CONSTRUCTOR>]{, Ltest.util.List<Ljava.lang.String;>.Inner;, ()V, Inner, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"List<java.lang.String>.Inner[ANONYMOUS_CLASS_DECLARATION]{, Ltest.util.List<Ljava.lang.String;>.Inner;, ()V, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=96604
-public void test0360() throws JavaModelException {
+public void test0360() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11628,12 +11628,12 @@ public void test0360() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"hashCode[METHOD_REF]{hashCode(), Ljava.lang.Object;, ()I, hashCode, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"hashCode[METHOD_REF]{hashCode(), Ljava.lang.Object;, ()I, hashCode, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"get[METHOD_REF]{, Ltest.util.List<Ljava.lang.String;>;, (I)Ljava.lang.String;, get, (i), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=97310
-public void test0361() throws JavaModelException {
+public void test0361() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/ZTest.java",
@@ -11666,11 +11666,11 @@ public void test0361() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ZTest3[TYPE_REF]{ZTest3, test, Ltest.ZTest3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_INTERFACE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+			"ZTest3[TYPE_REF]{ZTest3, test, Ltest.ZTest3;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_INTERFACE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=82712
-public void test0362() throws JavaModelException {
+public void test0362() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11696,12 +11696,12 @@ public void test0362() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"hashCode[METHOD_REF]{hashCode(), Ljava.lang.Object;, ()I, hashCode, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"hashCode[METHOD_REF]{hashCode(), Ljava.lang.Object;, ()I, hashCode, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"abs[METHOD_REF]{, Ltest.util.Math;, (I)I, abs, (i), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=82712
-public void test0363() throws JavaModelException {
+public void test0363() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11727,12 +11727,12 @@ public void test0363() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"hashCode[METHOD_REF]{hashCode(), Ljava.lang.Object;, ()I, hashCode, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"hashCode[METHOD_REF]{hashCode(), Ljava.lang.Object;, ()I, hashCode, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"abs[METHOD_REF]{, Ltest.util.Math;, (I)I, abs, (i), " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=161030
-public void test0364() throws JavaModelException {
+public void test0364() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11758,14 +11758,14 @@ public void test0364() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"myEnumVar[LOCAL_VARIABLE_REF]{myEnumVar, null, Ltest.p.MyEnum;, myEnumVar, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_ENUM + R_ENUM_CONSTANT + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"myEnumVar[LOCAL_VARIABLE_REF]{myEnumVar, null, Ltest.p.MyEnum;, myEnumVar, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_ENUM + R_ENUM_CONSTANT + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"MyEnum[TYPE_REF]{MyEnum, test.p, Ltest.p.MyEnum;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ENUM + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"MyEnum1[FIELD_REF]{MyEnum.MyEnum1, Ltest.p.MyEnum;, Ltest.p.MyEnum;, MyEnum1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ENUM + R_ENUM_CONSTANT + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}\n" +
 			"MyEnum2[FIELD_REF]{MyEnum.MyEnum2, Ltest.p.MyEnum;, Ltest.p.MyEnum;, MyEnum2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ENUM + R_ENUM_CONSTANT + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=161030
-public void test0365() throws JavaModelException {
+public void test0365() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11791,14 +11791,14 @@ public void test0365() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"MyEnum[TYPE_REF]{MyEnum, test.p, Ltest.p.MyEnum;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_ENUM + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"MyEnum[TYPE_REF]{MyEnum, test.p, Ltest.p.MyEnum;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_ENUM + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"MyEnum1[FIELD_REF]{MyEnum.MyEnum1, Ltest.p.MyEnum;, Ltest.p.MyEnum;, MyEnum1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_ENUM + R_ENUM_CONSTANT + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}\n" +
 			"MyEnum2[FIELD_REF]{MyEnum.MyEnum2, Ltest.p.MyEnum;, Ltest.p.MyEnum;, MyEnum2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_ENUM + R_ENUM_CONSTANT + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}\n" +
 			"myEnumVar[LOCAL_VARIABLE_REF]{myEnumVar, null, Ltest.p.MyEnum;, myEnumVar, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ENUM + R_ENUM_CONSTANT + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=161030
-public void test0366() throws JavaModelException {
+public void test0366() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11824,14 +11824,14 @@ public void test0366() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"MyEnum[TYPE_REF]{MyEnum, test.p, Ltest.p.MyEnum;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ENUM + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"MyEnum[TYPE_REF]{MyEnum, test.p, Ltest.p.MyEnum;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ENUM + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"MyEnum1[FIELD_REF]{MyEnum.MyEnum1, Ltest.p.MyEnum;, Ltest.p.MyEnum;, MyEnum1, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ENUM + R_ENUM_CONSTANT + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}\n" +
 			"MyEnum2[FIELD_REF]{MyEnum.MyEnum2, Ltest.p.MyEnum;, Ltest.p.MyEnum;, MyEnum2, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ENUM + R_ENUM_CONSTANT + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED) + "}\n" +
 			"MyEnumVar[LOCAL_VARIABLE_REF]{MyEnumVar, null, Ltest.p.MyEnum;, MyEnumVar, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ENUM + R_ENUM_CONSTANT + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=222326
-public void test0367() throws JavaModelException {
+public void test0367() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[7];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -11862,7 +11862,7 @@ public void test0367() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-		"Zz[TYPE_REF]{Zz, , LZz;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_CASE + R_EXACT_NAME + R_UNQUALIFIED) + "}",
+		"Zz[TYPE_REF]{Zz, , LZz;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_CASE + R_EXACT_NAME + R_UNQUALIFIED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209643
@@ -11880,11 +11880,11 @@ public void test0368() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"enum[KEYWORD]{enum, null, null, enum, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"enum[KEYWORD]{enum, null, null, enum, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209643
-public void test0369() throws JavaModelException {
+public void test0369() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11906,7 +11906,7 @@ public void test0369() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"enu[POTENTIAL_METHOD_DECLARATION]{enu, Ltest.Test;, ()V, enu, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+			"enu[POTENTIAL_METHOD_DECLARATION]{enu, Ltest.Test;, ()V, enu, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Enum[TYPE_REF]{Enum, java.lang, Ljava.lang.Enum;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_UNQUALIFIED + R_NON_RESTRICTED + R_JAVA_LIBRARY) + "}\n" +
 			"enum[KEYWORD]{enum, null, null, enum, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 			"enumFoo[TYPE_REF]{enumFoo, test, Ltest.enumFoo;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
@@ -11927,11 +11927,11 @@ public void test0370() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"interface[KEYWORD]{interface, null, null, interface, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
+			"interface[KEYWORD]{interface, null, null, interface, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209643
-public void test0371() throws JavaModelException {
+public void test0371() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11947,11 +11947,11 @@ public void test0371() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"interface[KEYWORD]{interface, null, null, interface, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}",
+			"interface[KEYWORD]{interface, null, null, interface, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_ANNOTATION + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209643
-public void test0372() throws JavaModelException {
+public void test0372() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11973,7 +11973,7 @@ public void test0372() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209643
-public void test0373() throws JavaModelException {
+public void test0373() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -11999,7 +11999,7 @@ public void test0373() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=209643
-public void test0374() throws JavaModelException {
+public void test0374() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -12021,7 +12021,7 @@ public void test0374() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=106821
-public void test0375() throws JavaModelException {
+public void test0375() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -12049,12 +12049,12 @@ public void test0375() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"foo1[METHOD_REF]{foo1(), Ltest.Test;, ()V, foo1, null, public deprecated, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"foo1[METHOD_REF]{foo1(), Ltest.Test;, ()V, foo1, null, public deprecated, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"foo2[METHOD_REF]{foo2(), Ltest.Test;, ()V, foo2, null, public deprecated, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=114116
-public void test0376() throws JavaModelException {
+public void test0376() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -12077,13 +12077,13 @@ public void test0376() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"collection[VARIABLE_DECLARATION]{collection, null, Ltest.MyCollection<Ljava.lang.String;>;, collection, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"collection[VARIABLE_DECLARATION]{collection, null, Ltest.MyCollection<Ljava.lang.String;>;, collection, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"myCollection[VARIABLE_DECLARATION]{myCollection, null, Ltest.MyCollection<Ljava.lang.String;>;, myCollection, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
 			"strings[VARIABLE_DECLARATION]{strings, null, Ltest.MyCollection<Ljava.lang.String;>;, strings, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=114116
-public void test0377() throws JavaModelException {
+public void test0377() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -12106,12 +12106,12 @@ public void test0377() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"collection[VARIABLE_DECLARATION]{collection, null, Ltest.MyCollection;, collection, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"collection[VARIABLE_DECLARATION]{collection, null, Ltest.MyCollection;, collection, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"myCollection[VARIABLE_DECLARATION]{myCollection, null, Ltest.MyCollection;, myCollection, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=114116
-public void test0378() throws JavaModelException {
+public void test0378() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -12134,12 +12134,12 @@ public void test0378() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"collection[VARIABLE_DECLARATION]{collection, null, Ltest.MyCollection<Ljava.lang.String;Ljava.lang.String;>;, collection, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" +
+			"collection[VARIABLE_DECLARATION]{collection, null, Ltest.MyCollection<Ljava.lang.String;Ljava.lang.String;>;, collection, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"myCollection[VARIABLE_DECLARATION]{myCollection, null, Ltest.MyCollection<Ljava.lang.String;Ljava.lang.String;>;, myCollection, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=153130
-public void testEC001() throws JavaModelException {
+public void testEC001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/Test.java",
@@ -12158,7 +12158,7 @@ public void testEC001() throws JavaModelException {
 	int endOffset = startOffset;
 
 	assertResults(
-			"completion offset="+startOffset+"\n"+
+			"completion offset="+startOffset+"\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"completion range=["+startOffset+", "+(endOffset-1)+"]\n"+
 			"completion token=\"\"\n"+
 			"completion token kind=TOKEN_KIND_NAME\n"+
@@ -12168,11 +12168,11 @@ public void testEC001() throws JavaModelException {
             requestor.getContext());
 
 	assertResults(
-			"Test<T>[TYPE_REF]{, test, Ltest.Test<TT;>;, null, null, ["+startOffset+", "+endOffset+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
+			"Test<T>[TYPE_REF]{, test, Ltest.Test<TT;>;, null, null, ["+startOffset+", "+endOffset+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports001() throws JavaModelException {
+public void testFavoriteImports001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12205,12 +12205,12 @@ public void testFavoriteImports001() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[FIELD_REF]{foo, Ltest.p.ZZZ;, I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[FIELD_REF]{foo, Ltest.p.ZZZ;, I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[FIELD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports002() throws JavaModelException {
+public void testFavoriteImports002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12243,12 +12243,12 @@ public void testFavoriteImports002() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports003() throws JavaModelException {
+public void testFavoriteImports003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12280,7 +12280,7 @@ public void testFavoriteImports003() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports004() throws JavaModelException {
+public void testFavoriteImports004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12312,7 +12312,7 @@ public void testFavoriteImports004() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports005() throws JavaModelException {
+public void testFavoriteImports005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12345,12 +12345,12 @@ public void testFavoriteImports005() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[FIELD_REF]{foo, Ltest.p.ZZZ;, I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[FIELD_REF]{foo, Ltest.p.ZZZ;, I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[FIELD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports006() throws JavaModelException {
+public void testFavoriteImports006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12383,12 +12383,12 @@ public void testFavoriteImports006() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports007() throws JavaModelException {
+public void testFavoriteImports007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12422,12 +12422,12 @@ public void testFavoriteImports007() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports008() throws JavaModelException {
+public void testFavoriteImports008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12458,11 +12458,11 @@ public void testFavoriteImports008() throws JavaModelException {
 	int start1 = str.lastIndexOf("foo") + "".length();
 	int end1 = start1 + "foo".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED +R_NON_RESTRICTED)+"}",
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED +R_NON_RESTRICTED)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports009() throws JavaModelException {
+public void testFavoriteImports009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12496,12 +12496,12 @@ public void testFavoriteImports009() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports010() throws JavaModelException {
+public void testFavoriteImports010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12532,11 +12532,11 @@ public void testFavoriteImports010() throws JavaModelException {
 	int start1 = str.lastIndexOf("foo") + "".length();
 	int end1 = start1 + "foo".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED +R_NON_RESTRICTED)+"}",
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED +R_NON_RESTRICTED)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports011() throws JavaModelException {
+public void testFavoriteImports011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12570,12 +12570,12 @@ public void testFavoriteImports011() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports012() throws JavaModelException {
+public void testFavoriteImports012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12606,11 +12606,11 @@ public void testFavoriteImports012() throws JavaModelException {
 	int start1 = str.lastIndexOf("foo") + "".length();
 	int end1 = start1 + "foo".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED +R_NON_RESTRICTED)+"}",
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED +R_NON_RESTRICTED)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports013() throws JavaModelException {
+public void testFavoriteImports013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12644,12 +12644,12 @@ public void testFavoriteImports013() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports014() throws JavaModelException {
+public void testFavoriteImports014() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12680,11 +12680,11 @@ public void testFavoriteImports014() throws JavaModelException {
 	int start1 = str.lastIndexOf("foo") + "".length();
 	int end1 = start1 + "foo".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED +R_NON_RESTRICTED)+"}",
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED +R_NON_RESTRICTED)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports015() throws JavaModelException {
+public void testFavoriteImports015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12722,11 +12722,11 @@ public void testFavoriteImports015() throws JavaModelException {
 	int start1 = str.lastIndexOf("foo") + "".length();
 	int end1 = start1 + "foo".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports016() throws JavaModelException {
+public void testFavoriteImports016() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12761,13 +12761,13 @@ public void testFavoriteImports016() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class Test");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], " + (relevance1) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n" +
 			"Test.foo[TYPE_REF]{foo, test, Ltest.Test$foo;, null, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports017() throws JavaModelException {
+public void testFavoriteImports017() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12797,11 +12797,11 @@ public void testFavoriteImports017() throws JavaModelException {
 	int start1 = str.lastIndexOf("foo") + "".length();
 	int end1 = start1 + "foo".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.Test;, ()V, foo, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
+			"foo[METHOD_REF]{foo(), Ltest.Test;, ()V, foo, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports018() throws JavaModelException {
+public void testFavoriteImports018() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12835,13 +12835,13 @@ public void testFavoriteImports018() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n"+
 			"foo[FIELD_REF]{foo, Ltest.Test;, I, foo, null, ["+start1+", "+end1+"], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports019() throws JavaModelException {
+public void testFavoriteImports019() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12875,13 +12875,13 @@ public void testFavoriteImports019() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n"+
 			"foo[LOCAL_VARIABLE_REF]{foo, null, I, foo, null, ["+start1+", "+end1+"], "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED)+"}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports020() throws JavaModelException {
+public void testFavoriteImports020() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12915,14 +12915,14 @@ public void testFavoriteImports020() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n"+
 			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, (I)I, foo, (i), ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, (I)I, foo, (i), ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports021() throws JavaModelException {
+public void testFavoriteImports021() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12955,12 +12955,12 @@ public void testFavoriteImports021() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, <T:Ljava.lang.Object;>()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, <T:Ljava.lang.Object;>()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, <T:Ljava.lang.Object;>()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports022() throws JavaModelException {
+public void testFavoriteImports022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -12992,7 +12992,7 @@ public void testFavoriteImports022() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports023() throws JavaModelException {
+public void testFavoriteImports023() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13026,12 +13026,12 @@ public void testFavoriteImports023() throws JavaModelException {
 	int start2 = str.lastIndexOf("/** */");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[FIELD_REF]{foo, Ltest.p.ZZZ;, I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[FIELD_REF]{foo, Ltest.p.ZZZ;, I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[FIELD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports024() throws JavaModelException {
+public void testFavoriteImports024() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13063,7 +13063,7 @@ public void testFavoriteImports024() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports025() throws JavaModelException {
+public void testFavoriteImports025() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13095,7 +13095,7 @@ public void testFavoriteImports025() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports026() throws JavaModelException {
+public void testFavoriteImports026() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13127,7 +13127,7 @@ public void testFavoriteImports026() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports027() throws JavaModelException {
+public void testFavoriteImports027() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13159,7 +13159,7 @@ public void testFavoriteImports027() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports029() throws JavaModelException {
+public void testFavoriteImports029() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13193,12 +13193,12 @@ public void testFavoriteImports029() throws JavaModelException {
 	int start2 = str.lastIndexOf("public class");
 	int end2 = start2 + "".length();
 	assertResults(
-			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports030() throws JavaModelException {
+public void testFavoriteImports030() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	try {
@@ -13238,7 +13238,7 @@ public void testFavoriteImports030() throws JavaModelException {
 		int start2 = str.lastIndexOf("public class");
 		int end2 = start2 + "".length();
 		assertResults(
-				"foo[METHOD_REF]{ZZZ.foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+				"foo[METHOD_REF]{ZZZ.foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"   ZZZ[TYPE_IMPORT]{import test.p.ZZZ;\n, test.p, Ltest.p.ZZZ;, null, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 				requestor.getResults());
 	} finally {
@@ -13246,7 +13246,7 @@ public void testFavoriteImports030() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=152123
-public void testFavoriteImports031() throws JavaModelException {
+public void testFavoriteImports031() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	try {
@@ -13286,7 +13286,7 @@ public void testFavoriteImports031() throws JavaModelException {
 		int start2 = str.lastIndexOf("public class");
 		int end2 = start2 + "".length();
 		assertResults(
-				"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+				"foo[METHOD_REF]{foo(), Ltest.p.ZZZ;, ()I, foo, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"   foo[METHOD_IMPORT]{import static test.p.ZZZ.foo;\n, Ltest.p.ZZZ;, ()I, foo, null, ["+start2+", "+end2+"], " + (relevance1) + "}",
 				requestor.getResults());
 	} finally {
@@ -13294,7 +13294,7 @@ public void testFavoriteImports031() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=178982
-public void testFavoriteImports032() throws JavaModelException {
+public void testFavoriteImports032() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 
 	try {
@@ -13349,7 +13349,7 @@ public void testFavoriteImports032() throws JavaModelException {
 		int start2 = str.lastIndexOf("public class");
 		int end2 = start2 + "".length();
 		assertResults(
-			"zelement4[METHOD_REF]{zelement4(), Ltest.p.ZZZ;, ()I, zelement4, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
+			"zelement4[METHOD_REF]{zelement4(), Ltest.p.ZZZ;, ()I, zelement4, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"   zelement4[METHOD_IMPORT]{import static test.p.ZZZ.zelement4;\n, Ltest.p.ZZZ;, ()I, zelement4, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n"+
 			"zelement5[METHOD_REF]{zelement5(), Ltest.p.ZZZ;, ()F, zelement5, null, ["+start1+", "+end1+"], "+(relevance1)+"}\n" +
 			"   zelement5[METHOD_IMPORT]{import static test.p.ZZZ.zelement5;\n, Ltest.p.ZZZ;, ()F, zelement5, null, ["+start2+", "+end2+"], " + (relevance1) + "}\n"+
@@ -13364,7 +13364,7 @@ public void testFavoriteImports032() throws JavaModelException {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=162865
-public void testNameWithUnresolvedReferences001() throws JavaModelException {
+public void testNameWithUnresolvedReferences001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13405,7 +13405,7 @@ public void testNameWithUnresolvedReferences001() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"varzz2[LOCAL_VARIABLE_REF]{varzz2, null, Ljava.lang.Object;, varzz2, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"varzz2[LOCAL_VARIABLE_REF]{varzz2, null, Ljava.lang.Object;, varzz2, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"varzz4[LOCAL_VARIABLE_REF]{varzz4, null, Ljava.lang.Object;, varzz4, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"varzz5[LOCAL_VARIABLE_REF]{varzz5, null, Ljava.lang.Object;, varzz5, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"varzz7[LOCAL_VARIABLE_REF]{varzz7, null, Ljava.lang.Object;, varzz7, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
@@ -13414,7 +13414,7 @@ public void testNameWithUnresolvedReferences001() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=162865
-public void testNameWithUnresolvedReferences002() throws JavaModelException {
+public void testNameWithUnresolvedReferences002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13455,7 +13455,7 @@ public void testNameWithUnresolvedReferences002() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"varzz2[LOCAL_VARIABLE_REF]{varzz2, null, Ljava.lang.Object;, varzz2, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"varzz2[LOCAL_VARIABLE_REF]{varzz2, null, Ljava.lang.Object;, varzz2, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"varzz4[LOCAL_VARIABLE_REF]{varzz4, null, Ljava.lang.Object;, varzz4, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"varzz5[LOCAL_VARIABLE_REF]{varzz5, null, Ljava.lang.Object;, varzz5, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"varzz7[LOCAL_VARIABLE_REF]{varzz7, null, Ljava.lang.Object;, varzz7, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
@@ -13464,7 +13464,7 @@ public void testNameWithUnresolvedReferences002() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=162865
-public void testNameWithUnresolvedReferences003() throws JavaModelException {
+public void testNameWithUnresolvedReferences003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13507,7 +13507,7 @@ public void testNameWithUnresolvedReferences003() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"varzz2[LOCAL_VARIABLE_REF]{varzz2, null, Ljava.lang.Object;, varzz2, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"varzz2[LOCAL_VARIABLE_REF]{varzz2, null, Ljava.lang.Object;, varzz2, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"varzz4[LOCAL_VARIABLE_REF]{varzz4, null, Ljava.lang.Object;, varzz4, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"varzz5[LOCAL_VARIABLE_REF]{varzz5, null, Ljava.lang.Object;, varzz5, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"varzz7[LOCAL_VARIABLE_REF]{varzz7, null, Ljava.lang.Object;, varzz7, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
@@ -13517,7 +13517,7 @@ public void testNameWithUnresolvedReferences003() throws JavaModelException {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=99399 test to verify that we continue to propose final
 // types in extends contexts but where they are not directly extended.
-public void testCompletionOnExtends() throws JavaModelException {
+public void testCompletionOnExtends() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13535,14 +13535,14 @@ public void testCompletionOnExtends() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ThisClassIsFinal[TYPE_REF]{ThisClassIsFinal, test, Ltest.ThisClassIsFinal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"ThisClassIsFinal[TYPE_REF]{ThisClassIsFinal, test, Ltest.ThisClassIsFinal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ThisClassIsNotFinal[TYPE_REF]{ThisClassIsNotFinal, test, Ltest.ThisClassIsNotFinal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=99399 test to verify that we don't propose final
 //types in extends contexts where we should not.
-public void testCompletionOnExtends2() throws JavaModelException {
+public void testCompletionOnExtends2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13559,13 +13559,13 @@ public void testCompletionOnExtends2() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ThisClassIsNotFinal[TYPE_REF]{ThisClassIsNotFinal, test, Ltest.ThisClassIsNotFinal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+			"ThisClassIsNotFinal[TYPE_REF]{ThisClassIsNotFinal, test, Ltest.ThisClassIsNotFinal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=99399 test to verify that we don't propose final
 //types in extends contexts where we should not.
-public void testCompletionOnExtends3() throws JavaModelException {
+public void testCompletionOnExtends3() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13584,13 +13584,13 @@ public void testCompletionOnExtends3() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ThisClassIsNotFinal[TYPE_REF]{ThisClassIsNotFinal, test, Ltest.ThisClassIsNotFinal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
+			"ThisClassIsNotFinal[TYPE_REF]{ThisClassIsNotFinal, test, Ltest.ThisClassIsNotFinal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=99399 test to verify that we do propose final
 //types in super contexts where we should.
-public void testCompletionOnExtends4() throws JavaModelException {
+public void testCompletionOnExtends4() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13611,7 +13611,7 @@ public void testCompletionOnExtends4() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"ThisClassIsFinal[TYPE_REF]{ThisClassIsFinal, test, Ltest.ThisClassIsFinal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
+			"ThisClassIsFinal[TYPE_REF]{ThisClassIsFinal, test, Ltest.ThisClassIsFinal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ThisClassIsNotFinal[TYPE_REF]{ThisClassIsNotFinal, test, Ltest.ThisClassIsNotFinal;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			requestor.getResults());
 }
@@ -13619,7 +13619,7 @@ public void testCompletionOnExtends4() throws JavaModelException {
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=246832
  * To test whether camel case completion works for imported static methods
  */
-public void testCamelCaseStaticMethodImport() throws JavaModelException {
+public void testCamelCaseStaticMethodImport() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.oldOptions = JavaCore.getOptions();
 	this.workingCopies = new ICompilationUnit[2];
 	try {
@@ -13651,7 +13651,7 @@ public void testCamelCaseStaticMethodImport() throws JavaModelException {
 		this.workingCopies[1].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 			assertResults(
-					"testMethodWithLongName[METHOD_REF]{testMethodWithLongName(), La.A;, ()V, testMethodWithLongName, null, " +
+					"testMethodWithLongName[METHOD_REF]{testMethodWithLongName(), La.A;, ()V, testMethodWithLongName, null, " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CAMEL_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 					requestor.getResults());
 	} finally {
@@ -13662,7 +13662,7 @@ public void testCamelCaseStaticMethodImport() throws JavaModelException {
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=84720
  * to test that the methods with Boxed/unboxed return types get higher relevance than the ones that return void
  */
-public void testCompletionWithUnboxing() throws JavaModelException {
+public void testCompletionWithUnboxing() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13689,7 +13689,7 @@ public void testCompletionWithUnboxing() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"myMethod1[METHOD_REF]{myMethod1(), Ltest.C;, ()V, myMethod1, null, " +
+			"myMethod1[METHOD_REF]{myMethod1(), Ltest.C;, ()V, myMethod1, null, " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_VOID + R_NON_RESTRICTED) + "}\n" +
 			"myMethod2[METHOD_REF]{myMethod2(), Ltest.C;, ()V, myMethod2, null, " +
 				(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_VOID + R_NON_RESTRICTED) + "}\n" +
@@ -13705,7 +13705,7 @@ public void testCompletionWithUnboxing() throws JavaModelException {
  *
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=273991 also"
  */
-public void testCompletionWithUnboxing_1() throws JavaModelException {
+public void testCompletionWithUnboxing_1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13739,7 +13739,7 @@ public void testCompletionWithUnboxing_1() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"myMethod1[METHOD_REF]{myMethod1(), Ltest.C;, ()V, myMethod1, null, " +
+			"myMethod1[METHOD_REF]{myMethod1(), Ltest.C;, ()V, myMethod1, null, " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_VOID + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"myMethod4[METHOD_REF]{myMethod4(), Ltest.C;, ()F, myMethod4, null, " +
 				(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
@@ -13755,7 +13755,7 @@ public void testCompletionWithUnboxing_1() throws JavaModelException {
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=84720
  * Additional tests for bug 84720
  */
-public void testCompletionWithUnboxing_2() throws JavaModelException {
+public void testCompletionWithUnboxing_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src3/test/Test.java",
@@ -13783,7 +13783,7 @@ public void testCompletionWithUnboxing_2() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"myVariable1[FIELD_REF]{myVariable1, Ltest.C;, I, myVariable1, null, " +
+			"myVariable1[FIELD_REF]{myVariable1, Ltest.C;, I, myVariable1, null, " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"myVariable2[FIELD_REF]{myVariable2, Ltest.C;, J, myVariable2, null, " +
 				(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
@@ -13795,7 +13795,7 @@ public void testCompletionWithUnboxing_2() throws JavaModelException {
 }
 //bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=274466
 //Check for boolean methods with higher relevance in assert statement's conditional part
-public void test274466() throws JavaModelException {
+public void test274466() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Test274466.java",
@@ -13821,7 +13821,7 @@ public void test274466() throws JavaModelException {
 
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"methodReturningBlah[METHOD_REF]{methodReturningBlah(), Ltest.Test274466;, ()V, methodReturningBlah, " +
+			"methodReturningBlah[METHOD_REF]{methodReturningBlah(), Ltest.Test274466;, ()V, methodReturningBlah, " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_VOID + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 			"methodReturningBooleanB[METHOD_REF]{methodReturningBooleanB(), Ltest.Test274466;, ()Ljava.lang.Boolean;, methodReturningBooleanB, " +
 					(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_EXPECTED_TYPE + R_NON_RESTRICTED) + "}\n" +
@@ -13830,7 +13830,7 @@ public void test274466() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=307486
-public void testLabel() throws JavaModelException {
+public void testLabel() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/label/Test.java",
@@ -13851,13 +13851,13 @@ public void testLabel() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"\ud842\udf9fabc[LABEL_REF]{\ud842\udf9fabc, null, null, \ud842\udf9fabc, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}",
+			"\ud842\udf9fabc[LABEL_REF]{\ud842\udf9fabc, null, null, \ud842\udf9fabc, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=310423
 // Annotation types are not proposed after 'implements' in a Single type ref
-public void testBug310423a() throws JavaModelException {
+public void testBug310423a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/label/Test.java",
@@ -13878,7 +13878,7 @@ public void testBug310423a() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Inn.Inn2[TYPE_REF]{label.Inn.Inn2, label, Llabel.Inn$Inn2;, null, null, " + (R_DEFAULT + 39) + "}\n" +
+			"Inn.Inn2[TYPE_REF]{label.Inn.Inn2, label, Llabel.Inn$Inn2;, null, null, " + (R_DEFAULT + 39) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"In[TYPE_REF]{In, label, Llabel.In;, null, null, " + (R_DEFAULT + 42) + "}\n" +
 			"Inn[TYPE_REF]{Inn, label, Llabel.Inn;, null, null, " + (R_DEFAULT + 42) + "}",
 			requestor.getResults());
@@ -13886,7 +13886,7 @@ public void testBug310423a() throws JavaModelException {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=310423
 // Annotation types are not proposed after 'implements' in a Qualified type ref
-public void testBug310423b() throws JavaModelException {
+public void testBug310423b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/label/Test.java",
@@ -13906,7 +13906,7 @@ public void testBug310423b() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Inn.Inn2[TYPE_REF]{Inn2, label, Llabel.Inn$Inn2;, null, null, " + (R_DEFAULT + 39) + "}\n" +
+			"Inn.Inn2[TYPE_REF]{Inn2, label, Llabel.Inn$Inn2;, null, null, " + (R_DEFAULT + 39) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Inn.Inn3[TYPE_REF]{Inn3, label, Llabel.Inn$Inn3;, null, null, " + (R_DEFAULT + 39) + "}",
 			requestor.getResults());
 }
@@ -13923,7 +13923,7 @@ public void testBug343865a() throws JavaModelException {
 	cu.codeComplete(cursorLocation, requestor);
 
 	assertResults(
-		"name[ANNOTATION_ATTRIBUTE_REF]{name = , Ltestxxx.YAAnnot;, Ljava.lang.String;, name, null, " +
+		"name[ANNOTATION_ATTRIBUTE_REF]{name = , Ltestxxx.YAAnnot;, Ljava.lang.String;, name, null, " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 		"val[ANNOTATION_ATTRIBUTE_REF]{val = , Ltestxxx.YAAnnot;, I, val, null, " +
 						(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
@@ -13932,7 +13932,7 @@ public void testBug343865a() throws JavaModelException {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=343865
 // Verify that the correct expected type is computed
-public void testBug343865b() throws JavaModelException {
+public void testBug343865b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	CompletionTestsRequestor2 requestor = new CompletionTestsRequestor2(true);
 	ICompilationUnit cu = getCompilationUnit("Completion", "src3", "testxxx", "TestType2.java");
 
@@ -13947,13 +13947,13 @@ public void testBug343865b() throws JavaModelException {
 			requestor.getContext());
 
 	assertResults(
-		"xxyy[FIELD_REF]{xxyy, Ltestxxx.TestType2;, I, xxyy, null, " +
+		"xxyy[FIELD_REF]{xxyy, Ltestxxx.TestType2;, I, xxyy, null, " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}\n" +
 		"xxyy1[FIELD_REF]{xxyy1, Ltestxxx.TestType2;, Ljava.lang.String;, xxyy1, null, " +
 				(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_EXACT_EXPECTED_TYPE) + "}",
 		requestor.getResults());
 }
-public void testBug351426() throws JavaModelException {
+public void testBug351426() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/X.java",
@@ -13979,10 +13979,10 @@ public void testBug351426() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X<Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X<T>[TYPE_REF]{, test, Ltest.X<TT;>;, null, null, replace[77, 77], token[77, 77], " + relevance + "}",
+			"X<T>[TYPE_REF]{, test, Ltest.X<TT;>;, null, null, replace[77, 77], token[77, 77], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testBug351426b() throws JavaModelException {
+public void testBug351426b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/X.java",
@@ -14008,11 +14008,11 @@ public void testBug351426b() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X<Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X<T>[TYPE_REF]{, test, Ltest.X<TT;>;, null, null, replace[87, 87], token[87, 87], " + relevance + "}",
+			"X<T>[TYPE_REF]{, test, Ltest.X<TT;>;, null, null, replace[87, 87], token[87, 87], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // qualified allocation
-public void testBug351426c() throws JavaModelException {
+public void testBug351426c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/X.java",
@@ -14039,11 +14039,11 @@ public void testBug351426c() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X<Ljava/lang/String;>.X1<Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X<java.lang.String>.X1[TYPE_REF]{, test, Ltest.X<Ljava.lang.String;>.X1;, null, null, replace[133, 133], token[133, 133], " + relevance + "}",
+			"X<java.lang.String>.X1[TYPE_REF]{, test, Ltest.X<Ljava.lang.String;>.X1;, null, null, replace[133, 133], token[133, 133], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // qualified allocation
-public void testBug351426d() throws JavaModelException {
+public void testBug351426d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/X.java",
@@ -14072,11 +14072,11 @@ public void testBug351426d() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X<Ljava/lang/String;>.X1<Ljava/lang/Object;>.X11<Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X<java.lang.String>.X1<java.lang.Object>.X11[TYPE_REF]{, test, Ltest.X<Ljava.lang.String;>.X1<Ljava.lang.Object;>.X11;, null, null, replace[182, 182], token[182, 182], " + relevance + "}",
+			"X<java.lang.String>.X1<java.lang.Object>.X11[TYPE_REF]{, test, Ltest.X<Ljava.lang.String;>.X1<Ljava.lang.Object;>.X11;, null, null, replace[182, 182], token[182, 182], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // qualified allocation
-public void testBug351426e() throws JavaModelException {
+public void testBug351426e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/X.java",
@@ -14104,11 +14104,11 @@ public void testBug351426e() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X$X1<Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X.X1<E>[TYPE_REF]{, test, Ltest.X$X1<TE;>;, null, null, replace[123, 123], token[123, 123], " + relevance + "}",
+			"X.X1<E>[TYPE_REF]{, test, Ltest.X$X1<TE;>;, null, null, replace[123, 123], token[123, 123], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // returning allocated object
-public void testBug351426f() throws JavaModelException {
+public void testBug351426f() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/X.java",
@@ -14134,11 +14134,11 @@ public void testBug351426f() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X<Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X<T>[TYPE_REF]{, test, Ltest.X<TT;>;, null, null, replace[85, 85], token[85, 85], " + relevance + "}",
+			"X<T>[TYPE_REF]{, test, Ltest.X<TT;>;, null, null, replace[85, 85], token[85, 85], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // returning allocated object, qualified case
-public void testBug351426g() throws JavaModelException {
+public void testBug351426g() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/X.java",
@@ -14165,11 +14165,11 @@ public void testBug351426g() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X<Ltest/X;:TT;>.X1<Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X<java.lang.String>.X1[TYPE_REF]{, test, Ltest.X<Ljava.lang.String;>.X1;, null, null, replace[120, 120], token[120, 120], " + relevance + "}",
+			"X<java.lang.String>.X1[TYPE_REF]{, test, Ltest.X<Ljava.lang.String;>.X1;, null, null, replace[120, 120], token[120, 120], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // returning allocated object, qualified case
-public void testBug351426h() throws JavaModelException {
+public void testBug351426h() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/X.java",
@@ -14196,11 +14196,11 @@ public void testBug351426h() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X$X1<Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X.X1<E>[TYPE_REF]{, test, Ltest.X$X1<TE;>;, null, null, replace[113, 113], token[113, 113], " + relevance + "}",
+			"X.X1<E>[TYPE_REF]{, test, Ltest.X$X1<TE;>;, null, null, replace[113, 113], token[113, 113], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // fields
-public void testBug351426i() throws JavaModelException {
+public void testBug351426i() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/test/X.java",
@@ -14224,11 +14224,11 @@ public void testBug351426i() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X<Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X<T>[TYPE_REF]{, test, Ltest.X<TT;>;, null, null, replace[55, 55], token[55, 55], " + relevance + "}",
+			"X<T>[TYPE_REF]{, test, Ltest.X<TT;>;, null, null, replace[55, 55], token[55, 55], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // fields, qualified allocation
-public void testBug351426j() throws JavaModelException {
+public void testBug351426j() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/X.java",
@@ -14256,11 +14256,11 @@ public void testBug351426j() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X$X1<Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X.X1<E>[TYPE_REF]{, test, Ltest.X$X1<TE;>;, null, null, replace[123, 123], token[123, 123], " + relevance + "}",
+			"X.X1<E>[TYPE_REF]{, test, Ltest.X$X1<TE;>;, null, null, replace[123, 123], token[123, 123], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // more than one type arg, completing on second arg
-public void testBug351426k() throws JavaModelException {
+public void testBug351426k() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/X.java",
@@ -14286,11 +14286,11 @@ public void testBug351426k() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X<Ljava/lang/String;Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X<T,U>[TYPE_REF]{, test, Ltest.X<TT;TU;>;, null, null, replace[105, 105], token[105, 105], " + relevance + "}",
+			"X<T,U>[TYPE_REF]{, test, Ltest.X<TT;TU;>;, null, null, replace[105, 105], token[105, 105], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // different CU's
-public void testBug351426l() throws JavaModelException {
+public void testBug351426l() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/X.java",
@@ -14321,11 +14321,11 @@ public void testBug351426l() throws JavaModelException {
 			"expectedTypesKeys={Ltest/X1<Ljava/lang/String;>;}",
 			requestor.getContext());
 	assertResults(
-			"X1<T>[TYPE_REF]{, test, Ltest.X1<TT;>;, null, null, replace[77, 77], token[77, 77], " + relevance + "}",
+			"X1<T>[TYPE_REF]{, test, Ltest.X1<TT;>;, null, null, replace[77, 77], token[77, 77], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=361963
-public void test361963() throws JavaModelException {
+public void test361963() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -14341,7 +14341,7 @@ public void test361963() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"X<T>[TYPE_REF]{, , LX<TT;>;, null, null, replace[116, 116], token[116, 116], " +
+			"X<T>[TYPE_REF]{, , LX<TT;>;, null, null, replace[116, 116], token[116, 116], " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 								(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_NAME + R_CASE + R_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED)+ "}",
 			requestor.getResults());
 }
@@ -14359,11 +14359,11 @@ public void testBug326610() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"import[KEYWORD]{import, null, null, import, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}",
+			"import[KEYWORD]{import, null, null, import, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=326610
-public void testBug326610a() throws JavaModelException {
+public void testBug326610a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Try.java",
@@ -14376,7 +14376,7 @@ public void testBug326610a() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"abstract[KEYWORD]{abstract, null, null, abstract, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}\n" +
+			"abstract[KEYWORD]{abstract, null, null, abstract, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"class[KEYWORD]{class, null, null, class, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}\n" +
 			"enum[KEYWORD]{enum, null, null, enum, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}\n" +
 			"final[KEYWORD]{final, null, null, final, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}\n" +
@@ -14399,11 +14399,11 @@ public void testBug326610b() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"package[KEYWORD]{package, null, null, package, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}",
+			"package[KEYWORD]{package, null, null, package, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=326610
-public void testBug326610c() throws JavaModelException {
+public void testBug326610c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Try.java",
@@ -14416,7 +14416,7 @@ public void testBug326610c() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"abstract[KEYWORD]{abstract, null, null, abstract, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}\n" +
+			"abstract[KEYWORD]{abstract, null, null, abstract, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"class[KEYWORD]{class, null, null, class, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}\n" +
 			"enum[KEYWORD]{enum, null, null, enum, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}\n" +
 			"final[KEYWORD]{final, null, null, final, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED) +"}\n" +
@@ -14427,7 +14427,7 @@ public void testBug326610c() throws JavaModelException {
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=326610
-public void testBug326610d() throws JavaModelException {
+public void testBug326610d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/package-info.java",
@@ -14448,7 +14448,7 @@ public void testBug326610d() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"NonNull[TYPE_REF]{j.NonNull, j, Lj.NonNull;, null, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_QUALIFIED + R_EXACT_NAME + R_NON_RESTRICTED + R_ANNOTATION) + "}",
+			"NonNull[TYPE_REF]{j.NonNull, j, Lj.NonNull;, null, null, " + (R_DEFAULT + R_INTERESTING + R_CASE + R_QUALIFIED + R_EXACT_NAME + R_NON_RESTRICTED + R_ANNOTATION) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=326610
@@ -14470,7 +14470,7 @@ public void testBug326610e() throws JavaModelException {
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=482775
-public void test482775() throws JavaModelException {
+public void test482775() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/MyEnum.java",
@@ -14496,13 +14496,13 @@ public void test482775() throws JavaModelException {
 	int relevanceObject = RelevanceConstants.R_DEFAULT + RelevanceConstants.R_RESOLVED + RelevanceConstants.R_INTERESTING +
 				RelevanceConstants.R_NON_STATIC + RelevanceConstants.R_NON_RESTRICTED + RelevanceConstants.R_CASE;
 
-	assertResults("BETA[FIELD_REF]{BETA, LMyEnum;, LMyEnum;, null, null, BETA, null, [36, 37], " +
+	assertResults("BETA[FIELD_REF]{BETA, LMyEnum;, LMyEnum;, null, null, BETA, null, [36, 37], " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				relevanceEnum + "}", requestor.getResults());
 	requestor = new CompletionTestsRequestor2(true, true, true, false);
 	completeBehind = "@see #";
 	cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("MyEnum[METHOD_REF<CONSTRUCTOR>]{MyEnum(), LMyEnum;, ()V, null, null, MyEnum, null, [66, 66], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" +
+	assertResults("MyEnum[METHOD_REF<CONSTRUCTOR>]{MyEnum(), LMyEnum;, ()V, null, null, MyEnum, null, [66, 66], " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"ALPHA[FIELD_REF]{ALPHA, LMyEnum;, LMyEnum;, null, null, ALPHA, null, [66, 66], " + relevanceEnum +  "}\n" +
 					"BETA[FIELD_REF]{BETA, LMyEnum;, LMyEnum;, null, null, BETA, null, [66, 66], " + relevanceEnum + "}\n" +
 					"valueOf[METHOD_REF]{valueOf(String), LMyEnum;, (Ljava.lang.String;)LMyEnum;, null, null, valueOf, (arg0), [66, 66], " + relevanceEnum + "}\n" +
@@ -14522,7 +14522,7 @@ public void test482775() throws JavaModelException {
 					"wait[METHOD_REF]{wait(long, int), Ljava.lang.Object;, (JI)V, null, null, wait, (millis, nanos), [66, 66], " + relevanceObject + "}", requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=525421
-public void testBug525421() throws JavaModelException {
+public void testBug525421() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/Complete.java",
@@ -14560,7 +14560,7 @@ public void testBug525421() throws JavaModelException {
 }
 
 
-public void testBug526590() throws JavaModelException {
+public void testBug526590() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// test for abstract method in abstract class
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
@@ -14592,7 +14592,7 @@ public void testBug526590() throws JavaModelException {
 			requestor.getResults());
 }
 
-public void testBug526590b() throws JavaModelException {
+public void testBug526590b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// test for abstract method in interface
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
@@ -14624,7 +14624,7 @@ public void testBug526590b() throws JavaModelException {
 			requestor.getResults());
 }
 
-public void test536983() throws JavaModelException {
+public void test536983() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/SingleLineForEach.java",
@@ -14654,7 +14654,7 @@ public void testBug15589() throws JavaModelException {
             "import java.util.Coll");
 
     assertResults(
-            "Collection[TYPE_REF]{Collection, java.util, Ljava.util.Collection;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}",
+            "Collection[TYPE_REF]{Collection, java.util, Ljava.util.Collection;, null, null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED)+"}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             result.proposals);
 }
 public void test565386() throws JavaModelException {
@@ -14674,7 +14674,7 @@ public void test565386() throws JavaModelException {
 	assertTrue(requestor.getResults().equals(""));
 
 }
-public void testBug532366() throws Exception {
+public void testBug532366() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/Color.java",
@@ -14699,7 +14699,7 @@ public void testBug532366() throws Exception {
 	assertEquals("GREEN[FIELD_REF]{GREEN, Ltest.Color;, Ltest.Color;, null, null, GREEN, null, replace[43, 44], token[43, 44], 81}",
 			requestor.getResults());
 }
-public void testBug573279() throws Exception {
+public void testBug573279() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/App.java",
@@ -14726,7 +14726,7 @@ public void testBug573279() throws Exception {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_CASE + R_NON_STATIC + R_NON_RESTRICTED;
-	assertEquals("add[METHOD_REF]{add(), LMyArrayList<Ljava.lang.String;>;, (Ljava.lang.String;)Z, null, null, add, (t), replace[289, 318], token[289, 292], "+relevance+"}\n" +
+	assertEquals("add[METHOD_REF]{add(), LMyArrayList<Ljava.lang.String;>;, (Ljava.lang.String;)Z, null, null, add, (t), replace[289, 318], token[289, 292], "+relevance+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, null, null, clone, null, replace[289, 318], token[289, 292], "+relevance+"}\n" +
 			"equals[METHOD_REF]{equals(), Ljava.lang.Object;, (Ljava.lang.Object;)Z, null, null, equals, (obj), replace[289, 318], token[289, 292], "+relevance+"}\n" +
 			"finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, null, null, finalize, null, replace[289, 318], token[289, 292], "+relevance+"}\n" +
@@ -14742,7 +14742,7 @@ public void testBug573279() throws Exception {
 			"wait[METHOD_REF]{wait(), Ljava.lang.Object;, (JI)V, null, null, wait, (millis, nanos), replace[289, 318], token[289, 292], "+relevance+"}",
 			requestor.getResults());
 }
-public void testGH969_completeOnFirstArgumentPosition_noToken() throws Exception {
+public void testGH969_completeOnFirstArgumentPosition_noToken() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/GH969.java", """
 			public class GH969 {
@@ -14772,13 +14772,13 @@ public void testGH969_completeOnFirstArgumentPosition_noToken() throws Exception
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED;
 	assertEquals(
-			"GH969.PersonDetails[ANONYMOUS_CLASS_DECLARATION]{, LGH969$PersonDetails;, (Ljava.lang.String;LGH969List<Ljava.lang.String;>;I)V, LGH969$PersonDetails;, LGH969$PersonDetails;.(Ljava/lang/String;LGH969List<Ljava/lang/String;>;I)V, null, (id, address, age), replace[118, 118], token[118, 118], "
+			"GH969.PersonDetails[ANONYMOUS_CLASS_DECLARATION]{, LGH969$PersonDetails;, (Ljava.lang.String;LGH969List<Ljava.lang.String;>;I)V, LGH969$PersonDetails;, LGH969$PersonDetails;.(Ljava/lang/String;LGH969List<Ljava/lang/String;>;I)V, null, (id, address, age), replace[118, 118], token[118, 118], " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ relevance + "}\n"
 					+ "PersonDetails[METHOD_REF<CONSTRUCTOR>]{, LGH969$PersonDetails;, (Ljava.lang.String;LGH969List<Ljava.lang.String;>;I)V, null, null, PersonDetails, (id, address, age), replace[118, 118], token[74, 118], "
 					+ relevance + "}",
 			requestor.getResults());
 }
-public void testGH969_completeOnFirstArgumentPosition_WithToken() throws Exception {
+public void testGH969_completeOnFirstArgumentPosition_WithToken() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/GH969.java", """
 			public class GH969 {
@@ -14808,11 +14808,11 @@ public void testGH969_completeOnFirstArgumentPosition_WithToken() throws Excepti
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED + R_CASE + R_UNQUALIFIED;
 	assertEquals(
-			"firstName[METHOD_REF]{firstName(), LGH969;, ()Ljava.lang.String;, null, null, firstName, null, replace[92, 97], token[92, 97], "
+			"firstName[METHOD_REF]{firstName(), LGH969;, ()Ljava.lang.String;, null, null, firstName, null, replace[92, 97], token[92, 97], " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ relevance + "}",
 			requestor.getResults());
 }
-public void testGH969_completeOnArgumentPosition_WithToken() throws Exception {
+public void testGH969_completeOnArgumentPosition_WithToken() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/GH969.java", """
 			public class GH969 {
@@ -14842,12 +14842,12 @@ public void testGH969_completeOnArgumentPosition_WithToken() throws Exception {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED + R_CASE + R_UNQUALIFIED;
 	assertEquals(
-			"emptyList[METHOD_REF]{emptyList(), LGH969;, <T:Ljava.lang.Object;>()LGH969List;, null, null, emptyList, null, replace[97, 102], token[97, 102], "
+			"emptyList[METHOD_REF]{emptyList(), LGH969;, <T:Ljava.lang.Object;>()LGH969List;, null, null, emptyList, null, replace[97, 102], token[97, 102], " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ relevance + "}",
 			requestor.getResults());
 }
 
-public void testGH969_completeOnArgumentPosition_onMethodWithReceiver() throws Exception {
+public void testGH969_completeOnArgumentPosition_onMethodWithReceiver() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/GH969.java", """
 			public class GH969 {
@@ -14881,14 +14881,14 @@ public void testGH969_completeOnArgumentPosition_onMethodWithReceiver() throws E
 	int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED;
 	int symbolRelevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED;
 	assertEquals(
-			"GH969.PersonDetails[ANONYMOUS_CLASS_DECLARATION]{, LGH969$PersonDetails;, (LGH969List<Ljava.lang.String;>;I)V, LGH969$PersonDetails;, LGH969$PersonDetails;.(LGH969List<Ljava/lang/String;>;I)V, null, (address, age), replace[119, 119], token[119, 119], "
+			"GH969.PersonDetails[ANONYMOUS_CLASS_DECLARATION]{, LGH969$PersonDetails;, (LGH969List<Ljava.lang.String;>;I)V, LGH969$PersonDetails;, LGH969$PersonDetails;.(LGH969List<Ljava/lang/String;>;I)V, null, (address, age), replace[119, 119], token[119, 119], " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ relevance + "}\n"
 					+ "PersonDetails[METHOD_REF<CONSTRUCTOR>]{, LGH969$PersonDetails;, (LGH969List<Ljava.lang.String;>;I)V, null, null, PersonDetails, (address, age), replace[119, 119], token[80, 119], "
 					+ relevance + "}\n"
 					+ "emptyList[METHOD_REF]{emptyList(), LGH969;, <T:Ljava.lang.Object;>()LGH969List<TT;>;, null, null, emptyList, null, replace[98, 98], token[98, 98], " + symbolRelevance + "}",
 			requestor.getResults());
 }
-public void testGH969_completeOnArgumentPosition_onMethodInvocation() throws Exception {
+public void testGH969_completeOnArgumentPosition_onMethodInvocation() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/GH969.java", """
 			public class GH969 {
@@ -14922,14 +14922,14 @@ public void testGH969_completeOnArgumentPosition_onMethodInvocation() throws Exc
 	int relevance = R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED;
 	int symbolRelevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED;
 	assertEquals(
-			"GH969.PersonDetails[ANONYMOUS_CLASS_DECLARATION]{, LGH969$PersonDetails;, (LGH969List<Ljava.lang.String;>;I)V, LGH969$PersonDetails;, LGH969$PersonDetails;.(LGH969List<Ljava/lang/String;>;I)V, null, (address, age), replace[113, 113], token[113, 113], "
+			"GH969.PersonDetails[ANONYMOUS_CLASS_DECLARATION]{, LGH969$PersonDetails;, (LGH969List<Ljava.lang.String;>;I)V, LGH969$PersonDetails;, LGH969$PersonDetails;.(LGH969List<Ljava/lang/String;>;I)V, null, (address, age), replace[113, 113], token[113, 113], " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ relevance + "}\n"
 					+ "PersonDetails[METHOD_REF<CONSTRUCTOR>]{, LGH969$PersonDetails;, (LGH969List<Ljava.lang.String;>;I)V, null, null, PersonDetails, (address, age), replace[113, 113], token[80, 113], "
 					+ relevance + "}\n"
 					+ "emptyList[METHOD_REF]{emptyList(), LGH969;, <T:Ljava.lang.Object;>()LGH969List<TT;>;, null, null, emptyList, null, replace[98, 98], token[98, 98], " + symbolRelevance + "}",
 			requestor.getResults());
 }
-public void testGH2597() throws JavaModelException {
+public void testGH2597() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/jdbi/Dao.java", """
 			package jdbi;
@@ -14964,7 +14964,7 @@ public void testGH2597() throws JavaModelException {
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_EXACT_EXPECTED_TYPE;
 		assertEquals(
-				"TRAIN_ARTICLE_DATA[FIELD_REF]{TRAIN_ARTICLE_DATA, Ljdbi.Dao;, Ljava.lang.String;, null, null, TRAIN_ARTICLE_DATA, null, replace[342, 347], token[342, 347], "
+				"TRAIN_ARTICLE_DATA[FIELD_REF]{TRAIN_ARTICLE_DATA, Ljdbi.Dao;, Ljava.lang.String;, null, null, TRAIN_ARTICLE_DATA, null, replace[342, 347], token[342, 347], " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				 	+ relevance + "}\n" +
 				"TRAIN_ARTICLE_DATA_CLEAN[FIELD_REF]{TRAIN_ARTICLE_DATA_CLEAN, Ljdbi.Dao;, Ljava.lang.String;, null, null, TRAIN_ARTICLE_DATA_CLEAN, null, replace[342, 347], token[342, 347], "
 					+ relevance + "}\n" +

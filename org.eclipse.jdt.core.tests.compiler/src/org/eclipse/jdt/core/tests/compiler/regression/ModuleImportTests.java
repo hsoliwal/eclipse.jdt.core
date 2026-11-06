@@ -43,7 +43,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 		return ModuleImportTests.class;
 	}
 
-	public void test001_simpleOK() throws IOException, ClassFormatException {
+	public void test001_simpleOK() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformModuleTest(
 			new String[] {
 				"p/X.java",
@@ -64,7 +64,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 					}
 					"""
 	        },
-			" -25 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" "
+			" -25 \"" + OUTPUT_DIR +  File.separator + "module-info.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"",
 	        "",
 	        "",
@@ -72,7 +72,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 		verifyClassFile("version 25 : 69.0", "p/X.class", ClassFileBytesDisassembler.SYSTEM);
 	}
 
-	public void test001_simple_24() throws IOException, ClassFormatException {
+	public void test001_simple_24() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeModuleTest(
 			new String[] {
 				"p/X.java",
@@ -93,7 +93,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 					}
 					"""
 			},
-			" -24 \"" + getSourceDir() +  File.separator + "module-info.java\" "
+			" -24 \"" + getSourceDir() +  File.separator + "module-info.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ "\"" + getSourceDir() +  File.separator + "p/X.java\"",
 			"",
 			"""
@@ -114,7 +114,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 			"not supported");
 	}
 
-	public void test002_moduleNotRead() {
+	public void test002_moduleNotRead() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeModuleTest(
 			new String[] {
 				"p/X.java",
@@ -134,7 +134,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 					}
 					"""
 	        },
-			" -25 \"" + getSourceDir() +  File.separator + "module-info.java\" "
+			" -25 \"" + getSourceDir() +  File.separator + "module-info.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + "\"" + getSourceDir() +  File.separator + "p/X.java\"",
 	        "",
 	        """
@@ -155,7 +155,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 	        "read");
 	}
 
-	public void test003_unresolvableModule() {
+	public void test003_unresolvableModule() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runNegativeModuleTest(
 			new String[] {
 				"p/X.java",
@@ -176,7 +176,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 					}
 					"""
 	        },
-			" -25 \"" + getSourceDir() +  File.separator + "module-info.java\" "
+			" -25 \"" + getSourceDir() +  File.separator + "module-info.java\" " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + "\"" + getSourceDir() +  File.separator + "p/X.java\"",
 	        "",
 	        """
@@ -197,21 +197,21 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 	        "imported module not found");
 	}
 
-	public void test004_selfImport_OK() throws IOException, ClassFormatException {
-		String modsDir = getSourceDir() +  File.separator + "mods";
-		String modOneDir = modsDir + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, modOneDir + File.separator + "p1", "X1.java",
+	public void test004_selfImport_OK() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String modsDir = getSourceDir() +  File.separator + "mods"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String modOneDir = modsDir + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, modOneDir + File.separator + "p1", "X1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p1;
 					public class X1 {}
 					""");
-		writeFileCollecting(files, modOneDir + File.separator + "p2", "X2.java",
+		writeFileCollecting(files, modOneDir + File.separator + "p2", "X2.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p2;
 					public class X2 {}
 					""");
-		writeFileCollecting(files, modOneDir + File.separator + "p", "X.java",
+		writeFileCollecting(files, modOneDir + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p;
 					import module mod.one;
@@ -227,8 +227,8 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						exports p2 to mod.one;
 					}
 					""");
-		StringBuilder commandLine = new StringBuilder();
-		commandLine.append(" -25 ");
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		commandLine.append(" -25 "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformModuleTest(
 				files,
 				commandLine,
@@ -238,16 +238,16 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 		verifyClassFile("version 25 : 69.0", classFile, ClassFileBytesDisassembler.SYSTEM);
 	}
 
-	public void test005_selfImport_NOK() {
-		String modsDir = getSourceDir() +  File.separator + "mods";
-		String modOneDir = modsDir + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, modOneDir + File.separator + "p1", "X1.java",
+	public void test005_selfImport_NOK() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String modsDir = getSourceDir() +  File.separator + "mods"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String modOneDir = modsDir + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, modOneDir + File.separator + "p1", "X1.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p1;
 					public class X1 {}
 					""");
-		writeFileCollecting(files, modOneDir + File.separator + "p", "X.java",
+		writeFileCollecting(files, modOneDir + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p;
 					import module mod.one;
@@ -262,8 +262,8 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						exports p1 to mod.other;
 					}
 					""");
-		StringBuilder commandLine = new StringBuilder();
-		commandLine.append(" -25 ");
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		commandLine.append(" -25 "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runNegativeModuleTest(
 				files,
@@ -281,16 +281,16 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 				"cannot find symbol"); // javac additionally reports warning: [module] module not found: mod.other
 	}
 
-	public void test006_selfImportInModule() throws IOException, ClassFormatException {
-		String modsDir = getSourceDir()+  File.separator + "mods";
-		String modOneDir = modsDir + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, modOneDir + File.separator + "api", "IService.java",
+	public void test006_selfImportInModule() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String modsDir = getSourceDir()+  File.separator + "mods"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String modOneDir = modsDir + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, modOneDir + File.separator + "api", "IService.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package api;
 					public interface IService {}
 					""");
-		writeFileCollecting(files, modOneDir + File.separator + "impl", "ServiceImpl.java",
+		writeFileCollecting(files, modOneDir + File.separator + "impl", "ServiceImpl.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package impl;
 					import api.IService;
@@ -307,8 +307,8 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						provides IService with ServiceImpl;
 					}
 					""");
-		StringBuilder commandLine = new StringBuilder();
-		commandLine.append(" -25 ");
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		commandLine.append(" -25 "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		runConformModuleTest(
 				files,
 				commandLine,
@@ -317,10 +317,10 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 		verifyClassFile("version 25 : 69.0", "module-info.class", ClassFileBytesDisassembler.SYSTEM);
 	}
 
-	public void test007_shadowing() throws IOException, ClassFormatException {
+	public void test007_shadowing() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String srcDir = getSourceDir();
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, srcDir + File.separator + "p1", "Connection.java",
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, srcDir + File.separator + "p1", "Connection.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p1;
 					public class Connection {
@@ -333,7 +333,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						requires java.sql;
 					}
 					""");
-		writeFileCollecting(files, srcDir + File.separator + "p2", "Client.java",
+		writeFileCollecting(files, srcDir + File.separator + "p2", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p2;
 					import module java.sql;
@@ -344,8 +344,8 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						}
 					}
 					""");
-		StringBuilder commandLine = new StringBuilder();
-		commandLine.append(" -25 ");
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		commandLine.append(" -25 "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runConformModuleTest(
 				files,
@@ -356,10 +356,10 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 		verifyClassFile("version 25 : 69.0", classFile, ClassFileBytesDisassembler.SYSTEM);
 	}
 
-	public void test008_shadowing() throws IOException, ClassFormatException {
+	public void test008_shadowing() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String srcDir = getSourceDir();
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, srcDir + File.separator + "p1", "Connection.java",
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, srcDir + File.separator + "p1", "Connection.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p1;
 					public class Connection {
@@ -372,7 +372,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						requires java.sql;
 					}
 					""");
-		writeFileCollecting(files, srcDir + File.separator + "p2", "Client.java",
+		writeFileCollecting(files, srcDir + File.separator + "p2", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p2;
 					import module java.sql;
@@ -384,8 +384,8 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						}
 					}
 					""");
-		StringBuilder commandLine = new StringBuilder();
-		commandLine.append(" -25 ");
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		commandLine.append(" -25 "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runConformModuleTest(
 				files,
@@ -396,10 +396,10 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 		verifyClassFile("version 25 : 69.0", classFile, ClassFileBytesDisassembler.SYSTEM);
 	}
 
-	public void test008_shadowing_static_nested() throws IOException, ClassFormatException {
-		String srcDir = getSourceDir() + File.separator + "src";
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, srcDir + File.separator + "p1", "Outer.java",
+	public void test008_shadowing_static_nested() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String srcDir = getSourceDir() + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, srcDir + File.separator + "p1", "Outer.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p1;
 					public class Outer {
@@ -414,7 +414,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						requires java.sql;
 					}
 					""");
-		writeFileCollecting(files, srcDir + File.separator + "p2", "Client.java",
+		writeFileCollecting(files, srcDir + File.separator + "p2", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p2;
 					import module java.sql;
@@ -426,18 +426,18 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						}
 					}
 					""");
-		StringBuilder commandLine = new StringBuilder();
-		commandLine.append(" -25 ");
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		commandLine.append(" -25 "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runConformModuleTest(files, commandLine, "", "");
 		String classFile = String.join(File.separator, "p2", "Client.class");
 		verifyClassFile("version 25 : 69.0", classFile, ClassFileBytesDisassembler.SYSTEM);
 	}
 
-	public void test009_ambiguous_modules() {
+	public void test009_ambiguous_modules() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String srcDir = getSourceDir();
-		List<String> files = new ArrayList<>();
-		String modOneDir = srcDir + File.separator + "mod.one";
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		String modOneDir = srcDir + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, modOneDir, "module-info.java",
 				"""
 					module mod.one {
@@ -446,33 +446,33 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						requires transitive java.sql;
 					}
 					""");
-		writeFileCollecting(files, modOneDir + File.separator + "p1", "Connection.java",
+		writeFileCollecting(files, modOneDir + File.separator + "p1", "Connection.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p1;
 					public class Connection {
 					}
 					""");
-		writeFileCollecting(files, modOneDir + File.separator + "p1", "Other.java",
+		writeFileCollecting(files, modOneDir + File.separator + "p1", "Other.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p1;
 					public class Other {
 					}
 					""");
-		writeFileCollecting(files, modOneDir + File.separator + "p2", "Other.java",
+		writeFileCollecting(files, modOneDir + File.separator + "p2", "Other.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p2;
 					public class Other{
 					}
 					""");
 
-		String modTwoDir = srcDir + File.separator + "mod.two";
+		String modTwoDir = srcDir + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, modTwoDir, "module-info.java",
 				"""
 					module mod.two {
 						requires mod.one;
 					}
 					""");
-		writeFileCollecting(files, modTwoDir + File.separator + "p3", "Client.java",
+		writeFileCollecting(files, modTwoDir + File.separator + "p3", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p3;
 					import module mod.one;
@@ -481,10 +481,10 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						Other other; // package conflict mod.one/p1 mod.one/p2
 					}
 					""");
-		StringBuilder commandLine = new StringBuilder();
-		commandLine.append(" -25 ");
-		commandLine.append(" --module-source-path \"").append(srcDir).append("\"");
-		commandLine.append(" -d \"").append(OUTPUT_DIR).append(File.separatorChar).append("bin").append("\"");
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		commandLine.append(" -25 "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		commandLine.append(" --module-source-path \"").append(srcDir).append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		commandLine.append(" -d \"").append(OUTPUT_DIR).append(File.separatorChar).append("bin").append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runNegativeModuleTest(
 				files,
@@ -507,25 +507,25 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 				"reference to Connection is ambiguous");
 	}
 
-	public void test009_ambiguous_modules2() {
+	public void test009_ambiguous_modules2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// module conflict via separate module imports based on separate requires directly in mod.two
 		String srcDir = getSourceDir();
-		List<String> files = new ArrayList<>();
-		String modOneDir = srcDir + File.separator + "mod.one";
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		String modOneDir = srcDir + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, modOneDir, "module-info.java",
 				"""
 					module mod.one {
 						exports p1;
 					}
 					""");
-		writeFileCollecting(files, modOneDir + File.separator + "p1", "Connection.java",
+		writeFileCollecting(files, modOneDir + File.separator + "p1", "Connection.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p1;
 					public class Connection {
 					}
 					""");
 
-		String modTwoDir = srcDir + File.separator + "mod.two";
+		String modTwoDir = srcDir + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, modTwoDir, "module-info.java",
 				"""
 					module mod.two {
@@ -533,7 +533,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						requires java.sql;
 					}
 					""");
-		writeFileCollecting(files, modTwoDir + File.separator + "p3", "Client.java",
+		writeFileCollecting(files, modTwoDir + File.separator + "p3", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p3;
 					import module mod.one;
@@ -543,10 +543,10 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						Connection conn; // module conflict mod.one java.sql
 					}
 					""");
-		StringBuilder commandLine = new StringBuilder();
-		commandLine.append(" -25 ");
-		commandLine.append(" --module-source-path \"").append(srcDir).append("\"");
-		commandLine.append(" -d \"").append(OUTPUT_DIR).append(File.separatorChar).append("bin").append("\"");
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		commandLine.append(" -25 "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		commandLine.append(" --module-source-path \"").append(srcDir).append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		commandLine.append(" -d \"").append(OUTPUT_DIR).append(File.separatorChar).append("bin").append("\""); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runNegativeModuleTest(
 				files,
@@ -564,36 +564,36 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 				"reference to Connection is ambiguous");
 	}
 
-	public void test010_notAccessible() {
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		String modOneDir = srcDir + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+	public void test010_notAccessible() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String modOneDir = srcDir + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, modOneDir, "module-info.java",
 				"""
 					module mod.one {
 						exports p1;
 					}
 					""");
-		writeFileCollecting(files, modOneDir + File.separator + "p1", "NoAccess.java",
+		writeFileCollecting(files, modOneDir + File.separator + "p1", "NoAccess.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p1;
 					class NoAccess {
 					}
 					""");
-		writeFileCollecting(files, modOneDir + File.separator + "p1", "Access.java",
+		writeFileCollecting(files, modOneDir + File.separator + "p1", "Access.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p1;
 					public class Access {
 					}
 					""");
-		String modTwoDir = srcDir + File.separator + "mod.two";
+		String modTwoDir = srcDir + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, modTwoDir, "module-info.java",
 				"""
 					module mod.two {
 						requires mod.one;
 					}
 					""");
-		writeFileCollecting(files, modTwoDir + File.separator + "p2", "Client.java",
+		writeFileCollecting(files, modTwoDir + File.separator + "p2", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p2;
 					import module mod.one;
@@ -603,10 +603,10 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						NoAccess bad;
 					}
 					""");
-		StringBuilder commandLine = new StringBuilder();
-		commandLine.append(" -25");
-		commandLine.append(" --module-source-path ").append(srcDir);
-		commandLine.append(" -d ").append(OUTPUT_DIR+File.separator+"bin");
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		commandLine.append(" -25"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		commandLine.append(" --module-source-path ").append(srcDir); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		commandLine.append(" -d ").append(OUTPUT_DIR+File.separator+"bin"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runNegativeModuleTest(
 				files,
@@ -624,37 +624,37 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 				"cannot find symbol");
 	}
 
-	public void test011_transitive() throws IOException, ClassFormatException {
-		String srcDir = OUTPUT_DIR + File.separator + "src";
-		String modOneDir = srcDir + File.separator + "mod.one";
-		List<String> files = new ArrayList<>();
+	public void test011_transitive() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		String srcDir = OUTPUT_DIR + File.separator + "src"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		String modOneDir = srcDir + File.separator + "mod.one"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, modOneDir, "module-info.java",
 				"""
 					module mod.one {
 						exports p1;
 					}
 					""");
-		writeFileCollecting(files, modOneDir + File.separator + "p1", "Access.java",
+		writeFileCollecting(files, modOneDir + File.separator + "p1", "Access.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p1;
 					public class Access {
 					}
 					""");
-		String modTwoDir = srcDir + File.separator + "mod.two";
+		String modTwoDir = srcDir + File.separator + "mod.two"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, modTwoDir, "module-info.java",
 				"""
 					module mod.two {
 						requires transitive mod.one;
 					}
 					""");
-		String modThreeDir = srcDir + File.separator + "mod.three";
+		String modThreeDir = srcDir + File.separator + "mod.three"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		writeFileCollecting(files, modThreeDir, "module-info.java",
 				"""
 					module mod.three {
 						requires mod.two;
 					}
 					""");
-		writeFileCollecting(files, modThreeDir + File.separator + "p2", "Client.java",
+		writeFileCollecting(files, modThreeDir + File.separator + "p2", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p2;
 					import module mod.two;
@@ -662,9 +662,9 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						Access good;
 					}
 					""");
-		StringBuilder commandLine = new StringBuilder();
-		commandLine.append(" -25");
-		commandLine.append(" --module-source-path ").append(srcDir);
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		commandLine.append(" -25"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		commandLine.append(" --module-source-path ").append(srcDir); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runConformModuleTest(
 				files,
@@ -675,9 +675,9 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 		verifyClassFile("version 25 : 69.0", classFile, ClassFileBytesDisassembler.SYSTEM);
 	}
 
-	public void test012_redundant() {
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, OUTPUT_DIR + File.separator + "p", "X.java",
+	public void test012_redundant() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, OUTPUT_DIR + File.separator + "p", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package p;
 					import module java.sql;
@@ -697,8 +697,8 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 					}
 					""");
 
-		StringBuilder commandLine = new StringBuilder();
-		commandLine.append(" -25");
+		StringBuilder commandLine = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		commandLine.append(" -25"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 
 		runNegativeModuleTest(
 				files,
@@ -721,7 +721,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 				"cannot find symbol");
 	}
 
-	public void test013_inUnnamedModule() throws IOException, ClassFormatException {
+	public void test013_inUnnamedModule() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		runConformModuleTest(
 			new String[] {
 				"p/X.java",
@@ -733,7 +733,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 					}
 					"""
 	        },
-			" -25 "
+			" -25 " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	        + "\"" + OUTPUT_DIR +  File.separator + "p/X.java\"",
 	        "",
 	        "",
@@ -742,26 +742,26 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 	}
 
 	public void test014_moduleAsPackageName_regular() {
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, OUTPUT_DIR + File.separator + "module", "Z.java",
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, OUTPUT_DIR + File.separator + "module", "Z.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package module;
 					public class Z {}
 					""");
-		writeFileCollecting(files, OUTPUT_DIR + File.separator + "test", "X.java",
+		writeFileCollecting(files, OUTPUT_DIR + File.separator + "test", "X.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package test;
 					import module.Z;
 					public class X extends Z {}
 					""");
-		StringBuilder commandLine = new StringBuilder(" -25");
+		StringBuilder commandLine = new StringBuilder(" -25"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		runConformModuleTest(files, commandLine, "", "");
 	}
 
 
 	public void test014_moduleAsPackageName_moduleInfo() {
-		List<String> files = new ArrayList<>();
-		writeFileCollecting(files, OUTPUT_DIR + File.separator + "module", "Z.java",
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+		writeFileCollecting(files, OUTPUT_DIR + File.separator + "module", "Z.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 					package module;
 					public class Z {}
@@ -773,12 +773,12 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 						uses Z;
 					}
 					""");
-		StringBuilder commandLine = new StringBuilder(" -25");
+		StringBuilder commandLine = new StringBuilder(" -25"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		runConformModuleTest(files, commandLine, "", "");
 	}
 
-	public void testIllegalModifierRequiresJavaBase_2() {
-		List<String> files = new ArrayList<>();
+	public void testIllegalModifierRequiresJavaBase_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, OUTPUT_DIR, "module-info.java",
 				"""
 					module one {
@@ -786,7 +786,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 					}
 					""");
 		runNegativeModuleTest(files,
-				new StringBuilder(" --release 25"),
+				new StringBuilder(" --release 25"), //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				"",
 				"""
 				----------
@@ -801,7 +801,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 	}
 
 	public void testIllegalModifierRequiresJavaBase_3() throws IOException, ClassFormatException {
-		List<String> files = new ArrayList<>();
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, OUTPUT_DIR, "module-info.java",
 				"""
 					module one {
@@ -809,15 +809,15 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 					}
 					""");
 		runConformModuleTest(files,
-				new StringBuilder(" --release 25"),
+				new StringBuilder(" --release 25"), //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				"",
 				"");
 		verifyClassFile("version 25 : 69.0", "module-info.class", ClassFileBytesDisassembler.SYSTEM,
 				this.complianceLevel < ClassFileConstants.JDK25); // Skipped for javac < 25 due to https://bugs.openjdk.org/browse/JDK-8347646 - fixed in 25
 	}
 
-	public void testIllegalModifierRequiresJavaBase_3_24() throws IOException, ClassFormatException {
-		List<String> files = new ArrayList<>();
+	public void testIllegalModifierRequiresJavaBase_3_24() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, OUTPUT_DIR, "module-info.java",
 				"""
 					module one {
@@ -825,7 +825,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 					}
 					""");
 		runNegativeModuleTest(files,
-				new StringBuilder(" --release 24"),
+				new StringBuilder(" --release 24"), //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				"",
 				"""
 				----------
@@ -839,8 +839,8 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 				"not supported");
 	}
 
-	public void testIllegalModifierRequiresJavaBase_4() {
-		List<String> files = new ArrayList<>();
+	public void testIllegalModifierRequiresJavaBase_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, OUTPUT_DIR, "module-info.java",
 				"""
 					module one {
@@ -848,7 +848,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 					}
 					""");
 		runNegativeModuleTest(files,
-				new StringBuilder(" --release 25"),
+				new StringBuilder(" --release 25"), //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				"",
 				"""
 				----------
@@ -863,15 +863,15 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 	}
 
 
-	public void testUseRequiresTransitiveJavaBase() throws IOException, ClassFormatException {
-		List<String> files = new ArrayList<>();
+	public void testUseRequiresTransitiveJavaBase() throws IOException, ClassFormatException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+		List<String> files = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 		writeFileCollecting(files, OUTPUT_DIR, "module-info.java",
 				"""
 					module one {
 						requires transitive java.base;
 					}
 					""");
-		writeFileCollecting(files, OUTPUT_DIR + File.separator + "p1", "Client.java",
+		writeFileCollecting(files, OUTPUT_DIR + File.separator + "p1", "Client.java", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"""
 				package p1;
 				import module one;
@@ -880,7 +880,7 @@ public class ModuleImportTests extends AbstractModuleCompilationTest {
 				}
 				""");
 		runConformModuleTest(files,
-				new StringBuilder(" --release 25"),
+				new StringBuilder(" --release 25"), //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 				"",
 				"");
 		verifyClassFile("version 25 : 69.0", "module-info.class", ClassFileBytesDisassembler.SYSTEM);

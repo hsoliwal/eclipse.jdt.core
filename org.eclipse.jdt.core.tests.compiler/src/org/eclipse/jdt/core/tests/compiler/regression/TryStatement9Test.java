@@ -29,7 +29,7 @@ public static Test suite() {
 	return buildMinimalComplianceTestSuite(testClass(), F_9);
 }
 
-public void testBug488569_001() { // vanilla test case
+public void testBug488569_001() { // vanilla test case //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -59,7 +59,7 @@ public void testBug488569_001() { // vanilla test case
 }
 
 // vanilla with a delimiter
-public void testBug488569_002() {
+public void testBug488569_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -88,7 +88,7 @@ public void testBug488569_002() {
 			"Done");
 }
 
-public void testBug488569_003() {
+public void testBug488569_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -117,7 +117,7 @@ public void testBug488569_003() {
 			},
 			"Done");
 }
-public void testBug488569_004() {
+public void testBug488569_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -146,7 +146,7 @@ public void testBug488569_004() {
 		"Done");
 }
 
-public void testBug488569_005() {
+public void testBug488569_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -174,7 +174,7 @@ public void testBug488569_005() {
 			},
 		"Done");
 }
-public void testBug488569_006() {
+public void testBug488569_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -202,7 +202,7 @@ public void testBug488569_006() {
 }
 
 // check for the error for non-effectively final variable.
-public void testBug488569_007() {
+public void testBug488569_007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -247,7 +247,7 @@ public void testBug488569_007() {
 		"----------\n");
 }
 //check for the error for combination of NameRef and LocalVarDecl.
-public void testBug488569_008() {
+public void testBug488569_008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -281,7 +281,7 @@ public void testBug488569_008() {
 }
 
 //check for the warning for combination of LocalVarDecl and NameRef.
-public void testBug488569_009() {
+public void testBug488569_009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -314,7 +314,7 @@ public void testBug488569_009() {
 		"----------\n");
 }
 //check for the warning for combination of NameRef and NameRef.
-public void testBug488569_010() {
+public void testBug488569_010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -347,7 +347,7 @@ public void testBug488569_010() {
 		"Duplicate resource reference y1\n" +
 		"----------\n");
 }
-public void testBug488569_011() {
+public void testBug488569_011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 			"X.java",
@@ -375,7 +375,7 @@ public void testBug488569_011() {
 			"Done");
 }
 
-public void testBug488569_012() {
+public void testBug488569_012() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 			"X.java",
@@ -406,7 +406,7 @@ public void testBug488569_012() {
 
 // Confirm the behavior as described in https://bugs.eclipse.org/bugs/show_bug.cgi?id=338402#c16 even with the
 // presence of a duplicate variable in-line with javac9.
-public void testBug488569_013() {
+public void testBug488569_013() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 			"X.java",
@@ -436,7 +436,7 @@ public void testBug488569_013() {
 }
 
 // check for unhandled-exception error
-public void testBug488569_014() {
+public void testBug488569_014() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -467,7 +467,7 @@ public void testBug488569_014() {
 }
 
 // field to be legal
-public void testBug488569_015(){
+public void testBug488569_015(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 			"X.java",
@@ -501,7 +501,7 @@ public void testBug488569_015(){
 			);
 }
 //field to be legal - but null field not to be called for close
-public void testBug488569_016(){
+public void testBug488569_016(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 			"X.java",
@@ -534,7 +534,7 @@ public void testBug488569_016(){
 }
 
 // field in various avatars
-public void testBug488569_017(){
+public void testBug488569_017(){ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 			"X.java",
@@ -572,7 +572,7 @@ public void testBug488569_017(){
 }
 
 // negative tests: non-final fields
-public void testBug488569_018() {
+public void testBug488569_018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -619,7 +619,7 @@ public void testBug488569_018() {
 		"----------\n");
 }
 //negative tests: duplicate fields
-public void testBug488569_019() {
+public void testBug488569_019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -665,7 +665,7 @@ public void testBug488569_019() {
 		"----------\n");
 }
 
-public void testBug488569_020() { // vanilla test case
+public void testBug488569_020() { // vanilla test case //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 			new String[] {
 				"X.java",
@@ -691,7 +691,7 @@ public void testBug488569_020() { // vanilla test case
 }
 
 //negative tests: duplicate fields
-public void testBug488569_021() {
+public void testBug488569_021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -720,7 +720,7 @@ public void testBug488569_021() {
 		"Unhandled exception type IOException thrown by automatic close() invocation on z\n" +
 		"----------\n");
 }
-public void testBug577128_1() {
+public void testBug577128_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
 			"X.java",
@@ -745,7 +745,7 @@ public void testBug577128_1() {
 		"close() call\n" +
 		"close() call");
 }
-public void testGH1825() {
+public void testGH1825() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -774,7 +774,7 @@ public void testGH1825() {
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3841
 // [Try with Resources] Missing error about non-final field used as a resource when TWR is unreachble.
-public void testIssue3841() {
+public void testIssue3841() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 			new String[] {
 				"X.java",

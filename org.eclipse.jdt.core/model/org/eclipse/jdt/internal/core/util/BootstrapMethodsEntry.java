@@ -32,7 +32,7 @@ public class BootstrapMethodsEntry
 		int length = u2At(classFileBytes, 2, offset);
 		int[] arguments = new int[length];
 		int position = 4;
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			arguments[i] = u2At(classFileBytes, position, offset);
 			position += 2;
 		}

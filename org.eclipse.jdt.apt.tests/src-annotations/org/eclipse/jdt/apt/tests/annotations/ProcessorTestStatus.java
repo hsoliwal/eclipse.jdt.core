@@ -79,7 +79,7 @@ public final class ProcessorTestStatus {
 			return;
 		if (expected != null && expected.equals(actual))
 			return;
-		ProcessorTestStatus.fail("Expected " + expected + ", but saw " + actual + ". Reason: " + reason);
+		ProcessorTestStatus.fail("Expected " + expected + ", but saw " + actual + ". Reason: " + reason); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public static void assertEquals(String reason, String expected, String actual) {
@@ -87,13 +87,13 @@ public final class ProcessorTestStatus {
 			return;
 		if (expected != null && expected.equals(actual))
 			return;
-		ProcessorTestStatus.fail("Expected " + expected + ", but saw " + actual + ". Reason: " + reason);
+		ProcessorTestStatus.fail("Expected " + expected + ", but saw " + actual + ". Reason: " + reason); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public static void assertEquals(String reason, int expected, int actual) {
 		if (expected == actual)
 			return;
-		ProcessorTestStatus.fail("Expected " + expected + ", but saw " + actual + ". Reason: " + reason);
+		ProcessorTestStatus.fail("Expected " + expected + ", but saw " + actual + ". Reason: " + reason); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 	public static void assertTrue(String reason, boolean expected) {
@@ -103,7 +103,7 @@ public final class ProcessorTestStatus {
 
 	public static void fail(final String reason) {
 		failWithoutException(reason);
-		throw new IllegalStateException("Failed during test: " + reason);
+		throw new IllegalStateException("Failed during test: " + reason); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	}
 
 }

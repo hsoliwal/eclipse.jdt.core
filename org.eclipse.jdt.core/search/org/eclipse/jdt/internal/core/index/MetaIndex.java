@@ -74,7 +74,7 @@ public class MetaIndex {
 		// thread is disabled. Therefore we can safely store the calculated values until the meta index is closed.
 		if(this.indexesNotInMeta == null) {
 			String[] documentNames = this.decoratee.queryDocumentNames(null);
-			Set<String> names = new HashSet<>(Arrays.asList(documentNames == null ? new String[0] : documentNames));
+			Set<String> names = new HashSet<>(Arrays.asList(documentNames == null ? new String[0] : documentNames)); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			this.indexesNotInMeta = Stream.of(indexes.keyTable).filter(Objects::nonNull)
 					.map(IndexLocation.class::cast).map(IndexLocation::fileName).filter(n -> !names.contains(n)).collect(Collectors.toSet());
 		}

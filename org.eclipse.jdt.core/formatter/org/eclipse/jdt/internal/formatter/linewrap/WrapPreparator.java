@@ -83,36 +83,36 @@ public class WrapPreparator extends ASTVisitor {
 		}
 	}
 
-	private static final Map<Operator, Integer> OPERATOR_PRECEDENCE;
+	private static final Map<Operator, Integer> OPERATOR_PRECEDENCE; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	private static final Map<Operator, ToIntFunction<DefaultCodeFormatterOptions>> OPERATOR_WRAPPING_OPTION;
 	private static final Map<Operator, Predicate<DefaultCodeFormatterOptions>> OPERATOR_WRAP_BEFORE_OPTION;
 	static {
-		HashMap<Operator, Integer> precedence = new HashMap<>();
-		HashMap<Operator, ToIntFunction<DefaultCodeFormatterOptions>> wrappingOption = new HashMap<>();
-		HashMap<Operator, Predicate<DefaultCodeFormatterOptions>> wrapBeforeOption = new HashMap<>();
-		for (Operator op : Arrays.asList(Operator.TIMES, Operator.DIVIDE, Operator.REMAINDER)) {
+		HashMap<Operator, Integer> precedence = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
+		HashMap<Operator, ToIntFunction<DefaultCodeFormatterOptions>> wrappingOption = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		HashMap<Operator, Predicate<DefaultCodeFormatterOptions>> wrapBeforeOption = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
+		for (Operator op : Arrays.asList(Operator.TIMES, Operator.DIVIDE, Operator.REMAINDER)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			precedence.put(op, 1);
 			wrappingOption.put(op, o -> o.alignment_for_multiplicative_operator);
 			wrapBeforeOption.put(op, o -> o.wrap_before_multiplicative_operator);
 		}
-		for (Operator op : Arrays.asList(Operator.PLUS, Operator.MINUS)) {
+		for (Operator op : Arrays.asList(Operator.PLUS, Operator.MINUS)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			precedence.put(op, 2);
 			wrappingOption.put(op, o -> o.alignment_for_additive_operator);
 			wrapBeforeOption.put(op, o -> o.wrap_before_additive_operator);
 		}
-		for (Operator op : Arrays.asList(Operator.LEFT_SHIFT, Operator.RIGHT_SHIFT_SIGNED,
+		for (Operator op : Arrays.asList(Operator.LEFT_SHIFT, Operator.RIGHT_SHIFT_SIGNED, //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Operator.RIGHT_SHIFT_UNSIGNED)) {
 			precedence.put(op, 3);
 			wrappingOption.put(op, o -> o.alignment_for_shift_operator);
 			wrapBeforeOption.put(op, o -> o.wrap_before_shift_operator);
 		}
-		for (Operator op : Arrays.asList(Operator.LESS, Operator.GREATER, Operator.LESS_EQUALS,
+		for (Operator op : Arrays.asList(Operator.LESS, Operator.GREATER, Operator.LESS_EQUALS, //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Operator.GREATER_EQUALS)) {
 			precedence.put(op, 4);
 			wrappingOption.put(op, o -> o.alignment_for_relational_operator);
 			wrapBeforeOption.put(op, o -> o.wrap_before_relational_operator);
 		}
-		for (Operator op : Arrays.asList(Operator.EQUALS, Operator.NOT_EQUALS)) {
+		for (Operator op : Arrays.asList(Operator.EQUALS, Operator.NOT_EQUALS)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			precedence.put(op, 5);
 			wrappingOption.put(op, o -> o.alignment_for_relational_operator);
 			wrapBeforeOption.put(op, o -> o.wrap_before_relational_operator);
@@ -121,14 +121,14 @@ public class WrapPreparator extends ASTVisitor {
 		precedence.put(Operator.AND, 6);
 		precedence.put(Operator.XOR, 7);
 		precedence.put(Operator.OR, 8);
-		for (Operator op : Arrays.asList(Operator.AND, Operator.XOR, Operator.OR)) {
+		for (Operator op : Arrays.asList(Operator.AND, Operator.XOR, Operator.OR)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			wrappingOption.put(op, o -> o.alignment_for_bitwise_operator);
 			wrapBeforeOption.put(op, o -> o.wrap_before_bitwise_operator);
 		}
 
 		precedence.put(Operator.CONDITIONAL_AND, 9);
 		precedence.put(Operator.CONDITIONAL_OR, 10);
-		for (Operator op : Arrays.asList(Operator.CONDITIONAL_AND, Operator.CONDITIONAL_OR)) {
+		for (Operator op : Arrays.asList(Operator.CONDITIONAL_AND, Operator.CONDITIONAL_OR)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			wrappingOption.put(op, o -> o.alignment_for_logical_operator);
 			wrapBeforeOption.put(op, o -> o.wrap_before_logical_operator);
 		}
@@ -152,10 +152,10 @@ public class WrapPreparator extends ASTVisitor {
 	 * temporary values used when calling {@link #handleWrap(int)} to avoid ArrayList initialization and long lists of
 	 * parameters
 	 */
-	private final List<Integer> wrapIndexes = new ArrayList<>();
+	private final List<Integer> wrapIndexes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	/** Indexes for wraps that shouldn't happen but should be indented if cannot be removed */
-	private final List<Integer> secondaryWrapIndexes = new ArrayList<>();
-	private final List<Float> wrapPenalties = new ArrayList<>();
+	private final List<Integer> secondaryWrapIndexes = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
+	private final List<Float> wrapPenalties = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 	private int wrapParentIndex = -1;
 	private int wrapGroupEnd = -1;
 
@@ -212,7 +212,7 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(TypeDeclaration node) {
 		handleAnnotations(node.modifiers(), this.options.alignment_for_annotations_on_type);
 
@@ -269,7 +269,7 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(RecordDeclaration node) {
 		handleAnnotations(node.modifiers(), this.options.alignment_for_annotations_on_type);
 
@@ -295,7 +295,7 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MethodDeclaration node) {
 		handleAnnotations(node.modifiers(), this.options.alignment_for_annotations_on_method);
 
@@ -343,7 +343,7 @@ public class WrapPreparator extends ASTVisitor {
 			this.wrapIndexes.add(this.tm.firstIndexIn(node.getName(), ANY));
 			this.wrapGroupEnd = this.tm.lastIndexIn(node.getName(), ANY);
 			this.wrapParentIndex = this.tm.findFirstTokenInLine(this.wrapIndexes.get(0));
-			while (this.tm.get(this.wrapParentIndex).isComment())
+			while (this.tm.get(this.wrapParentIndex).isComment()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.wrapParentIndex++;
 			if (this.wrapParentIndex == this.wrapIndexes.get(0))
 				this.wrapIndexes.remove(0);
@@ -356,14 +356,14 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(EnumDeclaration node) {
 		handleAnnotations(node.modifiers(), this.options.alignment_for_annotations_on_type);
 
 		List<EnumConstantDeclaration> enumConstants = node.enumConstants();
 		int constantsEnd = -1;
 		if (!enumConstants.isEmpty()) {
-			for (EnumConstantDeclaration constant : enumConstants)
+			for (EnumConstantDeclaration constant : enumConstants) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.wrapIndexes.add(this.tm.firstIndexIn(constant, ANY));
 			this.wrapParentIndex = (this.options.alignment_for_enum_constants & Alignment.M_INDENT_ON_COLUMN) > 0
 					? this.tm.firstIndexBefore(enumConstants.get(0), TokenNameLBRACE)
@@ -376,7 +376,7 @@ public class WrapPreparator extends ASTVisitor {
 			// preserve a line break between the last comma and semicolon
 			int commaIndex = -1;
 			int i = constantsEnd > 0 ? constantsEnd : this.tm.firstIndexAfter(node.getName(), TokenNameLBRACE);
-			while (++i < this.tm.size()) {
+			while (++i < this.tm.size()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token t = this.tm.get(i);
 				if (t.isComment())
 					continue;
@@ -405,12 +405,12 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(EnumConstantDeclaration node) {
 		handleAnnotations(node.modifiers(), this.options.alignment_for_annotations_on_enum_constant);
 
 		int lParen = this.tm.firstIndexAfter(node.getName(), ANY);
-		while (this.tm.get(lParen).isComment())
+		while (this.tm.get(lParen).isComment()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			lParen++;
 		if (this.tm.get(lParen).tokenType == TokenNameLPAREN) {
 			int rParen = node.getAnonymousClassDeclaration() == null ? this.tm.lastIndexIn(node, TokenNameRPAREN)
@@ -432,7 +432,7 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(MethodInvocation node) {
 		int lParen = this.tm.firstIndexAfter(node.getName(), TokenNameLPAREN);
 		int rParen = this.tm.lastIndexIn(node, TokenNameRPAREN);
@@ -446,7 +446,7 @@ public class WrapPreparator extends ASTVisitor {
 		if (isInvocationChainRoot) {
 			Expression expression = node;
 			MethodInvocation invocation = node;
-			while (expression instanceof MethodInvocation) {
+			while (expression instanceof MethodInvocation) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				invocation = (MethodInvocation) expression;
 				expression = invocation.getExpression();
 				if (expression != null) {
@@ -479,7 +479,7 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ClassInstanceCreation node) {
 		int lParen = this.tm.firstIndexAfter(node.getType(), TokenNameLPAREN);
 		int rParen = node.getAnonymousClassDeclaration() == null ? this.tm.lastIndexIn(node, TokenNameRPAREN)
@@ -548,18 +548,18 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	private void handleFieldAccess(Expression node) {
+	private void handleFieldAccess(Expression node) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean isAccessChainRoot = !FieldAccessAdapter.isFieldAccess(node.getParent());
 		if (!isAccessChainRoot)
 			return;
 
 		Expression expression = node;
 		FieldAccessAdapter access = null;
-		while (FieldAccessAdapter.isFieldAccess(expression)) {
+		while (FieldAccessAdapter.isFieldAccess(expression)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			access = new FieldAccessAdapter(expression);
 			int nameIndex = access.getIdentifierIndex(this.tm);
 			// find a dot preceding the name, may not be there
-			for (int i = nameIndex - 1; i > this.tm.firstIndexIn(node, ANY); i--) {
+			for (int i = nameIndex - 1; i > this.tm.firstIndexIn(node, ANY); i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token t = this.tm.get(i);
 				if (t.tokenType == TokenNameDOT) {
 					this.wrapIndexes.add(i);
@@ -580,7 +580,7 @@ public class WrapPreparator extends ASTVisitor {
 		handleWrap(Alignment.M_NO_ALIGNMENT);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(InfixExpression node) {
 		Integer operatorPrecedence = OPERATOR_PRECEDENCE.get(node.getOperator());
 		if (operatorPrecedence == null)
@@ -601,7 +601,7 @@ public class WrapPreparator extends ASTVisitor {
 		this.wrapGroupEnd = this.tm.lastIndexIn(node, ANY);
 		if ((wrappingOption & Alignment.M_INDENT_ON_COLUMN) != 0 && this.wrapParentIndex > 0)
 			this.wrapParentIndex--;
-		for (int i = this.wrapParentIndex; i >= 0; i--) {
+		for (int i = this.wrapParentIndex; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (!this.tm.get(i).isComment()) {
 				this.wrapParentIndex = i;
 				break;
@@ -611,7 +611,7 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	private void findTokensToWrap(InfixExpression node, boolean wrapBeforeOperator, int depth) {
+	private void findTokensToWrap(InfixExpression node, boolean wrapBeforeOperator, int depth) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Expression left = node.getLeftOperand();
 		if (left instanceof InfixExpression && samePrecedence(node, (InfixExpression) left)) {
 			findTokensToWrap((InfixExpression) left, wrapBeforeOperator, depth + 1);
@@ -622,13 +622,13 @@ public class WrapPreparator extends ASTVisitor {
 
 		Expression right = node.getRightOperand();
 		List<Expression> extended = node.extendedOperands();
-		for (int i = -1; i < extended.size(); i++) {
+		for (int i = -1; i < extended.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Expression operand = (i == -1) ? right : extended.get(i);
 			if (operand instanceof InfixExpression && samePrecedence(node, (InfixExpression) operand)) {
 				findTokensToWrap((InfixExpression) operand, wrapBeforeOperator, depth + 1);
 			}
 			int indexBefore = this.tm.firstIndexBefore(operand, ANY);
-			while (this.tm.get(indexBefore).isComment())
+			while (this.tm.get(indexBefore).isComment()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				indexBefore--;
 			assert node.getOperator().toString().equals(this.tm.toString(indexBefore));
 			int indexAfter = this.tm.firstIndexIn(operand, ANY);
@@ -656,7 +656,7 @@ public class WrapPreparator extends ASTVisitor {
 		return precedence1.equals(precedence2);
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ConditionalExpression node) {
 		boolean chainsMatter = (this.options.alignment_for_conditional_expression_chain
 				& Alignment.SPLIT_MASK) != Alignment.M_NO_ALIGNMENT;
@@ -664,8 +664,8 @@ public class WrapPreparator extends ASTVisitor {
 				&& node == ((ConditionalExpression) node.getParent()).getElseExpression();
 		boolean isFirstInChain = node.getElseExpression() instanceof ConditionalExpression && !isNextInChain;
 		boolean wrapBefore = this.options.wrap_before_conditional_operator;
-		List<Integer> before = wrapBefore ? this.wrapIndexes : this.secondaryWrapIndexes;
-		List<Integer> after = wrapBefore ? this.secondaryWrapIndexes : this.wrapIndexes;
+		List<Integer> before = wrapBefore ? this.wrapIndexes : this.secondaryWrapIndexes; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
+		List<Integer> after = wrapBefore ? this.secondaryWrapIndexes : this.wrapIndexes; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 		if (!chainsMatter || (!isFirstInChain && !isNextInChain)) {
 			before.add(this.tm.firstIndexAfter(node.getExpression(), TokenNameQUESTION));
 			before.add(this.tm.firstIndexAfter(node.getThenExpression(), TokenNameCOLON));
@@ -676,15 +676,15 @@ public class WrapPreparator extends ASTVisitor {
 			handleWrap(this.options.alignment_for_conditional_expression);
 
 		} else if (isFirstInChain) {
-			List<ConditionalExpression> chain = new ArrayList<>();
+			List<ConditionalExpression> chain = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
 			chain.add(node);
 			ConditionalExpression next = node;
-			while (next.getElseExpression() instanceof ConditionalExpression) {
+			while (next.getElseExpression() instanceof ConditionalExpression) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				next = (ConditionalExpression) next.getElseExpression();
 				chain.add(next);
 			}
 
-			for (ConditionalExpression conditional : chain) {
+			for (ConditionalExpression conditional : chain) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				before.add(this.tm.firstIndexAfter(conditional.getThenExpression(), TokenNameCOLON));
 				after.add(this.tm.firstIndexIn(conditional.getElseExpression(), ANY));
 			}
@@ -693,7 +693,7 @@ public class WrapPreparator extends ASTVisitor {
 			handleWrap(this.options.alignment_for_conditional_expression_chain);
 
 			this.currentDepth++;
-			for (ConditionalExpression conditional : chain) {
+			for (ConditionalExpression conditional : chain) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				before.add(this.tm.firstIndexAfter(conditional.getExpression(), TokenNameQUESTION));
 				after.add(this.tm.firstIndexIn(conditional.getThenExpression(), ANY));
 				this.wrapParentIndex = this.tm.firstIndexIn(conditional.getExpression(), ANY);
@@ -705,7 +705,7 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ArrayInitializer node) {
 		List<Expression> expressions = node.expressions();
 		if (!expressions.isEmpty()) {
@@ -745,7 +745,7 @@ public class WrapPreparator extends ASTVisitor {
 			return true; // must be an array initializer in new line because of brace_position_for_array_initializer
 
 		int operatorIndex = this.tm.firstIndexBefore(node.getRightHandSide(), ANY);
-		while (this.tm.get(operatorIndex).isComment())
+		while (this.tm.get(operatorIndex).isComment()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			operatorIndex--;
 		assert node.getOperator().toString().equals(this.tm.toString(operatorIndex));
 
@@ -791,7 +791,7 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(ForStatement node) {
 		int lParen = this.tm.firstIndexIn(node, TokenNameLPAREN);
 		int rParen = this.tm.firstIndexBefore(node.getBody(), TokenNameRPAREN);
@@ -863,7 +863,7 @@ public class WrapPreparator extends ASTVisitor {
 			this.wrapGroupEnd = this.tm.lastIndexIn(node, ANY);
 
 			int alignment = this.options.alignment_for_compact_loop;
-			for (int i = this.tm.firstIndexIn(node, ANY) + 1; i < whileIndex; i++) {
+			for (int i = this.tm.firstIndexIn(node, ANY) + 1; i < whileIndex; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token token = this.tm.get(i);
 				if (token.getLineBreaksBefore() > 0 || token.getLineBreaksAfter() > 0)
 					alignment |= Alignment.M_FORCE;
@@ -884,13 +884,13 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(UnionType node) {
 		List<Type> types = node.types();
 		if (types.isEmpty())
 			return true;
 		if (this.options.wrap_before_or_operator_multicatch) {
-			for (Type type : types) {
+			for (Type type : types) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (this.wrapIndexes.isEmpty()) {
 					this.wrapIndexes.add(this.tm.firstIndexIn(type, ANY));
 				} else {
@@ -899,7 +899,7 @@ public class WrapPreparator extends ASTVisitor {
 				}
 			}
 			this.wrapParentIndex = this.tm.firstIndexBefore(node, ANY);
-			while (this.tm.get(this.wrapParentIndex).isComment())
+			while (this.tm.get(this.wrapParentIndex).isComment()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.wrapParentIndex--;
 			this.wrapGroupEnd = this.tm.lastIndexIn(types.get(types.size() - 1), ANY);
 			handleWrap(this.options.alignment_for_union_type_in_multicatch);
@@ -910,7 +910,7 @@ public class WrapPreparator extends ASTVisitor {
 		return true;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(LambdaExpression node) {
 		int lParen = this.tm.firstIndexIn(node, ANY);
 		if (this.tm.get(lParen).tokenType == TokenNameLPAREN) {
@@ -937,7 +937,7 @@ public class WrapPreparator extends ASTVisitor {
 		int openBraceIndex = this.tm.firstIndexBefore(statements.get(0), TokenNameLBRACE);
 		int closeBraceIndex = this.tm.firstIndexAfter(statements.get(statements.size() - 1), TokenNameRBRACE);
 		if (areKeptOnOneLine(openBraceIndex, closeBraceIndex)) {
-			for (Statement statement : statements)
+			for (Statement statement : statements) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				this.wrapIndexes.add(this.tm.firstIndexIn(statement, ANY));
 			this.wrapParentIndex = openBraceIndex;
 			this.wrapGroupEnd = closeBraceIndex;
@@ -1093,14 +1093,14 @@ public class WrapPreparator extends ASTVisitor {
 	private void handleOneLineEnforcedSwitchCases(ASTNode node, List<Statement> statements) {
 		if (statements.isEmpty() || !((SwitchCase) statements.get(0)).isSwitchLabeledRule())
 			return;
-		for (Statement statement : statements) {
+		for (Statement statement : statements) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (statement instanceof Block) {
 				handleOneLineEnforced(statement, ((Block)statement).statements());
 			}
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean visit(SwitchCase node) {
 		if (node.isSwitchLabeledRule()) {
 			List<Statement> siblings = node.getParent() instanceof SwitchStatement
@@ -1154,11 +1154,11 @@ public class WrapPreparator extends ASTVisitor {
 	 * Makes sure all new lines within given node will have wrap policy so that
 	 * wrap executor will fix their indentation if necessary.
 	 */
-	void forceContinuousWrapping(ASTNode node, int parentIndex) {
+	void forceContinuousWrapping(ASTNode node, int parentIndex) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int parentIndent = this.tm.get(parentIndex).getIndent();
 		int indentChange = -parentIndent;
 		int lineStart = this.tm.findFirstTokenInLine(parentIndex);
-		for (int i = parentIndex; i >= lineStart; i--) {
+		for (int i = parentIndex; i >= lineStart; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int align = this.tm.get(i).getAlign();
 			if (align > 0) {
 				indentChange = -2 * parentIndent + align;
@@ -1169,7 +1169,7 @@ public class WrapPreparator extends ASTVisitor {
 		Token previous = null;
 		int from = this.tm.firstIndexIn(node, ANY);
 		int to = this.tm.lastIndexIn(node, ANY);
-		for (int i = from; i <= to; i++) {
+		for (int i = from; i <= to; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = this.tm.get(i);
 			if ((token.getLineBreaksBefore() > 0 || (previous != null && previous.getLineBreaksAfter() > 0))
 					&& (token.getWrapPolicy() == null || token.getWrapPolicy().wrapMode == WrapMode.BLOCK_INDENT)) {
@@ -1200,14 +1200,14 @@ public class WrapPreparator extends ASTVisitor {
 		handleAnnotations(modifiers, wrappingOption, true);
 	}
 
-	private void handleAnnotations(List<? extends IExtendedModifier> modifiers, int wrappingOption, boolean shouldWrap) {
+	private void handleAnnotations(List<? extends IExtendedModifier> modifiers, int wrappingOption, boolean shouldWrap) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		//This method has it's specific rule to handle newline on annotations, that clash with the
 		//insert_new_line_after_annotation_on_record_parameter options, so if Applied, since it uses a different logic
 		//it rewrite the whole line, and remove the formatting just applied. To avoid that the shouldWrap boolean
 		//has been added, making it optional in case of need.
 		Annotation last = null;
 		int i;
-		for (i = 0; i < modifiers.size(); i++) {
+		for (i = 0; i < modifiers.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (modifiers.get(i).isModifier())
 				break;
 			Annotation annotation = (Annotation) modifiers.get(i);
@@ -1230,7 +1230,7 @@ public class WrapPreparator extends ASTVisitor {
 	}
 
 	private void prepareElementsList(List<? extends ASTNode> elements, TerminalToken separatorType, TerminalToken wrapParentType) {
-		for (int i = 0; i < elements.size(); i++) {
+		for (int i = 0; i < elements.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ASTNode element = elements.get(i);
 			this.wrapIndexes.add(this.tm.firstIndexIn(element, ANY));
 			if (i > 0)
@@ -1267,13 +1267,13 @@ public class WrapPreparator extends ASTVisitor {
 		this.wrapParentIndex = this.wrapGroupEnd = -1;
 	}
 
-	private void doHandleWrap(int wrappingOption, boolean wrapPreceedingComments, ASTNode parentNode) {
+	private void doHandleWrap(int wrappingOption, boolean wrapPreceedingComments, ASTNode parentNode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.wrapIndexes.isEmpty())
 			return;
 		assert this.wrapParentIndex >= 0 && this.wrapParentIndex < this.wrapIndexes.get(0);
 		assert this.wrapGroupEnd >= this.wrapIndexes.get(this.wrapIndexes.size() - 1);
 
-		while (this.tm.get(this.wrapParentIndex).isComment() && this.wrapParentIndex > 0)
+		while (this.tm.get(this.wrapParentIndex).isComment() && this.wrapParentIndex > 0) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			this.wrapParentIndex--;
 
 		float penalty = this.wrapPenalties.isEmpty() ? 1 : this.wrapPenalties.get(0);
@@ -1290,7 +1290,7 @@ public class WrapPreparator extends ASTVisitor {
 
 		setTokenWrapPolicy(0, policy, true);
 
-		for (int i = 1; i < this.wrapIndexes.size(); i++) {
+		for (int i = 1; i < this.wrapIndexes.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			penalty = this.wrapPenalties.size() > i ? this.wrapPenalties.get(i) : 1;
 			if (penalty != policy.penaltyMultiplier || i == 1)
 				policy = getWrapPolicy(wrappingOption, penalty, false, parentNode);
@@ -1300,7 +1300,7 @@ public class WrapPreparator extends ASTVisitor {
 		if (!this.secondaryWrapIndexes.isEmpty()) {
 			int optionNoAlignment = (wrappingOption & ~Alignment.SPLIT_MASK) | Alignment.M_NO_ALIGNMENT;
 			policy = getWrapPolicy(optionNoAlignment, 1, false, parentNode);
-			for (int index : this.secondaryWrapIndexes) {
+			for (int index : this.secondaryWrapIndexes) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token token = this.tm.get(index);
 				if (token.getWrapPolicy() == null || token.getWrapPolicy().wrapMode == WrapMode.BLOCK_INDENT)
 					token.setWrapPolicy(policy);
@@ -1308,10 +1308,10 @@ public class WrapPreparator extends ASTVisitor {
 		}
 	}
 
-	private void setTokenWrapPolicy(int wrapIndexesIndex, WrapPolicy policy, boolean wrapPreceedingComments) {
+	private void setTokenWrapPolicy(int wrapIndexesIndex, WrapPolicy policy, boolean wrapPreceedingComments) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int index = this.wrapIndexes.get(wrapIndexesIndex);
 		if (wrapPreceedingComments) {
-			for (int i = index - 1; i >= 0; i--) {
+			for (int i = index - 1; i >= 0; i--) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token previous = this.tm.get(i);
 				if (!previous.isComment())
 					break;
@@ -1338,7 +1338,7 @@ public class WrapPreparator extends ASTVisitor {
 		}
 	}
 
-	private WrapPolicy getWrapPolicy(int wrappingOption, float penaltyMultiplier, boolean isFirst, ASTNode parentNode) {
+	private WrapPolicy getWrapPolicy(int wrappingOption, float penaltyMultiplier, boolean isFirst, ASTNode parentNode) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		assert this.wrapParentIndex >= 0 && this.wrapGroupEnd >= 0;
 		int extraIndent = this.options.continuation_indentation;
 		boolean indentOnColumn = (wrappingOption & Alignment.M_INDENT_ON_COLUMN) != 0;
@@ -1416,7 +1416,7 @@ public class WrapPreparator extends ASTVisitor {
 		fixEnumConstantIndents(astRoot);
 	}
 
-	private void preserveExistingLineBreaks() {
+	private void preserveExistingLineBreaks() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// normally n empty lines = n+1 line breaks, but not at the file start and end
 		Token first = this.tm.get(0);
 		int startingBreaks = first.getLineBreaksBefore();
@@ -1459,16 +1459,16 @@ public class WrapPreparator extends ASTVisitor {
 		return Math.min(lineBreaks, toPreserve);
 	}
 
-	private void applyBreaksOutsideRegions(List<IRegion> regions) {
+	private void applyBreaksOutsideRegions(List<IRegion> regions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String source = this.tm.getSource();
 		int previousRegionEnd = 0;
-		for (IRegion region : regions) {
+		for (IRegion region : regions) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int index = this.tm.findIndex(previousRegionEnd, ANY, true);
 			Token token = this.tm.get(index);
 			if (this.tm.countLineBreaksBetween(source, previousRegionEnd,
 					Math.min(token.originalStart, region.getOffset())) > 0)
 				token.breakBefore();
-			for (index++; index < this.tm.size(); index++) {
+			for (index++; index < this.tm.size(); index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Token next = this.tm.get(index);
 				if (next.originalStart > region.getOffset()) {
 					if (this.tm.countLineBreaksBetween(source, token.originalEnd, region.getOffset()) > 0)
@@ -1483,10 +1483,10 @@ public class WrapPreparator extends ASTVisitor {
 		}
 	}
 
-	private void wrapComments() {
+	private void wrapComments() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		CommentWrapExecutor commentWrapper = new CommentWrapExecutor(this.tm, this.options);
 		boolean isNLSTagInLine = false;
-		for (int i = 0; i < this.tm.size(); i++) {
+		for (int i = 0; i < this.tm.size(); i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Token token = this.tm.get(i);
 			if (token.getLineBreaksBefore() > 0 || token.getLineBreaksAfter() > 0)
 				isNLSTagInLine = false;
@@ -1522,7 +1522,7 @@ public class WrapPreparator extends ASTVisitor {
 		}
 	}
 
-	private void handleParenthesesPositions(int openingParenIndex, int closingParenIndex, String positionsSetting) {
+	private void handleParenthesesPositions(int openingParenIndex, int closingParenIndex, String positionsSetting) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		boolean isEmpty = openingParenIndex + 1 == closingParenIndex;
 		switch (positionsSetting) {
 			case DefaultCodeFormatterConstants.COMMON_LINES:
@@ -1556,7 +1556,7 @@ public class WrapPreparator extends ASTVisitor {
 				}
 				break;
 			default:
-				throw new IllegalArgumentException("Unrecognized parentheses positions setting: " + positionsSetting); //$NON-NLS-1$
+				throw new IllegalArgumentException("Unrecognized parentheses positions setting: " + positionsSetting); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
 	}
 }

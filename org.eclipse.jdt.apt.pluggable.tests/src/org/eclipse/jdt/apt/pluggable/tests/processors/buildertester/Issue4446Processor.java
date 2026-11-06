@@ -38,7 +38,7 @@ public class Issue4446Processor extends AbstractProcessor {
         if (anno == null) {
             return false;
         }
-        for (Element element : roundEnv.getElementsAnnotatedWith(anno)) {
+        for (Element element : roundEnv.getElementsAnnotatedWith(anno)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             scanElement(element);
         }
         status = true;
@@ -49,31 +49,31 @@ public class Issue4446Processor extends AbstractProcessor {
     }
 
 
-    private void scanElement(Element element) {
+    private void scanElement(Element element) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
         switch (element.getKind()) {
             case CLASS:
             case INTERFACE:
             case ENUM:
                 TypeElement typeElement = (TypeElement) element;
-                for (TypeParameterElement tpe : typeElement.getTypeParameters()) {
+                for (TypeParameterElement tpe : typeElement.getTypeParameters()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                     handleTypeParameterBounds(tpe);
                     scanType(tpe.asType());
                 }
                 break;
             case METHOD:
                 ExecutableElement method = (ExecutableElement) element;
-                for (TypeParameterElement tpe : method.getTypeParameters()) {
+                for (TypeParameterElement tpe : method.getTypeParameters()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                     handleTypeParameterBounds(tpe);
                 }
                 scanType(method.getReturnType());
-                for (VariableElement param : method.getParameters()) {
+                for (VariableElement param : method.getParameters()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                     scanType(param.asType());
                 }
                 break;
             default:
                 break;
         }
-        for (Element enclosed : element.getEnclosedElements()) {
+        for (Element enclosed : element.getEnclosedElements()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
             scanElement(enclosed);
         }
     }
@@ -81,7 +81,7 @@ public class Issue4446Processor extends AbstractProcessor {
     private void handleTypeParameterBounds(TypeParameterElement tpe) {
         List<? extends TypeMirror> bounds = tpe.getBounds();
         if (bounds != null) {
-            for (TypeMirror b : bounds) {
+            for (TypeMirror b : bounds) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
                 scanType(b);
             }
         }

@@ -46,17 +46,17 @@ public class MirrorUtilTestAnnotationProcessor extends BaseProcessor
 	private static final String ENVPREFIX = "apt.tests.annotations.mirrortest.";
 	public static final String[] ENV_KEYS = {
 			// no-translation
-		ENVPREFIX + "normal",
-		ENVPREFIX + "normalPath",
-		ENVPREFIX + "boguscpvar",
-		ENVPREFIX + "badProj",
+		ENVPREFIX + "normal", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		ENVPREFIX + "normalPath", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		ENVPREFIX + "boguscpvar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		ENVPREFIX + "badProj", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			// expected-translation
-		ENVPREFIX + "cpvar",
-		ENVPREFIX + "cpvarPath",
-		ENVPREFIX + "cpvarFile",
-		ENVPREFIX + "proj",
-		ENVPREFIX + "projFile",
-		ENVPREFIX + "projdirFile"
+		ENVPREFIX + "cpvar", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		ENVPREFIX + "cpvarPath", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		ENVPREFIX + "cpvarFile", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		ENVPREFIX + "proj", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		ENVPREFIX + "projFile", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+		ENVPREFIX + "projdirFile" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	};
 	public static final String[] ENV_VALUES = {
 			// no-translation
@@ -86,7 +86,7 @@ public class MirrorUtilTestAnnotationProcessor extends BaseProcessor
 	}
 
 
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	private void testHidesOverrides()
 	{
 		//set the type declarations
@@ -98,7 +98,7 @@ public class MirrorUtilTestAnnotationProcessor extends BaseProcessor
 		TypeDeclaration type_I = null;
 		TypeDeclaration type_J = null;
 		TypeDeclaration type_K = null;
-		for(TypeDeclaration type : _env.getTypeDeclarations())
+		for(TypeDeclaration type : _env.getTypeDeclarations()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		{
 			if(type.toString().endsWith("EnvTestClass"))
 				type_EnvTestClass = type;
@@ -151,40 +151,40 @@ public class MirrorUtilTestAnnotationProcessor extends BaseProcessor
 		ProcessorTestStatus.assertTrue("Expect B.field to not hide C.field", !_env.getDeclarationUtils().hides(field_B, field_C));
 	}
 
-	private void testEnvOptions() {
+	private void testEnvOptions() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = _env.getOptions();
 		// no-translation cases should be unchanged
-		for (int i = 0; i < EC_NUM_NOTRANSLATIONCASES; ++i) {
+		for (int i = 0; i < EC_NUM_NOTRANSLATIONCASES; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ProcessorTestStatus.assertEquals(ENV_KEYS[i], options.get(ENV_KEYS[i]), ENV_VALUES[i]);
 		}
 		// translation cases should be changed
-		for (int i = EC_NUM_NOTRANSLATIONCASES; i < ENV_KEYS.length; ++i) {
+		for (int i = EC_NUM_NOTRANSLATIONCASES; i < ENV_KEYS.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			ProcessorTestStatus.assertTrue(ENV_KEYS[i], !ENV_VALUES[i].equals(options.get(ENV_KEYS[i])) );
 		}
 		// the files should exist at the specified absolute location
 		String name = options.get(ENV_KEYS[EC_CPVARFILE]);
 		File file;
 		if (name == null) {
-			ProcessorTestStatus.fail(ENV_KEYS[EC_CPVARFILE] + " was not in options map");
+			ProcessorTestStatus.fail(ENV_KEYS[EC_CPVARFILE] + " was not in options map"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			file = new File(name);
-			ProcessorTestStatus.assertTrue(ENV_KEYS[EC_CPVARFILE] + " was not found", file != null && file.exists());
+			ProcessorTestStatus.assertTrue(ENV_KEYS[EC_CPVARFILE] + " was not found", file != null && file.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
 		name = options.get(ENV_KEYS[EC_PROJFILE]);
 		if (name == null) {
-			ProcessorTestStatus.fail(ENV_KEYS[EC_PROJFILE] + " was not in options map");
+			ProcessorTestStatus.fail(ENV_KEYS[EC_PROJFILE] + " was not in options map"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			file = new File(name);
-			ProcessorTestStatus.assertTrue(ENV_KEYS[EC_PROJFILE] + " was not found", file != null && file.exists());
+			ProcessorTestStatus.assertTrue(ENV_KEYS[EC_PROJFILE] + " was not found", file != null && file.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 
 		name = options.get(ENV_KEYS[EC_PROJDIRFILE]);
 		if (name == null) {
-			ProcessorTestStatus.fail(ENV_KEYS[EC_PROJDIRFILE] + " was not in options map");
+			ProcessorTestStatus.fail(ENV_KEYS[EC_PROJDIRFILE] + " was not in options map"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		} else {
 			file = new File(name);
-			ProcessorTestStatus.assertTrue(ENV_KEYS[EC_PROJDIRFILE] + " was not found", file != null && file.exists());
+			ProcessorTestStatus.assertTrue(ENV_KEYS[EC_PROJDIRFILE] + " was not found", file != null && file.exists()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT //FLLDCIM: MARK — M31 M3FILE_IO CALL
 		}
 	}
 }

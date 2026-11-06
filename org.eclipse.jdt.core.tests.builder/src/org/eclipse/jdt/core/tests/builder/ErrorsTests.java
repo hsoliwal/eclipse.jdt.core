@@ -74,7 +74,7 @@ public class ErrorsTests extends BuilderTests {
 		return buildTestSuite(ErrorsTests.class);
 	}
 
-	public void testErrors() throws JavaModelException {
+	public void testErrors() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 		fullBuild(projectPath);
@@ -117,7 +117,7 @@ public class ErrorsTests extends BuilderTests {
 	/*
 	 * Regression test for bug 2857 Renaming .java class with errors to .txt leaves errors in Task list (1GK06R3)
 	 */
-	public void testRenameToNonJava() throws JavaModelException {
+	public void testRenameToNonJava() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
 
@@ -179,7 +179,7 @@ public void test0101() throws JavaModelException {
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=158611
 // Checking the GENERATED_BY attribute
-public void test0102() throws JavaModelException {
+public void test0102() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project");
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	env.removePackageFragmentRoot(projectPath, "");
@@ -240,7 +240,7 @@ public void test0104() throws JavaModelException {
 // Improving the error message in case of a read-only file in output
 // directory. Beware: this test only works under Linux - execution on other
 // platforms always succeeds, but the result is not significant.
-public void _test0105() throws JavaModelException, CoreException, IOException { // FIXME: re-enable!
+public void _test0105() throws JavaModelException, CoreException, IOException { // FIXME: re-enable! //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	if ("Linux".equals(System.getProperty("os.name"))) {
 		IPath projectPath = env.addProject("P");
 		env.addExternalJars(projectPath, Util.getJavaClassLibs());
@@ -265,7 +265,7 @@ public void _test0105() throws JavaModelException, CoreException, IOException { 
 			System.err.println("=== END OF EXPECTED EXCEPTION ==================================================\n\n");
 			expectingOnlySpecificProblemFor(env.getWorkspaceRootPath(),
 					new Problem("",
-						"The project was not built due to \"Could not delete \'" +
+						"The project was not built due to \"Could not delete \'" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 						env.getWorkspaceRootPath() + "/P/bin/.classpath\'.\". " +
 						"Fix the problem, then try refreshing this project and building " +
 						"it since it may be inconsistent", projectPath, -1, -1, CategorizedProblem.CAT_BUILDPATH, IMarker.SEVERITY_ERROR));
@@ -304,7 +304,7 @@ public void _test0105() throws JavaModelException, CoreException, IOException { 
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=224715
-public void test0106() throws JavaModelException {
+public void test0106() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	fullBuild(projectPath);
@@ -366,7 +366,7 @@ public void test0106() throws JavaModelException {
 	assertNotNull("No class file reader", classFileReader);
 	IMethodInfo[] methodInfos = classFileReader.getMethodInfos();
 	IMethodInfo found = null;
-	loop: for (int i = 0, max = methodInfos.length; i < max; i++) {
+	loop: for (int i = 0, max = methodInfos.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		IMethodInfo methodInfo = methodInfos[i];
 		if (CharOperation.equals(methodInfo.getName(), "foo".toCharArray())) {
 			found = methodInfo;
@@ -378,7 +378,7 @@ public void test0106() throws JavaModelException {
 	env.removeProject(projectPath);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=225563
-public void test0107() throws JavaModelException {
+public void test0107() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	IPath projectPath = env.addProject("Project"); //$NON-NLS-1$
 	env.addExternalJars(projectPath, Util.getJavaClassLibs());
 	fullBuild(projectPath);
@@ -430,7 +430,7 @@ public void test0107() throws JavaModelException {
 private String getResourceOuput(IResource[] resources) {
 	StringWriter stringWriter = new StringWriter();
 	PrintWriter writer = new PrintWriter(stringWriter);
-	for (int i = 0, max = resources.length; i < max; i++) {
+	for (int i = 0, max = resources.length; i < max; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		writer.println(resources[i].getFullPath().toString());
 	}
 	writer.flush();
@@ -439,7 +439,7 @@ private String getResourceOuput(IResource[] resources) {
 }
 
 // ignore optional errors
-public void test0108() throws JavaModelException {
+public void test0108() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	Hashtable newOptions = JavaCore.getOptions();
 	newOptions.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.ERROR);
@@ -472,7 +472,7 @@ public void test0108() throws JavaModelException {
 }
 
 // two different source folders ignore only from one
-public void test0109() throws JavaModelException {
+public void test0109() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	Hashtable newOptions = JavaCore.getOptions();
 	newOptions.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.ERROR);
@@ -516,7 +516,7 @@ public void test0109() throws JavaModelException {
 }
 
 // two different source folders ignore from both
-public void test0110() throws JavaModelException {
+public void test0110() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	Hashtable newOptions = JavaCore.getOptions();
 	newOptions.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.ERROR);
@@ -560,7 +560,7 @@ public void test0110() throws JavaModelException {
 }
 
 //non-optional errors cannot be ignored
-public void test0111() throws JavaModelException {
+public void test0111() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	Hashtable newOptions = JavaCore.getOptions();
 	newOptions.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.ERROR);
@@ -596,7 +596,7 @@ public void test0111() throws JavaModelException {
 }
 
 //task tags cannot be ignored
-public void test0112() throws JavaModelException {
+public void test0112() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable options = JavaCore.getOptions();
 	Hashtable newOptions = JavaCore.getOptions();
 	newOptions.put(JavaCore.COMPILER_PB_UNUSED_LOCAL, JavaCore.ERROR);

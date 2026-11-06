@@ -61,7 +61,7 @@ public final class HashtableOfArrayToObject implements Cloneable {
 		int index = hashCode(key) % length;
 		int keyLength = key.length;
 		Object[] currentKey;
-		while ((currentKey = this.keyTable[index]) != null) {
+		while ((currentKey = this.keyTable[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentKey.length == keyLength && Util.equalArraysOrNull(currentKey, key))
 				return true;
 			if (++index == length) {
@@ -76,7 +76,7 @@ public final class HashtableOfArrayToObject implements Cloneable {
 		int index = hashCode(key) % length;
 		int keyLength = key.length;
 		Object[] currentKey;
-		while ((currentKey = this.keyTable[index]) != null) {
+		while ((currentKey = this.keyTable[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentKey.length == keyLength && Util.equalArraysOrNull(currentKey, key))
 				return this.valueTable[index];
 			if (++index == length) {
@@ -91,7 +91,7 @@ public final class HashtableOfArrayToObject implements Cloneable {
 		int index = hashCode(key) % length;
 		int keyLength = key.length;
 		Object[] currentKey;
-		while ((currentKey = this.keyTable[index]) != null) {
+		while ((currentKey = this.keyTable[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentKey.length == keyLength && Util.equalArraysOrNull(currentKey, key))
 				return index;
 			if (++index == length) {
@@ -105,7 +105,7 @@ public final class HashtableOfArrayToObject implements Cloneable {
 		int length = this.keyTable.length;
 		int index = hashCode(key, keyLength) % length;
 		Object[] currentKey;
-		while ((currentKey = this.keyTable[index]) != null) {
+		while ((currentKey = this.keyTable[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentKey.length == keyLength && Util.equalArrays(currentKey, key, keyLength))
 				return currentKey;
 			if (++index == length) {
@@ -121,17 +121,17 @@ public final class HashtableOfArrayToObject implements Cloneable {
 
 	private int hashCode(Object[] element, int length) {
 		int hash = 0;
-		for (int i = length-1; i >= 0; i--)
+		for (int i = length-1; i >= 0; i--) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			hash = Util.combineHashCodes(hash, element[i].hashCode());
 		return hash & 0x7FFFFFFF;
 	}
 
-	public Object put(Object[] key, Object value) {
+	public Object put(Object[] key, Object value) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = this.keyTable.length;
 		int index = hashCode(key) % length;
 		int keyLength = key.length;
 		Object[] currentKey;
-		while ((currentKey = this.keyTable[index]) != null) {
+		while ((currentKey = this.keyTable[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentKey.length == keyLength && Util.equalArraysOrNull(currentKey, key))
 				return this.valueTable[index] = value;
 			if (++index == length) {
@@ -147,12 +147,12 @@ public final class HashtableOfArrayToObject implements Cloneable {
 		return value;
 	}
 
-	public Object removeKey(Object[] key) {
+	public Object removeKey(Object[] key) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = this.keyTable.length;
 		int index = hashCode(key) % length;
 		int keyLength = key.length;
 		Object[] currentKey;
-		while ((currentKey = this.keyTable[index]) != null) {
+		while ((currentKey = this.keyTable[index]) != null) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (currentKey.length == keyLength && Util.equalArraysOrNull(currentKey, key)) {
 				Object value = this.valueTable[index];
 				this.elementSize--;
@@ -172,7 +172,7 @@ public final class HashtableOfArrayToObject implements Cloneable {
 
 		HashtableOfArrayToObject newHashtable = new HashtableOfArrayToObject(this.elementSize * 2);		// double the number of expected elements
 		Object[] currentKey;
-		for (int i = this.keyTable.length; --i >= 0;)
+		for (int i = this.keyTable.length; --i >= 0;) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((currentKey = this.keyTable[i]) != null)
 				newHashtable.put(currentKey, this.valueTable[i]);
 
@@ -185,22 +185,22 @@ public final class HashtableOfArrayToObject implements Cloneable {
 		return this.elementSize;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		Object[] element;
-		for (int i = 0, length = this.keyTable.length; i < length; i++)
+		for (int i = 0, length = this.keyTable.length; i < length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if ((element = this.keyTable[i]) != null) {
-				buffer.append('{');
-				for (int j = 0, length2 = element.length; j < length2; j++) {
-					buffer.append(element[j]);
+				buffer.append('{'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				for (int j = 0, length2 = element.length; j < length2; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+					buffer.append(element[j]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 					if (j != length2-1)
-						buffer.append(", "); //$NON-NLS-1$
+						buffer.append(", "); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				}
-				buffer.append("} -> ");  //$NON-NLS-1$
-				buffer.append(this.valueTable[i]);
+				buffer.append("} -> ");  //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				buffer.append(this.valueTable[i]); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				if (i != length-1)
-					buffer.append('\n');
+					buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 		return buffer.toString();
 	}

@@ -34,7 +34,7 @@ public ASTConverterBugsTestJLS4(String name) {
 public static Test suite() {
 	TestSuite suite = new Suite(ASTConverterBugsTestJLS4.class.getName());
 	List tests = buildTestsList(ASTConverterBugsTestJLS4.class, 2, 0/* do not sort*/);
-	for (int index=0, size=tests.size(); index<size; index++) {
+	for (int index=0, size=tests.size(); index<size; index++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		suite.addTest((Test)tests.get(index));
 	}
 	return suite;

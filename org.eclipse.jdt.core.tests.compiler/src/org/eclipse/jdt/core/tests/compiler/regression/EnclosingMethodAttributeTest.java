@@ -47,7 +47,7 @@ public class EnclosingMethodAttributeTest extends AbstractComparableTest {
 		return EnclosingMethodAttributeTest.class;
 	}
 
-	public void test001() throws Exception {
+	public void test001() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -74,7 +74,7 @@ public class EnclosingMethodAttributeTest extends AbstractComparableTest {
 			"falsefalsetruefalsefalsefalse");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X$1.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  +"X$1.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
 				classFileBytes,
@@ -92,7 +92,7 @@ public class EnclosingMethodAttributeTest extends AbstractComparableTest {
 		}
 	}
 
-	public void test002() throws Exception {
+	public void test002() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -119,7 +119,7 @@ public class EnclosingMethodAttributeTest extends AbstractComparableTest {
 			"falsefalsetruefalsefalsefalse");
 
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  + "X$1MyLocal$A$Member$1.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  + "X$1MyLocal$A$Member$1.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
 				classFileBytes,
@@ -138,7 +138,7 @@ public class EnclosingMethodAttributeTest extends AbstractComparableTest {
 	}
 
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=162356
-	public void test003() throws Exception {
+	public void test003() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -170,7 +170,7 @@ public class EnclosingMethodAttributeTest extends AbstractComparableTest {
 		INameEnvironment nameEnvironment = getNameEnvironment(new String[]{}, null);
 		nameEnvironment.findType(new char[][] {new char[0], "X$1LocalClass".toCharArray()});
 		ClassFileBytesDisassembler disassembler = ToolFactory.createDefaultClassFileBytesDisassembler();
-		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  + "X$1LocalClass.class"));
+		byte[] classFileBytes = org.eclipse.jdt.internal.compiler.util.Util.getFileByteContent(new File(OUTPUT_DIR + File.separator  + "X$1LocalClass.class")); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		String actualOutput =
 			disassembler.disassemble(
 				classFileBytes,
@@ -204,7 +204,7 @@ public class EnclosingMethodAttributeTest extends AbstractComparableTest {
 		}
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=288920
-	public void test004() throws Exception {
+	public void test004() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.runConformTest(
 			new String[] {
 				"X.java",
@@ -238,7 +238,7 @@ public class EnclosingMethodAttributeTest extends AbstractComparableTest {
 						null,
 						false, /* show category */
 						false /* show warning token*/);
-		requestor.outputPath = OUTPUT_DIR.endsWith(File.separator) ? OUTPUT_DIR : OUTPUT_DIR + File.separator;
+		requestor.outputPath = OUTPUT_DIR.endsWith(File.separator) ? OUTPUT_DIR : OUTPUT_DIR + File.separator; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				// WORK should not have to test a constant?
 
 		Map<String, String> options = getCompilerOptions();
@@ -259,7 +259,7 @@ public class EnclosingMethodAttributeTest extends AbstractComparableTest {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1905
 	// ECJ writes incorrect enclosing method for doubly-nested anonymous class
-	public void testGH1905() throws Exception {
+	public void testGH1905() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.complianceLevel < ClassFileConstants.JDK10)
 			return;
 

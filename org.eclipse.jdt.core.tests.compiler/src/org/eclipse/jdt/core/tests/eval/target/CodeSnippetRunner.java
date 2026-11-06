@@ -76,14 +76,14 @@ public CodeSnippetRunner(int portNumber, String classPathDirectory, String bootc
 /**
  * Returns the forward slash separated class name from the given class definition.
  */
-private String className(byte[] classDefinition) {
+private String className(byte[] classDefinition) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// NB: The following code was copied from org.eclipse.jdt.internal.compiler.cfmt,
 	//     thus it is highly dependent on the class file format.
 	int readOffset = 10;
 	try {
 		int constantPoolCount = u2At(8, classDefinition);
 		int[] constantPoolOffsets = new int[constantPoolCount];
-		for (int i = 1; i < constantPoolCount; i++) {
+		for (int i = 1; i < constantPoolCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int tag = u1At(readOffset, classDefinition);
 			switch (tag) {
 				case 1 : // Utf8Tag
@@ -175,7 +175,7 @@ private String className(byte[] classDefinition) {
  * Creates a new instance of the given class. It is
  * assumed that it is a subclass of CodeSnippet.
  */
-Object createCodeSnippet(Class snippetClass) {
+Object createCodeSnippet(Class snippetClass) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Object object = null;
 	try {
 		object = snippetClass.getDeclaredConstructor().newInstance();
@@ -227,7 +227,7 @@ public boolean isRunning() {
  * and run until the VM is shut down, when present the server will start, the main class will run
  * but the server will exit when the main class has finished running.
  */
-public static void main(String[] args) {
+public static void main(String[] args) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int length = args.length;
 	if (length < 2 || !args[0].toLowerCase().equals("-evalport")) {
 		printUsage();
@@ -237,7 +237,7 @@ public static void main(String[] args) {
 	String classPath = null;
 	String bootPath = null;
 	int mainClass = -1;
-	for (int i = 2; i < length; i++) {
+	for (int i = 2; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String arg = args[i];
 		if (arg.startsWith("-")) {
 			if (arg.toLowerCase().equals("-cscp")) {
@@ -308,10 +308,10 @@ private static void printUsage() {
  * Global variable classes are assumed to be direct subclasses of CodeSnippet. Their fields are assumed
  * to be static. The value of each field is sent back to the IDE.
  */
-void processClasses(boolean mustRun, byte[][] classDefinitions) {
+void processClasses(boolean mustRun, byte[][] classDefinitions) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// store the class definitions (either in the code snippet class loader or on disk)
 	String[] newClasses = new String[classDefinitions.length];
-	for (int i = 0; i < classDefinitions.length; i++) {
+	for (int i = 0; i < classDefinitions.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		byte[] classDefinition = classDefinitions[i];
 		String classFileName = className(classDefinition);
 		String className = classFileName.replace('/', '.');
@@ -324,14 +324,14 @@ void processClasses(boolean mustRun, byte[][] classDefinitions) {
 	}
 
 	// load the classes and collect code snippet classes
-	List<Class> codeSnippetClasses = new ArrayList<>();
-	for (int i = 0; i < newClasses.length; i++) {
+	List<Class> codeSnippetClasses = new ArrayList<>(); //FLLDCIM: MARK — M02 M3_ARRAY_LANES NEW
+	for (int i = 0; i < newClasses.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String className = newClasses[i];
 		Class clazz = null;
 		if (this.loader != null) {
 			clazz = this.loader.loadIfNeeded(className);
 			if (clazz == null) {
-				System.err.println("Could not find class definition for " + className);
+				System.err.println("Could not find class definition for " + className); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				break;
 			}
 		} else {
@@ -361,7 +361,7 @@ void processClasses(boolean mustRun, byte[][] classDefinitions) {
 			}
 			// Evaluate global variables and send result back
 			Field[] fields = clazz.getDeclaredFields();
-			for (int j = 0; j < fields.length; j++) {
+			for (int j = 0; j < fields.length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Field field = fields[j];
 				if (Modifier.isPublic(field.getModifiers())) {
 					try {
@@ -381,7 +381,7 @@ void processClasses(boolean mustRun, byte[][] classDefinitions) {
 
 	// run the code snippet classes
 	if (codeSnippetClasses.size() != 0 && mustRun) {
-		for (Class class1 : codeSnippetClasses) {
+		for (Class class1 : codeSnippetClasses) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			Object codeSnippet = createCodeSnippet(class1);
 			if (codeSnippet != null) {
 				runCodeSnippet(codeSnippet);
@@ -392,9 +392,9 @@ void processClasses(boolean mustRun, byte[][] classDefinitions) {
 /**
  * Runs the given code snippet in a new thread and send the result back to the IDE.
  */
-void runCodeSnippet(final Object snippet) {
+void runCodeSnippet(final Object snippet) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Thread thread = new Thread() {
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void run() {
 			try {
 				try {
@@ -412,10 +412,10 @@ void runCodeSnippet(final Object snippet) {
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
-				System.out.println("codeSnippetClass = " + CodeSnippetRunner.this.codeSnippetClass.getName());
-				System.out.println("snippet.class = " + snippet.getClass().getName());
+				System.out.println("codeSnippetClass = " + CodeSnippetRunner.this.codeSnippetClass.getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				System.out.println("snippet.class = " + snippet.getClass().getName()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				Class superclass = snippet.getClass().getSuperclass();
-				System.out.println("snippet.superclass = " + (superclass == null ? "null" : superclass.getName()));
+				System.out.println("snippet.superclass = " + (superclass == null ? "null" : superclass.getName())); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {
 				e.getTargetException().printStackTrace();
@@ -428,16 +428,16 @@ void runCodeSnippet(final Object snippet) {
 /**
  * Starts this code snippet runner in a different thread.
  */
-public void start() {
+public void start() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Thread thread = new Thread("Code snippet runner") {
-		@Override
+		@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		public void run() {
 			try {
 				CodeSnippetRunner.this.ide.connect();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			while (CodeSnippetRunner.this.ide.isConnected()) {
+			while (CodeSnippetRunner.this.ide.isConnected()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				try {
 					processClasses(CodeSnippetRunner.this.ide.getRunFlag(), CodeSnippetRunner.this.ide.getNextClasses());
 				} catch (Error e) {
@@ -464,12 +464,12 @@ private int u1At(int position, byte[] bytes) {
 private int u2At(int position, byte[] bytes) {
 	return ((bytes[position++] & 0xFF) << 8) + (bytes[position] & 0xFF);
 }
-private char[] utf8At(int readOffset, int bytesAvailable, byte[] bytes) {
+private char[] utf8At(int readOffset, int bytesAvailable, byte[] bytes) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int x, y, z;
 	int length = bytesAvailable;
 	char outputBuf[] = new char[bytesAvailable];
 	int outputPos = 0;
-	while (length != 0) {
+	while (length != 0) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		x = bytes[readOffset++] & 0xFF;
 		length--;
 		if ((0x80 & x) != 0) {
@@ -495,20 +495,20 @@ private char[] utf8At(int readOffset, int bytesAvailable, byte[] bytes) {
  * Writes the given class definition on disk. The give name is the forward slash separated
  * fully qualified name of the class.
  */
-private void writeClassOnDisk(String className, byte[] classDefinition) {
+private void writeClassOnDisk(String className, byte[] classDefinition) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
-		String fileName = className.replace('/', File.separatorChar) + ".class";
+		String fileName = className.replace('/', File.separatorChar) + ".class"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		File classFile = new File(
 			(this.bootclassPathDirectory != null &&
 			(className.startsWith("java") || className.replace('/', '.').equals(CODE_SNIPPET_CLASS_NAME))) ?
 				this.bootclassPathDirectory :
 				this.classPathDirectory, fileName);
 		File parent = new File(classFile.getParent());
-		parent.mkdirs();
-		if (!parent.exists()) {
-			throw new IOException("Could not create directory " + parent.getPath());
+		parent.mkdirs(); //FLLDCIM: MARK — M31 M3FILE_IO CALL
+		if (!parent.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
+			throw new IOException("Could not create directory " + parent.getPath()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		try (FileOutputStream out = new FileOutputStream(classFile)) {
+		try (FileOutputStream out = new FileOutputStream(classFile)) { //FLLDCIM: MARK — M31 M3FILE_IO NEW
 			out.write(classDefinition);
 		}
 	} catch (IOException e) {

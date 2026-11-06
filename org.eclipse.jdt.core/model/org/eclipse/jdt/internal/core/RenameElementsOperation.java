@@ -30,7 +30,7 @@ import org.eclipse.jdt.internal.core.util.Messages;
  * <li>Constructors cannot be renamed.
  * </ul>
  */
-public class RenameElementsOperation extends MoveElementsOperation {
+public class RenameElementsOperation extends MoveElementsOperation { //FLLDCIM: MARK — T09  IMPLEMENTS
 /**
  * When executed, this operation will rename the specified elements with the given names in the
  * corresponding destinations.

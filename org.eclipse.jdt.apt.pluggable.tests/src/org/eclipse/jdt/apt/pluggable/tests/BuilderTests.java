@@ -61,7 +61,7 @@ public class BuilderTests extends TestBase
 	 * href="http://bugs.sun.com/view_bug.do?bug_id=6634138">the corresponding
 	 * bug in javac</a>, which Sun fixed.
 	 */
-	public void testFinalRound() throws Throwable {
+	public void testFinalRound() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.reset();
 		TestFinalRoundProc.resetNumRounds();
 		IJavaProject jproj = createJavaProject(_projectName);
@@ -95,7 +95,7 @@ public class BuilderTests extends TestBase
 	 * gets treated the same as if the annotation were present on the class itself.
 	 * See <a href="http://bugs.eclipse.org/270754">Bug 270754</a>.
 	 */
-	public void disabled_testInheritedAnnotation() throws Throwable {
+	public void disabled_testInheritedAnnotation() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.reset();
 		IJavaProject jproj = createJavaProject(_projectName);
 		disableJava5Factories(jproj);
@@ -162,7 +162,7 @@ public class BuilderTests extends TestBase
 	 *
 	 * See <a href="http://bugs.eclipse.org/295948">Bug 295948</a>.
 	 */
-	public void testBug295948() throws Throwable {
+	public void testBug295948() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.reset();
 		IJavaProject jproj = createJavaProject(_projectName);
 		disableJava5Factories(jproj);
@@ -198,11 +198,11 @@ public class BuilderTests extends TestBase
 		proj.findMember("src/test295948/FooEvent.java").delete(false, null);
 		incrementalBuild();
 		expectingProblemsFor(fooImplClass,
-				"Problem : FooEvent cannot be resolved to a type [ resource : </" + _projectName + "/src/test295948/FooImpl.java> range : <108,116> category : <40> severity : <2>]\n" +
+				"Problem : FooEvent cannot be resolved to a type [ resource : </" + _projectName + "/src/test295948/FooImpl.java> range : <108,116> category : <40> severity : <2>]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				"Problem : FooEvent cannot be resolved to a type [ resource : </" + _projectName + "/src/test295948/FooImpl.java> range : <52,60> category : <40> severity : <2>]");
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=407841
-	public void testBug407841() throws Throwable {
+	public void testBug407841() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int old = org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.MAX_AT_ONCE;
 		try {
 			org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.MAX_AT_ONCE =1;
@@ -234,7 +234,7 @@ public class BuilderTests extends TestBase
 		assertEquals("Should have been processed over just once", 1, Bug468893Processor.count());
 	}
 	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=419769
-	public void testBug419769() throws Throwable {
+	public void testBug419769() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			ProcessorTestStatus.reset();
 			IJavaProject jproj = createJavaProject(_projectName);
@@ -245,11 +245,11 @@ public class BuilderTests extends TestBase
 			fullBuild();
 			expectingNoProblems(); // There should be no compiler errors, i.e. except the APT injected ones.
 			Problem[] problems = env.getProblemsFor(jproj.getProject().getFullPath(), "org.eclipse.jdt.apt.pluggable.core.compileProblem");
-			StringBuilder buf = new StringBuilder();
-			for (int i = 0, length = problems.length; i < length; i++) {
+			StringBuilder buf = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+			for (int i = 0, length = problems.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				Problem problem = problems[i];
-				buf.append(problem.getMessage());
-				if (i < length - 1) buf.append('\n');
+				buf.append(problem.getMessage()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+				if (i < length - 1) buf.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			}
 			assertEquals("There should be two reported problems",
 						"Some Error Message.\nYet another Error Message.",
@@ -269,7 +269,7 @@ public class BuilderTests extends TestBase
 		fullBuild();
 		expectingNoProblems();
 	}
-	public void testBatchedBuild() throws Throwable {
+	public void testBatchedBuild() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int old = AbstractImageBuilder.MAX_AT_ONCE;
 		IJavaProject jproj = createJavaProject(_projectName);
 		disableJava5Factories(jproj);
@@ -313,7 +313,7 @@ public class BuilderTests extends TestBase
 		}
 	}
 
-	public void testBug468853() throws Throwable {
+	public void testBug468853() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int old = AbstractImageBuilder.MAX_AT_ONCE;
 		IJavaProject jproj = createJavaProject(_projectName);
 		disableJava5Factories(jproj);
@@ -396,7 +396,7 @@ public class BuilderTests extends TestBase
         assertTrue("Incorrect status received from annotation processor", Issue4446Processor.status());
     }
 
-	public void testBug341298() throws Throwable {
+	public void testBug341298() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.reset();
 		IJavaProject project = createJavaProject(_projectName);
 		IPath root = project.getProject().getFullPath().append("src");
@@ -415,7 +415,7 @@ public class BuilderTests extends TestBase
 		fullBuild();
 		assertTrue("Processor should be able to compile with passed options", Bug341298Processor.success());
 	}
-	public void testGHIssue4640() throws Throwable {
+	public void testGHIssue4640() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ProcessorTestStatus.reset();
 		IJavaProject project = createJavaProject(_projectName);
 		IPath root = project.getProject().getFullPath().append("src");
@@ -435,7 +435,7 @@ public class BuilderTests extends TestBase
 		assertTrue("Processor should be able to compile with passed options", Bug341298Processor.success());
 	}
 
-	public void testBug539663() throws Throwable {
+	public void testBug539663() throws Throwable { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (!canRunJava9()) {
 			return;
 		}

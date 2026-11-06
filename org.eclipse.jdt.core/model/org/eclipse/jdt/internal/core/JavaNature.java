@@ -73,7 +73,7 @@ public class JavaNature implements IProjectNature {
 	 * Find the specific Java command amongst the given build spec and return its index or -1 if not found.
 	 */
 	private int getJavaCommandIndex(ICommand[] buildSpec) {
-		for (int i = 0; i < buildSpec.length; ++i) {
+		for (int i = 0; i < buildSpec.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (buildSpec[i].getBuilderName().equals(JavaCore.BUILDER_ID)) {
 				return i;
 			}
@@ -84,7 +84,7 @@ public class JavaNature implements IProjectNature {
 	/**
 	 * Update the Java command in the build spec (replace existing one if present, add one first if none).
 	 */
-	private void setJavaCommand(IProjectDescription description, ICommand newCommand) throws CoreException {
+	private void setJavaCommand(IProjectDescription description, ICommand newCommand) throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICommand[] oldBuildSpec = description.getBuildSpec();
 		int oldJavaCommandIndex = getJavaCommandIndex(oldBuildSpec);
 		ICommand[] newCommands;
@@ -110,7 +110,7 @@ public class JavaNature implements IProjectNature {
 	protected void removeFromBuildSpec(String builderID) throws CoreException {
 		IProjectDescription description = this.project.getDescription();
 		ICommand[] commands = description.getBuildSpec();
-		for (int i = 0; i < commands.length; ++i) {
+		for (int i = 0; i < commands.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (commands[i].getBuilderName().equals(builderID)) {
 				ICommand[] newCommands = new ICommand[commands.length - 1];
 				System.arraycopy(commands, 0, newCommands, 0, i);

@@ -56,7 +56,7 @@ class VariableBinding implements IVariableBinding {
 		this.binding = binding;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IAnnotationBinding[] getAnnotations() {
 		if (this.annotations != null) {
 			return this.annotations;
@@ -66,7 +66,7 @@ class VariableBinding implements IVariableBinding {
 		if (length != 0) {
 			IAnnotationBinding[] tempAnnotations = new IAnnotationBinding[length];
 			int convertedAnnotationCount = 0;
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding internalAnnotation = internalAnnotations[i];
 				final IAnnotationBinding annotationInstance = this.resolver.getAnnotationInstance(internalAnnotation);
 				if (annotationInstance == null) {
@@ -85,7 +85,7 @@ class VariableBinding implements IVariableBinding {
 		return this.annotations = AnnotationBinding.NoAnnotations;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public Object getConstantValue() {
 		Constant c = this.binding.constant();
 		if (c == null || c == Constant.NotAConstant) return null;
@@ -125,11 +125,11 @@ class VariableBinding implements IVariableBinding {
 		}
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public IMethodBinding getDeclaringMethod() {
 		if (!isField()) {
 			ASTNode node = this.resolver.findDeclaringNode(this);
-			while (true) {
+			while (true) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				if (node == null) {
 					if (this.binding instanceof LocalVariableBinding) {
 						LocalVariableBinding localVariableBinding = (LocalVariableBinding) this.binding;
@@ -204,7 +204,7 @@ class VariableBinding implements IVariableBinding {
 		return this.type;
 	}
 
-	private JavaElement getUnresolvedJavaElement() {
+	private JavaElement getUnresolvedJavaElement() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (JavaCore.getPlugin() == null) {
 			return null;
 		}
@@ -341,7 +341,7 @@ class VariableBinding implements IVariableBinding {
 		return (this.binding.modifiers & ClassFileConstants.AccEnum) != 0;
 	}
 
-	@Override
+	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean isEqualTo(IBinding other) {
 		if (other == this) {
 			// identical binding - equal (key or no key)

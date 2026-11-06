@@ -51,14 +51,14 @@ public boolean equals(Object o) {
 	return this.sourceLocation == f.sourceLocation && this.resource.getFullPath().equals(f.resource.getFullPath());
 }
 
-String extractTypeName() {
+String extractTypeName() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// answer a String with the qualified type name for the source file in the form: 'p1/p2/A'
 	IPath fullPath = this.resource.getFullPath();
 	int resourceSegmentCount = fullPath.segmentCount();
 	int sourceFolderSegmentCount = this.sourceLocation.sourceFolder.getFullPath().segmentCount();
 	int charCount = (resourceSegmentCount - sourceFolderSegmentCount - 1);
 	resourceSegmentCount--; // deal with the last segment separately
-	for (int i = sourceFolderSegmentCount; i < resourceSegmentCount; i++)
+	for (int i = sourceFolderSegmentCount; i < resourceSegmentCount; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		charCount += fullPath.segment(i).length();
 	String lastSegment = fullPath.segment(resourceSegmentCount);
 	int extensionIndex = Util.indexOfJavaLikeExtension(lastSegment);
@@ -66,7 +66,7 @@ String extractTypeName() {
 
 	char[] result = new char[charCount];
 	int offset = 0;
-	for (int i = sourceFolderSegmentCount; i < resourceSegmentCount; i++) {
+	for (int i = sourceFolderSegmentCount; i < resourceSegmentCount; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		String segment = fullPath.segment(i);
 		int size = segment.length();
 		segment.getChars(0, size, result, offset);
@@ -126,7 +126,7 @@ String typeLocator() {
 
 @Override
 public String toString() {
-	return "SourceFile[" //$NON-NLS-1$
+	return "SourceFile[" //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		+ this.resource.getFullPath() + "]";  //$NON-NLS-1$
 }
 

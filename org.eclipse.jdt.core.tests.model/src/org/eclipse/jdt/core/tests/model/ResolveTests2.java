@@ -50,7 +50,7 @@ public void tearDownSuite() throws Exception {
 	super.tearDownSuite();
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=227822
-public void testBug227822a() throws Exception {
+public void testBug227822a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create P1
 		this.createJavaProject(
@@ -81,7 +81,7 @@ public void testBug227822a() throws Exception {
 
 		assertElementsEqual(
 			"Unexpected elements",
-			"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]", // Object is found in another project with Object on his classpath
+			"Object [in Object.class [in java.lang [in "+ getExternalJCLPathString() + "]]]", // Object is found in another project with Object on his classpath //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			elements
 		);
 	} finally {
@@ -89,7 +89,7 @@ public void testBug227822a() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=227822
-public void testBug227822b() throws Exception {
+public void testBug227822b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create P1
 		this.createJavaProject(
@@ -128,7 +128,7 @@ public void testBug227822b() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=227822
-public void testBug227822c() throws Exception {
+public void testBug227822c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create P1
 		this.createJavaProject(
@@ -167,7 +167,7 @@ public void testBug227822c() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=227822
-public void testBug227822d() throws Exception {
+public void testBug227822d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create P1
 		this.createJavaProject(
@@ -207,10 +207,10 @@ public void testBug227822d() throws Exception {
 }
 
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232880
-public void testBug232880a() throws Exception {
+public void testBug232880a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String outputDirectory = Util.getOutputDirectory();
-	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$
-	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$
+	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 
 		// create external jar 1
@@ -221,7 +221,7 @@ public void testBug232880a() throws Exception {
 					"public class IResource {\n" + //$NON-NLS-1$
 					"}" //$NON-NLS-1$
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -238,7 +238,7 @@ public void testBug232880a() throws Exception {
 					source2
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -266,7 +266,7 @@ public void testBug232880a() throws Exception {
 
 		assertElementsEqual(
 			"Unexpected elements",
-			"IResource [in IResource.class [in test1 [in "+outputDirectory + File.separator+"bug232880a.jar]]]",
+			"IResource [in IResource.class [in test1 [in "+outputDirectory + File.separator+"bug232880a.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			elements
 		);
 	} finally {
@@ -277,10 +277,10 @@ public void testBug232880a() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232880
-public void testBug232880b() throws Exception {
+public void testBug232880b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String outputDirectory = Util.getOutputDirectory();
-	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$
-	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$
+	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 
 		// create external jar 1
@@ -291,7 +291,7 @@ public void testBug232880b() throws Exception {
 					"public class IResource {\n" + //$NON-NLS-1$
 					"}" //$NON-NLS-1$
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -308,7 +308,7 @@ public void testBug232880b() throws Exception {
 					source2
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -347,10 +347,10 @@ public void testBug232880b() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232880
-public void testBug232880c() throws Exception {
+public void testBug232880c() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String outputDirectory = Util.getOutputDirectory();
-	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$
-	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$
+	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 
 		// create external jar 1
@@ -361,7 +361,7 @@ public void testBug232880c() throws Exception {
 					"public class IResource {\n" + //$NON-NLS-1$
 					"}" //$NON-NLS-1$
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -378,7 +378,7 @@ public void testBug232880c() throws Exception {
 					source2
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -413,7 +413,7 @@ public void testBug232880c() throws Exception {
 
 		assertElementsEqual(
 			"Unexpected elements",
-			"IResource [in IResource.class [in test1 [in "+outputDirectory+File.separator+"bug232880a.jar]]]",
+			"IResource [in IResource.class [in test1 [in "+outputDirectory+File.separator+"bug232880a.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			elements
 		);
 	} finally {
@@ -426,10 +426,10 @@ public void testBug232880c() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232880
-public void testBug232880d() throws Exception {
+public void testBug232880d() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String outputDirectory = Util.getOutputDirectory();
-	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$
-	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$
+	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 
 		// create external jar 1
@@ -443,7 +443,7 @@ public void testBug232880d() throws Exception {
 					"test1/IResource.java", //$NON-NLS-1$
 					source1
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -460,7 +460,7 @@ public void testBug232880d() throws Exception {
 					source2
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -513,10 +513,10 @@ public void testBug232880d() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232880
-public void testBug232880e() throws Exception {
+public void testBug232880e() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String outputDirectory = Util.getOutputDirectory();
-	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$
-	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$
+	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 
 		// create external jar 1
@@ -537,7 +537,7 @@ public void testBug232880e() throws Exception {
 					"test1/IResource.java", //$NON-NLS-1$
 					source1_2
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -563,7 +563,7 @@ public void testBug232880e() throws Exception {
 					source2_2
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -616,10 +616,10 @@ public void testBug232880e() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232880
-public void testBug232880f() throws Exception {
+public void testBug232880f() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String outputDirectory = Util.getOutputDirectory();
-	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$
-	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$
+	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 
 		// create external jar 1
@@ -634,7 +634,7 @@ public void testBug232880f() throws Exception {
 					"public class IResource {\n" + //$NON-NLS-1$
 					"}" //$NON-NLS-1$
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -651,7 +651,7 @@ public void testBug232880f() throws Exception {
 					source2
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -686,7 +686,7 @@ public void testBug232880f() throws Exception {
 
 		assertElementsEqual(
 			"Unexpected elements",
-			"IResource [in IResource.class [in test2 [in "+outputDirectory+File.separator+"bug232880a.jar]]]",
+			"IResource [in IResource.class [in test2 [in "+outputDirectory+File.separator+"bug232880a.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			elements
 		);
 	} finally {
@@ -699,10 +699,10 @@ public void testBug232880f() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232880
-public void testBug232880g() throws Exception {
+public void testBug232880g() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String outputDirectory = Util.getOutputDirectory();
-	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$
-	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$
+	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 
 		// create external jar 1
@@ -717,7 +717,7 @@ public void testBug232880g() throws Exception {
 					"public class IResource {\n" + //$NON-NLS-1$
 					"}" //$NON-NLS-1$
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -734,7 +734,7 @@ public void testBug232880g() throws Exception {
 					source2
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -769,7 +769,7 @@ public void testBug232880g() throws Exception {
 
 		assertElementsEqual(
 			"Unexpected elements",
-			"IResource [in IResource.class [in test2 [in "+outputDirectory+File.separator+"bug232880a.jar]]]",
+			"IResource [in IResource.class [in test2 [in "+outputDirectory+File.separator+"bug232880a.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			elements
 		);
 	} finally {
@@ -781,10 +781,10 @@ public void testBug232880g() throws Exception {
 		this.deleteProject("PS2");
 	}
 }//https://bugs.eclipse.org/bugs/show_bug.cgi?id=232880
-public void testBug232880h() throws Exception {
+public void testBug232880h() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String outputDirectory = Util.getOutputDirectory();
-	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$
-	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$
+	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 
 		// create external jar 1
@@ -799,7 +799,7 @@ public void testBug232880h() throws Exception {
 					"public class IResource {\n" + //$NON-NLS-1$
 					"}" //$NON-NLS-1$
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -817,7 +817,7 @@ public void testBug232880h() throws Exception {
 					source2
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -852,7 +852,7 @@ public void testBug232880h() throws Exception {
 
 		assertElementsEqual(
 			"Unexpected elements",
-			"IResource [in IResource.class [in test2 [in "+outputDirectory+File.separator+"bug232880a.jar]]]",
+			"IResource [in IResource.class [in test2 [in "+outputDirectory+File.separator+"bug232880a.jar]]]", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			elements
 		);
 	} finally {
@@ -864,10 +864,10 @@ public void testBug232880h() throws Exception {
 		this.deleteProject("PS2");
 	}
 }
-public void testBug232880i() throws Exception {
+public void testBug232880i() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String outputDirectory = Util.getOutputDirectory();
-	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$
-	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$
+	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 
 		// create external jar 1
@@ -882,7 +882,7 @@ public void testBug232880i() throws Exception {
 					"public class IResource {\n" + //$NON-NLS-1$
 					"}" //$NON-NLS-1$
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -898,7 +898,7 @@ public void testBug232880i() throws Exception {
 					source2
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -933,7 +933,7 @@ public void testBug232880i() throws Exception {
 
 		assertElementsEqual(
 			"Unexpected elements",
-			"IResource [in IResource.class [in test1 [in "+outputDirectory+File.separator+"bug232880a.jar]]]\n" +
+			"IResource [in IResource.class [in test1 [in "+outputDirectory+File.separator+"bug232880a.jar]]]\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"IResource [in IResource.class [in test2 [in "+outputDirectory+File.separator+"bug232880a.jar]]]",
 			elements,
 			false,
@@ -949,10 +949,10 @@ public void testBug232880i() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=232880
-public void testBug232880j() throws Exception {
+public void testBug232880j() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String outputDirectory = Util.getOutputDirectory();
-	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$
-	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$
+	String externalJar1 = outputDirectory + File.separator + "bug232880a.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String externalJar2 = outputDirectory + File.separator + "bug232880b.jar"; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	try {
 
 		// create external jar 1
@@ -963,7 +963,7 @@ public void testBug232880j() throws Exception {
 					"public class IResource {\n" + //$NON-NLS-1$
 					"}" //$NON-NLS-1$
 				},
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				externalJar1);
 
 		// create external jar 2
@@ -981,7 +981,7 @@ public void testBug232880j() throws Exception {
 					source2
 				},
 				null,
-				new HashMap(),
+				new HashMap(), //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 				new String[]{externalJar1},
 				externalJar2);
 
@@ -1029,7 +1029,7 @@ public void testBug232880j() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=249027
-public void testBug249027a() throws Exception {
+public void testBug249027a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create P1
 		this.createJavaProject(
@@ -1075,7 +1075,7 @@ public void testBug249027a() throws Exception {
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=249027
-public void testBug249027b() throws Exception {
+public void testBug249027b() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create P1
 		this.createJavaProject(
@@ -1121,7 +1121,7 @@ public void testBug249027b() throws Exception {
 	}
 }
 
-public void testBug343693() throws Exception{
+public void testBug343693() throws Exception{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create P1
 		this.createJavaProject(
@@ -1163,7 +1163,7 @@ public void testBug343693() throws Exception{
 		this.deleteProject("P1");
 	}
 }
-public void testBug349486() throws Exception{
+public void testBug349486() throws Exception{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create P1
 		this.createJavaProject(
@@ -1215,7 +1215,7 @@ public void testBug349486() throws Exception{
 		this.deleteProject("P1");
 	}
 }
-public void testBug356325() throws Exception{
+public void testBug356325() throws Exception{ //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		// create P1
 		this.createJavaProject(

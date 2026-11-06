@@ -43,7 +43,7 @@ public static final int ONLY_SUPER_CLASSES = 2; // used for hierarchy with a cla
 
 protected static char[][] CATEGORIES = { SUPER_REF };
 
-public static char[] createIndexKey(
+public static char[] createIndexKey( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	int modifiers,
 	char[] packageName,
 	char[] typeName,
@@ -87,13 +87,13 @@ public static char[] createIndexKey(
 	char[] typeParameters = CharOperation.NO_CHAR;
 	int typeParametersLength = 0;
 	if (typeParameterSignatures != null) {
-		StringBuilder buffer = new StringBuilder();
-		for (int i = 0, length = typeParameterSignatures.length; i < length; i++) {
+		StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+		for (int i = 0, length = typeParameterSignatures.length; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			char[] typeParameter = typeParameterSignatures[i];
-			buffer.append(typeParameter);
+			buffer.append(typeParameter); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			typeParametersLength += typeParameter.length;
 			if (i != length-1) {
-				buffer.append(',');
+				buffer.append(','); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 				typeParametersLength++;
 			}
 		}
@@ -175,7 +175,7 @@ SuperTypeReferencePattern(int matchRule) {
 /*
  * superSimpleName / superQualification / simpleName / enclosingTypeName / typeParameters / pkgName / superClassOrInterface classOrInterface modifiers
  */
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void decodeIndexKey(char[] key) {
 	int slash = CharOperation.indexOf(SEPARATOR, key, 0);
 	this.superSimpleName = CharOperation.subarray(key, 0, slash);
@@ -248,7 +248,7 @@ public boolean matchesDecodedKey(SearchPattern decodedPattern) {
 
 	return matchesName(this.superSimpleName, pattern.superSimpleName);
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public EntryResult[] queryIn(Index index) throws IOException {
 	char[] key = this.superSimpleName; // can be null
 	int matchRule = getMatchRule();
@@ -279,24 +279,24 @@ public EntryResult[] queryIn(Index index) throws IOException {
 
 	return index.query(getIndexCategories(), key, matchRule); // match rule is irrelevant when the key is null
 }
-@Override
+@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 protected StringBuilder print(StringBuilder output) {
 	switch (this.superRefKind) {
 		case ALL_SUPER_TYPES:
-			output.append("SuperTypeReferencePattern: <"); //$NON-NLS-1$
+			output.append("SuperTypeReferencePattern: <"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case ONLY_SUPER_INTERFACES:
-			output.append("SuperInterfaceReferencePattern: <"); //$NON-NLS-1$
+			output.append("SuperInterfaceReferencePattern: <"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 		case ONLY_SUPER_CLASSES:
-			output.append("SuperClassReferencePattern: <"); //$NON-NLS-1$
+			output.append("SuperClassReferencePattern: <"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			break;
 	}
 	if (this.superSimpleName != null)
-		output.append(this.superSimpleName);
+		output.append(this.superSimpleName); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	else
-		output.append("*"); //$NON-NLS-1$
-	output.append(">"); //$NON-NLS-1$
+		output.append("*"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	output.append(">"); //$NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	return super.print(output);
 }
 }

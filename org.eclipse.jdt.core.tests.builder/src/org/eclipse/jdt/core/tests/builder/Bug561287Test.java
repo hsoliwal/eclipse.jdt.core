@@ -28,7 +28,7 @@ public class Bug561287Test extends BuilderTests {
 	public static Test suite() {
 		return buildTestSuite(Bug561287Test.class);
 	}
-	public void testBuilderRegression() throws JavaModelException, Exception {
+	public void testBuilderRegression() throws JavaModelException, Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int maxAtOnce = AbstractImageBuilder.MAX_AT_ONCE;
 		AbstractImageBuilder.MAX_AT_ONCE = 2;
 		try {

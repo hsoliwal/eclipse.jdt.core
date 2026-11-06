@@ -52,7 +52,7 @@ public static Test suite() {
 	return buildModelTestSuite(CompletionTests18.class);
 }
 
-public void test001() throws JavaModelException {
+public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -70,10 +70,10 @@ public void test001() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"first[LOCAL_VARIABLE_REF]{first, null, I, first, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}",
+			"first[LOCAL_VARIABLE_REF]{first, null, I, first, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test002() throws JavaModelException {
+public void test002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -93,10 +93,10 @@ public void test002() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"first[LOCAL_VARIABLE_REF]{first, null, I, first, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}",
+			"first[LOCAL_VARIABLE_REF]{first, null, I, first, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test003() throws JavaModelException {
+public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -125,7 +125,7 @@ public void test003() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"CASE_INSENSITIVE_ORDER[FIELD_REF]{CASE_INSENSITIVE_ORDER, Ljava.lang.String;, Ljava.util.Comparator<Ljava.lang.String;>;, CASE_INSENSITIVE_ORDER, null, " + (R_DEFAULT + 9) + "}\n" +
+			"CASE_INSENSITIVE_ORDER[FIELD_REF]{CASE_INSENSITIVE_ORDER, Ljava.lang.String;, Ljava.util.Comparator<Ljava.lang.String;>;, CASE_INSENSITIVE_ORDER, null, " + (R_DEFAULT + 9) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"copyValueOf[METHOD_REF]{copyValueOf(), Ljava.lang.String;, ([C)Ljava.lang.String;, copyValueOf, (arg0), " + (R_DEFAULT + 19) + "}\n" +
 			"copyValueOf[METHOD_REF]{copyValueOf(), Ljava.lang.String;, ([CII)Ljava.lang.String;, copyValueOf, (arg0, arg1, arg2), " + (R_DEFAULT + 19) + "}\n" +
 			"chars[METHOD_REF]{chars(), Ljava.lang.CharSequence;, ()Ljava.util.stream.IntStream;, chars, null, " + (R_DEFAULT + 30) + "}\n" +
@@ -143,7 +143,7 @@ public void test003() throws JavaModelException {
 			"compareToIgnoreCase[METHOD_REF]{compareToIgnoreCase(), Ljava.lang.String;, (Ljava.lang.String;)I, compareToIgnoreCase, (arg0), " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 30) + "}",
 			requestor.getResults());
 }
-public void test004() throws JavaModelException {
+public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -161,12 +161,12 @@ public void test004() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"lpx5[LOCAL_VARIABLE_REF]{lpx5, null, I, lpx5, null, " + (R_DEFAULT + 22) + "}\n" +
+			"lpx5[LOCAL_VARIABLE_REF]{lpx5, null, I, lpx5, null, " + (R_DEFAULT + 22) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"lpx6[LOCAL_VARIABLE_REF]{lpx6, null, I, lpx6, null, " + (R_DEFAULT + 22) + "}",
 			requestor.getResults());
 }
 
-public void test005() throws JavaModelException {
+public void test005() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -191,10 +191,10 @@ public void test005() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_NON_RESTRICTED + R_UNQUALIFIED;
 	assertResults(
-			"argument[LOCAL_VARIABLE_REF]{argument, null, I, argument, null, " + relevance + "}",
+			"argument[LOCAL_VARIABLE_REF]{argument, null, I, argument, null, " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test006() throws JavaModelException {
+public void test006() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -216,11 +216,11 @@ public void test006() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"argument[LOCAL_VARIABLE_REF]{argument, null, I, argument, null, " + (R_DEFAULT + 22) + "}",
+			"argument[LOCAL_VARIABLE_REF]{argument, null, I, argument, null, " + (R_DEFAULT + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // corrected syntax (expr w/o enclosing {}) should not give worse result
-public void test006b() throws JavaModelException {
+public void test006b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -247,7 +247,7 @@ public void test006b() throws JavaModelException {
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=405126, [1.8][code assist] Lambda parameters incorrectly recovered as fields.
-public void test007() throws JavaModelException {
+public void test007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -271,13 +271,13 @@ public void test007() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"class[FIELD_REF]{class, null, Ljava.lang.Class<LX;>;, class, null, " + (R_DEFAULT + 21) + "}\n" +
+			"class[FIELD_REF]{class, null, Ljava.lang.Class<LX;>;, class, null, " + (R_DEFAULT + 21) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"f[FIELD_REF]{f, LX;, LFoo;, f, null, " + (R_DEFAULT + 21) + "}\n" +
 			"x1[FIELD_REF]{x1, LX;, I, x1, null, " + (R_DEFAULT + 51) + "}",
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422107, [1.8][code assist] Invoking code assist just before and after a variable initialized using lambda gives different result
-public void test008() throws JavaModelException {
+public void test008() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -299,7 +299,7 @@ public void test008() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"[POTENTIAL_METHOD_DECLARATION]{, LX;, ()V, , null, " + (R_DEFAULT + 9) + "}\n" +
+			"[POTENTIAL_METHOD_DECLARATION]{, LX;, ()V, , null, " + (R_DEFAULT + 9) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"abstract[KEYWORD]{abstract, null, null, abstract, null, " + (R_DEFAULT + 19) + "}\n" +
 			"class[KEYWORD]{class, null, null, class, null, " + (R_DEFAULT + 19) + "}\n" +
 			"enum[KEYWORD]{enum, null, null, enum, null, " + (R_DEFAULT + 19) + "}\n" +
@@ -325,7 +325,7 @@ public void test008() throws JavaModelException {
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422107, [1.8][code assist] Invoking code assist just before and after a variable initialized using lambda gives different result
-public void test009() throws JavaModelException {
+public void test009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -347,7 +347,7 @@ public void test009() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"[POTENTIAL_METHOD_DECLARATION]{, LX;, ()V, , null, " + (R_DEFAULT + 9) + "}\n" +
+			"[POTENTIAL_METHOD_DECLARATION]{, LX;, ()V, , null, " + (R_DEFAULT + 9) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"abstract[KEYWORD]{abstract, null, null, abstract, null, " + (R_DEFAULT + 19) + "}\n" +
 			"class[KEYWORD]{class, null, null, class, null, " + (R_DEFAULT + 19) + "}\n" +
 			"enum[KEYWORD]{enum, null, null, enum, null, " + (R_DEFAULT + 19) + "}\n" +
@@ -372,7 +372,7 @@ public void test009() throws JavaModelException {
 			"toString[METHOD_DECLARATION]{public String toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, " + (R_DEFAULT + 22) + "}",
 			requestor.getResults());
 }
-public void test010() throws JavaModelException {
+public void test010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -399,7 +399,7 @@ public void test010() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"goo[METHOD_REF]{goo(), LX;, (LI;)V, goo, (i), " + (R_DEFAULT + 19) + "}\n" +
+			"goo[METHOD_REF]{goo(), LX;, (LI;)V, goo, (i), " + (R_DEFAULT + 19) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"goo[METHOD_REF]{goo(), LX;, (Ljava.lang.String;)V, goo, (s), " + (R_DEFAULT + 19) + "}\n" +
 			"main[METHOD_REF]{main(), LX;, ([Ljava.lang.String;)V, main, (args), " + (R_DEFAULT + 19) + "}\n" +
 			"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, " + (R_DEFAULT + 30) + "}\n" +
@@ -416,7 +416,7 @@ public void test010() throws JavaModelException {
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422901, [1.8][code assist] Code assistant sensitive to scope.referenceContext type identity.
-public void test011() throws JavaModelException {
+public void test011() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -447,7 +447,7 @@ public void test011() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422901, [1.8][code assist] Code assistant sensitive to scope.referenceContext type identity.
-public void test012() throws JavaModelException {
+public void test012() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -478,7 +478,7 @@ public void test012() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422901, [1.8][code assist] Code assistant sensitive to scope.referenceContext type identity.
-public void test013() throws JavaModelException {
+public void test013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -509,7 +509,7 @@ public void test013() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422901, [1.8][code assist] Code assistant sensitive to scope.referenceContext type identity.
-public void test014() throws JavaModelException { // ensure higher relevance for matching return type.
+public void test014() throws JavaModelException { // ensure higher relevance for matching return type. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -532,11 +532,11 @@ public void test014() throws JavaModelException { // ensure higher relevance for
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED;
-	assertResults("arrayOfStrings[LOCAL_VARIABLE_REF]{arrayOfStrings, null, [Ljava.lang.String;, null, null, arrayOfStrings, null, [168, 174], " + (R_DEFAULT + 22) + "}\n" +
+	assertResults("arrayOfStrings[LOCAL_VARIABLE_REF]{arrayOfStrings, null, [Ljava.lang.String;, null, null, arrayOfStrings, null, [168, 174], " + (R_DEFAULT + 22) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					"arrayOfInts[LOCAL_VARIABLE_REF]{arrayOfInts, null, [I, null, null, arrayOfInts, null, [168, 174], " + relevance + "}", requestor.getResults());
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/650, Templates not working in Lambda internal block.
-public void test015a() throws JavaModelException {
+public void test015a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -571,7 +571,7 @@ public void test015a() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/650, Templates not working in Lambda internal block.
-public void test015b() throws JavaModelException {
+public void test015b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -606,7 +606,7 @@ public void test015b() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/650, Templates not working in Lambda internal block.
-public void test015c() throws JavaModelException {
+public void test015c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -642,7 +642,7 @@ public void test015c() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422901, [1.8][code assist] Code assistant sensitive to scope.referenceContext type identity.
-public void test016() throws JavaModelException { // ensure higher relevance for matching return type.
+public void test016() throws JavaModelException { // ensure higher relevance for matching return type. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -666,10 +666,10 @@ public void test016() throws JavaModelException { // ensure higher relevance for
 	String completeBehind = "xyz";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("xyzBefore[LOCAL_VARIABLE_REF]{xyzBefore, null, Ljava.lang.Object;, null, null, xyzBefore, null, [163, 166], " + (R_DEFAULT + 21) + "}", requestor.getResults());
+	assertResults("xyzBefore[LOCAL_VARIABLE_REF]{xyzBefore, null, Ljava.lang.Object;, null, null, xyzBefore, null, [163, 166], " + (R_DEFAULT + 21) + "}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422901, [1.8][code assist] Code assistant sensitive to scope.referenceContext type identity.
-public void test017() throws JavaModelException { // ensure higher relevance for matching return type.
+public void test017() throws JavaModelException { // ensure higher relevance for matching return type. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -710,7 +710,7 @@ public void test017() throws JavaModelException { // ensure higher relevance for
 			"}" , requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422468, [1.8][assist] Code assist issues with type elided lambda parameters
-public void test018() throws JavaModelException { // computing visible elements in lambda scope.
+public void test018() throws JavaModelException { // computing visible elements in lambda scope. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -755,7 +755,7 @@ public void test018() throws JavaModelException { // computing visible elements 
 			"}" , requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422468, [1.8][assist] Code assist issues with type elided lambda parameters
-public void test018a() throws JavaModelException { // computing visible elements in lambda scope.
+public void test018a() throws JavaModelException { // computing visible elements in lambda scope. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -811,7 +811,7 @@ public void test018a() throws JavaModelException { // computing visible elements
 			"	goo(String) {key=LX;.goo(Ljava/lang/String;)LX;} [in X [in [Working copy] X.java [in <default> [in src [in Completion]]]]],\n" +
 			"}" , requestor.getContext());
 }
-public void testUnspecifiedReference() throws JavaModelException { // ensure completion on ambiguous reference works and shows both types and names.
+public void testUnspecifiedReference() throws JavaModelException { // ensure completion on ambiguous reference works and shows both types and names. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -834,7 +834,7 @@ public void testUnspecifiedReference() throws JavaModelException { // ensure com
 	String completeBehind = "Stri";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("StringBufferInputStream[TYPE_REF]{java.io.StringBufferInputStream, java.io, Ljava.io.StringBufferInputStream;, null, null, null, null, [155, 159], " + (R_DEFAULT + R_JAVA_LIBRARY + 19) + "}\n" +
+	assertResults("StringBufferInputStream[TYPE_REF]{java.io.StringBufferInputStream, java.io, Ljava.io.StringBufferInputStream;, null, null, null, null, [155, 159], " + (R_DEFAULT + R_JAVA_LIBRARY + 19) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"StringCharBuffer[TYPE_REF]{java.nio.StringCharBuffer, java.nio, Ljava.nio.StringCharBuffer;, null, null, null, null, [155, 159], " + (R_DEFAULT + R_JAVA_LIBRARY + 19) + "}\n" +
 			"StringCharacterIterator[TYPE_REF]{java.text.StringCharacterIterator, java.text, Ljava.text.StringCharacterIterator;, null, null, null, null, [155, 159], " + (R_DEFAULT + R_JAVA_LIBRARY + 19) + "}\n" +
 			"StringJoiner[TYPE_REF]{java.util.StringJoiner, java.util, Ljava.util.StringJoiner;, null, null, null, null, [155, 159], " + (R_DEFAULT + R_JAVA_LIBRARY + 19) + "}\n" +
@@ -849,7 +849,7 @@ public void testUnspecifiedReference() throws JavaModelException { // ensure com
 			"StringCoding[TYPE_REF]{StringCoding, java.lang, Ljava.lang.StringCoding;, null, null, null, null, [155, 159], " + (R_DEFAULT + R_JAVA_LIBRARY + 22) + "}\n" +
 	        "StringIndexOutOfBoundsException[TYPE_REF]{StringIndexOutOfBoundsException, java.lang, Ljava.lang.StringIndexOutOfBoundsException;, null, null, null, null, [155, 159], " + (R_DEFAULT + R_JAVA_LIBRARY + 22) + "}", requestor.getResults());
 }
-public void testBrokenMethodCall() throws JavaModelException { // ensure completion works when the containing call is not terminated properly.
+public void testBrokenMethodCall() throws JavaModelException { // ensure completion works when the containing call is not terminated properly. //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -872,9 +872,9 @@ public void testBrokenMethodCall() throws JavaModelException { // ensure complet
 	String completeBehind = "StringP";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("StringParameter[LOCAL_VARIABLE_REF]{StringParameter, null, LX;, null, null, StringParameter, null, [155, 162], " + (R_DEFAULT + 22) + "}", requestor.getResults());
+	assertResults("StringParameter[LOCAL_VARIABLE_REF]{StringParameter, null, LX;, null, null, StringParameter, null, [155, 162], " + (R_DEFAULT + 22) + "}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
-public void testExpressionBody() throws JavaModelException {
+public void testExpressionBody() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -897,7 +897,7 @@ public void testExpressionBody() throws JavaModelException {
 	String completeBehind = "xyz.";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("goo[METHOD_REF]{goo(), LX;, (LI;)V, null, null, goo, (i), [173, 173], " + (R_DEFAULT + 19) + "}\n" +
+	assertResults("goo[METHOD_REF]{goo(), LX;, (LI;)V, null, null, goo, (i), [173, 173], " + (R_DEFAULT + 19) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"main[METHOD_REF]{main(), LX;, ([Ljava.lang.String;)V, null, null, main, (args), [173, 173], " + (R_DEFAULT + 19) + "}\n" +
 			"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, null, null, clone, null, [173, 173], " + (R_DEFAULT + 30) + "}\n" +
 			"equals[METHOD_REF]{equals(), Ljava.lang.Object;, (Ljava.lang.Object;)Z, null, null, equals, (obj), [173, 173], " + (R_DEFAULT + 30) + "}\n" +
@@ -913,7 +913,7 @@ public void testExpressionBody() throws JavaModelException {
 			"wait[METHOD_REF]{wait(), Ljava.lang.Object;, (J)V, null, null, wait, (millis), [173, 173], " + (R_DEFAULT + 30) + "}\n" +
 			"wait[METHOD_REF]{wait(), Ljava.lang.Object;, (JI)V, null, null, wait, (millis, nanos), [173, 173], " + (R_DEFAULT + 30) + "}", requestor.getResults());
 }
-public void testExpressionBody2() throws JavaModelException {
+public void testExpressionBody2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -936,7 +936,7 @@ public void testExpressionBody2() throws JavaModelException {
 	String completeBehind = "xyz.";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("goo[METHOD_REF]{goo(), LX;, (LI;)V, null, null, goo, (i), [173, 173], " + (R_DEFAULT + 19) + "}\n" +
+	assertResults("goo[METHOD_REF]{goo(), LX;, (LI;)V, null, null, goo, (i), [173, 173], " + (R_DEFAULT + 19) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"main[METHOD_REF]{main(), LX;, ([Ljava.lang.String;)V, null, null, main, (args), [173, 173], " + (R_DEFAULT + 19) + "}\n" +
 			"clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, null, null, clone, null, [173, 173], " + (R_DEFAULT + 30) + "}\n" +
 			"equals[METHOD_REF]{equals(), Ljava.lang.Object;, (Ljava.lang.Object;)Z, null, null, equals, (obj), [173, 173], " + (R_DEFAULT + 30) + "}\n" +
@@ -954,7 +954,7 @@ public void testExpressionBody2() throws JavaModelException {
 }
 // Bug 405125 - [1.8][code assist] static members of an interface appearing after the declaration of a static member lambda expression are not being suggested.
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=405125
-public void testBug405125a() throws JavaModelException {
+public void testBug405125a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Foo.java",
@@ -979,10 +979,10 @@ public void testBug405125a() throws JavaModelException {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	    assertResults(
-	    	"bars[METHOD_REF]{bars(), LB;, ()I, bars, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}",
+	    	"bars[METHOD_REF]{bars(), LB;, ()I, bars, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    	requestor.getResults());
 }
-public void testBug405125b() throws JavaModelException {
+public void testBug405125b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/Foo.java",
@@ -1007,11 +1007,11 @@ public void testBug405125b() throws JavaModelException {
 	    this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	    assertResults(
-	    	"another[FIELD_REF]{another, LB;, I, another, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}",
+	    	"another[FIELD_REF]{another, LB;, I, another, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	    	requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=425084, [1.8][completion] Eclipse freeze while autocompleting try block in lambda.
-public void test425084() throws JavaModelException {
+public void test425084() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1034,12 +1034,12 @@ public void test425084() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"tryit[LOCAL_VARIABLE_REF]{tryit, null, I, null, null, tryit, null, [99, 102], " + (R_DEFAULT + 22) + "}\n" +
+			"tryit[LOCAL_VARIABLE_REF]{tryit, null, I, null, null, tryit, null, [99, 102], " + (R_DEFAULT + 22) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"try[KEYWORD]{try, null, null, null, null, try, null, [99, 102], " + (R_DEFAULT + 23) + "}",
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422901, [1.8][code assist] Code assistant sensitive to scope.referenceContext type identity.
-public void test422901() throws JavaModelException {
+public void test422901() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1068,7 +1068,7 @@ public void test422901() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=422901, [1.8][code assist] Code assistant sensitive to scope.referenceContext type identity.
-public void test422901a() throws JavaModelException {
+public void test422901a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1099,7 +1099,7 @@ public void test422901a() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=426851, [1.8][content assist] content assist for a type use annotation
-public void test426851() throws JavaModelException {
+public void test426851() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1119,10 +1119,10 @@ public void test426851() throws JavaModelException {
 	String completeBehind = "Ty";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("TypeUse[TYPE_REF]{TypeUse, , LTypeUse;, null, null, null, null, [131, 133], " + (R_DEFAULT + 47) + "}", requestor.getResults());
+	assertResults("TypeUse[TYPE_REF]{TypeUse, , LTypeUse;, null, null, null, null, [131, 133], " + (R_DEFAULT + 47) + "}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427532, [1.8][code assist] Completion engine does not like intersection casts
-public void test427532() throws JavaModelException {
+public void test427532() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1153,7 +1153,7 @@ public void test427532() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427532, [1.8][code assist] Completion engine does not like intersection casts
-public void test427532a() throws JavaModelException {
+public void test427532a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1184,7 +1184,7 @@ public void test427532a() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427532, [1.8][code assist] Completion engine does not like intersection casts
-public void test427532b() throws JavaModelException {
+public void test427532b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1216,7 +1216,7 @@ public void test427532b() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=427464, [1.8][content assist] CCE : MethodDeclaration incompatible with CompletionOnAnnotationOfType
-public void test427464() throws JavaModelException {
+public void test427464() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1238,10 +1238,10 @@ public void test427464() throws JavaModelException {
 	String completeBehind = "@Ann";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("Annotation[TYPE_REF]{Annotation, , LAnnotation;, null, null, null, null, [138, 141], " + (R_DEFAULT + 42) + "}", requestor.getResults());
+	assertResults("Annotation[TYPE_REF]{Annotation, , LAnnotation;, null, null, null, null, [138, 141], " + (R_DEFAULT + 42) + "}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735() throws JavaModelException {
+public void test428735() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1261,11 +1261,11 @@ public void test428735() throws JavaModelException {
 	String completeBehind = "p.get";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [186, 189], " + (R_DEFAULT + R_PACKAGE_EXPECTED_TYPE + 30) + "}\n" +
+	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [186, 189], " + (R_DEFAULT + R_PACKAGE_EXPECTED_TYPE + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                   "getLastName[METHOD_REF]{getLastName(), LPerson;, ()Ljava.lang.String;, null, null, getLastName, null, [186, 189], " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 30) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735a() throws JavaModelException {
+public void test428735a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1288,11 +1288,11 @@ public void test428735a() throws JavaModelException {
 	String completeBehind = "x.get";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [267, 270], " + (R_DEFAULT + 30) + "}\n" +
+	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [267, 270], " + (R_DEFAULT + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                   "getLastName[METHOD_REF]{getLastName(), LPerson;, ()Ljava.lang.String;, null, null, getLastName, null, [267, 270], " + (R_DEFAULT + 30) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735b() throws JavaModelException {
+public void test428735b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1315,11 +1315,11 @@ public void test428735b() throws JavaModelException {
 	String completeBehind = "y.get";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [293, 296], " + (R_DEFAULT + 30) + "}\n" +
+	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [293, 296], " + (R_DEFAULT + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                   "getLastName[METHOD_REF]{getLastName(), LPerson;, ()Ljava.lang.String;, null, null, getLastName, null, [293, 296], " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 30) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735c() throws JavaModelException {
+public void test428735c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1342,11 +1342,11 @@ public void test428735c() throws JavaModelException {
 	String completeBehind = "y.get";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [285, 288], " + (R_DEFAULT + 30) + "}\n" +
+	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [285, 288], " + (R_DEFAULT + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                   "getLastName[METHOD_REF]{getLastName(), LPerson;, ()Ljava.lang.String;, null, null, getLastName, null, [285, 288], " + (R_DEFAULT + 60) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735d() throws JavaModelException {
+public void test428735d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1369,11 +1369,11 @@ public void test428735d() throws JavaModelException {
 	String completeBehind = "x.get";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [272, 275], " + (R_DEFAULT + 30) + "}\n" +
+	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [272, 275], " + (R_DEFAULT + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                   "getLastName[METHOD_REF]{getLastName(), LPerson;, ()Ljava.lang.String;, null, null, getLastName, null, [272, 275], " + (R_DEFAULT + 60) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735e() throws JavaModelException {
+public void test428735e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1395,11 +1395,11 @@ public void test428735e() throws JavaModelException {
 	String completeBehind = "x.get";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [203, 206], " + (R_DEFAULT + 30) + "}\n" +
+	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [203, 206], " + (R_DEFAULT + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                "getLastName[METHOD_REF]{getLastName(), LPerson;, ()Ljava.lang.String;, null, null, getLastName, null, [203, 206], " + (R_DEFAULT + 60) + "}", requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=428735,  [1.8][assist] Missing completion proposals inside lambda body expression - other than first token
-public void test428735f() throws JavaModelException {
+public void test428735f() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// copy of test428735e with corrected syntax
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
@@ -1422,11 +1422,11 @@ public void test428735f() throws JavaModelException {
 	String completeBehind = "x.get";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [203, 206], " + (R_DEFAULT + 30) + "}\n" +
+	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [203, 206], " + (R_DEFAULT + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "getLastName[METHOD_REF]{getLastName(), LPerson;, ()Ljava.lang.String;, null, null, getLastName, null, [203, 206], " + (R_DEFAULT + 60) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402081, [1.8][code complete] No proposals while completing at method/constructor references
-public void test402081() throws JavaModelException {
+public void test402081() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1450,10 +1450,10 @@ public void test402081() throws JavaModelException {
 	String completeBehind = "long";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("longMethodName[METHOD_NAME_REFERENCE]{longMethodName, LX;, (Ljava.lang.String;)Ljava.lang.String;, null, null, longMethodName, (x), [183, 187], " + (R_DEFAULT + 30) + "}", requestor.getResults());
+	assertResults("longMethodName[METHOD_NAME_REFERENCE]{longMethodName, LX;, (Ljava.lang.String;)Ljava.lang.String;, null, null, longMethodName, (x), [183, 187], " + (R_DEFAULT + 30) + "}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402081, [1.8][code complete] No proposals while completing at method/constructor references
-public void test402081a() throws JavaModelException {
+public void test402081a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/test/X.java",
@@ -1480,11 +1480,11 @@ public void test402081a() throws JavaModelException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-			"longMethodName[METHOD_NAME_REFERENCE]{longMethodName, Ltest.X;, (Ljava.lang.String;)Ljava.lang.String;, longMethodName, (x), " + (R_DEFAULT + 30) + "}",
+			"longMethodName[METHOD_NAME_REFERENCE]{longMethodName, Ltest.X;, (Ljava.lang.String;)Ljava.lang.String;, longMethodName, (x), " + (R_DEFAULT + 30) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402081, [1.8][code complete] No proposals while completing at method/constructor references
-public void test402081b() throws JavaModelException {
+public void test402081b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/test/X.java",
@@ -1506,11 +1506,11 @@ public void test402081b() throws JavaModelException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-			"longMethodName[METHOD_NAME_REFERENCE]{longMethodName, Ltest.X<Ljava.lang.String;>;, (Ljava.lang.String;)Ljava.lang.String;, longMethodName, (x), " + (R_DEFAULT + 30) + "}",
+			"longMethodName[METHOD_NAME_REFERENCE]{longMethodName, Ltest.X<Ljava.lang.String;>;, (Ljava.lang.String;)Ljava.lang.String;, longMethodName, (x), " + (R_DEFAULT + 30) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402081, [1.8][code complete] No proposals while completing at method/constructor references
-public void test402081c() throws JavaModelException {
+public void test402081c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/test/X.java",
@@ -1535,11 +1535,11 @@ public void test402081c() throws JavaModelException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-			"longMethodName[METHOD_NAME_REFERENCE]{longMethodName, Ltest.Y;, (Ljava.lang.String;)Ljava.lang.String;, longMethodName, (x), " + (R_DEFAULT + 30) + "}",
+			"longMethodName[METHOD_NAME_REFERENCE]{longMethodName, Ltest.Y;, (Ljava.lang.String;)Ljava.lang.String;, longMethodName, (x), " + (R_DEFAULT + 30) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=402081, [1.8][code complete] No proposals while completing at method/constructor references
-public void test402081d() throws JavaModelException {
+public void test402081d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/test/X.java",
@@ -1564,11 +1564,11 @@ public void test402081d() throws JavaModelException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-			"longMethodName[METHOD_NAME_REFERENCE]{longMethodName, Ltest.Y;, (Ljava.lang.String;)Ljava.lang.String;, longMethodName, (x), " + (R_DEFAULT + 30) + "}",
+			"longMethodName[METHOD_NAME_REFERENCE]{longMethodName, Ltest.Y;, (Ljava.lang.String;)Ljava.lang.String;, longMethodName, (x), " + (R_DEFAULT + 30) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=431402, [assist] NPE in AssistParser.triggerRecoveryUponLambdaClosure:483 using Content Assist
-public void test431402() throws JavaModelException {
+public void test431402() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/test/X.java",
@@ -1591,11 +1591,11 @@ public void test431402() throws JavaModelException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-				"asList[LOCAL_VARIABLE_REF]{asList, null, Ljava.lang.Object;, asList, null, " + (R_DEFAULT + 42) + "}",
+				"asList[LOCAL_VARIABLE_REF]{asList, null, Ljava.lang.Object;, asList, null, " + (R_DEFAULT + 42) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=432527, Content Assist crashes sometimes using JDK8
-public void test432527() throws JavaModelException {
+public void test432527() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 						"/Completion/src/test/X.java",
@@ -1661,11 +1661,11 @@ public void test432527() throws JavaModelException {
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-				"removeNodeFromGraph[METHOD_REF]{removeNodeFromGraph(), Ltest.X;, (Ltest.X$Node;)V, removeNodeFromGraph, (node), " + (R_DEFAULT + 22) + "}",
+				"removeNodeFromGraph[METHOD_REF]{removeNodeFromGraph(), Ltest.X;, (Ltest.X$Node;)V, removeNodeFromGraph, (node), " + (R_DEFAULT + 22) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=430441,  [compiler] NPE in ImplicitNullAnnotationVerifier.collectOverriddenMethods from Content Assist in a .jpage file
-public void test430441() throws JavaModelException {
+public void test430441() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String str = "String str = \"foo\";\n" +
 			"str.";
 	String completeBehind = "str";
@@ -1674,7 +1674,7 @@ public void test430441() throws JavaModelException {
 
 	Map<String, String> options = javaProject.getOptions(true);
 	try {
-		Map<String, String> customOptions = new HashMap<>(options);
+		Map<String, String> customOptions = new HashMap<>(options); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		customOptions.put(JavaCore.COMPILER_ANNOTATION_NULL_ANALYSIS, JavaCore.ENABLED);
 		customOptions.put(JavaCore.COMPILER_INHERIT_NULL_ANNOTATIONS, JavaCore.ENABLED);
 		javaProject.setOptions(customOptions);
@@ -1687,7 +1687,7 @@ public void test430441() throws JavaModelException {
 	}
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430656, [1.8][content assist] Content assist does not work for method reference argument
-public void test430656() throws JavaModelException {
+public void test430656() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/test/X.java",
@@ -1713,12 +1713,12 @@ public void test430656() throws JavaModelException {
 		int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 		assertResults(
-			"getClass[METHOD_NAME_REFERENCE]{getClass, Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + 30) + "}\n" +
+			"getClass[METHOD_NAME_REFERENCE]{getClass, Ljava.lang.Object;, ()Ljava.lang.Class<*>;, getClass, null, " + (R_DEFAULT + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"getLastName[METHOD_NAME_REFERENCE]{getLastName, Ltest.Person;, ()Ljava.lang.String;, getLastName, null, " + (R_DEFAULT + 30) + "}",
 			requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=433178
-public void test433178() throws JavaModelException {
+public void test433178() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1742,12 +1742,12 @@ public void test433178() throws JavaModelException {
 	String completeBehind = "ne";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("new[KEYWORD]{new, null, null, null, null, new, null, [183, 185], " +
+	assertResults("new[KEYWORD]{new, null, null, null, null, new, null, [183, 185], " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 											(RelevanceConstants.R_DEFAULT + RelevanceConstants.R_RESOLVED + RelevanceConstants.R_INTERESTING + RelevanceConstants.R_NON_RESTRICTED
 											+ RelevanceConstants.R_CASE + RelevanceConstants.R_UNQUALIFIED) + "}", requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=433178
-public void test433178a() throws JavaModelException {
+public void test433178a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1774,7 +1774,7 @@ public void test433178a() throws JavaModelException {
 	assertResults("", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
-public void test435219() throws JavaModelException {
+public void test435219() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1790,10 +1790,10 @@ public void test435219() throws JavaModelException {
 	String completeBehind = "System.o";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("out[FIELD_REF]{out, Ljava.lang.System;, Ljava.io.PrintStream;, null, null, out, null, [83, 84], " + (R_DEFAULT + 21) + "}", requestor.getResults());
+	assertResults("out[FIELD_REF]{out, Ljava.lang.System;, Ljava.io.PrintStream;, null, null, out, null, [83, 84], " + (R_DEFAULT + 21) + "}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
-public void test435219a() throws JavaModelException {
+public void test435219a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1809,7 +1809,7 @@ public void test435219a() throws JavaModelException {
 	String completeBehind = "System.out.p";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("print[METHOD_REF]{print(), Ljava.io.PrintStream;, (C)V, null, null, print, (arg0), [87, 88], " + (R_DEFAULT + 30) + "}\n" +
+	assertResults("print[METHOD_REF]{print(), Ljava.io.PrintStream;, (C)V, null, null, print, (arg0), [87, 88], " + (R_DEFAULT + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"print[METHOD_REF]{print(), Ljava.io.PrintStream;, (D)V, null, null, print, (arg0), [87, 88], " + (R_DEFAULT + 30) + "}\n" +
 			"print[METHOD_REF]{print(), Ljava.io.PrintStream;, (F)V, null, null, print, (arg0), [87, 88], " + (R_DEFAULT + 30) + "}\n" +
 			"print[METHOD_REF]{print(), Ljava.io.PrintStream;, (I)V, null, null, print, (arg0), [87, 88], " + (R_DEFAULT + 30) + "}\n" +
@@ -1832,7 +1832,7 @@ public void test435219a() throws JavaModelException {
 			"println[METHOD_REF]{println(), Ljava.io.PrintStream;, ([C)V, null, null, println, (arg0), [87, 88], " + (R_DEFAULT + 30) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
-public void test435219b() throws JavaModelException {
+public void test435219b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1848,12 +1848,12 @@ public void test435219b() throws JavaModelException {
 	String completeBehind = "st";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("start[METHOD_REF]{start(), Ljava.lang.Thread;, ()V, null, null, start, null, [103, 105], " + (R_DEFAULT + 30) + "}\n" +
+	assertResults("start[METHOD_REF]{start(), Ljava.lang.Thread;, ()V, null, null, start, null, [103, 105], " + (R_DEFAULT + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"stop[METHOD_REF]{stop(), Ljava.lang.Thread;, ()V, null, null, stop, null, [103, 105], " + (R_DEFAULT + 30) + "}\n" +
 			"stop[METHOD_REF]{stop(), Ljava.lang.Thread;, (Ljava.lang.Throwable;)V, null, null, stop, (arg0), [103, 105], " + (R_DEFAULT + 30) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
-public void test435219c() throws JavaModelException {
+public void test435219c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1872,12 +1872,12 @@ public void test435219c() throws JavaModelException {
 	String completeBehind = "x.h";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("hashCode[METHOD_REF]{hashCode(), Ljava.lang.Integer;, (I)I, null, null, hashCode, (arg0), [187, 188], " + (R_DEFAULT + 49) + "}\n" +
+	assertResults("hashCode[METHOD_REF]{hashCode(), Ljava.lang.Integer;, (I)I, null, null, hashCode, (arg0), [187, 188], " + (R_DEFAULT + 49) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"highestOneBit[METHOD_REF]{highestOneBit(), Ljava.lang.Integer;, (I)I, null, null, highestOneBit, (arg0), [187, 188], " + (R_DEFAULT + 49) + "}\n" +
 			"hashCode[METHOD_REF]{hashCode(), Ljava.lang.Integer;, ()I, null, null, hashCode, null, [187, 188], " + (R_DEFAULT + 60) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
-public void test435219d() throws JavaModelException {
+public void test435219d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1896,7 +1896,7 @@ public void test435219d() throws JavaModelException {
 	String completeBehind = "pri";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("print[METHOD_NAME_REFERENCE]{print, Ljava.io.PrintStream;, (C)V, null, null, print, null, [219, 222], " + (R_DEFAULT + 25) + "}\n" +
+	assertResults("print[METHOD_NAME_REFERENCE]{print, Ljava.io.PrintStream;, (C)V, null, null, print, null, [219, 222], " + (R_DEFAULT + 25) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"print[METHOD_NAME_REFERENCE]{print, Ljava.io.PrintStream;, (D)V, null, null, print, null, [219, 222], " + (R_DEFAULT + 25) + "}\n" +
 			"print[METHOD_NAME_REFERENCE]{print, Ljava.io.PrintStream;, (F)V, null, null, print, null, [219, 222], " + (R_DEFAULT + 25) + "}\n" +
 			"print[METHOD_NAME_REFERENCE]{print, Ljava.io.PrintStream;, (I)V, null, null, print, null, [219, 222], " + (R_DEFAULT + 25) + "}\n" +
@@ -1919,7 +1919,7 @@ public void test435219d() throws JavaModelException {
 			"printf[METHOD_NAME_REFERENCE]{printf, Ljava.io.PrintStream;, (Ljava.util.Locale;Ljava.lang.String;[Ljava.lang.Object;)Ljava.io.PrintStream;, null, null, printf, null, [219, 222], " + (R_DEFAULT + 30) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
-public void test435219e() throws JavaModelException {
+public void test435219e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1940,12 +1940,12 @@ public void test435219e() throws JavaModelException {
 	String completeBehind = "dou";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("doubleToLongBits[METHOD_REF]{doubleToLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToLongBits, (arg0), [355, 358], " + (R_DEFAULT + 19) + "}\n" +
+	assertResults("doubleToLongBits[METHOD_REF]{doubleToLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToLongBits, (arg0), [355, 358], " + (R_DEFAULT + 19) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"doubleToRawLongBits[METHOD_REF]{doubleToRawLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToRawLongBits, (arg0), [355, 358], " + (R_DEFAULT + 19) + "}\n" +
 			"doubleValue[METHOD_REF]{doubleValue(), Ljava.lang.Double;, ()D, null, null, doubleValue, null, [355, 358], " + (R_DEFAULT + R_EXPECTED_TYPE + 30) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
-public void test435219f() throws JavaModelException {
+public void test435219f() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1966,11 +1966,11 @@ public void test435219f() throws JavaModelException {
 	String completeBehind = "g";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [391, 392], " + (R_DEFAULT + 30) + "}\n" +
+	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [391, 392], " + (R_DEFAULT + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"get[METHOD_REF]{get(), Ljava.util.Optional<Ljava.lang.Double;>;, ()Ljava.lang.Double;, null, null, get, null, [391, 392], " + (R_DEFAULT + 50) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
-public void test435219g() throws JavaModelException {
+public void test435219g() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -1991,12 +1991,12 @@ public void test435219g() throws JavaModelException {
 	String completeBehind = "dou";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("doubleToLongBits[METHOD_REF]{doubleToLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToLongBits, (arg0), [376, 379], " + (R_DEFAULT + 49) + "}\n" +
+	assertResults("doubleToLongBits[METHOD_REF]{doubleToLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToLongBits, (arg0), [376, 379], " + (R_DEFAULT + 49) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				  "doubleToRawLongBits[METHOD_REF]{doubleToRawLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToRawLongBits, (arg0), [376, 379], " + (R_DEFAULT + 49) + "}\n" +
 				  "doubleValue[METHOD_REF]{doubleValue(), Ljava.lang.Double;, ()D, null, null, doubleValue, null, [376, 379], " + (R_DEFAULT + 60) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435682, [1.8] content assist not working inside lambda expression
-public void test435682() throws JavaModelException {
+public void test435682() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2015,10 +2015,10 @@ public void test435682() throws JavaModelException {
 	String completeBehind = "so.tr";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("trim[METHOD_REF]{trim(), Ljava.lang.String;, ()Ljava.lang.String;, null, null, trim, null, [237, 239], " + (R_DEFAULT + R_PACKAGE_EXPECTED_TYPE + 30) + "}", requestor.getResults());
+	assertResults("trim[METHOD_REF]{trim(), Ljava.lang.String;, ()Ljava.lang.String;, null, null, trim, null, [237, 239], " + (R_DEFAULT + R_PACKAGE_EXPECTED_TYPE + 30) + "}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435682, [1.8] content assist not working inside lambda expression
-public void test435682a() throws JavaModelException {
+public void test435682a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2037,10 +2037,10 @@ public void test435682a() throws JavaModelException {
 	String completeBehind = "so.tr";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("trim[METHOD_REF]{trim(), Ljava.lang.String;, ()Ljava.lang.String;, null, null, trim, null, [246, 248], " + (R_DEFAULT + R_EXPECTED_TYPE + 30) + "}", requestor.getResults());
+	assertResults("trim[METHOD_REF]{trim(), Ljava.lang.String;, ()Ljava.lang.String;, null, null, trim, null, [246, 248], " + (R_DEFAULT + R_EXPECTED_TYPE + 30) + "}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430667, [1.8][content assist] no proposals around lambda as a field
-public void test430667() throws JavaModelException {
+public void test430667() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2063,11 +2063,11 @@ public void test430667() throws JavaModelException {
 	String completeBehind = "D_F";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("D_F[POTENTIAL_METHOD_DECLARATION]{D_F, LD_DemoRefactorings;, ()V, null, null, D_F, null, [195, 198], " + (R_DEFAULT + 9) + "}\n" +
+	assertResults("D_F[POTENTIAL_METHOD_DECLARATION]{D_F, LD_DemoRefactorings;, ()V, null, null, D_F, null, [195, 198], " + (R_DEFAULT + 9) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				  "D_FI[TYPE_REF]{D_FI, , LD_FI;, null, null, null, null, [195, 198], " + (R_DEFAULT + 22) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430667, [1.8][content assist] no proposals around lambda as a field
-public void test430667a() throws JavaModelException {
+public void test430667a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2091,11 +2091,11 @@ public void test430667a() throws JavaModelException {
 	String completeBehind = "/*HERE*/D_F";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("D_F[POTENTIAL_METHOD_DECLARATION]{D_F, LD_DemoRefactorings;, ()V, null, null, D_F, null, [150, 153], " + (R_DEFAULT + 9) + "}\n" +
+	assertResults("D_F[POTENTIAL_METHOD_DECLARATION]{D_F, LD_DemoRefactorings;, ()V, null, null, D_F, null, [150, 153], " + (R_DEFAULT + 9) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"D_FI[TYPE_REF]{D_FI, , LD_FI;, null, null, null, null, [150, 153], " + (R_DEFAULT + 22) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=430667, [1.8][content assist] no proposals around lambda as a field
-public void test430667b() throws JavaModelException {
+public void test430667b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2118,11 +2118,11 @@ public void test430667b() throws JavaModelException {
 	String completeBehind = "/*HERE*/D_F";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("D_F[POTENTIAL_METHOD_DECLARATION]{D_F, LD_DemoRefactorings;, ()V, null, null, D_F, null, [36, 39], " + (R_DEFAULT + 9) + "}\n" +
+	assertResults("D_F[POTENTIAL_METHOD_DECLARATION]{D_F, LD_DemoRefactorings;, ()V, null, null, D_F, null, [36, 39], " + (R_DEFAULT + 9) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"D_FI[TYPE_REF]{D_FI, , LD_FI;, null, null, null, null, [36, 39], " + (R_DEFAULT + 22) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=443932, [1.8][code complete] method reference proposals not applied when caret inside method name
-public void test443932() throws JavaModelException {
+public void test443932() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2137,7 +2137,7 @@ public void test443932() throws JavaModelException {
 	String completeBehind = "to";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("toBinaryString[METHOD_NAME_REFERENCE]{toBinaryString, Ljava.lang.Integer;, (I)Ljava.lang.String;, null, null, toBinaryString, null, [90, 98], " + (R_DEFAULT + 19) + "}\n" +
+	assertResults("toBinaryString[METHOD_NAME_REFERENCE]{toBinaryString, Ljava.lang.Integer;, (I)Ljava.lang.String;, null, null, toBinaryString, null, [90, 98], " + (R_DEFAULT + 19) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"toHexString[METHOD_NAME_REFERENCE]{toHexString, Ljava.lang.Integer;, (I)Ljava.lang.String;, null, null, toHexString, null, [90, 98], " + (R_DEFAULT + 19) + "}\n" +
 			"toOctalString[METHOD_NAME_REFERENCE]{toOctalString, Ljava.lang.Integer;, (I)Ljava.lang.String;, null, null, toOctalString, null, [90, 98], " + (R_DEFAULT + 19) + "}\n" +
 			"toString[METHOD_NAME_REFERENCE]{toString, Ljava.lang.Integer;, (I)Ljava.lang.String;, null, null, toString, null, [90, 98], " + (R_DEFAULT + 19) + "}\n" +
@@ -2150,7 +2150,7 @@ public void test443932() throws JavaModelException {
 
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=444300, [1.8] content assist not working inside lambda expression in case of fields
-public void test444300() throws JavaModelException {
+public void test444300() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2168,12 +2168,12 @@ public void test444300() throws JavaModelException {
 	String completeBehind = "so.ch";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("charAt[METHOD_REF]{charAt(), Ljava.lang.String;, (I)C, null, null, charAt, (arg0), [232, 234], " + (R_DEFAULT + R_EXPECTED_TYPE + 30) + "}\n" +
+	assertResults("charAt[METHOD_REF]{charAt(), Ljava.lang.String;, (I)C, null, null, charAt, (arg0), [232, 234], " + (R_DEFAULT + R_EXPECTED_TYPE + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"chars[METHOD_REF]{chars(), Ljava.lang.CharSequence;, ()Ljava.util.stream.IntStream;, null, null, chars, null, [232, 234], " + (R_DEFAULT + R_EXPECTED_TYPE + 30) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=444300, [1.8] content assist not working inside lambda expression in case of fields
-public void test435219h() throws JavaModelException {
+public void test435219h() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2190,13 +2190,13 @@ public void test435219h() throws JavaModelException {
 	String completeBehind = "x.h";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("hashCode[METHOD_REF]{hashCode(), Ljava.lang.Integer;, (I)I, null, null, hashCode, (arg0), [164, 165], " + (R_DEFAULT + 49) + "}\n" +
+	assertResults("hashCode[METHOD_REF]{hashCode(), Ljava.lang.Integer;, (I)I, null, null, hashCode, (arg0), [164, 165], " + (R_DEFAULT + 49) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"highestOneBit[METHOD_REF]{highestOneBit(), Ljava.lang.Integer;, (I)I, null, null, highestOneBit, (arg0), [164, 165], " + (R_DEFAULT + 49) + "}\n" +
 			"hashCode[METHOD_REF]{hashCode(), Ljava.lang.Integer;, ()I, null, null, hashCode, null, [164, 165], " + (R_DEFAULT + 60) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=444300, [1.8] content assist not working inside lambda expression in case of fields
-public void test435219i() throws JavaModelException {
+public void test435219i() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2213,7 +2213,7 @@ public void test435219i() throws JavaModelException {
 	String completeBehind = "pri";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("print[METHOD_NAME_REFERENCE]{print, Ljava.io.PrintStream;, (C)V, null, null, print, null, [188, 191], " + (R_DEFAULT + 25) + "}\n" +
+	assertResults("print[METHOD_NAME_REFERENCE]{print, Ljava.io.PrintStream;, (C)V, null, null, print, null, [188, 191], " + (R_DEFAULT + 25) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"print[METHOD_NAME_REFERENCE]{print, Ljava.io.PrintStream;, (D)V, null, null, print, null, [188, 191], " + (R_DEFAULT + 25) + "}\n" +
 			"print[METHOD_NAME_REFERENCE]{print, Ljava.io.PrintStream;, (F)V, null, null, print, null, [188, 191], " + (R_DEFAULT + 25) + "}\n" +
 			"print[METHOD_NAME_REFERENCE]{print, Ljava.io.PrintStream;, (I)V, null, null, print, null, [188, 191], " + (R_DEFAULT + 25) + "}\n" +
@@ -2237,7 +2237,7 @@ public void test435219i() throws JavaModelException {
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=444300, [1.8] content assist not working inside lambda expression in case of fields
-public void test435219j() throws JavaModelException {
+public void test435219j() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2255,13 +2255,13 @@ public void test435219j() throws JavaModelException {
 	String completeBehind = "dou";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("doubleToLongBits[METHOD_REF]{doubleToLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToLongBits, (arg0), [235, 238], " + (R_DEFAULT + 19) + "}\n" +
+	assertResults("doubleToLongBits[METHOD_REF]{doubleToLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToLongBits, (arg0), [235, 238], " + (R_DEFAULT + 19) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"doubleToRawLongBits[METHOD_REF]{doubleToRawLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToRawLongBits, (arg0), [235, 238], " + (R_DEFAULT + 19) + "}\n" +
 			"doubleValue[METHOD_REF]{doubleValue(), Ljava.lang.Double;, ()D, null, null, doubleValue, null, [235, 238], " + (R_DEFAULT + R_EXPECTED_TYPE + 30) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=444300, [1.8] content assist not working inside lambda expression in case of fields
-public void test435219k() throws JavaModelException {
+public void test435219k() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2279,12 +2279,12 @@ public void test435219k() throws JavaModelException {
 	String completeBehind = "g";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [271, 272], " + (R_DEFAULT + 30) + "}\n" +
+	assertResults("getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [271, 272], " + (R_DEFAULT + 30) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"get[METHOD_REF]{get(), Ljava.util.Optional<Ljava.lang.Double;>;, ()Ljava.lang.Double;, null, null, get, null, [271, 272], " + (R_DEFAULT + 50) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435219, [1.8][content assist] No proposals for some closure cases
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=444300, [1.8] content assist not working inside lambda expression in case of fields
-public void test435219l() throws JavaModelException {
+public void test435219l() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2302,12 +2302,12 @@ public void test435219l() throws JavaModelException {
 	String completeBehind = "dou";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("doubleToLongBits[METHOD_REF]{doubleToLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToLongBits, (arg0), [256, 259], " + (R_DEFAULT + 49) + "}\n" +
+	assertResults("doubleToLongBits[METHOD_REF]{doubleToLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToLongBits, (arg0), [256, 259], " + (R_DEFAULT + 49) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"doubleToRawLongBits[METHOD_REF]{doubleToRawLongBits(), Ljava.lang.Double;, (D)J, null, null, doubleToRawLongBits, (arg0), [256, 259], " + (R_DEFAULT + 49) + "}\n" +
 			"doubleValue[METHOD_REF]{doubleValue(), Ljava.lang.Double;, ()D, null, null, doubleValue, null, [256, 259], " + (R_DEFAULT + 60) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=435281, [1.8][code assist] No import or completion proposal for anonymous class inside lambda
-public void test435281() throws JavaModelException {
+public void test435281() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/FI1.java",
@@ -2344,10 +2344,10 @@ public void test435281() throws JavaModelException {
 	String completeBehind = "FI2";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[2].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("FI2[TYPE_REF]{p4a.FI2, p4a, Lp4a.FI2;, null, null, null, null, [104, 107], " + (R_DEFAULT + 23) + "}", requestor.getResults());
+	assertResults("FI2[TYPE_REF]{p4a.FI2, p4a, Lp4a.FI2;, null, null, null, null, [104, 107], " + (R_DEFAULT + 23) + "}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=431811, content assist should propose keyword 'super' after type name
-public void test431811() throws JavaModelException {
+public void test431811() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/FI1.java",
@@ -2372,10 +2372,10 @@ public void test431811() throws JavaModelException {
 	String completeBehind = "su";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("super[KEYWORD]{super, null, null, null, null, super, null, [192, 194], " + (R_DEFAULT + 21) + "}", requestor.getResults());
+	assertResults("super[KEYWORD]{super, null, null, null, null, super, null, [192, 194], " + (R_DEFAULT + 21) + "}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=447774, Auto complete does not work when using lambdas with cast
-public void test447774() throws JavaModelException {
+public void test447774() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2405,7 +2405,7 @@ public void test447774() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=449358, Content assist inside lambda broken in all methods except last
-public void test449358() throws JavaModelException {
+public void test449358() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2434,12 +2434,12 @@ public void test449358() throws JavaModelException {
 	String completeBehind = "/*HERE*/localMeth";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("localmethod1[METHOD_REF]{localmethod1(), LLambdaBug;, ()V, null, null, localmethod1, null, [181, 190], " + (R_DEFAULT + 12) + "}\n" +
+	assertResults("localmethod1[METHOD_REF]{localmethod1(), LLambdaBug;, ()V, null, null, localmethod1, null, [181, 190], " + (R_DEFAULT + 12) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
                   "localmethod2[METHOD_REF]{localmethod2(), LLambdaBug;, ()V, null, null, localmethod2, null, [181, 190], " + (R_DEFAULT + 12) + "}", requestor.getResults());
 
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=449358, Content assist inside lambda broken in all methods except last
-public void test449358a() throws JavaModelException {
+public void test449358a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2467,11 +2467,11 @@ public void test449358a() throws JavaModelException {
 	String completeBehind = "/*HERE*/localMeth";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("localmethod1[METHOD_REF]{localmethod1(), LLambdaBug;, ()V, null, null, localmethod1, null, [282, 291], " + (R_DEFAULT + 12) + "}\n" +
+	assertResults("localmethod1[METHOD_REF]{localmethod1(), LLambdaBug;, ()V, null, null, localmethod1, null, [282, 291], " + (R_DEFAULT + 12) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				  "localmethod2[METHOD_REF]{localmethod2(), LLambdaBug;, ()V, null, null, localmethod2, null, [282, 291], " + (R_DEFAULT + 12) + "}", requestor.getResults());
 
 }
-public void testBug459189_001() throws JavaModelException {
+public void testBug459189_001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2493,12 +2493,12 @@ public void testBug459189_001() throws JavaModelException {
 	int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"Retention[TYPE_REF]{java.lang.annotation.Retention, java.lang.annotation, Ljava.lang.annotation.Retention;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n"+
+			"Retention[TYPE_REF]{java.lang.annotation.Retention, java.lang.annotation, Ljava.lang.annotation.Retention;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"RetentionPolicy[TYPE_REF]{java.lang.annotation.RetentionPolicy, java.lang.annotation, Ljava.lang.annotation.RetentionPolicy;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n"+
 			"return[KEYWORD]{return, null, null, return, null, " + (R_DEFAULT + 19) + "}",
 			requestor.getResults());
 }
-public void testBug459189_002() throws JavaModelException {
+public void testBug459189_002() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2520,12 +2520,12 @@ public void testBug459189_002() throws JavaModelException {
 	int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"Retention[TYPE_REF]{java.lang.annotation.Retention, java.lang.annotation, Ljava.lang.annotation.Retention;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n"+
+			"Retention[TYPE_REF]{java.lang.annotation.Retention, java.lang.annotation, Ljava.lang.annotation.Retention;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"RetentionPolicy[TYPE_REF]{java.lang.annotation.RetentionPolicy, java.lang.annotation, Ljava.lang.annotation.RetentionPolicy;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"return[KEYWORD]{return, null, null, return, null, " + (R_DEFAULT + 19) + "}",
 			requestor.getResults());
 }
-public void testBug459189_003() throws JavaModelException {
+public void testBug459189_003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2547,11 +2547,11 @@ public void testBug459189_003() throws JavaModelException {
 	int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"catch[KEYWORD]{catch, null, null, catch, null, " + (R_DEFAULT + 19) + "}\n"+
+			"catch[KEYWORD]{catch, null, null, catch, null, " + (R_DEFAULT + 19) + "}\n"+ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"finally[KEYWORD]{finally, null, null, finally, null, " + (R_DEFAULT + 19) + "}",
 			requestor.getResults());
 }
-public void testBug459189_004() throws JavaModelException {
+public void testBug459189_004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2573,10 +2573,10 @@ public void testBug459189_004() throws JavaModelException {
 	int cursorLocation = str.indexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"while[KEYWORD]{while, null, null, while, null, " + (R_DEFAULT + 19) + "}",
+			"while[KEYWORD]{while, null, null, while, null, " + (R_DEFAULT + 19) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testBug460410() throws JavaModelException {
+public void testBug460410() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2605,11 +2605,11 @@ public void testBug460410() throws JavaModelException {
 	int cursorLocation = str.indexOf(completeBehind);
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"Bug460411[TYPE_REF]{abc.Bug460411, abc, Labc.Bug460411;, null, null, " + (R_DEFAULT + 39) + "}\n" +
+			"Bug460411[TYPE_REF]{abc.Bug460411, abc, Labc.Bug460411;, null, null, " + (R_DEFAULT + 39) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Bug460410[TYPE_REF]{Bug460410, , LBug460410;, null, null, " + (R_DEFAULT + 42) + "}",
 			requestor.getResults());
 }
-public void testBug462015() throws JavaModelException {
+public void testBug462015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2638,11 +2638,11 @@ public void testBug462015() throws JavaModelException {
 	int cursorLocation = str.indexOf(completeBehind);
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"age[METHOD_REF]{age(), LEntry;, ()Ljava.lang.String;, age, null, " + (R_DEFAULT + 30) + "}",
+			"age[METHOD_REF]{age(), LEntry;, ()Ljava.lang.String;, age, null, " + (R_DEFAULT + 30) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=481564
-public void testBug481564() throws JavaModelException {
+public void testBug481564() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2667,10 +2667,10 @@ public void testBug481564() throws JavaModelException {
 	int cursorLocation = str.indexOf(completeBehind) ;
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"someMethod[METHOD_REF]{someMethod(), LX;, ()V, someMethod, null, " + (R_DEFAULT + 22) + "}", requestor.getResults());
+			"someMethod[METHOD_REF]{someMethod(), LX;, ()V, someMethod, null, " + (R_DEFAULT + 22) + "}", requestor.getResults()); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=481215
-public void testBug481215a() throws JavaModelException {
+public void testBug481215a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2699,13 +2699,13 @@ public void testBug481215a() throws JavaModelException {
 	int cursorLocation = str.indexOf(completeBehind) ;
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"ResourceBundle[TYPE_REF]{java.util.ResourceBundle, java.util, Ljava.util.ResourceBundle;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
+			"ResourceBundle[TYPE_REF]{java.util.ResourceBundle, java.util, Ljava.util.ResourceBundle;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ResponseCache[TYPE_REF]{java.net.ResponseCache, java.net, Ljava.net.ResponseCache;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"ResultSet[TYPE_REF]{java.sql.ResultSet, java.sql, Ljava.sql.ResultSet;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"ResultSetMetaData[TYPE_REF]{java.sql.ResultSetMetaData, java.sql, Ljava.sql.ResultSetMetaData;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"result[LOCAL_VARIABLE_REF]{result, null, Ljava.lang.String;, result, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}", requestor.getResults());
 }
-public void testBug481215b() throws JavaModelException {
+public void testBug481215b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2731,13 +2731,13 @@ public void testBug481215b() throws JavaModelException {
 	int cursorLocation = str.indexOf(completeBehind) ;
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"ResourceBundle[TYPE_REF]{java.util.ResourceBundle, java.util, Ljava.util.ResourceBundle;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
+			"ResourceBundle[TYPE_REF]{java.util.ResourceBundle, java.util, Ljava.util.ResourceBundle;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ResponseCache[TYPE_REF]{java.net.ResponseCache, java.net, Ljava.net.ResponseCache;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"ResultSet[TYPE_REF]{java.sql.ResultSet, java.sql, Ljava.sql.ResultSet;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"ResultSetMetaData[TYPE_REF]{java.sql.ResultSetMetaData, java.sql, Ljava.sql.ResultSetMetaData;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"result[LOCAL_VARIABLE_REF]{result, null, Ljava.lang.String;, result, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}", requestor.getResults());
 }
-public void testBug481215c() throws JavaModelException {
+public void testBug481215c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2763,13 +2763,13 @@ public void testBug481215c() throws JavaModelException {
 	int cursorLocation = str.indexOf(completeBehind) ;
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"ResourceBundle[TYPE_REF]{java.util.ResourceBundle, java.util, Ljava.util.ResourceBundle;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
+			"ResourceBundle[TYPE_REF]{java.util.ResourceBundle, java.util, Ljava.util.ResourceBundle;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ResponseCache[TYPE_REF]{java.net.ResponseCache, java.net, Ljava.net.ResponseCache;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"ResultSet[TYPE_REF]{java.sql.ResultSet, java.sql, Ljava.sql.ResultSet;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"ResultSetMetaData[TYPE_REF]{java.sql.ResultSetMetaData, java.sql, Ljava.sql.ResultSetMetaData;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"result[LOCAL_VARIABLE_REF]{result, null, Ljava.lang.String;, result, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}", requestor.getResults());
 }
-public void testBug481215d() throws JavaModelException {
+public void testBug481215d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2803,7 +2803,7 @@ public void testBug481215d() throws JavaModelException {
 	int cursorLocation = str.indexOf(completeBehind) ;
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	assertResults(
-			"ResourceBundle[TYPE_REF]{java.util.ResourceBundle, java.util, Ljava.util.ResourceBundle;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
+			"ResourceBundle[TYPE_REF]{java.util.ResourceBundle, java.util, Ljava.util.ResourceBundle;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"ResponseCache[TYPE_REF]{java.net.ResponseCache, java.net, Ljava.net.ResponseCache;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"ResultSet[TYPE_REF]{java.sql.ResultSet, java.sql, Ljava.sql.ResultSet;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
 			"ResultSetMetaData[TYPE_REF]{java.sql.ResultSetMetaData, java.sql, Ljava.sql.ResultSetMetaData;, null, null, " + (R_DEFAULT + R_JAVA_LIBRARY + 9) + "}\n" +
@@ -2811,7 +2811,7 @@ public void testBug481215d() throws JavaModelException {
 			"result2[LOCAL_VARIABLE_REF]{result2, null, Ljava.lang.String;, result2, null, " + (R_DEFAULT + R_EXACT_EXPECTED_TYPE + 22) + "}", requestor.getResults());
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=484479
-public void test484479() throws JavaModelException {
+public void test484479() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Bar.java",
@@ -2833,13 +2833,13 @@ public void test484479() throws JavaModelException {
 	String completeBehind = "::pr";
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-	assertResults("print[METHOD_NAME_REFERENCE]{print, LBar;, ()LBar;, null, null, print, null, [160, 162], " +
+	assertResults("print[METHOD_NAME_REFERENCE]{print, LBar;, ()LBar;, null, null, print, null, [160, 162], " + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 											(RelevanceConstants.R_DEFAULT + RelevanceConstants.R_RESOLVED +
 													RelevanceConstants.R_INTERESTING + RelevanceConstants.R_NON_RESTRICTED +
 													RelevanceConstants.R_CASE) + "}", requestor.getResults());
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=473008
-public void test473008a() throws JavaModelException {
+public void test473008a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Foo.java",
@@ -2861,11 +2861,11 @@ public void test473008a() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_CASE + R_JAVA_LIBRARY;
 	assertResults(
-			"StringBufferInputStream[TYPE_REF]{java.io.StringBufferInputStream, java.io, Ljava.io.StringBufferInputStream;, null, null, null, null, [147, 159], " + relevance + "}\n" +
+			"StringBufferInputStream[TYPE_REF]{java.io.StringBufferInputStream, java.io, Ljava.io.StringBufferInputStream;, null, null, null, null, [147, 159], " + relevance + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"StringBuffer[TYPE_REF]{StringBuffer, java.lang, Ljava.lang.StringBuffer;, null, null, null, null, [147, 159], " + (relevance + R_UNQUALIFIED + R_EXACT_NAME) + "}"
 			, requestor.getResults());
 }
-public void test473008b() throws JavaModelException {
+public void test473008b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Foo.java",
@@ -2887,11 +2887,11 @@ public void test473008b() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_CASE + R_JAVA_LIBRARY;
 	assertResults(
-			"StringBufferInputStream[TYPE_REF]{java.io.StringBufferInputStream, java.io, Ljava.io.StringBufferInputStream;, null, null, null, null, [149, 161], " + relevance + "}\n" +
+			"StringBufferInputStream[TYPE_REF]{java.io.StringBufferInputStream, java.io, Ljava.io.StringBufferInputStream;, null, null, null, null, [149, 161], " + relevance + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"StringBuffer[TYPE_REF]{StringBuffer, java.lang, Ljava.lang.StringBuffer;, null, null, null, null, [149, 161], " + (relevance + R_UNQUALIFIED + R_EXACT_NAME) + "}"
 			, requestor.getResults());
 }
-public void test473008c() throws JavaModelException {
+public void test473008c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Foo.java",
@@ -2913,11 +2913,11 @@ public void test473008c() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_CASE + R_JAVA_LIBRARY;
 	assertResults(
-			"StringBufferInputStream[TYPE_REF]{java.io.StringBufferInputStream, java.io, Ljava.io.StringBufferInputStream;, null, null, null, null, [151, 163], " + relevance + "}\n" +
+			"StringBufferInputStream[TYPE_REF]{java.io.StringBufferInputStream, java.io, Ljava.io.StringBufferInputStream;, null, null, null, null, [151, 163], " + relevance + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"StringBuffer[TYPE_REF]{StringBuffer, java.lang, Ljava.lang.StringBuffer;, null, null, null, null, [151, 163], " + (relevance + R_UNQUALIFIED + R_EXACT_NAME) + "}"
 			, requestor.getResults());
 }
-public void test489962() throws JavaModelException {
+public void test489962() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/CC.java",
@@ -2941,11 +2941,11 @@ public void test489962() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED;
 	assertResults(
-			"disperse[METHOD_REF]{disperse(), LI2;, ()V, null, null, disperse, null, [46, 50], " + (relevance + R_VOID) + "}\n" +
+			"disperse[METHOD_REF]{disperse(), LI2;, ()V, null, null, disperse, null, [46, 50], " + (relevance + R_VOID) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"dispose[METHOD_REF]{dispose(), LI2;, ()I, null, null, dispose, null, [46, 50], " + (relevance + R_EXACT_EXPECTED_TYPE) + "}"
 			, requestor.getResults());
 }
-public void test492947() throws JavaModelException {
+public void test492947() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2969,10 +2969,10 @@ public void test492947() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_STATIC + R_NON_RESTRICTED;
 	assertResults(
-			"toCharArray[METHOD_REF]{toCharArray(), Ljava.lang.String;, ()[C, null, null, toCharArray, null, [156, 160], " + relevance + "}"
+			"toCharArray[METHOD_REF]{toCharArray(), Ljava.lang.String;, ()[C, null, null, toCharArray, null, [156, 160], " + relevance + "}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			, requestor.getResults());
 }
-public void test492947b() throws JavaModelException {
+public void test492947b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -2995,13 +2995,13 @@ public void test492947b() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED + R_JAVA_LIBRARY;
 	assertResults(
-			"StringBuilder[TYPE_REF]{StringBuilder, java.lang, Ljava.lang.StringBuilder;, null, null, null, null, [139, 148], " + relevance + "}",
+			"StringBuilder[TYPE_REF]{StringBuilder, java.lang, Ljava.lang.StringBuilder;, null, null, null, null, [139, 148], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			 requestor.getResults());
 }
 /**
  * Bug - No proposal yet for types on lambda arguments
  */
-public void _test492947c() throws JavaModelException {
+public void _test492947c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -3024,10 +3024,10 @@ public void _test492947c() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED;
 	assertResults(
-			"StringBuilder[TYPE_REF]{StringBuilder, java.lang, Ljava.lang.StringBuilder;, null, null, null, null, [139, 148], " + relevance + "}"
+			"StringBuilder[TYPE_REF]{StringBuilder, java.lang, Ljava.lang.StringBuilder;, null, null, null, null, [139, 148], " + relevance + "}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			, requestor.getResults());
 }
-public void _test492947d() throws JavaModelException {
+public void _test492947d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -3048,10 +3048,10 @@ public void _test492947d() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_UNQUALIFIED;
 	assertResults(
-			"StringBuilder[TYPE_REF]{StringBuilder, java.lang, Ljava.lang.StringBuilder;, null, null, null, null, [139, 148], " + relevance + "}"
+			"StringBuilder[TYPE_REF]{StringBuilder, java.lang, Ljava.lang.StringBuilder;, null, null, null, null, [139, 148], " + relevance + "}" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			, requestor.getResults());
 }
-public void testBug493705() throws JavaModelException {
+public void testBug493705() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/HelloWorld.java",
@@ -3108,7 +3108,7 @@ public void testBug493705() throws JavaModelException {
 	int relevance2a = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_NON_STATIC + R_VOID;
 	int relevance2 =  R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED + R_NON_STATIC;
 	assertResults(
-			"create[METHOD_REF]{create(), LSwtUI<LLabel;>;, <T:LControl;>(Ljava.util.function.BiFunction<LComposite;Ljava.lang.Integer;TT;>;)LSwtUI<TT;>;, null, null, create, (ctor), [853, 853], "+relevance1+"}\n" +
+			"create[METHOD_REF]{create(), LSwtUI<LLabel;>;, <T:LControl;>(Ljava.util.function.BiFunction<LComposite;Ljava.lang.Integer;TT;>;)LSwtUI<TT;>;, null, null, create, (ctor), [853, 853], "+relevance1+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"new[KEYWORD]{new, null, null, null, null, new, null, [853, 853], "+relevance1+"}\n" +
 			"finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, null, null, finalize, null, [853, 853], "+relevance2a+"}\n" +
 			"notify[METHOD_REF]{notify(), Ljava.lang.Object;, ()V, null, null, notify, null, [853, 853], "+relevance2a+"}\n" +
@@ -3127,7 +3127,7 @@ public void testBug493705() throws JavaModelException {
 			, requestor.getResults());
 }
 // https://bugs.eclipse.org/515809 - Syso shortcut lambda expression
-public void test515809() throws JavaModelException {
+public void test515809() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/X.java",
@@ -3153,7 +3153,7 @@ public void test515809() throws JavaModelException {
 			"completion token location={STATEMENT_START}", requestor.getContext());
 }
 //https://bugs.eclipse.org/485492
-public void test485492a() throws JavaModelException {
+public void test485492a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Foo.java",
@@ -3176,7 +3176,7 @@ public void test485492a() throws JavaModelException {
 			"hashCode[METHOD_REF]{hashCode(), Ljava.lang.String;, ()I, null, null, hashCode, null, [71, 74], 60}",
 			requestor.getResults());
 }
-public void test485492b() throws JavaModelException {
+public void test485492b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Foo.java",
@@ -3196,10 +3196,10 @@ public void test485492b() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_EXPECTED_TYPE + R_UNQUALIFIED + R_NON_RESTRICTED;
 	assertResults(
-			"zilch[LOCAL_VARIABLE_REF]{zilch, null, Ljava.lang.String;, null, null, zilch, null, [81, 84], " + relevance + "}",
+			"zilch[LOCAL_VARIABLE_REF]{zilch, null, Ljava.lang.String;, null, null, zilch, null, [81, 84], " + relevance + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void test485492c() throws JavaModelException {
+public void test485492c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Foo.java",
@@ -3221,7 +3221,7 @@ public void test485492c() throws JavaModelException {
 			"hashCode[METHOD_REF]{hashCode(), Ljava.lang.String;, ()I, null, null, hashCode, null, [79, 82], 60}",
 			requestor.getResults());
 }
-public void testBug528938a() throws JavaModelException {
+public void testBug528938a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/X.java",
@@ -3241,10 +3241,10 @@ public void testBug528938a() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzz[FIELD_REF]{zzz, LX;, Ljava.lang.String;, zzz, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_FINAL) + "}",
+			"zzz[FIELD_REF]{zzz, LX;, Ljava.lang.String;, zzz, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_FINAL) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
-public void testBug528938b() throws JavaModelException {
+public void testBug528938b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/X.java",
@@ -3264,14 +3264,14 @@ public void testBug528938b() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"zzz[FIELD_REF]{zzz, LX;, Ljava.lang.String;, zzz, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_FINAL) + "}",
+			"zzz[FIELD_REF]{zzz, LX;, Ljava.lang.String;, zzz, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_EXACT_EXPECTED_TYPE + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_FINAL) + "}", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			requestor.getResults());
 }
 /*
  * Test that completion doesn't throw NPE and produces valid completions.
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=529349
  */
-public void testBug529349a() throws JavaModelException {
+public void testBug529349a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/p/SuperSuper.java",
@@ -3291,12 +3291,12 @@ public void testBug529349a() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	assertResults(
-			"Y.Super[TYPE_REF]{p.Y.Super, p, Lp.Y$Super;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE  + R_NON_RESTRICTED + R_CLASS ) + "}\n" +
+			"Y.Super[TYPE_REF]{p.Y.Super, p, Lp.Y$Super;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE  + R_NON_RESTRICTED + R_CLASS ) + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Super[TYPE_REF]{Super, p, Lp.Super;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE  + R_UNQUALIFIED + R_NON_RESTRICTED + R_CLASS) + "}\n" +
 			"SuperSuper[TYPE_REF]{SuperSuper, p, Lp.SuperSuper;, null, null, " + (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_CLASS) + "}",
 			requestor.getResults());
 }
-public void testBug473654() throws Exception {
+public void testBug473654() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/Foo.java",
@@ -3320,7 +3320,7 @@ public void testBug473654() throws Exception {
 	int overrideRelevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_CASE + R_METHOD_OVERIDE;
 
 	assertResults(
-			"[POTENTIAL_METHOD_DECLARATION]{, LObject;, ()V, , null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED)+"}\n" +
+			"[POTENTIAL_METHOD_DECLARATION]{, LObject;, ()V, , null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"abstract[KEYWORD]{abstract, null, null, abstract, null, "+keywordRelevance+"}\n" +
 			"class[KEYWORD]{class, null, null, class, null, "+keywordRelevance+"}\n" +
 			"enum[KEYWORD]{enum, null, null, enum, null, "+keywordRelevance+"}\n" +
@@ -3343,7 +3343,7 @@ public void testBug473654() throws Exception {
 			"toString[METHOD_DECLARATION]{public String toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, "+overrideRelevance+"}",
 			requestor.getResults());
 }
-public void testBug537679() throws JavaModelException {
+public void testBug537679() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"/Completion/src/p/SuperSuper.java",
@@ -3369,7 +3369,7 @@ public void testBug537679() throws JavaModelException {
 	int keywordRelevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_CASE;
 	int overrideRelevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_CASE + R_METHOD_OVERIDE;
 	assertResults(
-			"[POTENTIAL_METHOD_DECLARATION]{, LObject;, ()V, , null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED)+"}\n" +
+			"[POTENTIAL_METHOD_DECLARATION]{, LObject;, ()V, , null, "+(R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED)+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"abstract[KEYWORD]{abstract, null, null, abstract, null, "+keywordRelevance+"}\n" +
 			"class[KEYWORD]{class, null, null, class, null, "+keywordRelevance+"}\n" +
 			"enum[KEYWORD]{enum, null, null, enum, null, "+keywordRelevance+"}\n" +
@@ -3393,7 +3393,7 @@ public void testBug537679() throws JavaModelException {
 			requestor.getResults());
 }
 
-public void testBug460750a() throws JavaModelException {
+public void testBug460750a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Foo.java",
@@ -3420,7 +3420,7 @@ public void testBug460750a() throws JavaModelException {
 			requestor.getResults());
 }
 
-public void testBug460750b() throws JavaModelException {
+public void testBug460750b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/EnumRelatedCompletions.java",
@@ -3453,7 +3453,7 @@ public void testBug460750b() throws JavaModelException {
 /*
 * Test that completion doesn't throw NPE
 */
-public void testBug535743a() throws JavaModelException {
+public void testBug535743a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/test/FooNPE.java",
@@ -3482,7 +3482,7 @@ public void testBug535743a() throws JavaModelException {
 /*
 * Test that completion produces valid completions.
 */
-public void testBug535743b() throws JavaModelException {
+public void testBug535743b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/test/FooNPE.java",
@@ -3507,7 +3507,7 @@ public void testBug535743b() throws JavaModelException {
 	assertTrue(!requestor.getResults().equals(""));
 	assertTrue(requestor.getResults().contains("toString"));
 }
-public void testBug526044() throws Exception {
+public void testBug526044() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/p/Test.java",
@@ -3541,7 +3541,7 @@ public void testBug526044() throws Exception {
 			"",
 			requestor.getResults());
 }
-public void testBug539546() throws Exception {
+public void testBug539546() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/p/Test.java",
@@ -3570,7 +3570,7 @@ public void testBug539546() throws Exception {
 			"",
 			requestor.getResults());
 }
-public void testBug477626() throws Exception {
+public void testBug477626() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/p/Snippet29.java",
@@ -3676,7 +3676,7 @@ public void testBug477626() throws Exception {
 			"",
 			requestor.getResults());
 }
-public void testBug490096() throws JavaModelException {
+public void testBug490096() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/ShowSOEInEclipseMars2.java",
 			"import java.util.concurrent.CompletableFuture;\n" +
@@ -3702,7 +3702,7 @@ public void testBug490096() throws JavaModelException {
 	int relevance1 = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED;
 	int relevance2 = relevance1 + R_NON_STATIC;
 	assertResults(
-			"allOf[METHOD_REF]{allOf(), Ljava.util.concurrent.CompletableFuture<Ljava.lang.Double;>;, ([Ljava.util.concurrent.CompletableFuture<*>;)Ljava.util.concurrent.CompletableFuture<Ljava.lang.Void;>;, allOf, (arg0), " + relevance1 + "}\n" +
+			"allOf[METHOD_REF]{allOf(), Ljava.util.concurrent.CompletableFuture<Ljava.lang.Double;>;, ([Ljava.util.concurrent.CompletableFuture<*>;)Ljava.util.concurrent.CompletableFuture<Ljava.lang.Void;>;, allOf, (arg0), " + relevance1 + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"anyOf[METHOD_REF]{anyOf(), Ljava.util.concurrent.CompletableFuture<Ljava.lang.Double;>;, ([Ljava.util.concurrent.CompletableFuture<*>;)Ljava.util.concurrent.CompletableFuture<Ljava.lang.Object;>;, anyOf, (arg0), " + relevance1 + "}\n" +
 			"completedFuture[METHOD_REF]{completedFuture(), Ljava.util.concurrent.CompletableFuture<Ljava.lang.Double;>;, <U:Ljava.lang.Object;>(TU;)Ljava.util.concurrent.CompletableFuture<TU;>;, completedFuture, (arg0), " + relevance1 + "}\n" +
 			"new[KEYWORD]{new, null, null, new, null, " + relevance1 + "}\n" +
@@ -3774,7 +3774,7 @@ public void testBug490096() throws JavaModelException {
 			"whenCompleteAsync[METHOD_REF]{whenCompleteAsync(), Ljava.util.concurrent.CompletableFuture<Ljava.lang.Double;>;, (Ljava.util.function.BiConsumer<-Ljava.lang.Double;-Ljava.lang.Throwable;>;Ljava.util.concurrent.Executor;)Ljava.util.concurrent.CompletableFuture<Ljava.lang.Double;>;, whenCompleteAsync, (arg0, arg1), " + relevance2 + "}",
 			requestor.getResults());
 }
-public void testBug490096a() throws JavaModelException {
+public void testBug490096a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/ShowSOEInEclipseMars2.java",
 			"import java.util.concurrent.CompletableFuture;\n" +
@@ -3800,7 +3800,7 @@ public void testBug490096a() throws JavaModelException {
 	int relevance1 = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_NON_RESTRICTED;
 	int relevance2 = relevance1 + R_NON_STATIC;
 	assertResults(
-			"allOf[METHOD_REF]{allOf(), Ljava.util.concurrent.CompletableFuture<Ljava.lang.Double;>;, ([Ljava.util.concurrent.CompletableFuture<*>;)Ljava.util.concurrent.CompletableFuture<Ljava.lang.Void;>;, allOf, (arg0), " + relevance1 + "}\n" +
+			"allOf[METHOD_REF]{allOf(), Ljava.util.concurrent.CompletableFuture<Ljava.lang.Double;>;, ([Ljava.util.concurrent.CompletableFuture<*>;)Ljava.util.concurrent.CompletableFuture<Ljava.lang.Void;>;, allOf, (arg0), " + relevance1 + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"anyOf[METHOD_REF]{anyOf(), Ljava.util.concurrent.CompletableFuture<Ljava.lang.Double;>;, ([Ljava.util.concurrent.CompletableFuture<*>;)Ljava.util.concurrent.CompletableFuture<Ljava.lang.Object;>;, anyOf, (arg0), " + relevance1 + "}\n" +
 			"acceptEither[METHOD_REF]{acceptEither(), Ljava.util.concurrent.CompletableFuture<Ljava.lang.Double;>;, (Ljava.util.concurrent.CompletionStage<+Ljava.lang.Double;>;Ljava.util.function.Consumer<-Ljava.lang.Double;>;)Ljava.util.concurrent.CompletableFuture<Ljava.lang.Void;>;, acceptEither, (arg0, arg1), " + relevance2 + "}\n" +
 			"acceptEitherAsync[METHOD_REF]{acceptEitherAsync(), Ljava.util.concurrent.CompletableFuture<Ljava.lang.Double;>;, (Ljava.util.concurrent.CompletionStage<+Ljava.lang.Double;>;Ljava.util.function.Consumer<-Ljava.lang.Double;>;)Ljava.util.concurrent.CompletableFuture<Ljava.lang.Void;>;, acceptEitherAsync, (arg0, arg1), " + relevance2 + "}\n" +
@@ -3813,7 +3813,7 @@ public void testBug490096a() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=277691
  */
-public void testCompletionConstructorRelevance1() throws JavaModelException {
+public void testCompletionConstructorRelevance1() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Foo.java",
@@ -3835,7 +3835,7 @@ public void testCompletionConstructorRelevance1() throws JavaModelException {
 
     int expectedConstructorRelevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_CASE + R_EXPECTED_TYPE + R_CONSTRUCTOR;
     assertResults(
-            "LinkedBlockingDeque[CONSTRUCTOR_INVOCATION]{, Ljava.util.concurrent.LinkedBlockingDeque;, ()V, LinkedBlockingDeque, null, " + expectedConstructorRelevance + "}\n" +
+            "LinkedBlockingDeque[CONSTRUCTOR_INVOCATION]{, Ljava.util.concurrent.LinkedBlockingDeque;, ()V, LinkedBlockingDeque, null, " + expectedConstructorRelevance + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "LinkedBlockingDeque[CONSTRUCTOR_INVOCATION]{, Ljava.util.concurrent.LinkedBlockingDeque;, (I)V, LinkedBlockingDeque, (arg0), " + expectedConstructorRelevance + "}\n" +
             "LinkedBlockingDeque[CONSTRUCTOR_INVOCATION]{, Ljava.util.concurrent.LinkedBlockingDeque;, (Ljava.util.Collection<+TE;>;)V, LinkedBlockingDeque, (arg0), " + expectedConstructorRelevance + "}\n" +
             "LinkedBlockingQueue[CONSTRUCTOR_INVOCATION]{, Ljava.util.concurrent.LinkedBlockingQueue;, ()V, LinkedBlockingQueue, null, " + expectedConstructorRelevance + "}\n" +
@@ -3846,7 +3846,7 @@ public void testCompletionConstructorRelevance1() throws JavaModelException {
 /**
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=277691
  */
-public void testCompletionConstructorRelevance2() throws JavaModelException {
+public void testCompletionConstructorRelevance2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Foo.java",
@@ -3868,13 +3868,13 @@ public void testCompletionConstructorRelevance2() throws JavaModelException {
 
     int expectedConstructorRelevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED + R_EXACT_NAME + R_CASE + R_EXPECTED_TYPE + R_CONSTRUCTOR;
     assertResults(
-            "LinkedBlockingQueue[CONSTRUCTOR_INVOCATION]{(), Ljava.util.concurrent.LinkedBlockingQueue;, ()V, LinkedBlockingQueue, null, " + expectedConstructorRelevance + "}\n" +
+            "LinkedBlockingQueue[CONSTRUCTOR_INVOCATION]{(), Ljava.util.concurrent.LinkedBlockingQueue;, ()V, LinkedBlockingQueue, null, " + expectedConstructorRelevance + "}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "LinkedBlockingQueue[CONSTRUCTOR_INVOCATION]{(), Ljava.util.concurrent.LinkedBlockingQueue;, (I)V, LinkedBlockingQueue, (arg0), " + expectedConstructorRelevance + "}\n" +
             "LinkedBlockingQueue[CONSTRUCTOR_INVOCATION]{(), Ljava.util.concurrent.LinkedBlockingQueue;, (Ljava.util.Collection<+TE;>;)V, LinkedBlockingQueue, (arg0), " + expectedConstructorRelevance + "}",
             requestor.getResults());
 }
 
-public void testBug570593_SingleTypeParam() throws JavaModelException {
+public void testBug570593_SingleTypeParam() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -3902,7 +3902,7 @@ public void testBug570593_SingleTypeParam() throws JavaModelException {
             requestor.getResults());
 }
 
-public void testBug570593_MultipleTypeParams_OnFirstTP() throws JavaModelException {
+public void testBug570593_MultipleTypeParams_OnFirstTP() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -3930,7 +3930,7 @@ public void testBug570593_MultipleTypeParams_OnFirstTP() throws JavaModelExcepti
             requestor.getResults());
 }
 
-public void testBug570593_MultipleTypeParams_OnSecondTP() throws JavaModelException {
+public void testBug570593_MultipleTypeParams_OnSecondTP() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -3958,7 +3958,7 @@ public void testBug570593_MultipleTypeParams_OnSecondTP() throws JavaModelExcept
             requestor.getResults());
 }
 
-public void testBug570593_SingleTypeParam_NestedSingleParam() throws JavaModelException {
+public void testBug570593_SingleTypeParam_NestedSingleParam() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -3986,7 +3986,7 @@ public void testBug570593_SingleTypeParam_NestedSingleParam() throws JavaModelEx
             requestor.getResults());
 }
 
-public void testBug570593_SingleTypeParam_NestedMultiParams_OnFirst() throws JavaModelException {
+public void testBug570593_SingleTypeParam_NestedMultiParams_OnFirst() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4015,7 +4015,7 @@ public void testBug570593_SingleTypeParam_NestedMultiParams_OnFirst() throws Jav
             requestor.getResults());
 }
 
-public void testBug570593_SingleTypeParam_NestedMultiParams_OnSecond() throws JavaModelException {
+public void testBug570593_SingleTypeParam_NestedMultiParams_OnSecond() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4044,7 +4044,7 @@ public void testBug570593_SingleTypeParam_NestedMultiParams_OnSecond() throws Ja
             requestor.getResults());
 }
 
-public void testBug570593_MultiTypeParam_OnFirst_NestedSingleParam() throws JavaModelException {
+public void testBug570593_MultiTypeParam_OnFirst_NestedSingleParam() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4073,7 +4073,7 @@ public void testBug570593_MultiTypeParam_OnFirst_NestedSingleParam() throws Java
             requestor.getResults());
 }
 
-public void testBug570593_MultiTypeParam_OnSecond_NestedSingleParam() throws JavaModelException {
+public void testBug570593_MultiTypeParam_OnSecond_NestedSingleParam() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4102,7 +4102,7 @@ public void testBug570593_MultiTypeParam_OnSecond_NestedSingleParam() throws Jav
             requestor.getResults());
 }
 
-public void testBug570593_MultiTypeParam_NestedMultiParam_OnFirst() throws JavaModelException {
+public void testBug570593_MultiTypeParam_NestedMultiParam_OnFirst() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4131,7 +4131,7 @@ public void testBug570593_MultiTypeParam_NestedMultiParam_OnFirst() throws JavaM
             requestor.getResults());
 }
 
-public void testBug570593_MultiTypeParam_NestedMultiParam_OnSecond() throws JavaModelException {
+public void testBug570593_MultiTypeParam_NestedMultiParam_OnSecond() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4160,7 +4160,7 @@ public void testBug570593_MultiTypeParam_NestedMultiParam_OnSecond() throws Java
             requestor.getResults());
 }
 
-public void testBug572315_OnFieldAboveAnnotatedMember_VariableNameSuggestion() throws JavaModelException {
+public void testBug572315_OnFieldAboveAnnotatedMember_VariableNameSuggestion() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4187,7 +4187,7 @@ public void testBug572315_OnFieldAboveAnnotatedMember_VariableNameSuggestion() t
             requestor.getResults());
 }
 
-public void testBug572315_OnFieldAboveParameterizedAnnotatedMember_VariableNameSuggestion() throws JavaModelException {
+public void testBug572315_OnFieldAboveParameterizedAnnotatedMember_VariableNameSuggestion() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4214,7 +4214,7 @@ public void testBug572315_OnFieldAboveParameterizedAnnotatedMember_VariableNameS
             requestor.getResults());
 }
 
-public void testBug572315_OnField_VariableNameSuggestion() throws JavaModelException {
+public void testBug572315_OnField_VariableNameSuggestion() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4238,7 +4238,7 @@ public void testBug572315_OnField_VariableNameSuggestion() throws JavaModelExcep
             requestor.getResults());
 }
 
-public void testBug572315_OnFieldAboveMember_VariableNameSuggestion() throws JavaModelException {
+public void testBug572315_OnFieldAboveMember_VariableNameSuggestion() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4263,7 +4263,7 @@ public void testBug572315_OnFieldAboveMember_VariableNameSuggestion() throws Jav
             requestor.getResults());
 }
 
-public void testBug572315_OnFieldAboveAnnotatedField_VariableNameSuggestion() throws JavaModelException {
+public void testBug572315_OnFieldAboveAnnotatedField_VariableNameSuggestion() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4289,7 +4289,7 @@ public void testBug572315_OnFieldAboveAnnotatedField_VariableNameSuggestion() th
             requestor.getResults());
 }
 
-public void testBug572315_OnFieldAboveAnnotatedMemberWithSemicolon_VariableNameSuggestion() throws JavaModelException {
+public void testBug572315_OnFieldAboveAnnotatedMemberWithSemicolon_VariableNameSuggestion() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4315,7 +4315,7 @@ public void testBug572315_OnFieldAboveAnnotatedMemberWithSemicolon_VariableNameS
             requestor.getResults());
 }
 
-public void testBug572315_OnFieldAboveAnnotatedMemberWhichIsAnnotated_VariableNameSuggestion() throws JavaModelException {
+public void testBug572315_OnFieldAboveAnnotatedMemberWhichIsAnnotated_VariableNameSuggestion() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4342,7 +4342,7 @@ public void testBug572315_OnFieldAboveAnnotatedMemberWhichIsAnnotated_VariableNa
             requestor.getResults());
 }
 
-public void testBug572315_OnLocalVariableAboveAnnotatedMember_VariableNameSuggestion() throws JavaModelException {
+public void testBug572315_OnLocalVariableAboveAnnotatedMember_VariableNameSuggestion() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug570593.java",
@@ -4369,7 +4369,7 @@ public void testBug572315_OnLocalVariableAboveAnnotatedMember_VariableNameSugges
             + "strings[VARIABLE_DECLARATION]{strings, null, Ljava.util.List<Ljava.lang.String;>;, strings, null, 48}",
             requestor.getResults());
 }
-public void testBug530556() throws JavaModelException {
+public void testBug530556() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
 		"Completion/src/Callback.java",
@@ -4482,7 +4482,7 @@ public void testBug530556() throws JavaModelException {
             "wait[METHOD_REF]{wait(), Ljava.lang.Object;, (JI)V, wait, (millis, nanos), 60}",
             requestor.getResults());
 }
-public void testBug539685a() throws Exception {
+public void testBug539685a() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 		"Completion/src/ReproduceHang.java",
@@ -4510,7 +4510,7 @@ public void testBug539685a() throws Exception {
             "requireNonNull[METHOD_REF]{requireNonNull, Ljava.util.Objects;, <T:Ljava.lang.Object;>(TT;Ljava.util.function.Supplier<Ljava.lang.String;>;)TT;, requireNonNull, (arg0, arg1), 51}",
             requestor.getResults());
 }
-public void testBug558530() throws Exception {
+public void testBug558530() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug558530.java",
@@ -4622,7 +4622,7 @@ public void testBug558530() throws Exception {
             "trim[METHOD_REF]{trim(), Ljava.lang.String;, ()Ljava.lang.String;, trim, null, 90}",
             requestor.getResults());
 }
-public void testBug548779() throws JavaModelException {
+public void testBug548779() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/test/Test.java",
@@ -4745,7 +4745,7 @@ public void testBug548779() throws JavaModelException {
             "startsWith[METHOD_REF]{startsWith, Ljava.lang.String;, (Ljava.lang.String;I)Z, startsWith, (arg0, arg1), 90}",
     		requestor.getResults());
 }
-public void testBug543617() throws JavaModelException {
+public void testBug543617() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/test/Test.java",
@@ -4786,7 +4786,7 @@ public void testBug543617() throws JavaModelException {
     int expectedJavaTypeRelevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_EXACT_EXPECTED_TYPE + R_JAVA_LIBRARY;
 
     assertResults(
-            "finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, finalize, null, "+voidRelevance+"}\n" +
+            "finalize[METHOD_REF]{finalize(), Ljava.lang.Object;, ()V, finalize, null, "+voidRelevance+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "notify[METHOD_REF]{notify(), Ljava.lang.Object;, ()V, notify, null, "+voidRelevance+"}\n" +
             "notifyAll[METHOD_REF]{notifyAll(), Ljava.lang.Object;, ()V, notifyAll, null, "+voidRelevance+"}\n" +
             "print[METHOD_REF]{print(), Ltest.TestApp;, <E:Ljava.lang.Object;>(Ljava.util.Iterator<TE;>;)V, print, (iterator), "+voidRelevance+"}\n" +
@@ -4807,7 +4807,7 @@ public void testBug543617() throws JavaModelException {
             "List<java.lang.Long>[TYPE_REF]{List, java.util, Ljava.util.List<Ljava.lang.Long;>;, null, null, "+expectedJavaTypeRelevance+"}",
     		requestor.getResults());
 }
-public void testBug539617_alloc() throws JavaModelException {
+public void testBug539617_alloc() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/CodeCompletion.java",
 			"public class CodeCompletion {\n" +
@@ -4824,11 +4824,11 @@ public void testBug539617_alloc() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_RESTRICTED;
 	assertResults(
-			"Double[METHOD_REF<CONSTRUCTOR>]{, Ljava.lang.Double;, (D)V, Double, (arg0), "+relevance+"}\n" +
+			"Double[METHOD_REF<CONSTRUCTOR>]{, Ljava.lang.Double;, (D)V, Double, (arg0), "+relevance+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"Double[METHOD_REF<CONSTRUCTOR>]{, Ljava.lang.Double;, (Ljava.lang.String;)V, Double, (arg0), "+relevance+"}",
 			requestor.getResults());
 }
-public void testBug539617_msg() throws JavaModelException {
+public void testBug539617_msg() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/CodeCompletion.java",
 			"public class CodeCompletion {\n" +
@@ -4848,11 +4848,11 @@ public void testBug539617_msg() throws JavaModelException {
 	int relevance =  R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED;
 	int relevanceExpectedType = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_EXACT_NAME + R_UNQUALIFIED + R_NON_RESTRICTED + R_EXACT_EXPECTED_TYPE;
 	assertResults(
-			"meth[METHOD_REF]{, LCodeCompletion;, (Ljava.lang.String;Z)Ljava.lang.Number;, meth, (arg, flag), "+relevance+"}\n" +
+			"meth[METHOD_REF]{, LCodeCompletion;, (Ljava.lang.String;Z)Ljava.lang.Number;, meth, (arg, flag), "+relevance+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"meth[METHOD_REF]{, LCodeCompletion;, (Ljava.lang.String;)Ljava.lang.Double;, meth, (arg), "+relevanceExpectedType+"}",
 			requestor.getResults());
 }
-public void testBug473654_comment33() throws Exception {
+public void testBug473654_comment33() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[4];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/GenericThing.java",
 			"public class GenericThing {}\n");
@@ -4883,7 +4883,7 @@ public void testBug473654_comment33() throws Exception {
 	int fieldTypeRelevance =  keywordRelevance + R_UNQUALIFIED;
 	int overrideRelevance = keywordRelevance + R_METHOD_OVERIDE;
 	assertResults(
-			"[POTENTIAL_METHOD_DECLARATION]{, LSpecificThing;, ()V, , null, "+newMethodRelevance+"}\n" +
+			"[POTENTIAL_METHOD_DECLARATION]{, LSpecificThing;, ()V, , null, "+newMethodRelevance+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			"abstract[KEYWORD]{abstract, null, null, abstract, null, "+keywordRelevance+"}\n" +
 			"class[KEYWORD]{class, null, null, class, null, "+keywordRelevance+"}\n" +
 			"enum[KEYWORD]{enum, null, null, enum, null, "+keywordRelevance+"}\n" +
@@ -4906,7 +4906,7 @@ public void testBug473654_comment33() throws Exception {
 			"toString[METHOD_DECLARATION]{public String toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, "+overrideRelevance+"}",
 			requestor.getResults());
 }
-public void testBug546097() throws Exception {
+public void testBug546097() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/TestClass.java",
@@ -4939,7 +4939,7 @@ public void testBug546097() throws Exception {
     int exactExpectedJavaTypeRelevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED + R_EXACT_EXPECTED_TYPE + R_JAVA_LIBRARY;
 
     assertResults(
-            "ENUM1[FIELD_REF]{ENUM1, LTestClass$TestEnum;, LTestClass$TestEnum;, ENUM1, null, "+expectedTypeRelevance+"}\n" +
+            "ENUM1[FIELD_REF]{ENUM1, LTestClass$TestEnum;, LTestClass$TestEnum;, ENUM1, null, "+expectedTypeRelevance+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
             "ENUM2[FIELD_REF]{ENUM2, LTestClass$TestEnum;, LTestClass$TestEnum;, ENUM2, null, "+expectedTypeRelevance+"}\n" +
             "TestClass[TYPE_REF]{TestClass, , LTestClass;, null, null, "+expectedTypeRelevance+"}\n" +
             "valueOf[METHOD_REF]{valueOf(), LTestClass$TestEnum;, (Ljava.lang.String;)LTestClass$TestEnum;, valueOf, (arg0), "+expectedTypeRelevance+"}\n" +
@@ -4948,7 +4948,7 @@ public void testBug546097() throws Exception {
             "Object[TYPE_REF]{Object, java.lang, Ljava.lang.Object;, null, null, "+exactExpectedJavaTypeRelevance+"}",
     		requestor.getResults());
 }
-public void testBug573105_OnLambdaParamAtNestedMethodInvocationInsideLambda_MemberCompletions() throws JavaModelException {
+public void testBug573105_OnLambdaParamAtNestedMethodInvocationInsideLambda_MemberCompletions() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573105.java",
@@ -4974,11 +4974,11 @@ public void testBug573105_OnLambdaParamAtNestedMethodInvocationInsideLambda_Memb
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-    assertTrue(String.format("Result doesn''t contain method foo (%s)", result),
+    assertTrue(String.format("Result doesn''t contain method foo (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("foo[METHOD_REF]{foo(), LBug573105$Element;, ()Ljava.net.URI;, foo, null, 60}\n"));
 }
 
-public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambda_MemberCompletions() throws JavaModelException {
+public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambda_MemberCompletions() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573105.java",
@@ -5003,10 +5003,10 @@ public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambda_MemberComp
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-    assertTrue(String.format("Result doesn''t contain method foo (%s)", result),
+    assertTrue(String.format("Result doesn''t contain method foo (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("foo[METHOD_REF]{foo(), LBug573105$Element;, ()Ljava.net.URI;, foo, null, 60}\n"));
 }
-public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambdaWithSemicolon_MemberCompletions() throws JavaModelException {
+public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambdaWithSemicolon_MemberCompletions() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573105.java",
@@ -5032,11 +5032,11 @@ public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambdaWithSemicol
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-    assertTrue(String.format("Result doesn''t contain method foo (%s)", result),
+    assertTrue(String.format("Result doesn''t contain method foo (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("foo[METHOD_REF]{foo(), LBug573105$Element;, ()Ljava.net.URI;, foo, null, 60}\n"));
 }
 
-public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambdaBlock_MemberCompletions() throws JavaModelException {
+public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambdaBlock_MemberCompletions() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573105.java",
@@ -5064,10 +5064,10 @@ public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambdaBlock_Membe
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-    assertTrue(String.format("Result doesn''t contain method foo (%s)", result),
+    assertTrue(String.format("Result doesn''t contain method foo (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("foo[METHOD_REF]{foo(), LBug573105$Element;, ()Ljava.net.URI;, foo, null, 60}\n"));
 }
-public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambdaInConditional_MemberCompletions() throws JavaModelException {
+public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambdaInConditional_MemberCompletions() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573105.java",
@@ -5092,10 +5092,10 @@ public void testBug573105_OnLambdaParamAtMethodInvocationInsideLambdaInCondition
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-    assertTrue(String.format("Result doesn''t contain method foo (%s)", result),
+    assertTrue(String.format("Result doesn''t contain method foo (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("foo[METHOD_REF]{foo(), LBug573105$Element;, ()Ljava.net.URI;, foo, null, 60}\n"));
 }
-public void testBug482663() throws Exception {
+public void testBug482663() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/CompletionParserResumeFailure.java",
@@ -5129,7 +5129,7 @@ public void testBug482663() throws Exception {
 			"Date[TYPE_REF]{java.util.Date, java.util, Ljava.util.Date;, null, null, 75}",
 			requestor.getResults());
 }
-public void testBug574215() throws CoreException {
+public void testBug574215() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/jdt/Something.java",
@@ -5172,7 +5172,7 @@ public void testBug574215() throws CoreException {
 			"wait[METHOD_REF]{wait(), Ljava.lang.Object;, (JI)V, wait, (millis, nanos), 60}",
 			requestor.getResults());
 }
-public void testBug574215_withToken() throws CoreException {
+public void testBug574215_withToken() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/jdt/Something.java",
@@ -5205,7 +5205,7 @@ public void testBug574215_withToken() throws CoreException {
 			"found[FIELD_REF]{found, Ljdt.S;, I, found, null, 60}",
 			requestor.getResults());
 }
-public void testBug573313_MethodParametersCompletions_CorrectCompletionsForType() throws JavaModelException {
+public void testBug573313_MethodParametersCompletions_CorrectCompletionsForType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573313.java",
@@ -5233,7 +5233,7 @@ public void testBug573313_MethodParametersCompletions_CorrectCompletionsForType(
 	assertResults("SECONDS[FIELD_REF]{TimeUnit.SECONDS, Ljava.util.concurrent.TimeUnit;, Ljava.util.concurrent.TimeUnit;, SECONDS, null, 104}",
 			requestor.getResults());
 }
-public void testBug573313_MethodParametersCompletions_QualifiedName_CorrectCompletionsForType() throws JavaModelException {
+public void testBug573313_MethodParametersCompletions_QualifiedName_CorrectCompletionsForType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573313.java",
@@ -5261,7 +5261,7 @@ public void testBug573313_MethodParametersCompletions_QualifiedName_CorrectCompl
 	assertResults("SECONDS[FIELD_REF]{SECONDS, Ljava.util.concurrent.TimeUnit;, Ljava.util.concurrent.TimeUnit;, SECONDS, null, 81}",
 			requestor.getResults());
 }
-public void testBug573313_MethodParametersCompletions_InCompleteMessageSend_CorrectCompletionsForType() throws JavaModelException {
+public void testBug573313_MethodParametersCompletions_InCompleteMessageSend_CorrectCompletionsForType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573313.java",
@@ -5290,7 +5290,7 @@ public void testBug573313_MethodParametersCompletions_InCompleteMessageSend_Corr
 			requestor.getResults());
 }
 
-public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnLastParamWithToken_CorrectCompletionsForType() throws JavaModelException {
+public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnLastParamWithToken_CorrectCompletionsForType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573313.java",
@@ -5318,7 +5318,7 @@ public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnLas
 	assertResults("SECONDS[FIELD_REF]{TimeUnit.SECONDS, Ljava.util.concurrent.TimeUnit;, Ljava.util.concurrent.TimeUnit;, SECONDS, null, 104}",
 			requestor.getResults());
 }
-public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMiddleParam_CorrectCompletionsForType() throws JavaModelException {
+public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMiddleParam_CorrectCompletionsForType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573313.java",
@@ -5344,11 +5344,11 @@ public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMid
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn''t contain enum literal SECONDS (%s)", result),
+	assertTrue(String.format("Result doesn''t contain enum literal SECONDS (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("SECONDS[FIELD_REF]{TimeUnit.SECONDS, Ljava.util.concurrent.TimeUnit;, Ljava.util.concurrent.TimeUnit;, SECONDS, null, 104}"));
 
 }
-public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMiddleParamNoSpace_CorrectCompletionsForType() throws JavaModelException {
+public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMiddleParamNoSpace_CorrectCompletionsForType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573313.java",
@@ -5374,11 +5374,11 @@ public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMid
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn''t contain enum literal SECONDS (%s)", result),
+	assertTrue(String.format("Result doesn''t contain enum literal SECONDS (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("SECONDS[FIELD_REF]{TimeUnit.SECONDS, Ljava.util.concurrent.TimeUnit;, Ljava.util.concurrent.TimeUnit;, SECONDS, null, 104}"));
 
 }
-public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnLastParam_CorrectCompletionsForType() throws JavaModelException {
+public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnLastParam_CorrectCompletionsForType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573313.java",
@@ -5404,11 +5404,11 @@ public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnLas
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn''t contain enum literal SECONDS (%s)", result),
+	assertTrue(String.format("Result doesn''t contain enum literal SECONDS (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("SECONDS[FIELD_REF]{TimeUnit.SECONDS, Ljava.util.concurrent.TimeUnit;, Ljava.util.concurrent.TimeUnit;, SECONDS, null, 104}"));
 
 }
-public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMiddleParam_MethodCompletionsForType() throws JavaModelException {
+public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMiddleParam_MethodCompletionsForType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573313.java",
@@ -5440,11 +5440,11 @@ public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMid
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn''t contain enum literal SECONDS (%s)", result),
+	assertTrue(String.format("Result doesn''t contain enum literal SECONDS (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("defaultParam[METHOD_REF]{, LBug573313;, (I)Ljava.util.concurrent.TimeUnit;, defaultParam, (amout), 86}"));
 
 }
-public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMiddleParam_MethodCompletionsForType_2() throws JavaModelException {
+public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMiddleParam_MethodCompletionsForType_2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug573313.java",
@@ -5477,11 +5477,11 @@ public void testBug573313_MethodParametersCompletions_InCompleteMessageSendOnMid
 
     int relevance = R_DEFAULT + R_CASE + R_INTERESTING + R_NON_RESTRICTED + R_RESOLVED + R_NON_STATIC;
     assertEquals(
-    		"defaultParam2[METHOD_REF]{defaultParam2, LBug573313;, ()Ljava.util.concurrent.Callable;, defaultParam2, null, "+relevance+"}\n" +
+    		"defaultParam2[METHOD_REF]{defaultParam2, LBug573313;, ()Ljava.util.concurrent.Callable;, defaultParam2, null, "+relevance+"}\n" + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
     		"defaultParam1[METHOD_REF]{defaultParam1, LBug573313;, (I)Ljava.util.concurrent.TimeUnit;, defaultParam1, (amout), "+(relevance + R_EXACT_EXPECTED_TYPE)+"}",
     		requestor.getResults());
 }
-public void testBug573789_atFirstChainMethodWithToken() throws JavaModelException {
+public void testBug573789_atFirstChainMethodWithToken() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/App.java",
@@ -5498,10 +5498,10 @@ public void testBug573789_atFirstChainMethodWithToken() throws JavaModelExceptio
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
     String result = requestor.getResults();
-    assertTrue(String.format("Result doesn't match actual:  (%s)", result),
+    assertTrue(String.format("Result doesn't match actual:  (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("appendCodePoint[METHOD_REF]{appendCodePoint, Ljava.lang.StringBuilder;, (I)Ljava.lang.StringBuilder;, appendCodePoint, (arg0), 60}"));
 }
-public void testBug573789_atFirstChainMethod() throws JavaModelException {
+public void testBug573789_atFirstChainMethod() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/App.java",
@@ -5518,10 +5518,10 @@ public void testBug573789_atFirstChainMethod() throws JavaModelException {
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
     String result = requestor.getResults();
-    assertTrue(String.format("Result doesn't match actual: (%s)", result),
+    assertTrue(String.format("Result doesn't match actual: (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("appendCodePoint[METHOD_REF]{appendCodePoint, Ljava.lang.StringBuilder;, (I)Ljava.lang.StringBuilder;, appendCodePoint, (arg0), 60}"));
 }
-public void testBug573789_atSecondChainMethodWithToken() throws JavaModelException {
+public void testBug573789_atSecondChainMethodWithToken() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/App.java",
@@ -5538,10 +5538,10 @@ public void testBug573789_atSecondChainMethodWithToken() throws JavaModelExcepti
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
     String result = requestor.getResults();
-    assertTrue(String.format("Result doesn't match actual:  (%s)", result),
+    assertTrue(String.format("Result doesn't match actual:  (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("appendCodePoint[METHOD_REF]{appendCodePoint, Ljava.lang.StringBuilder;, (I)Ljava.lang.StringBuilder;, appendCodePoint, (arg0), 60}"));
 }
-public void testBug573789_atFirstChainMethod_noBraces() throws JavaModelException {
+public void testBug573789_atFirstChainMethod_noBraces() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/App.java",
@@ -5558,10 +5558,10 @@ public void testBug573789_atFirstChainMethod_noBraces() throws JavaModelExceptio
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
     String result = requestor.getResults();
-    assertTrue(String.format("Result doesn't match actual: (%s)", result),
+    assertTrue(String.format("Result doesn't match actual: (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("appendCodePoint[METHOD_REF]{appendCodePoint, Ljava.lang.StringBuilder;, (I)Ljava.lang.StringBuilder;, appendCodePoint, (arg0), 60}"));
 }
-public void testBug573789_staticOnlyMethodCompletion() throws JavaModelException {
+public void testBug573789_staticOnlyMethodCompletion() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/App.java",
@@ -5596,7 +5596,7 @@ public void testBug573789_staticOnlyMethodCompletion() throws JavaModelException
     		+ "foo[METHOD_REF]{foo(), LApp;, ()LApp;, foo, null, 51}\n"
     		+ "main[METHOD_REF]{main(), LApp;, ([Ljava.lang.String;)V, main, (args), 51}", result);
 }
-public void testBug573789_allMethodCompletion_withToken() throws JavaModelException {
+public void testBug573789_allMethodCompletion_withToken() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/App.java",
@@ -5626,14 +5626,14 @@ public void testBug573789_allMethodCompletion_withToken() throws JavaModelExcept
 	int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
     String result = requestor.getResults();
-    assertTrue(String.format("Result doesn't match actual:  (%s)", result),
+    assertTrue(String.format("Result doesn't match actual:  (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("xboo[METHOD_REF]{xboo(), LApp;, ()LApp;, xboo, null, 49}\n"
     				+ "xfoo[METHOD_REF]{xfoo(), LApp;, ()LApp;, xfoo, null, 49}\n"));
 
-    assertTrue(String.format("Result doesn't match actual:  (%s)", result),
+    assertTrue(String.format("Result doesn't match actual:  (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("xmoo[METHOD_REF]{xmoo(), LApp;, ()LApp;, xmoo, null, 60}"));
 }
-public void test574366_onParameterizedClassConstructor_insideLambda() throws JavaModelException {
+public void test574366_onParameterizedClassConstructor_insideLambda() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug574366.java",
@@ -5657,11 +5657,11 @@ public void test574366_onParameterizedClassConstructor_insideLambda() throws Jav
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn''t contain ArrayList constructor (%s)", result),
+	assertTrue(String.format("Result doesn''t contain ArrayList constructor (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("ArrayList<>[ANONYMOUS_CLASS_DECLARATION]{, Ljava.util.ArrayList<>;, (I)V, null, (arg0), 39}\n"
     				+ "ArrayList<>[ANONYMOUS_CLASS_DECLARATION]{, Ljava.util.ArrayList<>;, (Ljava.util.Collection<+TE;>;)V, null, (arg0), 39}"));
 }
-public void test574366_onParameterizedInterfaceConstructor_insideLambda() throws JavaModelException {
+public void test574366_onParameterizedInterfaceConstructor_insideLambda() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug574366.java",
@@ -5685,10 +5685,10 @@ public void test574366_onParameterizedInterfaceConstructor_insideLambda() throws
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn't contain List constructor (%s)", result),
+	assertTrue(String.format("Result doesn't contain List constructor (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("List<>[ANONYMOUS_CLASS_DECLARATION]{, Ljava.util.List<>;, ()V, null, null, 39}"));
 }
-public void test574366_onParameterizedClassConstructor_enclosedInstance() throws JavaModelException {
+public void test574366_onParameterizedClassConstructor_enclosedInstance() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug574366.java",
@@ -5710,11 +5710,11 @@ public void test574366_onParameterizedClassConstructor_enclosedInstance() throws
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn't contain expected constructor (%s)", result),
+	assertTrue(String.format("Result doesn't contain expected constructor (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("Enclosed[METHOD_REF<CONSTRUCTOR>]{, LTemp$Enclosed<>;, (I)V, Enclosed, (i), 39}\n"
     				+ "Temp.Enclosed<>[ANONYMOUS_CLASS_DECLARATION]{, LTemp$Enclosed<>;, (I)V, null, (i), 39}"));
 }
-public void test574366_onParameterizedInterfaceConstructor_enclosedInstance() throws JavaModelException {
+public void test574366_onParameterizedInterfaceConstructor_enclosedInstance() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug574366.java",
@@ -5739,7 +5739,7 @@ public void test574366_onParameterizedInterfaceConstructor_enclosedInstance() th
     		"Temp.Enclosed<>[ANONYMOUS_CLASS_DECLARATION]{, LTemp$Enclosed<>;, ()V, null, null, 39}",
     		requestor.getResults());
 }
-public void testBug563020_lambdaWithMethodRef_overloadedMethodRef_expectCompletions() throws JavaModelException {
+public void testBug563020_lambdaWithMethodRef_overloadedMethodRef_expectCompletions() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug563020.java",
@@ -5759,7 +5759,7 @@ public void testBug563020_lambdaWithMethodRef_overloadedMethodRef_expectCompleti
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn't contain expected methods (%s)", result),
+	assertTrue(String.format("Result doesn't contain expected methods (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("iterator[METHOD_REF]{iterator(), Ljava.util.stream.BaseStream<Ljava.lang.String;Ljava.util.stream.Stream<Ljava.lang.String;>;>;, ()Ljava.util.Iterator<Ljava.lang.String;>;, iterator, null, 60}\n"
     				+ "limit[METHOD_REF]{limit(), Ljava.util.stream.Stream<Ljava.lang.String;>;, (J)Ljava.util.stream.Stream<Ljava.lang.String;>;, limit, (arg0), 60}\n"
     				+ "map[METHOD_REF]{map(), Ljava.util.stream.Stream<Ljava.lang.String;>;, <R:Ljava.lang.Object;>(Ljava.util.function.Function<-Ljava.lang.String;+TR;>;)Ljava.util.stream.Stream<TR;>;, map, (arg0), 60}\n"
@@ -5767,7 +5767,7 @@ public void testBug563020_lambdaWithMethodRef_overloadedMethodRef_expectCompleti
     				+ "mapToInt[METHOD_REF]{mapToInt(), Ljava.util.stream.Stream<Ljava.lang.String;>;, (Ljava.util.function.ToIntFunction<-Ljava.lang.String;>;)Ljava.util.stream.IntStream;, mapToInt, (arg0), 60}\n"
     				+ "mapToLong[METHOD_REF]{mapToLong(), Ljava.util.stream.Stream<Ljava.lang.String;>;, (Ljava.util.function.ToLongFunction<-Ljava.lang.String;>;)Ljava.util.stream.LongStream;, mapToLong, (arg0), 60}"));
 }
-public void testBug563020_lambdaWithMethodRef_exactMethodRef_expectCompletions() throws JavaModelException {
+public void testBug563020_lambdaWithMethodRef_exactMethodRef_expectCompletions() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug563020.java",
@@ -5787,7 +5787,7 @@ public void testBug563020_lambdaWithMethodRef_exactMethodRef_expectCompletions()
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn't contain expected methods (%s)", result),
+	assertTrue(String.format("Result doesn't contain expected methods (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("iterator[METHOD_REF]{iterator(), Ljava.util.stream.BaseStream<Ljava.lang.String;Ljava.util.stream.Stream<Ljava.lang.String;>;>;, ()Ljava.util.Iterator<Ljava.lang.String;>;, iterator, null, 60}\n"
     				+ "limit[METHOD_REF]{limit(), Ljava.util.stream.Stream<Ljava.lang.String;>;, (J)Ljava.util.stream.Stream<Ljava.lang.String;>;, limit, (arg0), 60}\n"
     				+ "map[METHOD_REF]{map(), Ljava.util.stream.Stream<Ljava.lang.String;>;, <R:Ljava.lang.Object;>(Ljava.util.function.Function<-Ljava.lang.String;+TR;>;)Ljava.util.stream.Stream<TR;>;, map, (arg0), 60}\n"
@@ -5795,7 +5795,7 @@ public void testBug563020_lambdaWithMethodRef_exactMethodRef_expectCompletions()
     				+ "mapToInt[METHOD_REF]{mapToInt(), Ljava.util.stream.Stream<Ljava.lang.String;>;, (Ljava.util.function.ToIntFunction<-Ljava.lang.String;>;)Ljava.util.stream.IntStream;, mapToInt, (arg0), 60}\n"
     				+ "mapToLong[METHOD_REF]{mapToLong(), Ljava.util.stream.Stream<Ljava.lang.String;>;, (Ljava.util.function.ToLongFunction<-Ljava.lang.String;>;)Ljava.util.stream.LongStream;, mapToLong, (arg0), 60}"));
 }
-public void testBug563020_lambdaWithMethodRef_overloadedMethodref_expectCompletionForNextChain() throws JavaModelException {
+public void testBug563020_lambdaWithMethodRef_overloadedMethodref_expectCompletionForNextChain() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug563020.java",
@@ -5815,11 +5815,11 @@ public void testBug563020_lambdaWithMethodRef_overloadedMethodref_expectCompleti
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn't contain expected methods (%s)", result),
+	assertTrue(String.format("Result doesn't contain expected methods (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("sorted[METHOD_REF]{, Ljava.util.stream.Stream<Ljava.lang.String;>;, ()Ljava.util.stream.Stream<Ljava.lang.String;>;, sorted, null, 56}\n"
     				+ "sorted[METHOD_REF]{, Ljava.util.stream.Stream<Ljava.lang.String;>;, (Ljava.util.Comparator<-Ljava.lang.String;>;)Ljava.util.stream.Stream<Ljava.lang.String;>;, sorted, (arg0), 56}"));
 }
-public void testBug563020_lambdaWithMethodRef_overloadedMethodref_expectCompletionForNextChainWithToken() throws JavaModelException {
+public void testBug563020_lambdaWithMethodRef_overloadedMethodref_expectCompletionForNextChainWithToken() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug563020.java",
@@ -5839,12 +5839,12 @@ public void testBug563020_lambdaWithMethodRef_overloadedMethodref_expectCompleti
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn't contain expected methods (%s)", result),
+	assertTrue(String.format("Result doesn't contain expected methods (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("mapToDouble[METHOD_REF]{mapToDouble(), Ljava.util.stream.Stream<Ljava.lang.String;>;, (Ljava.util.function.ToDoubleFunction<-Ljava.lang.String;>;)Ljava.util.stream.DoubleStream;, mapToDouble, (arg0), 60}\n"
     				+ "mapToInt[METHOD_REF]{mapToInt(), Ljava.util.stream.Stream<Ljava.lang.String;>;, (Ljava.util.function.ToIntFunction<-Ljava.lang.String;>;)Ljava.util.stream.IntStream;, mapToInt, (arg0), 60}\n"
     				+ "mapToLong[METHOD_REF]{mapToLong(), Ljava.util.stream.Stream<Ljava.lang.String;>;, (Ljava.util.function.ToLongFunction<-Ljava.lang.String;>;)Ljava.util.stream.LongStream;, mapToLong, (arg0), 60}"));
 }
-public void testBug563020_methodref_checkParserForBug559677_expectCompletions() throws JavaModelException {
+public void testBug563020_methodref_checkParserForBug559677_expectCompletions() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
             "/Completion/src/Bug563020.java",
@@ -5869,10 +5869,10 @@ public void testBug563020_methodref_checkParserForBug559677_expectCompletions() 
     this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
     String result = requestor.getResults();
-	assertTrue(String.format("Result doesn't contain expected methods (%s)", result),
+	assertTrue(String.format("Result doesn't contain expected methods (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("myRun[METHOD_NAME_REFERENCE]{myRun, LBug563020;, ()V, myRun, null, 55}"));
 }
-public void testBug574912() throws JavaModelException {
+public void testBug574912() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/LambdaFreeze.java",
@@ -5957,7 +5957,7 @@ public void testBug574912() throws JavaModelException {
 			"ZONE_OFFSET[FIELD_REF]{ZONE_OFFSET, Ljava.util.Calendar;, I, ZONE_OFFSET, null, 81}",
 			result);
 }
-public void testBug574823_completeOn_methodInvocationWithParams_inIfConidtion_insideIfBlock_followedByChainedStatments() throws Exception {
+public void testBug574823_completeOn_methodInvocationWithParams_inIfConidtion_insideIfBlock_followedByChainedStatments() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Bug574823.java",
@@ -5981,11 +5981,11 @@ public void testBug574823_completeOn_methodInvocationWithParams_inIfConidtion_in
 
 	String result = requestor.getResults();
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_VOID + R_NON_STATIC + R_NON_RESTRICTED;
-	assertTrue(String.format("Result doesn't contain method forEach (%s)", result),
-			result.contains("forEach[METHOD_REF]{forEach(), Ljava.lang.Iterable<Ljava.lang.String;>;, (Ljava.util.function.Consumer<-Ljava.lang.String;>;)V," +
+	assertTrue(String.format("Result doesn't contain method forEach (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
+			result.contains("forEach[METHOD_REF]{forEach(), Ljava.lang.Iterable<Ljava.lang.String;>;, (Ljava.util.function.Consumer<-Ljava.lang.String;>;)V," + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" null, null, forEach, (arg0), replace[149, 149], token[149, 149], "+relevance+"}"));
 }
-public void testBug574823_completeOn_methodInvocationWithParams_inIfConidtion_insideIf_followedByChainedStatment() throws Exception {
+public void testBug574823_completeOn_methodInvocationWithParams_inIfConidtion_insideIf_followedByChainedStatment() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Bug574823.java",
@@ -6007,11 +6007,11 @@ public void testBug574823_completeOn_methodInvocationWithParams_inIfConidtion_in
 
 	String result = requestor.getResults();
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_VOID + R_NON_STATIC + R_NON_RESTRICTED;
-	assertTrue(String.format("Result doesn't contain method forEach (%s)", result),
-			result.contains("forEach[METHOD_REF]{forEach(), Ljava.lang.Iterable<Ljava.lang.String;>;, (Ljava.util.function.Consumer<-Ljava.lang.String;>;)V," +
+	assertTrue(String.format("Result doesn't contain method forEach (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
+			result.contains("forEach[METHOD_REF]{forEach(), Ljava.lang.Iterable<Ljava.lang.String;>;, (Ljava.util.function.Consumer<-Ljava.lang.String;>;)V," + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					" null, null, forEach, (arg0), replace[149, 149], token[149, 149], "+relevance+"}"));
 }
-public void testBug574823_completeOn_methodInvocationWithParams_inWhileConidtion_insideWhileBlock_followedByChainedStatment() throws Exception {
+public void testBug574823_completeOn_methodInvocationWithParams_inWhileConidtion_insideWhileBlock_followedByChainedStatment() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Bug574823.java",
@@ -6034,11 +6034,11 @@ public void testBug574823_completeOn_methodInvocationWithParams_inWhileConidtion
 
 	String result = requestor.getResults();
 	int relevance = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_VOID + R_NON_STATIC + R_NON_RESTRICTED;
-	assertTrue(String.format("Result doesn't contain method forEach (%s)", result),
-		result.contains("forEach[METHOD_REF]{forEach(), Ljava.lang.Iterable<Ljava.lang.String;>;, (Ljava.util.function.Consumer<-Ljava.lang.String;>;)V," +
+	assertTrue(String.format("Result doesn't contain method forEach (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
+		result.contains("forEach[METHOD_REF]{forEach(), Ljava.lang.Iterable<Ljava.lang.String;>;, (Ljava.util.function.Consumer<-Ljava.lang.String;>;)V," + //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				" null, null, forEach, (arg0), replace[152, 152], token[152, 152], "+relevance+"}"));
 }
-public void testBug574823_completeOn_methodInvocationWithParams_inIfConidtionWithExpression_insideIfBlock_followedByChainedStatment() throws Exception {
+public void testBug574823_completeOn_methodInvocationWithParams_inIfConidtionWithExpression_insideIfBlock_followedByChainedStatment() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Bug574823.java",
@@ -6060,10 +6060,10 @@ public void testBug574823_completeOn_methodInvocationWithParams_inIfConidtionWit
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
 
 	String result = requestor.getResults();
-    assertTrue(String.format("Result doesn't contain method forEach (%s)", result),
+    assertTrue(String.format("Result doesn't contain method forEach (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
     		result.contains("forEach[METHOD_REF]{forEach(), Ljava.lang.Iterable<Ljava.lang.String;>;, (Ljava.util.function.Consumer<-Ljava.lang.String;>;)V, null, null, forEach, (arg0), replace[152, 152], token[152, 152], 60}"));
 }
-public void testBug574912_comment6() throws JavaModelException {
+public void testBug574912_comment6() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/LambdaFreeze2.java",
@@ -6091,7 +6091,7 @@ public void testBug574912_comment6() throws JavaModelException {
 	assertResults("num[FIELD_REF]{num, LLambdaFreeze2;, I, num, null, 52}\n"
 			+ "getMinimum[METHOD_REF]{, Ljava.util.Calendar;, (I)I, getMinimum, (arg0), 86}", result);
 }
-public void testBug574912_comment6b() throws JavaModelException {
+public void testBug574912_comment6b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/LambdaFreeze2.java",
@@ -6119,7 +6119,7 @@ public void testBug574912_comment6b() throws JavaModelException {
 	assertResults("xyz[FIELD_REF]{xyz, LLambdaFreeze2;, I, xyz, null, 82}",
 			result);
 }
-public void testBug574882() throws Exception {
+public void testBug574882() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/ForLoop.java",
@@ -6164,7 +6164,7 @@ public void testBug574882() throws Exception {
 			"completion token location={STATEMENT_START}", // this is required for sysout template proposal
 			requestor.getContext());
 }
-public void testBug575149_expectOverloadedMethodsAndVariablesRankedWithExpectedType() throws JavaModelException {
+public void testBug575149_expectOverloadedMethodsAndVariablesRankedWithExpectedType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug443091.java",
@@ -6198,7 +6198,7 @@ public void testBug575149_expectOverloadedMethodsAndVariablesRankedWithExpectedT
 			new char[][] {"Ljava.util.function.Function<Ljava.lang.Integer;Ljava.lang.String;>;".toCharArray(),
 			"Ljava.util.function.Consumer<Ljava.lang.Integer;>;".toCharArray()}, true));
 }
-public void testBug575149_expectRemainingOverloadedMethodsMatchingFilledArguments() throws JavaModelException {
+public void testBug575149_expectRemainingOverloadedMethodsMatchingFilledArguments() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug443091.java",
@@ -6227,7 +6227,7 @@ public void testBug575149_expectRemainingOverloadedMethodsMatchingFilledArgument
 			result);
 	assertTrue("expected type signatures don't match", CharOperation.equals(requestor.getExpectedTypesSignatures(), new char[][] {"Ljava.lang.Integer;".toCharArray()}, true));
 }
-public void testBug575149_expectOverloadsOverEnumLiterals() throws JavaModelException {
+public void testBug575149_expectOverloadsOverEnumLiterals() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug443091.java",
@@ -6263,7 +6263,7 @@ public void testBug575149_expectOverloadsOverEnumLiterals() throws JavaModelExce
 			result);
 	assertTrue("expected type signatures don't match", CharOperation.equals(requestor.getExpectedTypesSignatures(), new char[][] {"Ljava.lang.Thread$State;".toCharArray()}, true));
 }
-public void testBug443091_expectLambdaCompletions_forFunctionalInterfaceArgumentAssignment() throws JavaModelException {
+public void testBug443091_expectLambdaCompletions_forFunctionalInterfaceArgumentAssignment() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug443091.java",
@@ -6287,7 +6287,7 @@ public void testBug443091_expectLambdaCompletions_forFunctionalInterfaceArgument
 			+ "[LAMBDA_EXPRESSION]{->, Ljava.util.function.Consumer<Ljava.lang.Integer;>;, (Ljava.lang.Integer;)V, accept, (t), 89}",
 			result);
 }
-public void testBug443091_expectLambdaCompletions_forFunctionalInterfaceVariableAssigments() throws JavaModelException {
+public void testBug443091_expectLambdaCompletions_forFunctionalInterfaceVariableAssigments() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug443091.java",
@@ -6323,7 +6323,7 @@ public void testBug443091_expectLambdaCompletions_forFunctionalInterfaceVariable
 			+ "[LAMBDA_EXPRESSION]{->, Ljava.util.function.Consumer<Ljava.lang.Integer;>;, (Ljava.lang.Integer;)V, accept, (t), 89}",
 			result);
 }
-public void testBug576068() throws JavaModelException {
+public void testBug576068() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug576068.java",
@@ -6370,7 +6370,7 @@ public void testBug576068() throws JavaModelException {
 			"toString[METHOD_DECLARATION]{public String toString(), Ljava.lang.Object;, ()Ljava.lang.String;, toString, null, 52}",
 			result);
 }
-public void testBug577883_expectCompletions_onLambdaVars_inNestedLambdas() throws JavaModelException {
+public void testBug577883_expectCompletions_onLambdaVars_inNestedLambdas() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug577883.java",
@@ -6406,7 +6406,7 @@ public void testBug577883_expectCompletions_onLambdaVars_inNestedLambdas() throw
 			+ "clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, 90}",
 			result);
 }
-public void testBug577883_expectCompletions_onLambdaVars_inNestedLambdasL2() throws JavaModelException {
+public void testBug577883_expectCompletions_onLambdaVars_inNestedLambdasL2() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug577883.java",
@@ -6443,7 +6443,7 @@ public void testBug577883_expectCompletions_onLambdaVars_inNestedLambdasL2() thr
 			+ "clone[METHOD_REF]{clone(), Ljava.lang.Object;, ()Ljava.lang.Object;, clone, null, 90}",
 			result);
 }
-public void testBug577883_expectCompletions_onIntermediateLambdaVars_inNestedLambdas() throws JavaModelException {
+public void testBug577883_expectCompletions_onIntermediateLambdaVars_inNestedLambdas() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug577883.java",
@@ -6484,7 +6484,7 @@ public void testBug577883_expectCompletions_onIntermediateLambdaVars_inNestedLam
 			+ "equals[METHOD_REF]{equals(), Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, (obj), 90}",
 			result);
 }
-public void testBug577883_expectCompletions_onOuterLambdaVars_inNestedLambdas() throws JavaModelException {
+public void testBug577883_expectCompletions_onOuterLambdaVars_inNestedLambdas() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug577883.java",
@@ -6528,7 +6528,7 @@ public void testBug577883_expectCompletions_onOuterLambdaVars_inNestedLambdas() 
 			+ "equals[METHOD_REF]{equals(), Ljava.lang.Object;, (Ljava.lang.Object;)Z, equals, (obj), 90}",
 			result);
 }
-public void testBug577885_expectCompletions_onMethodArguments_followingMethodInvocationWithMethodRefArguments() throws JavaModelException {
+public void testBug577885_expectCompletions_onMethodArguments_followingMethodInvocationWithMethodRefArguments() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug577885.java",
@@ -6551,7 +6551,7 @@ public void testBug577885_expectCompletions_onMethodArguments_followingMethodInv
 			+ "[LAMBDA_EXPRESSION]{->, Ljava.util.function.Predicate<Ljava.lang.Long;>;, (Ljava.lang.Long;)Z, test, (arg0), 89}",
 			result);
 }
-public void testBug577885_expectCompletions_onMethodArguments_followingMethodInvocationWithMethodRefArguments_InsideLambda() throws JavaModelException {
+public void testBug577885_expectCompletions_onMethodArguments_followingMethodInvocationWithMethodRefArguments_InsideLambda() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug577885.java",
@@ -6576,7 +6576,7 @@ public void testBug577885_expectCompletions_onMethodArguments_followingMethodInv
 			+ "[LAMBDA_EXPRESSION]{->, Ljava.util.function.Predicate<Ljava.lang.Long;>;, (Ljava.lang.Long;)Z, test, (arg0), 89}",
 			result);
 }
-public void testBug578116_expectCompletions_forConstructorsInsideLamndaBlock() throws JavaModelException {
+public void testBug578116_expectCompletions_forConstructorsInsideLamndaBlock() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug578116.java",
@@ -6601,7 +6601,7 @@ public void testBug578116_expectCompletions_forConstructorsInsideLamndaBlock() t
 			+ "ArrayList<java.lang.String>[TYPE_REF]{ArrayList, java.util, Ljava.util.ArrayList<Ljava.lang.String;>;, null, null, 84}",
 			result);
 }
-public void testBug578817() throws JavaModelException {
+public void testBug578817() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/Bug578817.java",
@@ -6635,7 +6635,7 @@ public void testBug578817() throws JavaModelException {
 	result = requestor.getResults();
 	assertResults("", result);
 }
-	public void testBug564875() throws JavaModelException {
+	public void testBug564875() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"/Completion/src/X.java",
@@ -6656,12 +6656,12 @@ public void testBug578817() throws JavaModelException {
 		String completeBehind = "p.get";
 		int cursorLocation = str.lastIndexOf(completeBehind) + completeBehind.length();
 		this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner);
-		assertResults("getLastPerson[METHOD_REF]{getLastPerson(), LPerson;, ()LPerson;, null, null, getLastPerson, null, [229, 232], "+ (R_DEFAULT+R_EXPECTED_TYPE+30)+"}\n"
+		assertResults("getLastPerson[METHOD_REF]{getLastPerson(), LPerson;, ()LPerson;, null, null, getLastPerson, null, [229, 232], "+ (R_DEFAULT+R_EXPECTED_TYPE+30)+"}\n" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				+ "getClass[METHOD_REF]{getClass(), Ljava.lang.Object;, ()Ljava.lang.Class<*>;, null, null, getClass, null, [229, 232], "+(R_DEFAULT+R_PACKAGE_EXPECTED_TYPE+30)+"}\n"
 				+ "getLastName[METHOD_REF]{getLastName(), LPerson;, ()Ljava.lang.String;, null, null, getLastName, null, [229, 232], "+(R_DEFAULT+R_EXACT_EXPECTED_TYPE+30)+"}", requestor.getResults());
 	}
 
-public void testGH109_expectCompletions_insideLambdaNestedBlocks() throws JavaModelException {
+public void testGH109_expectCompletions_insideLambdaNestedBlocks() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/GH109.java",
@@ -6701,7 +6701,7 @@ public void testGH109_expectCompletions_insideLambdaNestedBlocks() throws JavaMo
 }
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/195
-	public void testIssue195() throws JavaModelException {
+	public void testIssue195() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.workingCopies = new ICompilationUnit[1];
 		this.workingCopies[0] = getWorkingCopy(
 				"Completion/src/A.java",
@@ -6724,7 +6724,7 @@ public void testGH109_expectCompletions_insideLambdaNestedBlocks() throws JavaMo
 				requestor.getResults());
 	}
 
-public void testGH109_expectCompletionsWithCast_insideLambdaNestedBlocksWithInstanceOf() throws JavaModelException {
+public void testGH109_expectCompletionsWithCast_insideLambdaNestedBlocksWithInstanceOf() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"Completion/src/GH109.java",
@@ -6763,7 +6763,7 @@ public void testGH109_expectCompletionsWithCast_insideLambdaNestedBlocksWithInst
 			+ "startsWith[METHOD_REF_WITH_CASTED_RECEIVER]{((String)name).startsWith(), Ljava.lang.String;, (Ljava.lang.String;I)Z, Ljava.lang.String;, startsWith, (arg0, arg1), 60}"));
 }
 
-public void testGH583_onArrayCreationSupplier_expectNewMethodRefCompletions() throws JavaModelException {
+public void testGH583_onArrayCreationSupplier_expectNewMethodRefCompletions() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/GH583.java",
@@ -6783,11 +6783,11 @@ public void testGH583_onArrayCreationSupplier_expectNewMethodRefCompletions() th
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
 	String result = requestor.getResults();
-	assertTrue(String.format("Result doesn't contain expected methods (%s)", result),
+	assertTrue(String.format("Result doesn't contain expected methods (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 			result.contains("new[KEYWORD]{new, null, null, new, null, 49}"));
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/767
-public void testGH767() throws JavaModelException {
+public void testGH767() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Foo.java",
@@ -6806,11 +6806,11 @@ public void testGH767() throws JavaModelException {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
 	String result = requestor.getResults();
-	assertTrue(String.format("Result doesn't contain expected method (%s)", result),
+	assertTrue(String.format("Result doesn't contain expected method (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 			result.contains("length[METHOD_REF]{length(), Ljava.lang.String;, ()I, length, null, 60}\n"));
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/831
-public void testIntersection18GH831() throws Exception {
+public void testIntersection18GH831() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy(
 			"/Completion/src/Foo.java",
@@ -6829,11 +6829,11 @@ public void testIntersection18GH831() throws Exception {
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
 	String result = requestor.getResults();
-	assertTrue(String.format("Result doesn't contain expected method (%s)", result),
+	assertTrue(String.format("Result doesn't contain expected method (%s)", result), //FLLDCIM: MARK — M11 FORMAT_PRECOMPUTE CALL
 	result.contains("get[METHOD_REF]{get(), Ljava.util.Optional<Ljava.io.Serializable;>;, ()Ljava.io.Serializable;, get, null, 60}\n"));
 }
 
-public void testGH960_onVarargArgument_expectCompletionsMatchingElementType() throws JavaModelException {
+public void testGH960_onVarargArgument_expectCompletionsMatchingElementType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/GH960.java", """
 			public class GH960 {
@@ -6862,7 +6862,7 @@ public void testGH960_onVarargArgument_expectCompletionsMatchingElementType() th
 
 	String result = requestor.getResults();
 	assertResults(
-			"BLOCKED[FIELD_REF]{State.BLOCKED, LGH960$State;, LGH960$State;, BLOCKED, null, "
+			"BLOCKED[FIELD_REF]{State.BLOCKED, LGH960$State;, LGH960$State;, BLOCKED, null, " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED) + "}\n"
 					+ "RUNNABLE[FIELD_REF]{State.RUNNABLE, LGH960$State;, LGH960$State;, RUNNABLE, null, "
 					+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED) + "}\n"
@@ -6874,7 +6874,7 @@ public void testGH960_onVarargArgument_expectCompletionsMatchingElementType() th
 			result);
 }
 
-public void testGH960_onVarargArguments_expectCompletionsMatchingElementType() throws JavaModelException {
+public void testGH960_onVarargArguments_expectCompletionsMatchingElementType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/GH960.java", """
 			public class GH960 {
@@ -6905,20 +6905,20 @@ public void testGH960_onVarargArguments_expectCompletionsMatchingElementType() t
 	int relevanceExpectedTypes = R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED
 			+ R_EXACT_EXPECTED_TYPE;
 	assertContains("Enums",
-			"BLOCKED[FIELD_REF]{State.BLOCKED, LGH960$State;, LGH960$State;, BLOCKED, null, "
+			"BLOCKED[FIELD_REF]{State.BLOCKED, LGH960$State;, LGH960$State;, BLOCKED, null, " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ relevanceExpectedTypes + "}\n"
 					+ "RUNNABLE[FIELD_REF]{State.RUNNABLE, LGH960$State;, LGH960$State;, RUNNABLE, null, "
 					+ relevanceExpectedTypes + "}",
 			result);
 	assertContains("Variables",
-			"currentState[LOCAL_VARIABLE_REF]{currentState, null, LGH960$State;, currentState, null, "
+			"currentState[LOCAL_VARIABLE_REF]{currentState, null, LGH960$State;, currentState, null, " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED
 							+ R_EXACT_EXPECTED_TYPE)
 					+ "}",
 			result);
 }
 
-public void testGH960_onBeforeVarargArguments_expectCompletionsMatchingElementType() throws JavaModelException {
+public void testGH960_onBeforeVarargArguments_expectCompletionsMatchingElementType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/GH960.java", """
 			public class GH960 {
@@ -6944,12 +6944,12 @@ public void testGH960_onBeforeVarargArguments_expectCompletionsMatchingElementTy
 
 	String result = requestor.getResults();
 	assertContains("Variables",
-			"threadName[LOCAL_VARIABLE_REF]{threadName, null, Ljava.lang.String;, threadName, null, "
+			"threadName[LOCAL_VARIABLE_REF]{threadName, null, Ljava.lang.String;, threadName, null, " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_CASE + R_UNQUALIFIED + R_NON_RESTRICTED) + "}",
 			result);
 }
 
-public void testGH979_on1stConstructorArgument_expectCompletionsMatchinType() throws JavaModelException {
+public void testGH979_on1stConstructorArgument_expectCompletionsMatchinType() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[1] = getWorkingCopy("/Completion/src/GH979List.java", """
 			public class GH979List<T> {
@@ -6980,7 +6980,7 @@ public void testGH979_on1stConstructorArgument_expectCompletionsMatchinType() th
 
 	String result = requestor.getResults();
 	assertResults(
-			"GH979[ANONYMOUS_CLASS_DECLARATION]{, LGH979;, (LGH979List<Ljava.lang.String;>;I)V, null, (names, age), "
+			"GH979[ANONYMOUS_CLASS_DECLARATION]{, LGH979;, (LGH979List<Ljava.lang.String;>;I)V, null, (names, age), " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ (R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED) + "}\n"
 					+ "GH979[METHOD_REF<CONSTRUCTOR>]{, LGH979;, (LGH979List<Ljava.lang.String;>;I)V, GH979, (names, age), "
 					+ (R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED) + "}\n"
@@ -6989,7 +6989,7 @@ public void testGH979_on1stConstructorArgument_expectCompletionsMatchinType() th
 			result);
 }
 
-public void testGH979_onAnonClassConstructorWith_expectOnlyAnonClassCompletion() throws JavaModelException {
+public void testGH979_onAnonClassConstructorWith_expectOnlyAnonClassCompletion() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[1] = getWorkingCopy("/Completion/src/Serial.java", """
 			public interface Serial {
@@ -7020,11 +7020,11 @@ public void testGH979_onAnonClassConstructorWith_expectOnlyAnonClassCompletion()
 	this.workingCopies[0].codeComplete(cursorLocation, requestor, this.wcOwner, new NullProgressMonitor());
 
 	String result = requestor.getResults();
-	assertResults("Serial[ANONYMOUS_CLASS_DECLARATION]{, LSerial;, ()V, null, null, "
+	assertResults("Serial[ANONYMOUS_CLASS_DECLARATION]{, LSerial;, ()V, null, null, " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			+ (R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED) + "}", result);
 }
 
-public void testGH979_on1stConstructorArgumentWithFilledArgumentNames_expectCompletionsMatchinType()
+public void testGH979_on1stConstructorArgumentWithFilledArgumentNames_expectCompletionsMatchinType() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws JavaModelException {
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[1] = getWorkingCopy("/Completion/src/GH979List.java", """
@@ -7064,7 +7064,7 @@ public void testGH979_on1stConstructorArgumentWithFilledArgumentNames_expectComp
 
 	String result = requestor.getResults();
 	assertResults(
-			"GH979[ANONYMOUS_CLASS_DECLARATION]{, LGH979;, (LGH979List<Ljava.lang.String;>;IZ)V, null, (names, age, valid), "
+			"GH979[ANONYMOUS_CLASS_DECLARATION]{, LGH979;, (LGH979List<Ljava.lang.String;>;IZ)V, null, (names, age, valid), " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ (R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED) + "}\n"
 					+ "GH979[METHOD_REF<CONSTRUCTOR>]{, LGH979;, (LGH979List<Ljava.lang.String;>;IZ)V, GH979, (names, age, valid), "
 					+ (R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED) + "}\n"
@@ -7073,7 +7073,7 @@ public void testGH979_on1stConstructorArgumentWithFilledArgumentNames_expectComp
 			result);
 }
 
-public void testGH1587_onConstructorWithArgumentsBeforeFirstArgument_withinMethodInvocation_expectConstructorCompletion()
+public void testGH1587_onConstructorWithArgumentsBeforeFirstArgument_withinMethodInvocation_expectConstructorCompletion() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws JavaModelException {
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[2] = getWorkingCopy("/Completion/src/GHXYZObject.java", """
@@ -7106,7 +7106,7 @@ public void testGH1587_onConstructorWithArgumentsBeforeFirstArgument_withinMetho
 
 	String result = requestor.getResults();
 	assertResults(
-			"GHXYZObject[METHOD_REF<CONSTRUCTOR>]{, LGHXYZObject;, (Ljava.lang.String;I)V, GHXYZObject, (name, type), "
+			"GHXYZObject[METHOD_REF<CONSTRUCTOR>]{, LGHXYZObject;, (Ljava.lang.String;I)V, GHXYZObject, (name, type), " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ (R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED) + "}\n"
 					+ "foo[METHOD_REF]{foo(), LGHXYZ;, ()V, foo, null, "
 					+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_STATIC) + "}\n"
@@ -7115,7 +7115,7 @@ public void testGH1587_onConstructorWithArgumentsBeforeFirstArgument_withinMetho
 			result);
 }
 
-public void testGH1587_onConstructorWithArgumentsBeforeNthArgument_withinMethodInvocation_expectConstructorCompletion()
+public void testGH1587_onConstructorWithArgumentsBeforeNthArgument_withinMethodInvocation_expectConstructorCompletion() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws JavaModelException {
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[2] = getWorkingCopy("/Completion/src/GHXYZObject.java", """
@@ -7148,7 +7148,7 @@ public void testGH1587_onConstructorWithArgumentsBeforeNthArgument_withinMethodI
 
 	String result = requestor.getResults();
 	assertResults(
-			"GHXYZObject[METHOD_REF<CONSTRUCTOR>]{, LGHXYZObject;, (Ljava.lang.String;I)V, GHXYZObject, (name, type), "
+			"GHXYZObject[METHOD_REF<CONSTRUCTOR>]{, LGHXYZObject;, (Ljava.lang.String;I)V, GHXYZObject, (name, type), " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ (R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED) + "}\n"
 					+ "foo[METHOD_REF]{foo(), LGHXYZ;, ()V, foo, null, "
 					+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_STATIC) + "}\n"
@@ -7157,7 +7157,7 @@ public void testGH1587_onConstructorWithArgumentsBeforeNthArgument_withinMethodI
 			result);
 }
 
-public void testGH1587_onConstructorWithArgumentsBeforeFirstArgument_withinChainedMethodInvocationExpression_expectConstructorCompletion()
+public void testGH1587_onConstructorWithArgumentsBeforeFirstArgument_withinChainedMethodInvocationExpression_expectConstructorCompletion() //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		throws JavaModelException {
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[2] = getWorkingCopy("/Completion/src/GHXYZObject.java", """
@@ -7193,7 +7193,7 @@ public void testGH1587_onConstructorWithArgumentsBeforeFirstArgument_withinChain
 
 	String result = requestor.getResults();
 	assertResults(
-			"GHXYZObject[METHOD_REF<CONSTRUCTOR>]{, LGHXYZObject;, (Ljava.lang.String;I)V, GHXYZObject, (name, type), "
+			"GHXYZObject[METHOD_REF<CONSTRUCTOR>]{, LGHXYZObject;, (Ljava.lang.String;I)V, GHXYZObject, (name, type), " //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					+ (R_DEFAULT + R_INTERESTING + R_RESOLVED + R_NON_RESTRICTED) + "}\n"
 					+ "foo[METHOD_REF]{foo(), LGHXYZ;, ()V, foo, null, "
 					+ (R_DEFAULT + R_RESOLVED + R_INTERESTING + R_NON_STATIC) + "}\n"
@@ -7202,7 +7202,7 @@ public void testGH1587_onConstructorWithArgumentsBeforeFirstArgument_withinChain
 			result);
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1502
-public void testGH1502() throws JavaModelException {
+public void testGH1502() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Completion/src/X.java", """
 			public class X {

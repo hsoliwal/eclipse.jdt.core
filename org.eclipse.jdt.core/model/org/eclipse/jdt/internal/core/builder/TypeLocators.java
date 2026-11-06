@@ -45,22 +45,22 @@ public class TypeLocators {
 	private Map<String, Map<Integer, String>> releaseMap;
 
 	TypeLocators() {
-		this.defaultMap = new LinkedHashMap<>(7);
+		this.defaultMap = new LinkedHashMap<>(7); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 	}
 
 	TypeLocators(TypeLocators copy) {
-		this.defaultMap = new LinkedHashMap<>(copy.defaultMap);
+		this.defaultMap = new LinkedHashMap<>(copy.defaultMap); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 		if (copy.releaseMap != null) {
-			this.releaseMap = new LinkedHashMap<>(copy.releaseMap);
+			this.releaseMap = new LinkedHashMap<>(copy.releaseMap); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 		}
 	}
 
-	void write(CompressedWriter out, Map<String, Integer> internedTypeLocators) throws IOException {
+	void write(CompressedWriter out, Map<String, Integer> internedTypeLocators) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES PARAMETER
 		if (this.defaultMap.isEmpty()) {
 			out.writeInt(0);
 		} else {
 			out.writeInt(this.defaultMap.size());
-			for (Entry<String, String> entry : this.defaultMap.entrySet()) {
+			for (Entry<String, String> entry : this.defaultMap.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String key = entry.getKey();
 				String value = entry.getValue();
 				out.writeStringUsingLast(key);
@@ -72,12 +72,12 @@ public class TypeLocators {
 			out.writeInt(0);
 		} else {
 			out.writeInt(this.releaseMap.size());
-			for (var entry : this.releaseMap.entrySet()) {
+			for (var entry : this.releaseMap.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String key = entry.getKey();
 				out.writeStringUsingLast(key);
-				Map<Integer, String> map = entry.getValue();
+				Map<Integer, String> map = entry.getValue(); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 				out.writeInt(map.size());
-				for (var releaseEntry : map.entrySet()) {
+				for (var releaseEntry : map.entrySet()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					out.writeInt(releaseEntry.getKey());
 					Integer index = internedTypeLocators.get(releaseEntry.getValue());
 					out.writeIntInRange(index.intValue(), internedTypeLocators.size());
@@ -87,11 +87,11 @@ public class TypeLocators {
 
 	}
 
-	void read(CompressedReader in, String[] internedTypeLocators) throws IOException {
+	void read(CompressedReader in, String[] internedTypeLocators) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		int length = in.readInt();
 		this.defaultMap.clear();
 		if (length > 0) {
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				recordLocatorForType(in.readStringUsingLast(),
 						internedTypeLocators[in.readIntInRange(internedTypeLocators.length)],
 						JavaProject.NO_RELEASE);
@@ -101,11 +101,11 @@ public class TypeLocators {
 		if (length == 0) {
 			this.releaseMap = null;
 		} else {
-			this.releaseMap = new LinkedHashMap<>((int) (length / 0.75 + 1));
-			for (int i = 0; i < length; i++) {
+			this.releaseMap = new LinkedHashMap<>((int) (length / 0.75 + 1)); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
+			for (int i = 0; i < length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				String key = in.readStringUsingLast();
 				int mapSize = in.readInt();
-				for (int j = 0; j < mapSize; j++) {
+				for (int j = 0; j < mapSize; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					int release = in.readInt();
 					String locator = internedTypeLocators[in.readIntInRange(internedTypeLocators.length)];
 					recordLocatorForType(key, locator, release);
@@ -122,14 +122,14 @@ public class TypeLocators {
 		}
 	}
 
-	void removeLocator(String typeLocatorToRemove, int release) {
+	void removeLocator(String typeLocatorToRemove, int release) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		this.knownPackageNames = null;
 		if (release > JavaProject.NO_RELEASE) {
 			if (this.releaseMap != null) {
-				for (Iterator<Entry<String, Map<Integer, String>>> iterator = this.releaseMap.entrySet()
+				for (Iterator<Entry<String, Map<Integer, String>>> iterator = this.releaseMap.entrySet() //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 						.iterator(); iterator.hasNext();) {
 					Entry<String, Map<Integer, String>> entry = iterator.next();
-					Map<Integer, String> map = entry.getValue();
+					Map<Integer, String> map = entry.getValue(); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 					map.values().removeIf(v -> typeLocatorToRemove.equals(v));
 					if (map.isEmpty()) {
 						iterator.remove();
@@ -152,15 +152,15 @@ public class TypeLocators {
 		}
 		if (release > JavaProject.NO_RELEASE) {
 			if (this.releaseMap == null) {
-				this.releaseMap = new LinkedHashMap<>(7);
+				this.releaseMap = new LinkedHashMap<>(7); //FLLDCIM: MARK — M04 M3_ORDERED_LANES NEW
 			}
-			this.releaseMap.computeIfAbsent(qualifiedTypeName, nil -> new TreeMap<>()).put(release, typeLocator);
+			this.releaseMap.computeIfAbsent(qualifiedTypeName, nil -> new TreeMap<>()).put(release, typeLocator); //FLLDCIM: MARK — M05 M3_SORTED_LANES NEW
 		} else {
 			this.defaultMap.put(qualifiedTypeName, typeLocator);
 		}
 	}
 
-	boolean isKnownPackage(String qualifiedPackageName) {
+	boolean isKnownPackage(String qualifiedPackageName) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.knownPackageNames == null) {
 			int total = this.defaultMap.size();
 			if (this.releaseMap != null) {
@@ -183,10 +183,10 @@ public class TypeLocators {
 	}
 
 	protected void addPackages(LinkedHashSet<String> names, Set<String> keySet) {
-		for (String packageName : keySet) {
+		for (String packageName : keySet) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			int last = packageName.lastIndexOf('/');
 			packageName = last == -1 ? null : packageName.substring(0, last);
-			while (packageName != null && !names.contains(packageName)) {
+			while (packageName != null && !names.contains(packageName)) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				names.add(packageName);
 				last = packageName.lastIndexOf('/');
 				packageName = last == -1 ? null : packageName.substring(0, last);
@@ -204,16 +204,16 @@ public class TypeLocators {
 		return false;
 	}
 
-	boolean isSourceFolderEmpty(IContainer sourceFolder) {
+	boolean isSourceFolderEmpty(IContainer sourceFolder) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		String sourceFolderName = sourceFolder.getProjectRelativePath().addTrailingSeparator().toString();
-		for (String value : this.defaultMap.values()) {
+		for (String value : this.defaultMap.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (value.startsWith(sourceFolderName)) {
 				return false;
 			}
 		}
 		if (this.releaseMap != null) {
-			for (Map<Integer, String> map : this.releaseMap.values()) {
-				for (String value : map.values()) {
+			for (Map<Integer, String> map : this.releaseMap.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
+				for (String value : map.values()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 					if (value.startsWith(sourceFolderName)) {
 						return false;
 					}
@@ -229,7 +229,7 @@ public class TypeLocators {
 			if (this.releaseMap == null) {
 				return false;
 			}
-			Map<Integer, String> existing = this.releaseMap.get(qualifiedTypeName);
+			Map<Integer, String> existing = this.releaseMap.get(qualifiedTypeName); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 			if (existing == null) {
 				return false;
 			}
@@ -259,7 +259,7 @@ public class TypeLocators {
 		if (this.releaseMap == null) {
 			return Stream.empty();
 		} else {
-			Map<Integer, String> map = this.releaseMap.get(typeName);
+			Map<Integer, String> map = this.releaseMap.get(typeName); //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES LOCAL_VARIABLE
 			if (map == null) {
 				return Stream.empty();
 			}

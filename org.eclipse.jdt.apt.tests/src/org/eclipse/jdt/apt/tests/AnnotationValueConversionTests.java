@@ -35,7 +35,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	}
 
 	public String getUniqueProjectName(){
-		projectName = AnnotationValueConversionTests.class.getName() + "Project" + counter; //$NON-NLS-1$
+		projectName = AnnotationValueConversionTests.class.getName() + "Project" + counter; //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		counter ++;
 		return projectName;
 	}
@@ -79,7 +79,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 		return env.getProject(getProjectName());
 	}
 
-	public void testByteConversion() throws Exception {
+	public void testByteConversion() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 		String content =
@@ -105,7 +105,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 		assertEquals(ProcessorTestStatus.NO_ERRORS, ProcessorTestStatus.getErrors());
 	}
 
-	public void testByteConversion_Reflection() throws Exception {
+	public void testByteConversion_Reflection() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 		String content =
@@ -134,7 +134,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on short.
 	 */
-	public void testShortConversion() throws Exception {
+	public void testShortConversion() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -161,7 +161,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 		assertEquals(ProcessorTestStatus.NO_ERRORS, ProcessorTestStatus.getErrors());
 	}
 
-	public void testShortConversion_Reflection() throws Exception {
+	public void testShortConversion_Reflection() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -191,7 +191,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on char.
 	 */
-	public void testCharConversion() throws Exception {
+	public void testCharConversion() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -221,7 +221,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on char through reflection
 	 */
-	public void testCharConversion_Reflection() throws Exception {
+	public void testCharConversion_Reflection() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -251,7 +251,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on int.
 	 */
-	public void testIntConversion() throws Exception {
+	public void testIntConversion() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -281,7 +281,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on int through reflection
 	 */
-	public void testIntConversion_Reflection() throws Exception {
+	public void testIntConversion_Reflection() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -311,7 +311,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on long.
 	 */
-	public void testLongConversion() throws Exception {
+	public void testLongConversion() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -349,7 +349,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on long.
 	 */
-	public void testLongConversion_Reflection() throws Exception {
+	public void testLongConversion_Reflection() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -387,7 +387,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on Float.
 	 */
-	public void testFloatConversion() throws Exception {
+	public void testFloatConversion() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -431,7 +431,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on Float.
 	 */
-	public void testFloatConversion_Reflection() throws Exception {
+	public void testFloatConversion_Reflection() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -475,7 +475,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on double. No arrayification.
 	 */
-	public void testDoubleConversion() throws Exception {
+	public void testDoubleConversion() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -517,7 +517,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on double. No arrayification.
 	 */
-	public void testDoubleConversion_Reflection() throws Exception {
+	public void testDoubleConversion_Reflection() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -559,7 +559,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Convert "singleton" instance to array of the correct type
 	 */
-	public void testArrayification() throws Exception {
+	public void testArrayification() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -586,7 +586,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Convert "singleton" instance to array of the correct type
 	 */
-	public void testArrayification_Reflection() throws Exception {
+	public void testArrayification_Reflection() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -613,7 +613,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on array elements.
 	 */
-	public void testArrayElementConversion() throws Exception {
+	public void testArrayElementConversion() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -644,7 +644,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 	/**
 	 * Test conversion on array elements.
 	 */
-	public void testArrayElementConversion_Reflection() throws Exception {
+	public void testArrayElementConversion_Reflection() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -672,7 +672,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 		assertEquals(ProcessorTestStatus.NO_ERRORS, ProcessorTestStatus.getErrors());
 	}
 
-	public void testErrorStringValue() throws Exception {
+	public void testErrorStringValue() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
@@ -705,7 +705,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 		});
 	}
 
-	public void testErrorStringValue_Reflection() throws Exception {
+	public void testErrorStringValue_Reflection() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 
@@ -733,7 +733,7 @@ public class AnnotationValueConversionTests extends APTTestBase
 		assertEquals(ProcessorTestStatus.NO_ERRORS, ProcessorTestStatus.getErrors());
 	}
 
-	public void testMissingPrimitiveTypeValues_Reflection() throws Exception {
+	public void testMissingPrimitiveTypeValues_Reflection() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IProject project = setupTest();
 		IPath srcRoot = getSourcePath();
 

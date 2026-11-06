@@ -58,7 +58,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a subtype is subtype compatible with its super type
 	 */
-	public void test001() throws JavaModelException {
+	public void test001() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ITypeBinding[] bindings = createTypeBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -97,7 +97,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a supertype is not subtype compatible with its subtype
 	 */
-	public void test003() throws JavaModelException {
+	public void test003() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ITypeBinding[] bindings = createTypeBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -119,7 +119,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a type is not subtype compatible with an unrelated type.
 	 */
-	public void test004() throws JavaModelException {
+	public void test004() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ITypeBinding[] bindings = createTypeBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -167,7 +167,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a subtype is assignment compatible with its super type
 	 */
-	public void test007() throws JavaModelException {
+	public void test007() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ITypeBinding[] bindings = createTypeBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -206,7 +206,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a supertype is not assignment compatible with its subtype
 	 */
-	public void test009() throws JavaModelException {
+	public void test009() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ITypeBinding[] bindings = createTypeBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -228,7 +228,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a type is not assigment compatible with an unrelated type.
 	 */
-	public void test010() throws JavaModelException {
+	public void test010() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ITypeBinding[] bindings = createTypeBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -263,7 +263,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a subtype is cast compatible with its super type
 	 */
-	public void test013() throws JavaModelException {
+	public void test013() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ITypeBinding[] bindings = createTypeBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -302,7 +302,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a supertype is cast compatible with its subtype
 	 */
-	public void test015() throws JavaModelException {
+	public void test015() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ITypeBinding[] bindings = createTypeBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -324,7 +324,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a type is not cast compatible with an unrelated type.
 	 */
-	public void test016() throws JavaModelException {
+	public void test016() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ITypeBinding[] bindings = createTypeBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -372,7 +372,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a method in a subtype overrides the corresponding method in the super type.
 	 */
-	public void test019() throws JavaModelException {
+	public void test019() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -398,7 +398,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a method in a super type doesn't override the corresponding method in a subtype.
 	 */
-	public void test020() throws JavaModelException {
+	public void test020() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -424,7 +424,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a method doesn't override the corresponding method in an unrelated type.
 	 */
-	public void test021() throws JavaModelException {
+	public void test021() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -452,7 +452,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * the method was not built in a batch.
 	 * (regression test for bug 79635 NPE when asking an IMethodBinding whether it overrides itself)
 	 */
-	public void test022() throws JavaModelException {
+	public void test022() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		ICompilationUnit workingCopy = null;
 		try {
 			workingCopy = getWorkingCopy("/P/p1/X.java", true/*compute problems to get bindings*/);
@@ -525,7 +525,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a method is subsignature of its super method.
 	 */
-	public void test026() throws JavaModelException {
+	public void test026() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -551,7 +551,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a method is subsignature of its super generic method.
 	 */
-	public void test027() throws JavaModelException {
+	public void test027() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -581,7 +581,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a method is not the subsignature of an unrelated method.
 	 */
-	public void test028() throws JavaModelException {
+	public void test028() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -607,7 +607,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a method in a subtype doesn't override the a method with same parameters but with different name in the super type.
 	 */
-	public void test029() throws JavaModelException {
+	public void test029() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -634,7 +634,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method in a subtype overrides a method in the super parameterized type.
 	 * (regression test for bug 99608 IMethodBinding#overrides returns false on overridden method)
 	 */
-	public void test030() throws JavaModelException {
+	public void test030() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -661,7 +661,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method with the same parameter types but with different type parameters is not a subsignature of its super method.
 	 * (regression test for bug 107110 IMethodBinding.isSubsignature not yet correctly implemented)
 	 */
-	public void test031() throws JavaModelException {
+	public void test031() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -687,7 +687,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * even if the two methods have different return types.
 	 * (regression test for bug 105808 [1.5][dom] MethodBinding#overrides(..) should not consider return types)
 	 */
-	public void test032() throws CoreException {
+	public void test032() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			IJavaProject project = createJavaProject("P2", new String[] {""}, new String[] {"JCL18_LIB"}, "", CompilerOptions.getFirstSupportedJavaVersion());
 			IMethodBinding[] bindings = createMethodBindings(
@@ -720,7 +720,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method in a subtype doesn't override the corresponding private method in the super type.
 	 * (regression test for bug 132191 IMethodBinding.overrides(IMethodBinding) returns true even if the given argument is private.)
 	 */
-	public void test033() throws JavaModelException {
+	public void test033() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -747,7 +747,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method in a subtype doesn't override the corresponding default method in the super type in a different package.
 	 * (regression test for bug 132191 IMethodBinding.overrides(IMethodBinding) returns true even if the given argument is private.)
 	 */
-	public void test034() throws JavaModelException {
+	public void test034() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -774,7 +774,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method with different paramter types is not a subsignature of its super method.
 	 * (regression test for bug 111093 More problems with IMethodBinding#isSubsignature(..))
 	 */
-	public void test035() throws JavaModelException {
+	public void test035() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/A.java",
@@ -800,7 +800,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method with different paramter types is not a subsignature of its super method.
 	 * (regression test for bug 111093 More problems with IMethodBinding#isSubsignature(..))
 	 */
-	public void test036() throws JavaModelException {
+	public void test036() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/A.java",
@@ -826,7 +826,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method with different paramter types is not a subsignature of its super method.
 	 * (regression test for bug 111093 More problems with IMethodBinding#isSubsignature(..))
 	 */
-	public void test037() throws JavaModelException {
+	public void test037() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/A.java",
@@ -854,7 +854,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method with different paramter types is not a subsignature of its super method.
 	 * (regression test for bug 111093 More problems with IMethodBinding#isSubsignature(..))
 	 */
-	public void test038() throws JavaModelException {
+	public void test038() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/A.java",
@@ -882,7 +882,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method with different paramter types is not a subsignature of its super method.
 	 * (regression test for bug 111093 More problems with IMethodBinding#isSubsignature(..))
 	 */
-	public void test039() throws JavaModelException {
+	public void test039() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/A.java",
@@ -910,7 +910,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method with different paramter types is not a subsignature of its super method.
 	 * (regression test for bug 111093 More problems with IMethodBinding#isSubsignature(..))
 	 */
-	public void test040() throws JavaModelException {
+	public void test040() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/A.java",
@@ -936,7 +936,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method with different paramter types is not a subsignature of its super method.
 	 * (regression test for bug 111093 More problems with IMethodBinding#isSubsignature(..))
 	 */
-	public void test041() throws JavaModelException {
+	public void test041() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/A.java",
@@ -962,7 +962,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	 * Ensures that a method with different paramter types is not a subsignature of its super method.
 	 * (regression test for bug 111093 More problems with IMethodBinding#isSubsignature(..))
 	 */
-	public void test042() throws JavaModelException {
+	public void test042() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/A.java",
@@ -991,7 +991,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a method with same signature in a different hierarchy doesn't overide another one
 	 */
-	public void test043() throws JavaModelException {
+	public void test043() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",
@@ -1017,7 +1017,7 @@ public class CompatibilityRulesTests extends AbstractASTTests {
 	/*
 	 * Ensures that a method is a subsignature of the same method in a different hierarchy
 	 */
-	public void test044() throws JavaModelException {
+	public void test044() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		IMethodBinding[] bindings = createMethodBindings(
 			new String[] {
 				"/P/p1/X.java",

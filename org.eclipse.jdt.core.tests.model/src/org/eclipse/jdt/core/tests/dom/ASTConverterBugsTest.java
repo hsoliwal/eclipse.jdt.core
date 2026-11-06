@@ -58,16 +58,16 @@ public static Test suite() {
 protected void checkParameterAnnotations(String message, String expected, IMethodBinding methodBinding) {
 	ITypeBinding[] parameterTypes = methodBinding.getParameterTypes();
 	int size = parameterTypes == null ? 0 : parameterTypes.length;
-	StringBuilder buffer = new StringBuilder();
-	for (int i=0; i<size; i++) {
-		buffer.append("----- param ");
-		buffer.append(i+1);
-		buffer.append("-----\n");
+	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
+	for (int i=0; i<size; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		buffer.append("----- param "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append(i+1); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		buffer.append("-----\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		IAnnotationBinding[] bindings= methodBinding.getParameterAnnotations(i);
 		int length = bindings.length;
-		for (int j=0; j<length; j++) {
-			buffer.append(bindings[j].getKey());
-			buffer.append('\n');
+		for (int j=0; j<length; j++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+			buffer.append(bindings[j].getKey()); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+			buffer.append('\n'); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 	}
 	assertEquals(message, expected, buffer.toString());
@@ -135,7 +135,7 @@ protected void resolveASTs(ICompilationUnit[] cus, String[] bindingKeys, ASTRequ
  * test Ensures that the superclass of "java.lang.Object" class is null even when it's a recovered binding
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=186410"
  */
-public void testBug186410() throws CoreException, IOException {
+public void testBug186410() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] { "" }, new String[0], "");
 			createFile("P/A.java",
@@ -155,7 +155,7 @@ public void testBug186410() throws CoreException, IOException {
 	}
 }
 
-public void testBug186410b() throws CoreException, IOException {
+public void testBug186410b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] { "" }, new String[0], "");
 			createFile("P/A.java",
@@ -183,7 +183,7 @@ public void testBug186410b() throws CoreException, IOException {
  * test Ensures that getPackage() and getQualifiedName() works properly for the "java.lang.Object" recovered binding
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=209150"
  */
-public void testBug209150a() throws CoreException, IOException {
+public void testBug209150a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] { "" }, new String[0], "");
 			createFile("P/A.java",
@@ -205,7 +205,7 @@ public void testBug209150a() throws CoreException, IOException {
 	}
 }
 
-public void testBug209150b() throws CoreException, IOException {
+public void testBug209150b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] { "" }, new String[0], "");
 			createFile("P/A.java",
@@ -230,7 +230,7 @@ public void testBug209150b() throws CoreException, IOException {
 	}
 }
 
-public void testBug209150c() throws CoreException, IOException {
+public void testBug209150c() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	try {
 		createJavaProject("P", new String[] { "" }, new String[0], "");
 			createFile("P/A.java",
@@ -259,7 +259,7 @@ public void testBug209150c() throws CoreException, IOException {
  * test Verify that the binding is well created for an inner class
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=212100"
  */
-public void testBug212100a() throws JavaModelException {
+public void testBug212100a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 	String contents =
@@ -281,7 +281,7 @@ public void testBug212100a() throws JavaModelException {
 					if (key.equals(bindingKey)) {
 						bindings[0] = binding;
 						IBinding[] temp = createBindings(new String[] {"LX;", "LX$Y;", "[LX$Y;"});
-						for (int i = 0; i < temp.length; ++i) {
+						for (int i = 0; i < temp.length; ++i) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 							bindings[i + 1] = temp[i];
 						}
 					}
@@ -294,7 +294,7 @@ public void testBug212100a() throws JavaModelException {
 	assertNotNull("Binding for X.Y should not be null", bindings[2]);
 	assertNotNull("Binding for X.Y[] should not be null", bindings[3]);
 }
-public void testBug212100b() throws JavaModelException {
+public void testBug212100b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/Converter15/src/X.java", true/*resolve*/);
 	String contents =
@@ -328,10 +328,10 @@ public void testBug212100b() throws JavaModelException {
 					IBinding[] bindings = createBindings(new String[] {
 							keyX, keyXY, keyZ, keyZW
 					});
-					assertNotNull("When accepting " + bindingKey + ", Binding for X should not be null", bindings[0]);
-					assertNotNull("When accepting " + bindingKey + ", Binding for X.Y should not be null", bindings[1]);
-					assertNotNull("When accepting " + bindingKey + ", Binding for Z should not be null", bindings[2]);
-					assertNotNull("When accepting " + bindingKey + ", Binding for Z.W should not be null", bindings[3]);
+					assertNotNull("When accepting " + bindingKey + ", Binding for X should not be null", bindings[0]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					assertNotNull("When accepting " + bindingKey + ", Binding for X.Y should not be null", bindings[1]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					assertNotNull("When accepting " + bindingKey + ", Binding for Z should not be null", bindings[2]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					assertNotNull("When accepting " + bindingKey + ", Binding for Z.W should not be null", bindings[3]); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				}
 			},
 			getJavaProject("Converter15"),
@@ -343,7 +343,7 @@ public void testBug212100b() throws JavaModelException {
  * test Ensures that the method binding get the parameter annotations even on method invocation
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=212834"
  */
-public void testBug212834() throws CoreException, IOException {
+public void testBug212834() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[3];
 	this.workingCopies[0] = getWorkingCopy("/Converter15/src/Baz.java",
 		"public @interface Baz {\n" +
@@ -372,7 +372,7 @@ public void testBug212834() throws CoreException, IOException {
 	MethodDeclaration methodDeclaration = (MethodDeclaration) getASTNode(unit, 0, 0);
 	MethodInvocation methodInvocation = (MethodInvocation) ((ExpressionStatement) methodDeclaration.getBody().statements().get(1)).getExpression();
 	IMethodBinding methodBinding = methodInvocation.resolveMethodBinding();
-	assertBindingsEqual(methodInvocation+" has invalid parameter annotations!",
+	assertBindingsEqual(methodInvocation+" has invalid parameter annotations!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"@LBaz;",
 		methodBinding.getParameterAnnotations(0)
 	);
@@ -383,7 +383,7 @@ public void testBug212834() throws CoreException, IOException {
  * test Ensures that the method body has the right source range even when there's braces in its header
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=212857"
  */
-public void testBug212857() throws CoreException, IOException {
+public void testBug212857() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	String source = "package xy;\n" +
 		"public class C {\n" +
@@ -401,7 +401,7 @@ public void testBug212857() throws CoreException, IOException {
 		source
 	);
 }
-public void testBug212857a() throws CoreException, IOException {
+public void testBug212857a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	String source = "package xy;\n" +
 	"public class C {\n" +
@@ -420,7 +420,7 @@ public void testBug212857a() throws CoreException, IOException {
 	);
 }
 // tests with recovery
-public void testBug212857b() throws CoreException, IOException {
+public void testBug212857b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	String source = "package test;\n" +
 	"public class X {\n" +
@@ -454,7 +454,7 @@ public void testBug212857c() throws CoreException, IOException {
 		source
 	);
 }
-public void testBug212857d() throws CoreException, IOException {
+public void testBug212857d() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	String source = "package test;\n" +
 	"public class X {\n" +
@@ -494,7 +494,7 @@ public void testBug212857e() throws CoreException, IOException {
  * test Ensures that all parameter annotations of a the method binding are correctly  returned
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=213509"
  */
-public void testBug213509() throws CoreException, IOException {
+public void testBug213509() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Converter15/src/Test.java",
 		"public class Test {\n" +
@@ -507,7 +507,7 @@ public void testBug213509() throws CoreException, IOException {
 
 	CompilationUnit unit = (CompilationUnit) runConversion(this.workingCopies[0], true/*bindings*/, false/*no statement recovery*/, true/*bindings recovery*/);
 	MethodDeclaration methodDeclaration = (MethodDeclaration) getASTNode(unit, 0, 0);
-	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!",
+	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"----- param 1-----\n" +
 		"@LTest~Foo;\n" +
 		"@LTest~Bar;\n" +
@@ -520,7 +520,7 @@ public void testBug213509() throws CoreException, IOException {
 		methodDeclaration.resolveBinding()
 	);
 }
-public void testBug213509_invocation() throws CoreException, IOException {
+public void testBug213509_invocation() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/Converter15/src/Test.java",
 		"public class Test {\n" +
@@ -541,7 +541,7 @@ public void testBug213509_invocation() throws CoreException, IOException {
 	CompilationUnit unit = (CompilationUnit) runConversion(this.workingCopies[1], true/*bindings*/, false/*no statement recovery*/, true/*bindings recovery*/);
 	MethodDeclaration methodDeclaration = (MethodDeclaration) getASTNode(unit, 0, 0);
 	MethodInvocation methodInvocation = (MethodInvocation) ((ExpressionStatement) methodDeclaration.getBody().statements().get(0)).getExpression();
-	checkParameterAnnotations(methodInvocation+" has invalid parameter annotations!",
+	checkParameterAnnotations(methodInvocation+" has invalid parameter annotations!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"----- param 1-----\n" +
 		"@LTest~Foo;\n" +
 		"@LTest~Bar;\n" +
@@ -560,7 +560,7 @@ public void testBug213509_invocation() throws CoreException, IOException {
  * test Ensures that no NPE occurs when not all method parameters have annotations
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=214002"
  */
-public void testBug214002() throws CoreException, IOException {
+public void testBug214002() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Converter15/src/Test.java",
 		"public class Test {\n" +
@@ -573,7 +573,7 @@ public void testBug214002() throws CoreException, IOException {
 
 	CompilationUnit unit = (CompilationUnit) runConversion(this.workingCopies[0], true/*bindings*/, false/*no statement recovery*/, true/*bindings recovery*/);
 	MethodDeclaration methodDeclaration = (MethodDeclaration) getASTNode(unit, 0, 0);
-	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!",
+	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"----- param 1-----\n" +
 		"----- param 2-----\n" +
 		"@LTest~Bar;\n" +
@@ -583,7 +583,7 @@ public void testBug214002() throws CoreException, IOException {
 		methodDeclaration.resolveBinding()
 	);
 }
-public void testBug214002b() throws CoreException, IOException {
+public void testBug214002b() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 	this.workingCopies[0] = getWorkingCopy("/Converter15/src/Test.java",
 		"public class Test {\n" +
@@ -596,7 +596,7 @@ public void testBug214002b() throws CoreException, IOException {
 
 	CompilationUnit unit = (CompilationUnit) runConversion(this.workingCopies[0], true/*bindings*/, false/*no statement recovery*/, true/*bindings recovery*/);
 	MethodDeclaration methodDeclaration = (MethodDeclaration) getASTNode(unit, 0, 0);
-	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!",
+	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"----- param 1-----\n" +
 		"@LTest~Annot;\n" +
 		"----- param 2-----\n" +
@@ -610,7 +610,7 @@ public void testBug214002b() throws CoreException, IOException {
 	 * bug212434: [dom] IllegalArgumentException during AST Creation
 	 * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=212434"
 	 */
-	public void testBug212434a() throws CoreException, IOException {
+	public void testBug212434a() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		try {
 			createJavaProject("P", new String[] {""}, new String[0], "");
 			createFile("P/A.java",
@@ -661,7 +661,7 @@ public void testBug214647() throws CoreException, IOException {
 
 	CompilationUnit unit = (CompilationUnit) runConversion(this.workingCopies[0], true/*bindings*/, false/*no statement recovery*/, true/*bindings recovery*/);
 	MethodDeclaration methodDeclaration = (MethodDeclaration) getASTNode(unit, 0, 0);
-	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!",
+	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"----- param 1-----\n",
 		methodDeclaration.resolveBinding()
 	);
@@ -676,7 +676,7 @@ public void testBug214647b() throws CoreException, IOException {
 
 	CompilationUnit unit = (CompilationUnit) runConversion(this.workingCopies[0], true/*bindings*/, false/*no statement recovery*/, true/*bindings recovery*/);
 	MethodDeclaration methodDeclaration = (MethodDeclaration) getASTNode(unit, 0, 0);
-	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!",
+	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"----- param 1-----\n" +
 		"----- param 2-----\n" +
 		"----- param 3-----\n",
@@ -689,7 +689,7 @@ public void testBug214647b() throws CoreException, IOException {
  * test these tests test the new DOM AST test framework
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=215759"
  */
-public void testBug215759a() throws CoreException {
+public void testBug215759a() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -743,7 +743,7 @@ public void testBug215759a() throws CoreException {
 			result);
 }
 
-public void testBug215759b() throws CoreException {
+public void testBug215759b() throws CoreException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[1];
 
 	this.workingCopies[0] = getWorkingCopy(
@@ -803,7 +803,7 @@ public void testBug215759b() throws CoreException {
  * bug 218824: [DOM/AST] incorrect code leads to IllegalArgumentException during AST creation
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=218824"
  */
-public void testBug218824a() throws JavaModelException {
+public void testBug218824a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -892,7 +892,7 @@ public void testBug218824a() throws JavaModelException {
  * bug 215137: [AST]Some malformed MethodDeclaration, their Block is null, but they actually have Block
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=215137"
  */
-public void testBug215137a() throws JavaModelException {
+public void testBug215137a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -919,7 +919,7 @@ public void testBug215137a() throws JavaModelException {
 			"String literal is not properly closed by a double-quote\n",
 			result);
 }
-public void testBug215137b() throws JavaModelException {
+public void testBug215137b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -946,7 +946,7 @@ public void testBug215137b() throws JavaModelException {
 			"Invalid character constant\n",
 			result);
 }
-public void testBug215137c() throws JavaModelException {
+public void testBug215137c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -973,7 +973,7 @@ public void testBug215137c() throws JavaModelException {
 			"Invalid character constant\n",
 			result);
 }
-public void testBug215137d() throws JavaModelException {
+public void testBug215137d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -1005,7 +1005,7 @@ public void testBug215137d() throws JavaModelException {
  * test That the annotation binding is well flagged as recovered when the annotation is an unknown type
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=223838"
  */
-public void testBug223838() throws JavaModelException {
+public void testBug223838() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 		"package b223838;\n" +
 		"@Deprecated\n" +
@@ -1030,7 +1030,7 @@ public void testBug223838() throws JavaModelException {
  * test That the annotation binding is not reported when the recovery is off
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=223838"
  */
-public void testBug223838a() throws JavaModelException {
+public void testBug223838a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 		"package b223838;\n" +
 		"@Deprecated\n" +
@@ -1056,7 +1056,7 @@ public void testBug223838a() throws JavaModelException {
  * test Verify that NPE does no longer occur on the given test case
  * @see "https://bugs.eclipse.org/bugs/show_bug.cgi?id=226357"
  */
-public void testBug226357() throws CoreException, IOException {
+public void testBug226357() throws CoreException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.workingCopies = new ICompilationUnit[2];
 	this.workingCopies[0] = getWorkingCopy("/Converter15/src/ParameterSubsetAnnotated.java",
 		"public class ParameterSubsetAnnotated {\n" +
@@ -1080,7 +1080,7 @@ public void testBug226357() throws CoreException, IOException {
 	MethodDeclaration methodDeclaration = (MethodDeclaration) getASTNode(unit, 0, 0);
 	ExpressionStatement statement = (ExpressionStatement) methodDeclaration.getBody().statements().get(0);
 	MethodInvocation methodInvocation = (MethodInvocation) statement.getExpression();
-	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!",
+	checkParameterAnnotations(methodDeclaration+" has invalid parameter annotations!", //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		"----- param 1-----\n" +
 		"----- param 2-----\n" +
 		"@LParameterSubsetAnnotated$NonZero;\n",
@@ -1088,7 +1088,7 @@ public void testBug226357() throws CoreException, IOException {
 	);
 }
 
-public void testBug274898a() throws JavaModelException {
+public void testBug274898a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -1121,7 +1121,7 @@ public void testBug274898a() throws JavaModelException {
 			"Syntax error on token \"new\", delete this token\n",
 			result);
 }
-public void testBug274898b() throws JavaModelException {
+public void testBug274898b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -1155,7 +1155,7 @@ public void testBug274898b() throws JavaModelException {
 			result);
 }
 
-public void testBug277204a() throws JavaModelException {
+public void testBug277204a() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -1188,7 +1188,7 @@ public void testBug277204a() throws JavaModelException {
 			"No problem",
 			result);
 }
-public void testBug277204b() throws JavaModelException {
+public void testBug277204b() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -1224,7 +1224,7 @@ public void testBug277204b() throws JavaModelException {
 			"Syntax error, insert \";\" to complete ClassBodyDeclarations\n",
 			result);
 }
-public void testBug277204c() throws JavaModelException {
+public void testBug277204c() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -1249,7 +1249,7 @@ public void testBug277204c() throws JavaModelException {
 			"No problem",
 			result);
 }
-public void testBug277204d() throws JavaModelException {
+public void testBug277204d() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -1277,7 +1277,7 @@ public void testBug277204d() throws JavaModelException {
 			"Syntax error, insert \";\" to complete ClassBodyDeclarations\n",
 			result);
 }
-public void testBug277204e() throws JavaModelException {
+public void testBug277204e() throws JavaModelException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	ASTResult result = this.buildMarkedAST(
 			"/Converter15/src/a/X.java",
 			"package a;\n" +
@@ -1327,12 +1327,12 @@ public void testBug381503() throws CoreException, IOException {
 		parser.setProject(javaProject);
 		IBinding[] bindings = parser.createBindings(new IJavaElement[] { javaElement }, null);
 		assertEquals("Wrong number of bindings", 1, bindings.length);
-		assertTrue("Wrong binding kind: "+bindings[0].getClass().getName(), bindings[0] instanceof IMethodBinding);
+		assertTrue("Wrong binding kind: "+bindings[0].getClass().getName(), bindings[0] instanceof IMethodBinding); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	} finally {
 		deleteProject("P");
 	}
 }
-public void testGH3047() throws Exception {
+public void testGH3047() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable<String, String> options = JavaCore.getDefaultOptions();
 	options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_9);
 	options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_9);
@@ -1342,14 +1342,14 @@ public void testGH3047() throws Exception {
 	createFolder("P/src");
 
 	String srcFolderInWS = "/P/src";
-	createFolder(srcFolderInWS + "/resources/examples/mockito");
-	String srcFilePathInWS = srcFolderInWS + "/resources/examples/mockito/MockingFromFinder.java";
+	createFolder(srcFolderInWS + "/resources/examples/mockito"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String srcFilePathInWS = srcFolderInWS + "/resources/examples/mockito/MockingFromFinder.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	createFile(srcFilePathInWS,
 						"""
 						package examples.mockito;
 						public class MockingFromFinder{}"""
 			);
-	srcFilePathInWS = srcFolderInWS + "/resources/examples/mockito/MockingWhileAdding.java";
+	srcFilePathInWS = srcFolderInWS + "/resources/examples/mockito/MockingWhileAdding.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	createFile(srcFilePathInWS,
 						"""
 						package examples.mockito;
@@ -1368,15 +1368,15 @@ public void testGH3047() throws Exception {
 						}"""
 			);
 	String[] paths = new String[2];
-	paths[0] = getWorkspacePath() + "P/src/resources/examples/mockito/MockingFromFinder.java";
-	paths[1] = getWorkspacePath() + "P/src/resources/examples/mockito/MockingWhileAdding.java";
+	paths[0] = getWorkspacePath() + "P/src/resources/examples/mockito/MockingFromFinder.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	paths[1] = getWorkspacePath() + "P/src/resources/examples/mockito/MockingWhileAdding.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	@SuppressWarnings("deprecation")
 	ASTParser parser = ASTParser.newParser(AST_INTERNAL_JLS9);
 	parser.setCompilerOptions(options);
 	parser.setResolveBindings(true);
 	parser.setStatementsRecovery(true);
 	parser.setBindingsRecovery(true);
-	parser.setEnvironment(null, new String[] {getWorkspacePath() + "P/src/resources"}, null, false);
+	parser.setEnvironment(null, new String[] {getWorkspacePath() + "P/src/resources"}, null, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	parser.setKind(ASTParser.K_COMPILATION_UNIT);
 	try {
 		parser.createASTs(paths, null, new String[] {}, null, null);
@@ -1385,7 +1385,7 @@ public void testGH3047() throws Exception {
 		assertEquals("Missing system library", ise.getMessage());
 	}
 }
-public void testGH3047_2() throws Exception {
+public void testGH3047_2() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable<String, String> options = JavaCore.getDefaultOptions();
 	options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_9);
 	options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_9);
@@ -1395,14 +1395,14 @@ public void testGH3047_2() throws Exception {
 	createFolder("P/src");
 
 	String srcFolderInWS = "/P/src";
-	createFolder(srcFolderInWS + "/resources/examples/mockito");
-	String srcFilePathInWS = srcFolderInWS + "/resources/examples/mockito/MockingFromFinder.java";
+	createFolder(srcFolderInWS + "/resources/examples/mockito"); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	String srcFilePathInWS = srcFolderInWS + "/resources/examples/mockito/MockingFromFinder.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	createFile(srcFilePathInWS,
 						"""
 						package examples.mockito;
 						public class MockingFromFinder{}"""
 			);
-	srcFilePathInWS = srcFolderInWS + "/resources/examples/mockito/MockingWhileAdding.java";
+	srcFilePathInWS = srcFolderInWS + "/resources/examples/mockito/MockingWhileAdding.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	createFile(srcFilePathInWS,
 						"""
 						package examples.mockito;
@@ -1421,8 +1421,8 @@ public void testGH3047_2() throws Exception {
 						}"""
 			);
 	String[] paths = new String[2];
-	paths[0] = getWorkspacePath() + "P/src/resources/examples/mockito/MockingFromFinder.java";
-	paths[1] = getWorkspacePath() + "P/src/resources/examples/mockito/MockingWhileAdding.java";
+	paths[0] = getWorkspacePath() + "P/src/resources/examples/mockito/MockingFromFinder.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+	paths[1] = getWorkspacePath() + "P/src/resources/examples/mockito/MockingWhileAdding.java"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	@SuppressWarnings("deprecation")
 	ASTParser parser = ASTParser.newParser(AST_INTERNAL_JLS9);
 	parser.setProject(javaProject);
@@ -1430,24 +1430,24 @@ public void testGH3047_2() throws Exception {
 	parser.setResolveBindings(true);
 	parser.setStatementsRecovery(true);
 	parser.setBindingsRecovery(true);
-	parser.setEnvironment(null, new String[] {getWorkspacePath() + "P/src/resources"}, null, false);
+	parser.setEnvironment(null, new String[] {getWorkspacePath() + "P/src/resources"}, null, false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 	parser.setKind(ASTParser.K_COMPILATION_UNIT);
-	Set<String> expectedProblems = new HashSet<>(Arrays.asList(
+	Set<String> expectedProblems = new HashSet<>(Arrays.asList( //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 			"Pb(324) The type java.lang.Object cannot be resolved. It is indirectly referenced from required .class files",
 			"Pb(140) Implicit super constructor Object() is undefined for default constructor. Must define an explicit constructor"
 			));
-	Set<String> actualProblems = new HashSet<>();
+	Set<String> actualProblems = new HashSet<>(); //FLLDCIM: MARK — M03 M3_SET_LANES NEW
 	class MyFileASTRequestor extends FileASTRequestor {
 		@Override
 		public void acceptAST(String sourceFilePath, CompilationUnit cu) {
-			for (IProblem prob :  cu.getProblems())
+			for (IProblem prob :  cu.getProblems()) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 				actualProblems.add(prob.toString());
 		}
 	}
 	parser.createASTs(paths, null, new String[] {}, new MyFileASTRequestor() {}, null);
 	assertEquals(expectedProblems, actualProblems);
 }
-public void testGH3298() throws Exception {
+public void testGH3298() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Hashtable<String, String> options = JavaCore.getDefaultOptions();
 	options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_9);
 	options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_9);
@@ -1487,7 +1487,7 @@ public void testGH3298() throws Exception {
 	}
 }
 
-public void testModuleImportsNotResolved4121() throws Exception {
+public void testModuleImportsNotResolved4121() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents = """
 				import module java.base;
 		        public class X {
@@ -1497,7 +1497,7 @@ public void testModuleImportsNotResolved4121() throws Exception {
 		            }
 		        }
 			""";
-	Map<String, String> options = new HashMap<>();
+	Map<String, String> options = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
     options.put(JavaCore.COMPILER_COMPLIANCE, "24");
     options.put(JavaCore.COMPILER_SOURCE, "24");
     createProject("4121");
@@ -1520,7 +1520,7 @@ public void testModuleImportsNotResolved4121() throws Exception {
     }
 
 }
-public void testBug478_originalReproducer_structuralWalk() throws Exception {
+public void testBug478_originalReproducer_structuralWalk() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String contents =
 			"package invalid.binding;\n" +
 			"\n" +

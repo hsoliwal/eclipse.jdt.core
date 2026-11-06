@@ -22,12 +22,12 @@ public class CompressedWriter {
 	private final DataOutputStream out;
 	// --- context state: ---
 	private char[] lastName;
-	private final HashMap<String, Integer> lastWords;
+	private final HashMap<String, Integer> lastWords; //FLLDCIM: MARK — M10 M3_PRIMITIVE_LANES FIELD
 
 	public CompressedWriter(DataOutputStream out) {
 		this.out = out;
 		this.lastName = new char[0];
-		this.lastWords = new HashMap<>();
+		this.lastWords = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 	}
 
 	// ---- direct forwards to DataOutputStream: ---
@@ -82,7 +82,7 @@ public class CompressedWriter {
 		// => typically only one byte per int
 		int i;
 		// find index
-		for (i = 0; i < typical.length; i++) {
+		for (i = 0; i < typical.length; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			if (typical[i] == v) {
 				break;
 			}
@@ -103,16 +103,16 @@ public class CompressedWriter {
 	 *            the maximal possible value of v + 1
 	 * @see CompressedReader#readIntInRange(int)
 	 **/
-	public void writeIntInRange(int v, int range) throws IOException {
+	public void writeIntInRange(int v, int range) throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		// => typically(0<range<256) only one byte per int
 		if (range < 0 || range > 0xFFFFFF) {
 			this.out.writeInt(v);
 		} else {
 			if (v >= range) {
-				throw new IllegalArgumentException(v + "/" + range);//$NON-NLS-1$
+				throw new IllegalArgumentException(v + "/" + range);//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			if (v < 0) {
-				throw new IllegalArgumentException(v + "/" + range);//$NON-NLS-1$
+				throw new IllegalArgumentException(v + "/" + range);//$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			}
 			if (range <= 0xFF) {
 				this.out.writeByte(v);
@@ -179,7 +179,7 @@ public class CompressedWriter {
 	private static int commonLength(char[] a, char[] b, int max) {
 		int i = 0;
 		int end = Math.min(Math.min(max, a.length), b.length);
-		while (i < end && a[i] == b[i]) {
+		while (i < end && a[i] == b[i]) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			i++;
 		}
 		return i;

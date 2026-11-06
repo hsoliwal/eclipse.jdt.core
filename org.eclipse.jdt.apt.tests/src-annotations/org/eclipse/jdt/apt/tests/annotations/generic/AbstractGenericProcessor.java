@@ -46,7 +46,7 @@ public abstract class AbstractGenericProcessor implements AnnotationProcessor {
 			}
 			t.printStackTrace();
 			AssertionFailedError assertionFailedError = new AssertionFailedError(
-					"Processor threw an exception during processing: " + t);
+					"Processor threw an exception during processing: " + t); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 			assertionFailedError.initCause(t);
 			throw assertionFailedError;
 		}
