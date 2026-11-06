@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -27,6 +28,7 @@ public class ClasspathMultiReleaseJar extends ClasspathJar {
 	private static final String META_INF_VERSIONS = Util.METAINF_VERSIONS;
 	private static final int META_INF_LENGTH = META_INF_VERSIONS.length();
 	private volatile List<String> supportedVersions;
+	final String compliance;
 
 	ClasspathMultiReleaseJar(IFile resource, AccessRuleSet accessRuleSet, IPath externalAnnotationPath,
 			boolean isOnModulePath, String compliance) {
@@ -46,6 +48,17 @@ public class ClasspathMultiReleaseJar extends ClasspathJar {
 	}
 
 	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	public boolean equals(Object o) {
+		return super.equals(o) && o instanceof ClasspathMultiReleaseJar jar
+				&& Objects.equals(this.compliance, jar.compliance);
+	}
+
+	@Override
+	public int hashCode() {
+		return 31 * super.hashCode() + Objects.hashCode(this.compliance);
+	}
+
+	@Override
 	IModule initializeModule() {
 		IModule mod = null;
 		try (ZipFile file = new ZipFile(this.zipFilename)){ //FLLDCIM: MARK — M25 M3FILE_ARCHIVE_STREAM NEW
