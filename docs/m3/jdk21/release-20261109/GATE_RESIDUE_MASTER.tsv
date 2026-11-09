@@ -1,0 +1,2 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1337	implicitly declared classes are not supported in -source 21
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	172	implicitly declared classes are not supported in -source 21
