@@ -11,7 +11,7 @@ Tools and raw evidence: [`docs/m3/jdk21/release-20261109`](../jdk21/release-2026
 | G2b | Parse gate: every tracked Java source (2899 files, test bundles included, test-input folders excluded), JDK 25 javac `--release 21` stopped after parsing | FAIL on master (238 rows, PARSE_GATE_MASTER.tsv); PASS with this PR | PARSE_GATE.tsv |
 | G3 | Recipe fixed point (`apply_jdk21.sh` + `apply_jdk21_pins.sh` change nothing on master) | PASS | RECIPE_CHANGES.tsv |
 | G4 | Metadata consistent: Tycho bundle/feature versions match their pom, no EE above 21 in a Java-21 bundle | PASS | META.tsv |
-| G5 | Full Tycho build of this repository on JDK 21 (`mvn -B clean verify -DskipTests`, fork parent + SDK target from the fork aggregator, other components from the upstream 4.42 I-build repository) | PENDING | not run yet |
+| G5 | Full Tycho build of this repository on JDK 21 (`mvn -B clean verify -DskipTests`, fork parent + SDK target from the fork aggregator, other components from the upstream 4.42 I-build repository) | PASS | BUILD SUCCESS in 236 s, modules 17/17 ok, 0 failed, 0 [ERROR] rows (BUILD_G5.tsv, BUILD_G5_ERRORS.tsv, BUILD_G5.log.gz) |
 | G6 | Eclipse SDK product build and launch on JDK 21 | PENDING | aggregator verdict, eclipse.platform.releng.aggregator docs/m3/release/RELEASE_READINESS.md |
 
 ## What this PR changes
@@ -31,6 +31,18 @@ GATE_SUMMARY.tsv history.
 Exempt (EXEMPT.tsv, CENSUS_EXEMPT.tsv): `JCL/*` (compiler-test class libraries built at Java 22..26 on purpose) and
 `*/workspace/*` (test workspaces). SwitchTest.java starts with a UTF-8 BOM (as upstream): javac rejects it, ECJ (Tycho)
 accepts it; the parse gate sets BOM files aside.
+
+## G5 (Tycho build on JDK 21.0.9)
+
+ECJ pre-check first (`ecj_precheck.sh`: 9 bundles that compile NLS or unused imports as errors): 0 rows.
+
+| Attempt | Result |
+| --- | --- |
+| 1 | BUILD SUCCESS: 17/17 modules in 236 s, target/ 107 MB |
+
+The 27 surplus `$NON-NLS$` tags the regex/strings lanes left in jdt.core (warnings here, no bundle compiles NLS as an
+error) are not changed in this PR; they belong to the recipe fix (M3HoistConstantStringRegexCallsRecipe,
+M3LinearStringBuilderRecipe).
 
 ## Re-run
 
