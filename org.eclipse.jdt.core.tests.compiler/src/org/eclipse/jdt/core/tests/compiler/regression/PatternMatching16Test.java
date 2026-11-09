@@ -4275,7 +4275,8 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 						}
 						""",
 				},
-				""" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				//FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+				"""
 				----------
 				1. ERROR in X.java (at line 15)
 					return switch (a) {

@@ -134,7 +134,8 @@ public void test368435c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 
 	public class X {
 	    public static int i,j;
@@ -152,7 +153,8 @@ public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	for (int i = 0; i < 160; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		fileContents.append("\t    i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 			b++;
 		}
 		if (b == 4 && i == 0) System.out.println(\"SUCCESS\");
@@ -171,7 +173,8 @@ public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	public class X2 {
 		public static boolean b = false;
 		public static int i, l, j;
@@ -185,7 +188,8 @@ public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	for (int i = 0; i < 160; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 			b = false;
 		}
 		if (i == 0) {
@@ -206,7 +210,8 @@ public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	public class X3 {
 		public int i,j;
 		public long l;
@@ -224,7 +229,8 @@ public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	for (int i = 0 ; i < 160; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 			b++;
 		}
 		if (b == 4 && i == 0) {
@@ -245,7 +251,8 @@ public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	public class X {
 		public static int i,j;
 		public static long l;
@@ -262,7 +269,8 @@ public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	for (int i = 0; i < 160; i ++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 				b++;
 		}
 		}
@@ -281,7 +289,8 @@ public void test004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	package p;
 	public class X {
 	  public static void main(String args[]) {
@@ -290,7 +299,8 @@ public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	for (int i = 0; i < 496; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		fileContents.append("      + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' \n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	      + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\' + \'a\');
 	  }
 	}
@@ -313,7 +323,8 @@ public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	public class A {
 	    public static void main(String[] args) {
 	        int i = 1;
@@ -329,7 +340,8 @@ public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		fileContents.append("        	i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;i = 366 * i % 534;"); // $NON-NLS-1$ //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
 
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 			} finally {
 	            if (i == 1)
 	                System.out.print(\"OK\");
@@ -353,7 +365,8 @@ public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  */
 public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	public class X {
 		public static int i,j;
 		public static long l;
@@ -370,7 +383,8 @@ public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	for (int i = 0; i < 160; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		fileContents.append("\t\ti*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;i*=l+j;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 			b++;
 			if (b > 1) {
 				break;
@@ -1073,7 +1087,8 @@ public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	public class X {
 	    public static String CONSTANT =\s
 	""");
@@ -1081,7 +1096,8 @@ public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	for (int i = 0 ; i < 1029; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		fileContents.append("        \"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz\" +\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	    	\"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxy12\";
 
 	    public static void main(String[] args) {
@@ -1326,7 +1342,8 @@ public void _test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	settings.put(CompilerOptions.OPTION_ShareCommonFinallyBlocks, CompilerOptions.ENABLED);
 
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	public class X {
 		public static int foo(int i) {
 			try {
@@ -1336,7 +1353,8 @@ public void _test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		fileContents.append("				case " + i + " :\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		fileContents.append("					return 3;\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 					default:
 						return -1;
 				}
@@ -1417,7 +1435,8 @@ public void test0016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	for (int i = 0; i < 2500; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		fileContents.append("\tX" + i + "(" + i + "),\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 		;
 
 		private int value;
@@ -1491,7 +1510,8 @@ public void test0017() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	for (int i = 1; i < 2002; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		fileContents.append("\tX" + i + "(" + i + "),\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 		;
 
 		private int value;
@@ -1559,7 +1579,8 @@ public void test0018() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	for (int i = 1; i < 2003; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		fileContents.append("\tX" + i + "(" + i + "),\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 		;
 
 		private int value;
@@ -1593,7 +1614,8 @@ public void test0019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// only run in 1.5 or above
 
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	import java.util.HashMap;
 	import java.util.Map;
 
@@ -1602,7 +1624,8 @@ public void test0019() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	for (int i = 0; i < 2005; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		fileContents.append("\tC" + i + ",\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 		;
 
 	    private static Map<String, X> nameToInstanceMap = new HashMap<String, X>();
@@ -1963,7 +1986,8 @@ public void testIssue1359() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		return;
 
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 	public class X
 	{
 		public static void main(String[] args)
@@ -1994,7 +2018,8 @@ public void testIssue1359() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		fileContents.append("// --- SUPERBLOCK ---\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		fileContents.append("\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 	}
-	fileContents.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+	fileContents.append("""
 					0
 
 					)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
