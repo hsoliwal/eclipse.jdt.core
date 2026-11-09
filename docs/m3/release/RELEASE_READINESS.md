@@ -25,8 +25,8 @@ open delimiter sequence, missing line terminator"): PARSE_GATE_MASTER.tsv (238 r
 
 Fill (`fix_textblock_anchors.sh` + `textblock_anchor.awk`, CNPCDA-safe): each anchor moves unchanged to its own line above
 the statement; nothing else changes. Because the master baseline could not parse those five files, the `--release 25`
-baseline of this PR is taken on the repaired tree (the repair is language-neutral); the master baseline is kept in
-GATE_SUMMARY.tsv history.
+baseline of this PR is taken on the repaired tree (the repair is language-neutral); on master the same baseline had
+6232 rows because those five files stopped at the parser.
 
 Exempt (EXEMPT.tsv, CENSUS_EXEMPT.tsv): `JCL/*` (compiler-test class libraries built at Java 22..26 on purpose) and
 `*/workspace/*` (test workspaces). SwitchTest.java starts with a UTF-8 BOM (as upstream): javac rejects it, ECJ (Tycho)
