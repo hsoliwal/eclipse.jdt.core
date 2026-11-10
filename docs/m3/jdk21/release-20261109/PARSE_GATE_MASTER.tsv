@@ -1,0 +1,238 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2240	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2242	')' or ',' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2242	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2242	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2243	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2243	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2244	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2245	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2245	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2245	unclosed character literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2247	')' or ',' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2247	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2247	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2248	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2248	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2249	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2250	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2250	'{' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2250	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2254	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2255	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2257	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2258	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2265	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java	2271	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java	2635	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java	2637	')' or ',' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java	2637	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java	2637	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java	2639	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java	2640	'(' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java	2640	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java	2640	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java	2640	unclosed character literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java	2642	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4278	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4280	')' or ',' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4280	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4280	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4282	case, default, or '}' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4283	case, default, or '}' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4286	case, default, or '}' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4287	case, default, or '}' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4287	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4288	case, default, or '}' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4289	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PatternMatching16Test.java	4292	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	13	compact source file should not have package declaration
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1304	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1305	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1305	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1305	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1306	<identifier> expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1309	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1309	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1312	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1312	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1312	invalid method declaration; return type required
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1323	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1324	<identifier> expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1325	<identifier> expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1325	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1326	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1326	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1326	invalid method declaration; return type required
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1328	statements not expected outside of methods and initializers
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1334	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1334	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1334	invalid method declaration; return type required
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1334	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1335	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1337	implicitly declared classes are not supported in -source 21
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1606	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1607	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1608	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1609	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1609	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1611	<identifier> expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1611	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1612	<identifier> expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1612	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1618	statements not expected outside of methods and initializers
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1627	<identifier> expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1628	<identifier> expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1628	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1630	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1631	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1631	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1632	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1632	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1632	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1632	invalid method declaration; return type required
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1632	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	1633	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/PrimitiveInPatternsTestSH.java	3469	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1148	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1329	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1330	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1332	'try' without 'catch', 'finally' or resource declarations
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1334	case, default, or '}' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1334	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1335	case, default, or '}' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1336	case, default, or '}' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1337	case, default, or '}' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1339	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1340	orphaned default
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1343	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1343	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1345	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1346	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1346	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1347	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1347	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1348	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1348	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1350	statements not expected outside of methods and initializers
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1356	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1356	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1358	invalid method declaration; return type required
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1359	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1361	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1361	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1362	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1362	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	137	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1372	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	139	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1420	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1423	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1424	invalid method declaration; return type required
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1440	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1441	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1444	statements not expected outside of methods and initializers
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1455	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1494	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1497	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1498	invalid method declaration; return type required
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	150	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1514	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1515	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1518	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1524	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	155	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1562	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1565	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1566	invalid method declaration; return type required
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	158	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	158	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1582	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1583	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1584	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	159	'else' without 'if'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	159	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	159	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1590	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1596	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1597	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1598	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1598	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	16	compact source file should not have package declaration
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1600	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1601	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1601	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1602	statements not expected outside of methods and initializers
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1605	',', '}', or ';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1605	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	162	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	162	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1622	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1622	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1625	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1625	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1627	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1633	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	164	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	164	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	164	invalid method declaration; return type required
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	165	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	166	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	166	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	167	';' expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	168	<identifier> expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	168	illegal start of type
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	172	implicitly declared classes are not supported in -source 21
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	174	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	175	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	184	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	188	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	192	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	192	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	194	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	194	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1966	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1967	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	198	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	198	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1986	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	199	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	1997	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	2030	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	2030	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	2032	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	2043	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	205	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	209	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	2090	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	210	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	223	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	227	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	231	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	231	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	233	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	233	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	237	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	237	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	238	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	244	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	248	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	249	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	261	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	265	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	269	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	269	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	270	'else' without 'if'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	270	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	270	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	273	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	273	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	274	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	280	class, interface, enum, or record expected
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	284	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	285	not a statement
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	286	illegal start of expression
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	288	illegal character: '/'
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	288	unclosed string literal
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	289	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	293	illegal text block open delimiter sequence, missing line terminator
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/XLargeTest.java	294	illegal character: '/'

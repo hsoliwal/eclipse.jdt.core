@@ -1,0 +1,2 @@
+JCL/*	JCL test libraries of jdt.core compiler tests, built at their own Java level by design (jclMin22..26, converterJclMin25/26)
+*/workspace/*	compiler/model test workspaces (test input data)

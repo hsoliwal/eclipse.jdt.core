@@ -2632,7 +2632,8 @@ public void test012_compiler_problems_tuning() { //FLLDCIM: MARK — ML METHOD_S
 	public void testTooNewJavaVersionRequested() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = new HashMap<>(JavaCore.getDefaultOptions()); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
 		String latestJavaVersionSupportedByECJ = CompilerOptions.versionFromJdkLevel(ClassFileConstants.getLatestJDKLevel());
-		String message = """ //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		//FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+		String message = """
 			----------
 			1. WARNING in A.java (at line 1)
 				class A{}

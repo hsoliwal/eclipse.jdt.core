@@ -1301,7 +1301,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 		StringBuilder methods = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		StringBuilder calls = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 		String classTmpl =
-				""" //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+				//FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+				"""
 				SUPPRESS public class X {
 				METHODS
 					public static void main(String... args) {
@@ -1320,7 +1321,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 					}
 				""".replace("FROM", from);
 		String callTmpl =
-				""" //FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+				//FLLDCIM: MARK — M12 REGEX_PRECOMPUTE CALL
+				"""
 						System.out.print(X.switchPRIM(vFROM));
 						System.out.print('|');
 				""".replaceAll("FROM", from); // leaves only PRIM for replacement in the loop
@@ -1603,7 +1605,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 				}
 				""".replace("FROM", fromBox);
 		StringBuilder clazz = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
-		clazz.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		clazz.append("""
 				import java.util.Optional;
 				public class X {
 				""");
@@ -1625,7 +1628,8 @@ public class PrimitiveInPatternsTestSH extends AbstractRegressionTest9 {
 			main.append("\tSystem.out.print('|');\n"); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
 		clazz.append(main); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		clazz.append(""" //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		//FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
+		clazz.append("""
 					}
 				}
 				""");

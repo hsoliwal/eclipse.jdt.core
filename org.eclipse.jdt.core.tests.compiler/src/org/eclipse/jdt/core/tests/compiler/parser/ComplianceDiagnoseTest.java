@@ -2237,7 +2237,8 @@ public void test0042() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			String cannot be resolved to a type
 			----------
 			""" :
-			""" //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			//FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+			"""
 			----------
 			1. ERROR in X.java (at line 1)
 				void ___eval() {
