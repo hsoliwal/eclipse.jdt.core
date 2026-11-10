@@ -1881,10 +1881,11 @@ public abstract class ASTNode {
 		}
 	}
 
+	//FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	/**
 	 * Returns the value of the given structural property for this node. The value
 	 * returned depends on the kind of property:
-	 * <ul> //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
+	 * <ul>
 	 * <li>{@link SimplePropertyDescriptor} - the value of the given simple property,
 	 * or <code>null</code> if none; primitive values are "boxed"</li>
 	 * <li>{@link ChildPropertyDescriptor} - the child node (type <code>ASTNode</code>),
