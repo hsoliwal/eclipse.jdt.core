@@ -31,8 +31,11 @@ Rows in [GATES.tsv](GATES.tsv); all on the merge commit, JDK 21 target.
 
 - Java-21 recipe (`apply_jdk21.sh`, `apply_jdk21_pins.sh`): 0 files changed. The 22 upstream commits do not move
   a bundle or a pin above Java 21 in this fork; the fork's Java 21 values survive the merge.
-- Java-21 gate: residue 0 (`--release 25` and `--release 21` both 40,383 rows over 2,252 files; these are the
-  pool-classpath baseline rows of this gate and are the same at both levels).
+- Java-21 gate: residue 0. `--release 25` and `--release 21` each report 40,383 rows over 2,252 files (27,950
+  `cannot find symbol`, 32,737 of all rows in `org.eclipse.jdt.core.tests.model`). The rows are the same at both
+  levels except 13 follow-up rows in the BOM file `SwitchTest.java` (same lines, different javac wording), which
+  the gate sets aside. Fork master `dd4fbdf1126d` has 40,305 such rows at both levels and its Tycho build passes,
+  so the rows are this gate's baseline, not a Java-level break.
 - Parse gate: 2,900 files, 0 syntax errors.
 - Metadata check: 0 rows.
 - ECJ pre-check: 0 missing NLS tags, 0 surplus NLS tags, 0 unused imports.

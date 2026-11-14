@@ -1,7 +1,7 @@
 stage	tool	tree	result	detail
 merge	git merge --no-ff + merge_anchor_resolve.py	7f213b571f06 = dd4fbdf1126d + dd2c87485ce2 (base 71be896c27d2)	PASS	4 files, 5 conflict hunks, all RESOLVED; anchor multiset per file = fork master; minus anchors 3 files = upstream bytes, CommentsPreparator = upstream + the fork 10 regex-hoist lines
 java21-recipe	apply_jdk21.sh + apply_jdk21_pins.sh	7f213b571f06	PASS	0 files changed (fixed point): 13 gated bundles, no bundle or pin above Java 21 after the merge
-java21-gate	gate_master.sh (javac 25.0.4.1, attribution only)	7f213b571f06	PASS	residue 0: --release 25 2252 files 40383 rows, --release 21 2252 files 40383 rows (pool-classpath baseline rows, identical at both levels)
+java21-gate	gate_master.sh (javac 25.0.4.1, attribution only)	7f213b571f06	PASS	residue 0: --release 25 and --release 21 each 40383 rows over 2252 files; identical except 13 follow-up rows in the BOM file SwitchTest.java (set aside by the gate); fork master dd4fbdf1126d has 40305 such rows at both levels and builds
 parse-gate	parse_gate.sh (javac --release 21, parse only)	7f213b571f06	PASS	2900 files, 0 syntax errors (1 BOM file set aside)
 metadata	meta_check.sh + exempt-eclipse.jdt.core.tsv	7f213b571f06	PASS	0 rows (versions, BREE <= 21, EE metadata)
 ecj-precheck	ecj_precheck.sh (ECJ 3.47, --release 21)	7f213b571f06	PASS	9 bundles, 1 group: 0 missing NLS, 0 surplus NLS, 0 unused imports
