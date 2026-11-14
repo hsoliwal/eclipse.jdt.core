@@ -1,3 +1,0 @@
-unnamed_decl	org.eclipse.jdt.core.compiler.batch/src/org/eclipse/jdt/internal/compiler/ast/SwitchStatement.java:993:		// reconstructed (e.g. "B(Circle _)"); they must not additionally be reported as plain "B _".
-unnamed_decl	org.eclipse.jdt.core.compiler.batch/src/org/eclipse/jdt/internal/compiler/ast/SwitchStatement.java:1036:	 * diagnostic lists {@code "B(Circle _)"} rather than the coarser {@code "B _"}.
-unnamed_decl	org.eclipse.jdt.core.compiler.batch/src/org/eclipse/jdt/internal/compiler/ast/SwitchStatement.java:1070:			   for it: either it enumerated the missing component combinations (e.g. "B(Circle _)"), or
