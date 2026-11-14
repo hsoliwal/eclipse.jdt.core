@@ -1479,7 +1479,8 @@ public class CommentsPreparator extends ASTVisitor {
 		structure.add(first);
 
 		int positionLimit = isMarkdown ? commentToken.originalEnd + 1: commentToken.originalEnd - 1;
-		while (positionLimit - 1 > firstTokenEnd && this.tm.charAt(positionLimit - 1) == markerChar) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		// a markdown comment has no closing marker: a trailing '/' is text
+		while (!isMarkdown && positionLimit - 1 > firstTokenEnd && this.tm.charAt(positionLimit - 1) == markerChar) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			positionLimit--;
 
 		int position = firstTokenEnd + 1;
