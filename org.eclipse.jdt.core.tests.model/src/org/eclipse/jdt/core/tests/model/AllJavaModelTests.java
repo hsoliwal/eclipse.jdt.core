@@ -229,6 +229,7 @@ private static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT
 
 		// Class file tests
 		ClassFileTests.class,
+		ClassFileBufferPublicationTests.class,
 
 		// Java-like extensions tests
 		JavaLikeExtensionsTests.class,
