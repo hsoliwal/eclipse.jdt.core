@@ -103,6 +103,7 @@ private static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT
 
 		// IBuffer tests
 		BufferTests.class,
+		BufferConcurrencyTests.class,
 
 		// Name lookup tests
 		NameLookupTests2.class,
