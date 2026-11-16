@@ -39,6 +39,9 @@ private static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT
 
 		// Enter each test here, grouping the tests that are related
 
+		// Test infrastructure
+		JobFamilyWaitTests.class,
+
 		// Binding key tests
 		BindingKeyTests.class,
 
