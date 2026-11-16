@@ -89,6 +89,9 @@ private static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT
 		WorkingCopyNotInClasspathTests.class,
 		HierarchyOnWorkingCopiesTests.class,
 
+		// Headless tracing configuration
+		TracingSuiteConfigurationTests.class,
+
 		// test IJavaModel
 		JavaModelTests.class,
 
