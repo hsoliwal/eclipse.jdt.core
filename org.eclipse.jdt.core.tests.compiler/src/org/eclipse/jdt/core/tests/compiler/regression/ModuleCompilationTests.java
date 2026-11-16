@@ -32,6 +32,9 @@ import org.eclipse.jdt.core.util.IClassFileReader;
 import org.eclipse.jdt.core.util.IModuleAttribute;
 import org.eclipse.jdt.internal.compiler.batch.FileSystem;
 import org.eclipse.jdt.internal.compiler.batch.FileSystem.Classpath;
+import org.eclipse.jdt.internal.compiler.batch.ClasspathJep247;
+import org.eclipse.jdt.internal.compiler.batch.ClasspathJep247Jdk12;
+import org.eclipse.jdt.internal.compiler.batch.FileSystem;
 import org.eclipse.jdt.internal.compiler.classfmt.ClassFileConstants;
 import org.eclipse.jdt.internal.compiler.codegen.AttributeNamesConstants;
 import org.eclipse.jdt.internal.compiler.env.NameEnvironmentAnswer;
@@ -6153,5 +6156,15 @@ public void testBug521362_emptyFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METH
 					----------
 					1 problem (1 warning)
 					""");
+	}
+
+	/**
+	 * The layout of ct.sym changed in JDK 12: its reader is chosen from the level of the JDK whose ct.sym is read, such as
+	 * the one of --system, not from the running JDK.
+	 */
+	public void testOlderSystemReleaseReaderOfTheSelectedJdk() {
+		String home = Util.getJREDirectory();
+		assertEquals(ClasspathJep247Jdk12.class, FileSystem.getOlderSystemRelease(home, ClassFileConstants.JDK12, "8", null).getClass());
+		assertEquals(ClasspathJep247.class, FileSystem.getOlderSystemRelease(home, ClassFileConstants.JDK11, "8", null).getClass());
 	}
 }
