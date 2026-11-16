@@ -1489,6 +1489,22 @@ public void testIssue5202ArrayDownwardsProjection() { //FLLDCIM: MARK — ML MET
 			"""
 		});
 }
+public void testGH5699() {
+	this.runConformTest(
+		new String[] {
+			"X.java",
+			"""
+			class A<E> {}
+			public class X {
+				static <T> A<? super T> m(T t) { return null; }
+				void foo(A<?> a) {
+					var v = m(a);
+					v = a;
+				}
+			}
+			"""
+		});
+}
 // A type must satisfy every component of '? extends I1 & I2' (JLS 4.5.1), not just one of them
 public void testVarIntersectionBoundContainment() {
 	this.runNegativeTest(
