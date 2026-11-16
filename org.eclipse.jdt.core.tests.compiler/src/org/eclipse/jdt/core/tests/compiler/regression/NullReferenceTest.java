@@ -18014,8 +18014,9 @@ public void testBug536408() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runner.javacTestOptions = JavacTestOptions.Excuse.EclipseWarningConfiguredAsError;
 	runner.runNegativeTest();
 }
+@RunAlways
 public void testBug542707_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14) // switch expression
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14) // switch expression
 		return;
 	Runner runner = new Runner();
 	runner.customOptions = new HashMap<>(); //FLLDCIM: MARK — M01 M3_HASH_LANES NEW
@@ -18296,8 +18297,9 @@ public void testGH1667() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		});
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
+@RunAlways
 public void testGH1461() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK15) return;
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK15) return;
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -18325,8 +18327,9 @@ public void testGH1461() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			""");
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
+@RunAlways
 public void testGH1461SuppressWarnings() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK15) return;
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK15) return;
 	runConformTest(
 		new String[] {
 			"X.java",
@@ -18348,8 +18351,9 @@ public void testGH1461SuppressWarnings() { //FLLDCIM: MARK — ML METHOD_SPLIT M
 		"");
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
+@RunAlways
 public void testGH1461_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK15) return;
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK15) return;
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -18377,8 +18381,9 @@ public void testGH1461_a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			""");
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
+@RunAlways
 public void testGH1461_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK15) return;
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK15) return;
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -18406,8 +18411,9 @@ public void testGH1461_b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			""");
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
+@RunAlways
 public void testGH1461_c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK15) return;
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK15) return;
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -18429,8 +18435,9 @@ public void testGH1461_c() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			""");
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1461
+@RunAlways
 public void testGH1461_d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK15) return;
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK15) return;
 	runNegativeTest(
 		new String[] {
 			"X.java",

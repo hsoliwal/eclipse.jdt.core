@@ -44,8 +44,9 @@ public static Test suite() {
 }
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5193
+@RunAlways
 public void testGH5193() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK10)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK10)
 		return; // uses 'var'
 	runNegativeTest(
 		new String[] {
@@ -648,8 +649,9 @@ public void testBug521815a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"The type Inner is ambiguous\n" +
 			"----------\n");
 }
+@RunAlways
 public void testBug521815b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel <= ClassFileConstants.JDK1_8) {
+	if (this.fetchComplianceLevel() <= ClassFileConstants.JDK1_8) {
 		return;
 	}
 	Runner runner = new Runner();
@@ -1329,8 +1331,9 @@ public void testGH4039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runner.runConformTest();
 }
 
+@RunAlways
 public void testGH4003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK10)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK10)
 		return; // uses 'var'
 	runConformTest(new String[] {
 		"EclipseCompilerBugReproducer.java",
@@ -1629,8 +1632,9 @@ public void testGH4402() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		},
 		"");
 }
+@RunAlways
 public void testGH4346() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return; // uses records
 	runConformTest(new String[] {
 			"X.java",
@@ -2020,8 +2024,9 @@ public void testGH4604() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"""
 		});
 }
+@RunAlways
 public void testGH4699_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK10) return; // uses 'var'
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK10) return; // uses 'var'
 	runConformTest(new String[] {
 			"EclipseBug.java",
 			"""
@@ -2042,8 +2047,9 @@ public void testGH4699_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"""
 		});
 }
+@RunAlways
 public void testGH4699_full() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK10) return; // uses 'var'
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK10) return; // uses 'var'
 	runConformTest(new String[] {
 			"EclipseBug.java",
 			"""
@@ -2177,8 +2183,9 @@ public void testGH5052() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		},
 		"map.consume");
 }
+@RunAlways
 public void testGH5028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK10) return; // uses 'var'
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK10) return; // uses 'var'
 	runConformTest(new String[] {
 			"InferredGenerics.java",
 			"""
@@ -2241,8 +2248,9 @@ public void testListRewrite() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		----------
 		""");
 }
+@RunAlways
 public void testGH4774() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16) return; // uses records
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16) return; // uses records
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
 			"Test.java",
@@ -2471,8 +2479,9 @@ public void testGH4893() throws Exception  { //FLLDCIM: MARK — ML METHOD_SPLIT
 		"""
 	});
 }
+@RunAlways
 public void testJDK8375572() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	Runner runner = new Runner();
 	runner.testFiles = new String[] { "MethodRefStuck3.java",

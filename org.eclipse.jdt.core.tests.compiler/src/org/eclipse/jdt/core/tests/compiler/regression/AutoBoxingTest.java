@@ -5188,8 +5188,9 @@ public void test168() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=264843
+@RunAlways
 public void test169() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	String expectedCompilerLog = this.complianceLevel >= ClassFileConstants.JDK21 ?
+	String expectedCompilerLog = this.fetchComplianceLevel() >= ClassFileConstants.JDK21 ?
 			"----------\n" +
 			"1. WARNING in X.java (at line 1)\n" +
 			"	public class X<T extends Integer> {\n" +

@@ -718,8 +718,9 @@ public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"----------\n");
 }
 // 77151 - cannot use qualified name to denote enum constants in switch case label
+@RunAlways
 public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel >= ClassFileConstants.JDK21)
+	if (this.fetchComplianceLevel() >= ClassFileConstants.JDK21)
 		return;
 	this.runNegativeTest(
 		new String[] {
@@ -2460,9 +2461,10 @@ public void test078() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=85397
+@RunAlways
 public void test079() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	String op =
-			this.complianceLevel < ClassFileConstants.JDK17 ?
+			this.fetchComplianceLevel() < ClassFileConstants.JDK17 ?
 					"----------\n" +
 					"1. ERROR in X.java (at line 3)\n" +
 					"	private strictfp X() {}\n" +
@@ -2502,7 +2504,7 @@ public void test079() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT MET
 	);
 
 	String[] expectedOutputs =
-			this.complianceLevel < ClassFileConstants.JDK17 ?
+			this.fetchComplianceLevel() < ClassFileConstants.JDK17 ?
 					new String[] {
 							"  private strictfp X(java.lang.String $enum$name, int $enum$ordinal);\n",
 							"  public static strictfp X[] values();\n",
@@ -2560,8 +2562,9 @@ public void test080() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=87818
+@RunAlways
 public void test081() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	String expectedErrorMessage = this.complianceLevel < ClassFileConstants.JDK16 ?
+	String expectedErrorMessage = this.fetchComplianceLevel() < ClassFileConstants.JDK16 ?
 			"----------\n" +
 			"1. ERROR in X.java (at line 3)\n" +
 			"	enum E {}\n" +
@@ -2594,8 +2597,9 @@ public void test081() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=88223
+@RunAlways
 public void test082() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if ( this.complianceLevel < ClassFileConstants.JDK16) {
+	if ( this.fetchComplianceLevel() < ClassFileConstants.JDK16) {
 	this.runNegativeTest(
 		new String[] {
 			"X.java",
@@ -2633,7 +2637,7 @@ public void test082() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"}"
 		},
 		"");
-	if ( this.complianceLevel < ClassFileConstants.JDK16) {
+	if ( this.fetchComplianceLevel() < ClassFileConstants.JDK16) {
 		this.runNegativeTest(
 				new String[] {
 					"X.java",
@@ -3888,8 +3892,9 @@ public void test112() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=93789
+@RunAlways
 public void test113() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 	    this.runNegativeTest(
 	        new String[] {
 	            "X.java",
@@ -5091,8 +5096,9 @@ public void test139() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	);
 }
 //check final modifier
+@RunAlways
 public void test140() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK17) {
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK17) {
 		this.runConformTest(
 			     new String[] {
 			    	        "X.java",
@@ -6687,6 +6693,7 @@ public void test179() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		null);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=289892
+@RunAlways
 public void test180() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
@@ -6720,7 +6727,7 @@ public void test180() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Process_Annotations, CompilerOptions.ENABLED);
 	JavacTestOptions.Excuse excuse = JavacTestOptions.Excuse.JavacHasErrorsEclipseHasNone;
-	if(this.complianceLevel >= ClassFileConstants.JDK16) {
+	if(this.fetchComplianceLevel() >= ClassFileConstants.JDK16) {
 		excuse = null;
 	}
 	this.runConformTest(
@@ -6744,6 +6751,7 @@ public void test180() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=289892
 // in interaction with null annotations
 // see https://bugs.eclipse.org/bugs/show_bug.cgi?id=365519#c4 item (6)
+@RunAlways
 public void test180a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_ANNOTATION_NULL_ANALYSIS, JavaCore.ENABLED);
@@ -6784,7 +6792,7 @@ public void test180a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_Process_Annotations, CompilerOptions.ENABLED);
 	JavacTestOptions.Excuse excuse = JavacTestOptions.Excuse.JavacHasErrorsEclipseHasNone;
-	if(this.complianceLevel >= ClassFileConstants.JDK16) {
+	if(this.fetchComplianceLevel() >= ClassFileConstants.JDK16) {
 		excuse = null;
 	}
 	this.runConformTest(
@@ -7350,8 +7358,9 @@ public void testGHIssue2398() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1368
 // JDT unable to detect variable reference errors in nested enum with an AnonymousClassDeclaration
+@RunAlways
 public void testGHIssue1368() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	this.runNegativeTest(new String[] {
 			"X.java",
@@ -7421,6 +7430,7 @@ public void testGHIssue1368() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3356
 // Test failures in I-Builds due to less diagnostics being emitted
+@RunAlways
 public void testIssue3356() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(new String[] {
 			"X.java",
@@ -7437,7 +7447,7 @@ public void testIssue3356() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			}
 			"""
 			},
-			this.complianceLevel < ClassFileConstants.JDK21 ?
+			this.fetchComplianceLevel() < ClassFileConstants.JDK21 ?
 			"----------\n" +
 			"1. WARNING in X.java (at line 4)\n" +
 			"	switch (c) {\n" +

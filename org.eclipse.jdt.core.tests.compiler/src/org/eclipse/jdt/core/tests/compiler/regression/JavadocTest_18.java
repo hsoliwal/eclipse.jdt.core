@@ -109,8 +109,9 @@ protected void setUp() throws Exception {
 
 
 
+@RunAlways
 public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if(this.complianceLevel < ClassFileConstants.JDK18) {
+	if(this.fetchComplianceLevel() < ClassFileConstants.JDK18) {
 		return;
 	}
 	this.runNegativeTest(
@@ -140,8 +141,9 @@ public void test001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	);
 }
 
+@RunAlways
 public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if(this.complianceLevel < ClassFileConstants.JDK18) {
+	if(this.fetchComplianceLevel() < ClassFileConstants.JDK18) {
 		return;
 	}
 	this.runNegativeTest(
@@ -166,8 +168,9 @@ public void test002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	);
 }
 
+@RunAlways
 public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if(this.complianceLevel < ClassFileConstants.JDK18) {
+	if(this.fetchComplianceLevel() < ClassFileConstants.JDK18) {
 		return;
 	}
 	this.runNegativeTest(
@@ -195,8 +198,9 @@ public void test003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	);
 }
 
+@RunAlways
 public void test004() {
-	if(this.complianceLevel < ClassFileConstants.JDK18) {
+	if(this.fetchComplianceLevel() < ClassFileConstants.JDK18) {
 		return;
 	}
 	this.runConformTest(
@@ -212,8 +216,9 @@ public void test004() {
 	);
 }
 
+@RunAlways
 public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if(this.complianceLevel < ClassFileConstants.JDK18) {
+	if(this.fetchComplianceLevel() < ClassFileConstants.JDK18) {
 		return;
 	}
 	this.runNegativeTest(
@@ -238,8 +243,9 @@ public void test005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	);
 }
 
+@RunAlways
 public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if(this.complianceLevel < ClassFileConstants.JDK18) {
+	if(this.fetchComplianceLevel() < ClassFileConstants.JDK18) {
 		return;
 	}
 	this.runNegativeTest(
@@ -263,8 +269,9 @@ public void test006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError
 	);
 }
+@RunAlways
 public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if(this.complianceLevel < ClassFileConstants.JDK18) {
+	if(this.fetchComplianceLevel() < ClassFileConstants.JDK18) {
 		return;
 	}
 	this.runNegativeTest(
@@ -289,8 +296,9 @@ public void test007() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	);
 }
 
+@RunAlways
 public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if(this.complianceLevel < ClassFileConstants.JDK18) {
+	if(this.fetchComplianceLevel() < ClassFileConstants.JDK18) {
 		return;
 	}
 	this.runNegativeTest(
@@ -314,8 +322,9 @@ public void test008() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError
 	);
 }
+@RunAlways
 public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if(this.complianceLevel < ClassFileConstants.JDK18) {
+	if(this.fetchComplianceLevel() < ClassFileConstants.JDK18) {
 		return;
 	}
 	this.runNegativeTest(
@@ -340,8 +349,9 @@ public void test009() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			JavacTestOptions.Excuse.EclipseWarningConfiguredAsError
 	);
 }
+@RunAlways
 public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if(this.complianceLevel < ClassFileConstants.JDK18) {
+	if(this.fetchComplianceLevel() < ClassFileConstants.JDK18) {
 		return;
 	}
 	this.runNegativeTest(

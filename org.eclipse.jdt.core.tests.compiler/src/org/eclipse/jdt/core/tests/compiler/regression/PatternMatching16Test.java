@@ -55,7 +55,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	// Enables the tests to run individually
 	protected Map<String, String> getCompilerOptions(boolean preview) {
 		Map<String, String> defaultOptions = super.getCompilerOptions();
-		if (this.complianceLevel >= ClassFileConstants.getLatestJDKLevel()
+		if (this.complianceLevel() >= ClassFileConstants.getLatestJDKLevel()
 				&& preview) {
 			defaultOptions.put(CompilerOptions.OPTION_EnablePreviews, CompilerOptions.ENABLED);
 		}
@@ -111,8 +111,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_16);
 		options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_16);
 	}
+	@RunAlways
 	public void test000b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.getLatestJDKLevel())
+		if (this.fetchComplianceLevel() < ClassFileConstants.getLatestJDKLevel())
 			return;
 		Map<String, String> options = getCompilerOptions(true);
 		options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_14);
@@ -1050,6 +1051,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	/* Test that we report subtypes of pattern variables used in the same stmt
 	 * As of Java 21, we no longer report error for the above
 	 */
+	@RunAlways
 	public void test020() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> options = getCompilerOptions(true);
 		runNegativeTest(
@@ -1065,7 +1067,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 						"	}\n" +
 						"}\n",
 				},
-				this.complianceLevel < ClassFileConstants.JDK21 ?
+				this.fetchComplianceLevel() < ClassFileConstants.JDK21 ?
 					"----------\n" +
 					"1. ERROR in X20.java (at line 6)\n" +
 					"	boolean b = (o instanceof String[] s) && s instanceof CharSequence[] s2;\n" +
@@ -2435,6 +2437,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				true,
 				compilerOptions);
 		}
+	@RunAlways
 	public void testBug562392d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
@@ -2453,7 +2456,7 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 						"	}\n" +
 						"}\n",
 				},
-				this.complianceLevel < ClassFileConstants.JDK21 ?
+				this.fetchComplianceLevel() < ClassFileConstants.JDK21 ?
 					"----------\n" +
 					"1. ERROR in X.java (at line 4)\n" +
 					"	if (null instanceof T t) {\n" +
@@ -3918,8 +3921,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				options);
 
 	}
+	@RunAlways
 	public void testBug573880() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK17)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK17)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runNegativeTest(
@@ -4046,8 +4050,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
                 options);
 
     }
+	@RunAlways
 	public void testBug578628_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK18)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK18)
 			return;
 		runNegativeTest(
 				new String[] {
@@ -4079,8 +4084,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"----------\n",
 				false);
 	}
+	@RunAlways
 	public void testBug578628_1a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK18)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK18)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
@@ -4103,8 +4109,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"false",
 				compilerOptions);
 	}
+	@RunAlways
 	public void testBug578628_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK18)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK18)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
@@ -4127,8 +4134,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"true",
 				compilerOptions);
 	}
+	@RunAlways
 	public void testBug578628_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK18)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK18)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
@@ -4150,8 +4158,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"false",
 				compilerOptions);
 	}
+	@RunAlways
 	public void testBug578628_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
@@ -4176,8 +4185,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 				"true",
 				compilerOptions);
 	}
+	@RunAlways
 	public void testGH1726() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
@@ -4203,8 +4213,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1725
 	// [21] Wrongly needing a default case for a switch expression
+	@RunAlways
 	public void testGH1725() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 			return;
 		Map<String, String> compilerOptions = getCompilerOptions(true);
 		runConformTest(
@@ -4241,8 +4252,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1725
 	// [21] Wrongly needing a default case for a switch expression
+	@RunAlways
 	public void testGH1725_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 			return;
 
 		runNegativeTest(
@@ -4363,8 +4375,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1485
 	// ECJ hangs when pattern matching code is used in a nested conditional expression.
+	@RunAlways
 	public void testGHI1485() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 			return;
 		runConformTest(
 				new String[] {
@@ -4860,8 +4873,9 @@ public class PatternMatching16Test extends AbstractRegressionTest {
 	}
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2104
 	// [Patterns] Missing boxing conversion after instanceof leads to verify error
+	@RunAlways
 	public void testBoxing() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 			return;
 		runConformTest(
 				new String[] {

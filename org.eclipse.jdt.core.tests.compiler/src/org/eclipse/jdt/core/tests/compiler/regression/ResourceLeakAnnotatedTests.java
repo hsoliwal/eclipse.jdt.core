@@ -623,8 +623,9 @@ public void testSharedField() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		);
 }
 
+@RunAlways
 public void testOwning_receiving_parameter() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK9)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK9)
 		return; // t-w-r with pre-declared local available since 9
 	runLeakTestWithAnnotations(
 		new String[] {
@@ -654,8 +655,9 @@ public void testOwning_receiving_parameter() { //FLLDCIM: MARK — ML METHOD_SPL
 		null);
 }
 
+@RunAlways
 public void testOwning_sending() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK9)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK9)
 		return; // t-w-r with pre-declared local available since 9
 	runLeakTestWithAnnotations(
 		new String[] {
@@ -716,8 +718,9 @@ public void testOwning_sending() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		""",
 		null);
 }
+@RunAlways
 public void testOwning_sending_toBinary() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK9)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK9)
 		return; // t-w-r with pre-declared local available since 9
 	runLeakTestWithAnnotations(
 		new String[] {

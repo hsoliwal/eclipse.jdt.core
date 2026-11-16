@@ -631,8 +631,9 @@ public class InstanceofExpressionTest extends AbstractRegressionTest {
     }
     // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/2101
     // [Patterns] Secret local variable slots appear to be reaped later than they should be
+    @RunAlways
     public void testIssue2101() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-    	if (this.complianceLevel < ClassFileConstants.JDK16)
+    	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
     		return;
 
       	String source =

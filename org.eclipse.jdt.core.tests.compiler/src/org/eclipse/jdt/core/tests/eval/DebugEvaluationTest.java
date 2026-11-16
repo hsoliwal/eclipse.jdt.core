@@ -3050,7 +3050,7 @@ public void test069() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		} catch (InstallException e) {
 			assertTrue("No targetException " + e.getMessage(), false); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		}
-		boolean is16Plus = 	this.complianceLevel >= ClassFileConstants.JDK16;
+		boolean is16Plus = 	this.fetchComplianceLevel() >= ClassFileConstants.JDK16;
 		if (is16Plus) {
 			assertTrue(
 					"Should get one result but got " + (requestor.resultIndex + 1), //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT

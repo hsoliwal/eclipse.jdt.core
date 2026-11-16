@@ -6186,8 +6186,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"0");
 	}
+	@RunAlways
 	public void testIssue1250_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21) {
 			return;
 		}
 		this.runConformTest(
@@ -6214,8 +6215,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"A1");
 	}
+	@RunAlways
 	public void testIssue1250_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21) {
 			return;
 		}
 		this.runConformTest(
@@ -6243,8 +6245,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"B1");
 	}
+	@RunAlways
 	public void testIssue1250_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21) {
 			return;
 		}
 		this.runNegativeTest(
@@ -6277,8 +6280,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"Case constant of type E is incompatible with switch selector type E.InnerE\n" +
 				"----------\n");
 	}
+	@RunAlways
 	public void testIssue1250_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21) {
 			return;
 		}
 		this.runConformTest(
@@ -6336,8 +6340,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"const A1\n" +
 				"default");
 	}
+	@RunAlways
 	public void testIssue1250_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21) {
 			return;
 		}
 		this.runConformTest(
@@ -6397,8 +6402,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				+ "B1\n"
 				+ "default");
 	}
+	@RunAlways
 	public void testIssue1250_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21) {
 			return;
 		}
 		this.runConformTest(
@@ -6438,8 +6444,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"A1");
 	}
+	@RunAlways
 	public void testIssue1250_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21) {
 			return;
 		}
 		this.runConformTest(
@@ -6474,8 +6481,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"A1");
 	}
+	@RunAlways
 	public void testIssue1250_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK21) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK21) {
 			return;
 		}
 		this.runConformTest(
@@ -9688,8 +9696,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3559
 	// Boolean switch inconsistency between ECJ and javac
+	@RunAlways
 	public void testIssue3559() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel > ClassFileConstants.JDK23) // 21-23 testing is good enough
+		if (this.fetchComplianceLevel() > ClassFileConstants.JDK23) // 21-23 testing is good enough
 			return;
 		runNegativeTest(
 			new String[] {
@@ -9971,8 +9980,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5081
 	// NPE in IGenerateTypeCheck.generateTypeCheck with record patterns in switch expression inside lambda
+	@RunAlways
 	public void testIssue5081() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22)
 			return;
 		runConformTest(
 			new String[] {
@@ -10016,8 +10026,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5081
 	// NPE in IGenerateTypeCheck.generateTypeCheck with record patterns in switch expression inside lambda
+	@RunAlways
 	public void testIssue5081_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22)
 			return;
 		runConformTest(
 			new String[] {
@@ -10952,8 +10963,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"7"); //$NON-NLS-1$
 	}
+	@RunAlways
 	public void testIssue5080_027() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runConformTest(
@@ -11005,8 +11017,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"5\n" +
 				"6");
 	}
+	@RunAlways
 	public void testIssue5080_028() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runConformTest(
@@ -11052,8 +11065,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"6");
 	}
 
+	@RunAlways
 	public void testIssue5080_029() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runNegativeTest(
@@ -11107,8 +11121,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				withMissingPatterns("A switch expression should have a default case", "R2(R(B1 _, B2 _, C3 _))") + "\n" +
 				"----------\n");
 	}
+	@RunAlways
 	public void testIssue5080_030() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runConformTest(
@@ -11163,8 +11178,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"5\n" +
 				"6");
 	}
+	@RunAlways
 	public void testIssue5080_031() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runConformTest(
@@ -11218,8 +11234,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"5\n" +
 				"6");
 	}
+	@RunAlways
 	public void testIssue5080_032() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runConformTest(
@@ -11254,8 +11271,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 		"2\n" +
 		"3");
 }
+	@RunAlways
 	public void testIssue5080_033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runConformTest(
@@ -11285,8 +11303,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 		"0\n" +
 		"0");
 }
+	@RunAlways
 	public void testIssue5080_034() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runNegativeTest(
@@ -11328,8 +11347,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				withMissingPatterns("A switch expression should have a default case", "R(C(B _), C _)") + "\n" +
 				"----------\n"); //$NON-NLS-1$
 	}
+	@RunAlways
 	public void testIssue5080_035() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runNegativeTest(
@@ -11363,8 +11383,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				withMissingPatterns("A switch expression should have a default case", "Root(R2(R1 _), R2 _, R2(R1 _))") + "\n" +
 				"----------\n"); //$NON-NLS-1$
 	}
+	@RunAlways
 	public void testIssue5080_036() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runNegativeTest(
@@ -11398,8 +11419,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				withMissingPatterns("A switch expression should have a default case", "Root(R2(R1 _), R2 _, R2(R2 _))") + "\n" +
 				"----------\n"); //$NON-NLS-1$
 	}
+	@RunAlways
 	public void testIssue5080_037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runNegativeTest(
@@ -11433,8 +11455,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				withMissingPatterns("A switch expression should have a default case", "Root(R2(R2 _), R2 _, R2 _)") + "\n" +
 				"----------\n"); //$NON-NLS-1$
 	}
+	@RunAlways
 	public void testIssue5080_038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return; // "_" patterns are only supported in JDK 22 and later
 		}
 		runConformTest(
@@ -11464,8 +11487,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				"0"); //$NON-NLS-1$
 	}
 
+	@RunAlways
 	public void testIssue5080_039() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return;
 		}
 		runConformTest(
@@ -11497,8 +11521,9 @@ public class SwitchPatternTest extends AbstractRegressionTest9 {
 				},
 				"0"); //$NON-NLS-1$
 	}
+	@RunAlways
 	public void testIssue5080_040() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK22) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK22) {
 			return;
 		}
 		runConformTest(

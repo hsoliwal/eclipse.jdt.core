@@ -487,8 +487,9 @@ public void testGH4955() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT 
 	String expectedOutput = "invokestatic X.debug(java.lang.Object[])";
 	checkDisassembledClassFile(OUTPUT_DIR + File.separator + "X.class", "X", expectedOutput); //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 }
+@RunAlways
 public void testGH4744() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK21) {
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK21) {
 		return;
 	}
 	String libPath = this.getCompilerTestsPluginDirectoryPath() + File.separator + "workspace" + File.separator + "gh4744.jar"; //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT

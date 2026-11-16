@@ -863,8 +863,9 @@ public void test037() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=111703
+@RunAlways
 public void test038() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	String expectedError = 	this.complianceLevel < ClassFileConstants.JDK16 ?
+	String expectedError = 	this.fetchComplianceLevel() < ClassFileConstants.JDK16 ?
 			"----------\n" +
 			"1. WARNING in X.java (at line 19)\n" +
 			"	public void valueChanged(TreeSelectionEvent e) {\n" +
@@ -1245,8 +1246,9 @@ public void test049() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=200724
 // adding an inner class to the picture
+@RunAlways
 public void test050() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	String expectedError = 	this.complianceLevel < ClassFileConstants.JDK16 ?
+	String expectedError = 	this.fetchComplianceLevel() < ClassFileConstants.JDK16 ?
 			"----------\n" +
 			"1. ERROR in p\\X.java (at line 4)\n" +
 			"	public static String s;\n" +

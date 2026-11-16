@@ -513,8 +513,9 @@ public void testIssue4416() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"""
 	});
 }
+@RunAlways
 public void testIssue4416_withPrologue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK25)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK25)
 		return; // uses flexible constructor bodies
 	runConformTest(new String[] {
 			"WrongNotInitialized.java",
@@ -560,8 +561,9 @@ public void testIssue4416b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"""
 	});
 }
+@RunAlways
 public void testIssue4416b_withPrologue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK25)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK25)
 		return; // uses flexible constructor bodies
 	runConformTest(new String[] {
 			"Test.java",
@@ -587,8 +589,9 @@ public void testIssue4416b_withPrologue() { //FLLDCIM: MARK — ML METHOD_SPLIT 
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4416
 // Bogus error: The blank final field o may not have been initialized
+@RunAlways
 public void testIssue4416c() {
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	runConformTest(new String[] {
 			"TestRecord.java",
@@ -604,8 +607,9 @@ public void testIssue4416c() {
 			"""
 	});
 }
+@RunAlways
 public void testIssue4416c_withPrologue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK25)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK25)
 		return; // uses flexible constructor bodies
 	runConformTest(new String[] {
 			"TestRecord.java",
@@ -646,8 +650,9 @@ public void testIssue4416d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4416
 //Bogus error: The blank final field o may not have been initialized
+@RunAlways
 public void testIssue4416d_withPrologue() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK25)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK25)
 		return; // uses flexible constructor bodies
 	runConformTest(new String[] {
 			"Test.java",

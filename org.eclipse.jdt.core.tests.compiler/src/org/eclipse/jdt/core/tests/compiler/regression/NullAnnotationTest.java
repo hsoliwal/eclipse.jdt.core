@@ -10463,8 +10463,9 @@ public void testBug530970_on_field_bin() { //FLLDCIM: MARK — ML METHOD_SPLIT M
 		"----------\n"
 	);
 }
+@RunAlways
 public void testBug542707_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14)
 		return;
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
@@ -10517,8 +10518,9 @@ public void testBug542707_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 /**
  * should not throw IOOBE while building - a safety check test case.
  */
+@RunAlways
 public void testBug542707_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel != ClassFileConstants.JDK14)
+	if (this.fetchComplianceLevel() != ClassFileConstants.JDK14)
 		return;
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_PB_POTENTIAL_NULL_REFERENCE, JavaCore.ERROR);
@@ -10555,8 +10557,9 @@ public void testBug542707_002() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"----------\n"
 	);
 }
+@RunAlways
 public void testBug542707_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// outer expected type (from assignment) is propagated deeply into a switch expression
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -10585,8 +10588,9 @@ public void testBug542707_003() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runner.runNegativeTest();
 }
 
+@RunAlways
 public void testBug542707_003_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// outer expected type (from assignment) is propagated deeply into a switch expression
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -10615,8 +10619,9 @@ public void testBug542707_003_1() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runner.runNegativeTest();
 }
 
+@RunAlways
 public void testBug542707_003_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// no expected type due to LVTI
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -10657,8 +10662,9 @@ public void testBug542707_003_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runner.runNegativeTest();
 }
 
+@RunAlways
 public void testBug542707_003_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// no expected type due to LVTI
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -10699,8 +10705,9 @@ public void testBug542707_003_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runner.runNegativeTest();
 }
 
+@RunAlways
 public void testBug542707_003_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// no expected type due to LVTI
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -10741,8 +10748,9 @@ public void testBug542707_003_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runner.runNegativeTest();
 }
 
+@RunAlways
 public void testBug542707_003_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// no expected type due to LVTI
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -10785,7 +10793,7 @@ public void testBug542707_003_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 // failing, see https://bugs.eclipse.org/543860
 public void _testBug542707_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14) return; // switch expression
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14) return; // switch expression
 	// outer expected type (from method parameter) is propagated deeply into a switch expression
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -10815,8 +10823,9 @@ public void _testBug542707_004() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"----------\n";
 	runner.runNegativeTest();
 }
+@RunAlways
 public void testBug542707_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return; // switch expression
 	// switch value must not be null (@Nullable)
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -10844,8 +10853,9 @@ public void testBug542707_005() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"----------\n";
 	runner.runNegativeTest();
 }
+@RunAlways
 public void testBug542707_006() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14) return; // switch expression
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14) return; // switch expression
 	// switch value must not be null (pot-null by flow analysis)
 	Runner runner = new Runner();
 	runner.customOptions = getCompilerOptions();
@@ -10890,8 +10900,9 @@ public void testBug545715() {
 		},
 	    "");
 }
+@RunAlways
 public void testBug548418_001a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return;
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return;
 	runNegativeTestWithLibs(
 			new String[] {
 			"X.java",
@@ -10946,8 +10957,9 @@ public void testBug548418_001a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"Null type mismatch: required '@NonNull X' but the provided value is null\n" +
 			"----------\n");
 }
+@RunAlways
 public void testBug548418_001b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return;
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14 || useDeclarationAnnotations()) return;
 	runNegativeTestWithLibs(
 			new String[] {
 			"X.java",
@@ -10993,8 +11005,9 @@ public void testBug548418_001b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"----------\n"
 	);
 }
+@RunAlways
 public void testBug548418_002a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14) return;
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14) return;
 	runNegativeTestWithLibs(
 			new String[] {
 			"X.java",
@@ -11032,8 +11045,9 @@ public void testBug548418_002a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"----------\n"
 	);
 }
+@RunAlways
 public void testBug548418_002b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14) return;
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14) return;
 	runNegativeTestWithLibs(
 			new String[] {
 			"X.java",
@@ -11437,7 +11451,7 @@ public void testBug565246() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3319
 // [Enhanced Switch][Null] Inconsistent nullness propagation
 public void _testIssue3319() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK21)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_PB_NULL_SPECIFICATION_VIOLATION, JavaCore.IGNORE); // has no effect
@@ -11521,8 +11535,9 @@ public void _testIssue3319() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
+@RunAlways
 public void testIssue3971_1a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	runNegativeTest(
 			new String[] {
@@ -11549,8 +11564,9 @@ public void testIssue3971_1a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			this.LIBS,
 			false/*shouldFlush*/);
 }
+@RunAlways
 public void testIssue3971_1b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	runConformTestWithLibs(
 			new String[] {
@@ -11573,8 +11589,9 @@ public void testIssue3971_1b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
+@RunAlways
 public void testIssue3971_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
@@ -11647,8 +11664,9 @@ public void testIssue3971_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
+@RunAlways
 public void testIssue3971_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	Map options = getCompilerOptions();
 	options.put(JavaCore.COMPILER_INHERIT_NULL_ANNOTATIONS, JavaCore.ENABLED);
@@ -11673,8 +11691,9 @@ public void testIssue3971_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
+@RunAlways
 public void testIssue3971_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
@@ -11741,8 +11760,9 @@ public void testIssue3971_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
+@RunAlways
 public void testIssue3971_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
@@ -11809,8 +11829,9 @@ public void testIssue3971_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
+@RunAlways
 public void testIssue3971_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	runNegativeTest(
 			new String[] {
@@ -11841,8 +11862,9 @@ public void testIssue3971_6() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
+@RunAlways
 public void testIssue3971_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");
@@ -11910,8 +11932,9 @@ public void testIssue3971_7() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971#issuecomment-2863645113
 // [Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
+@RunAlways
 public void testIssue3971_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	runNegativeTest(
 			new String[] {
@@ -11958,8 +11981,9 @@ public void testIssue3971_8() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 //[Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
+@RunAlways
 public void testIssue3971_9a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	runNegativeTest(
 			new String[] {
@@ -11987,8 +12011,9 @@ public void testIssue3971_9a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3971
 //[Records][Null analysis] Verify null analysis plays well with the recent design and implementation changes for Records 2.0
+@RunAlways
 public void testIssue3971_9b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(JavaCore.COMPILER_NULLABLE_ANNOTATION_NAME, "annotation.Nullable");

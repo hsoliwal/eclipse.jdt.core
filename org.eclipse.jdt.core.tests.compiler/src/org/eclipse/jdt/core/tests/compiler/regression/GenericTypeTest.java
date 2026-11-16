@@ -4969,8 +4969,9 @@ public class GenericTypeTest extends AbstractComparableTest {
 			"SUCCESS");
 	}
 	// FAIL ERRMSG (type display)
+	@RunAlways
 	public void test0168() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel >= ClassFileConstants.JDK1_8)
+		if (this.fetchComplianceLevel() >= ClassFileConstants.JDK1_8)
 			return;
 		this.runNegativeTest(
 			new String[] {
@@ -5300,8 +5301,9 @@ public class GenericTypeTest extends AbstractComparableTest {
 		runner.runWarningTest();
 	}
 	// reject instanceof type variable or parameterized type
+	@RunAlways
 	public void test0178() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel >= ClassFileConstants.JDK16)
+		if (this.fetchComplianceLevel() >= ClassFileConstants.JDK16)
 			return;
 		Map customOptions = getCompilerOptions();
 		this.runNegativeTest(
@@ -5345,8 +5347,9 @@ public class GenericTypeTest extends AbstractComparableTest {
 			true,
 			customOptions);
 	}
+	@RunAlways
 	public void test0178a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK17)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK17)
 			return;
 		Map customOptions = getCompilerOptions();
 		customOptions.put(CompilerOptions.OPTION_ReportPreviewFeatures, CompilerOptions.WARNING);
@@ -19047,8 +19050,9 @@ public void test0617() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
     		"----------\n");
     }
 	//https://bugs.eclipse.org/bugs/show_bug.cgi?id=84973 - variation
+	@RunAlways
 	public void test0618() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		String expectedError = 	this.complianceLevel < ClassFileConstants.JDK16 ?
+		String expectedError = 	this.fetchComplianceLevel() < ClassFileConstants.JDK16 ?
 	            "----------\n" +
 	    		"1. ERROR in Map.java (at line 5)\n" +
 	    		"	static void foo(Entry<String> e) { } // invalid static ref\n" +
@@ -25638,8 +25642,9 @@ public void test0813() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavacTestOptions.JavacHasABug.JavacBugFixed_7 /* javac test options */);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=104695
+@RunAlways
 public void test0814() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel >= ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() >= ClassFileConstants.JDK16)
 		return;
 	this.runNegativeTest(
 		new String[] {
@@ -25721,8 +25726,9 @@ public void test0815() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=104695 - variation
+@RunAlways
 public void test0816() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	String expectedLog = this.complianceLevel >= ClassFileConstants.JDK16 ?
+	String expectedLog = this.fetchComplianceLevel() >= ClassFileConstants.JDK16 ?
 			"----------\n" +
 			"1. ERROR in X.java (at line 4)\n" +
 			"	if (o instanceof List<E>[][]) { //incorrect too\n" +
@@ -25762,8 +25768,9 @@ public void test0816() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=104695 - variation
+@RunAlways
 public void test0817() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	String log = this.complianceLevel >= ClassFileConstants.JDK16 ?
+	String log = this.fetchComplianceLevel() >= ClassFileConstants.JDK16 ?
 			"	    ^\n" +
 			"Type List cannot be safely cast to List<? extends String>\n" +
 			"----------\n" +
@@ -27653,8 +27660,9 @@ public void test0871() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		},
 		"");
 }
+@RunAlways
 public void test0872() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	String expectedError = this.complianceLevel < ClassFileConstants.JDK16 ?
+	String expectedError = this.fetchComplianceLevel() < ClassFileConstants.JDK16 ?
 			"----------\n" +
 			"1. ERROR in X.java (at line 22)\n" +
 			"	M3<X>.N3<X> n = m.new N3<X>();\n" +
@@ -30775,8 +30783,9 @@ public void test0954() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=105049
+@RunAlways
 public void test0955() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	String errorlog = this.complianceLevel >= ClassFileConstants.JDK16 ?
+	String errorlog = this.fetchComplianceLevel() >= ClassFileConstants.JDK16 ?
 			"	    ^\n" +
 			"Type Object cannot be safely cast to List<E>[]\n"
 				:
@@ -34999,6 +35008,7 @@ public void test1065() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT ME
 	}
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=141289 - variation
+@RunAlways
 public void test1066() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runConformTest(
 		new String[] {
@@ -35042,7 +35052,7 @@ public void test1066() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT ME
 		"[ClassCastException:foo(1)][ClassCastException:foo(2)][ClassCastException:bar(1)][ClassCastException:bar(2)]");
 	// 	check presence of checkcast
 	String expectedOutput;
-	if (this.complianceLevel >= ClassFileConstants.JDK9) {
+	if (this.fetchComplianceLevel() >= ClassFileConstants.JDK9) {
 		expectedOutput = "  // Stack: 3, Locals: 8\n" +
 				"  public static void main(java.lang.String[] args);\n" +
 				"      0  new X [1]\n" +
@@ -37414,6 +37424,7 @@ public void test1119() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=166963
+@RunAlways
 public void test1120() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	this.runNegativeTest(
 		new String[] {
@@ -37427,7 +37438,7 @@ public void test1120() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"	}\n" +
 			"}", // =================
 		},
-		(!JavaFeature.FLEXIBLE_CONSTRUCTOR_BODIES.isSupported(this.complianceLevel, false)
+		(!JavaFeature.FLEXIBLE_CONSTRUCTOR_BODIES.isSupported(this.fetchComplianceLevel(), false)
 		?
 			"----------\n" +
 			"1. ERROR in X.java (at line 4)\n" +
@@ -47759,8 +47770,9 @@ public void test1425() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=258039
+@RunAlways
 public void test1426() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel >= ClassFileConstants.JDK16)
+	if (this.fetchComplianceLevel() >= ClassFileConstants.JDK16)
 		return;
 	this.runNegativeTest(
 			new String[] {
@@ -49171,8 +49183,9 @@ public void test268798a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		"----------\n");
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=307885
+@RunAlways
 public void test1460() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	String log = this.complianceLevel < ClassFileConstants.JDK16 ?
+	String log = this.fetchComplianceLevel() < ClassFileConstants.JDK16 ?
 			"----------\n" +
 			"1. ERROR in Test.java (at line 9)\n" +
 			"	if(!(o instanceof MyEntry))\n" +

@@ -9953,6 +9953,7 @@ public void testMissingClass_samMissingReturnType() { //FLLDCIM: MARK — ML MET
 			""";
 	runner.runNegativeTest();
 }
+@RunAlways
 public void testGH3047() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Runner runner = new Runner();
 	runner.testFiles = new String[] {
@@ -9980,7 +9981,7 @@ public void testGH3047() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT 
 			"""
 		};
 	runner.classLibraries = new String[0];
-	if (this.complianceLevel <= ClassFileConstants.JDK13) {
+	if (this.fetchComplianceLevel() <= ClassFileConstants.JDK13) {
 		runner.expectedCompilerLog =
 			"""
 			----------
@@ -10193,8 +10194,9 @@ public void testMissingClass_return() { //FLLDCIM: MARK — ML METHOD_SPLIT METH
 // from required type Y" when an inner class accesses a field declared on its outer
 // class, and a transitive supertype of the inner class happens to have a field whose
 // type is absent from the classpath.
+@RunAlways
 public void testIssue5146() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel <= ClassFileConstants.JDK10) // we get access emulation warnings before nestmates arrival
+	if (this.fetchComplianceLevel() <= ClassFileConstants.JDK10) // we get access emulation warnings before nestmates arrival
 		return;
 	// Phase 1: compile the library stubs, including the "transitive" type (slf4j Logger).
 	Runner runner = new Runner();
