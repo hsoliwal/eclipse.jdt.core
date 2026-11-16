@@ -39,10 +39,13 @@ import java.util.ServiceLoader;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Consumer;
+import java.util.jar.JarEntry;
+import java.util.jar.JarOutputStream;
 import javax.lang.model.SourceVersion;
 import javax.tools.Diagnostic;
 import javax.tools.FileObject;
 import javax.tools.ForwardingJavaFileManager;
+import javax.tools.ForwardingJavaFileObject;
 import javax.tools.JavaCompiler;
 import javax.tools.JavaCompiler.CompilationTask;
 import javax.tools.JavaFileManager;
@@ -224,6 +227,81 @@ public class CompilerToolJava9Tests extends TestCase {
 			assertEquals(expected, systemModuleNames(manager));
 			assertTrue(listClasses(manager, manager.getLocationForModule(StandardLocation.SYSTEM_MODULES, "java.sql"), "java.sql")
 					.contains("java.sql.Connection"));
+		}
+	}
+	/**
+	 * A directory of the module path which is not a module is a directory of modules: only its packaged modules and its
+	 * exploded modules count, not its other files nor the content of its other directories. A file named like a module with
+	 * an extension, such as a service file of META-INF/services, is no automatic module which would hide the real module.
+	 * Packaged modules are recognized with a case-sensitive .jar or .jmod suffix, as javac.
+	 */
+	public void testModulePathDirectoryWithOtherFiles() throws IOException {
+		if (this.isJREBelow9) return;
+		Path root = Paths.get(_tmpFolder, "modulePathDirectory");
+		Path module = root.resolve("m-bin");
+		compileModule(root, "m", module);
+		Path modules = root.resolve("mods");
+		compileModule(root, "n", modules.resolve("n"));
+		compileModule(root, "o", root.resolve("o-bin"));
+		jar(root.resolve("o-bin"), modules.resolve("o.jar"));
+		compileModule(root, "p", root.resolve("p-bin"));
+		jar(root.resolve("p-bin"), modules.resolve("group/p.jar"));
+		compileModule(root, "q", root.resolve("q-bin"));
+		jar(root.resolve("q-bin"), modules.resolve("q.zip"));
+		compileModule(root, "r", root.resolve("r-bin"));
+		jar(root.resolve("r-bin"), modules.resolve("r.JAR"));
+		Path other = root.resolve("other");
+		Files.createDirectories(other.resolve("META-INF/services"));
+		Files.writeString(other.resolve("META-INF/services/m.Foo"), "m.Foo\n");
+		Files.writeString(other.resolve("notes.txt"), "not a module");
+		// the other directory comes first, as target/classes of a Maven build whose module-info.class was deleted
+		String modulePath = other + File.pathSeparator + module + File.pathSeparator + modules;
+		for (int i = 0; i < 2; i++) {
+			assertEquals(this.compilers[i] + " with m, n and o", "", compileApp(i, root, modulePath, "m, n, o", "m.Foo m; n.Foo n; o.Foo o;"));
+			// a module of another directory of the directory of modules is not found
+			assertFalse(this.compilers[i] + " with p", compileApp(i, root, modulePath, "p", "p.Foo p;").isEmpty());
+			// a JAR file can have any name, but a directory of modules only exposes the .jar and .jmod files, as javac
+			assertFalse(this.compilers[i] + " with q", compileApp(i, root, modulePath, "q", "q.Foo q;").isEmpty());
+			assertFalse(this.compilers[i] + " with r", compileApp(i, root, modulePath, "r", "r.Foo r;").isEmpty());
+		}
+	}
+	private void compileModule(Path root, String name, Path output) throws IOException {
+		Path source = root.resolve(name + "-src");
+		Files.createDirectories(source.resolve(name));
+		Files.writeString(source.resolve("module-info.java"), "module " + name + " { exports " + name + "; }");
+		Files.writeString(source.resolve(name + "/Foo.java"), "package " + name + ";\npublic class Foo {}");
+		try (StandardJavaFileManager manager = this.compilers[0].getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset())) {
+			Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromPaths(
+					List.of(source.resolve("module-info.java"), source.resolve(name + "/Foo.java")));
+			assertTrue(this.compilers[0].getTask(null, manager, null, List.of("-d", output.toString()), null, units).call());
+		}
+	}
+	private static void jar(Path classes, Path jar) throws IOException {
+		Files.createDirectories(jar.getParent());
+		try (JarOutputStream out = new JarOutputStream(Files.newOutputStream(jar)); var files = Files.walk(classes)) {
+			for (Path file : (Iterable<Path>) files.filter(Files::isRegularFile)::iterator) {
+				out.putNextEntry(new JarEntry(classes.relativize(file).toString().replace(File.separatorChar, '/')));
+				out.write(Files.readAllBytes(file));
+				out.closeEntry();
+			}
+		}
+	}
+	/** @return the errors of the compilation of a module app which requires the given modules, empty if it compiles */
+	private String compileApp(int compiler, Path root, String modulePath, String requires, String fields) throws IOException {
+		Path source = root.resolve("app-src-" + compiler + "-" + requires.replaceAll("\\W", ""));
+		Files.createDirectories(source.resolve("app"));
+		String requiresClauses = String.join(" ", Arrays.stream(requires.split(", ")).map(name -> "requires " + name + ";").toList());
+		Files.writeString(source.resolve("module-info.java"), "module app { " + requiresClauses + " }");
+		Files.writeString(source.resolve("app/Main.java"), "package app;\npublic class Main { " + fields + " }");
+		try (StandardJavaFileManager manager = this.compilers[compiler].getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset())) {
+			StringWriter stringWriter = new StringWriter();
+			PrintWriter printWriter = new PrintWriter(stringWriter);
+			Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromPaths(
+					List.of(source.resolve("module-info.java"), source.resolve("app/Main.java")));
+			List<String> options = List.of("--module-path", modulePath, "-d", source.resolve("bin").toString());
+			Boolean result = this.compilers[compiler].getTask(printWriter, manager, null, options, null, units).call();
+			printWriter.flush();
+			return result.booleanValue() ? "" : "failed: " + stringWriter;
 		}
 	}
 	private static Set<String> systemModuleNames(JavaFileManager manager) throws IOException {
@@ -940,6 +1018,96 @@ public class CompilerToolJava9Tests extends TestCase {
  	 		assertTrue("Compilation did not fail as expected ", false);
  		}
 	}
+	/**
+	 * Single-module compilation must not fail when a JavaFileObject's getName() is not a
+	 * suffix of the absolute path EclipseCompiler.getTask() built for it.
+	 * EclipseCompilerImpl.createCompilationUnit identifies the unit by idx, so a
+	 * differently-formed but still valid path - simulated here with a redundant "."
+	 * directory segment - must not make it return null.
+	 *
+	 * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5302
+	 */
+	public void testBug5302() throws IOException {
+		if (this.isJREBelow9) return;
+		JavaCompiler compiler = this.compilers[1];
+		String tmpFolder = _tmpFolder;
+
+		File moduleInfoFile = new File(tmpFolder, "module-info.java");
+		try (Writer writer = new BufferedWriter(new FileWriter(moduleInfoFile))) {
+			writer.write(
+				"module com.example.app {\n" +
+				"	exports com.example;\n" +
+				"}\n");
+		}
+		File pkgDir = new File(tmpFolder, "com" + File.separator + "example");
+		pkgDir.mkdirs();
+		File mainFile = new File(pkgDir, "Main.java");
+		try (Writer writer = new BufferedWriter(new FileWriter(mainFile))) {
+			writer.write(
+				"package com.example;\n" +
+				"public class Main {\n" +
+				"	public static void main(String[] args) {}\n" +
+				"}\n");
+		}
+
+		StandardJavaFileManager standardManager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset());
+		List<File> files = new ArrayList<>();
+		files.add(moduleInfoFile);
+		files.add(mainFile);
+		Iterable<? extends JavaFileObject> baseUnits = standardManager.getJavaFileObjectsFromFiles(files);
+
+		// A file manager without MODULE_SOURCE_PATH forces the single-module compilation
+		// path (Main.handleSingleModuleCompilation -> EclipseCompilerImpl.createCompilationUnit).
+		ForwardingJavaFileManager<StandardJavaFileManager> manager = new ForwardingJavaFileManager<>(standardManager) {
+			@Override
+			public boolean hasLocation(Location location) {
+				if (location == StandardLocation.MODULE_SOURCE_PATH) {
+					return false;
+				}
+				return super.hasLocation(location);
+			}
+		};
+
+		List<JavaFileObject> units = new ArrayList<>();
+		for (JavaFileObject unit : baseUnits) {
+			units.add(new ForwardingJavaFileObject<>(unit) {
+				@Override
+				public String getName() {
+					String absolutePath = new File(this.fileObject.toUri()).getAbsolutePath();
+					int lastSep = absolutePath.lastIndexOf(File.separatorChar);
+					// A redundant "." directory segment: the OS still resolves this to the
+					// same, existing file, but the string is no longer a suffix of the plain
+					// absolute path EclipseCompiler.getTask() builds.
+					return absolutePath.substring(0, lastSep + 1) + "." + File.separator
+							+ absolutePath.substring(lastSep + 1);
+				}
+			});
+		}
+
+		StringWriter stringWriter = new StringWriter();
+		PrintWriter printWriter = new PrintWriter(stringWriter);
+		List<String> options = new ArrayList<>();
+		options.add("-d");
+		options.add(tmpFolder);
+		ByteArrayOutputStream errBuffer = new ByteArrayOutputStream();
+		PrintWriter err = new PrintWriter(errBuffer);
+		CompilerInvocationDiagnosticListener listener = new CompilerInvocationDiagnosticListener(err) {
+			@Override
+			public void report(Diagnostic<? extends JavaFileObject> diagnostic) {
+				JavaFileObject source = diagnostic.getSource();
+				assertNotNull("No source", source);
+				super.report(diagnostic);
+			}
+		};
+		CompilationTask task = compiler.getTask(printWriter, manager, listener, options, null, units);
+		Boolean result = task.call();
+		printWriter.flush();
+		printWriter.close();
+		if (!result.booleanValue()) {
+			System.err.println("Compilation failed unexpectedly: " + stringWriter.getBuffer().toString());
+	 		assertTrue("Compilation failed ", false);
+		}
+	}
 	public void testBug574097() throws IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.isJREBelow9) return;
 		JavaCompiler compiler = this.compilers[1];
@@ -1130,6 +1298,198 @@ public class CompilerToolJava9Tests extends TestCase {
 		);
 
 		assertTrue(task.call());
+	}
+
+	/*
+	 * --patch-module puts sources into a module of the module path, as maven-compiler-plugin does for the tests of a
+	 * modular project: a test in a package of the module and a test in a new package, without module-info.java.
+	 */
+	public void testPatchModuleOption() throws IOException {
+		if (this.isJREBelow9) return;
+		Path root = Paths.get(_tmpFolder);
+		Path mainOutput = compilePatchedModule(root);
+		Path tests = writePatchModuleTests(root);
+		checkPatchModuleCompilation(root, mainOutput, tests.toString(), tests);
+	}
+	/*
+	 * A relative --patch-module location: the compiler is given absolute file names.
+	 */
+	public void testPatchModuleOptionRelativeLocation() throws IOException {
+		if (this.isJREBelow9) return;
+		Path root = Paths.get(_tmpFolder);
+		Path mainOutput = compilePatchedModule(root);
+		Path tests = writePatchModuleTests(root);
+		String relativeLocation;
+		try {
+			// from the real paths: the operating system resolves ".." after the symbolic links of the working directory
+			relativeLocation = Paths.get("").toRealPath().relativize(tests.toRealPath()).toString();
+		} catch (IllegalArgumentException e) {
+			return; // no relative path to the temporary folder (another drive)
+		}
+		checkPatchModuleCompilation(root, mainOutput, relativeLocation, tests);
+	}
+	/*
+	 * The value of maven-compiler-plugin for the tests: the classes of the module, which are also on the module path, then
+	 * the test sources, and a trailing path separator.
+	 */
+	public void testPatchModuleOptionMavenValue() throws IOException {
+		if (this.isJREBelow9) return;
+		Path root = Paths.get(_tmpFolder);
+		Path mainOutput = compilePatchedModule(root);
+		Path tests = writePatchModuleTests(root);
+		checkPatchModuleCompilation(root, mainOutput, mainOutput + File.pathSeparator + tests + File.pathSeparator, tests);
+	}
+	/*
+	 * A --patch-module location through a symbolic link: as in javac, it matches the real path of the sources.
+	 */
+	public void testPatchModuleOptionSymbolicLink() throws IOException {
+		if (this.isJREBelow9) return;
+		Path root = Paths.get(_tmpFolder);
+		Path mainOutput = compilePatchedModule(root);
+		Path tests = writePatchModuleTests(root);
+		Path link = root.resolve("tests-link");
+		try {
+			Files.createSymbolicLink(link, tests);
+		} catch (IOException | UnsupportedOperationException e) {
+			return; // no symbolic link on this platform
+		}
+		checkPatchModuleCompilation(root, mainOutput, link.toString(), tests);
+	}
+	/*
+	 * A value of --patch-module without '=' is reported as with the batch compiler, also to the diagnostic listener.
+	 */
+	public void testPatchModuleOptionInvalidValue() throws IOException {
+		if (this.isJREBelow9) return;
+		JavaCompiler compiler = this.compilers[1];
+		List<Diagnostic<? extends JavaFileObject>> diagnostics = new ArrayList<>();
+		try (StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset())) {
+			compiler.getTask(null, manager, diagnostics::add, List.of("--patch-module", "demo.lib"), null, null);
+			fail("--patch-module demo.lib is accepted");
+		} catch (IllegalArgumentException e) {
+			assertEquals("invalid syntax for --patch-module: demo.lib", e.getMessage());
+			assertEquals(diagnostics.toString(), 1, diagnostics.size());
+		}
+	}
+	/*
+	 * As in javac (ModuleTable.updatePaths), setting the location of a module again replaces the paths in which the files
+	 * of the module are found. javac does not support it for PATCH_MODULE_PATH, hence the module path.
+	 */
+	public void testSetLocationForModuleAgain() throws IOException {
+		if (this.isJREBelow9) return;
+		Path root = Paths.get(_tmpFolder);
+		Path a = root.resolve("a").resolve("p/A.java");
+		Path b = root.resolve("b").resolve("p/B.java");
+		writeFile(a, "package p;\nclass A {}\n");
+		writeFile(b, "package p;\nclass B {}\n");
+		for (int i = 0; i < 2; i++) {
+			try (StandardJavaFileManager manager = this.compilers[i].getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset())) {
+				manager.setLocationForModule(StandardLocation.MODULE_PATH, "m", List.of(root.resolve("a")));
+				manager.setLocationForModule(StandardLocation.MODULE_PATH, "m", List.of(root.resolve("b")));
+				assertNull(this.compilerNames[i], manager.getLocationForModule(StandardLocation.MODULE_PATH,
+						manager.getJavaFileObjects(a).iterator().next()));
+				Location location = manager.getLocationForModule(StandardLocation.MODULE_PATH, manager.getJavaFileObjects(b).iterator().next());
+				assertNotNull(this.compilerNames[i], location);
+				assertEquals(this.compilerNames[i], "m", manager.inferModuleName(location));
+			}
+		}
+	}
+	/*
+	 * The sources patched into a module keep the access checks of the module: the white-box test compiles, a package
+	 * private method called from another package is not visible.
+	 */
+	public void testPatchModuleOptionAccessCheck() throws IOException {
+		if (this.isJREBelow9) return;
+		Path root = Paths.get(_tmpFolder);
+		Path mainOutput = compilePatchedModule(root);
+		Path tests = writePatchModuleTests(root);
+		writeFile(tests.resolve("demo/other/OtherTest.java"),
+				"package demo.other;\n" +
+				"class OtherTest {\n" +
+				"	String s = new demo.lib.Greeter().greet(\"you\");\n" +
+				"}\n");
+		for (int i = 0; i < 2; i++) {
+			List<Diagnostic<? extends JavaFileObject>> diagnostics = new ArrayList<>();
+			boolean success = compilePatchModuleTests(this.compilers[i], false, false, root.resolve("negative-bin" + i), mainOutput,
+					tests.toString(), tests, diagnostics);
+			assertFalse(this.compilerNames[i] + " should not compile: " + diagnostics, success);
+			List<Diagnostic<? extends JavaFileObject>> errors = diagnostics.stream().filter(d -> d.getKind() == Diagnostic.Kind.ERROR).toList();
+			assertEquals(this.compilerNames[i] + ": " + errors, 1, errors.size());
+			assertTrue(this.compilerNames[i] + ": " + errors, errors.get(0).getSource().getName().endsWith("OtherTest.java"));
+			assertTrue(this.compilerNames[i] + ": " + errors, errors.get(0).getMessage(Locale.ROOT).contains("greet(java.lang.String)"));
+		}
+	}
+	private Path compilePatchedModule(Path root) throws IOException {
+		Path main = root.resolve("main");
+		writeFile(main.resolve("module-info.java"),
+				"module demo.lib {\n" +
+				"	exports demo.lib;\n" +
+				"}\n");
+		writeFile(main.resolve("demo/lib/Greeter.java"),
+				"package demo.lib;\n" +
+				"public class Greeter {\n" +
+				"	String greet(String name) { // package private\n" +
+				"		return \"Hello \" + name;\n" +
+				"	}\n" +
+				"}\n");
+		JavaCompiler compiler = this.compilers[0];
+		Path output = root.resolve("main-bin");
+		List<String> options = List.of("-d", output.toString());
+		try (StandardJavaFileManager manager = compiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset())) {
+			Iterable<? extends JavaFileObject> units = manager.getJavaFileObjectsFromFiles(
+					List.of(main.resolve("module-info.java").toFile(), main.resolve("demo/lib/Greeter.java").toFile()));
+			assertTrue("The module does not compile", compiler.getTask(null, manager, null, options, null, units).call());
+		}
+		return output;
+	}
+	private Path writePatchModuleTests(Path root) throws IOException {
+		Path tests = root.resolve("tests");
+		writeFile(tests.resolve("demo/lib/GreeterTest.java"),
+				"package demo.lib;\n" +
+				"class GreeterTest {\n" +
+				"	String s = new Greeter().greet(\"you\");\n" +
+				"}\n");
+		writeFile(tests.resolve("demo/other/OtherTest.java"),
+				"package demo.other;\n" +
+				"import demo.lib.Greeter;\n" +
+				"class OtherTest {\n" +
+				"	Greeter greeter;\n" +
+				"}\n");
+		return tests;
+	}
+	private void checkPatchModuleCompilation(Path root, Path mainOutput, String patchLocation, Path tests) throws IOException {
+		for (int i = 0; i < 2; i++) {
+			// javac is the reference; ECJ with its standard file manager, the same behind a file manager that is not a
+			// StandardJavaFileManager, and the standard file manager of javac, which handles --patch-module itself
+			for (int manager = 0; manager < (i == 0 ? 1 : 3); manager++) {
+				Path output = root.resolve("tests-bin" + i + manager);
+				List<Diagnostic<? extends JavaFileObject>> diagnostics = new ArrayList<>();
+				boolean success = compilePatchModuleTests(this.compilers[i], manager % 2 == 1, manager >= 2, output, mainOutput, patchLocation, tests,
+						diagnostics);
+				assertTrue(this.compilerNames[i] + " with the file manager " + manager + " failed: " + diagnostics, success);
+				assertTrue("Missing GreeterTest.class", Files.exists(output.resolve("demo/lib/GreeterTest.class")));
+				assertTrue("Missing OtherTest.class", Files.exists(output.resolve("demo/other/OtherTest.class")));
+			}
+		}
+	}
+	private boolean compilePatchModuleTests(JavaCompiler compiler, boolean forwarding, boolean javacManager, Path output, Path mainOutput,
+			String patchLocation, Path tests, List<Diagnostic<? extends JavaFileObject>> diagnostics) throws IOException {
+		List<File> files = new ArrayList<>();
+		try (var walk = Files.walk(tests)) {
+			walk.filter(f -> f.toString().endsWith(".java")).forEach(f -> files.add(f.toFile()));
+		}
+		Files.createDirectories(output);
+		List<String> options = List.of("-d", output.toString(), "--module-path", mainOutput.toString(),
+				"--patch-module", "demo.lib=" + patchLocation, "--add-reads", "demo.lib=ALL-UNNAMED");
+		JavaCompiler managerCompiler = javacManager ? this.compilers[0] : compiler;
+		try (StandardJavaFileManager standardManager = managerCompiler.getStandardFileManager(null, Locale.getDefault(), Charset.defaultCharset())) {
+			CompilationTask task = compiler.getTask(null, forwarding ? getFileManager(standardManager) : standardManager,
+					diagnostics::add, options, null, standardManager.getJavaFileObjectsFromFiles(files));
+			return task.call();
+		}
+	}
+	private static void writeFile(Path file, String content) throws IOException {
+		Files.createDirectories(file.getParent());
+		Files.writeString(file, content);
 	}
 
 	/**

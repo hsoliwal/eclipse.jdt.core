@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2025 IBM Corporation and others.
+ * Copyright (c) 2005, 2026 IBM Corporation and others.
  *
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -78,6 +78,7 @@ public class ParameterizedTypeBinding extends ReferenceBinding implements Substi
 	protected RecordComponentBinding[] components;
 	public ReferenceBinding[] memberTypes;
 	public MethodBinding[] methods;
+	public MethodBinding[] diamondFactories = Binding.NO_METHODS;
 	protected ReferenceBinding enclosingType;
 	boolean isCaptureInProgress;
 
@@ -740,6 +741,130 @@ public class ParameterizedTypeBinding extends ReferenceBinding implements Substi
 		return ReferenceBinding.binarySearch(fieldName, this.fields);
 	}
 
+	public MethodBinding [] getDiamondFactories(Scope scope) {
+
+		if (this.diamondFactories != Binding.NO_METHODS)
+			return this.diamondFactories;
+
+		int classTypeVariablesArity = 0;
+		TypeVariableBinding[] classTypeVariables = Binding.NO_TYPE_VARIABLES;
+		ReferenceBinding genericType = genericType();
+		ReferenceBinding currentType = genericType;
+		while (currentType != null) {
+			TypeVariableBinding[] typeVariables = currentType.typeVariables();
+			int length = typeVariables == null ? 0 : typeVariables.length;
+			if (length > 0) {
+				System.arraycopy(classTypeVariables, 0, classTypeVariables = new TypeVariableBinding[classTypeVariablesArity + length], 0, classTypeVariablesArity);
+				System.arraycopy(typeVariables, 0, classTypeVariables, classTypeVariablesArity, length);
+				classTypeVariablesArity += length;
+			}
+			if (currentType.isStatic()) // any enclosing types cannot be parameterized, if generic treat as raw.
+				break;
+			currentType = currentType.enclosingType();
+		}
+		boolean isInterface = this.isInterface();
+		ReferenceBinding typeToSearch = isInterface ? scope.getJavaLangObject() : this;
+
+		MethodBinding[] constructors = typeToSearch.getMethods(TypeConstants.INIT);
+		MethodBinding [] staticFactories = new MethodBinding[constructors.length];
+		int sfi = 0;
+		for (MethodBinding constructor : constructors) {
+			TypeVariableBinding[] methodTypeVariables = constructor.typeVariables();
+			int methodTypeVariablesArity = methodTypeVariables.length;
+			final int factoryArity = classTypeVariablesArity + methodTypeVariablesArity;
+			MethodBinding targetMethod = isInterface ? new MethodBinding(constructor.original(), genericType) : constructor.original();
+			MethodBinding staticFactory = new SyntheticFactoryMethodBinding(targetMethod, this.environment, this.enclosingType);
+			staticFactory.typeVariables = new TypeVariableBinding[factoryArity];
+			Map<TypeBinding, TypeVariableBinding> map = new HashMap<>(factoryArity);
+
+			// Rename each type variable T of the type to T' or T'' or T''' based on the enclosing level to avoid a clash.
+			String prime = ""; //$NON-NLS-1$
+			Binding declaringElement = null;
+			for (int j = 0; j < classTypeVariablesArity; j++) {
+				TypeVariableBinding original;
+				original = classTypeVariables[j];
+				if (original.declaringElement != declaringElement) {
+					declaringElement = original.declaringElement;
+					prime += "'"; //$NON-NLS-1$
+				}
+				map.put(original.unannotated(), staticFactory.typeVariables[j] = new TypeVariableBinding(CharOperation.concat(original.sourceName, prime.toCharArray()),
+																			staticFactory, j, this.environment));
+			}
+			// Rename each type variable U of method
+			prime += "'"; //$NON-NLS-1$
+			for (int j = classTypeVariablesArity, k = 0; j < factoryArity; j++, k++) {
+				map.put(methodTypeVariables[k].unannotated(),
+						(staticFactory.typeVariables[j] = new TypeVariableBinding(CharOperation.concat(methodTypeVariables[k].sourceName, prime.toCharArray()),
+																			staticFactory, j, this.environment)));
+
+			}
+			Substitution substitution = new Substitution() {
+					@Override
+					public LookupEnvironment environment() {
+						return scope.environment();
+					}
+					@Override
+					public boolean isRawSubstitution() {
+						return false;
+					}
+					@Override
+					public TypeBinding substitute(TypeVariableBinding typeVariable) {
+						TypeBinding retVal = map.get(typeVariable.unannotated());
+						return retVal == null ? typeVariable : typeVariable.hasTypeAnnotations() ? environment().createAnnotatedType(retVal, typeVariable.getTypeAnnotations()) : retVal;
+					}
+				};
+
+			// initialize new variable bounds
+			for (int j = 0; j < factoryArity; j++) {
+				TypeVariableBinding originalVariable = j < classTypeVariablesArity ? classTypeVariables[j] : methodTypeVariables[j - classTypeVariablesArity];
+				TypeVariableBinding substitutedVariable = map.get(originalVariable.unannotated());
+
+				TypeBinding substitutedSuperclass = Scope.substitute(substitution, originalVariable.superclass);
+				ReferenceBinding[] substitutedInterfaces = Scope.substitute(substitution, originalVariable.superInterfaces);
+				if (originalVariable.firstBound != null) {
+					TypeBinding firstBound;
+					firstBound = TypeBinding.equalsEquals(originalVariable.firstBound, originalVariable.superclass)
+							? substitutedSuperclass // could be array type or interface
+									: substitutedInterfaces[0];
+					substitutedVariable.setFirstBound(firstBound);
+				}
+				switch (substitutedSuperclass.kind()) {
+					case Binding.ARRAY_TYPE :
+						substitutedVariable.setSuperClass(this.environment.getResolvedJavaBaseType(TypeConstants.JAVA_LANG_OBJECT, null));
+						substitutedVariable.setSuperInterfaces(substitutedInterfaces);
+						break;
+					default:
+						if (substitutedSuperclass.isInterface()) {
+							substitutedVariable.setSuperClass(this.environment.getResolvedJavaBaseType(TypeConstants.JAVA_LANG_OBJECT, null));
+							int interfaceCount = substitutedInterfaces.length;
+							System.arraycopy(substitutedInterfaces, 0, substitutedInterfaces = new ReferenceBinding[interfaceCount+1], 1, interfaceCount);
+							substitutedInterfaces[0] = (ReferenceBinding) substitutedSuperclass;
+							substitutedVariable.setSuperInterfaces(substitutedInterfaces);
+						} else {
+							substitutedVariable.setSuperClass((ReferenceBinding) substitutedSuperclass); // typeVar was extending other typeVar which got substituted with interface
+							substitutedVariable.setSuperInterfaces(substitutedInterfaces);
+						}
+				}
+			}
+			staticFactory.returnType = this.environment.createParameterizedType(genericType,
+					Scope.substitute(substitution, genericType.typeVariables()),
+					(ReferenceBinding) Scope.substitute(substitution, this.enclosingType));
+			staticFactory.parameters = Scope.substitute(substitution, constructor.parameters);
+			staticFactory.thrownExceptions = Scope.substitute(substitution, constructor.thrownExceptions);
+			if (staticFactory.thrownExceptions == null) {
+				staticFactory.thrownExceptions = Binding.NO_EXCEPTIONS;
+			}
+			staticFactories[sfi++] = new ParameterizedMethodBinding((ParameterizedTypeBinding) this.environment.convertToParameterizedType(isInterface ? this : staticFactory.declaringClass),
+																												staticFactory);
+		}
+		if (sfi == 0)
+			return this.diamondFactories = new MethodBinding[0];
+		if (sfi != constructors.length) {
+			System.arraycopy(staticFactories, 0, staticFactories = new MethodBinding[sfi], 0, sfi);
+		}
+		return this.diamondFactories = staticFactories;
+	}
+
 	/**
 	 * @see org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding#getMethods(char[])
 	 */
@@ -1129,7 +1254,15 @@ public class ParameterizedTypeBinding extends ReferenceBinding implements Substi
 			return this.methods;
 
 		try {
-		    MethodBinding[] originalMethods = this.type.methods();
+			MethodBinding[] originalMethods;
+			ParameterizedTypeBinding equivalent = withoutTopTypeAnnotations();
+			if (equivalent != null && equivalent != this) {  //$IDENTITY-COMPARISON$
+				// use methods of the equivalent type as templates for new PTBs
+				// this helps to let contained type variables share the id.
+				originalMethods = equivalent.methods();
+			} else {
+				originalMethods = this.type.methods();
+			}
 		    int length = originalMethods.length;
 		    MethodBinding[] parameterizedMethods = new MethodBinding[length];
 			boolean useNullTypeAnnotations = this.environment.usesNullTypeAnnotations();
@@ -1150,6 +1283,13 @@ public class ParameterizedTypeBinding extends ReferenceBinding implements Substi
 		}
 		return this.methods;
 	}
+
+	private ParameterizedTypeBinding withoutTopTypeAnnotations() {
+		if (this.typeAnnotations == Binding.NO_ANNOTATIONS)
+			return null; // nothing to strip off.
+		return this.environment.createParameterizedType(this.type, this.arguments, this.enclosingType);
+	}
+
 	/**
 	 * Define to be able to get the computeId() for the inner type binding.
 	 *

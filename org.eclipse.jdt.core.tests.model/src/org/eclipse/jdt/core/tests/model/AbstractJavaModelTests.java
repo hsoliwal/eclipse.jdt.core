@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2025 IBM Corporation and others.
+ * Copyright (c) 2000, 2026 IBM Corporation and others.
  *
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -33,6 +33,7 @@ import org.eclipse.core.resources.*;
 import org.eclipse.core.runtime.*;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.jdt.core.*;
 import org.eclipse.jdt.core.compiler.CharOperation;
 import org.eclipse.jdt.core.compiler.IProblem;
@@ -53,6 +54,7 @@ import org.eclipse.jdt.internal.compiler.impl.CompilerOptions;
 import org.eclipse.jdt.internal.core.*;
 import org.eclipse.jdt.internal.core.search.BasicSearchEngine;
 import org.eclipse.jdt.internal.core.util.Util;
+import org.osgi.service.prefs.BackingStoreException;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
@@ -4050,22 +4052,46 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		this.wcOwner = null;
 
 		// ensure workspace options have been restored to their default
-		Hashtable options = JavaCore.getOptions();
-		Hashtable defaultOptions = getDefaultJavaCoreOptions();
+		Hashtable<String, String> options = JavaCore.getOptions();
+		Hashtable<String, String> defaultOptions = getDefaultJavaCoreOptions();
 		boolean resetToDefault = true;
 		try {
 			String expected = new CompilerOptions(defaultOptions).toString();
 			String actual = new CompilerOptions(options).toString();
 			assertEquals("Workspace options should be back to their default", expected, actual);
+			// CompilerOptions ignores formatter settings. Compare their stored values as well.
+			Set<String> optionNames = new TreeSet<>(defaultOptions.keySet());
+			optionNames.addAll(options.keySet());
+			for (String optionName : optionNames) {
+				if (isFormatterOption(optionName)) {
+					assertEquals("Workspace formatter option '" + optionName + "' should be back to its default",
+							defaultOptions.get(optionName), options.get(optionName));
+				}
+			}
 			resetToDefault = false;
 		} finally {
 			if(resetToDefault) {
 				// Don't let all following tests use broken defaults and fail too
-				JavaCore.setOptions(defaultOptions);
+				restoreJavaCoreOptions(defaultOptions);
 			}
 		}
 		waitForManualRefresh();
 		super.tearDown();
+	}
+
+	private static boolean isFormatterOption(String optionName) {
+		return optionName.startsWith(JavaCore.PLUGIN_ID + ".formatter.") || JavaCore.JAVA_FORMATTER.equals(optionName);
+	}
+
+	/** Restores options and removes formatter preferences absent from the expected baseline. */
+	protected void restoreJavaCoreOptions(Hashtable<String, String> defaultOptions) throws BackingStoreException {
+		IEclipsePreferences preferences = JavaModelManager.getJavaModelManager().getInstancePreferences();
+		for (String optionName : preferences.keys()) {
+			if (isFormatterOption(optionName) && !defaultOptions.containsKey(optionName)) {
+				preferences.remove(optionName);
+			}
+		}
+		JavaCore.setOptions(defaultOptions);
 	}
 
 	/**
@@ -4172,8 +4198,7 @@ public abstract class AbstractJavaModelTests extends SuiteOfTestCases {
 		boolean wasInterrupted = false;
 		do { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			try {
-				Job.getJobManager().wakeUp(ResourcesPlugin.FAMILY_SNAPSHOT);
-				Job.getJobManager().join(ResourcesPlugin.FAMILY_SNAPSHOT, null);
+				JobFamilyWait.join(Job.getJobManager(), ResourcesPlugin.FAMILY_SNAPSHOT);
 				wasInterrupted = false;
 			} catch (OperationCanceledException e) {
 				e.printStackTrace();

@@ -41279,7 +41279,7 @@ public void test1228()  throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT M
 		"");
 	// check $new$ method generic signature
 	String expectedOutput =
-		"  // Method descriptor #22 ()LX$Binner$BinnerInner;\n" +
+		"  // Method descriptor #24 ()LX$Binner$BinnerInner;\n" +
 		"  // Signature: <J:Ljava/lang/Object;>()LX<TU;>.Binner.BinnerInner<TJ;>;\n" +
 		"  // Stack: 3, Locals: 1\n" +
 		"  public X.Binner.BinnerInner $new$();\n" +
@@ -41287,7 +41287,7 @@ public void test1228()  throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT M
 		"     3  dup\n" +
 		"     4  aload_0 [this]\n" +
 		"     5  getfield X$Binner$BinnerInner.this$1 : X.Binner [10]\n" +
-		"     8  invokespecial X$Binner$BinnerInner(X$Binner) [25]\n" +
+		"     8  invokespecial X$Binner$BinnerInner(X$Binner) [27]\n" +
 		"    11  areturn\n" +
 		"      Line numbers:\n" +
 		"        [pc: 0, line: 7]\n" +
@@ -50241,6 +50241,35 @@ public void testBugBug571785_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"	}\n" +
 			"}\n"
 		});
+}
+
+// https://github.com/redhat-developer/vscode-java/issues/3816
+public void testTypeVariableShadowsInheritedMemberType() {
+	this.runConformTest(
+		new String[] {
+			"X.java",
+			"interface BinaryExpr {\n" +
+			"	interface Op { }\n" +
+			"	Op getOperator();\n" +
+			"}\n" +
+			"abstract class AbstractBinaryExpr<Op extends BinaryExpr.Op> implements BinaryExpr {\n" +
+			"	private final Op op;\n" +
+			"	public AbstractBinaryExpr(Op op) { this.op = op; }\n" +
+			"	@Override public Op getOperator() { return this.op; }\n" +
+			"}\n" +
+			"final class ArithExpr extends AbstractBinaryExpr<ArithExpr.Op> {\n" +
+			"	enum Op implements BinaryExpr.Op { ADD, SUB }\n" +
+			"	public ArithExpr(Op op) { super(op); }\n" +
+			"}\n" +
+			"public class X {\n" +
+			"	public static void main(String[] args) {\n" +
+			"		ArithExpr e = new ArithExpr(ArithExpr.Op.ADD);\n" +
+			"		ArithExpr.Op o = e.getOperator();\n" + // must be substituted to ArithExpr.Op, not resolved to BinaryExpr.Op
+			"		System.out.print(o == ArithExpr.Op.ADD ? \"SUCCESS\" : \"FAIL\");\n" +
+			"	}\n" +
+			"}\n"
+		},
+		"SUCCESS");
 }
 
 protected void assertCompileTimes(final List<Duration> shortTimes, final double factor, final List<Duration> longTimes) {

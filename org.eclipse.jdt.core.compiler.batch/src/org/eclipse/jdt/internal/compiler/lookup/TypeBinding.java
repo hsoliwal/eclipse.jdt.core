@@ -1380,10 +1380,15 @@ public boolean isTypeArgumentContainedBy(TypeBinding otherType) {
 			switch (otherWildcard.boundKind) {
 				case Wildcard.EXTENDS:
 					if (otherBound instanceof IntersectionTypeBinding18) {
+						// T <= ? extends (A & B) requires every component (JLS 4.5.1)
 						TypeBinding [] intersectingTypes = ((IntersectionTypeBinding18) otherBound).intersectingTypes;
-						for (TypeBinding intersectingType : intersectingTypes)
+						for (TypeBinding intersectingType : intersectingTypes) {
 							if (TypeBinding.equalsEquals(intersectingType, this))
-								return true;
+								continue;
+							if (upperBound == null || !upperBound.isCompatibleWith(intersectingType))
+								return false;
+						}
+						return true;
 					}
 					if (TypeBinding.equalsEquals(otherBound, this))
 						return true; // ? extends T  <=  ? extends ? extends T
@@ -1732,6 +1737,13 @@ public static boolean notEquals(TypeBinding that, TypeBinding other) {
 	}
 	return true;
 }
+
+public static boolean patternMatch(TypeBinding that, TypeBinding other) {
+	if (that instanceof PolyTypeBinding thatPoly && other instanceof PolyTypeBinding otherPoly)
+		return thatPoly.expression.patternMatch(otherPoly.expression);
+	return TypeBinding.equalsEquals(that, other);
+}
+
 /** Return the primordial type from which the receiver was cloned. Not all types track a prototype, only {@link SourceTypeBinding},
  * {@link BinaryTypeBinding} and {@link UnresolvedReferenceBinding} do so as of now. In fact some types e.g {@link ParameterizedTypeBinding}
  * should not do so. Deflecting a query to a prototype would lead to wrong results in the case of {@link ParameterizedTypeBinding}

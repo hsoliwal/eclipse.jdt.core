@@ -1102,6 +1102,11 @@ public class SearchableEnvironment
 				this.timeSpentInGetModulesDeclaringPackage += System.currentTimeMillis()-start;
 		}
 	}
+	@Override
+	public boolean isObservablePackage(char[][] packageName) {
+		String[] pkgName = CharOperation.toStrings(packageName);
+		return (this.owner != null && this.owner.isPackage(pkgName)) || this.nameLookup.isObservablePackage(pkgName);
+	}
 	@Override //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	public boolean hasCompilationUnit(char[][] pkgName, char[] moduleName, boolean checkCUs) {
 		LookupStrategy strategy = LookupStrategy.get(moduleName);

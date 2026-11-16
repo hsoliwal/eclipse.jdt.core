@@ -1133,6 +1133,53 @@ public class NameLookup implements SuffixConstants {
 		return this.packageFragments.get(pkgName) != null;
 	}
 
+	/**
+	 * Returns whether the package, or one of its sub-packages, holds a type (JLS 7.4.3).
+	 * Every folder of a source folder or of a class folder is a package fragment, even a folder
+	 * that only holds resources: such a package is not observable, like in the builder.
+	 * The package fragments of archives are assumed to hold types (the builder does the same).
+	 */
+	public boolean isObservablePackage(String[] pkgName) {
+		Object[][] keys = this.packageFragments.keyTable;
+		for (int i = 0, length = keys.length; i < length; i++) {
+			String[] name = (String[]) keys[i];
+			if (name == null || !isSameOrSubPackage(name, pkgName))
+				continue;
+			Object value = this.packageFragments.valueTable[i];
+			IPackageFragmentRoot[] roots = value instanceof PackageFragmentRoot root
+					? new IPackageFragmentRoot[] { root }
+					: (IPackageFragmentRoot[]) value;
+			for (IPackageFragmentRoot root : roots) {
+				if (holdsTypes(root, name))
+					return true;
+			}
+		}
+		return false;
+	}
+
+	private static boolean isSameOrSubPackage(String[] name, String[] pkgName) {
+		if (name.length < pkgName.length)
+			return false;
+		for (int i = 0; i < pkgName.length; i++) {
+			if (!name[i].equals(pkgName[i]))
+				return false;
+		}
+		return true;
+	}
+
+	private boolean holdsTypes(IPackageFragmentRoot root, String[] pkgName) {
+		try {
+			if (root.isArchive() || !(root instanceof PackageFragmentRoot folderRoot))
+				return true;
+			PackageFragment fragment = folderRoot.getPackageFragment(pkgName);
+			if (this.typesInWorkingCopies != null && this.typesInWorkingCopies.containsKey(fragment))
+				return true;
+			return fragment.containsJavaResources();
+		} catch (JavaModelException e) {
+			return true; // cannot tell: keep the package
+		}
+	}
+
 	public boolean isPackage(String[] pkgName, IPackageFragmentRoot[] moduleContext) { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (moduleContext == null) // includes the case where looking for module UNNAMED or ANY
 			return isPackage(pkgName);
@@ -1474,13 +1521,29 @@ public class NameLookup implements SuffixConstants {
 			// look in model
 			switch (packageFlavor) {
 				case IPackageFragmentRoot.K_BINARY :
-					matchName= DeduplicationUtil.intern(matchName.replace('.', '$'));
+					char[] chars = matchName.toCharArray();
+					for (int i=0; i < chars.length; i++) {
+						boolean isPreviousDot = (i - 1 >= 0) ? (chars[i- 1] == '.') : false;
+						boolean isNextDot = (i + 1 < chars.length) ? (chars[i + 1] == '.') : false;
+						if ((chars[i] == '.') && (i != 0) && (i != chars.length - 1) && !isNextDot && !isPreviousDot) {
+							chars[i] = '$';
+						}
+					}
+					matchName = DeduplicationUtil.intern(new String(chars));
 					seekTypesInBinaryPackage(matchName, pkg, partialMatch, acceptFlags, requestor);
 					break;
 				case IPackageFragmentRoot.K_SOURCE :
 					seekTypesInSourcePackage(matchName, pkg, firstDot, partialMatch, topLevelTypeName, acceptFlags, requestor);
 					if (matchName.indexOf('$') != -1) {
-						matchName= matchName.replace('$', '.');
+						char[] string = matchName.toCharArray();
+						for (int i=0; i < string.length; i++) {
+							boolean isPreviousDollar = (i - 1 >= 0) ? (string[i- 1] == '$') : false;
+							boolean isNextDollar = (i + 1 < string.length) ? (string[i + 1] == '$') : false;
+							if ((string[i] == '$') && (i != 0) && (i != string.length - 1) && !isNextDollar && !isPreviousDollar) {
+								string[i] = '.';
+							}
+						}
+						matchName = new String(string);
 						firstDot = matchName.indexOf('.');
 						if (!partialMatch)
 							topLevelTypeName = firstDot == -1 ? matchName : matchName.substring(0, firstDot);

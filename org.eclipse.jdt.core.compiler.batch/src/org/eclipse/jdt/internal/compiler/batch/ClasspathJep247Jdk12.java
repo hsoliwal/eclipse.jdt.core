@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import org.eclipse.jdt.core.compiler.CharOperation;
 import org.eclipse.jdt.internal.compiler.batch.FileSystem.Classpath;
@@ -42,8 +43,23 @@ import org.eclipse.jdt.internal.compiler.util.Util;
 
 public class ClasspathJep247Jdk12 extends ClasspathJep247 {
 
+	/** A directory {@code <sub-release>/<module>} of ct.sym. */
+	private record ModuleDirectory(String subRelease, String module) {}
+
 	Map<String, IModule> modules;
 	static String MODULE_INFO = "module-info.sig"; //$NON-NLS-1$
+	/** The module directories of all the {@link #subReleases}, in the order of the directory listings. */
+	private volatile List<ModuleDirectory> moduleDirectories = List.of();
+	/**
+	 * For each package (with '/' separators), the {@link #moduleDirectories} that contain it, in the same order: only
+	 * these can contain a class of the package. Used by the lookups without a module.
+	 */
+	private final Map<String, List<ModuleDirectory>> packageDirectories = new ConcurrentHashMap<>();
+	/**
+	 * For each module and package, the {@link #subReleases} in which the directory of the module contains the package,
+	 * in the same order. Used by the lookups in a module.
+	 */
+	private final Map<String, Map<String, List<String>>> moduleSubReleases = new ConcurrentHashMap<>();
 
 	public ClasspathJep247Jdk12(File jdkHome, String release, AccessRuleSet accessRuleSet) {
 		super(jdkHome, release, accessRuleSet);
@@ -58,6 +74,10 @@ public class ClasspathJep247Jdk12 extends ClasspathJep247 {
 	}
 	@Override
 	public NameEnvironmentAnswer findClass(char[] typeName, String qualifiedPackageName, String moduleName, String qualifiedBinaryFileName, boolean asBinaryOnly) {
+		// The current release uses the JRT filtered by ct.sym's system-modules.
+		if (this.currentReleaseModules != null) {
+			return super.findClass(typeName, qualifiedPackageName, moduleName, qualifiedBinaryFileName, asBinaryOnly);
+		}
 		if (!isPackage(qualifiedPackageName, moduleName))
 			return null; // most common case
 
@@ -68,21 +88,19 @@ public class ClasspathJep247Jdk12 extends ClasspathJep247 {
 			char[] foundModName = null;
 			qualifiedBinaryFileName = qualifiedBinaryFileName.replace(".class", ".sig"); //$NON-NLS-1$ //$NON-NLS-2$
 			if (this.subReleases != null && this.subReleases.length > 0) {
-				done: for (String rel : this.subReleases) {
-					if (moduleName == null) {
-						p = this.fs.getPath(rel);
-						try (DirectoryStream<java.nio.file.Path> stream = Files.newDirectoryStream(p)) {
-							for (final java.nio.file.Path subdir: stream) {
-								p = this.fs.getPath(rel, JRTUtil.sanitizedFileName(subdir), qualifiedBinaryFileName);
-								if (Files.exists(p)) {
-									content = JRTUtil.safeReadBytes(p);
-									foundModName = JRTUtil.sanitizedFileName(subdir).toCharArray();
-									if (content != null)
-										break done;
-								}
+				if (moduleName == null) {
+					for (ModuleDirectory directory : getPackageDirectories(qualifiedPackageName)) {
+						p = this.fs.getPath(directory.subRelease(), directory.module(), qualifiedBinaryFileName);
+						if (Files.exists(p)) {
+							content = JRTUtil.safeReadBytes(p);
+							if (content != null) {
+								foundModName = directory.module().toCharArray();
+								break;
 							}
 						}
-					} else {
+					}
+				} else {
+					for (String rel : getSubReleases(moduleName, qualifiedPackageName)) {
 						p = this.fs.getPath(rel, moduleName, qualifiedBinaryFileName);
 						if (Files.exists(p)) {
 							content = JRTUtil.safeReadBytes(p);
@@ -105,6 +123,61 @@ public class ClasspathJep247Jdk12 extends ClasspathJep247 {
 			// continue
 		}
 		return null;
+	}
+
+	/**
+	 * Answers the module directories that contain the given package (with '/' separators), in the order of
+	 * {@link #moduleDirectories}. The sub-releases of a release have hundreds of module directories, a package is in a
+	 * few of them only: they are searched once per package, not for every class.
+	 */
+	private List<ModuleDirectory> getPackageDirectories(String qualifiedPackageName) {
+		return this.packageDirectories.computeIfAbsent(qualifiedPackageName, packageName -> {
+			List<ModuleDirectory> result = new ArrayList<>();
+			for (ModuleDirectory directory : this.moduleDirectories) {
+				if (Files.isDirectory(this.fs.getPath(directory.subRelease(), directory.module(), packageName)))
+					result.add(directory);
+			}
+			return List.copyOf(result);
+		});
+	}
+
+	/**
+	 * Answers the sub-releases in which the directory of the given module contains the given package, in the order of
+	 * {@link #subReleases}. They are searched once per module and package, not for every class.
+	 */
+	private List<String> getSubReleases(String moduleName, String qualifiedPackageName) {
+		Map<String, List<String>> packages = this.moduleSubReleases.computeIfAbsent(moduleName, name -> new ConcurrentHashMap<>());
+		return packages.computeIfAbsent(qualifiedPackageName, packageName -> {
+			List<String> result = new ArrayList<>();
+			for (String rel : this.subReleases) {
+				if (Files.isDirectory(this.fs.getPath(rel, moduleName, packageName)))
+					result.add(rel);
+			}
+			return List.copyOf(result);
+		});
+	}
+
+	/** Lists the module directories of the {@link #subReleases}, in the order of the directory listings. */
+	private List<ModuleDirectory> listModuleDirectories() {
+		if (this.subReleases == null)
+			return List.of();
+		List<ModuleDirectory> directories = new ArrayList<>();
+		for (String rel : this.subReleases) {
+			try (DirectoryStream<java.nio.file.Path> stream = Files.newDirectoryStream(this.fs.getPath(rel))) {
+				for (final java.nio.file.Path subdir: stream) {
+					directories.add(new ModuleDirectory(rel, JRTUtil.sanitizedFileName(subdir)));
+				}
+			} catch (IOException e) {
+				String error = "Failed to walk the modules of subrelease " + rel + " in " + this.jdkHome; //$NON-NLS-1$ //$NON-NLS-2$
+				if (JRTUtil.PROPAGATE_IO_ERRORS) {
+					throw new IllegalStateException(error, e);
+				} else {
+					System.err.println(error);
+					e.printStackTrace();
+				}
+			}
+		}
+		return List.copyOf(directories);
 	}
 
 	@Override
@@ -143,10 +216,16 @@ public class ClasspathJep247Jdk12 extends ClasspathJep247 {
 				e.printStackTrace();
 			}
 		}
+		this.moduleDirectories = listModuleDirectories();
 		super.initialize();
 	}
 	@Override
 	public void loadModules() {
+		// The current release uses the JRT filtered by ct.sym's system-modules.
+		if (this.currentReleaseModules != null) {
+			super.loadModules();
+			return;
+		}
 		// Modules below level 9 are not dealt with here. Leave it to ClasspathJrt
 		if (this.jdklevel <= ClassFileConstants.JDK1_8) {
 			super.loadModules();
@@ -219,6 +298,10 @@ public class ClasspathJep247Jdk12 extends ClasspathJep247 {
 	}
 	@Override
 	public IModule getModule(char[] moduleName) {
+		// The current release uses the JRT filtered by ct.sym's system-modules.
+		if (this.currentReleaseModules != null) {
+			return super.getModule(moduleName);
+		}
 		// Modules below level 9 are not dealt with here. Leave it to ClasspathJrt
 		if (this.jdklevel <= ClassFileConstants.JDK1_8) {
 			return super.getModule(moduleName);
@@ -261,6 +344,10 @@ public class ClasspathJep247Jdk12 extends ClasspathJep247 {
 	}
 	@Override
 	public synchronized char[][] getModulesDeclaringPackage(String qualifiedPackageName, String moduleName) {
+		// The current release uses the JRT filtered by ct.sym's system-modules.
+		if (this.currentReleaseModules != null) {
+			return super.getModulesDeclaringPackage(qualifiedPackageName, moduleName);
+		}
 		if (this.jdklevel >= ClassFileConstants.JDK9) {
 			// Delegate to the boss, even if it means inaccurate error reporting at times
 			List<String> mods = JRTUtil.getModulesDeclaringPackage(this.jrtFileSystem, qualifiedPackageName, moduleName);

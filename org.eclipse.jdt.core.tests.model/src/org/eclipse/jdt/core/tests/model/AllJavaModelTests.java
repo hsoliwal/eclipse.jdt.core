@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2023 IBM Corporation and others.
+ * Copyright (c) 2000, 2026 IBM Corporation and others.
  *
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -38,6 +38,9 @@ private static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT
 	Class[] classes = new Class[] {
 
 		// Enter each test here, grouping the tests that are related
+
+		// Test infrastructure
+		JobFamilyWaitTests.class,
 
 		// Binding key tests
 		BindingKeyTests.class,
@@ -86,6 +89,9 @@ private static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT
 		WorkingCopyNotInClasspathTests.class,
 		HierarchyOnWorkingCopiesTests.class,
 
+		// Headless tracing configuration
+		TracingSuiteConfigurationTests.class,
+
 		// test IJavaModel
 		JavaModelTests.class,
 
@@ -97,6 +103,7 @@ private static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT
 
 		// IBuffer tests
 		BufferTests.class,
+		BufferConcurrencyTests.class,
 
 		// Name lookup tests
 		NameLookupTests2.class,
@@ -141,6 +148,7 @@ private static Class[] getAllTestClasses() { //FLLDCIM: MARK — ML METHOD_SPLIT
 		// Options tests
 		OptionTests.class,
 		OptionCacheTests.class,
+		ModelTestOptionsTests.class,
 
 		// Type hierarchy tests
 		TypeHierarchyTests.class,

@@ -100,6 +100,13 @@ public class IndexManager extends JobManager implements IIndexConstants {
 	public SimpleLookupTable indexLocations = new SimpleLookupTable();
 
 	/**
+	 * Reverse of {@link #indexLocations}, kept in sync by {@link #putIndexLocation(IPath, IndexLocation)}.
+	 * <br>
+	 * synchronized by IndexManager.this
+	 */
+	private Map<IndexLocation, IPath> containerPathsByLocation = new HashMap<>();
+
+	/**
 	 * key = indexLocation path, value = an index
 	 * <br>
 	 * synchronized by IndexManager.this
@@ -150,6 +157,8 @@ public class IndexManager extends JobManager implements IIndexConstants {
 	private SimpleLookupTable participantsContainers;
 	/** synchronized by IndexManager.this */
 	private boolean participantUpdated;
+	/** synchronized by IndexManager.this */
+	private boolean indexMapUpdated;
 	private volatile MetaIndex metaIndex;
 
 	// should JDT manage (update, delete as needed) pre-built indexes?
@@ -329,7 +338,7 @@ public synchronized IndexLocation computeIndexLocation(IPath containerPath, fina
 			indexLocation = IndexLocation.createIndexLocation(newIndexURL);
 			// update caches
 			indexLocation = (IndexLocation) getIndexStates().getKey(indexLocation);
-			this.indexLocations.put(containerPath, indexLocation);
+			putIndexLocation(containerPath, indexLocation);
 		}
 	}
 	else {
@@ -349,11 +358,26 @@ public synchronized IndexLocation computeIndexLocation(IPath containerPath, fina
 				indexLocation = IndexLocation.createIndexLocation(newIndexURL);
 				// update caches
 				indexLocation = (IndexLocation) getIndexStates().getKey(indexLocation);
-				this.indexLocations.put(containerPath, indexLocation);
+				putIndexLocation(containerPath, indexLocation);
 			}
 		}
 	}
 	return indexLocation;
+}
+private void putIndexLocation(IPath containerPath, IndexLocation indexLocation) {
+	IndexLocation previous = (IndexLocation) this.indexLocations.get(containerPath);
+	this.indexLocations.put(containerPath, indexLocation);
+	if (previous != null && !previous.equals(indexLocation) && containerPath.equals(this.containerPathsByLocation.get(previous))) {
+		this.containerPathsByLocation.remove(previous);
+		// another container may share the same index location
+		IPath other = (IPath) this.indexLocations.keyForValue(previous);
+		if (other != null) {
+			this.containerPathsByLocation.put(previous, other);
+		}
+	}
+	if (indexLocation != null) {
+		this.containerPathsByLocation.put(indexLocation, containerPath);
+	}
 }
 public synchronized IndexLocation computeIndexLocation(IPath containerPath) {
 	IndexLocation indexLocation = (IndexLocation) this.indexLocations.get(containerPath);
@@ -366,7 +390,7 @@ public synchronized IndexLocation computeIndexLocation(IPath containerPath) {
 			trace("-> index name for " + pathString + " is " + fileName); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 		// to share the indexLocation between the indexLocations and indexStates tables, get the key from the indexStates table
 		indexLocation = (IndexLocation) getIndexStates().getKey(new FileIndexLocation(new File(getSavedIndexesDirectory(), fileName)));
-		this.indexLocations.put(containerPath, indexLocation);
+		putIndexLocation(containerPath, indexLocation);
 	}
 	return indexLocation;
 }
@@ -502,7 +526,7 @@ public synchronized Index getIndex(IPath containerPath, IndexLocation indexLocat
 				if (VERBOSE)
 					trace("-> cannot reuse given index: "+indexLocation+" path: "+containerPathString); //$NON-NLS-1$ //$NON-NLS-2$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 				if(!IS_MANAGING_PRODUCT_INDEXES_PROPERTY) {
-					this.indexLocations.put(containerPath, null);
+					putIndexLocation(containerPath, null);
 					indexLocation = computeIndexLocation(containerPath);
 					rebuildIndex(indexLocation, containerPath);
 				}
@@ -555,7 +579,7 @@ public synchronized Index[] getIndexes(IndexLocation[] locations, IProgressMonit
 		Index index = getIndex(indexLocation);
 		if (index == null) {
 			// only need containerPath if the index must be built
-			IPath containerPath = (IPath) this.indexLocations.keyForValue(indexLocation);
+			IPath containerPath = this.containerPathsByLocation.get(indexLocation);
 			if (containerPath != null) {// sanity check
 				index = getIndex(containerPath, indexLocation, true /*reuse index file*/, false /*do not create if none*/);
 				if (index != null && this.javaLikeNamesChanged && !index.isIndexForJar()) {
@@ -810,14 +834,14 @@ public void indexLibrary(IPath path, IProject requestingProject, URL indexURL, f
 
 synchronized boolean addIndex(IPath containerPath, IndexLocation indexFile) {
 	getIndexStates().put(indexFile, REUSE_STATE);
-	this.indexLocations.put(containerPath, indexFile);
+	putIndexLocation(containerPath, indexFile);
 	Index index = getIndex(containerPath, indexFile, true, false);
 	if (index == null) {
 		indexFile.close();
-		this.indexLocations.put(containerPath, null);
+		putIndexLocation(containerPath, null);
 		return false;
 	}
-	writeIndexMapFile();
+	this.indexMapUpdated = true;
 	return true;
 }
 
@@ -1022,7 +1046,7 @@ public void removeIndex(IPath containerPath) { //FLLDCIM: MARK — ML METHOD_SPL
 			indexFile = indexLocation.getIndexFile(); // index is not cached yet, but still want to delete the file
 		if (this.indexStates.get(indexLocation) == REUSE_STATE) {
 			indexLocation.close();
-			this.indexLocations.put(containerPath, null);
+			putIndexLocation(containerPath, null);
 		} else if (indexFile != null && indexFile.exists()) { //FLLDCIM: MARK — M31 M3FILE_IO CALL
 			if (DEBUG)
 				trace("removing index file " + indexFile); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
@@ -1030,6 +1054,7 @@ public void removeIndex(IPath containerPath) { //FLLDCIM: MARK — ML METHOD_SPL
 		}
 		this.indexes.removeKey(indexLocation);
 		if (IS_MANAGING_PRODUCT_INDEXES_PROPERTY) {
+			putIndexLocation(containerPath, null);
 			this.indexLocations.removeKey(containerPath);
 		}
 		updateIndexState(indexLocation, null);
@@ -1164,6 +1189,8 @@ public void reset() {
 			this.indexStates = null;
 		}
 		this.indexLocations = new SimpleLookupTable();
+		this.containerPathsByLocation = new HashMap<>();
+		this.indexMapUpdated = false;
 		this.javaPluginLocation = null;
 		this.metaIndexUpdates.clear();
 	}
@@ -1288,6 +1315,10 @@ public void saveIndexes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			writeParticipantsIndexNamesFile();
 			this.participantUpdated = false;
 		}
+		if (this.indexMapUpdated) {
+			writeIndexMapFile();
+			this.indexMapUpdated = false;
+		}
 	}
 	allSaved &= saveMetaIndex();
 
@@ -1410,7 +1441,7 @@ private void readIndexMap() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 						// Ignore the null path and continue
 					}
 					if (indexPath == null) continue;
-					this.indexLocations.put(new Path(new String(names[i+1])), indexPath );
+					putIndexLocation(new Path(new String(names[i+1])), indexPath);
 					this.indexStates.put(indexPath, REUSE_STATE);
 				}
 			}
@@ -1537,7 +1568,7 @@ private void writeIndexMapFile() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		for (int i = 0, l = states.length; i < l; i++) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 			IndexLocation location = (IndexLocation)keys[i];
 			if (location != null && states[i] == REUSE_STATE) {
-				IPath container = (IPath)this.indexLocations.keyForValue(location);
+				IPath container = this.containerPathsByLocation.get(location);
 				if (container != null) {
 					writer.write(location.toString());
 					writer.write('\n');

@@ -11268,5 +11268,782 @@ public void testBug508834_comment0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHO
 			----------
 			""");
 	}
+	public void testGH5583() {
+		runConformTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				public class X {
+					static List<Class<?>> f(Optional<Integer> o, Class<?>[] a) {
+						return o.map(n -> List.of(Arrays.copyOf(a, n))).orElse(List.of());
+					}
+					public static void main(String[] args) {
+						System.out.println(f(Optional.of(1), new Class<?>[] { String.class, Integer.class }));
+					}
+				}
+				"""
+			},
+			"[class java.lang.String]");
+	}
+	public void testGH5583_lambdaResults() {
+		runConformTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				import java.util.function.*;
+				public class X {
+					static <T> T[] copy(T[] a) { return a.clone(); }
+					static <E> List<E> list(E[] e) { return new ArrayList<>(Arrays.asList(e)); }
+					static <R> R call(Function<Integer, R> f) { return f.apply(1); }
+					static <R> R get(Supplier<R> s) { return s.get(); }
+					static <A, R> R apply(Function<A, R> f, A a) { return f.apply(a); }
+					public static void main(String[] args) {
+						Class<?>[] a = { String.class, Integer.class };
+						List<List<Class<?>>> all = new ArrayList<>();
+						all.add(call(n -> list(copy(a))).subList(0, 1));
+						all.add(call((Integer n) -> list(copy(a))).subList(1, 2));
+						all.add(call(n -> { if (n > 1) return list(a); return list(copy(a)); }).subList(0, 1));
+						all.add(call(n -> n > 1 ? list(a) : list(copy(a))).subList(1, 2));
+						all.add(call(n -> call(p -> list(copy(a)))).subList(0, 1));
+						all.add(get(() -> list(copy(a))).subList(1, 2));
+						all.add(list(apply(X::copy, a)).subList(0, 1));
+						Class<?>[] s = call(n -> copy(a)).clone();
+						System.out.println(all.size() + " " + s.length + " " + all.get(6));
+					}
+				}
+				"""
+			},
+			"7 2 [class java.lang.String]");
+	}
+	public void testGH5583_invocations() {
+		runConformTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				public class X {
+					static <T> T[] copy(T[] a) { return a.clone(); }
+					@SuppressWarnings("unchecked")
+					static <T> T[][] wrap(T[] a) {
+						T[][] r = (T[][]) java.lang.reflect.Array.newInstance(a.getClass(), 1);
+						r[0] = a;
+						return r;
+					}
+					static <E> List<E> list(E[] e) { return new ArrayList<>(Arrays.asList(e)); }
+					@SafeVarargs static <E> List<E> of(E... e) { return new ArrayList<>(Arrays.asList(e)); }
+					static class Box<E> {
+						final List<E> content;
+						Box(E[] es) { this.content = list(es); }
+					}
+					public static void main(String[] args) {
+						Class<?>[] a = { String.class, Integer.class };
+						List<List<Class<?>>> all = new ArrayList<>();
+						all.add(list(copy(a)).subList(0, 1));
+						all.add(list(copy(copy(a))).subList(1, 2));
+						all.add(of(copy(a)).subList(0, 1));
+						all.add(new Box<>(copy(a)).content);
+						all.add(list(args.length == 0 ? copy(a) : a).subList(1, 2));
+						all.add(Arrays.asList(Arrays.copyOf(a, 1)).subList(0, 1));
+						List<List<Class<?>[]>> arrays = new ArrayList<>();
+						arrays.add(of(copy(a), copy(a)).subList(0, 1));
+						arrays.add(list(wrap(a)).subList(0, 1));
+						Optional<Class<?>[]> o = Optional.of(copy(a)).filter(x -> x.length == 2);
+						System.out.println(all.size() + " " + arrays.size() + " " + o.isPresent());
+					}
+				}
+				"""
+			},
+			"6 2 true");
+	}
+	public void testGH5583_parameterizations() {
+		runConformTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				public class X {
+					@SafeVarargs static <T> T[] pair(T... a) { return a; }
+					static <E> List<E> list(E[] e) { return new ArrayList<>(Arrays.asList(e)); }
+					public static void main(String[] args) {
+						List<Integer> ints = Arrays.asList(1);
+						List<Double> doubles = Arrays.asList(2.0);
+						List<List<? extends Number>> all = new ArrayList<>(list(pair(ints, doubles)));
+						list(pair(ints, doubles)).add(ints);
+						System.out.println(all);
+					}
+				}
+				"""
+			},
+			"[[1], [2.0]]");
+	}
+	public void testGH5583_var() {
+		if (this.complianceLevel < ClassFileConstants.JDK10) return;
+		runConformTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				public class X {
+					static <T> T[] copy(T[] a) { return a.clone(); }
+					static <E> List<E> list(E[] e) { return new ArrayList<>(Arrays.asList(e)); }
+					public static void main(String[] args) {
+						Class<?>[] a = { String.class, Integer.class };
+						var l = list(copy(a));
+						l.add(Object.class);
+						List<Class<?>> r = l;
+						var o = Optional.of(1).map(n -> copy(a));
+						Optional<Class<?>[]> s = o;
+						for (Class<?> c : list(copy(a)))
+							r.add(c);
+						System.out.println(r.size() + " " + s.get().length);
+					}
+				}
+				"""
+			},
+			"5 2");
+	}
+	public void testGH5583_rawArray() {
+		runConformTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				import java.util.function.*;
+				public class X {
+					static <R> R call(Function<Integer, R> f) { return f.apply(1); }
+					@SuppressWarnings({ "rawtypes", "unchecked" })
+					static <K, V> Map<K, V> copy(Map<K, V> map) {
+						return Map.ofEntries(map.entrySet().toArray(new Map.Entry[0]));
+					}
+					@SuppressWarnings({ "rawtypes", "unchecked" })
+					static <K, V> Map<K, V> lambda(Map<K, V> map) {
+						return call(n -> Map.ofEntries(map.entrySet().toArray(new Map.Entry[0])));
+					}
+					public static void main(String[] args) {
+						Map<String, Integer> map = new HashMap<>();
+						map.put("a", 1);
+						System.out.println(copy(map) + " " + lambda(map));
+					}
+				}
+				"""
+			},
+			"{a=1} {a=1}");
+	}
+	public void testGH5583_negSharedCapture() {
+		runNegativeTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				public class X {
+					interface I {}
+					static class P implements I {}
+					static class Q implements I {}
+					static <T> T[] copy(T[] a) { return a; }
+					@SafeVarargs static <T> T[] pair(T... a) { return a; }
+					static <E> void swap(List<E>[] ls) { ls[0].add(ls[1].get(0)); }
+					static void wildcard(List<?>[] lists) {
+						swap(copy(lists));
+					}
+					static void parameterizations(List<P> ps, List<Q> qs) {
+						swap(pair(ps, qs));
+					}
+				}
+				"""
+			},
+			"""
+			----------
+			1. ERROR in X.java (at line 10)
+				swap(copy(lists));
+				^^^^
+			The method swap(List<E>[]) in the type X is not applicable for the arguments (List<?>[])
+			----------
+			2. ERROR in X.java (at line 13)
+				swap(pair(ps, qs));
+				^^^^
+			The method swap(List<E>[]) in the type X is not applicable for the arguments (List<? extends X.I>[])
+			----------
+			""");
+	}
+	public void testGH5583_negOtherErrors() {
+		runNegativeTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				public class X {
+					static <T> T[] copy(T[] a) { return a; }
+					static <T> T first(List<T> l) { return l.get(0); }
+					static <E> List<E> list(E[] e) { return new ArrayList<>(Arrays.asList(e)); }
+					static <E> List<E> single(E e) { return new ArrayList<>(Arrays.asList(e)); }
+					static void wrongElement(Class<?>[] a) {
+						List<Class<String>> r = list(copy(a)).subList(0, 1);
+					}
+					static void notAnArray(List<Class<?>> classes) {
+						List<Class<?>> r = single(first(classes)).subList(0, 1);
+					}
+				}
+				"""
+			},
+			"""
+			----------
+			1. ERROR in X.java (at line 8)
+				List<Class<String>> r = list(copy(a)).subList(0, 1);
+				                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<Class<?>> to List<Class<String>>
+			----------
+			2. ERROR in X.java (at line 11)
+				List<Class<?>> r = single(first(classes)).subList(0, 1);
+				                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<Class<capture#2-of ?>> to List<Class<?>>
+			----------
+			""");
+	}
+	public void testGH5583_lubOfCaptures() {
+		runNegativeTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				import java.util.function.*;
+				public class X {
+					@SafeVarargs static <T> T[] pair(T... a) { return a; }
+					static <E> List<E> list(E[] e) { return null; }
+					static <T> Supplier<T> sup(T a, T b) { return null; }
+					static <E> List<E> get(Supplier<? extends E> s) { return null; }
+					static <T> T pick(T a, T b) { return a; }
+					static <R> R map(Function<Integer, R> f) { return null; }
+					void test(List<? super Integer> numbers, List<? super Integer> objects) {
+						List<? super Integer>[] direct = pair(numbers, objects);
+						List<? super Integer> picked = pick(numbers, objects);
+						List<List<? super Integer>> nested = list(pair(numbers, objects));
+						List<List<? super Integer>> supplied = get(sup(numbers, objects));
+						Supplier<List<List<? super Integer>>> lambda = () -> list(pair(numbers, objects));
+						Object local = map(n -> { List<List<? super Integer>> l = list(pair(numbers, objects)); return l; });
+					}
+				}
+				"""
+			},
+			"""
+			----------
+			1. ERROR in X.java (at line 13)
+				List<List<? super Integer>> nested = list(pair(numbers, objects));
+				                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<List<?>> to List<List<? super Integer>>
+			----------
+			2. ERROR in X.java (at line 14)
+				List<List<? super Integer>> supplied = get(sup(numbers, objects));
+				                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<List<?>> to List<List<? super Integer>>
+			----------
+			3. ERROR in X.java (at line 15)
+				Supplier<List<List<? super Integer>>> lambda = () -> list(pair(numbers, objects));
+				                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<List<?>> to List<List<? super Integer>>
+			----------
+			4. ERROR in X.java (at line 16)
+				Object local = map(n -> { List<List<? super Integer>> l = list(pair(numbers, objects)); return l; });
+				                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<List<?>> to List<List<? super Integer>>
+			----------
+			""");
+	}
+	public void testGH5583_lubOfCapturesNested() {
+		runConformTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				import java.util.function.*;
+				public class X {
+					@SafeVarargs static <T> T[] pair(T... a) { return a; }
+					static <E> List<E> list(E[] e) { return new ArrayList<>(Arrays.asList(e)); }
+					static <T> Supplier<T> sup(T a, T b) { return () -> b; }
+					static <E> List<E> get(Supplier<? extends E> s) { return new ArrayList<>(Collections.singletonList(s.get())); }
+					static <R> R id(R r) { return r; }
+					static <R> R map(Function<Integer, R> f) { return f.apply(0); }
+					public static void main(String[] args) {
+						List<? super Integer> numbers = new ArrayList<Number>();
+						List<? super Integer> objects = new ArrayList<Object>();
+						List<? super Integer>[] direct = pair(numbers, objects);
+						List<List<? super Integer>> all = new ArrayList<>();
+						all.addAll(id(list(pair(numbers, objects))));
+						all.addAll(id(get(sup(numbers, objects))));
+						all.addAll(map(n -> list(pair(numbers, objects))));
+						all.addAll(map(n -> { return get(sup(numbers, objects)); }));
+						all.addAll(id(args.length == 0 ? list(pair(numbers, objects)) : null));
+						all.addAll(id(map(n -> get(sup(numbers, objects)))));
+						all.addAll(id(map(n -> { if (n == 0) return list(pair(numbers, objects)); return null; })));
+						direct[0].add(1);
+						all.get(1).add(2);
+						System.out.println(all.size() + " " + numbers + " " + objects);
+					}
+				}
+				"""
+			},
+			"11 [1] [2]");
+	}
+	public void testGH5583_lubOfCapturesNotEquivalent() {
+		runNegativeTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				import java.util.function.*;
+				public class X {
+					static <T extends List<? super Integer>> Supplier<T> bounded(T a, T b) { return null; }
+					static <E extends List<? super Integer>> List<E> getBounded(Supplier<? extends E> s) { return null; }
+					static <T> Supplier<T> consumed(T a, T b, Consumer<? super T> c) { return null; }
+					static <E> List<E> get(Supplier<? extends E> s) { return null; }
+					static <T> Supplier<T> pair(T a, T b) { return null; }
+					static <E> List<E> getWithExtra(Supplier<? extends E> s, E extra) { return null; }
+					static <R> R id(R r) { return r; }
+					static <R> R map(Function<Integer, R> f) { return null; }
+					static <T extends List<?>> Supplier<T> anyList(T a, T b) { return null; }
+					static <E extends List<?>> List<E> getAnyList(Supplier<? extends E> s) { return null; }
+					@SuppressWarnings("rawtypes") static <T extends Collection> Supplier<T> rawCollection(T a, T b) { return null; }
+					@SuppressWarnings("rawtypes") static <E extends Collection> List<E> getRawCollection(Supplier<? extends E> s) { return null; }
+					void test(List<? super Integer> numbers, List<? super Integer> objects, Consumer<List<? super Integer>> c, Consumer<List<?>> any) {
+						List<List<? super Integer>> b = id(getBounded(bounded(numbers, objects)));
+						List<List<? super Integer>> m = map(n -> getBounded(bounded(numbers, objects)));
+						List<List<? super Integer>> u = id(get(consumed(numbers, objects, c)));
+						List<List<? super Integer>> l = id(getAnyList(anyList(numbers, objects)));
+						List<List<? super Integer>> r = id(getRawCollection(rawCollection(numbers, objects)));
+						List<List<? super Integer>> a = id(get(consumed(numbers, objects, any)));
+						List<List<? super Integer>> e = id(getWithExtra(pair(numbers, objects), numbers));
+					}
+				}
+				"""
+			},
+			"""
+			----------
+			1. ERROR in X.java (at line 17)
+				List<List<? super Integer>> b = id(getBounded(bounded(numbers, objects)));
+				                                   ^^^^^^^^^^
+			The method getBounded(Supplier<? extends E>) in the type X is not applicable for the arguments (Supplier<List<? super Integer>>)
+			----------
+			2. ERROR in X.java (at line 18)
+				List<List<? super Integer>> m = map(n -> getBounded(bounded(numbers, objects)));
+				                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from Object to List<List<? super Integer>>
+			----------
+			3. ERROR in X.java (at line 18)
+				List<List<? super Integer>> m = map(n -> getBounded(bounded(numbers, objects)));
+				                                         ^^^^^^^^^^
+			The method getBounded(Supplier<? extends E>) in the type X is not applicable for the arguments (Supplier<List<? super Integer>>)
+			----------
+			4. ERROR in X.java (at line 19)
+				List<List<? super Integer>> u = id(get(consumed(numbers, objects, c)));
+				                                   ^^^
+			The method get(Supplier<? extends E>) in the type X is not applicable for the arguments (Supplier<List<? super Integer>>)
+			----------
+			5. ERROR in X.java (at line 20)
+				List<List<? super Integer>> l = id(getAnyList(anyList(numbers, objects)));
+				                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<List<?>> to List<List<? super Integer>>
+			----------
+			6. ERROR in X.java (at line 22)
+				List<List<? super Integer>> a = id(get(consumed(numbers, objects, any)));
+				                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<List<?>> to List<List<? super Integer>>
+			----------
+			7. ERROR in X.java (at line 23)
+				List<List<? super Integer>> e = id(getWithExtra(pair(numbers, objects), numbers));
+				                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<List<?>> to List<List<? super Integer>>
+			----------
+			""");
+	}
+	public void testGH5583_lubOfCapturesWildcardResult() {
+		runNegativeTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.*;
+				import java.util.function.*;
+				public class X {
+					static <R> R id(R r) { return r; }
+					static <T> Supplier<T> pair(T a, T b) { return null; }
+					static <E> List<? extends E> getExtending(Supplier<? extends E> s) { return null; }
+					static <E> List<? extends E> extending(E a, E b) { return null; }
+					static <E> List<? extends E> extendingConsumed(E a, E b, Consumer<? super E> c) { return null; }
+					static <E> List<? super E> getSuper(Supplier<? extends E> s) { return null; }
+					void test(List<? super Integer> numbers, List<? super Integer> objects, Consumer<List<? super Integer>> c, boolean flag) {
+						List<? extends List<? super Integer>> n = id(getExtending(pair(numbers, objects)));
+						List<? extends List<? super Integer>> d = id(extending(numbers, objects));
+						List<? extends List<? super Integer>> t = extending(numbers, objects);
+						List<? extends List<? super Integer>> u = id(extendingConsumed(numbers, objects, c));
+						List<? super List<? super Integer>> s = id(flag ? getSuper(pair(numbers, objects)) : null);
+					}
+				}
+				"""
+			},
+			"""
+			----------
+			1. ERROR in X.java (at line 11)
+				List<? extends List<? super Integer>> n = id(getExtending(pair(numbers, objects)));
+				                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<capture-Y#0-of E super List<?>> to List<? extends List<? super Integer>>
+			----------
+			2. ERROR in X.java (at line 12)
+				List<? extends List<? super Integer>> d = id(extending(numbers, objects));
+				                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<capture-Y#0-of E super List<?>> to List<? extends List<? super Integer>>
+			----------
+			""");
+	}
+
+	// https://github.com/eclipse-jdt/eclipse.jdt.ui/issues/3300
+	public void testPotentiallyExpensiveTypeInference() {
+		String item = "item(1)";
+		String fortyNine = (item + ", ").repeat(48) + item;
+		String fifty = fortyNine + ", " + item;
+		String source = """
+				class X {
+				    static <T> T item(T t) { return t; }
+				    @SafeVarargs static <T> void collect(T... ts) {}
+				    static <T> void independent(T first, Object... rest) {}
+				    @SafeVarargs static <T> void prefixed(T first, T... rest) {}
+				    static void test() {
+				        collect(
+				            %s);
+				        X.<Integer>collect(%s);
+				        collect(%s, 1);
+				        collect(%s, X.<Integer>item(1));
+				        independent(1, %s);
+				        prefixed(%s);
+				        collect(%s);
+				    }
+				    static <T> int size(T t) { return 1; }
+				    @SuppressWarnings("expensive-type-inference")
+				    static void suppressed() { collect(%s); }
+				}
+				""".formatted(fifty, fifty, fortyNine, fortyNine, fifty, fifty, fifty.replace("item", "size"), fifty);
+		Map options = getCompilerOptions();
+		options.put(JavaCore.COMPILER_PB_POTENTIALLY_EXPENSIVE_TYPE_INFERENCE, CompilerOptions.WARNING);
+		runNegativeTest(new String[] { "X.java", source }, """
+				----------
+				1. WARNING in X.java (at line 7)
+					collect(
+					^^^^^^^
+				Type inference for this varargs invocation may slow compilation. Consider specifying explicit type arguments
+				----------
+				""", null, true, options);
+	}
+
+	public void testPotentiallyExpensiveTypeInferenceMemberAndRawTypes() {
+		String source = """
+				import java.util.List;
+				class X {
+				    static class Box<A> {
+				        class Cell {}
+				        <R> R get() { return null; }
+				    }
+				    static <T> T id(T value) { return value; }
+				    @SafeVarargs static <T> void collect(T... values) {}
+				    @SafeVarargs static <T> void nested(List<? extends Box<T>.Cell[]>... values) {}
+				    static void test(Box raw, List<Box<String>.Cell[]> cells) {
+				        collect(
+				            %s);
+				        nested(
+				            %s);
+				    }
+				}
+				""".formatted("raw.get(), ".repeat(49) + "raw.get()", "id(cells), ".repeat(49) + "id(cells)");
+		Map options = getCompilerOptions();
+		options.put(CompilerOptions.OPTION_ReportRawTypeReference, CompilerOptions.IGNORE);
+		options.put(JavaCore.COMPILER_PB_POTENTIALLY_EXPENSIVE_TYPE_INFERENCE, CompilerOptions.WARNING);
+		runNegativeTest(new String[] { "X.java", source }, """
+				----------
+				1. WARNING in X.java (at line 13)
+					nested(
+					^^^^^^
+				Type inference for this varargs invocation may slow compilation. Consider specifying explicit type arguments
+				----------
+				""", null, true, options);
+	}
+
+	public void testPotentiallyExpensiveTypeInferenceIgnoredByDefault() {
+		String arguments = "id(1), ".repeat(49) + "id(1)";
+		runConformTest(new String[] { "X.java", """
+				class X {
+				    static <T> T id(T value) { return value; }
+				    @SafeVarargs static <T> void take(T... values) {}
+				    void test() { take(%s); }
+				}
+				""".formatted(arguments) });
+	}
+
+	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5724
+	// a method reference to a protected method of a superclass in another package is exact when the receiver gives
+	// access to it: this::m, super::m, another receiver of type X, a static method, an enclosing instance (also from a
+	// member class and an anonymous class), the unbound X::m; with it, the overload is chosen as javac does
+	public void testGH5724() {
+		runConformTest(
+			new String[] {
+				"impl/X.java",
+				"""
+				package impl;
+				import java.util.List;
+				import java.util.function.BiConsumer;
+				import java.util.function.Consumer;
+				import java.util.function.Function;
+				public class X extends lib.Sup {
+					interface TC<T> { void accept(T t) throws Exception; }
+					interface TC2<A, B> { void accept(A a, B b) throws Exception; }
+					static class Chain<T> {
+						final TC<T> c;
+						Chain(TC<T> c) { this.c = c; }
+						Consumer<T> sneaky() { return t -> { try { this.c.accept(t); } catch (Exception e) { throw new RuntimeException(e); } }; }
+					}
+					static class Chain2<A, B> {
+						final TC2<A, B> c;
+						Chain2(TC2<A, B> c) { this.c = c; }
+						BiConsumer<A, B> sneaky() { return (a, b) -> { try { this.c.accept(a, b); } catch (Exception e) { throw new RuntimeException(e); } }; }
+					}
+					static <T> Chain<T> wrap(TC<T> c) { return new Chain<>(c); }
+					static <A, B> Chain2<A, B> wrap2(TC2<A, B> c) { return new Chain2<>(c); }
+					class Inner {
+						void g(List<String> l) {
+							l.forEach(wrap(X.this::m).sneaky());
+							l.forEach(wrap(X::sm).sneaky());
+						}
+					}
+					static void foo(Function<String, String> fn) { System.out.print("F"); }
+					static void foo(Consumer<String> c) { System.out.print("C"); }
+					void run(List<String> l) {
+						l.forEach(wrap(this::m).sneaky());
+						l.forEach(wrap(lib.Sup::sm).sneaky());
+						l.forEach(wrap(super::m).sneaky());
+						X other = this;
+						l.forEach(wrap(other::m).sneaky());
+						new Object() { void x() { l.forEach(wrap(X.this::m).sneaky()); } }.x();
+						new Inner().g(l);
+						wrap2(X::m).sneaky().accept(this, "u");
+						foo(this::f);
+					}
+					public static void main(String[] args) {
+						new X().run(List.of("a"));
+					}
+				}
+				""",
+				"lib/Sup.java",
+				"""
+				package lib;
+				public abstract class Sup {
+					protected void m(String s) throws Exception { System.out.print(s); }
+					protected static void sm(String s) throws Exception { System.out.print(s.toUpperCase()); }
+					protected String f(String s) { return s; }
+				}
+				""",
+			},
+			"aAaaaaAuF");
+	}
+	// other receivers that give access to the protected method: a subclass of X, a type variable bounded by X, an
+	// enclosing instance from a nested member class and from a local class, this::m in a lambda; generic superclass
+	public void testGH5724_otherReceivers() {
+		runConformTest(
+			new String[] {
+				"impl/X.java",
+				"""
+				package impl;
+				import java.util.List;
+				import java.util.function.Consumer;
+				public class X extends lib.G<String> {
+					interface TC<T> { void accept(T t) throws Exception; }
+					static class Chain<T> {
+						final TC<T> c;
+						Chain(TC<T> c) { this.c = c; }
+						Consumer<T> sneaky() { return t -> { try { this.c.accept(t); } catch (Exception e) { throw new RuntimeException(e); } }; }
+					}
+					static <T> Chain<T> wrap(TC<T> c) { return new Chain<>(c); }
+					static class Sub extends X {}
+					class Inner {
+						class Inner2 {
+							void g(List<String> l) { l.forEach(wrap(X.this::m).sneaky()); }
+						}
+					}
+					<S extends X> void viaTypeVariable(S s, List<String> l) { l.forEach(wrap(s::m).sneaky()); }
+					void run(List<String> l) {
+						Sub sub = new Sub();
+						l.forEach(wrap(sub::m).sneaky());
+						viaTypeVariable(sub, l);
+						new Inner().new Inner2().g(l);
+						Runnable r = () -> l.forEach(wrap(this::m).sneaky());
+						r.run();
+						class Local { void g() { l.forEach(wrap(X.this::m).sneaky()); } }
+						new Local().g();
+					}
+					public static void main(String[] args) {
+						new X().run(List.of("b"));
+					}
+				}
+				""",
+				"lib/G.java",
+				"""
+				package lib;
+				public abstract class G<T> {
+					protected void m(T t) throws Exception { System.out.print(t); }
+				}
+				""",
+			},
+			"bbbbb");
+	}
+	// the superclass type does not give access to the protected method of another package (JLS 6.6.2.1): still an error
+	public void testGH5724_negSuperclassType() {
+		runNegativeTest(
+			new String[] {
+				"impl/X.java",
+				"""
+				package impl;
+				import java.util.function.BiConsumer;
+				public class X extends lib.Sup {
+					interface TC2<A, B> { void accept(A a, B b) throws Exception; }
+					static class Chain2<A, B> {
+						Chain2(TC2<A, B> c) {}
+						BiConsumer<A, B> sneaky() { return (a, b) -> {}; }
+					}
+					static <A, B> Chain2<A, B> wrap2(TC2<A, B> c) { return new Chain2<>(c); }
+					void run() {
+						BiConsumer<lib.Sup, String> b = wrap2(lib.Sup::m).sneaky();
+					}
+				}
+				""",
+				"lib/Sup.java",
+				"""
+				package lib;
+				public abstract class Sup {
+					protected void m(String s) throws Exception { System.out.print(s); }
+				}
+				""",
+			},
+			"""
+			----------
+			1. ERROR in impl\\X.java (at line 11)
+				BiConsumer<lib.Sup, String> b = wrap2(lib.Sup::m).sneaky();
+				                                ^^^^^
+			The method wrap2(X.TC2<A,B>) in the type X is not applicable for the arguments (lib.Sup::m)
+			----------
+			2. ERROR in impl\\X.java (at line 11)
+				BiConsumer<lib.Sup, String> b = wrap2(lib.Sup::m).sneaky();
+				                                      ^^^^^^^^^^
+			The type Sup does not define m(A, B) that is applicable here
+			----------
+			""");
+	}
+	// a sibling receiver does not give access to the protected method: still an error
+	public void testGH5724_negSiblingReceiver() {
+		runNegativeTest(
+			new String[] {
+				"lib/Sup.java",
+				"""
+				package lib;
+				public abstract class Sup {
+					protected void m(String s) throws Exception { System.out.print(s); }
+				}
+				""",
+				"impl/X.java",
+				"""
+				package impl;
+				import java.util.List;
+				import java.util.function.Consumer;
+				public class X extends lib.Sup {
+					interface TC<T> { void accept(T t) throws Exception; }
+					static class Chain<T> {
+						final TC<T> c;
+						Chain(TC<T> c) { this.c = c; }
+						Consumer<T> sneaky() { return t -> { try { this.c.accept(t); } catch (Exception e) { throw new RuntimeException(e); } }; }
+					}
+					static <T> Chain<T> wrap(TC<T> c) { return new Chain<>(c); }
+					void run(List<String> l, Other y) {
+						l.forEach(wrap(y::m).sneaky());
+					}
+				}
+				class Other extends lib.Sup {}
+				"""
+			},
+			"""
+			----------
+			1. ERROR in impl\\X.java (at line 13)
+				l.forEach(wrap(y::m).sneaky());
+				          ^^^^
+			The method wrap(X.TC<T>) in the type X is not applicable for the arguments (y::m)
+			----------
+			2. ERROR in impl\\X.java (at line 13)
+				l.forEach(wrap(y::m).sneaky());
+				               ^^^^
+			The type Other does not define m(T) that is applicable here
+			----------
+			""");
+	}
+
+	public void testGH5624_hiddenPolyArgumentNotChecked() {
+		runNegativeTest(
+			new String[] {
+				"X.java",
+				"""
+				import java.util.Arrays;
+				import java.util.List;
+				import java.util.function.Function;
+
+				public class X {
+					static class Foo<R> {}
+					static <R> Foo<R> wrap(Function<String, R> f) { return null; }
+					List<Foo<Integer>> test() {
+						return Arrays.asList(wrap(x -> 1), wrap(x -> 1), wrap(x -> "s"));
+					}
+				}
+				"""
+			},
+			"""
+			----------
+			1. ERROR in X.java (at line 9)
+				return Arrays.asList(wrap(x -> 1), wrap(x -> 1), wrap(x -> "s"));
+				       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+			Type mismatch: cannot convert from List<X.Foo<Object>> to List<X.Foo<Integer>>
+			----------
+			""");
+	}
+
+	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5305
+	public void testGH5305() {
+		if (this.complianceLevel < ClassFileConstants.JDK9) {
+			return;
+		}
+		runConformTest(
+			new String[] {
+				"TestClass.java",
+				"""
+				public class TestClass {
+					public static void main(String[] args) {
+						@SuppressWarnings("unchecked")
+						ArgumentCaptor<AuthorizeHttpRequestsConfigurer<String>.AuthorizationManagerRequestMatcherRegistry> arg = ArgumentCaptor
+								.forClass(AuthorizeHttpRequestsConfigurer.AuthorizationManagerRequestMatcherRegistry.class);
+						System.out.println(arg);
+					}
+				}
+
+				class ArgumentCaptor<T> {
+					@SuppressWarnings("unused")
+					private final Class<? extends T> clazz;
+
+					private ArgumentCaptor(Class<? extends T> clazz) {
+						this.clazz = clazz;
+					}
+
+					public static <U, S extends U> ArgumentCaptor<U> forClass(Class<S> clazz) {
+						return new ArgumentCaptor<>(clazz);
+					}
+				}
+
+				class AuthorizeHttpRequestsConfigurer<T> {
+					public final class AuthorizationManagerRequestMatcherRegistry {
+					}
+				}
+				"""
+		});
+	}
 
 }

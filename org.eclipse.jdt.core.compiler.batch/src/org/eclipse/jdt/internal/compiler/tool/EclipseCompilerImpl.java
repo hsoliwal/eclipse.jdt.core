@@ -269,6 +269,9 @@ public class EclipseCompilerImpl extends Main {
 						}
 						@Override
 						public JavaFileObject getSource() {
+							if (originatingFileName == null) {
+								return null;
+							}
 							File f = new File(new String(originatingFileName));
 							if (f.exists()) {
 								return new EclipseFileObject(null, f.toURI(), JavaFileObject.Kind.SOURCE, null);
@@ -349,6 +352,9 @@ public class EclipseCompilerImpl extends Main {
 						}
 						@Override
 						public JavaFileObject getSource() {
+							if (originatingFileName == null) {
+								return null;
+							}
 							File f = new File(new String(originatingFileName));
 							if (f.exists()) {
 								return new EclipseFileObject(null, f.toURI(), JavaFileObject.Kind.SOURCE, null);
@@ -393,6 +399,10 @@ public class EclipseCompilerImpl extends Main {
 		if (!((unitResult == null) || (unitResult.hasErrors() && !this.proceedOnError))) {
 			ClassFile[] classFiles = unitResult.getClassFiles();
 			boolean generateClasspathStructure = this.fileManager.hasLocation(StandardLocation.CLASS_OUTPUT);
+			// as in javac, the classes go to the output directory itself, unless the modules are compiled from a module source
+			// path: then to the output directory of their module
+			char[] modName = unitResult.compilationUnit.getModuleName();
+			boolean moduleOutput = modName != null && this.fileManager.hasLocation(StandardLocation.MODULE_SOURCE_PATH);
 			File outputLocation = null;
 			String currentDestinationPath = unitResult.getCompilationUnit().getDestinationPath();
 			if (currentDestinationPath == null)
@@ -419,9 +429,8 @@ public class EclipseCompilerImpl extends Main {
 							}));
 				}
 				try {
-					char[] modName = unitResult.compilationUnit.getModuleName();
 					Location location = null;
-					if (modName == null) {
+					if (!moduleOutput) {
 						location = StandardLocation.CLASS_OUTPUT;
 					} else {
 						// TODO: Still possible to end up with a non-null module name without JDK 9 in build path
@@ -489,6 +498,31 @@ public class EclipseCompilerImpl extends Main {
 		// The code is now moved to handleLocations() which is invoked just before compilation
 		validateClasspathOptions(bootclasspaths, endorsedDirClasspaths, extdirsClasspaths);
 	}
+	/**
+	 * Puts the sources found in a location of --patch-module into the module it patches. As javac does, the compiler asks
+	 * the file manager, which knows the location of each module in PATCH_MODULE_PATH, for the location of each source,
+	 * when the compilation starts (see handleLocations()).
+	 */
+	@Override
+	protected void handlePatchModule() {
+		if (this.modNames == null || this.compilationUnits == null || !this.fileManager.hasLocation(StandardLocation.PATCH_MODULE_PATH)) {
+			return;
+		}
+		for (int i = 0; i < this.modNames.length && i < this.compilationUnits.size(); i++) {
+			if (this.modNames[i] == null) {
+				try {
+					Location location = this.fileManager.getLocationForModule(StandardLocation.PATCH_MODULE_PATH, this.compilationUnits.get(i));
+					if (location != null) {
+						this.modNames[i] = this.fileManager.inferModuleName(location);
+					}
+				} catch (IOException e) {
+					throw new IllegalArgumentException(e);
+				} catch (UnsupportedOperationException e) {
+					return; // the file manager does not tell the module of a file
+				}
+			}
+		}
+	}
 	@Override
 	protected void handleSingleModuleCompilation() {
 		if (!this.fileManager.hasLocation(StandardLocation.MODULE_SOURCE_PATH)) {
@@ -496,6 +530,7 @@ public class EclipseCompilerImpl extends Main {
 		}
 	}
 	protected void handleLocations() {
+		handlePatchModule();
 		ArrayList<FileSystem.Classpath> fileSystemClasspaths = new ArrayList<>();
 		EclipseFileManager eclipseJavaFileManager = null;
 		StandardJavaFileManager standardJavaFileManager = null;
@@ -547,7 +582,9 @@ public class EclipseCompilerImpl extends Main {
 								}
 							}
 						}
-						fileSystemClasspaths.addAll(platformLocations);
+						if (this.releaseVersion == null) {
+							fileSystemClasspaths.addAll(platformLocations);
+						}
 						break; // Only possible scenario is, we have one and only entry representing the Java home.
 					} else {
 						Classpath classpath = FileSystem.getClasspath(
@@ -722,10 +759,8 @@ public class EclipseCompilerImpl extends Main {
 			if (this.fileManager.hasLocation(StandardLocation.UPGRADE_MODULE_PATH)) {
 				classpath = new ClasspathJsr199(this.fileManager, StandardLocation.UPGRADE_MODULE_PATH);
 			}
-			if (this.fileManager.hasLocation(StandardLocation.PATCH_MODULE_PATH)) {
-				classpath = new ClasspathJsr199(this.fileManager, StandardLocation.PATCH_MODULE_PATH);
-				fileSystemClasspaths.add(classpath);
-			}
+			// PATCH_MODULE_PATH is not a class path of the unnamed module: its sources are patched into their module (see
+			// handlePatchModule()) and, as with a standard file manager, its classes are not read
 			if (this.fileManager.hasLocation(StandardLocation.MODULE_SOURCE_PATH)) {
 				try {
 					for (Set<Location> locs: this.fileManager.listLocationsForModules(StandardLocation.MODULE_SOURCE_PATH)) {
@@ -791,7 +826,7 @@ public class EclipseCompilerImpl extends Main {
 	}
 	private Classpath getSystemClasspath(File jdkHome, long jdkLevel) {
 		Classpath system;
-		if (this.releaseVersion != null && this.complianceLevel < jdkLevel) {
+		if (this.releaseVersion != null && this.complianceLevel <= jdkLevel) {
 			String versionFromJdkLevel = CompilerOptions.versionFromJdkLevel(this.complianceLevel);
 			if (versionFromJdkLevel.length() >= 3) {
 				versionFromJdkLevel = versionFromJdkLevel.substring(2);
@@ -996,14 +1031,15 @@ public class EclipseCompilerImpl extends Main {
 		// + from Main: filenames, modNames
 		// + here: compilationUnits (see comment at declaration)
 		// I.e., instead of using filenames[idx] we use compilationUnits.get(idx):
+		// idx alone identifies the unit. Also requiring filename to be a suffix of
+		// getName() is wrong: a JavaFileObject may legally report a differently-formed
+		// path for the same file, which made this return null for a valid idx (#5302).
 		if (this.compilationUnits != null && idx < this.compilationUnits.size()) {
 			JavaFileObject javaFileObject = this.compilationUnits.get(idx);
-			if (filename.endsWith(javaFileObject.getName())) {
-				try {
-					return ClasspathJsr199.readCompilationUnit(javaFileObject, getDefaultEncoding());
-				} catch (IOException e) {
-					// nop
-				}
+			try {
+				return ClasspathJsr199.readCompilationUnit(javaFileObject, getDefaultEncoding());
+			} catch (IOException e) {
+				// nop
 			}
 		}
 		return null;

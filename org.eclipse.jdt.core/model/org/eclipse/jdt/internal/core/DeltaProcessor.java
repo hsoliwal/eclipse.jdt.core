@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -986,13 +987,14 @@ public class DeltaProcessor {
 		}
 
 		// perform refresh
-		Iterator<String> projectNames = this.state.getOldJavaProjecNames().iterator();
 		IWorkspaceRoot wksRoot = ResourcesPlugin.getWorkspace().getRoot();
-		while (projectNames.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+		for (String projectName : refreshedProjectsFirst(refreshedElements)) {
 
 			if (monitor != null && monitor.isCanceled()) break;
 
-			String projectName = projectNames.next();
+			// once every archive is known to be unchanged, no remaining project can get a delta
+			if (!hasDelta && externalArchivesStatus.size() == archivePathsToRefresh.size()) break;
+
 			IProject project = wksRoot.getProject(projectName);
 			if (!JavaProject.hasJavaNature(project)) {
 				// project is not accessible or has lost its Java nature
@@ -1028,6 +1030,8 @@ public class DeltaProcessor {
 								externalArchivesStatus.put(entryPath, EXTERNAL_JAR_REMOVED);
 								// the jar was physically removed: remove the index
 								this.manager.indexManager.removeIndex(entryPath);
+							} else {
+								externalArchivesStatus.put(entryPath, EXTERNAL_JAR_UNCHANGED);
 							}
 
 						} else if (targetLibrary instanceof File){ // external JAR
@@ -1121,6 +1125,23 @@ public class DeltaProcessor {
 			JavaModelManager.getJavaModelManager().resetJarTypeCache();
 		}
 		return hasDelta;
+	}
+
+	/*
+	 * All Java project names, with the projects of the refreshed elements first: their classpaths
+	 * reference every archive to refresh, so their statuses are all known after visiting them.
+	 */
+	private Set<String> refreshedProjectsFirst(Set<IJavaElement> refreshedElements) {
+		Set<String> allNames = this.state.getOldJavaProjecNames();
+		Set<String> names = new LinkedHashSet<>();
+		for (IJavaElement element : refreshedElements) {
+			IJavaProject javaProject = element.getJavaProject();
+			if (javaProject != null && allNames.contains(javaProject.getElementName())) {
+				names.add(javaProject.getElementName());
+			}
+		}
+		names.addAll(allNames);
+		return names;
 	}
 	private JavaElementDelta currentDelta() {
 		if (this.currentDelta == null) {
@@ -2379,6 +2400,7 @@ public class DeltaProcessor {
 
 					if (childType == NON_JAVA_RESOURCE) {
 						if (rootInfo != null) { // if inside a package fragment root
+							updateDerivedSourceIndex(delta, elementType, child, rootInfo);
 							if (!isValidParent) continue;
 							if (parent == null) {
 								// find the parent of the non-java resource to attach to
@@ -2914,6 +2936,32 @@ public class DeltaProcessor {
 				indexManager.remove(Util.relativePath(file.getFullPath(), 1/*remove project segment*/), file.getProject().getFullPath());
 				break;
 		}
+	}
+	/*
+	 * Updates the search index for a derived source file that was added, changed or removed in an existing package.
+	 * Derived source files are non-Java resources, so unlike compilation units they are not indexed through their own delta.
+	 * updateIndex(Openable, IResourceDelta) handles them only when their package is added, removed or locally changed.
+	 * See https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5086
+	 */
+	private void updateDerivedSourceIndex(IResourceDelta parentDelta, int parentType, IResourceDelta delta, RootInfo rootInfo) {
+		if (parentType != IJavaElement.PACKAGE_FRAGMENT && parentType != IJavaElement.PACKAGE_FRAGMENT_ROOT)
+			return;
+		if (parentDelta.getKind() != IResourceDelta.CHANGED || (parentDelta.getFlags() & IResourceDelta.LOCAL_CHANGED) != 0)
+			return; // already handled by updateIndex(Openable, IResourceDelta) for the package
+		if (rootInfo.entryKind != IClasspathEntry.CPE_SOURCE)
+			return;
+		IResource resource = delta.getResource();
+		if (resource.getType() != IResource.FILE)
+			return;
+		String name = resource.getName();
+		if (!Util.isJavaDerivedFileName(name)
+				|| !DerivedSourceSearchParticipantRegistry.hasParticipant(DerivedSourceSearchParticipantRegistry.getFileExtension(name)))
+			return;
+		if (Util.isExcluded(resource, rootInfo.inclusionPatterns, rootInfo.exclusionPatterns))
+			return;
+		IndexManager indexManager = this.manager.indexManager;
+		if (indexManager != null)
+			updateDerivedSourceIndex((IFile) resource, delta, indexManager);
 	}
 	/*
 	 * Update Java Model given some delta

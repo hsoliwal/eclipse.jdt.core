@@ -409,7 +409,8 @@ public IType getType() {
 	return this.binaryType;
 }
 public String getTypeName() {
-	return this.typeName;
+	int lastDollar = this.name.lastIndexOf('$');
+	return lastDollar > 0 ? Util.localTypeName(this.name, lastDollar, this.name.length()) : this.name;
 }
 /*
  * @see IClassFile

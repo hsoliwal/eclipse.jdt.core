@@ -23,11 +23,16 @@ import org.eclipse.jdt.internal.compiler.impl.CompilerOptions;
  * invocations as its arguments, so that one inference context has to resolve thousands of
  * mutually dependent inference variables. It then asserts that this stays within a time
  * budget. The budget is deliberately very generous and is scaled with the speed of the
- * machine, which is derived from compiling a small variant of the very same construct.
+ * machine, which is derived from compiling a reference construct that exercises the same
+ * inference code (a small variant of the same construct, resp. the construct of issue 5441).
  * </p>
  * <p>
  * Reference measurements (n=500): ~0.4s with the fix for
- * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5441, ~16s without it. Note that a
+ * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5441, ~16s without it.
+ * With a parameterized target type (n=400): ~1.1s with the fix for
+ * https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5624 (memoized incorporation of proper types
+ * into parameterized dependencies), ~6.5s without it, i.e. ~3x resp. ~16x the time for the
+ * construct of issue 5441 at n=500. Note that a
  * plain time <em>ratio</em> between two sizes is not usable here, because the constant
  * per-compilation overhead (a few tens of milliseconds) varies with the JIT state and would
  * dominate the small measurement.
@@ -40,8 +45,15 @@ public class InferenceScalabilityTest extends AbstractRegressionTest {
 	private static final int SMALL = 50;
 	/** Number of poly-expression arguments under test - the size reported in issue 5441. */
 	private static final int LARGE = 500;
+	/** Size for {@link #testIssue5624_manyNestedGenericInvocationsWithParameterizedTarget()}. */
+	private static final int LARGE_PARAMETERIZED = 400;
 	/** Budget for LARGE, relative to SMALL; only relevant on slow machines. */
 	private static final long RELATIVE_BUDGET = 60;
+	/**
+	 * Budget for LARGE_PARAMETERIZED, relative to LARGE (of the 5441 construct). Measured ratios are ~3 with
+	 * the fix for issue 5624 and ~15-18 without it, independently of CPU speed and number of cores.
+	 */
+	private static final long RELATIVE_BUDGET_PARAMETERIZED = 8;
 	/** Budget for LARGE on a fast machine, in milliseconds. */
 	private static final long MINIMUM_BUDGET_MS = 4000;
 
@@ -82,35 +94,91 @@ public class InferenceScalabilityTest extends AbstractRegressionTest {
 		return buf.toString();
 	}
 
-	private long timeCompilationMillis(int count) {
-		String[] testFiles = new String[] { "X.java", sourceWithNestedGenericInvocations(count) };
+	/**
+	 * Like {@link #sourceWithNestedGenericInvocations(int)}, but the outer invocation targets a
+	 * parameterized type, so that its inference variable depends on a parameterized type mentioning
+	 * further inference variables ({@code T <: Pair<A,B>}), cf. JDK-8221301.
+	 */
+	private String sourceWithNestedGenericInvocationsAndParameterizedTarget(int count) {
+		StringBuilder buf = new StringBuilder(count * 32);
+		buf.append("public class X {\n");
+		buf.append("	static class Pair<A,B> {\n");
+		buf.append("		static <A,B> Pair<A,B> of(A a, B b) { return null; }\n");
+		buf.append("	}\n");
+		buf.append("	static class List<T> {\n");
+		buf.append("		@SafeVarargs\n");
+		buf.append("		static <T> List<T> of(T... elements) { return null; }\n");
+		buf.append("	}\n");
+		buf.append("	static final List<Pair<String,String>> PAIRS = List.of(\n");
+		for (int i = 0; i < count; i++) {
+			buf.append("		Pair.of(\"a").append(i).append("\", \"b").append(i).append("\")");
+			buf.append(i < count - 1 ? ",\n" : "\n");
+		}
+		buf.append("	);\n");
+		buf.append("}\n");
+		return buf.toString();
+	}
+
+	private long timeCompilationMillis(String source) {
+		String[] testFiles = new String[] { "X.java", source };
 		long start = System.nanoTime();
 		runConformTest(testFiles);
 		return (System.nanoTime() - start) / 1_000_000L;
 	}
 
+	/**
+	 * Asserts that compiling {@code source} takes at most {@code relativeBudget} times as long as compiling
+	 * {@code referenceSource} (but is always granted {@link #MINIMUM_BUDGET_MS}). The reference is used to
+	 * calibrate the speed of the machine, it is compiled first to warm up the JIT, then measured as best of three.
+	 */
+	private void assertWithinBudget(String what, String source, String referenceWhat, String referenceSource,
+			long relativeBudget) {
+		if (RUN_JAVAC || RUN_JAVAC_OPT_IN) {
+			return; // comparing against javac would dominate and distort the measurement
+		}
+
+		for (int i = 0; i < 2; i++) {
+			timeCompilationMillis(referenceSource); // warm up JIT, JCL name environment and output directory
+		}
+
+		long reference = Long.MAX_VALUE;
+		for (int i = 0; i < 3; i++) {
+			reference = Math.min(reference, timeCompilationMillis(referenceSource));
+		}
+		long budget = Math.max(MINIMUM_BUDGET_MS, relativeBudget * reference);
+
+		long actual = timeCompilationMillis(source);
+		if (actual > budget) { // the machine may just have been busy, give it one more chance
+			actual = Math.min(actual, timeCompilationMillis(source));
+		}
+
+		String measurement = "compiling " + referenceWhat + " took " + reference
+				+ "ms, compiling " + what + " took " + actual + "ms, budget was " + budget + "ms";
+		System.out.println(testClass().getSimpleName() + "." + getName() + ": " + measurement);
+		assertTrue("Type inference does not scale: " + measurement, actual <= budget);
+	}
+
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5441
 	// inference must not degrade super-linearly with the number of poly arguments
 	public void testIssue5441_manyNestedGenericInvocations() {
-		if (RUN_JAVAC || RUN_JAVAC_OPT_IN)
-			return; // comparing against javac would dominate and distort the measurement
+		assertWithinBudget(
+				LARGE + " nested generic invocations", sourceWithNestedGenericInvocations(LARGE),
+				SMALL + " nested generic invocations", sourceWithNestedGenericInvocations(SMALL),
+				RELATIVE_BUDGET);
+	}
 
-		for (int i = 0; i < 2; i++)
-			timeCompilationMillis(SMALL); // warm up JIT, JCL name environment and output directory
-
-		long small = Long.MAX_VALUE;
-		for (int i = 0; i < 3; i++)
-			small = Math.min(small, timeCompilationMillis(SMALL));
-		long budget = Math.max(MINIMUM_BUDGET_MS, RELATIVE_BUDGET * small);
-
-		long large = timeCompilationMillis(LARGE);
-		if (large > budget) // the machine may just have been busy, give it one more chance
-			large = Math.min(large, timeCompilationMillis(LARGE));
-
-		String measurement = "compiling " + SMALL + " nested generic invocations took " + small
-				+ "ms, compiling " + LARGE + " took " + large + "ms, budget was " + budget + "ms";
-		System.out.println(testClass().getSimpleName() + ": " + measurement);
-		assertTrue("Type inference does not scale: " + measurement, large <= budget);
+	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/5624, cf. JDK-8221301
+	// incorporating proper types into parameterized dependencies must not be repeated for each pair of bounds
+	public void testIssue5624_manyNestedGenericInvocationsWithParameterizedTarget() {
+		// Calibrated against the construct of issue 5441 at full size: it exercises the very same inference
+		// code (and is not affected by the fix for 5624), so slow CPUs, few cores or a small heap affect both
+		// measurements alike. A small variant of the construct itself is not usable as reference, because its
+		// compile time is dominated by constant overhead that does not slow down in proportion on a slow machine.
+		assertWithinBudget(
+				LARGE_PARAMETERIZED + " nested generic invocations with parameterized target",
+				sourceWithNestedGenericInvocationsAndParameterizedTarget(LARGE_PARAMETERIZED),
+				LARGE + " nested generic invocations", sourceWithNestedGenericInvocations(LARGE),
+				RELATIVE_BUDGET_PARAMETERIZED);
 	}
 
 	public void testIssue5627_nestedCompletableFutureThenCompose() {
@@ -169,6 +237,279 @@ public class InferenceScalabilityTest extends AbstractRegressionTest {
 			System.out.println(testClass().getSimpleName() + ": " + measurement);
 		}
 		assertTrue("Type inference exceeded the 10-second budget: " + measurement,
+				elapsedNanos <= budgetNanos);
+	}
+
+	public void testIssue_JDK8221301 () {
+		if (RUN_JAVAC || RUN_JAVAC_OPT_IN)
+			return;
+
+		String source = """
+			public class X {
+
+			  static class Pair<A, B> {
+			    static <A, B> Pair<A, B> of(A a, B b) {
+			      throw new RuntimeException();
+			    }
+			  }
+
+			  static class List<T> {
+			    static <T> List<T> of(T... tx) {
+			      throw new RuntimeException();
+			    }
+			  }
+
+			  static final List<Pair<String, String>> PAIRS = List.of(
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"),
+			      Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"), Pair.of("a", "b"));
+			}
+			""";
+
+		java.util.Map<String, String> options = getCompilerOptions();
+		options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_27);
+		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_27);
+		options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_27);
+
+		final long budgetNanos = java.util.concurrent.TimeUnit.SECONDS.toNanos(5);
+		final long start = System.nanoTime();
+		long elapsedNanos;
+		String measurement;
+		try {
+			runConformTest(new String[] { "X.java", source }, options);
+		} finally {
+			elapsedNanos = System.nanoTime() - start;
+			measurement = "issue JDK8221301: 400 nested Pair.of(\"a\", \"b\") invocations, elapsed="
+					+ java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(elapsedNanos)
+					+ "ms, budget="
+					+ java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(budgetNanos)
+					+ "ms, withinBudget=" + (elapsedNanos <= budgetNanos);
+			System.out.println(testClass().getSimpleName() + ": " + measurement);
+		}
+		assertTrue("Type inference exceeded the 5-second budget: " + measurement,
+				elapsedNanos <= budgetNanos);
+	}
+
+
+	public void testIssue_JDK8152289  () {
+		if (RUN_JAVAC || RUN_JAVAC_OPT_IN)
+			return;
+
+		String source = """
+			public class X {
+				static class Point<T extends Comparable<T>> {
+					Point(T label) { }
+				}
+
+				static class Graph<T extends Comparable<T>> {
+					@SafeVarargs
+					public Graph(Point<T>... vertices) { }
+				}
+
+			    //100 points
+			    Graph<Integer> GEO = new Graph<>(
+			            new Point<>(1),
+			            new Point<>(2),
+			            new Point<>(3),
+			            new Point<>(4),
+			            new Point<>(5),
+			            new Point<>(6),
+			            new Point<>(7),
+			            new Point<>(8),
+			            new Point<>(9),
+			            new Point<>(10),
+			            new Point<>(11),
+			            new Point<>(12),
+			            new Point<>(13),
+			            new Point<>(14),
+			            new Point<>(15),
+			            new Point<>(16),
+			            new Point<>(17),
+			            new Point<>(18),
+			            new Point<>(19),
+			            new Point<>(20),
+			            new Point<>(21),
+			            new Point<>(22),
+			            new Point<>(23),
+			            new Point<>(24),
+			            new Point<>(25),
+			            new Point<>(26),
+			            new Point<>(27),
+			            new Point<>(28),
+			            new Point<>(29),
+			            new Point<>(30),
+			            new Point<>(31),
+			            new Point<>(32),
+			            new Point<>(33),
+			            new Point<>(34),
+			            new Point<>(35),
+			            new Point<>(36),
+			            new Point<>(37),
+			            new Point<>(38),
+			            new Point<>(39),
+			            new Point<>(40),
+			            new Point<>(41),
+			            new Point<>(42),
+			            new Point<>(43),
+			            new Point<>(44),
+			            new Point<>(45),
+			            new Point<>(46),
+			            new Point<>(47),
+			            new Point<>(48),
+			            new Point<>(49),
+			            new Point<>(50),
+			            new Point<>(51),
+			            new Point<>(52),
+			            new Point<>(53),
+			            new Point<>(54),
+			            new Point<>(55),
+			            new Point<>(56),
+			            new Point<>(57),
+			            new Point<>(58),
+			            new Point<>(59),
+			            new Point<>(60),
+			            new Point<>(61),
+			            new Point<>(62),
+			            new Point<>(63),
+			            new Point<>(64),
+			            new Point<>(65),
+			            new Point<>(66),
+			            new Point<>(67),
+			            new Point<>(68),
+			            new Point<>(69),
+			            new Point<>(70),
+			            new Point<>(71),
+			            new Point<>(72),
+			            new Point<>(73),
+			            new Point<>(74),
+			            new Point<>(75),
+			            new Point<>(76),
+			            new Point<>(77),
+			            new Point<>(78),
+			            new Point<>(79),
+			            new Point<>(80),
+			            new Point<>(81),
+			            new Point<>(82),
+			            new Point<>(83),
+			            new Point<>(84),
+			            new Point<>(85),
+			            new Point<>(86),
+			            new Point<>(87),
+			            new Point<>(88),
+			            new Point<>(89),
+			            new Point<>(90),
+			            new Point<>(91),
+			            new Point<>(92),
+			            new Point<>(93),
+			            new Point<>(94),
+			            new Point<>(95),
+			            new Point<>(96),
+			            new Point<>(97),
+			            new Point<>(98),
+			            new Point<>(99),
+			            new Point<>(100)
+			    );
+			}
+			""";
+
+		java.util.Map<String, String> options = getCompilerOptions();
+		options.put(CompilerOptions.OPTION_Compliance, CompilerOptions.VERSION_27);
+		options.put(CompilerOptions.OPTION_Source, CompilerOptions.VERSION_27);
+		options.put(CompilerOptions.OPTION_TargetPlatform, CompilerOptions.VERSION_27);
+
+		final long budgetNanos = java.util.concurrent.TimeUnit.SECONDS.toNanos(5);
+		final long start = System.nanoTime();
+		long elapsedNanos;
+		String measurement;
+		try {
+			runConformTest(new String[] { "X.java", source }, options);
+		} finally {
+			elapsedNanos = System.nanoTime() - start;
+			measurement = "issue JDK8221301: 100 nested new Point<>() invocations, elapsed="
+					+ java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(elapsedNanos)
+					+ "ms, budget="
+					+ java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(budgetNanos)
+					+ "ms, withinBudget=" + (elapsedNanos <= budgetNanos);
+			System.out.println(testClass().getSimpleName() + ": " + measurement);
+		}
+		assertTrue("Type inference exceeded the 5-second budget: " + measurement,
 				elapsedNanos <= budgetNanos);
 	}
 }
