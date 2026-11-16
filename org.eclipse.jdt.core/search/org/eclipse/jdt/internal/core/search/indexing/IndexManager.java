@@ -157,6 +157,8 @@ public class IndexManager extends JobManager implements IIndexConstants {
 	private SimpleLookupTable participantsContainers;
 	/** synchronized by IndexManager.this */
 	private boolean participantUpdated;
+	/** synchronized by IndexManager.this */
+	private boolean indexMapUpdated;
 	private volatile MetaIndex metaIndex;
 
 	// should JDT manage (update, delete as needed) pre-built indexes?
@@ -839,7 +841,7 @@ synchronized boolean addIndex(IPath containerPath, IndexLocation indexFile) {
 		putIndexLocation(containerPath, null);
 		return false;
 	}
-	writeIndexMapFile();
+	this.indexMapUpdated = true;
 	return true;
 }
 
@@ -1188,6 +1190,7 @@ public void reset() {
 		}
 		this.indexLocations = new SimpleLookupTable();
 		this.containerPathsByLocation = new HashMap<>();
+		this.indexMapUpdated = false;
 		this.javaPluginLocation = null;
 		this.metaIndexUpdates.clear();
 	}
@@ -1311,6 +1314,10 @@ public void saveIndexes() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		if (this.participantsContainers != null && this.participantUpdated) {
 			writeParticipantsIndexNamesFile();
 			this.participantUpdated = false;
+		}
+		if (this.indexMapUpdated) {
+			writeIndexMapFile();
+			this.indexMapUpdated = false;
 		}
 	}
 	allSaved &= saveMetaIndex();
