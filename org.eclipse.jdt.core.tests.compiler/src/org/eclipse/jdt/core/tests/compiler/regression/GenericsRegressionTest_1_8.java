@@ -7317,6 +7317,7 @@ public void testBug499725() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 
 // Redundant type argument specification error for anonymous types should not occur below source level 9
+@RunAlways
 public void testBug488663() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Map<String, String> options = getCompilerOptions();
 	options.put(CompilerOptions.OPTION_ReportRedundantSpecificationOfTypeArguments, CompilerOptions.ERROR);
@@ -7332,7 +7333,7 @@ public void testBug488663() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"	};\n" +
 			"}"
 		};
-	if (this.complianceLevel < ClassFileConstants.JDK9) {
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK9) {
 	this.runConformTest(
 		testFiles,
 		"", options);
@@ -10092,8 +10093,9 @@ public void testBug508834_comment0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHO
 			"----------\n";
 		runner.runNegativeTest();
 	}
+	@RunAlways
 	public void testBug559951() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK10) return; // uses 'var'
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK10) return; // uses 'var'
 		runConformTest(
 			new String[] {
 				"no/Demo.java",
@@ -10308,8 +10310,9 @@ public void testBug508834_comment0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHO
 			"The type of count() from the type Stream<Object> is long, this is incompatible with the descriptor\'s return type: int\n" +
 			"----------\n");
 	}
+	@RunAlways
 	public void testBug549446() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK12)
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK12)
 			return; // uses interface Constable
 		runConformTest(
 			new String[] {
@@ -10332,8 +10335,9 @@ public void testBug508834_comment0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHO
 				"}\n"
 			});
 	}
+	@RunAlways
 	public void testBug576516() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK11) return; // uses 'var'
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK11) return; // uses 'var'
 		runConformTest(
 			new String[] {
 				"lib/Base.java",
@@ -11076,8 +11080,9 @@ public void testBug508834_comment0() { //FLLDCIM: MARK — ML METHOD_SPLIT METHO
 	}
 
 	// https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4846
+	@RunAlways
 	public void testGH4846() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-		if (this.complianceLevel < ClassFileConstants.JDK9) {
+		if (this.fetchComplianceLevel() < ClassFileConstants.JDK9) {
 			return;
 		}
 		runConformTest(

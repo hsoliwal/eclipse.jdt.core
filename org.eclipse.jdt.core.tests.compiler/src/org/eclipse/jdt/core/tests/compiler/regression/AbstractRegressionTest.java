@@ -1465,7 +1465,7 @@ protected static class JavacTestOptions {
 	}
 
 	protected boolean checkPreviewAllowed() {
-		return this.complianceLevel == ClassFileConstants.getLatestJDKLevel();
+		return this.complianceLevel() == ClassFileConstants.getLatestJDKLevel();
 	}
 	protected void checkClassFile(String className, String source, String expectedOutput) throws ClassFormatException, IOException {
 		this.checkClassFile("", className, source, expectedOutput, ClassFileBytesDisassembler.SYSTEM);
@@ -1622,17 +1622,17 @@ protected static class JavacTestOptions {
 			.append("\" -d \"")
 			.append(EVAL_DIRECTORY);
 		String processAnnot = this.enableAPT ? "" : "-proc:none";
-		if (this.complianceLevel == ClassFileConstants.JDK1_8) {
+		if (this.complianceLevel() == ClassFileConstants.JDK1_8) {
 			buffer.append("\" -1.8 " + processAnnot); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		} else if (this.complianceLevel == ClassFileConstants.JDK9) {
+		} else if (this.complianceLevel() == ClassFileConstants.JDK9) {
 			buffer.append("\" -9 " + processAnnot); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
-		} else if (this.complianceLevel == ClassFileConstants.JDK10) {
+		} else if (this.complianceLevel() == ClassFileConstants.JDK10) {
 			buffer.append("\" -10 " + processAnnot); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		} else {
-			int major = (int)(this.complianceLevel>>16);
+			int major = (int)(this.complianceLevel()>>16);
 			buffer.append("\" -" + (major - ClassFileConstants.MAJOR_VERSION_0)); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		}
-		if (this.complianceLevel == ClassFileConstants.getLatestJDKLevel()  && this.enablePreview)
+		if (this.complianceLevel() == ClassFileConstants.getLatestJDKLevel()  && this.enablePreview)
 			buffer.append(" --enable-preview "); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 		buffer //FLLDCIM: MARK — M14 M3STRING_COMPOSITE CALL
 			.append(" -preserveAllLocals -proceedOnError -nowarn -g -classpath \"")
@@ -2664,7 +2664,7 @@ protected void runJavac( //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	Iterator<JavacCompiler> compilers = javacCompilers.iterator();
 	while (compilers.hasNext()) { //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
 		JavacCompiler compiler = compilers.next();
-		if (!options.skip(compiler) && compiler.compliance == this.complianceLevel) {
+		if (!options.skip(compiler) && compiler.compliance == this.complianceLevel()) {
 			// WORK this may exclude some compilers under some conditions (when
 			//      complianceLevel is not set); consider accepting the compiler
 			//      in such case and see what happens
@@ -3660,40 +3660,39 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 			exception = e;
 			throw e;
 		} finally {
-			nameEnvironment.cleanup();
-			String[] alternatePlatformIndepentLogs = null;
-			if (expectedCompilerLog != null) {
-				alternatePlatformIndepentLogs = new String[] {Util.convertToIndependantLineDelimiter(expectedCompilerLog)};
-			} else if (alternateCompilerLogs != null) {
-				alternatePlatformIndepentLogs = new String[alternateCompilerLogs.length];
-				for (int i = 0; i < alternateCompilerLogs.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
-					alternatePlatformIndepentLogs[i] = Util.convertToIndependantLineDelimiter(alternateCompilerLogs[i]);
-			}
-			if (alternatePlatformIndepentLogs != null) {
-				checkCompilerLog(testFiles, requestor, alternatePlatformIndepentLogs, exception);
-			}
-			if (exception == null) {
-				if (expectingCompilerErrors) {
-					if (!requestor.hasErrors) {
-						logTestFiles(true, testFiles);
-						fail("Unexpected success");
-					}
-				} else if (requestor.hasErrors) {
-					if (!"".equals(requestor.problemLog)) {
-						logTestFiles(true, testFiles);
-						System.out.println("Copy-paste compiler log:");
-						System.out.println(Util.displayString(Util.convertToIndependantLineDelimiter(requestor.problemLog.toString()), INDENT, SHIFT));
-						assertEquals("Unexpected failure", "", requestor.problemLog);
+			if (this.mustRunTest()) {
+
+				nameEnvironment.cleanup();
+				String[] alternatePlatformIndepentLogs = null;
+				if (expectedCompilerLog != null) {
+					alternatePlatformIndepentLogs = new String[] {Util.convertToIndependantLineDelimiter(expectedCompilerLog)};
+				} else if (alternateCompilerLogs != null) {
+					alternatePlatformIndepentLogs = new String[alternateCompilerLogs.length];
+					for (int i = 0; i < alternateCompilerLogs.length; i++) //FLLDCIM: MARK — M32 LOOP_TO_LANE LOOP
+						alternatePlatformIndepentLogs[i] = Util.convertToIndependantLineDelimiter(alternateCompilerLogs[i]);
+				}
+				if (alternatePlatformIndepentLogs != null) {
+					checkCompilerLog(testFiles, requestor, alternatePlatformIndepentLogs, exception);
+				}
+				if (exception == null) {
+					if (expectingCompilerErrors) {
+						if (!requestor.hasErrors) {
+							logTestFiles(true, testFiles);
+							fail("Unexpected success");
+						}
+					} else if (requestor.hasErrors) {
+						if (!"".equals(requestor.problemLog)) {
+							logTestFiles(true, testFiles);
+							System.out.println("Copy-paste compiler log:");
+							System.out.println(Util.displayString(Util.convertToIndependantLineDelimiter(requestor.problemLog.toString()), INDENT, SHIFT));
+							assertEquals("Unexpected failure", "", requestor.problemLog);
+						}
 					}
 				}
 			}
-		}
-		if (!requestor.hasErrors || forceExecution) {
-			String sourceFile = testFiles[0];
 
-			// Compute class name by removing ".java" and replacing slashes with dots
-			String className = sourceFile.substring(0, sourceFile.length() - 5).replace('/', '.').replace('\\', '.');
-			if (!className.endsWith(PACKAGE_INFO_NAME) && !className.endsWith(MODULE_INFO_NAME)) {
+			if (!requestor.hasErrors || forceExecution) {
+				String sourceFile = testFiles[0];
 
 				if (vmArguments != null) {
 					if (this.verifier != null) {
@@ -3717,30 +3716,46 @@ protected void runNegativeTest(boolean skipJavac, JavacTestOptions javacTestOpti
 					if (execErrorString != null && execErrorString.length() > 0) {
 						System.out.println("[ERR]:"+execErrorString); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
 					}
-					String execOutputString = this.verifier.getExecutionOutput();
-					if (execOutputString != null && execOutputString.length() > 0) {
-						System.out.println("[OUT]:"+execOutputString); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+					boolean passed =
+						this.verifier.verifyClassFiles(
+							sourceFile,
+							className,
+							expectedOutputString,
+							expectedErrorString,
+							this.classpaths,
+							null,
+							vmArguments);
+					if (!passed) {
+						System.out.println(getClass().getName() + '#' + getName());
+						String execErrorString = this.verifier.getExecutionError();
+						if (execErrorString != null && execErrorString.length() > 0) {
+							System.out.println("[ERR]:"+execErrorString); //$NON-NLS-1$
+						}
+						String execOutputString = this.verifier.getExecutionOutput();
+						if (execOutputString != null && execOutputString.length() > 0) {
+							System.out.println("[OUT]:"+execOutputString); //$NON-NLS-1$ //FLLDCIM: MARK — M33 M3STRING_COMPOSITE CONCAT
+						}
+						logTestFiles(false, testFiles);
+						assertEquals(this.verifier.failureReason, expectedErrorString == null ? "" : expectedErrorString, execErrorString);
+						assertEquals(this.verifier.failureReason, expectedOutputString == null ? "" : expectedOutputString, execOutputString);
 					}
-					logTestFiles(false, testFiles);
-					assertEquals(this.verifier.failureReason, expectedErrorString == null ? "" : expectedErrorString, execErrorString);
-					assertEquals(this.verifier.failureReason, expectedOutputString == null ? "" : expectedOutputString, execOutputString);
-				}
-				assertTrue(this.verifier.failureReason, // computed by verifyClassFiles(...) action
-						passed);
-				if (vmArguments != null) {
-					if (this.verifier != null) {
-						this.verifier.shutDown();
+					assertTrue(this.verifier.failureReason, // computed by verifyClassFiles(...) action
+							passed);
+					if (vmArguments != null) {
+						if (this.verifier != null) {
+							this.verifier.shutDown();
+						}
+						this.verifier = new TestVerifier(false);
+						this.createdVerifier = true;
 					}
-					this.verifier = new TestVerifier(false);
-					this.createdVerifier = true;
 				}
 			}
-		}
-		// javac part
-		if (shouldRunJavac() && javacTestOptions != JavacTestOptions.SKIP) {
-			runJavac(testFiles, expectingCompilerErrors, expectedCompilerLog,
-					expectedJavacOutputString, expectedErrorString, shouldFlushOutputDirectory,
-					javacTestOptions, vmArguments, classLibraries, libsOnModulePath);
+			// javac part
+			if (shouldRunJavac() && javacTestOptions != JavacTestOptions.SKIP) {
+				runJavac(testFiles, expectingCompilerErrors, expectedCompilerLog,
+						expectedJavacOutputString, expectedErrorString, shouldFlushOutputDirectory,
+						javacTestOptions, vmArguments, classLibraries, libsOnModulePath);
+			}
 		}
 	}
 

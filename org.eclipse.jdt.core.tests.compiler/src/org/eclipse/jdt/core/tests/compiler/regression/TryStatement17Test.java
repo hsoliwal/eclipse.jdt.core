@@ -1265,8 +1265,9 @@ public void testBug404146() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"}\n"
 		});
 }
+@RunAlways
 public void testBug488569_001() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK9) {
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK9) {
 		this.runNegativeTest(
 			new String[] {
 					"X.java",

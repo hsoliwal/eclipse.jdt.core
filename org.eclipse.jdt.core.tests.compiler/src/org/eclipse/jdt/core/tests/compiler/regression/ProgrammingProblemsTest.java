@@ -3277,8 +3277,9 @@ public void testBug513310() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/567
 // Report unused variable for variables declared in instanceof pattern
+@RunAlways
 public void testGH567() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK21)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
@@ -3300,7 +3301,7 @@ public void testGH567() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				"    }\n" +
 				"}"
 			},
-			this.complianceLevel == ClassFileConstants.JDK21 ?
+			this.fetchComplianceLevel() == ClassFileConstants.JDK21 ?
 
 			"----------\n"
 			+ "1. WARNING in X.java (at line 4)\n"
@@ -3345,8 +3346,9 @@ public void testGH567() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3051
 // [Enhancement] Add warnings for unused patterns
+@RunAlways
 public void testIssue3051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK22)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK22)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
@@ -3393,8 +3395,9 @@ public void testIssue3051() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3051
 // [Enhancement] Add warnings for unused patterns
+@RunAlways
 public void testIssue3051_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK21)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
@@ -3422,7 +3425,7 @@ public void testIssue3051_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				}
 				"""
 			},
-			this.complianceLevel == ClassFileConstants.JDK21 ?
+			this.fetchComplianceLevel() == ClassFileConstants.JDK21 ?
 					"----------\n" +
 					"1. WARNING in Unused.java (at line 6)\n" +
 					"	if (o instanceof String s) {\n" +
@@ -3456,12 +3459,13 @@ public void testIssue3051_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3054
 // Add warnings for structurally required but otherwise unused local variables
+@RunAlways
 public void testIssue3054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK21)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
-	if (this.complianceLevel > ClassFileConstants.JDK21)
+	if (this.fetchComplianceLevel() > ClassFileConstants.JDK21)
 		customOptions.put(CompilerOptions.OPTION_ReportUnusedExceptionParameter, CompilerOptions.WARNING);
 	this.runNegativeTest(
 			new String[] {
@@ -3522,7 +3526,7 @@ public void testIssue3054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				}
 				"""
 			},
-			this.complianceLevel == ClassFileConstants.JDK21 ?
+			this.fetchComplianceLevel() == ClassFileConstants.JDK21 ?
 					"----------\n" +
 					"1. WARNING in Unused.java (at line 15)\n" +
 					"	for (Order order : orders) // unused variable order\n" +
@@ -3597,8 +3601,9 @@ public void testIssue3054() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3054
 // Add warnings for structurally required but otherwise unused local variables
+@RunAlways
 public void testIssue3054_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK21)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
@@ -3662,7 +3667,7 @@ public void testIssue3054_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				}
 				"""
 			},
-			this.complianceLevel == ClassFileConstants.JDK21 ?
+			this.fetchComplianceLevel() == ClassFileConstants.JDK21 ?
 					"----------\n" +
 					"1. WARNING in Unused.java (at line 15)\n" +
 					"	for (Order order : orders) // unused variable order\n" +
@@ -3721,8 +3726,9 @@ public void testIssue3054_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3054
 // Add warnings for structurally required but otherwise unused local variables
+@RunAlways
 public void testIssue3054_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK21)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
@@ -3785,7 +3791,7 @@ public void testIssue3054_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 				}
 				"""
 			},
-			this.complianceLevel == ClassFileConstants.JDK21 ?
+			this.fetchComplianceLevel() == ClassFileConstants.JDK21 ?
 					"----------\n" +
 					"1. WARNING in Unused.java (at line 15)\n" +
 					"	for (Order order : orders) // unused variable order\n" +
@@ -3845,8 +3851,9 @@ public void testIssue3054_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3054
 // Add warnings for structurally required but otherwise unused local variables
 // Check that suppress warning works
+@RunAlways
 public void testIssue3054_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK22)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK22)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
@@ -3942,8 +3949,9 @@ public void testIssue3054_4() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/3054
 // Add warnings for structurally required but otherwise unused local variables
+@RunAlways
 public void testIssue3054_5() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK22)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK22)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
@@ -4211,8 +4219,9 @@ public void testGH3870b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 
 // https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4065
 // [Null][Record] Invalid "dead code" warning for record pattern with null-guard on component
+@RunAlways
 public void testIssue4065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK21)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportUnusedLocal, CompilerOptions.WARNING);
@@ -4272,8 +4281,9 @@ public void testIssue4065() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			customOptions);
 }
 //https://github.com/eclipse-jdt/eclipse.jdt.core/issues/4328
+@RunAlways
 public void testIssue4328() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK14)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK14)
 		return;
 	Map customOptions = getCompilerOptions();
 	customOptions.put(CompilerOptions.OPTION_ReportIncompleteEnumSwitch, CompilerOptions.WARNING);

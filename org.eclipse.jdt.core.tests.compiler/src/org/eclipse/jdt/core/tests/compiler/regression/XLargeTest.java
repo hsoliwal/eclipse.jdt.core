@@ -1155,8 +1155,9 @@ public void test010() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 // filling the stack
 // need to use a computed string (else this source file will get blown away
 // as well)
+@RunAlways
 public void test011() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel >= ClassFileConstants.JDK9)
+	if (this.fetchComplianceLevel() >= ClassFileConstants.JDK9)
 		return;
 	int length = 3 * 54 * 1000;
 		// the longer the slower, but still needs to reach the limit...
@@ -1389,6 +1390,7 @@ public void _test015() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		JavacTestOptions.EclipseJustification.EclipseBug169017);
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=350095
+@RunAlways
 public void test0016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	// only run in 1.5 or above
 	StringBuilder buffer = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
@@ -1460,7 +1462,7 @@ public void test0016() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	""");
 	String[] src = new String[] { "X.java", fileContents.toString()};
 
-	if (this.complianceLevel < ClassFileConstants.JDK9) {
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK9) {
 		this.runConformTest(src, buffer.toString());
 	} else {
 		this.runNegativeTest(src,
@@ -1676,8 +1678,9 @@ public void testBug519070() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			},
 			"SUCCESS");
 }
+@RunAlways
 public void testIssue1164a() throws ClassFormatException, IOException { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK9)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK9)
 		return;
 	StringBuilder sourceCode = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"public class X {\n" +
@@ -1906,8 +1909,9 @@ public void testIssue1164a() throws ClassFormatException, IOException { //FLLDCI
 			"}";
 	checkClassFile("X", sourceCode.toString(), expectedOutput, ClassFileBytesDisassembler.DETAILED | ClassFileBytesDisassembler.COMPACT);
 }
+@RunAlways
 public void testIssue1164b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK9)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK9)
 		return;
 	StringBuilder sourceCode = new StringBuilder( //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW
 			"public class X {\n" +
@@ -1981,8 +1985,9 @@ public void testIssue1164b() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 		null,
 		JavacTestOptions.JavacHasABug.JavacThrowsAnException /* stack overflow */); // transient, platform-dependent
 }
+@RunAlways
 public void testIssue1359() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK9)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK9)
 		return;
 
 	StringBuilder fileContents = new StringBuilder(); //FLLDCIM: MARK — M14 M3STRING_COMPOSITE NEW

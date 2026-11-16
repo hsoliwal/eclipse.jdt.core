@@ -11801,7 +11801,7 @@ public void test0178_Method() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"full ast");
 }
 public void testBug576272() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK17)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK17)
 		return;
 	String str =
 		"""

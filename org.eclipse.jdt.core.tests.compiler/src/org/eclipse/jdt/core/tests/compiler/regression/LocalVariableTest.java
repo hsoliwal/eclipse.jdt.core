@@ -857,6 +857,7 @@ public void test412119d() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			true,
 			options);
 }
+@RunAlways
 public void testBug537033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
@@ -888,7 +889,7 @@ public void testBug537033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 			"    }\n" +
 			"}\n"
 		},
-		this.complianceLevel < ClassFileConstants.JDK11
+		this.fetchComplianceLevel() < ClassFileConstants.JDK11
 		?
 		"----------\n" +
 		"1. WARNING in ShowBug.java (at line 9)\n" +
@@ -912,6 +913,7 @@ public void testBug537033() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 // Test for static method in non-static local class accessing outer local variable
 // Per JLS 8.1.3, static methods cannot reference local variables from enclosing methods
 // Note: static methods in local classes are only allowed in Java 16+
+@RunAlways
 public void testStaticMethodInLocalClassAccessingOuterLocal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
@@ -928,7 +930,7 @@ public void testStaticMethodInLocalClassAccessingOuterLocal() { //FLLDCIM: MARK 
 			}
 			"""
 		},
-		this.complianceLevel < ClassFileConstants.JDK16
+		this.fetchComplianceLevel() < ClassFileConstants.JDK16
 		?
 		"----------\n" +
 		"1. WARNING in X.java (at line 3)\n" +
@@ -955,6 +957,7 @@ public void testStaticMethodInLocalClassAccessingOuterLocal() { //FLLDCIM: MARK 
 		"----------\n");
 }
 // Test for static method in non-static local class accessing outer local variable (field reference)
+@RunAlways
 public void testStaticMethodInLocalClassAccessingOuterLocal2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
@@ -971,7 +974,7 @@ public void testStaticMethodInLocalClassAccessingOuterLocal2() { //FLLDCIM: MARK
 			}
 			"""
 		},
-		this.complianceLevel < ClassFileConstants.JDK16
+		this.fetchComplianceLevel() < ClassFileConstants.JDK16
 		?
 		"----------\n" +
 		"1. WARNING in X.java (at line 3)\n" +
@@ -998,6 +1001,7 @@ public void testStaticMethodInLocalClassAccessingOuterLocal2() { //FLLDCIM: MARK
 		"----------\n");
 }
 // Test for QualifiedNameReference - static method accessing outer local variable with field access
+@RunAlways
 public void testStaticMethodInLocalClassAccessingOuterLocalQualified() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
@@ -1015,7 +1019,7 @@ public void testStaticMethodInLocalClassAccessingOuterLocalQualified() { //FLLDC
 			}
 			"""
 		},
-		this.complianceLevel < ClassFileConstants.JDK16
+		this.fetchComplianceLevel() < ClassFileConstants.JDK16
 		?
 		"----------\n" +
 		"1. WARNING in X.java (at line 4)\n" +
@@ -1042,6 +1046,7 @@ public void testStaticMethodInLocalClassAccessingOuterLocalQualified() { //FLLDC
 		"----------\n");
 }
 // Test for QualifiedNameReference - accessing multiple fields starting with outer local
+@RunAlways
 public void testStaticMethodInLocalClassAccessingOuterLocalQualified2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
@@ -1060,7 +1065,7 @@ public void testStaticMethodInLocalClassAccessingOuterLocalQualified2() { //FLLD
 			}
 			"""
 		},
-		this.complianceLevel < ClassFileConstants.JDK16
+		this.fetchComplianceLevel() < ClassFileConstants.JDK16
 		?
 		"----------\n" +
 		"1. WARNING in X.java (at line 5)\n" +
@@ -1112,8 +1117,9 @@ public void testNonStaticMethodInLocalClassAccessingOuterLocal() { //FLLDCIM: MA
 // Test for static initializer block in local class accessing outer local variable.
 // This exercises the safety net in CodeStream.generateOuterAccess (line 2218)
 // where mappingSequence is null for a LocalVariableBinding target.
+@RunAlways
 public void testStaticInitializerInLocalClassAccessingOuterLocal() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK16) return;
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK16) return;
 	runNegativeTest(
 		new String[] {
 			"X.java",
@@ -1137,6 +1143,7 @@ public void testStaticInitializerInLocalClassAccessingOuterLocal() { //FLLDCIM: 
 		"----------\n");
 }
 
+@RunAlways
 public void testStaticInitializerInLocalClassAccessingOuterLocalVariable() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	runNegativeTest(
 		new String[] {
@@ -1154,7 +1161,7 @@ public void testStaticInitializerInLocalClassAccessingOuterLocalVariable() { //F
 			}
 			"""
 		},
-		this.complianceLevel < ClassFileConstants.JDK16
+		this.fetchComplianceLevel() < ClassFileConstants.JDK16
 		?
 		"----------\n" +
 		"1. ERROR in X.java (at line 5)\n" +

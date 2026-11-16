@@ -8114,8 +8114,9 @@ public void testBug267833_2() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  * Additional test for bug 267833
  * test Ensure that a warning is raised when block tags are used as inline tags.
  */
+@RunAlways
 public void testBug267833_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if(this.complianceLevel >= ClassFileConstants.JDK16) {
+	if(this.fetchComplianceLevel() >= ClassFileConstants.JDK16) {
 		return;
 	}
 	runNegativeTest(
@@ -8213,8 +8214,9 @@ public void testBug267833_3() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
  * 2) Ensure there is no error reported for return tag used inline
  * 3) TODO: ensure  there is no error reported for duplicated return tag if it is used inline and as block
  */
+@RunAlways
 public void testBug267833_3a() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if(this.complianceLevel < ClassFileConstants.JDK16) {
+	if(this.fetchComplianceLevel() < ClassFileConstants.JDK16) {
 		return;
 	}
 	runNegativeTest(

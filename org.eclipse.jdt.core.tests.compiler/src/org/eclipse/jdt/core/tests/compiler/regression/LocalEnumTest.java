@@ -907,8 +907,9 @@ public void test021() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 // Originally bug 77151 - cannot use qualified name to denote enum constants in switch case label
 // updated to conform test as this is legal since 21:
+@RunAlways
 public void test022() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK21)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK21)
 		return; // covered by EnumTest
 	this.runConformTest(
 		new String[] {
@@ -2865,8 +2866,9 @@ public void test078() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 
 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=85397
+@RunAlways
 public void test079() throws Exception { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK17)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK17)
 		return; // covered by EnumTest
 	this.runNegativeTest(
 		new String[] {
@@ -4295,7 +4297,7 @@ public void _NA_test112() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 }
 //https://bugs.eclipse.org/bugs/show_bug.cgi?id=93789
 public void _test113() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel >= ClassFileConstants.JDK16) {
+	if (this.fetchComplianceLevel() >= ClassFileConstants.JDK16) {
 		return;
 	}
     this.runNegativeTest(
@@ -5517,8 +5519,9 @@ public void test139() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
 	);
 }
 //check final modifier
+@RunAlways
 public void test140() { //FLLDCIM: MARK — ML METHOD_SPLIT METHOD
-	if (this.complianceLevel < ClassFileConstants.JDK17)
+	if (this.fetchComplianceLevel() < ClassFileConstants.JDK17)
 		return; // covered by EnumTest
 	// An enum class E is implicitly sealed if its declaration contains at least one enum constant that has a class body
 	this.runNegativeTest(
